@@ -27,3 +27,5 @@ jobs:
     - name: Test with pytest
       run: |
         pytest test
+      with:
+        password: ${{ secrets.PYPI_API_TOKEN }}
