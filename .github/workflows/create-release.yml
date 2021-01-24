@@ -4,7 +4,9 @@
 name: Publish a new release
 
 on:
-  branches: [ main ]
+  push:
+    branches:
+      - main
 
 jobs:
   build:
