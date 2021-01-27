@@ -19,7 +19,7 @@ import os
 import sys
 import pkg_resources
 
-__version__ = '1.0.0'
+__version__ = '0.0.1'
 PACKAGE_NAME = 'ibm_secrets_manager_sdk'
 PACKAGE_DESC = 'IBM Cloud Secrets Manager Python SDK'
 
@@ -70,7 +70,7 @@ setup(name=PACKAGE_NAME.replace('_', '-'),
       author='IBM',
       long_description=readme,
       long_description_content_type='text/markdown',
-      url='https://github.ibm.com/security-services/secrets-manager-sdk-python',
+      url='https://github.com/IBM/secrets-manager-python-sdk',
       packages=[PACKAGE_NAME],
       include_package_data=True,
       keywords=PACKAGE_NAME,
