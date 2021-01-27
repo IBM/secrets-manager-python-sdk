@@ -6,7 +6,7 @@ name: Publish a new release
 on:
   release:
     types:
-      - created
+      - published
         
 jobs:
   build:
@@ -32,7 +32,6 @@ jobs:
         --outdir dist/
         .
     - name: Publish distribution to PyPI
-      if: startsWith(github.ref, 'refs/tags')
-      uses: pypa/gh-action-pypi-publish@master
+      uses: pypa/gh-action-pypi-publish@main
       with:
         password: ${{ secrets.PYPI_API_TOKEN }}
