@@ -4,11 +4,10 @@
 name: Publish a new release
 
 on:
-  workflow_run:
-    workflows: ["create-release"]
-    branches: [main]
+  release:
     types:
-      - completed
+      - created
+        
 jobs:
   build:
     runs-on: ubuntu-latest
