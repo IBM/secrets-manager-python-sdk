@@ -14,12 +14,12 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-# IBM OpenAPI SDK Code Generator Version: 3.24.0-fac1d4cc-20210108-162022
-
+# IBM OpenAPI SDK Code Generator Version: 3.28.0-55613c9e-20210220-164656
+ 
 """
 With IBM Cloud® Secrets Manager, you can create, lease, and centrally manage secrets that
-are used in IBM Cloud  services or your custom-built applications. Secrets are stored in a
-dedicated instance of Secrets Manager, backed by  open source HashiCorp Vault.
+are used in IBM Cloud services or your custom-built applications. Secrets are stored in a
+dedicated instance of Secrets Manager, built on open source HashiCorp Vault.
 """
 
 from datetime import datetime
@@ -32,8 +32,7 @@ from ibm_cloud_sdk_core.authenticators.authenticator import Authenticator
 from ibm_cloud_sdk_core.get_authenticator import get_authenticator_from_environment
 from ibm_cloud_sdk_core.utils import convert_model, datetime_to_string, string_to_datetime
 
-from ibm_secrets_manager_sdk.common import get_sdk_headers
-
+from .common import get_sdk_headers
 
 ##############################################################################
 # Service
@@ -48,7 +47,7 @@ class IbmCloudSecretsManagerApiV1(BaseService):
     @classmethod
     def new_instance(cls,
                      service_name: str = DEFAULT_SERVICE_NAME,
-                     ) -> 'IbmCloudSecretsManagerApiV1':
+                    ) -> 'IbmCloudSecretsManagerApiV1':
         """
         Return a new client for the IBM Cloud Secrets Manager API service using the
                specified parameters and external configuration.
@@ -56,13 +55,13 @@ class IbmCloudSecretsManagerApiV1(BaseService):
         authenticator = get_authenticator_from_environment(service_name)
         service = cls(
             authenticator
-        )
+            )
         service.configure_service(service_name)
         return service
 
     def __init__(self,
                  authenticator: Authenticator = None,
-                 ) -> None:
+                ) -> None:
         """
         Construct a new client for the IBM Cloud Secrets Manager API service.
 
@@ -74,15 +73,17 @@ class IbmCloudSecretsManagerApiV1(BaseService):
                              service_url=self.DEFAULT_SERVICE_URL,
                              authenticator=authenticator)
 
+
     #########################
     # config
     #########################
 
+
     def put_config(self,
-                   secret_type: str,
-                   engine_config_one_of: 'EngineConfigOneOf',
-                   **kwargs
-                   ) -> DetailedResponse:
+        secret_type: str,
+        engine_config_one_of: 'EngineConfigOneOf',
+        **kwargs
+    ) -> DetailedResponse:
         """
         Configure secrets of a given type.
 
@@ -123,10 +124,11 @@ class IbmCloudSecretsManagerApiV1(BaseService):
         response = self.send(request)
         return response
 
+
     def get_config(self,
-                   secret_type: str,
-                   **kwargs
-                   ) -> DetailedResponse:
+        secret_type: str,
+        **kwargs
+    ) -> DetailedResponse:
         """
         Get the configuration for a secret type.
 
@@ -165,21 +167,22 @@ class IbmCloudSecretsManagerApiV1(BaseService):
     # policies
     #########################
 
+
     def put_policy(self,
-                   secret_type: str,
-                   id: str,
-                   metadata: 'CollectionMetadata',
-                   resources: List['SecretPolicyRotation'],
-                   *,
-                   policy: str = None,
-                   **kwargs
-                   ) -> DetailedResponse:
+        secret_type: str,
+        id: str,
+        metadata: 'CollectionMetadata',
+        resources: List['SecretPolicyRotation'],
+        *,
+        policy: str = None,
+        **kwargs
+    ) -> DetailedResponse:
         """
         Set secret policies.
 
         Creates or updates one or more policies, such as an [automatic rotation
         policy](http://cloud.ibm.com/docs/secrets-manager?topic=secrets-manager-rotate-secrets#auto-rotate-secret),
-         for the specified secret.
+        for the specified secret.
 
         :param str secret_type: The secret type.
         :param str id: The v4 UUID that uniquely identifies the secret.
@@ -238,13 +241,14 @@ class IbmCloudSecretsManagerApiV1(BaseService):
         response = self.send(request)
         return response
 
+
     def get_policy(self,
-                   secret_type: str,
-                   id: str,
-                   *,
-                   policy: str = None,
-                   **kwargs
-                   ) -> DetailedResponse:
+        secret_type: str,
+        id: str,
+        *,
+        policy: str = None,
+        **kwargs
+    ) -> DetailedResponse:
         """
         List secret policies.
 
@@ -293,18 +297,19 @@ class IbmCloudSecretsManagerApiV1(BaseService):
     # secretGroups
     #########################
 
+
     def create_secret_group(self,
-                            metadata: 'CollectionMetadata',
-                            resources: List['SecretGroupResource'],
-                            **kwargs
-                            ) -> DetailedResponse:
+        metadata: 'CollectionMetadata',
+        resources: List['SecretGroupResource'],
+        **kwargs
+    ) -> DetailedResponse:
         """
         Create a secret group.
 
         Creates a secret group that you can use to organize secrets and control who on
         your team has access to them.
         A successful request returns the ID value of the secret group, along with other
-        metadata. To learn more about  secret groups, check out the
+        metadata. To learn more about secret groups, check out the
         [docs](https://cloud.ibm.com/docs/secrets-manager?topic=secrets-manager-secret-groups).
 
         :param CollectionMetadata metadata: The metadata that describes the
@@ -348,9 +353,10 @@ class IbmCloudSecretsManagerApiV1(BaseService):
         response = self.send(request)
         return response
 
+
     def list_secret_groups(self,
-                           **kwargs
-                           ) -> DetailedResponse:
+        **kwargs
+    ) -> DetailedResponse:
         """
         List secret groups.
 
@@ -380,10 +386,11 @@ class IbmCloudSecretsManagerApiV1(BaseService):
         response = self.send(request)
         return response
 
+
     def get_secret_group(self,
-                         id: str,
-                         **kwargs
-                         ) -> DetailedResponse:
+        id: str,
+        **kwargs
+    ) -> DetailedResponse:
         """
         Get a secret group.
 
@@ -419,12 +426,13 @@ class IbmCloudSecretsManagerApiV1(BaseService):
         response = self.send(request)
         return response
 
+
     def update_secret_group_metadata(self,
-                                     id: str,
-                                     metadata: 'CollectionMetadata',
-                                     resources: List['SecretGroupMetadataUpdatable'],
-                                     **kwargs
-                                     ) -> DetailedResponse:
+        id: str,
+        metadata: 'CollectionMetadata',
+        resources: List['SecretGroupMetadataUpdatable'],
+        **kwargs
+    ) -> DetailedResponse:
         """
         Update a secret group.
 
@@ -478,10 +486,11 @@ class IbmCloudSecretsManagerApiV1(BaseService):
         response = self.send(request)
         return response
 
+
     def delete_secret_group(self,
-                            id: str,
-                            **kwargs
-                            ) -> DetailedResponse:
+        id: str,
+        **kwargs
+    ) -> DetailedResponse:
         """
         Delete a secret group.
 
@@ -522,19 +531,20 @@ class IbmCloudSecretsManagerApiV1(BaseService):
     # secrets
     #########################
 
+
     def create_secret(self,
-                      secret_type: str,
-                      metadata: 'CollectionMetadata',
-                      resources: List['SecretResource'],
-                      **kwargs
-                      ) -> DetailedResponse:
+        secret_type: str,
+        metadata: 'CollectionMetadata',
+        resources: List['SecretResource'],
+        **kwargs
+    ) -> DetailedResponse:
         """
         Create a secret.
 
         Creates a secret that you can use to access or authenticate to a protected
         resource.
         A successful request stores the secret in your dedicated instance based on the
-        secret type and data that you  specify. The response returns the ID value of the
+        secret type and data that you specify. The response returns the ID value of the
         secret, along with other metadata.
         To learn more about the types of secrets that you can create with Secrets Manager,
         check out the
@@ -587,13 +597,14 @@ class IbmCloudSecretsManagerApiV1(BaseService):
         response = self.send(request)
         return response
 
+
     def list_secrets(self,
-                     secret_type: str,
-                     *,
-                     limit: int = None,
-                     offset: int = None,
-                     **kwargs
-                     ) -> DetailedResponse:
+        secret_type: str,
+        *,
+        limit: int = None,
+        offset: int = None,
+        **kwargs
+    ) -> DetailedResponse:
         """
         List secrets by type.
 
@@ -646,12 +657,15 @@ class IbmCloudSecretsManagerApiV1(BaseService):
         response = self.send(request)
         return response
 
+
     def list_all_secrets(self,
-                         *,
-                         limit: int = None,
-                         offset: int = None,
-                         **kwargs
-                         ) -> DetailedResponse:
+        *,
+        limit: int = None,
+        offset: int = None,
+        search: str = None,
+        sort_by: str = None,
+        **kwargs
+    ) -> DetailedResponse:
         """
         List all secrets.
 
@@ -669,6 +683,16 @@ class IbmCloudSecretsManagerApiV1(BaseService):
                **Usage:** If you have 100 secrets in your instance, and you want to
                retrieve secrets 26 through 50, use
                `../secrets/{secret-type}?offset=25&limit=25`.
+        :param str search: (optional) Filters for secrets that contain the string
+               that you specify. The fields that are searched include: id, name,
+               description, labels, secret_type.
+               **Usage:** If you want to list only the secrets that contain the string
+               "text", use
+               `../secrets/{secret-type}?search=text`.
+        :param str sort_by: (optional) Sorts a list of secrets by the field that
+               you specify.
+               **Usage:** To sort a list of secrets by their creation date, use
+               `../secrets/{secret-type}?sort_by=creation_date`.
         :param dict headers: A `dict` containing the request headers
         :return: A `DetailedResponse` containing the result, headers and HTTP status code.
         :rtype: DetailedResponse with `dict` result representing a `ListSecrets` object
@@ -682,7 +706,9 @@ class IbmCloudSecretsManagerApiV1(BaseService):
 
         params = {
             'limit': limit,
-            'offset': offset
+            'offset': offset,
+            'search': search,
+            'sort_by': sort_by
         }
 
         if 'headers' in kwargs:
@@ -698,18 +724,19 @@ class IbmCloudSecretsManagerApiV1(BaseService):
         response = self.send(request)
         return response
 
+
     def get_secret(self,
-                   secret_type: str,
-                   id: str,
-                   **kwargs
-                   ) -> DetailedResponse:
+        secret_type: str,
+        id: str,
+        **kwargs
+    ) -> DetailedResponse:
         """
         Get a secret.
 
         Retrieves a secret and its details by specifying the ID of the secret.
         A successful request returns the secret data that is associated with your secret,
-        along with other metadata. To  view only the details of a specified secret without
-        retrieving its value, use the [Get secret metadata](#get-secret-metadata)  method.
+        along with other metadata. To view only the details of a specified secret without
+        retrieving its value, use the [Get secret metadata](#get-secret-metadata) method.
 
         :param str secret_type: The secret type.
         :param str id: The v4 UUID that uniquely identifies the secret.
@@ -743,13 +770,14 @@ class IbmCloudSecretsManagerApiV1(BaseService):
         response = self.send(request)
         return response
 
+
     def update_secret(self,
-                      secret_type: str,
-                      id: str,
-                      action: str,
-                      secret_action_one_of: 'SecretActionOneOf',
-                      **kwargs
-                      ) -> DetailedResponse:
+        secret_type: str,
+        id: str,
+        action: str,
+        secret_action_one_of: 'SecretActionOneOf',
+        **kwargs
+    ) -> DetailedResponse:
         """
         Invoke an action on a secret.
 
@@ -807,11 +835,12 @@ class IbmCloudSecretsManagerApiV1(BaseService):
         response = self.send(request)
         return response
 
+
     def delete_secret(self,
-                      secret_type: str,
-                      id: str,
-                      **kwargs
-                      ) -> DetailedResponse:
+        secret_type: str,
+        id: str,
+        **kwargs
+    ) -> DetailedResponse:
         """
         Delete a secret.
 
@@ -848,17 +877,18 @@ class IbmCloudSecretsManagerApiV1(BaseService):
         response = self.send(request)
         return response
 
+
     def get_secret_metadata(self,
-                            secret_type: str,
-                            id: str,
-                            **kwargs
-                            ) -> DetailedResponse:
+        secret_type: str,
+        id: str,
+        **kwargs
+    ) -> DetailedResponse:
         """
         Get secret metadata.
 
         Retrieves the details of a secret by specifying the ID.
         A successful request returns only metadata about the secret, such as its name and
-        creation date. To retrieve the  value of a secret, use the [Get a
+        creation date. To retrieve the value of a secret, use the [Get a
         secret](#get-secret) method.
 
         :param str secret_type: The secret type.
@@ -893,13 +923,14 @@ class IbmCloudSecretsManagerApiV1(BaseService):
         response = self.send(request)
         return response
 
+
     def update_secret_metadata(self,
-                               secret_type: str,
-                               id: str,
-                               metadata: 'CollectionMetadata',
-                               resources: List['SecretMetadata'],
-                               **kwargs
-                               ) -> DetailedResponse:
+        secret_type: str,
+        id: str,
+        metadata: 'CollectionMetadata',
+        resources: List['SecretMetadata'],
+        **kwargs
+    ) -> DetailedResponse:
         """
         Update secret metadata.
 
@@ -992,7 +1023,6 @@ class PutPolicyEnums:
         The secret type.
         """
         USERNAME_PASSWORD = 'username_password'
-
     class Policy(str, Enum):
         """
         The type of policy that is associated with the specified secret.
@@ -1010,7 +1040,6 @@ class GetPolicyEnums:
         The secret type.
         """
         USERNAME_PASSWORD = 'username_password'
-
     class Policy(str, Enum):
         """
         The type of policy that is associated with the specified secret.
@@ -1046,6 +1075,24 @@ class ListSecretsEnums:
         IAM_CREDENTIALS = 'iam_credentials'
 
 
+class ListAllSecretsEnums:
+    """
+    Enums for list_all_secrets parameters.
+    """
+
+    class SortBy(str, Enum):
+        """
+        Sorts a list of secrets by the field that you specify.
+        **Usage:** To sort a list of secrets by their creation date, use
+        `../secrets/{secret-type}?sort_by=creation_date`.
+        """
+        ID = 'id'
+        CREATION_DATE = 'creation_date'
+        EXPIRATION_DATE = 'expiration_date'
+        SECRET_TYPE = 'secret_type'
+        NAME = 'name'
+
+
 class GetSecretEnums:
     """
     Enums for get_secret parameters.
@@ -1072,7 +1119,6 @@ class UpdateSecretEnums:
         ARBITRARY = 'arbitrary'
         USERNAME_PASSWORD = 'username_password'
         IAM_CREDENTIALS = 'iam_credentials'
-
     class Action(str, Enum):
         """
         The action to perform on the specified secret.
@@ -1279,7 +1325,6 @@ class CreateSecret():
         """Return `true` when self and other are not equal, false otherwise."""
         return not self == other
 
-
 class EngineConfigOneOf():
     """
     EngineConfigOneOf.
@@ -1292,9 +1337,8 @@ class EngineConfigOneOf():
 
         """
         msg = "Cannot instantiate base class. Instead, instantiate one of the defined subclasses: {0}".format(
-            ", ".join(['EngineConfigOneOfIAMSecretEngineRootConfig']))
+                  ", ".join(['EngineConfigOneOfIAMSecretEngineRootConfig']))
         raise Exception(msg)
-
 
 class GetSecret():
     """
@@ -1370,7 +1414,6 @@ class GetSecret():
         """Return `true` when self and other are not equal, false otherwise."""
         return not self == other
 
-
 class GetSecretPoliciesOneOf():
     """
     GetSecretPoliciesOneOf.
@@ -1383,9 +1426,8 @@ class GetSecretPoliciesOneOf():
 
         """
         msg = "Cannot instantiate base class. Instead, instantiate one of the defined subclasses: {0}".format(
-            ", ".join(['GetSecretPoliciesOneOfGetSecretPolicyRotation']))
+                  ", ".join(['GetSecretPoliciesOneOfGetSecretPolicyRotation']))
         raise Exception(msg)
-
 
 class GetSecretPoliciesOneOfGetSecretPolicyRotationResourcesItem():
     """
@@ -1442,8 +1484,7 @@ class GetSecretPoliciesOneOfGetSecretPolicyRotationResourcesItem():
         if 'id' in _dict:
             args['id'] = _dict.get('id')
         else:
-            raise ValueError(
-                'Required property \'id\' not present in GetSecretPoliciesOneOfGetSecretPolicyRotationResourcesItem JSON')
+            raise ValueError('Required property \'id\' not present in GetSecretPoliciesOneOfGetSecretPolicyRotationResourcesItem JSON')
         if 'crn' in _dict:
             args['crn'] = _dict.get('crn')
         if 'creation_date' in _dict:
@@ -1457,13 +1498,11 @@ class GetSecretPoliciesOneOfGetSecretPolicyRotationResourcesItem():
         if 'type' in _dict:
             args['type'] = _dict.get('type')
         else:
-            raise ValueError(
-                'Required property \'type\' not present in GetSecretPoliciesOneOfGetSecretPolicyRotationResourcesItem JSON')
+            raise ValueError('Required property \'type\' not present in GetSecretPoliciesOneOfGetSecretPolicyRotationResourcesItem JSON')
         if 'rotation' in _dict:
             args['rotation'] = SecretPolicyRotationRotation.from_dict(_dict.get('rotation'))
         else:
-            raise ValueError(
-                'Required property \'rotation\' not present in GetSecretPoliciesOneOfGetSecretPolicyRotationResourcesItem JSON')
+            raise ValueError('Required property \'rotation\' not present in GetSecretPoliciesOneOfGetSecretPolicyRotationResourcesItem JSON')
         return cls(**args)
 
     @classmethod
@@ -1592,7 +1631,6 @@ class ListSecrets():
         """Return `true` when self and other are not equal, false otherwise."""
         return not self == other
 
-
 class SecretActionOneOf():
     """
     SecretActionOneOf.
@@ -1605,11 +1643,8 @@ class SecretActionOneOf():
 
         """
         msg = "Cannot instantiate base class. Instead, instantiate one of the defined subclasses: {0}".format(
-            ", ".join(
-                ['SecretActionOneOfRotateArbitrarySecretBody', 'SecretActionOneOfRotateUsernamePasswordSecretBody',
-                 'SecretActionOneOfDeleteCredentialsForIAMSecret']))
+                  ", ".join(['SecretActionOneOfRotateArbitrarySecretBody', 'SecretActionOneOfRotateUsernamePasswordSecretBody', 'SecretActionOneOfDeleteCredentialsForIAMSecret']))
         raise Exception(msg)
-
 
 class SecretGroupDef():
     """
@@ -1678,7 +1713,6 @@ class SecretGroupDef():
     def __ne__(self, other: 'SecretGroupDef') -> bool:
         """Return `true` when self and other are not equal, false otherwise."""
         return not self == other
-
 
 class SecretGroupMetadataUpdatable():
     """
@@ -1753,7 +1787,6 @@ class SecretGroupMetadataUpdatable():
         """Return `true` when self and other are not equal, false otherwise."""
         return not self == other
 
-
 class SecretGroupResource():
     """
     Properties that describe a secret group.
@@ -1822,7 +1855,7 @@ class SecretGroupResource():
             args['last_update_date'] = string_to_datetime(_dict.get('last_update_date'))
         if 'type' in _dict:
             args['type'] = _dict.get('type')
-        args.update({k: v for (k, v) in _dict.items() if k not in cls._properties})
+        args.update({k:v for (k, v) in _dict.items() if k not in cls._properties})
         return cls(**args)
 
     @classmethod
@@ -1867,7 +1900,6 @@ class SecretGroupResource():
     def __ne__(self, other: 'SecretGroupResource') -> bool:
         """Return `true` when self and other are not equal, false otherwise."""
         return not self == other
-
 
 class SecretMetadata():
     """
@@ -2150,7 +2182,6 @@ class SecretMetadataRequest():
         """Return `true` when self and other are not equal, false otherwise."""
         return not self == other
 
-
 class SecretPolicyRotation():
     """
     Properties that are associated with a rotation policy.
@@ -2315,10 +2346,8 @@ class SecretResource():
 
         """
         msg = "Cannot instantiate base class. Instead, instantiate one of the defined subclasses: {0}".format(
-            ", ".join(['SecretResourceArbitrarySecretResource', 'SecretResourceUsernamePasswordSecretResource',
-                       'SecretResourceIAMSecretResource']))
+                  ", ".join(['SecretResourceArbitrarySecretResource', 'SecretResourceUsernamePasswordSecretResource', 'SecretResourceIAMSecretResource']))
         raise Exception(msg)
-
 
 class SecretVersion():
     """
@@ -2398,7 +2427,6 @@ class SecretVersion():
         """Return `true` when self and other are not equal, false otherwise."""
         return not self == other
 
-
 class EngineConfigOneOfIAMSecretEngineRootConfig(EngineConfigOneOf):
     """
     Configuration that is used to generate IAM credentials.
@@ -2438,8 +2466,7 @@ class EngineConfigOneOfIAMSecretEngineRootConfig(EngineConfigOneOf):
         if 'api_key' in _dict:
             args['api_key'] = _dict.get('api_key')
         else:
-            raise ValueError(
-                'Required property \'api_key\' not present in EngineConfigOneOfIAMSecretEngineRootConfig JSON')
+            raise ValueError('Required property \'api_key\' not present in EngineConfigOneOfIAMSecretEngineRootConfig JSON')
         if 'api_key_hash' in _dict:
             args['api_key_hash'] = _dict.get('api_key_hash')
         return cls(**args)
@@ -2476,7 +2503,6 @@ class EngineConfigOneOfIAMSecretEngineRootConfig(EngineConfigOneOf):
         """Return `true` when self and other are not equal, false otherwise."""
         return not self == other
 
-
 class GetSecretPoliciesOneOfGetSecretPolicyRotation(GetSecretPoliciesOneOf):
     """
     The base schema for retrieving a policy that is associated with a secret.
@@ -2509,14 +2535,11 @@ class GetSecretPoliciesOneOfGetSecretPolicyRotation(GetSecretPoliciesOneOf):
         if 'metadata' in _dict:
             args['metadata'] = CollectionMetadata.from_dict(_dict.get('metadata'))
         else:
-            raise ValueError(
-                'Required property \'metadata\' not present in GetSecretPoliciesOneOfGetSecretPolicyRotation JSON')
+            raise ValueError('Required property \'metadata\' not present in GetSecretPoliciesOneOfGetSecretPolicyRotation JSON')
         if 'resources' in _dict:
-            args['resources'] = [GetSecretPoliciesOneOfGetSecretPolicyRotationResourcesItem.from_dict(x) for x in
-                                 _dict.get('resources')]
+            args['resources'] = [GetSecretPoliciesOneOfGetSecretPolicyRotationResourcesItem.from_dict(x) for x in _dict.get('resources')]
         else:
-            raise ValueError(
-                'Required property \'resources\' not present in GetSecretPoliciesOneOfGetSecretPolicyRotation JSON')
+            raise ValueError('Required property \'resources\' not present in GetSecretPoliciesOneOfGetSecretPolicyRotation JSON')
         return cls(**args)
 
     @classmethod
@@ -2551,7 +2574,6 @@ class GetSecretPoliciesOneOfGetSecretPolicyRotation(GetSecretPoliciesOneOf):
         """Return `true` when self and other are not equal, false otherwise."""
         return not self == other
 
-
 class SecretActionOneOfDeleteCredentialsForIAMSecret(SecretActionOneOf):
     """
     Delete the credentials that are associated with an `iam_credentials` secret.
@@ -2578,8 +2600,7 @@ class SecretActionOneOfDeleteCredentialsForIAMSecret(SecretActionOneOf):
         if 'service_id' in _dict:
             args['service_id'] = _dict.get('service_id')
         else:
-            raise ValueError(
-                'Required property \'service_id\' not present in SecretActionOneOfDeleteCredentialsForIAMSecret JSON')
+            raise ValueError('Required property \'service_id\' not present in SecretActionOneOfDeleteCredentialsForIAMSecret JSON')
         return cls(**args)
 
     @classmethod
@@ -2612,7 +2633,6 @@ class SecretActionOneOfDeleteCredentialsForIAMSecret(SecretActionOneOf):
         """Return `true` when self and other are not equal, false otherwise."""
         return not self == other
 
-
 class SecretActionOneOfRotateArbitrarySecretBody(SecretActionOneOf):
     """
     The request body of a `rotate` action.
@@ -2637,8 +2657,7 @@ class SecretActionOneOfRotateArbitrarySecretBody(SecretActionOneOf):
         if 'payload' in _dict:
             args['payload'] = _dict.get('payload')
         else:
-            raise ValueError(
-                'Required property \'payload\' not present in SecretActionOneOfRotateArbitrarySecretBody JSON')
+            raise ValueError('Required property \'payload\' not present in SecretActionOneOfRotateArbitrarySecretBody JSON')
         return cls(**args)
 
     @classmethod
@@ -2671,7 +2690,6 @@ class SecretActionOneOfRotateArbitrarySecretBody(SecretActionOneOf):
         """Return `true` when self and other are not equal, false otherwise."""
         return not self == other
 
-
 class SecretActionOneOfRotateUsernamePasswordSecretBody(SecretActionOneOf):
     """
     The request body of a `rotate` action.
@@ -2697,8 +2715,7 @@ class SecretActionOneOfRotateUsernamePasswordSecretBody(SecretActionOneOf):
         if 'password' in _dict:
             args['password'] = _dict.get('password')
         else:
-            raise ValueError(
-                'Required property \'password\' not present in SecretActionOneOfRotateUsernamePasswordSecretBody JSON')
+            raise ValueError('Required property \'password\' not present in SecretActionOneOfRotateUsernamePasswordSecretBody JSON')
         return cls(**args)
 
     @classmethod
@@ -2731,7 +2748,6 @@ class SecretActionOneOfRotateUsernamePasswordSecretBody(SecretActionOneOf):
         """Return `true` when self and other are not equal, false otherwise."""
         return not self == other
 
-
 class SecretResourceArbitrarySecretResource(SecretResource):
     """
     The base schema for secrets.
@@ -2762,7 +2778,7 @@ class SecretResourceArbitrarySecretResource(SecretResource):
           state.
     :attr str secret_type: (optional) The secret type.
     :attr str crn: (optional) The Cloud Resource Name (CRN) that uniquely identifies
-          your cloud resources.
+          your Secrets Manager resource.
     :attr datetime creation_date: (optional) The date the secret was created. The
           date format follows RFC 3339.
     :attr str created_by: (optional) The unique identifier for the entity that
@@ -2823,8 +2839,6 @@ class SecretResourceArbitrarySecretResource(SecretResource):
                bracket, comma, colon, ampersand, and vertical pipe character (|).
                To protect your privacy, do not use personal data, such as your name or
                location, as a label for your secret.
-        :param List[SecretVersion] versions: (optional) An array that contains
-               metadata for each secret version.
         :param datetime expiration_date: (optional) The date the secret material
                expires. The date format follows RFC 3339.
                You can set an expiration date on supported secret types at their creation.
@@ -2931,8 +2945,8 @@ class SecretResourceArbitrarySecretResource(SecretResource):
             _dict['created_by'] = getattr(self, 'created_by')
         if hasattr(self, 'last_update_date') and getattr(self, 'last_update_date') is not None:
             _dict['last_update_date'] = datetime_to_string(getattr(self, 'last_update_date'))
-        if hasattr(self, 'versions') and self.versions is not None:
-            _dict['versions'] = [x.to_dict() for x in self.versions]
+        if hasattr(self, 'versions') and getattr(self, 'versions') is not None:
+            _dict['versions'] = [x.to_dict() for x in getattr(self, 'versions')]
         if hasattr(self, 'expiration_date') and self.expiration_date is not None:
             _dict['expiration_date'] = datetime_to_string(self.expiration_date)
         if hasattr(self, 'payload') and self.payload is not None:
@@ -2998,7 +3012,7 @@ class SecretResourceIAMSecretResource(SecretResource):
           state.
     :attr str secret_type: (optional) The secret type.
     :attr str crn: (optional) The Cloud Resource Name (CRN) that uniquely identifies
-          your cloud resources.
+          your Secrets Manager resource.
     :attr datetime creation_date: (optional) The date the secret was created. The
           date format follows RFC 3339.
     :attr str created_by: (optional) The unique identifier for the entity that
@@ -3018,10 +3032,12 @@ class SecretResourceIAMSecretResource(SecretResource):
           **Tip:** To find the ID of an access group, go to **Manage > Access (IAM) >
           Access groups** in the IBM Cloud console. Select the access group to inspect,
           and click **Details** to view its ID.
-    :attr str api_key: (optional) The IAM API key of this IAM secret.
-    :attr str service_id: (optional) The IAM ServiceID under which the IAM API key
-          (see the api_key field) was created. This ServiceID is assigned to the
-          access_groups defined for this IAM secret.
+    :attr str api_key: (optional) The API key that is generated for this secret.
+          After the secret reaches the end of its lease (see the `ttl` field), the API key
+          is revoked automatically.
+    :attr str service_id: (optional) The service ID under which the API key (see the
+          `api_key` field) is created. This service ID is added to the access groups that
+          you assign for this secret.
     """
 
     def __init__(self,
@@ -3065,8 +3081,6 @@ class SecretResourceIAMSecretResource(SecretResource):
                bracket, comma, colon, ampersand, and vertical pipe character (|).
                To protect your privacy, do not use personal data, such as your name or
                location, as a label for your secret.
-        :param List[SecretVersion] versions: (optional) An array that contains
-               metadata for each secret version.
         :param object ttl: (optional) The time-to-live (TTL) or lease duration to
                assign to generated credentials.
                For `iam_credentials` secrets, the TTL defines for how long each generated
@@ -3178,8 +3192,8 @@ class SecretResourceIAMSecretResource(SecretResource):
             _dict['created_by'] = getattr(self, 'created_by')
         if hasattr(self, 'last_update_date') and getattr(self, 'last_update_date') is not None:
             _dict['last_update_date'] = datetime_to_string(getattr(self, 'last_update_date'))
-        if hasattr(self, 'versions') and self.versions is not None:
-            _dict['versions'] = [x.to_dict() for x in self.versions]
+        if hasattr(self, 'versions') and getattr(self, 'versions') is not None:
+            _dict['versions'] = [x.to_dict() for x in getattr(self, 'versions')]
         if hasattr(self, 'ttl') and self.ttl is not None:
             _dict['ttl'] = self.ttl
         if hasattr(self, 'access_groups') and self.access_groups is not None:
@@ -3247,7 +3261,7 @@ class SecretResourceUsernamePasswordSecretResource(SecretResource):
           state.
     :attr str secret_type: (optional) The secret type.
     :attr str crn: (optional) The Cloud Resource Name (CRN) that uniquely identifies
-          your cloud resources.
+          your Secrets Manager resource.
     :attr datetime creation_date: (optional) The date the secret was created. The
           date format follows RFC 3339.
     :attr str created_by: (optional) The unique identifier for the entity that
@@ -3256,10 +3270,8 @@ class SecretResourceUsernamePasswordSecretResource(SecretResource):
           modified. The date format follows RFC 3339.
     :attr List[SecretVersion] versions: (optional) An array that contains metadata
           for each secret version.
-    :attr str username: (optional) The username assigend to the username-password
-          secret.
-    :attr str password: (optional) The password assigend to the username-password
-          secret.
+    :attr str username: (optional) The username to assign to this secret.
+    :attr str password: (optional) The password to assign to this secret.
     :attr object secret_data: (optional)
     :attr datetime expiration_date: (optional) The date the secret material expires.
           The date format follows RFC 3339.
@@ -3317,12 +3329,8 @@ class SecretResourceUsernamePasswordSecretResource(SecretResource):
                bracket, comma, colon, ampersand, and vertical pipe character (|).
                To protect your privacy, do not use personal data, such as your name or
                location, as a label for your secret.
-        :param List[SecretVersion] versions: (optional) An array that contains
-               metadata for each secret version.
-        :param str username: (optional) The username assigend to the
-               username-password secret.
-        :param str password: (optional) The password assigend to the
-               username-password secret.
+        :param str username: (optional) The username to assign to this secret.
+        :param str password: (optional) The password to assign to this secret.
         :param datetime expiration_date: (optional) The date the secret material
                expires. The date format follows RFC 3339.
                You can set an expiration date on supported secret types at their creation.
@@ -3364,8 +3372,7 @@ class SecretResourceUsernamePasswordSecretResource(SecretResource):
         if 'name' in _dict:
             args['name'] = _dict.get('name')
         else:
-            raise ValueError(
-                'Required property \'name\' not present in SecretResourceUsernamePasswordSecretResource JSON')
+            raise ValueError('Required property \'name\' not present in SecretResourceUsernamePasswordSecretResource JSON')
         if 'description' in _dict:
             args['description'] = _dict.get('description')
         if 'secret_group_id' in _dict:
@@ -3434,8 +3441,8 @@ class SecretResourceUsernamePasswordSecretResource(SecretResource):
             _dict['created_by'] = getattr(self, 'created_by')
         if hasattr(self, 'last_update_date') and getattr(self, 'last_update_date') is not None:
             _dict['last_update_date'] = datetime_to_string(getattr(self, 'last_update_date'))
-        if hasattr(self, 'versions') and self.versions is not None:
-            _dict['versions'] = [x.to_dict() for x in self.versions]
+        if hasattr(self, 'versions') and getattr(self, 'versions') is not None:
+            _dict['versions'] = [x.to_dict() for x in getattr(self, 'versions')]
         if hasattr(self, 'username') and self.username is not None:
             _dict['username'] = self.username
         if hasattr(self, 'password') and self.password is not None:
@@ -3473,3 +3480,4 @@ class SecretResourceUsernamePasswordSecretResource(SecretResource):
         ARBITRARY = 'arbitrary'
         USERNAME_PASSWORD = 'username_password'
         IAM_CREDENTIALS = 'iam_credentials'
+

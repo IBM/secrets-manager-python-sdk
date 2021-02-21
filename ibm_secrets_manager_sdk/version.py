@@ -17,4 +17,4 @@
 """
 Version of ibm_secrets_manager_sdk
 """
-__version__ = '0.0.3'
+__version__ = '0.0.4'
