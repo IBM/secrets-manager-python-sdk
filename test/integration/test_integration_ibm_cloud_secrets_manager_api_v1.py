@@ -21,10 +21,11 @@ import time
 import unittest
 
 from ibm_cloud_sdk_core.authenticators.iam_authenticator import IAMAuthenticator
+from ibm_cloud_sdk_core.api_exception import ApiException
 from ibm_secrets_manager_sdk.ibm_cloud_secrets_manager_api_v1 import *
 
 secretsManager = IbmCloudSecretsManagerApiV1(
-    authenticator=IAMAuthenticator(apikey=os.environ.get('SECRETS_MANAGER_API_APIKEY'))
+    authenticator=IAMAuthenticator(apikey=os.environ.get('SECRETS_MANAGER_API_APIKEY'), url=os.environ.get('AUTH_URL'))
 )
 
 secretsManager.set_service_url(os.environ.get('SERVICE_URL'))
@@ -128,6 +129,33 @@ class TestArbitrarySecret(unittest.TestCase):
         )
         assert response.status_code == 204
 
+    def test_create_a_secret_with_the_same_name(self):
+        secretName = 'conflict_integration_test_secret'
+        # create arbitrary secret
+        response = secretsManager.create_secret(
+            'arbitrary',
+            {'collection_type': 'application/vnd.ibm.secrets-manager.secret+json', 'collection_total': 1},
+            [{'name': secretName, 'description': 'Integration test generated', 'payload': 'secret-data'}]
+        )
+        assert response.status_code == 200
+        secretId = response.result['resources'][0]['id']
+        # now reuse the same secret name under the same secret type, should result in a conflict error.
+        try:
+            response = secretsManager.create_secret(
+                'arbitrary',
+                {'collection_type': 'application/vnd.ibm.secrets-manager.secret+json', 'collection_total': 1},
+                [{'name': secretName, 'description': 'Integration test generated', 'payload': 'secret-data'}]
+            )
+        except ApiException as err:
+            assert err.code == 409
+            assert err.message == 'Conflict'
+        finally:
+            # delete arbitrary secret
+            response = secretsManager.delete_secret(
+                'arbitrary',
+                secretId
+            )
+            assert response.status_code == 204
 
 def generate_name():
     return 'test-integration-' + str(int(time.time()))
