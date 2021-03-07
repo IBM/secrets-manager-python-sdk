@@ -25,7 +25,7 @@ services:
 
 Service name | Imported class name
 --- | ---
-[Secrets Manager](https://cloud.ibm.com/apidocs/secrets-manager) | IbmCloudSecretsManagerApiV1
+[Secrets Manager](https://cloud.ibm.com/apidocs/secrets-manager) | SecretsManagerV1
 
 ## Prerequisites
 
