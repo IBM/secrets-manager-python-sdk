@@ -19,7 +19,7 @@ import os
 import sys
 import pkg_resources
 
-__version__ = '0.0.4'
+__version__ = '0.1.0'
 PACKAGE_NAME = 'ibm_secrets_manager_sdk'
 PACKAGE_DESC = 'IBM Cloud Secrets Manager Python SDK'
 
@@ -38,6 +38,7 @@ if sys.argv[-1] == 'publish':
     os.system('python setup.py sdist upload -r pypi')
     sys.exit()
 
+
 class PyTest(TestCommand):
     def finalize_options(self):
         TestCommand.finalize_options(self)
@@ -49,13 +50,16 @@ class PyTest(TestCommand):
         errcode = pytest.main(self.test_args)
         sys.exit(errcode)
 
+
 class PyTestUnit(PyTest):
     def finalize_options(self):
         self.test_args = ['--strict', '--verbose', '--tb=long', 'test/unit']
 
+
 class PyTestIntegration(PyTest):
     def finalize_options(self):
         self.test_args = ['--strict', '--verbose', '--tb=long', 'test/integration']
+
 
 with open("README.md", "r") as fh:
     readme = fh.read()
@@ -89,4 +93,4 @@ setup(name=PACKAGE_NAME.replace('_', '-'),
           'Topic :: Software Development :: Libraries :: Application Frameworks',
       ],
       zip_safe=True
-     )
+      )

@@ -14,7 +14,7 @@
 # limitations under the License.
 
 """
-Integration Tests for IbmCloudSecretsManagerApiV1
+Integration Tests for SecretsManagerV1
 """
 import os
 import time
@@ -22,14 +22,13 @@ import unittest
 
 from ibm_cloud_sdk_core.authenticators.iam_authenticator import IAMAuthenticator
 from ibm_cloud_sdk_core.api_exception import ApiException
-from ibm_secrets_manager_sdk.ibm_cloud_secrets_manager_api_v1 import *
+from ibm_secrets_manager_sdk.secrets_manager_v1 import *
 
-secretsManager = IbmCloudSecretsManagerApiV1(
+secretsManager = SecretsManagerV1(
     authenticator=IAMAuthenticator(apikey=os.environ.get('SECRETS_MANAGER_API_APIKEY'), url=os.environ.get('AUTH_URL'))
 )
 
 secretsManager.set_service_url(os.environ.get('SERVICE_URL'))
-
 
 class TestArbitrarySecret(unittest.TestCase):
 
@@ -156,6 +155,7 @@ class TestArbitrarySecret(unittest.TestCase):
                 secretId
             )
             assert response.status_code == 204
+
 
 def generate_name():
     return 'test-integration-' + str(int(time.time()))
