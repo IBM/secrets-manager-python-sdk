@@ -14,7 +14,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-# IBM OpenAPI SDK Code Generator Version: 3.29.0-cd9ba74f-20210305-183535
+# IBM OpenAPI SDK Code Generator Version: 3.30.0-bd714324-20210406-200538
 
 """
 With IBM Cloud® Secrets Manager, you can create, lease, and centrally manage secrets that
@@ -30,7 +30,7 @@ import json
 from ibm_cloud_sdk_core import BaseService, DetailedResponse
 from ibm_cloud_sdk_core.authenticators.authenticator import Authenticator
 from ibm_cloud_sdk_core.get_authenticator import get_authenticator_from_environment
-from ibm_cloud_sdk_core.utils import convert_model, datetime_to_string, string_to_datetime
+from ibm_cloud_sdk_core.utils import convert_list, convert_model, datetime_to_string, string_to_datetime
 
 from .common import get_sdk_headers
 
@@ -100,6 +100,8 @@ class SecretsManagerV1(BaseService):
             raise ValueError('secret_type must be provided')
         if engine_config_one_of is None:
             raise ValueError('engine_config_one_of must be provided')
+        if isinstance(engine_config_one_of, EngineConfigOneOf):
+            engine_config_one_of = convert_model(engine_config_one_of)
         headers = {}
         sdk_headers = get_sdk_headers(service_name=self.DEFAULT_SERVICE_NAME,
                                       service_version='V1',
@@ -136,7 +138,7 @@ class SecretsManagerV1(BaseService):
         :param str secret_type: The secret type.
         :param dict headers: A `dict` containing the request headers
         :return: A `DetailedResponse` containing the result, headers and HTTP status code.
-        :rtype: DetailedResponse with `dict` result representing a `EngineConfigOneOf` object
+        :rtype: DetailedResponse with `dict` result representing a `GetConfig` object
         """
 
         if secret_type is None:
@@ -653,6 +655,7 @@ class SecretsManagerV1(BaseService):
                          offset: int = None,
                          search: str = None,
                          sort_by: str = None,
+                         groups: List[str] = None,
                          **kwargs
                          ) -> DetailedResponse:
         """
@@ -682,6 +685,13 @@ class SecretsManagerV1(BaseService):
                field.
                **Usage:** To sort a list of secrets by their creation date, use
                `../secrets/{secret-type}?sort_by=creation_date`.
+        :param List[str] groups: (optional) Filter secrets by groups.
+               You can apply multiple filters by using a comma-separated list of secret
+               group IDs. If you need to filter secrets that are in the default secret
+               group, use the `default` keyword.
+               **Usage:** To retrieve a list of secrets that are associated with an
+               existing secret group or the default group, use
+               `../secrets?groups={secret_group_ID},default`.
         :param dict headers: A `dict` containing the request headers
         :return: A `DetailedResponse` containing the result, headers and HTTP status code.
         :rtype: DetailedResponse with `dict` result representing a `ListSecrets` object
@@ -697,7 +707,8 @@ class SecretsManagerV1(BaseService):
             'limit': limit,
             'offset': offset,
             'search': search,
-            'sort_by': sort_by
+            'sort_by': sort_by,
+            'groups': convert_list(groups)
         }
 
         if 'headers' in kwargs:
@@ -777,7 +788,7 @@ class SecretsManagerV1(BaseService):
         :param str secret_type: The secret type.
         :param str id: The v4 UUID that uniquely identifies the secret.
         :param str action: The action to perform on the specified secret.
-        :param SecretActionOneOf secret_action_one_of: The base request for
+        :param SecretActionOneOf secret_action_one_of: The base request body for
                invoking an action on a secret.
         :param dict headers: A `dict` containing the request headers
         :return: A `DetailedResponse` containing the result, headers and HTTP status code.
@@ -792,6 +803,8 @@ class SecretsManagerV1(BaseService):
             raise ValueError('action must be provided')
         if secret_action_one_of is None:
             raise ValueError('secret_action_one_of must be provided')
+        if isinstance(secret_action_one_of, SecretActionOneOf):
+            secret_action_one_of = convert_model(secret_action_one_of)
         headers = {}
         sdk_headers = get_sdk_headers(service_name=self.DEFAULT_SERVICE_NAME,
                                       service_version='V1',
@@ -1329,6 +1342,76 @@ class EngineConfigOneOf():
         raise Exception(msg)
 
 
+class GetConfig():
+    """
+    Configuration that is used to generate IAM credentials.
+
+    :attr CollectionMetadata metadata: The metadata that describes the resource
+          array.
+    :attr List[IAMSecretEngineRootConfig] resources: A collection of resources.
+    """
+
+    def __init__(self,
+                 metadata: 'CollectionMetadata',
+                 resources: List['IAMSecretEngineRootConfig']) -> None:
+        """
+        Initialize a GetConfig object.
+
+        :param CollectionMetadata metadata: The metadata that describes the
+               resource array.
+        :param List[IAMSecretEngineRootConfig] resources: A collection of
+               resources.
+        """
+        self.metadata = metadata
+        self.resources = resources
+
+    @classmethod
+    def from_dict(cls, _dict: Dict) -> 'GetConfig':
+        """Initialize a GetConfig object from a json dictionary."""
+        args = {}
+        if 'metadata' in _dict:
+            args['metadata'] = CollectionMetadata.from_dict(_dict.get('metadata'))
+        else:
+            raise ValueError('Required property \'metadata\' not present in GetConfig JSON')
+        if 'resources' in _dict:
+            args['resources'] = [IAMSecretEngineRootConfig.from_dict(x) for x in _dict.get('resources')]
+        else:
+            raise ValueError('Required property \'resources\' not present in GetConfig JSON')
+        return cls(**args)
+
+    @classmethod
+    def _from_dict(cls, _dict):
+        """Initialize a GetConfig object from a json dictionary."""
+        return cls.from_dict(_dict)
+
+    def to_dict(self) -> Dict:
+        """Return a json dictionary representing this model."""
+        _dict = {}
+        if hasattr(self, 'metadata') and self.metadata is not None:
+            _dict['metadata'] = self.metadata.to_dict()
+        if hasattr(self, 'resources') and self.resources is not None:
+            _dict['resources'] = [x.to_dict() for x in self.resources]
+        return _dict
+
+    def _to_dict(self):
+        """Return a json dictionary representing this model."""
+        return self.to_dict()
+
+    def __str__(self) -> str:
+        """Return a `str` version of this GetConfig object."""
+        return json.dumps(self.to_dict(), indent=2)
+
+    def __eq__(self, other: 'GetConfig') -> bool:
+        """Return `true` when self and other are equal, false otherwise."""
+        if not isinstance(other, self.__class__):
+            return False
+        return self.__dict__ == other.__dict__
+
+    def __ne__(self, other: 'GetConfig') -> bool:
+        """Return `true` when self and other are not equal, false otherwise."""
+        return not self == other
+
+
 class GetSecret():
     """
     The base schema for retrieving a secret.
@@ -1549,6 +1632,82 @@ class GetSecretPoliciesOneOfGetSecretPolicyRotationResourcesItem():
         supported.
         """
         APPLICATION_VND_IBM_SECRETS_MANAGER_SECRET_POLICY_JSON = 'application/vnd.ibm.secrets-manager.secret.policy+json'
+
+
+class IAMSecretEngineRootConfig():
+    """
+    Configuration that is used to generate IAM credentials.
+
+    :attr str api_key: An IBM Cloud API key that has the capability to create and
+          manage service IDs.
+          The API key must be assigned the Editor platform role on the Access Groups
+          Service and the Operator platform role on the IAM Identity Service. For more
+          information, see [Enabling the IAM secrets
+          engine](https://cloud.ibm.com/docs/secrets-manager?topic=secrets-manager-secret-engines#configure-iam-engine).
+    :attr str api_key_hash: (optional) The hash value of the IBM Cloud API key that
+          is used to create and manage service IDs.
+    """
+
+    def __init__(self,
+                 api_key: str,
+                 *,
+                 api_key_hash: str = None) -> None:
+        """
+        Initialize a IAMSecretEngineRootConfig object.
+
+        :param str api_key: An IBM Cloud API key that has the capability to create
+               and manage service IDs.
+               The API key must be assigned the Editor platform role on the Access Groups
+               Service and the Operator platform role on the IAM Identity Service. For
+               more information, see [Enabling the IAM secrets
+               engine](https://cloud.ibm.com/docs/secrets-manager?topic=secrets-manager-secret-engines#configure-iam-engine).
+        """
+        self.api_key = api_key
+        self.api_key_hash = api_key_hash
+
+    @classmethod
+    def from_dict(cls, _dict: Dict) -> 'IAMSecretEngineRootConfig':
+        """Initialize a IAMSecretEngineRootConfig object from a json dictionary."""
+        args = {}
+        if 'api_key' in _dict:
+            args['api_key'] = _dict.get('api_key')
+        else:
+            raise ValueError('Required property \'api_key\' not present in IAMSecretEngineRootConfig JSON')
+        if 'api_key_hash' in _dict:
+            args['api_key_hash'] = _dict.get('api_key_hash')
+        return cls(**args)
+
+    @classmethod
+    def _from_dict(cls, _dict):
+        """Initialize a IAMSecretEngineRootConfig object from a json dictionary."""
+        return cls.from_dict(_dict)
+
+    def to_dict(self) -> Dict:
+        """Return a json dictionary representing this model."""
+        _dict = {}
+        if hasattr(self, 'api_key') and self.api_key is not None:
+            _dict['api_key'] = self.api_key
+        if hasattr(self, 'api_key_hash') and getattr(self, 'api_key_hash') is not None:
+            _dict['api_key_hash'] = getattr(self, 'api_key_hash')
+        return _dict
+
+    def _to_dict(self):
+        """Return a json dictionary representing this model."""
+        return self.to_dict()
+
+    def __str__(self) -> str:
+        """Return a `str` version of this IAMSecretEngineRootConfig object."""
+        return json.dumps(self.to_dict(), indent=2)
+
+    def __eq__(self, other: 'IAMSecretEngineRootConfig') -> bool:
+        """Return `true` when self and other are equal, false otherwise."""
+        if not isinstance(other, self.__class__):
+            return False
+        return self.__dict__ == other.__dict__
+
+    def __ne__(self, other: 'IAMSecretEngineRootConfig') -> bool:
+        """Return `true` when self and other are not equal, false otherwise."""
+        return not self == other
 
 
 class ListSecrets():
@@ -1942,6 +2101,11 @@ class SecretMetadata():
           For `iam_credentials` secrets, the TTL defines for how long each generated API
           key remains valid. The value can be either an integer that specifies the number
           of seconds, or the string representation of a duration, such as `120m` or `24h`.
+    :attr bool reuse_api_key: (optional) For `iam_credentials` secrets, this field
+          controls whether to use the same service ID and API key for future read
+          operations on this secret. If set to `true`, the service reuses the current
+          credentials. If set to `false`, a new service ID and API key is generated each
+          time that the secret is read or accessed.
     :attr str crn: (optional) The Cloud Resource Name (CRN) that uniquely identifies
           the resource.
     :attr datetime creation_date: (optional) The date the secret was created. The
@@ -1964,6 +2128,7 @@ class SecretMetadata():
                  secret_type: str = None,
                  expiration_date: datetime = None,
                  ttl: object = None,
+                 reuse_api_key: bool = None,
                  crn: str = None,
                  creation_date: datetime = None,
                  created_by: str = None,
@@ -2009,6 +2174,7 @@ class SecretMetadata():
         self.secret_type = secret_type
         self.expiration_date = expiration_date
         self.ttl = ttl
+        self.reuse_api_key = reuse_api_key
         self.crn = crn
         self.creation_date = creation_date
         self.created_by = created_by
@@ -2040,6 +2206,8 @@ class SecretMetadata():
             args['expiration_date'] = string_to_datetime(_dict.get('expiration_date'))
         if 'ttl' in _dict:
             args['ttl'] = _dict.get('ttl')
+        if 'reuse_api_key' in _dict:
+            args['reuse_api_key'] = _dict.get('reuse_api_key')
         if 'crn' in _dict:
             args['crn'] = _dict.get('crn')
         if 'creation_date' in _dict:
@@ -2078,6 +2246,8 @@ class SecretMetadata():
             _dict['expiration_date'] = datetime_to_string(self.expiration_date)
         if hasattr(self, 'ttl') and self.ttl is not None:
             _dict['ttl'] = self.ttl
+        if hasattr(self, 'reuse_api_key') and getattr(self, 'reuse_api_key') is not None:
+            _dict['reuse_api_key'] = getattr(self, 'reuse_api_key')
         if hasattr(self, 'crn') and getattr(self, 'crn') is not None:
             _dict['crn'] = getattr(self, 'crn')
         if hasattr(self, 'creation_date') and getattr(self, 'creation_date') is not None:

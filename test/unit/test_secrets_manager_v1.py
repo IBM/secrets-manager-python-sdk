@@ -19,6 +19,7 @@ Unit Tests for SecretsManagerV1
 
 from datetime import datetime, timezone
 from ibm_cloud_sdk_core.authenticators.no_auth_authenticator import NoAuthAuthenticator
+from ibm_cloud_sdk_core.utils import datetime_to_string, string_to_datetime
 import inspect
 import json
 import pytest
@@ -139,7 +140,7 @@ class TestGetConfig():
         """
         # Set up mock
         url = self.preprocess_url(base_url + '/api/v1/config/iam_credentials')
-        mock_response = '{"api_key": "API_KEY", "api_key_hash": "a737c3a98ebfc16a0d5ddc6b277548491440780003e06f5924dc906bc8d78e91"}'
+        mock_response = '{"metadata": {"collection_type": "application/vnd.ibm.secrets-manager.secret+json", "collection_total": 1}, "resources": [{"api_key": "API_KEY", "api_key_hash": "a737c3a98ebfc16a0d5ddc6b277548491440780003e06f5924dc906bc8d78e91"}]}'
         responses.add(responses.GET,
                       url,
                       body=mock_response,
@@ -166,7 +167,7 @@ class TestGetConfig():
         """
         # Set up mock
         url = self.preprocess_url(base_url + '/api/v1/config/iam_credentials')
-        mock_response = '{"api_key": "API_KEY", "api_key_hash": "a737c3a98ebfc16a0d5ddc6b277548491440780003e06f5924dc906bc8d78e91"}'
+        mock_response = '{"metadata": {"collection_type": "application/vnd.ibm.secrets-manager.secret+json", "collection_total": 1}, "resources": [{"api_key": "API_KEY", "api_key_hash": "a737c3a98ebfc16a0d5ddc6b277548491440780003e06f5924dc906bc8d78e91"}]}'
         responses.add(responses.GET,
                       url,
                       body=mock_response,
@@ -899,7 +900,7 @@ class TestCreateSecret():
         secret_resource_model['description'] = 'testString'
         secret_resource_model['secret_group_id'] = 'testString'
         secret_resource_model['labels'] = ['testString']
-        secret_resource_model['expiration_date'] = '2020-01-28T18:40:40.123456Z'
+        secret_resource_model['expiration_date'] = datetime_to_string(string_to_datetime("2030-04-01T09:30:00.000Z"))
         secret_resource_model['payload'] = 'testString'
 
         # Set up parameter values
@@ -949,7 +950,7 @@ class TestCreateSecret():
         secret_resource_model['description'] = 'testString'
         secret_resource_model['secret_group_id'] = 'testString'
         secret_resource_model['labels'] = ['testString']
-        secret_resource_model['expiration_date'] = '2020-01-28T18:40:40.123456Z'
+        secret_resource_model['expiration_date'] = datetime_to_string(string_to_datetime("2030-04-01T09:30:00.000Z"))
         secret_resource_model['payload'] = 'testString'
 
         # Set up parameter values
@@ -1106,6 +1107,7 @@ class TestListAllSecrets():
         offset = 0
         search = 'testString'
         sort_by = 'id'
+        groups = ['testString']
 
         # Invoke method
         response = service.list_all_secrets(
@@ -1113,6 +1115,7 @@ class TestListAllSecrets():
             offset=offset,
             search=search,
             sort_by=sort_by,
+            groups=groups,
             headers={}
         )
 
@@ -1126,6 +1129,7 @@ class TestListAllSecrets():
         assert 'offset={}'.format(offset) in query_string
         assert 'search={}'.format(search) in query_string
         assert 'sort_by={}'.format(sort_by) in query_string
+        assert 'groups={}'.format(','.join(groups)) in query_string
 
     @responses.activate
     def test_list_all_secrets_required_params(self):
@@ -1403,7 +1407,7 @@ class TestGetSecretMetadata():
         """
         # Set up mock
         url = self.preprocess_url(base_url + '/api/v1/secrets/arbitrary/testString/metadata')
-        mock_response = '{"metadata": {"collection_type": "application/vnd.ibm.secrets-manager.secret+json", "collection_total": 1}, "resources": [{"id": "b0283d74-0894-830b-f81d-1f115f67729f", "labels": ["labels"], "name": "example-secret", "description": "Extended description for this secret.", "secret_group_id": "f5283d74-9024-230a-b72c-1f115f61290f", "state": 1, "state_description": "Active", "secret_type": "arbitrary", "expiration_date": "2030-04-01T09:30:00.000Z", "ttl": {"anyKey": "anyValue"}, "crn": "crn:v1:bluemix:public:secrets-manager:<region>:a/<account-id>:<service-instance>:secret:<secret-id>", "creation_date": "2018-04-12T23:20:50.520Z", "created_by": "ServiceId-cb258cb9-8de3-4ac0-9aec-b2b2d27ac976", "last_update_date": "2018-04-12T23:20:50.520Z"}]}'
+        mock_response = '{"metadata": {"collection_type": "application/vnd.ibm.secrets-manager.secret+json", "collection_total": 1}, "resources": [{"id": "b0283d74-0894-830b-f81d-1f115f67729f", "labels": ["labels"], "name": "example-secret", "description": "Extended description for this secret.", "secret_group_id": "f5283d74-9024-230a-b72c-1f115f61290f", "state": 1, "state_description": "Active", "secret_type": "arbitrary", "expiration_date": "2030-04-01T09:30:00.000Z", "ttl": {"anyKey": "anyValue"}, "reuse_api_key": false, "crn": "crn:v1:bluemix:public:secrets-manager:<region>:a/<account-id>:<service-instance>:secret:<secret-id>", "creation_date": "2018-04-12T23:20:50.520Z", "created_by": "ServiceId-cb258cb9-8de3-4ac0-9aec-b2b2d27ac976", "last_update_date": "2018-04-12T23:20:50.520Z"}]}'
         responses.add(responses.GET,
                       url,
                       body=mock_response,
@@ -1432,7 +1436,7 @@ class TestGetSecretMetadata():
         """
         # Set up mock
         url = self.preprocess_url(base_url + '/api/v1/secrets/arbitrary/testString/metadata')
-        mock_response = '{"metadata": {"collection_type": "application/vnd.ibm.secrets-manager.secret+json", "collection_total": 1}, "resources": [{"id": "b0283d74-0894-830b-f81d-1f115f67729f", "labels": ["labels"], "name": "example-secret", "description": "Extended description for this secret.", "secret_group_id": "f5283d74-9024-230a-b72c-1f115f61290f", "state": 1, "state_description": "Active", "secret_type": "arbitrary", "expiration_date": "2030-04-01T09:30:00.000Z", "ttl": {"anyKey": "anyValue"}, "crn": "crn:v1:bluemix:public:secrets-manager:<region>:a/<account-id>:<service-instance>:secret:<secret-id>", "creation_date": "2018-04-12T23:20:50.520Z", "created_by": "ServiceId-cb258cb9-8de3-4ac0-9aec-b2b2d27ac976", "last_update_date": "2018-04-12T23:20:50.520Z"}]}'
+        mock_response = '{"metadata": {"collection_type": "application/vnd.ibm.secrets-manager.secret+json", "collection_total": 1}, "resources": [{"id": "b0283d74-0894-830b-f81d-1f115f67729f", "labels": ["labels"], "name": "example-secret", "description": "Extended description for this secret.", "secret_group_id": "f5283d74-9024-230a-b72c-1f115f61290f", "state": 1, "state_description": "Active", "secret_type": "arbitrary", "expiration_date": "2030-04-01T09:30:00.000Z", "ttl": {"anyKey": "anyValue"}, "reuse_api_key": false, "crn": "crn:v1:bluemix:public:secrets-manager:<region>:a/<account-id>:<service-instance>:secret:<secret-id>", "creation_date": "2018-04-12T23:20:50.520Z", "created_by": "ServiceId-cb258cb9-8de3-4ac0-9aec-b2b2d27ac976", "last_update_date": "2018-04-12T23:20:50.520Z"}]}'
         responses.add(responses.GET,
                       url,
                       body=mock_response,
@@ -1475,7 +1479,7 @@ class TestUpdateSecretMetadata():
         """
         # Set up mock
         url = self.preprocess_url(base_url + '/api/v1/secrets/arbitrary/testString/metadata')
-        mock_response = '{"metadata": {"collection_type": "application/vnd.ibm.secrets-manager.secret+json", "collection_total": 1}, "resources": [{"id": "b0283d74-0894-830b-f81d-1f115f67729f", "labels": ["labels"], "name": "example-secret", "description": "Extended description for this secret.", "secret_group_id": "f5283d74-9024-230a-b72c-1f115f61290f", "state": 1, "state_description": "Active", "secret_type": "arbitrary", "expiration_date": "2030-04-01T09:30:00.000Z", "ttl": {"anyKey": "anyValue"}, "crn": "crn:v1:bluemix:public:secrets-manager:<region>:a/<account-id>:<service-instance>:secret:<secret-id>", "creation_date": "2018-04-12T23:20:50.520Z", "created_by": "ServiceId-cb258cb9-8de3-4ac0-9aec-b2b2d27ac976", "last_update_date": "2018-04-12T23:20:50.520Z"}]}'
+        mock_response = '{"metadata": {"collection_type": "application/vnd.ibm.secrets-manager.secret+json", "collection_total": 1}, "resources": [{"id": "b0283d74-0894-830b-f81d-1f115f67729f", "labels": ["labels"], "name": "example-secret", "description": "Extended description for this secret.", "secret_group_id": "f5283d74-9024-230a-b72c-1f115f61290f", "state": 1, "state_description": "Active", "secret_type": "arbitrary", "expiration_date": "2030-04-01T09:30:00.000Z", "ttl": {"anyKey": "anyValue"}, "reuse_api_key": false, "crn": "crn:v1:bluemix:public:secrets-manager:<region>:a/<account-id>:<service-instance>:secret:<secret-id>", "creation_date": "2018-04-12T23:20:50.520Z", "created_by": "ServiceId-cb258cb9-8de3-4ac0-9aec-b2b2d27ac976", "last_update_date": "2018-04-12T23:20:50.520Z"}]}'
         responses.add(responses.PUT,
                       url,
                       body=mock_response,
@@ -1492,7 +1496,7 @@ class TestUpdateSecretMetadata():
         secret_metadata_model['labels'] = ['dev', 'us-south']
         secret_metadata_model['name'] = 'example-secret'
         secret_metadata_model['description'] = 'Extended description for this secret.'
-        secret_metadata_model['expiration_date'] = '2020-01-28T18:40:40.123456Z'
+        secret_metadata_model['expiration_date'] = datetime_to_string(string_to_datetime("2030-04-01T09:30:00.000Z"))
         secret_metadata_model['ttl'] = {'foo': 'bar'}
 
         # Set up parameter values
@@ -1525,7 +1529,7 @@ class TestUpdateSecretMetadata():
         """
         # Set up mock
         url = self.preprocess_url(base_url + '/api/v1/secrets/arbitrary/testString/metadata')
-        mock_response = '{"metadata": {"collection_type": "application/vnd.ibm.secrets-manager.secret+json", "collection_total": 1}, "resources": [{"id": "b0283d74-0894-830b-f81d-1f115f67729f", "labels": ["labels"], "name": "example-secret", "description": "Extended description for this secret.", "secret_group_id": "f5283d74-9024-230a-b72c-1f115f61290f", "state": 1, "state_description": "Active", "secret_type": "arbitrary", "expiration_date": "2030-04-01T09:30:00.000Z", "ttl": {"anyKey": "anyValue"}, "crn": "crn:v1:bluemix:public:secrets-manager:<region>:a/<account-id>:<service-instance>:secret:<secret-id>", "creation_date": "2018-04-12T23:20:50.520Z", "created_by": "ServiceId-cb258cb9-8de3-4ac0-9aec-b2b2d27ac976", "last_update_date": "2018-04-12T23:20:50.520Z"}]}'
+        mock_response = '{"metadata": {"collection_type": "application/vnd.ibm.secrets-manager.secret+json", "collection_total": 1}, "resources": [{"id": "b0283d74-0894-830b-f81d-1f115f67729f", "labels": ["labels"], "name": "example-secret", "description": "Extended description for this secret.", "secret_group_id": "f5283d74-9024-230a-b72c-1f115f61290f", "state": 1, "state_description": "Active", "secret_type": "arbitrary", "expiration_date": "2030-04-01T09:30:00.000Z", "ttl": {"anyKey": "anyValue"}, "reuse_api_key": false, "crn": "crn:v1:bluemix:public:secrets-manager:<region>:a/<account-id>:<service-instance>:secret:<secret-id>", "creation_date": "2018-04-12T23:20:50.520Z", "created_by": "ServiceId-cb258cb9-8de3-4ac0-9aec-b2b2d27ac976", "last_update_date": "2018-04-12T23:20:50.520Z"}]}'
         responses.add(responses.PUT,
                       url,
                       body=mock_response,
@@ -1542,7 +1546,7 @@ class TestUpdateSecretMetadata():
         secret_metadata_model['labels'] = ['dev', 'us-south']
         secret_metadata_model['name'] = 'example-secret'
         secret_metadata_model['description'] = 'Extended description for this secret.'
-        secret_metadata_model['expiration_date'] = '2020-01-28T18:40:40.123456Z'
+        secret_metadata_model['expiration_date'] = datetime_to_string(string_to_datetime("2030-04-01T09:30:00.000Z"))
         secret_metadata_model['ttl'] = {'foo': 'bar'}
 
         # Set up parameter values
@@ -1623,7 +1627,7 @@ class TestCreateSecret():
 
         secret_version_model = {}  # SecretVersion
         secret_version_model['id'] = '4a0225e9-17a0-46c1-ace7-f25bcf4237d4'
-        secret_version_model['creation_date'] = '2020-01-28T18:40:40.123456Z'
+        secret_version_model['creation_date'] = datetime_to_string(string_to_datetime("2019-01-01T12:00:00.000Z"))
         secret_version_model['created_by'] = 'testString'
         secret_version_model['auto_rotated'] = True
 
@@ -1639,11 +1643,11 @@ class TestCreateSecret():
         secret_resource_model['secret_type'] = 'arbitrary'
         secret_resource_model[
             'crn'] = 'crn:v1:bluemix:public:secrets-manager:<region>:a/<account-id>:<service-instance>:secret:<secret-id>'
-        secret_resource_model['creation_date'] = '2020-01-28T18:40:40.123456Z'
+        secret_resource_model['creation_date'] = datetime_to_string(string_to_datetime("2018-04-12T23:20:50.520Z"))
         secret_resource_model['created_by'] = 'testString'
-        secret_resource_model['last_update_date'] = '2020-01-28T18:40:40.123456Z'
+        secret_resource_model['last_update_date'] = datetime_to_string(string_to_datetime("2018-04-12T23:20:50.520Z"))
         secret_resource_model['versions'] = [secret_version_model]
-        secret_resource_model['expiration_date'] = '2020-01-28T18:40:40.123456Z'
+        secret_resource_model['expiration_date'] = datetime_to_string(string_to_datetime("2030-04-01T09:30:00.000Z"))
         secret_resource_model['payload'] = 'testString'
         secret_resource_model['secret_data'] = {'foo': 'bar'}
 
@@ -1668,6 +1672,48 @@ class TestCreateSecret():
         assert create_secret_model_json2 == create_secret_model_json
 
 
+class TestGetConfig():
+    """
+    Test Class for GetConfig
+    """
+
+    def test_get_config_serialization(self):
+        """
+        Test serialization/deserialization for GetConfig
+        """
+
+        # Construct dict forms of any model objects needed in order to build this model.
+
+        collection_metadata_model = {}  # CollectionMetadata
+        collection_metadata_model['collection_type'] = 'application/vnd.ibm.secrets-manager.secret+json'
+        collection_metadata_model['collection_total'] = 1
+
+        iam_secret_engine_root_config_model = {}  # IAMSecretEngineRootConfig
+        iam_secret_engine_root_config_model['api_key'] = 'API_KEY'
+        iam_secret_engine_root_config_model[
+            'api_key_hash'] = 'a737c3a98ebfc16a0d5ddc6b277548491440780003e06f5924dc906bc8d78e91'
+
+        # Construct a json representation of a GetConfig model
+        get_config_model_json = {}
+        get_config_model_json['metadata'] = collection_metadata_model
+        get_config_model_json['resources'] = [iam_secret_engine_root_config_model]
+
+        # Construct a model instance of GetConfig by calling from_dict on the json representation
+        get_config_model = GetConfig.from_dict(get_config_model_json)
+        assert get_config_model != False
+
+        # Construct a model instance of GetConfig by calling from_dict on the json representation
+        get_config_model_dict = GetConfig.from_dict(get_config_model_json).__dict__
+        get_config_model2 = GetConfig(**get_config_model_dict)
+
+        # Verify the model instances are equivalent
+        assert get_config_model == get_config_model2
+
+        # Convert model instance back to dict and verify no loss of data
+        get_config_model_json2 = get_config_model.to_dict()
+        assert get_config_model_json2 == get_config_model_json
+
+
 class TestGetSecret():
     """
     Test Class for GetSecret
@@ -1686,7 +1732,7 @@ class TestGetSecret():
 
         secret_version_model = {}  # SecretVersion
         secret_version_model['id'] = '4a0225e9-17a0-46c1-ace7-f25bcf4237d4'
-        secret_version_model['creation_date'] = '2020-01-28T18:40:40.123456Z'
+        secret_version_model['creation_date'] = datetime_to_string(string_to_datetime("2019-01-01T12:00:00.000Z"))
         secret_version_model['created_by'] = 'testString'
         secret_version_model['auto_rotated'] = True
 
@@ -1702,11 +1748,11 @@ class TestGetSecret():
         secret_resource_model['secret_type'] = 'arbitrary'
         secret_resource_model[
             'crn'] = 'crn:v1:bluemix:public:secrets-manager:<region>:a/<account-id>:<service-instance>:secret:<secret-id>'
-        secret_resource_model['creation_date'] = '2020-01-28T18:40:40.123456Z'
+        secret_resource_model['creation_date'] = datetime_to_string(string_to_datetime("2018-04-12T23:20:50.520Z"))
         secret_resource_model['created_by'] = 'testString'
-        secret_resource_model['last_update_date'] = '2020-01-28T18:40:40.123456Z'
+        secret_resource_model['last_update_date'] = datetime_to_string(string_to_datetime("2018-04-12T23:20:50.520Z"))
         secret_resource_model['versions'] = [secret_version_model]
-        secret_resource_model['expiration_date'] = '2020-01-28T18:40:40.123456Z'
+        secret_resource_model['expiration_date'] = datetime_to_string(string_to_datetime("2030-04-01T09:30:00.000Z"))
         secret_resource_model['payload'] = 'testString'
         secret_resource_model['secret_data'] = {'foo': 'bar'}
 
@@ -1753,10 +1799,10 @@ class TestGetSecretPoliciesOneOfGetSecretPolicyRotationResourcesItem():
         get_secret_policies_one_of_get_secret_policy_rotation_resources_item_model_json[
             'crn'] = 'crn:v1:bluemix:public:kms:<region>:a/<account-id>:<service-instance:policy:<policy-id>'
         get_secret_policies_one_of_get_secret_policy_rotation_resources_item_model_json[
-            'creation_date'] = '2020-01-28T18:40:40.123456Z'
+            'creation_date'] = datetime_to_string(string_to_datetime("2019-01-01T12:00:00.000Z"))
         get_secret_policies_one_of_get_secret_policy_rotation_resources_item_model_json['created_by'] = 'testString'
         get_secret_policies_one_of_get_secret_policy_rotation_resources_item_model_json[
-            'last_update_date'] = '2020-01-28T18:40:40.123456Z'
+            'last_update_date'] = datetime_to_string(string_to_datetime("2019-01-01T12:00:00.000Z"))
         get_secret_policies_one_of_get_secret_policy_rotation_resources_item_model_json['updated_by'] = 'testString'
         get_secret_policies_one_of_get_secret_policy_rotation_resources_item_model_json[
             'type'] = 'application/vnd.ibm.secrets-manager.secret.policy+json'
@@ -1782,6 +1828,40 @@ class TestGetSecretPoliciesOneOfGetSecretPolicyRotationResourcesItem():
         assert get_secret_policies_one_of_get_secret_policy_rotation_resources_item_model_json2 == get_secret_policies_one_of_get_secret_policy_rotation_resources_item_model_json
 
 
+class TestIAMSecretEngineRootConfig():
+    """
+    Test Class for IAMSecretEngineRootConfig
+    """
+
+    def test_iam_secret_engine_root_config_serialization(self):
+        """
+        Test serialization/deserialization for IAMSecretEngineRootConfig
+        """
+
+        # Construct a json representation of a IAMSecretEngineRootConfig model
+        iam_secret_engine_root_config_model_json = {}
+        iam_secret_engine_root_config_model_json['api_key'] = 'API_KEY'
+        iam_secret_engine_root_config_model_json[
+            'api_key_hash'] = 'a737c3a98ebfc16a0d5ddc6b277548491440780003e06f5924dc906bc8d78e91'
+
+        # Construct a model instance of IAMSecretEngineRootConfig by calling from_dict on the json representation
+        iam_secret_engine_root_config_model = IAMSecretEngineRootConfig.from_dict(
+            iam_secret_engine_root_config_model_json)
+        assert iam_secret_engine_root_config_model != False
+
+        # Construct a model instance of IAMSecretEngineRootConfig by calling from_dict on the json representation
+        iam_secret_engine_root_config_model_dict = IAMSecretEngineRootConfig.from_dict(
+            iam_secret_engine_root_config_model_json).__dict__
+        iam_secret_engine_root_config_model2 = IAMSecretEngineRootConfig(**iam_secret_engine_root_config_model_dict)
+
+        # Verify the model instances are equivalent
+        assert iam_secret_engine_root_config_model == iam_secret_engine_root_config_model2
+
+        # Convert model instance back to dict and verify no loss of data
+        iam_secret_engine_root_config_model_json2 = iam_secret_engine_root_config_model.to_dict()
+        assert iam_secret_engine_root_config_model_json2 == iam_secret_engine_root_config_model_json
+
+
 class TestListSecrets():
     """
     Test Class for ListSecrets
@@ -1800,7 +1880,7 @@ class TestListSecrets():
 
         secret_version_model = {}  # SecretVersion
         secret_version_model['id'] = '4a0225e9-17a0-46c1-ace7-f25bcf4237d4'
-        secret_version_model['creation_date'] = '2020-01-28T18:40:40.123456Z'
+        secret_version_model['creation_date'] = datetime_to_string(string_to_datetime("2019-01-01T12:00:00.000Z"))
         secret_version_model['created_by'] = 'testString'
         secret_version_model['auto_rotated'] = True
 
@@ -1816,11 +1896,11 @@ class TestListSecrets():
         secret_resource_model['secret_type'] = 'arbitrary'
         secret_resource_model[
             'crn'] = 'crn:v1:bluemix:public:secrets-manager:<region>:a/<account-id>:<service-instance>:secret:<secret-id>'
-        secret_resource_model['creation_date'] = '2020-01-28T18:40:40.123456Z'
+        secret_resource_model['creation_date'] = datetime_to_string(string_to_datetime("2018-04-12T23:20:50.520Z"))
         secret_resource_model['created_by'] = 'testString'
-        secret_resource_model['last_update_date'] = '2020-01-28T18:40:40.123456Z'
+        secret_resource_model['last_update_date'] = datetime_to_string(string_to_datetime("2018-04-12T23:20:50.520Z"))
         secret_resource_model['versions'] = [secret_version_model]
-        secret_resource_model['expiration_date'] = '2020-01-28T18:40:40.123456Z'
+        secret_resource_model['expiration_date'] = datetime_to_string(string_to_datetime("2030-04-01T09:30:00.000Z"))
         secret_resource_model['payload'] = 'testString'
         secret_resource_model['secret_data'] = {'foo': 'bar'}
 
@@ -1865,8 +1945,10 @@ class TestSecretGroupDef():
         secret_group_resource_model['id'] = 'bc656587-8fda-4d05-9ad8-b1de1ec7e712'
         secret_group_resource_model['name'] = 'my-secret-group'
         secret_group_resource_model['description'] = 'Extended description for this group.'
-        secret_group_resource_model['creation_date'] = '2020-01-28T18:40:40.123456Z'
-        secret_group_resource_model['last_update_date'] = '2020-01-28T18:40:40.123456Z'
+        secret_group_resource_model['creation_date'] = datetime_to_string(
+            string_to_datetime("2018-04-12T23:20:50.520Z"))
+        secret_group_resource_model['last_update_date'] = datetime_to_string(
+            string_to_datetime("2018-05-12T23:20:50.520Z"))
         secret_group_resource_model['type'] = 'application/vnd.ibm.secrets-manager.secret.group+json'
         secret_group_resource_model['foo'] = {'foo': 'bar'}
 
@@ -1940,8 +2022,10 @@ class TestSecretGroupResource():
         secret_group_resource_model_json['id'] = 'bc656587-8fda-4d05-9ad8-b1de1ec7e712'
         secret_group_resource_model_json['name'] = 'my-secret-group'
         secret_group_resource_model_json['description'] = 'Extended description for this group.'
-        secret_group_resource_model_json['creation_date'] = '2020-01-28T18:40:40.123456Z'
-        secret_group_resource_model_json['last_update_date'] = '2020-01-28T18:40:40.123456Z'
+        secret_group_resource_model_json['creation_date'] = datetime_to_string(
+            string_to_datetime("2018-04-12T23:20:50.520Z"))
+        secret_group_resource_model_json['last_update_date'] = datetime_to_string(
+            string_to_datetime("2018-05-12T23:20:50.520Z"))
         secret_group_resource_model_json['type'] = 'application/vnd.ibm.secrets-manager.secret.group+json'
         secret_group_resource_model_json['foo'] = {'foo': 'bar'}
 
@@ -1981,13 +2065,16 @@ class TestSecretMetadata():
         secret_metadata_model_json['state'] = 1
         secret_metadata_model_json['state_description'] = 'Active'
         secret_metadata_model_json['secret_type'] = 'arbitrary'
-        secret_metadata_model_json['expiration_date'] = '2020-01-28T18:40:40.123456Z'
+        secret_metadata_model_json['expiration_date'] = datetime_to_string(
+            string_to_datetime("2030-04-01T09:30:00.000Z"))
         secret_metadata_model_json['ttl'] = {'foo': 'bar'}
+        secret_metadata_model_json['reuse_api_key'] = True
         secret_metadata_model_json[
             'crn'] = 'crn:v1:bluemix:public:secrets-manager:<region>:a/<account-id>:<service-instance>:secret:<secret-id>'
-        secret_metadata_model_json['creation_date'] = '2020-01-28T18:40:40.123456Z'
+        secret_metadata_model_json['creation_date'] = datetime_to_string(string_to_datetime("2018-04-12T23:20:50.520Z"))
         secret_metadata_model_json['created_by'] = 'ServiceId-cb258cb9-8de3-4ac0-9aec-b2b2d27ac976'
-        secret_metadata_model_json['last_update_date'] = '2020-01-28T18:40:40.123456Z'
+        secret_metadata_model_json['last_update_date'] = datetime_to_string(
+            string_to_datetime("2018-04-12T23:20:50.520Z"))
 
         # Construct a model instance of SecretMetadata by calling from_dict on the json representation
         secret_metadata_model = SecretMetadata.from_dict(secret_metadata_model_json)
@@ -2030,13 +2117,14 @@ class TestSecretMetadataRequest():
         secret_metadata_model['state'] = 1
         secret_metadata_model['state_description'] = 'Active'
         secret_metadata_model['secret_type'] = 'arbitrary'
-        secret_metadata_model['expiration_date'] = '2020-01-28T18:40:40.123456Z'
+        secret_metadata_model['expiration_date'] = datetime_to_string(string_to_datetime("2030-04-01T09:30:00.000Z"))
         secret_metadata_model['ttl'] = {'foo': 'bar'}
+        secret_metadata_model['reuse_api_key'] = True
         secret_metadata_model[
             'crn'] = 'crn:v1:bluemix:public:secrets-manager:<region>:a/<account-id>:<service-instance>:secret:<secret-id>'
-        secret_metadata_model['creation_date'] = '2020-01-28T18:40:40.123456Z'
+        secret_metadata_model['creation_date'] = datetime_to_string(string_to_datetime("2018-04-12T23:20:50.520Z"))
         secret_metadata_model['created_by'] = 'ServiceId-cb258cb9-8de3-4ac0-9aec-b2b2d27ac976'
-        secret_metadata_model['last_update_date'] = '2020-01-28T18:40:40.123456Z'
+        secret_metadata_model['last_update_date'] = datetime_to_string(string_to_datetime("2018-04-12T23:20:50.520Z"))
 
         # Construct a json representation of a SecretMetadataRequest model
         secret_metadata_request_model_json = {}
@@ -2144,7 +2232,7 @@ class TestSecretVersion():
         # Construct a json representation of a SecretVersion model
         secret_version_model_json = {}
         secret_version_model_json['id'] = '4a0225e9-17a0-46c1-ace7-f25bcf4237d4'
-        secret_version_model_json['creation_date'] = '2020-01-28T18:40:40.123456Z'
+        secret_version_model_json['creation_date'] = datetime_to_string(string_to_datetime("2019-01-01T12:00:00.000Z"))
         secret_version_model_json['created_by'] = 'testString'
         secret_version_model_json['auto_rotated'] = True
 
@@ -2224,10 +2312,10 @@ class TestGetSecretPoliciesOneOfGetSecretPolicyRotation():
         get_secret_policies_one_of_get_secret_policy_rotation_resources_item_model[
             'crn'] = 'crn:v1:bluemix:public:kms:<region>:a/<account-id>:<service-instance:policy:<policy-id>'
         get_secret_policies_one_of_get_secret_policy_rotation_resources_item_model[
-            'creation_date'] = '2020-01-28T18:40:40.123456Z'
+            'creation_date'] = datetime_to_string(string_to_datetime("2019-01-01T12:00:00.000Z"))
         get_secret_policies_one_of_get_secret_policy_rotation_resources_item_model['created_by'] = 'testString'
         get_secret_policies_one_of_get_secret_policy_rotation_resources_item_model[
-            'last_update_date'] = '2020-01-28T18:40:40.123456Z'
+            'last_update_date'] = datetime_to_string(string_to_datetime("2019-01-01T12:00:00.000Z"))
         get_secret_policies_one_of_get_secret_policy_rotation_resources_item_model['updated_by'] = 'testString'
         get_secret_policies_one_of_get_secret_policy_rotation_resources_item_model[
             'type'] = 'application/vnd.ibm.secrets-manager.secret.policy+json'
@@ -2372,7 +2460,7 @@ class TestSecretResourceArbitrarySecretResource():
 
         secret_version_model = {}  # SecretVersion
         secret_version_model['id'] = '4a0225e9-17a0-46c1-ace7-f25bcf4237d4'
-        secret_version_model['creation_date'] = '2020-01-28T18:40:40.123456Z'
+        secret_version_model['creation_date'] = datetime_to_string(string_to_datetime("2019-01-01T12:00:00.000Z"))
         secret_version_model['created_by'] = 'testString'
         secret_version_model['auto_rotated'] = True
 
@@ -2389,11 +2477,14 @@ class TestSecretResourceArbitrarySecretResource():
         secret_resource_arbitrary_secret_resource_model_json['secret_type'] = 'arbitrary'
         secret_resource_arbitrary_secret_resource_model_json[
             'crn'] = 'crn:v1:bluemix:public:secrets-manager:<region>:a/<account-id>:<service-instance>:secret:<secret-id>'
-        secret_resource_arbitrary_secret_resource_model_json['creation_date'] = '2020-01-28T18:40:40.123456Z'
+        secret_resource_arbitrary_secret_resource_model_json['creation_date'] = datetime_to_string(
+            string_to_datetime("2018-04-12T23:20:50.520Z"))
         secret_resource_arbitrary_secret_resource_model_json['created_by'] = 'testString'
-        secret_resource_arbitrary_secret_resource_model_json['last_update_date'] = '2020-01-28T18:40:40.123456Z'
+        secret_resource_arbitrary_secret_resource_model_json['last_update_date'] = datetime_to_string(
+            string_to_datetime("2018-04-12T23:20:50.520Z"))
         secret_resource_arbitrary_secret_resource_model_json['versions'] = [secret_version_model]
-        secret_resource_arbitrary_secret_resource_model_json['expiration_date'] = '2020-01-28T18:40:40.123456Z'
+        secret_resource_arbitrary_secret_resource_model_json['expiration_date'] = datetime_to_string(
+            string_to_datetime("2030-04-01T09:30:00.000Z"))
         secret_resource_arbitrary_secret_resource_model_json['payload'] = 'testString'
         secret_resource_arbitrary_secret_resource_model_json['secret_data'] = {'foo': 'bar'}
 
@@ -2430,7 +2521,7 @@ class TestSecretResourceIAMSecretResource():
 
         secret_version_model = {}  # SecretVersion
         secret_version_model['id'] = '4a0225e9-17a0-46c1-ace7-f25bcf4237d4'
-        secret_version_model['creation_date'] = '2020-01-28T18:40:40.123456Z'
+        secret_version_model['creation_date'] = datetime_to_string(string_to_datetime("2019-01-01T12:00:00.000Z"))
         secret_version_model['created_by'] = 'testString'
         secret_version_model['auto_rotated'] = True
 
@@ -2447,9 +2538,11 @@ class TestSecretResourceIAMSecretResource():
         secret_resource_iam_secret_resource_model_json['secret_type'] = 'arbitrary'
         secret_resource_iam_secret_resource_model_json[
             'crn'] = 'crn:v1:bluemix:public:secrets-manager:<region>:a/<account-id>:<service-instance>:secret:<secret-id>'
-        secret_resource_iam_secret_resource_model_json['creation_date'] = '2020-01-28T18:40:40.123456Z'
+        secret_resource_iam_secret_resource_model_json['creation_date'] = datetime_to_string(
+            string_to_datetime("2018-04-12T23:20:50.520Z"))
         secret_resource_iam_secret_resource_model_json['created_by'] = 'testString'
-        secret_resource_iam_secret_resource_model_json['last_update_date'] = '2020-01-28T18:40:40.123456Z'
+        secret_resource_iam_secret_resource_model_json['last_update_date'] = datetime_to_string(
+            string_to_datetime("2018-04-12T23:20:50.520Z"))
         secret_resource_iam_secret_resource_model_json['versions'] = [secret_version_model]
         secret_resource_iam_secret_resource_model_json['ttl'] = {'foo': 'bar'}
         secret_resource_iam_secret_resource_model_json['access_groups'] = [
@@ -2491,7 +2584,7 @@ class TestSecretResourceUsernamePasswordSecretResource():
 
         secret_version_model = {}  # SecretVersion
         secret_version_model['id'] = '4a0225e9-17a0-46c1-ace7-f25bcf4237d4'
-        secret_version_model['creation_date'] = '2020-01-28T18:40:40.123456Z'
+        secret_version_model['creation_date'] = datetime_to_string(string_to_datetime("2019-01-01T12:00:00.000Z"))
         secret_version_model['created_by'] = 'testString'
         secret_version_model['auto_rotated'] = True
 
@@ -2508,16 +2601,19 @@ class TestSecretResourceUsernamePasswordSecretResource():
         secret_resource_username_password_secret_resource_model_json['secret_type'] = 'arbitrary'
         secret_resource_username_password_secret_resource_model_json[
             'crn'] = 'crn:v1:bluemix:public:secrets-manager:<region>:a/<account-id>:<service-instance>:secret:<secret-id>'
-        secret_resource_username_password_secret_resource_model_json['creation_date'] = '2020-01-28T18:40:40.123456Z'
+        secret_resource_username_password_secret_resource_model_json['creation_date'] = datetime_to_string(
+            string_to_datetime("2018-04-12T23:20:50.520Z"))
         secret_resource_username_password_secret_resource_model_json['created_by'] = 'testString'
-        secret_resource_username_password_secret_resource_model_json['last_update_date'] = '2020-01-28T18:40:40.123456Z'
+        secret_resource_username_password_secret_resource_model_json['last_update_date'] = datetime_to_string(
+            string_to_datetime("2018-04-12T23:20:50.520Z"))
         secret_resource_username_password_secret_resource_model_json['versions'] = [secret_version_model]
         secret_resource_username_password_secret_resource_model_json['username'] = 'user123'
         secret_resource_username_password_secret_resource_model_json['password'] = 'rainy-cloudy-coffee-book'
         secret_resource_username_password_secret_resource_model_json['secret_data'] = {'foo': 'bar'}
-        secret_resource_username_password_secret_resource_model_json['expiration_date'] = '2020-01-28T18:40:40.123456Z'
-        secret_resource_username_password_secret_resource_model_json[
-            'next_rotation_date'] = '2020-01-28T18:40:40.123456Z'
+        secret_resource_username_password_secret_resource_model_json['expiration_date'] = datetime_to_string(
+            string_to_datetime("2030-04-01T09:30:00.000Z"))
+        secret_resource_username_password_secret_resource_model_json['next_rotation_date'] = datetime_to_string(
+            string_to_datetime("2025-04-12T23:20:50.520Z"))
 
         # Construct a model instance of SecretResourceUsernamePasswordSecretResource by calling from_dict on the json representation
         secret_resource_username_password_secret_resource_model = SecretResourceUsernamePasswordSecretResource.from_dict(
