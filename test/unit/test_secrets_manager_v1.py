@@ -1726,7 +1726,7 @@ class TestUpdateSecretMetadata():
 # Start of Model Tests
 ##############################################################################
 # region
-class CertificateSecretDataUnitTests():
+class TestModel_CertificateSecretData():
     """
     Test Class for CertificateSecretData
     """
@@ -1759,7 +1759,7 @@ class CertificateSecretDataUnitTests():
         assert certificate_secret_data_model_json2 == certificate_secret_data_model_json
 
 
-class CollectionMetadataUnitTests():
+class TestModel_CollectionMetadata():
     """
     Test Class for CollectionMetadata
     """
@@ -1790,7 +1790,7 @@ class CollectionMetadataUnitTests():
         assert collection_metadata_model_json2 == collection_metadata_model_json
 
 
-class CreateSecretUnitTests():
+class TestModel_CreateSecret():
     """
     Test Class for CreateSecret
     """
@@ -1847,7 +1847,7 @@ class CreateSecretUnitTests():
         assert create_secret_model_json2 == create_secret_model_json
 
 
-class GetConfigUnitTests():
+class TestModel_GetConfig():
     """
     Test Class for GetConfig
     """
@@ -1889,7 +1889,7 @@ class GetConfigUnitTests():
         assert get_config_model_json2 == get_config_model_json
 
 
-class GetSecretUnitTests():
+class TestModel_GetSecret():
     """
     Test Class for GetSecret
     """
@@ -1946,7 +1946,7 @@ class GetSecretUnitTests():
         assert get_secret_model_json2 == get_secret_model_json
 
 
-class GetSecretPolicyRotationResourcesItemUnitTests():
+class TestModel_GetSecretPolicyRotationResourcesItem():
     """
     Test Class for GetSecretPolicyRotationResourcesItem
     """
@@ -1994,7 +1994,7 @@ class GetSecretPolicyRotationResourcesItemUnitTests():
         assert get_secret_policy_rotation_resources_item_model_json2 == get_secret_policy_rotation_resources_item_model_json
 
 
-class GetSecretVersionUnitTests():
+class TestModel_GetSecretVersion():
     """
     Test Class for GetSecretVersion
     """
@@ -2052,7 +2052,7 @@ class GetSecretVersionUnitTests():
         assert get_secret_version_model_json2 == get_secret_version_model_json
 
 
-class GetSecretVersionMetadataUnitTests():
+class TestModel_GetSecretVersionMetadata():
     """
     Test Class for GetSecretVersionMetadata
     """
@@ -2095,7 +2095,7 @@ class GetSecretVersionMetadataUnitTests():
         assert get_secret_version_metadata_model_json2 == get_secret_version_metadata_model_json
 
 
-class ListSecretsUnitTests():
+class TestModel_ListSecrets():
     """
     Test Class for ListSecrets
     """
@@ -2152,7 +2152,7 @@ class ListSecretsUnitTests():
         assert list_secrets_model_json2 == list_secrets_model_json
 
 
-class SecretGroupDefUnitTests():
+class TestModel_SecretGroupDef():
     """
     Test Class for SecretGroupDef
     """
@@ -2198,7 +2198,7 @@ class SecretGroupDefUnitTests():
         assert secret_group_def_model_json2 == secret_group_def_model_json
 
 
-class SecretGroupMetadataUpdatableUnitTests():
+class TestModel_SecretGroupMetadataUpdatable():
     """
     Test Class for SecretGroupMetadataUpdatable
     """
@@ -2232,7 +2232,7 @@ class SecretGroupMetadataUpdatableUnitTests():
         assert secret_group_metadata_updatable_model_json2 == secret_group_metadata_updatable_model_json
 
 
-class SecretGroupResourceUnitTests():
+class TestModel_SecretGroupResource():
     """
     Test Class for SecretGroupResource
     """
@@ -2268,7 +2268,7 @@ class SecretGroupResourceUnitTests():
         assert secret_group_resource_model_json2 == secret_group_resource_model_json
 
 
-class SecretMetadataRequestUnitTests():
+class TestModel_SecretMetadataRequest():
     """
     Test Class for SecretMetadataRequest
     """
@@ -2323,7 +2323,7 @@ class SecretMetadataRequestUnitTests():
         assert secret_metadata_request_model_json2 == secret_metadata_request_model_json
 
 
-class SecretPolicyRotationUnitTests():
+class TestModel_SecretPolicyRotation():
     """
     Test Class for SecretPolicyRotation
     """
@@ -2360,7 +2360,7 @@ class SecretPolicyRotationUnitTests():
         assert secret_policy_rotation_model_json2 == secret_policy_rotation_model_json
 
 
-class SecretPolicyRotationRotationUnitTests():
+class TestModel_SecretPolicyRotationRotation():
     """
     Test Class for SecretPolicyRotationRotation
     """
@@ -2394,7 +2394,7 @@ class SecretPolicyRotationRotationUnitTests():
         assert secret_policy_rotation_rotation_model_json2 == secret_policy_rotation_rotation_model_json
 
 
-class CertificateValidityUnitTests():
+class TestModel_CertificateValidity():
     """
     Test Class for CertificateValidity
     """
@@ -2425,7 +2425,7 @@ class CertificateValidityUnitTests():
         assert certificate_validity_model_json2 == certificate_validity_model_json
 
 
-class ArbitrarySecretMetadataUnitTests():
+class TestModel_ArbitrarySecretMetadata():
     """
     Test Class for ArbitrarySecretMetadata
     """
@@ -2470,7 +2470,7 @@ class ArbitrarySecretMetadataUnitTests():
         assert arbitrary_secret_metadata_model_json2 == arbitrary_secret_metadata_model_json
 
 
-class ArbitrarySecretResourceUnitTests():
+class TestModel_ArbitrarySecretResource():
     """
     Test Class for ArbitrarySecretResource
     """
@@ -2518,7 +2518,7 @@ class ArbitrarySecretResourceUnitTests():
         assert arbitrary_secret_resource_model_json2 == arbitrary_secret_resource_model_json
 
 
-class ArbitrarySecretVersionMetadataUnitTests():
+class TestModel_ArbitrarySecretVersionMetadata():
     """
     Test Class for ArbitrarySecretVersionMetadata
     """
@@ -2553,7 +2553,7 @@ class ArbitrarySecretVersionMetadataUnitTests():
         assert arbitrary_secret_version_metadata_model_json2 == arbitrary_secret_version_metadata_model_json
 
 
-class CertificateSecretMetadataUnitTests():
+class TestModel_CertificateSecretMetadata():
     """
     Test Class for CertificateSecretMetadata
     """
@@ -2613,7 +2613,7 @@ class CertificateSecretMetadataUnitTests():
         assert certificate_secret_metadata_model_json2 == certificate_secret_metadata_model_json
 
 
-class CertificateSecretResourceUnitTests():
+class TestModel_CertificateSecretResource():
     """
     Test Class for CertificateSecretResource
     """
@@ -2678,7 +2678,7 @@ class CertificateSecretResourceUnitTests():
         assert certificate_secret_resource_model_json2 == certificate_secret_resource_model_json
 
 
-class CertificateSecretVersionUnitTests():
+class TestModel_CertificateSecretVersion():
     """
     Test Class for CertificateSecretVersion
     """
@@ -2729,7 +2729,7 @@ class CertificateSecretVersionUnitTests():
         assert certificate_secret_version_model_json2 == certificate_secret_version_model_json
 
 
-class CertificateSecretVersionMetadataUnitTests():
+class TestModel_CertificateSecretVersionMetadata():
     """
     Test Class for CertificateSecretVersionMetadata
     """
@@ -2773,7 +2773,7 @@ class CertificateSecretVersionMetadataUnitTests():
         assert certificate_secret_version_metadata_model_json2 == certificate_secret_version_metadata_model_json
 
 
-class DeleteCredentialsForIAMCredentialsSecretUnitTests():
+class TestModel_DeleteCredentialsForIAMCredentialsSecret():
     """
     Test Class for DeleteCredentialsForIAMCredentialsSecret
     """
@@ -2806,7 +2806,7 @@ class DeleteCredentialsForIAMCredentialsSecretUnitTests():
         assert delete_credentials_for_iam_credentials_secret_model_json2 == delete_credentials_for_iam_credentials_secret_model_json
 
 
-class GetSecretPolicyRotationUnitTests():
+class TestModel_GetSecretPolicyRotation():
     """
     Test Class for GetSecretPolicyRotation
     """
@@ -2860,7 +2860,7 @@ class GetSecretPolicyRotationUnitTests():
         assert get_secret_policy_rotation_model_json2 == get_secret_policy_rotation_model_json
 
 
-class IAMCredentialsSecretEngineRootConfigUnitTests():
+class TestModel_IAMCredentialsSecretEngineRootConfig():
     """
     Test Class for IAMCredentialsSecretEngineRootConfig
     """
@@ -2895,7 +2895,7 @@ class IAMCredentialsSecretEngineRootConfigUnitTests():
         assert iam_credentials_secret_engine_root_config_model_json2 == iam_credentials_secret_engine_root_config_model_json
 
 
-class IAMCredentialsSecretMetadataUnitTests():
+class TestModel_IAMCredentialsSecretMetadata():
     """
     Test Class for IAMCredentialsSecretMetadata
     """
@@ -2943,7 +2943,7 @@ class IAMCredentialsSecretMetadataUnitTests():
         assert iam_credentials_secret_metadata_model_json2 == iam_credentials_secret_metadata_model_json
 
 
-class IAMCredentialsSecretResourceUnitTests():
+class TestModel_IAMCredentialsSecretResource():
     """
     Test Class for IAMCredentialsSecretResource
     """
@@ -2996,7 +2996,7 @@ class IAMCredentialsSecretResourceUnitTests():
         assert iam_credentials_secret_resource_model_json2 == iam_credentials_secret_resource_model_json
 
 
-class IAMCredentialsSecretVersionMetadataUnitTests():
+class TestModel_IAMCredentialsSecretVersionMetadata():
     """
     Test Class for IAMCredentialsSecretVersionMetadata
     """
@@ -3031,7 +3031,7 @@ class IAMCredentialsSecretVersionMetadataUnitTests():
         assert iam_credentials_secret_version_metadata_model_json2 == iam_credentials_secret_version_metadata_model_json
 
 
-class RotateArbitrarySecretBodyUnitTests():
+class TestModel_RotateArbitrarySecretBody():
     """
     Test Class for RotateArbitrarySecretBody
     """
@@ -3063,7 +3063,7 @@ class RotateArbitrarySecretBodyUnitTests():
         assert rotate_arbitrary_secret_body_model_json2 == rotate_arbitrary_secret_body_model_json
 
 
-class RotateCertificateBodyUnitTests():
+class TestModel_RotateCertificateBody():
     """
     Test Class for RotateCertificateBody
     """
@@ -3096,7 +3096,7 @@ class RotateCertificateBodyUnitTests():
         assert rotate_certificate_body_model_json2 == rotate_certificate_body_model_json
 
 
-class RotateUsernamePasswordSecretBodyUnitTests():
+class TestModel_RotateUsernamePasswordSecretBody():
     """
     Test Class for RotateUsernamePasswordSecretBody
     """
@@ -3129,7 +3129,7 @@ class RotateUsernamePasswordSecretBodyUnitTests():
         assert rotate_username_password_secret_body_model_json2 == rotate_username_password_secret_body_model_json
 
 
-class UsernamePasswordSecretMetadataUnitTests():
+class TestModel_UsernamePasswordSecretMetadata():
     """
     Test Class for UsernamePasswordSecretMetadata
     """
@@ -3176,7 +3176,7 @@ class UsernamePasswordSecretMetadataUnitTests():
         assert username_password_secret_metadata_model_json2 == username_password_secret_metadata_model_json
 
 
-class UsernamePasswordSecretResourceUnitTests():
+class TestModel_UsernamePasswordSecretResource():
     """
     Test Class for UsernamePasswordSecretResource
     """
@@ -3228,7 +3228,7 @@ class UsernamePasswordSecretResourceUnitTests():
         assert username_password_secret_resource_model_json2 == username_password_secret_resource_model_json
 
 
-class UsernamePasswordSecretVersionMetadataUnitTests():
+class TestModel_UsernamePasswordSecretVersionMetadata():
     """
     Test Class for UsernamePasswordSecretVersionMetadata
     """
