@@ -29,12 +29,12 @@ import responses
 import urllib
 from ibm_secrets_manager_sdk.secrets_manager_v1 import *
 
-service = SecretsManagerV1(
+_service = SecretsManagerV1(
     authenticator=NoAuthAuthenticator()
 )
 
-base_url = 'https://secrets-manager.cloud.ibm.com'
-service.set_service_url(base_url)
+_base_url = 'https://secrets-manager.cloud.ibm.com'
+_service.set_service_url(_base_url)
 
 
 ##############################################################################
@@ -62,23 +62,23 @@ class TestPutConfig():
         put_config()
         """
         # Set up mock
-        url = self.preprocess_url(base_url + '/api/v1/config/iam_credentials')
+        url = self.preprocess_url(_base_url + '/api/v1/config/iam_credentials')
         responses.add(responses.PUT,
                       url,
                       status=204)
 
-        # Construct a dict representation of a EngineConfigOneOfIAMSecretEngineRootConfig model
-        engine_config_one_of_model = {}
-        engine_config_one_of_model['api_key'] = 'API_KEY'
+        # Construct a dict representation of a IAMCredentialsSecretEngineRootConfig model
+        engine_config_model = {}
+        engine_config_model['api_key'] = 'API_KEY'
 
         # Set up parameter values
         secret_type = 'iam_credentials'
-        engine_config_one_of = engine_config_one_of_model
+        engine_config = engine_config_model
 
         # Invoke method
-        response = service.put_config(
+        response = _service.put_config(
             secret_type,
-            engine_config_one_of,
+            engine_config,
             headers={}
         )
 
@@ -87,7 +87,7 @@ class TestPutConfig():
         assert response.status_code == 204
         # Validate body params
         req_body = json.loads(str(responses.calls[0].request.body, 'utf-8'))
-        assert req_body == engine_config_one_of
+        assert req_body == engine_config
 
     @responses.activate
     def test_put_config_value_error(self):
@@ -95,28 +95,28 @@ class TestPutConfig():
         test_put_config_value_error()
         """
         # Set up mock
-        url = self.preprocess_url(base_url + '/api/v1/config/iam_credentials')
+        url = self.preprocess_url(_base_url + '/api/v1/config/iam_credentials')
         responses.add(responses.PUT,
                       url,
                       status=204)
 
-        # Construct a dict representation of a EngineConfigOneOfIAMSecretEngineRootConfig model
-        engine_config_one_of_model = {}
-        engine_config_one_of_model['api_key'] = 'API_KEY'
+        # Construct a dict representation of a IAMCredentialsSecretEngineRootConfig model
+        engine_config_model = {}
+        engine_config_model['api_key'] = 'API_KEY'
 
         # Set up parameter values
         secret_type = 'iam_credentials'
-        engine_config_one_of = engine_config_one_of_model
+        engine_config = engine_config_model
 
         # Pass in all but one required param and check for a ValueError
         req_param_dict = {
             "secret_type": secret_type,
-            "engine_config_one_of": engine_config_one_of,
+            "engine_config": engine_config,
         }
         for param in req_param_dict.keys():
             req_copy = {key: val if key is not param else None for (key, val) in req_param_dict.items()}
             with pytest.raises(ValueError):
-                service.put_config(**req_copy)
+                _service.put_config(**req_copy)
 
 
 class TestGetConfig():
@@ -139,7 +139,7 @@ class TestGetConfig():
         get_config()
         """
         # Set up mock
-        url = self.preprocess_url(base_url + '/api/v1/config/iam_credentials')
+        url = self.preprocess_url(_base_url + '/api/v1/config/iam_credentials')
         mock_response = '{"metadata": {"collection_type": "application/vnd.ibm.secrets-manager.secret+json", "collection_total": 1}, "resources": [{"api_key": "API_KEY", "api_key_hash": "a737c3a98ebfc16a0d5ddc6b277548491440780003e06f5924dc906bc8d78e91"}]}'
         responses.add(responses.GET,
                       url,
@@ -151,7 +151,7 @@ class TestGetConfig():
         secret_type = 'iam_credentials'
 
         # Invoke method
-        response = service.get_config(
+        response = _service.get_config(
             secret_type,
             headers={}
         )
@@ -166,7 +166,7 @@ class TestGetConfig():
         test_get_config_value_error()
         """
         # Set up mock
-        url = self.preprocess_url(base_url + '/api/v1/config/iam_credentials')
+        url = self.preprocess_url(_base_url + '/api/v1/config/iam_credentials')
         mock_response = '{"metadata": {"collection_type": "application/vnd.ibm.secrets-manager.secret+json", "collection_total": 1}, "resources": [{"api_key": "API_KEY", "api_key_hash": "a737c3a98ebfc16a0d5ddc6b277548491440780003e06f5924dc906bc8d78e91"}]}'
         responses.add(responses.GET,
                       url,
@@ -184,7 +184,7 @@ class TestGetConfig():
         for param in req_param_dict.keys():
             req_copy = {key: val if key is not param else None for (key, val) in req_param_dict.items()}
             with pytest.raises(ValueError):
-                service.get_config(**req_copy)
+                _service.get_config(**req_copy)
 
 
 # endregion
@@ -217,7 +217,7 @@ class TestPutPolicy():
         put_policy()
         """
         # Set up mock
-        url = self.preprocess_url(base_url + '/api/v1/secrets/username_password/testString/policies')
+        url = self.preprocess_url(_base_url + '/api/v1/secrets/username_password/testString/policies')
         mock_response = '{"metadata": {"collection_type": "application/vnd.ibm.secrets-manager.secret+json", "collection_total": 1}, "resources": [{"id": "id", "crn": "crn:v1:bluemix:public:kms:<region>:a/<account-id>:<service-instance:policy:<policy-id>", "creation_date": "2019-01-01T12:00:00.000Z", "created_by": "created_by", "last_update_date": "2019-01-01T12:00:00.000Z", "updated_by": "updated_by", "type": "application/vnd.ibm.secrets-manager.secret.policy+json", "rotation": {"interval": 1, "unit": "day"}}]}'
         responses.add(responses.PUT,
                       url,
@@ -248,7 +248,7 @@ class TestPutPolicy():
         policy = 'rotation'
 
         # Invoke method
-        response = service.put_policy(
+        response = _service.put_policy(
             secret_type,
             id,
             metadata,
@@ -275,7 +275,7 @@ class TestPutPolicy():
         test_put_policy_required_params()
         """
         # Set up mock
-        url = self.preprocess_url(base_url + '/api/v1/secrets/username_password/testString/policies')
+        url = self.preprocess_url(_base_url + '/api/v1/secrets/username_password/testString/policies')
         mock_response = '{"metadata": {"collection_type": "application/vnd.ibm.secrets-manager.secret+json", "collection_total": 1}, "resources": [{"id": "id", "crn": "crn:v1:bluemix:public:kms:<region>:a/<account-id>:<service-instance:policy:<policy-id>", "creation_date": "2019-01-01T12:00:00.000Z", "created_by": "created_by", "last_update_date": "2019-01-01T12:00:00.000Z", "updated_by": "updated_by", "type": "application/vnd.ibm.secrets-manager.secret.policy+json", "rotation": {"interval": 1, "unit": "day"}}]}'
         responses.add(responses.PUT,
                       url,
@@ -305,7 +305,7 @@ class TestPutPolicy():
         resources = [secret_policy_rotation_model]
 
         # Invoke method
-        response = service.put_policy(
+        response = _service.put_policy(
             secret_type,
             id,
             metadata,
@@ -327,7 +327,7 @@ class TestPutPolicy():
         test_put_policy_value_error()
         """
         # Set up mock
-        url = self.preprocess_url(base_url + '/api/v1/secrets/username_password/testString/policies')
+        url = self.preprocess_url(_base_url + '/api/v1/secrets/username_password/testString/policies')
         mock_response = '{"metadata": {"collection_type": "application/vnd.ibm.secrets-manager.secret+json", "collection_total": 1}, "resources": [{"id": "id", "crn": "crn:v1:bluemix:public:kms:<region>:a/<account-id>:<service-instance:policy:<policy-id>", "creation_date": "2019-01-01T12:00:00.000Z", "created_by": "created_by", "last_update_date": "2019-01-01T12:00:00.000Z", "updated_by": "updated_by", "type": "application/vnd.ibm.secrets-manager.secret.policy+json", "rotation": {"interval": 1, "unit": "day"}}]}'
         responses.add(responses.PUT,
                       url,
@@ -366,7 +366,7 @@ class TestPutPolicy():
         for param in req_param_dict.keys():
             req_copy = {key: val if key is not param else None for (key, val) in req_param_dict.items()}
             with pytest.raises(ValueError):
-                service.put_policy(**req_copy)
+                _service.put_policy(**req_copy)
 
 
 class TestGetPolicy():
@@ -389,7 +389,7 @@ class TestGetPolicy():
         get_policy()
         """
         # Set up mock
-        url = self.preprocess_url(base_url + '/api/v1/secrets/username_password/testString/policies')
+        url = self.preprocess_url(_base_url + '/api/v1/secrets/username_password/testString/policies')
         mock_response = '{"metadata": {"collection_type": "application/vnd.ibm.secrets-manager.secret+json", "collection_total": 1}, "resources": [{"id": "id", "crn": "crn:v1:bluemix:public:kms:<region>:a/<account-id>:<service-instance:policy:<policy-id>", "creation_date": "2019-01-01T12:00:00.000Z", "created_by": "created_by", "last_update_date": "2019-01-01T12:00:00.000Z", "updated_by": "updated_by", "type": "application/vnd.ibm.secrets-manager.secret.policy+json", "rotation": {"interval": 1, "unit": "day"}}]}'
         responses.add(responses.GET,
                       url,
@@ -403,7 +403,7 @@ class TestGetPolicy():
         policy = 'rotation'
 
         # Invoke method
-        response = service.get_policy(
+        response = _service.get_policy(
             secret_type,
             id,
             policy=policy,
@@ -424,7 +424,7 @@ class TestGetPolicy():
         test_get_policy_required_params()
         """
         # Set up mock
-        url = self.preprocess_url(base_url + '/api/v1/secrets/username_password/testString/policies')
+        url = self.preprocess_url(_base_url + '/api/v1/secrets/username_password/testString/policies')
         mock_response = '{"metadata": {"collection_type": "application/vnd.ibm.secrets-manager.secret+json", "collection_total": 1}, "resources": [{"id": "id", "crn": "crn:v1:bluemix:public:kms:<region>:a/<account-id>:<service-instance:policy:<policy-id>", "creation_date": "2019-01-01T12:00:00.000Z", "created_by": "created_by", "last_update_date": "2019-01-01T12:00:00.000Z", "updated_by": "updated_by", "type": "application/vnd.ibm.secrets-manager.secret.policy+json", "rotation": {"interval": 1, "unit": "day"}}]}'
         responses.add(responses.GET,
                       url,
@@ -437,7 +437,7 @@ class TestGetPolicy():
         id = 'testString'
 
         # Invoke method
-        response = service.get_policy(
+        response = _service.get_policy(
             secret_type,
             id,
             headers={}
@@ -453,7 +453,7 @@ class TestGetPolicy():
         test_get_policy_value_error()
         """
         # Set up mock
-        url = self.preprocess_url(base_url + '/api/v1/secrets/username_password/testString/policies')
+        url = self.preprocess_url(_base_url + '/api/v1/secrets/username_password/testString/policies')
         mock_response = '{"metadata": {"collection_type": "application/vnd.ibm.secrets-manager.secret+json", "collection_total": 1}, "resources": [{"id": "id", "crn": "crn:v1:bluemix:public:kms:<region>:a/<account-id>:<service-instance:policy:<policy-id>", "creation_date": "2019-01-01T12:00:00.000Z", "created_by": "created_by", "last_update_date": "2019-01-01T12:00:00.000Z", "updated_by": "updated_by", "type": "application/vnd.ibm.secrets-manager.secret.policy+json", "rotation": {"interval": 1, "unit": "day"}}]}'
         responses.add(responses.GET,
                       url,
@@ -473,7 +473,7 @@ class TestGetPolicy():
         for param in req_param_dict.keys():
             req_copy = {key: val if key is not param else None for (key, val) in req_param_dict.items()}
             with pytest.raises(ValueError):
-                service.get_policy(**req_copy)
+                _service.get_policy(**req_copy)
 
 
 # endregion
@@ -506,7 +506,7 @@ class TestCreateSecretGroup():
         create_secret_group()
         """
         # Set up mock
-        url = self.preprocess_url(base_url + '/api/v1/secret_groups')
+        url = self.preprocess_url(_base_url + '/api/v1/secret_groups')
         mock_response = '{"metadata": {"collection_type": "application/vnd.ibm.secrets-manager.secret+json", "collection_total": 1}, "resources": [{"id": "bc656587-8fda-4d05-9ad8-b1de1ec7e712", "name": "my-secret-group", "description": "Extended description for this group.", "creation_date": "2018-04-12T23:20:50.520Z", "last_update_date": "2018-05-12T23:20:50.520Z", "type": "application/vnd.ibm.secrets-manager.secret.group+json"}]}'
         responses.add(responses.POST,
                       url,
@@ -530,7 +530,7 @@ class TestCreateSecretGroup():
         resources = [secret_group_resource_model]
 
         # Invoke method
-        response = service.create_secret_group(
+        response = _service.create_secret_group(
             metadata,
             resources,
             headers={}
@@ -550,7 +550,7 @@ class TestCreateSecretGroup():
         test_create_secret_group_value_error()
         """
         # Set up mock
-        url = self.preprocess_url(base_url + '/api/v1/secret_groups')
+        url = self.preprocess_url(_base_url + '/api/v1/secret_groups')
         mock_response = '{"metadata": {"collection_type": "application/vnd.ibm.secrets-manager.secret+json", "collection_total": 1}, "resources": [{"id": "bc656587-8fda-4d05-9ad8-b1de1ec7e712", "name": "my-secret-group", "description": "Extended description for this group.", "creation_date": "2018-04-12T23:20:50.520Z", "last_update_date": "2018-05-12T23:20:50.520Z", "type": "application/vnd.ibm.secrets-manager.secret.group+json"}]}'
         responses.add(responses.POST,
                       url,
@@ -581,7 +581,7 @@ class TestCreateSecretGroup():
         for param in req_param_dict.keys():
             req_copy = {key: val if key is not param else None for (key, val) in req_param_dict.items()}
             with pytest.raises(ValueError):
-                service.create_secret_group(**req_copy)
+                _service.create_secret_group(**req_copy)
 
 
 class TestListSecretGroups():
@@ -604,7 +604,7 @@ class TestListSecretGroups():
         list_secret_groups()
         """
         # Set up mock
-        url = self.preprocess_url(base_url + '/api/v1/secret_groups')
+        url = self.preprocess_url(_base_url + '/api/v1/secret_groups')
         mock_response = '{"metadata": {"collection_type": "application/vnd.ibm.secrets-manager.secret+json", "collection_total": 1}, "resources": [{"id": "bc656587-8fda-4d05-9ad8-b1de1ec7e712", "name": "my-secret-group", "description": "Extended description for this group.", "creation_date": "2018-04-12T23:20:50.520Z", "last_update_date": "2018-05-12T23:20:50.520Z", "type": "application/vnd.ibm.secrets-manager.secret.group+json"}]}'
         responses.add(responses.GET,
                       url,
@@ -613,7 +613,7 @@ class TestListSecretGroups():
                       status=200)
 
         # Invoke method
-        response = service.list_secret_groups()
+        response = _service.list_secret_groups()
 
         # Check for correct operation
         assert len(responses.calls) == 1
@@ -640,7 +640,7 @@ class TestGetSecretGroup():
         get_secret_group()
         """
         # Set up mock
-        url = self.preprocess_url(base_url + '/api/v1/secret_groups/testString')
+        url = self.preprocess_url(_base_url + '/api/v1/secret_groups/testString')
         mock_response = '{"metadata": {"collection_type": "application/vnd.ibm.secrets-manager.secret+json", "collection_total": 1}, "resources": [{"id": "bc656587-8fda-4d05-9ad8-b1de1ec7e712", "name": "my-secret-group", "description": "Extended description for this group.", "creation_date": "2018-04-12T23:20:50.520Z", "last_update_date": "2018-05-12T23:20:50.520Z", "type": "application/vnd.ibm.secrets-manager.secret.group+json"}]}'
         responses.add(responses.GET,
                       url,
@@ -652,7 +652,7 @@ class TestGetSecretGroup():
         id = 'testString'
 
         # Invoke method
-        response = service.get_secret_group(
+        response = _service.get_secret_group(
             id,
             headers={}
         )
@@ -667,7 +667,7 @@ class TestGetSecretGroup():
         test_get_secret_group_value_error()
         """
         # Set up mock
-        url = self.preprocess_url(base_url + '/api/v1/secret_groups/testString')
+        url = self.preprocess_url(_base_url + '/api/v1/secret_groups/testString')
         mock_response = '{"metadata": {"collection_type": "application/vnd.ibm.secrets-manager.secret+json", "collection_total": 1}, "resources": [{"id": "bc656587-8fda-4d05-9ad8-b1de1ec7e712", "name": "my-secret-group", "description": "Extended description for this group.", "creation_date": "2018-04-12T23:20:50.520Z", "last_update_date": "2018-05-12T23:20:50.520Z", "type": "application/vnd.ibm.secrets-manager.secret.group+json"}]}'
         responses.add(responses.GET,
                       url,
@@ -685,7 +685,7 @@ class TestGetSecretGroup():
         for param in req_param_dict.keys():
             req_copy = {key: val if key is not param else None for (key, val) in req_param_dict.items()}
             with pytest.raises(ValueError):
-                service.get_secret_group(**req_copy)
+                _service.get_secret_group(**req_copy)
 
 
 class TestUpdateSecretGroupMetadata():
@@ -708,7 +708,7 @@ class TestUpdateSecretGroupMetadata():
         update_secret_group_metadata()
         """
         # Set up mock
-        url = self.preprocess_url(base_url + '/api/v1/secret_groups/testString')
+        url = self.preprocess_url(_base_url + '/api/v1/secret_groups/testString')
         mock_response = '{"metadata": {"collection_type": "application/vnd.ibm.secrets-manager.secret+json", "collection_total": 1}, "resources": [{"id": "bc656587-8fda-4d05-9ad8-b1de1ec7e712", "name": "my-secret-group", "description": "Extended description for this group.", "creation_date": "2018-04-12T23:20:50.520Z", "last_update_date": "2018-05-12T23:20:50.520Z", "type": "application/vnd.ibm.secrets-manager.secret.group+json"}]}'
         responses.add(responses.PUT,
                       url,
@@ -732,7 +732,7 @@ class TestUpdateSecretGroupMetadata():
         resources = [secret_group_metadata_updatable_model]
 
         # Invoke method
-        response = service.update_secret_group_metadata(
+        response = _service.update_secret_group_metadata(
             id,
             metadata,
             resources,
@@ -753,7 +753,7 @@ class TestUpdateSecretGroupMetadata():
         test_update_secret_group_metadata_value_error()
         """
         # Set up mock
-        url = self.preprocess_url(base_url + '/api/v1/secret_groups/testString')
+        url = self.preprocess_url(_base_url + '/api/v1/secret_groups/testString')
         mock_response = '{"metadata": {"collection_type": "application/vnd.ibm.secrets-manager.secret+json", "collection_total": 1}, "resources": [{"id": "bc656587-8fda-4d05-9ad8-b1de1ec7e712", "name": "my-secret-group", "description": "Extended description for this group.", "creation_date": "2018-04-12T23:20:50.520Z", "last_update_date": "2018-05-12T23:20:50.520Z", "type": "application/vnd.ibm.secrets-manager.secret.group+json"}]}'
         responses.add(responses.PUT,
                       url,
@@ -785,7 +785,7 @@ class TestUpdateSecretGroupMetadata():
         for param in req_param_dict.keys():
             req_copy = {key: val if key is not param else None for (key, val) in req_param_dict.items()}
             with pytest.raises(ValueError):
-                service.update_secret_group_metadata(**req_copy)
+                _service.update_secret_group_metadata(**req_copy)
 
 
 class TestDeleteSecretGroup():
@@ -808,7 +808,7 @@ class TestDeleteSecretGroup():
         delete_secret_group()
         """
         # Set up mock
-        url = self.preprocess_url(base_url + '/api/v1/secret_groups/testString')
+        url = self.preprocess_url(_base_url + '/api/v1/secret_groups/testString')
         responses.add(responses.DELETE,
                       url,
                       status=204)
@@ -817,7 +817,7 @@ class TestDeleteSecretGroup():
         id = 'testString'
 
         # Invoke method
-        response = service.delete_secret_group(
+        response = _service.delete_secret_group(
             id,
             headers={}
         )
@@ -832,7 +832,7 @@ class TestDeleteSecretGroup():
         test_delete_secret_group_value_error()
         """
         # Set up mock
-        url = self.preprocess_url(base_url + '/api/v1/secret_groups/testString')
+        url = self.preprocess_url(_base_url + '/api/v1/secret_groups/testString')
         responses.add(responses.DELETE,
                       url,
                       status=204)
@@ -847,7 +847,7 @@ class TestDeleteSecretGroup():
         for param in req_param_dict.keys():
             req_copy = {key: val if key is not param else None for (key, val) in req_param_dict.items()}
             with pytest.raises(ValueError):
-                service.delete_secret_group(**req_copy)
+                _service.delete_secret_group(**req_copy)
 
 
 # endregion
@@ -880,8 +880,8 @@ class TestCreateSecret():
         create_secret()
         """
         # Set up mock
-        url = self.preprocess_url(base_url + '/api/v1/secrets/arbitrary')
-        mock_response = '{"metadata": {"collection_type": "application/vnd.ibm.secrets-manager.secret+json", "collection_total": 1}, "resources": [{"type": "type", "id": "id", "name": "name", "description": "description", "secret_group_id": "secret_group_id", "labels": ["labels"], "state": 0, "state_description": "Active", "secret_type": "arbitrary", "crn": "crn:v1:bluemix:public:secrets-manager:<region>:a/<account-id>:<service-instance>:secret:<secret-id>", "creation_date": "2018-04-12T23:20:50.520Z", "created_by": "created_by", "last_update_date": "2018-04-12T23:20:50.520Z", "versions": [{"id": "4a0225e9-17a0-46c1-ace7-f25bcf4237d4", "creation_date": "2019-01-01T12:00:00.000Z", "created_by": "created_by", "auto_rotated": true}], "expiration_date": "2030-04-01T09:30:00.000Z", "payload": "payload", "secret_data": {"anyKey": "anyValue"}}]}'
+        url = self.preprocess_url(_base_url + '/api/v1/secrets/arbitrary')
+        mock_response = '{"metadata": {"collection_type": "application/vnd.ibm.secrets-manager.secret+json", "collection_total": 1}, "resources": [{"id": "id", "name": "name", "description": "description", "secret_group_id": "secret_group_id", "labels": ["labels"], "state": 0, "state_description": "Active", "secret_type": "arbitrary", "crn": "crn:v1:bluemix:public:secrets-manager:<region>:a/<account-id>:<service-instance>:secret:<secret-id>", "creation_date": "2018-04-12T23:20:50.520Z", "created_by": "created_by", "last_update_date": "2018-04-12T23:20:50.520Z", "versions_total": 1, "versions": [{"mapKey": {"anyKey": "anyValue"}}], "expiration_date": "2030-04-01T09:30:00.000Z", "payload": "payload", "secret_data": {"anyKey": "anyValue"}}]}'
         responses.add(responses.POST,
                       url,
                       body=mock_response,
@@ -893,14 +893,13 @@ class TestCreateSecret():
         collection_metadata_model['collection_type'] = 'application/vnd.ibm.secrets-manager.secret+json'
         collection_metadata_model['collection_total'] = 1
 
-        # Construct a dict representation of a SecretResourceArbitrarySecretResource model
+        # Construct a dict representation of a ArbitrarySecretResource model
         secret_resource_model = {}
-        secret_resource_model['type'] = 'testString'
         secret_resource_model['name'] = 'testString'
         secret_resource_model['description'] = 'testString'
         secret_resource_model['secret_group_id'] = 'testString'
         secret_resource_model['labels'] = ['testString']
-        secret_resource_model['expiration_date'] = datetime_to_string(string_to_datetime("2030-04-01T09:30:00.000Z"))
+        secret_resource_model['expiration_date'] = "2030-04-01T09:30:00Z"
         secret_resource_model['payload'] = 'testString'
 
         # Set up parameter values
@@ -909,7 +908,7 @@ class TestCreateSecret():
         resources = [secret_resource_model]
 
         # Invoke method
-        response = service.create_secret(
+        response = _service.create_secret(
             secret_type,
             metadata,
             resources,
@@ -930,8 +929,8 @@ class TestCreateSecret():
         test_create_secret_value_error()
         """
         # Set up mock
-        url = self.preprocess_url(base_url + '/api/v1/secrets/arbitrary')
-        mock_response = '{"metadata": {"collection_type": "application/vnd.ibm.secrets-manager.secret+json", "collection_total": 1}, "resources": [{"type": "type", "id": "id", "name": "name", "description": "description", "secret_group_id": "secret_group_id", "labels": ["labels"], "state": 0, "state_description": "Active", "secret_type": "arbitrary", "crn": "crn:v1:bluemix:public:secrets-manager:<region>:a/<account-id>:<service-instance>:secret:<secret-id>", "creation_date": "2018-04-12T23:20:50.520Z", "created_by": "created_by", "last_update_date": "2018-04-12T23:20:50.520Z", "versions": [{"id": "4a0225e9-17a0-46c1-ace7-f25bcf4237d4", "creation_date": "2019-01-01T12:00:00.000Z", "created_by": "created_by", "auto_rotated": true}], "expiration_date": "2030-04-01T09:30:00.000Z", "payload": "payload", "secret_data": {"anyKey": "anyValue"}}]}'
+        url = self.preprocess_url(_base_url + '/api/v1/secrets/arbitrary')
+        mock_response = '{"metadata": {"collection_type": "application/vnd.ibm.secrets-manager.secret+json", "collection_total": 1}, "resources": [{"id": "id", "name": "name", "description": "description", "secret_group_id": "secret_group_id", "labels": ["labels"], "state": 0, "state_description": "Active", "secret_type": "arbitrary", "crn": "crn:v1:bluemix:public:secrets-manager:<region>:a/<account-id>:<service-instance>:secret:<secret-id>", "creation_date": "2018-04-12T23:20:50.520Z", "created_by": "created_by", "last_update_date": "2018-04-12T23:20:50.520Z", "versions_total": 1, "versions": [{"mapKey": {"anyKey": "anyValue"}}], "expiration_date": "2030-04-01T09:30:00.000Z", "payload": "payload", "secret_data": {"anyKey": "anyValue"}}]}'
         responses.add(responses.POST,
                       url,
                       body=mock_response,
@@ -943,14 +942,13 @@ class TestCreateSecret():
         collection_metadata_model['collection_type'] = 'application/vnd.ibm.secrets-manager.secret+json'
         collection_metadata_model['collection_total'] = 1
 
-        # Construct a dict representation of a SecretResourceArbitrarySecretResource model
+        # Construct a dict representation of a ArbitrarySecretResource model
         secret_resource_model = {}
-        secret_resource_model['type'] = 'testString'
         secret_resource_model['name'] = 'testString'
         secret_resource_model['description'] = 'testString'
         secret_resource_model['secret_group_id'] = 'testString'
         secret_resource_model['labels'] = ['testString']
-        secret_resource_model['expiration_date'] = datetime_to_string(string_to_datetime("2030-04-01T09:30:00.000Z"))
+        secret_resource_model['expiration_date'] = "2030-04-01T09:30:00Z"
         secret_resource_model['payload'] = 'testString'
 
         # Set up parameter values
@@ -967,7 +965,7 @@ class TestCreateSecret():
         for param in req_param_dict.keys():
             req_copy = {key: val if key is not param else None for (key, val) in req_param_dict.items()}
             with pytest.raises(ValueError):
-                service.create_secret(**req_copy)
+                _service.create_secret(**req_copy)
 
 
 class TestListSecrets():
@@ -990,8 +988,8 @@ class TestListSecrets():
         list_secrets()
         """
         # Set up mock
-        url = self.preprocess_url(base_url + '/api/v1/secrets/arbitrary')
-        mock_response = '{"metadata": {"collection_type": "application/vnd.ibm.secrets-manager.secret+json", "collection_total": 1}, "resources": [{"type": "type", "id": "id", "name": "name", "description": "description", "secret_group_id": "secret_group_id", "labels": ["labels"], "state": 0, "state_description": "Active", "secret_type": "arbitrary", "crn": "crn:v1:bluemix:public:secrets-manager:<region>:a/<account-id>:<service-instance>:secret:<secret-id>", "creation_date": "2018-04-12T23:20:50.520Z", "created_by": "created_by", "last_update_date": "2018-04-12T23:20:50.520Z", "versions": [{"id": "4a0225e9-17a0-46c1-ace7-f25bcf4237d4", "creation_date": "2019-01-01T12:00:00.000Z", "created_by": "created_by", "auto_rotated": true}], "expiration_date": "2030-04-01T09:30:00.000Z", "payload": "payload", "secret_data": {"anyKey": "anyValue"}}]}'
+        url = self.preprocess_url(_base_url + '/api/v1/secrets/arbitrary')
+        mock_response = '{"metadata": {"collection_type": "application/vnd.ibm.secrets-manager.secret+json", "collection_total": 1}, "resources": [{"id": "id", "name": "name", "description": "description", "secret_group_id": "secret_group_id", "labels": ["labels"], "state": 0, "state_description": "Active", "secret_type": "arbitrary", "crn": "crn:v1:bluemix:public:secrets-manager:<region>:a/<account-id>:<service-instance>:secret:<secret-id>", "creation_date": "2018-04-12T23:20:50.520Z", "created_by": "created_by", "last_update_date": "2018-04-12T23:20:50.520Z", "versions_total": 1, "versions": [{"mapKey": {"anyKey": "anyValue"}}], "expiration_date": "2030-04-01T09:30:00.000Z", "payload": "payload", "secret_data": {"anyKey": "anyValue"}}]}'
         responses.add(responses.GET,
                       url,
                       body=mock_response,
@@ -1004,7 +1002,7 @@ class TestListSecrets():
         offset = 0
 
         # Invoke method
-        response = service.list_secrets(
+        response = _service.list_secrets(
             secret_type,
             limit=limit,
             offset=offset,
@@ -1026,8 +1024,8 @@ class TestListSecrets():
         test_list_secrets_required_params()
         """
         # Set up mock
-        url = self.preprocess_url(base_url + '/api/v1/secrets/arbitrary')
-        mock_response = '{"metadata": {"collection_type": "application/vnd.ibm.secrets-manager.secret+json", "collection_total": 1}, "resources": [{"type": "type", "id": "id", "name": "name", "description": "description", "secret_group_id": "secret_group_id", "labels": ["labels"], "state": 0, "state_description": "Active", "secret_type": "arbitrary", "crn": "crn:v1:bluemix:public:secrets-manager:<region>:a/<account-id>:<service-instance>:secret:<secret-id>", "creation_date": "2018-04-12T23:20:50.520Z", "created_by": "created_by", "last_update_date": "2018-04-12T23:20:50.520Z", "versions": [{"id": "4a0225e9-17a0-46c1-ace7-f25bcf4237d4", "creation_date": "2019-01-01T12:00:00.000Z", "created_by": "created_by", "auto_rotated": true}], "expiration_date": "2030-04-01T09:30:00.000Z", "payload": "payload", "secret_data": {"anyKey": "anyValue"}}]}'
+        url = self.preprocess_url(_base_url + '/api/v1/secrets/arbitrary')
+        mock_response = '{"metadata": {"collection_type": "application/vnd.ibm.secrets-manager.secret+json", "collection_total": 1}, "resources": [{"id": "id", "name": "name", "description": "description", "secret_group_id": "secret_group_id", "labels": ["labels"], "state": 0, "state_description": "Active", "secret_type": "arbitrary", "crn": "crn:v1:bluemix:public:secrets-manager:<region>:a/<account-id>:<service-instance>:secret:<secret-id>", "creation_date": "2018-04-12T23:20:50.520Z", "created_by": "created_by", "last_update_date": "2018-04-12T23:20:50.520Z", "versions_total": 1, "versions": [{"mapKey": {"anyKey": "anyValue"}}], "expiration_date": "2030-04-01T09:30:00.000Z", "payload": "payload", "secret_data": {"anyKey": "anyValue"}}]}'
         responses.add(responses.GET,
                       url,
                       body=mock_response,
@@ -1038,7 +1036,7 @@ class TestListSecrets():
         secret_type = 'arbitrary'
 
         # Invoke method
-        response = service.list_secrets(
+        response = _service.list_secrets(
             secret_type,
             headers={}
         )
@@ -1053,8 +1051,8 @@ class TestListSecrets():
         test_list_secrets_value_error()
         """
         # Set up mock
-        url = self.preprocess_url(base_url + '/api/v1/secrets/arbitrary')
-        mock_response = '{"metadata": {"collection_type": "application/vnd.ibm.secrets-manager.secret+json", "collection_total": 1}, "resources": [{"type": "type", "id": "id", "name": "name", "description": "description", "secret_group_id": "secret_group_id", "labels": ["labels"], "state": 0, "state_description": "Active", "secret_type": "arbitrary", "crn": "crn:v1:bluemix:public:secrets-manager:<region>:a/<account-id>:<service-instance>:secret:<secret-id>", "creation_date": "2018-04-12T23:20:50.520Z", "created_by": "created_by", "last_update_date": "2018-04-12T23:20:50.520Z", "versions": [{"id": "4a0225e9-17a0-46c1-ace7-f25bcf4237d4", "creation_date": "2019-01-01T12:00:00.000Z", "created_by": "created_by", "auto_rotated": true}], "expiration_date": "2030-04-01T09:30:00.000Z", "payload": "payload", "secret_data": {"anyKey": "anyValue"}}]}'
+        url = self.preprocess_url(_base_url + '/api/v1/secrets/arbitrary')
+        mock_response = '{"metadata": {"collection_type": "application/vnd.ibm.secrets-manager.secret+json", "collection_total": 1}, "resources": [{"id": "id", "name": "name", "description": "description", "secret_group_id": "secret_group_id", "labels": ["labels"], "state": 0, "state_description": "Active", "secret_type": "arbitrary", "crn": "crn:v1:bluemix:public:secrets-manager:<region>:a/<account-id>:<service-instance>:secret:<secret-id>", "creation_date": "2018-04-12T23:20:50.520Z", "created_by": "created_by", "last_update_date": "2018-04-12T23:20:50.520Z", "versions_total": 1, "versions": [{"mapKey": {"anyKey": "anyValue"}}], "expiration_date": "2030-04-01T09:30:00.000Z", "payload": "payload", "secret_data": {"anyKey": "anyValue"}}]}'
         responses.add(responses.GET,
                       url,
                       body=mock_response,
@@ -1071,7 +1069,7 @@ class TestListSecrets():
         for param in req_param_dict.keys():
             req_copy = {key: val if key is not param else None for (key, val) in req_param_dict.items()}
             with pytest.raises(ValueError):
-                service.list_secrets(**req_copy)
+                _service.list_secrets(**req_copy)
 
 
 class TestListAllSecrets():
@@ -1094,8 +1092,8 @@ class TestListAllSecrets():
         list_all_secrets()
         """
         # Set up mock
-        url = self.preprocess_url(base_url + '/api/v1/secrets')
-        mock_response = '{"metadata": {"collection_type": "application/vnd.ibm.secrets-manager.secret+json", "collection_total": 1}, "resources": [{"type": "type", "id": "id", "name": "name", "description": "description", "secret_group_id": "secret_group_id", "labels": ["labels"], "state": 0, "state_description": "Active", "secret_type": "arbitrary", "crn": "crn:v1:bluemix:public:secrets-manager:<region>:a/<account-id>:<service-instance>:secret:<secret-id>", "creation_date": "2018-04-12T23:20:50.520Z", "created_by": "created_by", "last_update_date": "2018-04-12T23:20:50.520Z", "versions": [{"id": "4a0225e9-17a0-46c1-ace7-f25bcf4237d4", "creation_date": "2019-01-01T12:00:00.000Z", "created_by": "created_by", "auto_rotated": true}], "expiration_date": "2030-04-01T09:30:00.000Z", "payload": "payload", "secret_data": {"anyKey": "anyValue"}}]}'
+        url = self.preprocess_url(_base_url + '/api/v1/secrets')
+        mock_response = '{"metadata": {"collection_type": "application/vnd.ibm.secrets-manager.secret+json", "collection_total": 1}, "resources": [{"id": "id", "name": "name", "description": "description", "secret_group_id": "secret_group_id", "labels": ["labels"], "state": 0, "state_description": "Active", "secret_type": "arbitrary", "crn": "crn:v1:bluemix:public:secrets-manager:<region>:a/<account-id>:<service-instance>:secret:<secret-id>", "creation_date": "2018-04-12T23:20:50.520Z", "created_by": "created_by", "last_update_date": "2018-04-12T23:20:50.520Z", "versions_total": 1, "versions": [{"mapKey": {"anyKey": "anyValue"}}], "expiration_date": "2030-04-01T09:30:00.000Z", "payload": "payload", "secret_data": {"anyKey": "anyValue"}}]}'
         responses.add(responses.GET,
                       url,
                       body=mock_response,
@@ -1110,7 +1108,7 @@ class TestListAllSecrets():
         groups = ['testString']
 
         # Invoke method
-        response = service.list_all_secrets(
+        response = _service.list_all_secrets(
             limit=limit,
             offset=offset,
             search=search,
@@ -1137,8 +1135,8 @@ class TestListAllSecrets():
         test_list_all_secrets_required_params()
         """
         # Set up mock
-        url = self.preprocess_url(base_url + '/api/v1/secrets')
-        mock_response = '{"metadata": {"collection_type": "application/vnd.ibm.secrets-manager.secret+json", "collection_total": 1}, "resources": [{"type": "type", "id": "id", "name": "name", "description": "description", "secret_group_id": "secret_group_id", "labels": ["labels"], "state": 0, "state_description": "Active", "secret_type": "arbitrary", "crn": "crn:v1:bluemix:public:secrets-manager:<region>:a/<account-id>:<service-instance>:secret:<secret-id>", "creation_date": "2018-04-12T23:20:50.520Z", "created_by": "created_by", "last_update_date": "2018-04-12T23:20:50.520Z", "versions": [{"id": "4a0225e9-17a0-46c1-ace7-f25bcf4237d4", "creation_date": "2019-01-01T12:00:00.000Z", "created_by": "created_by", "auto_rotated": true}], "expiration_date": "2030-04-01T09:30:00.000Z", "payload": "payload", "secret_data": {"anyKey": "anyValue"}}]}'
+        url = self.preprocess_url(_base_url + '/api/v1/secrets')
+        mock_response = '{"metadata": {"collection_type": "application/vnd.ibm.secrets-manager.secret+json", "collection_total": 1}, "resources": [{"id": "id", "name": "name", "description": "description", "secret_group_id": "secret_group_id", "labels": ["labels"], "state": 0, "state_description": "Active", "secret_type": "arbitrary", "crn": "crn:v1:bluemix:public:secrets-manager:<region>:a/<account-id>:<service-instance>:secret:<secret-id>", "creation_date": "2018-04-12T23:20:50.520Z", "created_by": "created_by", "last_update_date": "2018-04-12T23:20:50.520Z", "versions_total": 1, "versions": [{"mapKey": {"anyKey": "anyValue"}}], "expiration_date": "2030-04-01T09:30:00.000Z", "payload": "payload", "secret_data": {"anyKey": "anyValue"}}]}'
         responses.add(responses.GET,
                       url,
                       body=mock_response,
@@ -1146,7 +1144,7 @@ class TestListAllSecrets():
                       status=200)
 
         # Invoke method
-        response = service.list_all_secrets()
+        response = _service.list_all_secrets()
 
         # Check for correct operation
         assert len(responses.calls) == 1
@@ -1173,8 +1171,8 @@ class TestGetSecret():
         get_secret()
         """
         # Set up mock
-        url = self.preprocess_url(base_url + '/api/v1/secrets/arbitrary/testString')
-        mock_response = '{"metadata": {"collection_type": "application/vnd.ibm.secrets-manager.secret+json", "collection_total": 1}, "resources": [{"type": "type", "id": "id", "name": "name", "description": "description", "secret_group_id": "secret_group_id", "labels": ["labels"], "state": 0, "state_description": "Active", "secret_type": "arbitrary", "crn": "crn:v1:bluemix:public:secrets-manager:<region>:a/<account-id>:<service-instance>:secret:<secret-id>", "creation_date": "2018-04-12T23:20:50.520Z", "created_by": "created_by", "last_update_date": "2018-04-12T23:20:50.520Z", "versions": [{"id": "4a0225e9-17a0-46c1-ace7-f25bcf4237d4", "creation_date": "2019-01-01T12:00:00.000Z", "created_by": "created_by", "auto_rotated": true}], "expiration_date": "2030-04-01T09:30:00.000Z", "payload": "payload", "secret_data": {"anyKey": "anyValue"}}]}'
+        url = self.preprocess_url(_base_url + '/api/v1/secrets/arbitrary/testString')
+        mock_response = '{"metadata": {"collection_type": "application/vnd.ibm.secrets-manager.secret+json", "collection_total": 1}, "resources": [{"id": "id", "name": "name", "description": "description", "secret_group_id": "secret_group_id", "labels": ["labels"], "state": 0, "state_description": "Active", "secret_type": "arbitrary", "crn": "crn:v1:bluemix:public:secrets-manager:<region>:a/<account-id>:<service-instance>:secret:<secret-id>", "creation_date": "2018-04-12T23:20:50.520Z", "created_by": "created_by", "last_update_date": "2018-04-12T23:20:50.520Z", "versions_total": 1, "versions": [{"mapKey": {"anyKey": "anyValue"}}], "expiration_date": "2030-04-01T09:30:00.000Z", "payload": "payload", "secret_data": {"anyKey": "anyValue"}}]}'
         responses.add(responses.GET,
                       url,
                       body=mock_response,
@@ -1186,7 +1184,7 @@ class TestGetSecret():
         id = 'testString'
 
         # Invoke method
-        response = service.get_secret(
+        response = _service.get_secret(
             secret_type,
             id,
             headers={}
@@ -1202,8 +1200,8 @@ class TestGetSecret():
         test_get_secret_value_error()
         """
         # Set up mock
-        url = self.preprocess_url(base_url + '/api/v1/secrets/arbitrary/testString')
-        mock_response = '{"metadata": {"collection_type": "application/vnd.ibm.secrets-manager.secret+json", "collection_total": 1}, "resources": [{"type": "type", "id": "id", "name": "name", "description": "description", "secret_group_id": "secret_group_id", "labels": ["labels"], "state": 0, "state_description": "Active", "secret_type": "arbitrary", "crn": "crn:v1:bluemix:public:secrets-manager:<region>:a/<account-id>:<service-instance>:secret:<secret-id>", "creation_date": "2018-04-12T23:20:50.520Z", "created_by": "created_by", "last_update_date": "2018-04-12T23:20:50.520Z", "versions": [{"id": "4a0225e9-17a0-46c1-ace7-f25bcf4237d4", "creation_date": "2019-01-01T12:00:00.000Z", "created_by": "created_by", "auto_rotated": true}], "expiration_date": "2030-04-01T09:30:00.000Z", "payload": "payload", "secret_data": {"anyKey": "anyValue"}}]}'
+        url = self.preprocess_url(_base_url + '/api/v1/secrets/arbitrary/testString')
+        mock_response = '{"metadata": {"collection_type": "application/vnd.ibm.secrets-manager.secret+json", "collection_total": 1}, "resources": [{"id": "id", "name": "name", "description": "description", "secret_group_id": "secret_group_id", "labels": ["labels"], "state": 0, "state_description": "Active", "secret_type": "arbitrary", "crn": "crn:v1:bluemix:public:secrets-manager:<region>:a/<account-id>:<service-instance>:secret:<secret-id>", "creation_date": "2018-04-12T23:20:50.520Z", "created_by": "created_by", "last_update_date": "2018-04-12T23:20:50.520Z", "versions_total": 1, "versions": [{"mapKey": {"anyKey": "anyValue"}}], "expiration_date": "2030-04-01T09:30:00.000Z", "payload": "payload", "secret_data": {"anyKey": "anyValue"}}]}'
         responses.add(responses.GET,
                       url,
                       body=mock_response,
@@ -1222,7 +1220,7 @@ class TestGetSecret():
         for param in req_param_dict.keys():
             req_copy = {key: val if key is not param else None for (key, val) in req_param_dict.items()}
             with pytest.raises(ValueError):
-                service.get_secret(**req_copy)
+                _service.get_secret(**req_copy)
 
 
 class TestUpdateSecret():
@@ -1245,30 +1243,30 @@ class TestUpdateSecret():
         update_secret()
         """
         # Set up mock
-        url = self.preprocess_url(base_url + '/api/v1/secrets/arbitrary/testString')
-        mock_response = '{"metadata": {"collection_type": "application/vnd.ibm.secrets-manager.secret+json", "collection_total": 1}, "resources": [{"type": "type", "id": "id", "name": "name", "description": "description", "secret_group_id": "secret_group_id", "labels": ["labels"], "state": 0, "state_description": "Active", "secret_type": "arbitrary", "crn": "crn:v1:bluemix:public:secrets-manager:<region>:a/<account-id>:<service-instance>:secret:<secret-id>", "creation_date": "2018-04-12T23:20:50.520Z", "created_by": "created_by", "last_update_date": "2018-04-12T23:20:50.520Z", "versions": [{"id": "4a0225e9-17a0-46c1-ace7-f25bcf4237d4", "creation_date": "2019-01-01T12:00:00.000Z", "created_by": "created_by", "auto_rotated": true}], "expiration_date": "2030-04-01T09:30:00.000Z", "payload": "payload", "secret_data": {"anyKey": "anyValue"}}]}'
+        url = self.preprocess_url(_base_url + '/api/v1/secrets/arbitrary/testString')
+        mock_response = '{"metadata": {"collection_type": "application/vnd.ibm.secrets-manager.secret+json", "collection_total": 1}, "resources": [{"id": "id", "name": "name", "description": "description", "secret_group_id": "secret_group_id", "labels": ["labels"], "state": 0, "state_description": "Active", "secret_type": "arbitrary", "crn": "crn:v1:bluemix:public:secrets-manager:<region>:a/<account-id>:<service-instance>:secret:<secret-id>", "creation_date": "2018-04-12T23:20:50.520Z", "created_by": "created_by", "last_update_date": "2018-04-12T23:20:50.520Z", "versions_total": 1, "versions": [{"mapKey": {"anyKey": "anyValue"}}], "expiration_date": "2030-04-01T09:30:00.000Z", "payload": "payload", "secret_data": {"anyKey": "anyValue"}}]}'
         responses.add(responses.POST,
                       url,
                       body=mock_response,
                       content_type='application/json',
                       status=200)
 
-        # Construct a dict representation of a SecretActionOneOfRotateArbitrarySecretBody model
-        secret_action_one_of_model = {}
-        secret_action_one_of_model['payload'] = 'testString'
+        # Construct a dict representation of a RotateArbitrarySecretBody model
+        secret_action_model = {}
+        secret_action_model['payload'] = 'testString'
 
         # Set up parameter values
         secret_type = 'arbitrary'
         id = 'testString'
         action = 'rotate'
-        secret_action_one_of = secret_action_one_of_model
+        secret_action = secret_action_model
 
         # Invoke method
-        response = service.update_secret(
+        response = _service.update_secret(
             secret_type,
             id,
             action,
-            secret_action_one_of,
+            secret_action,
             headers={}
         )
 
@@ -1281,7 +1279,7 @@ class TestUpdateSecret():
         assert 'action={}'.format(action) in query_string
         # Validate body params
         req_body = json.loads(str(responses.calls[0].request.body, 'utf-8'))
-        assert req_body == secret_action_one_of
+        assert req_body == secret_action
 
     @responses.activate
     def test_update_secret_value_error(self):
@@ -1289,35 +1287,35 @@ class TestUpdateSecret():
         test_update_secret_value_error()
         """
         # Set up mock
-        url = self.preprocess_url(base_url + '/api/v1/secrets/arbitrary/testString')
-        mock_response = '{"metadata": {"collection_type": "application/vnd.ibm.secrets-manager.secret+json", "collection_total": 1}, "resources": [{"type": "type", "id": "id", "name": "name", "description": "description", "secret_group_id": "secret_group_id", "labels": ["labels"], "state": 0, "state_description": "Active", "secret_type": "arbitrary", "crn": "crn:v1:bluemix:public:secrets-manager:<region>:a/<account-id>:<service-instance>:secret:<secret-id>", "creation_date": "2018-04-12T23:20:50.520Z", "created_by": "created_by", "last_update_date": "2018-04-12T23:20:50.520Z", "versions": [{"id": "4a0225e9-17a0-46c1-ace7-f25bcf4237d4", "creation_date": "2019-01-01T12:00:00.000Z", "created_by": "created_by", "auto_rotated": true}], "expiration_date": "2030-04-01T09:30:00.000Z", "payload": "payload", "secret_data": {"anyKey": "anyValue"}}]}'
+        url = self.preprocess_url(_base_url + '/api/v1/secrets/arbitrary/testString')
+        mock_response = '{"metadata": {"collection_type": "application/vnd.ibm.secrets-manager.secret+json", "collection_total": 1}, "resources": [{"id": "id", "name": "name", "description": "description", "secret_group_id": "secret_group_id", "labels": ["labels"], "state": 0, "state_description": "Active", "secret_type": "arbitrary", "crn": "crn:v1:bluemix:public:secrets-manager:<region>:a/<account-id>:<service-instance>:secret:<secret-id>", "creation_date": "2018-04-12T23:20:50.520Z", "created_by": "created_by", "last_update_date": "2018-04-12T23:20:50.520Z", "versions_total": 1, "versions": [{"mapKey": {"anyKey": "anyValue"}}], "expiration_date": "2030-04-01T09:30:00.000Z", "payload": "payload", "secret_data": {"anyKey": "anyValue"}}]}'
         responses.add(responses.POST,
                       url,
                       body=mock_response,
                       content_type='application/json',
                       status=200)
 
-        # Construct a dict representation of a SecretActionOneOfRotateArbitrarySecretBody model
-        secret_action_one_of_model = {}
-        secret_action_one_of_model['payload'] = 'testString'
+        # Construct a dict representation of a RotateArbitrarySecretBody model
+        secret_action_model = {}
+        secret_action_model['payload'] = 'testString'
 
         # Set up parameter values
         secret_type = 'arbitrary'
         id = 'testString'
         action = 'rotate'
-        secret_action_one_of = secret_action_one_of_model
+        secret_action = secret_action_model
 
         # Pass in all but one required param and check for a ValueError
         req_param_dict = {
             "secret_type": secret_type,
             "id": id,
             "action": action,
-            "secret_action_one_of": secret_action_one_of,
+            "secret_action": secret_action,
         }
         for param in req_param_dict.keys():
             req_copy = {key: val if key is not param else None for (key, val) in req_param_dict.items()}
             with pytest.raises(ValueError):
-                service.update_secret(**req_copy)
+                _service.update_secret(**req_copy)
 
 
 class TestDeleteSecret():
@@ -1340,7 +1338,7 @@ class TestDeleteSecret():
         delete_secret()
         """
         # Set up mock
-        url = self.preprocess_url(base_url + '/api/v1/secrets/arbitrary/testString')
+        url = self.preprocess_url(_base_url + '/api/v1/secrets/arbitrary/testString')
         responses.add(responses.DELETE,
                       url,
                       status=204)
@@ -1350,7 +1348,7 @@ class TestDeleteSecret():
         id = 'testString'
 
         # Invoke method
-        response = service.delete_secret(
+        response = _service.delete_secret(
             secret_type,
             id,
             headers={}
@@ -1366,7 +1364,7 @@ class TestDeleteSecret():
         test_delete_secret_value_error()
         """
         # Set up mock
-        url = self.preprocess_url(base_url + '/api/v1/secrets/arbitrary/testString')
+        url = self.preprocess_url(_base_url + '/api/v1/secrets/arbitrary/testString')
         responses.add(responses.DELETE,
                       url,
                       status=204)
@@ -1383,7 +1381,159 @@ class TestDeleteSecret():
         for param in req_param_dict.keys():
             req_copy = {key: val if key is not param else None for (key, val) in req_param_dict.items()}
             with pytest.raises(ValueError):
-                service.delete_secret(**req_copy)
+                _service.delete_secret(**req_copy)
+
+
+class TestGetSecretVersion():
+    """
+    Test Class for get_secret_version
+    """
+
+    def preprocess_url(self, request_url: str):
+        """
+        Preprocess the request URL to ensure the mock response will be found.
+        """
+        if re.fullmatch('.*/+', request_url) is None:
+            return request_url
+        else:
+            return re.compile(request_url.rstrip('/') + '/+')
+
+    @responses.activate
+    def test_get_secret_version_all_params(self):
+        """
+        get_secret_version()
+        """
+        # Set up mock
+        url = self.preprocess_url(_base_url + '/api/v1/secrets/imported_cert/testString/versions/testString')
+        mock_response = '{"metadata": {"collection_type": "application/vnd.ibm.secrets-manager.secret+json", "collection_total": 1}, "resources": [{"id": "id", "crn": "crn:v1:bluemix:public:secrets-manager:<region>:a/<account-id>:<service-instance>:secret:<secret-id>", "version_id": "4a0225e9-17a0-46c1-ace7-f25bcf4237d4", "creation_date": "2019-01-01T12:00:00.000Z", "created_by": "created_by", "validity": {"not_before": "2020-10-05T21:33:11.000Z", "not_after": "2021-01-01T00:00:00.000Z"}, "serial_number": "serial_number", "expiration_date": "2030-04-01T09:30:00.000Z", "secret_data": {"certificate": "certificate", "private_key": "private_key", "intermediate": "intermediate"}}]}'
+        responses.add(responses.GET,
+                      url,
+                      body=mock_response,
+                      content_type='application/json',
+                      status=200)
+
+        # Set up parameter values
+        secret_type = 'imported_cert'
+        id = 'testString'
+        version_id = 'testString'
+
+        # Invoke method
+        response = _service.get_secret_version(
+            secret_type,
+            id,
+            version_id,
+            headers={}
+        )
+
+        # Check for correct operation
+        assert len(responses.calls) == 1
+        assert response.status_code == 200
+
+    @responses.activate
+    def test_get_secret_version_value_error(self):
+        """
+        test_get_secret_version_value_error()
+        """
+        # Set up mock
+        url = self.preprocess_url(_base_url + '/api/v1/secrets/imported_cert/testString/versions/testString')
+        mock_response = '{"metadata": {"collection_type": "application/vnd.ibm.secrets-manager.secret+json", "collection_total": 1}, "resources": [{"id": "id", "crn": "crn:v1:bluemix:public:secrets-manager:<region>:a/<account-id>:<service-instance>:secret:<secret-id>", "version_id": "4a0225e9-17a0-46c1-ace7-f25bcf4237d4", "creation_date": "2019-01-01T12:00:00.000Z", "created_by": "created_by", "validity": {"not_before": "2020-10-05T21:33:11.000Z", "not_after": "2021-01-01T00:00:00.000Z"}, "serial_number": "serial_number", "expiration_date": "2030-04-01T09:30:00.000Z", "secret_data": {"certificate": "certificate", "private_key": "private_key", "intermediate": "intermediate"}}]}'
+        responses.add(responses.GET,
+                      url,
+                      body=mock_response,
+                      content_type='application/json',
+                      status=200)
+
+        # Set up parameter values
+        secret_type = 'imported_cert'
+        id = 'testString'
+        version_id = 'testString'
+
+        # Pass in all but one required param and check for a ValueError
+        req_param_dict = {
+            "secret_type": secret_type,
+            "id": id,
+            "version_id": version_id,
+        }
+        for param in req_param_dict.keys():
+            req_copy = {key: val if key is not param else None for (key, val) in req_param_dict.items()}
+            with pytest.raises(ValueError):
+                _service.get_secret_version(**req_copy)
+
+
+class TestGetSecretVersionMetadata():
+    """
+    Test Class for get_secret_version_metadata
+    """
+
+    def preprocess_url(self, request_url: str):
+        """
+        Preprocess the request URL to ensure the mock response will be found.
+        """
+        if re.fullmatch('.*/+', request_url) is None:
+            return request_url
+        else:
+            return re.compile(request_url.rstrip('/') + '/+')
+
+    @responses.activate
+    def test_get_secret_version_metadata_all_params(self):
+        """
+        get_secret_version_metadata()
+        """
+        # Set up mock
+        url = self.preprocess_url(_base_url + '/api/v1/secrets/imported_cert/testString/versions/testString/metadata')
+        mock_response = '{"metadata": {"collection_type": "application/vnd.ibm.secrets-manager.secret+json", "collection_total": 1}, "resources": [{"id": "4a0225e9-17a0-46c1-ace7-f25bcf4237d4", "creation_date": "2019-01-01T12:00:00.000Z", "created_by": "created_by"}]}'
+        responses.add(responses.GET,
+                      url,
+                      body=mock_response,
+                      content_type='application/json',
+                      status=200)
+
+        # Set up parameter values
+        secret_type = 'imported_cert'
+        id = 'testString'
+        version_id = 'testString'
+
+        # Invoke method
+        response = _service.get_secret_version_metadata(
+            secret_type,
+            id,
+            version_id,
+            headers={}
+        )
+
+        # Check for correct operation
+        assert len(responses.calls) == 1
+        assert response.status_code == 200
+
+    @responses.activate
+    def test_get_secret_version_metadata_value_error(self):
+        """
+        test_get_secret_version_metadata_value_error()
+        """
+        # Set up mock
+        url = self.preprocess_url(_base_url + '/api/v1/secrets/imported_cert/testString/versions/testString/metadata')
+        mock_response = '{"metadata": {"collection_type": "application/vnd.ibm.secrets-manager.secret+json", "collection_total": 1}, "resources": [{"id": "4a0225e9-17a0-46c1-ace7-f25bcf4237d4", "creation_date": "2019-01-01T12:00:00.000Z", "created_by": "created_by"}]}'
+        responses.add(responses.GET,
+                      url,
+                      body=mock_response,
+                      content_type='application/json',
+                      status=200)
+
+        # Set up parameter values
+        secret_type = 'imported_cert'
+        id = 'testString'
+        version_id = 'testString'
+
+        # Pass in all but one required param and check for a ValueError
+        req_param_dict = {
+            "secret_type": secret_type,
+            "id": id,
+            "version_id": version_id,
+        }
+        for param in req_param_dict.keys():
+            req_copy = {key: val if key is not param else None for (key, val) in req_param_dict.items()}
+            with pytest.raises(ValueError):
+                _service.get_secret_version_metadata(**req_copy)
 
 
 class TestGetSecretMetadata():
@@ -1406,8 +1556,8 @@ class TestGetSecretMetadata():
         get_secret_metadata()
         """
         # Set up mock
-        url = self.preprocess_url(base_url + '/api/v1/secrets/arbitrary/testString/metadata')
-        mock_response = '{"metadata": {"collection_type": "application/vnd.ibm.secrets-manager.secret+json", "collection_total": 1}, "resources": [{"id": "b0283d74-0894-830b-f81d-1f115f67729f", "labels": ["labels"], "name": "example-secret", "description": "Extended description for this secret.", "secret_group_id": "f5283d74-9024-230a-b72c-1f115f61290f", "state": 1, "state_description": "Active", "secret_type": "arbitrary", "expiration_date": "2030-04-01T09:30:00.000Z", "ttl": {"anyKey": "anyValue"}, "reuse_api_key": false, "crn": "crn:v1:bluemix:public:secrets-manager:<region>:a/<account-id>:<service-instance>:secret:<secret-id>", "creation_date": "2018-04-12T23:20:50.520Z", "created_by": "ServiceId-cb258cb9-8de3-4ac0-9aec-b2b2d27ac976", "last_update_date": "2018-04-12T23:20:50.520Z"}]}'
+        url = self.preprocess_url(_base_url + '/api/v1/secrets/arbitrary/testString/metadata')
+        mock_response = '{"metadata": {"collection_type": "application/vnd.ibm.secrets-manager.secret+json", "collection_total": 1}, "resources": [{"id": "b0283d74-0894-830b-f81d-1f115f67729f", "labels": ["labels"], "name": "example-secret", "description": "Extended description for this secret.", "secret_group_id": "f5283d74-9024-230a-b72c-1f115f61290f", "state": 1, "state_description": "Active", "secret_type": "arbitrary", "crn": "crn:v1:bluemix:public:secrets-manager:<region>:a/<account-id>:<service-instance>:secret:<secret-id>", "creation_date": "2018-04-12T23:20:50.520Z", "created_by": "ServiceId-cb258cb9-8de3-4ac0-9aec-b2b2d27ac976", "last_update_date": "2018-04-12T23:20:50.520Z", "versions_total": 1, "expiration_date": "2030-04-01T09:30:00.000Z"}]}'
         responses.add(responses.GET,
                       url,
                       body=mock_response,
@@ -1419,7 +1569,7 @@ class TestGetSecretMetadata():
         id = 'testString'
 
         # Invoke method
-        response = service.get_secret_metadata(
+        response = _service.get_secret_metadata(
             secret_type,
             id,
             headers={}
@@ -1435,8 +1585,8 @@ class TestGetSecretMetadata():
         test_get_secret_metadata_value_error()
         """
         # Set up mock
-        url = self.preprocess_url(base_url + '/api/v1/secrets/arbitrary/testString/metadata')
-        mock_response = '{"metadata": {"collection_type": "application/vnd.ibm.secrets-manager.secret+json", "collection_total": 1}, "resources": [{"id": "b0283d74-0894-830b-f81d-1f115f67729f", "labels": ["labels"], "name": "example-secret", "description": "Extended description for this secret.", "secret_group_id": "f5283d74-9024-230a-b72c-1f115f61290f", "state": 1, "state_description": "Active", "secret_type": "arbitrary", "expiration_date": "2030-04-01T09:30:00.000Z", "ttl": {"anyKey": "anyValue"}, "reuse_api_key": false, "crn": "crn:v1:bluemix:public:secrets-manager:<region>:a/<account-id>:<service-instance>:secret:<secret-id>", "creation_date": "2018-04-12T23:20:50.520Z", "created_by": "ServiceId-cb258cb9-8de3-4ac0-9aec-b2b2d27ac976", "last_update_date": "2018-04-12T23:20:50.520Z"}]}'
+        url = self.preprocess_url(_base_url + '/api/v1/secrets/arbitrary/testString/metadata')
+        mock_response = '{"metadata": {"collection_type": "application/vnd.ibm.secrets-manager.secret+json", "collection_total": 1}, "resources": [{"id": "b0283d74-0894-830b-f81d-1f115f67729f", "labels": ["labels"], "name": "example-secret", "description": "Extended description for this secret.", "secret_group_id": "f5283d74-9024-230a-b72c-1f115f61290f", "state": 1, "state_description": "Active", "secret_type": "arbitrary", "crn": "crn:v1:bluemix:public:secrets-manager:<region>:a/<account-id>:<service-instance>:secret:<secret-id>", "creation_date": "2018-04-12T23:20:50.520Z", "created_by": "ServiceId-cb258cb9-8de3-4ac0-9aec-b2b2d27ac976", "last_update_date": "2018-04-12T23:20:50.520Z", "versions_total": 1, "expiration_date": "2030-04-01T09:30:00.000Z"}]}'
         responses.add(responses.GET,
                       url,
                       body=mock_response,
@@ -1455,7 +1605,7 @@ class TestGetSecretMetadata():
         for param in req_param_dict.keys():
             req_copy = {key: val if key is not param else None for (key, val) in req_param_dict.items()}
             with pytest.raises(ValueError):
-                service.get_secret_metadata(**req_copy)
+                _service.get_secret_metadata(**req_copy)
 
 
 class TestUpdateSecretMetadata():
@@ -1478,8 +1628,8 @@ class TestUpdateSecretMetadata():
         update_secret_metadata()
         """
         # Set up mock
-        url = self.preprocess_url(base_url + '/api/v1/secrets/arbitrary/testString/metadata')
-        mock_response = '{"metadata": {"collection_type": "application/vnd.ibm.secrets-manager.secret+json", "collection_total": 1}, "resources": [{"id": "b0283d74-0894-830b-f81d-1f115f67729f", "labels": ["labels"], "name": "example-secret", "description": "Extended description for this secret.", "secret_group_id": "f5283d74-9024-230a-b72c-1f115f61290f", "state": 1, "state_description": "Active", "secret_type": "arbitrary", "expiration_date": "2030-04-01T09:30:00.000Z", "ttl": {"anyKey": "anyValue"}, "reuse_api_key": false, "crn": "crn:v1:bluemix:public:secrets-manager:<region>:a/<account-id>:<service-instance>:secret:<secret-id>", "creation_date": "2018-04-12T23:20:50.520Z", "created_by": "ServiceId-cb258cb9-8de3-4ac0-9aec-b2b2d27ac976", "last_update_date": "2018-04-12T23:20:50.520Z"}]}'
+        url = self.preprocess_url(_base_url + '/api/v1/secrets/arbitrary/testString/metadata')
+        mock_response = '{"metadata": {"collection_type": "application/vnd.ibm.secrets-manager.secret+json", "collection_total": 1}, "resources": [{"id": "b0283d74-0894-830b-f81d-1f115f67729f", "labels": ["labels"], "name": "example-secret", "description": "Extended description for this secret.", "secret_group_id": "f5283d74-9024-230a-b72c-1f115f61290f", "state": 1, "state_description": "Active", "secret_type": "arbitrary", "crn": "crn:v1:bluemix:public:secrets-manager:<region>:a/<account-id>:<service-instance>:secret:<secret-id>", "creation_date": "2018-04-12T23:20:50.520Z", "created_by": "ServiceId-cb258cb9-8de3-4ac0-9aec-b2b2d27ac976", "last_update_date": "2018-04-12T23:20:50.520Z", "versions_total": 1, "expiration_date": "2030-04-01T09:30:00.000Z"}]}'
         responses.add(responses.PUT,
                       url,
                       body=mock_response,
@@ -1491,13 +1641,12 @@ class TestUpdateSecretMetadata():
         collection_metadata_model['collection_type'] = 'application/vnd.ibm.secrets-manager.secret+json'
         collection_metadata_model['collection_total'] = 1
 
-        # Construct a dict representation of a SecretMetadata model
+        # Construct a dict representation of a ArbitrarySecretMetadata model
         secret_metadata_model = {}
         secret_metadata_model['labels'] = ['dev', 'us-south']
         secret_metadata_model['name'] = 'example-secret'
         secret_metadata_model['description'] = 'Extended description for this secret.'
-        secret_metadata_model['expiration_date'] = datetime_to_string(string_to_datetime("2030-04-01T09:30:00.000Z"))
-        secret_metadata_model['ttl'] = {'foo': 'bar'}
+        secret_metadata_model['expiration_date'] = "2030-04-01T09:30:00Z"
 
         # Set up parameter values
         secret_type = 'arbitrary'
@@ -1506,7 +1655,7 @@ class TestUpdateSecretMetadata():
         resources = [secret_metadata_model]
 
         # Invoke method
-        response = service.update_secret_metadata(
+        response = _service.update_secret_metadata(
             secret_type,
             id,
             metadata,
@@ -1528,8 +1677,8 @@ class TestUpdateSecretMetadata():
         test_update_secret_metadata_value_error()
         """
         # Set up mock
-        url = self.preprocess_url(base_url + '/api/v1/secrets/arbitrary/testString/metadata')
-        mock_response = '{"metadata": {"collection_type": "application/vnd.ibm.secrets-manager.secret+json", "collection_total": 1}, "resources": [{"id": "b0283d74-0894-830b-f81d-1f115f67729f", "labels": ["labels"], "name": "example-secret", "description": "Extended description for this secret.", "secret_group_id": "f5283d74-9024-230a-b72c-1f115f61290f", "state": 1, "state_description": "Active", "secret_type": "arbitrary", "expiration_date": "2030-04-01T09:30:00.000Z", "ttl": {"anyKey": "anyValue"}, "reuse_api_key": false, "crn": "crn:v1:bluemix:public:secrets-manager:<region>:a/<account-id>:<service-instance>:secret:<secret-id>", "creation_date": "2018-04-12T23:20:50.520Z", "created_by": "ServiceId-cb258cb9-8de3-4ac0-9aec-b2b2d27ac976", "last_update_date": "2018-04-12T23:20:50.520Z"}]}'
+        url = self.preprocess_url(_base_url + '/api/v1/secrets/arbitrary/testString/metadata')
+        mock_response = '{"metadata": {"collection_type": "application/vnd.ibm.secrets-manager.secret+json", "collection_total": 1}, "resources": [{"id": "b0283d74-0894-830b-f81d-1f115f67729f", "labels": ["labels"], "name": "example-secret", "description": "Extended description for this secret.", "secret_group_id": "f5283d74-9024-230a-b72c-1f115f61290f", "state": 1, "state_description": "Active", "secret_type": "arbitrary", "crn": "crn:v1:bluemix:public:secrets-manager:<region>:a/<account-id>:<service-instance>:secret:<secret-id>", "creation_date": "2018-04-12T23:20:50.520Z", "created_by": "ServiceId-cb258cb9-8de3-4ac0-9aec-b2b2d27ac976", "last_update_date": "2018-04-12T23:20:50.520Z", "versions_total": 1, "expiration_date": "2030-04-01T09:30:00.000Z"}]}'
         responses.add(responses.PUT,
                       url,
                       body=mock_response,
@@ -1541,13 +1690,12 @@ class TestUpdateSecretMetadata():
         collection_metadata_model['collection_type'] = 'application/vnd.ibm.secrets-manager.secret+json'
         collection_metadata_model['collection_total'] = 1
 
-        # Construct a dict representation of a SecretMetadata model
+        # Construct a dict representation of a ArbitrarySecretMetadata model
         secret_metadata_model = {}
         secret_metadata_model['labels'] = ['dev', 'us-south']
         secret_metadata_model['name'] = 'example-secret'
         secret_metadata_model['description'] = 'Extended description for this secret.'
-        secret_metadata_model['expiration_date'] = datetime_to_string(string_to_datetime("2030-04-01T09:30:00.000Z"))
-        secret_metadata_model['ttl'] = {'foo': 'bar'}
+        secret_metadata_model['expiration_date'] = "2030-04-01T09:30:00Z"
 
         # Set up parameter values
         secret_type = 'arbitrary'
@@ -1565,7 +1713,7 @@ class TestUpdateSecretMetadata():
         for param in req_param_dict.keys():
             req_copy = {key: val if key is not param else None for (key, val) in req_param_dict.items()}
             with pytest.raises(ValueError):
-                service.update_secret_metadata(**req_copy)
+                _service.update_secret_metadata(**req_copy)
 
 
 # endregion
@@ -1578,7 +1726,40 @@ class TestUpdateSecretMetadata():
 # Start of Model Tests
 ##############################################################################
 # region
-class TestCollectionMetadata():
+class TestModel_CertificateSecretData():
+    """
+    Test Class for CertificateSecretData
+    """
+
+    def test_certificate_secret_data_serialization(self):
+        """
+        Test serialization/deserialization for CertificateSecretData
+        """
+
+        # Construct a json representation of a CertificateSecretData model
+        certificate_secret_data_model_json = {}
+        certificate_secret_data_model_json['certificate'] = 'testString'
+        certificate_secret_data_model_json['private_key'] = 'testString'
+        certificate_secret_data_model_json['intermediate'] = 'testString'
+
+        # Construct a model instance of CertificateSecretData by calling from_dict on the json representation
+        certificate_secret_data_model = CertificateSecretData.from_dict(certificate_secret_data_model_json)
+        assert certificate_secret_data_model != False
+
+        # Construct a model instance of CertificateSecretData by calling from_dict on the json representation
+        certificate_secret_data_model_dict = CertificateSecretData.from_dict(
+            certificate_secret_data_model_json).__dict__
+        certificate_secret_data_model2 = CertificateSecretData(**certificate_secret_data_model_dict)
+
+        # Verify the model instances are equivalent
+        assert certificate_secret_data_model == certificate_secret_data_model2
+
+        # Convert model instance back to dict and verify no loss of data
+        certificate_secret_data_model_json2 = certificate_secret_data_model.to_dict()
+        assert certificate_secret_data_model_json2 == certificate_secret_data_model_json
+
+
+class TestModel_CollectionMetadata():
     """
     Test Class for CollectionMetadata
     """
@@ -1609,7 +1790,7 @@ class TestCollectionMetadata():
         assert collection_metadata_model_json2 == collection_metadata_model_json
 
 
-class TestCreateSecret():
+class TestModel_CreateSecret():
     """
     Test Class for CreateSecret
     """
@@ -1625,14 +1806,7 @@ class TestCreateSecret():
         collection_metadata_model['collection_type'] = 'application/vnd.ibm.secrets-manager.secret+json'
         collection_metadata_model['collection_total'] = 1
 
-        secret_version_model = {}  # SecretVersion
-        secret_version_model['id'] = '4a0225e9-17a0-46c1-ace7-f25bcf4237d4'
-        secret_version_model['creation_date'] = datetime_to_string(string_to_datetime("2019-01-01T12:00:00.000Z"))
-        secret_version_model['created_by'] = 'testString'
-        secret_version_model['auto_rotated'] = True
-
-        secret_resource_model = {}  # SecretResourceArbitrarySecretResource
-        secret_resource_model['type'] = 'testString'
+        secret_resource_model = {}  # ArbitrarySecretResource
         secret_resource_model['id'] = 'testString'
         secret_resource_model['name'] = 'testString'
         secret_resource_model['description'] = 'testString'
@@ -1643,11 +1817,12 @@ class TestCreateSecret():
         secret_resource_model['secret_type'] = 'arbitrary'
         secret_resource_model[
             'crn'] = 'crn:v1:bluemix:public:secrets-manager:<region>:a/<account-id>:<service-instance>:secret:<secret-id>'
-        secret_resource_model['creation_date'] = datetime_to_string(string_to_datetime("2018-04-12T23:20:50.520Z"))
+        secret_resource_model['creation_date'] = "2018-04-12T23:20:50.520000Z"
         secret_resource_model['created_by'] = 'testString'
-        secret_resource_model['last_update_date'] = datetime_to_string(string_to_datetime("2018-04-12T23:20:50.520Z"))
-        secret_resource_model['versions'] = [secret_version_model]
-        secret_resource_model['expiration_date'] = datetime_to_string(string_to_datetime("2030-04-01T09:30:00.000Z"))
+        secret_resource_model['last_update_date'] = "2018-04-12T23:20:50.520000Z"
+        secret_resource_model['versions_total'] = 1
+        secret_resource_model['versions'] = [{}]
+        secret_resource_model['expiration_date'] = "2030-04-01T09:30:00Z"
         secret_resource_model['payload'] = 'testString'
         secret_resource_model['secret_data'] = {'foo': 'bar'}
 
@@ -1672,7 +1847,7 @@ class TestCreateSecret():
         assert create_secret_model_json2 == create_secret_model_json
 
 
-class TestGetConfig():
+class TestModel_GetConfig():
     """
     Test Class for GetConfig
     """
@@ -1688,15 +1863,15 @@ class TestGetConfig():
         collection_metadata_model['collection_type'] = 'application/vnd.ibm.secrets-manager.secret+json'
         collection_metadata_model['collection_total'] = 1
 
-        iam_secret_engine_root_config_model = {}  # IAMSecretEngineRootConfig
-        iam_secret_engine_root_config_model['api_key'] = 'API_KEY'
-        iam_secret_engine_root_config_model[
+        iam_credentials_secret_engine_root_config_model = {}  # IAMCredentialsSecretEngineRootConfig
+        iam_credentials_secret_engine_root_config_model['api_key'] = 'API_KEY'
+        iam_credentials_secret_engine_root_config_model[
             'api_key_hash'] = 'a737c3a98ebfc16a0d5ddc6b277548491440780003e06f5924dc906bc8d78e91'
 
         # Construct a json representation of a GetConfig model
         get_config_model_json = {}
         get_config_model_json['metadata'] = collection_metadata_model
-        get_config_model_json['resources'] = [iam_secret_engine_root_config_model]
+        get_config_model_json['resources'] = [iam_credentials_secret_engine_root_config_model]
 
         # Construct a model instance of GetConfig by calling from_dict on the json representation
         get_config_model = GetConfig.from_dict(get_config_model_json)
@@ -1714,7 +1889,7 @@ class TestGetConfig():
         assert get_config_model_json2 == get_config_model_json
 
 
-class TestGetSecret():
+class TestModel_GetSecret():
     """
     Test Class for GetSecret
     """
@@ -1730,14 +1905,7 @@ class TestGetSecret():
         collection_metadata_model['collection_type'] = 'application/vnd.ibm.secrets-manager.secret+json'
         collection_metadata_model['collection_total'] = 1
 
-        secret_version_model = {}  # SecretVersion
-        secret_version_model['id'] = '4a0225e9-17a0-46c1-ace7-f25bcf4237d4'
-        secret_version_model['creation_date'] = datetime_to_string(string_to_datetime("2019-01-01T12:00:00.000Z"))
-        secret_version_model['created_by'] = 'testString'
-        secret_version_model['auto_rotated'] = True
-
-        secret_resource_model = {}  # SecretResourceArbitrarySecretResource
-        secret_resource_model['type'] = 'testString'
+        secret_resource_model = {}  # ArbitrarySecretResource
         secret_resource_model['id'] = 'testString'
         secret_resource_model['name'] = 'testString'
         secret_resource_model['description'] = 'testString'
@@ -1748,11 +1916,12 @@ class TestGetSecret():
         secret_resource_model['secret_type'] = 'arbitrary'
         secret_resource_model[
             'crn'] = 'crn:v1:bluemix:public:secrets-manager:<region>:a/<account-id>:<service-instance>:secret:<secret-id>'
-        secret_resource_model['creation_date'] = datetime_to_string(string_to_datetime("2018-04-12T23:20:50.520Z"))
+        secret_resource_model['creation_date'] = "2018-04-12T23:20:50.520000Z"
         secret_resource_model['created_by'] = 'testString'
-        secret_resource_model['last_update_date'] = datetime_to_string(string_to_datetime("2018-04-12T23:20:50.520Z"))
-        secret_resource_model['versions'] = [secret_version_model]
-        secret_resource_model['expiration_date'] = datetime_to_string(string_to_datetime("2030-04-01T09:30:00.000Z"))
+        secret_resource_model['last_update_date'] = "2018-04-12T23:20:50.520000Z"
+        secret_resource_model['versions_total'] = 1
+        secret_resource_model['versions'] = [{}]
+        secret_resource_model['expiration_date'] = "2030-04-01T09:30:00Z"
         secret_resource_model['payload'] = 'testString'
         secret_resource_model['secret_data'] = {'foo': 'bar'}
 
@@ -1777,14 +1946,14 @@ class TestGetSecret():
         assert get_secret_model_json2 == get_secret_model_json
 
 
-class TestGetSecretPoliciesOneOfGetSecretPolicyRotationResourcesItem():
+class TestModel_GetSecretPolicyRotationResourcesItem():
     """
-    Test Class for GetSecretPoliciesOneOfGetSecretPolicyRotationResourcesItem
+    Test Class for GetSecretPolicyRotationResourcesItem
     """
 
-    def test_get_secret_policies_one_of_get_secret_policy_rotation_resources_item_serialization(self):
+    def test_get_secret_policy_rotation_resources_item_serialization(self):
         """
-        Test serialization/deserialization for GetSecretPoliciesOneOfGetSecretPolicyRotationResourcesItem
+        Test serialization/deserialization for GetSecretPolicyRotationResourcesItem
         """
 
         # Construct dict forms of any model objects needed in order to build this model.
@@ -1793,76 +1962,140 @@ class TestGetSecretPoliciesOneOfGetSecretPolicyRotationResourcesItem():
         secret_policy_rotation_rotation_model['interval'] = 1
         secret_policy_rotation_rotation_model['unit'] = 'day'
 
-        # Construct a json representation of a GetSecretPoliciesOneOfGetSecretPolicyRotationResourcesItem model
-        get_secret_policies_one_of_get_secret_policy_rotation_resources_item_model_json = {}
-        get_secret_policies_one_of_get_secret_policy_rotation_resources_item_model_json['id'] = 'testString'
-        get_secret_policies_one_of_get_secret_policy_rotation_resources_item_model_json[
+        # Construct a json representation of a GetSecretPolicyRotationResourcesItem model
+        get_secret_policy_rotation_resources_item_model_json = {}
+        get_secret_policy_rotation_resources_item_model_json['id'] = 'testString'
+        get_secret_policy_rotation_resources_item_model_json[
             'crn'] = 'crn:v1:bluemix:public:kms:<region>:a/<account-id>:<service-instance:policy:<policy-id>'
-        get_secret_policies_one_of_get_secret_policy_rotation_resources_item_model_json[
-            'creation_date'] = datetime_to_string(string_to_datetime("2019-01-01T12:00:00.000Z"))
-        get_secret_policies_one_of_get_secret_policy_rotation_resources_item_model_json['created_by'] = 'testString'
-        get_secret_policies_one_of_get_secret_policy_rotation_resources_item_model_json[
-            'last_update_date'] = datetime_to_string(string_to_datetime("2019-01-01T12:00:00.000Z"))
-        get_secret_policies_one_of_get_secret_policy_rotation_resources_item_model_json['updated_by'] = 'testString'
-        get_secret_policies_one_of_get_secret_policy_rotation_resources_item_model_json[
+        get_secret_policy_rotation_resources_item_model_json['creation_date'] = "2019-01-01T12:00:00Z"
+        get_secret_policy_rotation_resources_item_model_json['created_by'] = 'testString'
+        get_secret_policy_rotation_resources_item_model_json['last_update_date'] = "2019-01-01T12:00:00Z"
+        get_secret_policy_rotation_resources_item_model_json['updated_by'] = 'testString'
+        get_secret_policy_rotation_resources_item_model_json[
             'type'] = 'application/vnd.ibm.secrets-manager.secret.policy+json'
-        get_secret_policies_one_of_get_secret_policy_rotation_resources_item_model_json[
-            'rotation'] = secret_policy_rotation_rotation_model
+        get_secret_policy_rotation_resources_item_model_json['rotation'] = secret_policy_rotation_rotation_model
 
-        # Construct a model instance of GetSecretPoliciesOneOfGetSecretPolicyRotationResourcesItem by calling from_dict on the json representation
-        get_secret_policies_one_of_get_secret_policy_rotation_resources_item_model = GetSecretPoliciesOneOfGetSecretPolicyRotationResourcesItem.from_dict(
-            get_secret_policies_one_of_get_secret_policy_rotation_resources_item_model_json)
-        assert get_secret_policies_one_of_get_secret_policy_rotation_resources_item_model != False
+        # Construct a model instance of GetSecretPolicyRotationResourcesItem by calling from_dict on the json representation
+        get_secret_policy_rotation_resources_item_model = GetSecretPolicyRotationResourcesItem.from_dict(
+            get_secret_policy_rotation_resources_item_model_json)
+        assert get_secret_policy_rotation_resources_item_model != False
 
-        # Construct a model instance of GetSecretPoliciesOneOfGetSecretPolicyRotationResourcesItem by calling from_dict on the json representation
-        get_secret_policies_one_of_get_secret_policy_rotation_resources_item_model_dict = GetSecretPoliciesOneOfGetSecretPolicyRotationResourcesItem.from_dict(
-            get_secret_policies_one_of_get_secret_policy_rotation_resources_item_model_json).__dict__
-        get_secret_policies_one_of_get_secret_policy_rotation_resources_item_model2 = GetSecretPoliciesOneOfGetSecretPolicyRotationResourcesItem(
-            **get_secret_policies_one_of_get_secret_policy_rotation_resources_item_model_dict)
-
-        # Verify the model instances are equivalent
-        assert get_secret_policies_one_of_get_secret_policy_rotation_resources_item_model == get_secret_policies_one_of_get_secret_policy_rotation_resources_item_model2
-
-        # Convert model instance back to dict and verify no loss of data
-        get_secret_policies_one_of_get_secret_policy_rotation_resources_item_model_json2 = get_secret_policies_one_of_get_secret_policy_rotation_resources_item_model.to_dict()
-        assert get_secret_policies_one_of_get_secret_policy_rotation_resources_item_model_json2 == get_secret_policies_one_of_get_secret_policy_rotation_resources_item_model_json
-
-
-class TestIAMSecretEngineRootConfig():
-    """
-    Test Class for IAMSecretEngineRootConfig
-    """
-
-    def test_iam_secret_engine_root_config_serialization(self):
-        """
-        Test serialization/deserialization for IAMSecretEngineRootConfig
-        """
-
-        # Construct a json representation of a IAMSecretEngineRootConfig model
-        iam_secret_engine_root_config_model_json = {}
-        iam_secret_engine_root_config_model_json['api_key'] = 'API_KEY'
-        iam_secret_engine_root_config_model_json[
-            'api_key_hash'] = 'a737c3a98ebfc16a0d5ddc6b277548491440780003e06f5924dc906bc8d78e91'
-
-        # Construct a model instance of IAMSecretEngineRootConfig by calling from_dict on the json representation
-        iam_secret_engine_root_config_model = IAMSecretEngineRootConfig.from_dict(
-            iam_secret_engine_root_config_model_json)
-        assert iam_secret_engine_root_config_model != False
-
-        # Construct a model instance of IAMSecretEngineRootConfig by calling from_dict on the json representation
-        iam_secret_engine_root_config_model_dict = IAMSecretEngineRootConfig.from_dict(
-            iam_secret_engine_root_config_model_json).__dict__
-        iam_secret_engine_root_config_model2 = IAMSecretEngineRootConfig(**iam_secret_engine_root_config_model_dict)
+        # Construct a model instance of GetSecretPolicyRotationResourcesItem by calling from_dict on the json representation
+        get_secret_policy_rotation_resources_item_model_dict = GetSecretPolicyRotationResourcesItem.from_dict(
+            get_secret_policy_rotation_resources_item_model_json).__dict__
+        get_secret_policy_rotation_resources_item_model2 = GetSecretPolicyRotationResourcesItem(
+            **get_secret_policy_rotation_resources_item_model_dict)
 
         # Verify the model instances are equivalent
-        assert iam_secret_engine_root_config_model == iam_secret_engine_root_config_model2
+        assert get_secret_policy_rotation_resources_item_model == get_secret_policy_rotation_resources_item_model2
 
         # Convert model instance back to dict and verify no loss of data
-        iam_secret_engine_root_config_model_json2 = iam_secret_engine_root_config_model.to_dict()
-        assert iam_secret_engine_root_config_model_json2 == iam_secret_engine_root_config_model_json
+        get_secret_policy_rotation_resources_item_model_json2 = get_secret_policy_rotation_resources_item_model.to_dict()
+        assert get_secret_policy_rotation_resources_item_model_json2 == get_secret_policy_rotation_resources_item_model_json
 
 
-class TestListSecrets():
+class TestModel_GetSecretVersion():
+    """
+    Test Class for GetSecretVersion
+    """
+
+    def test_get_secret_version_serialization(self):
+        """
+        Test serialization/deserialization for GetSecretVersion
+        """
+
+        # Construct dict forms of any model objects needed in order to build this model.
+
+        collection_metadata_model = {}  # CollectionMetadata
+        collection_metadata_model['collection_type'] = 'application/vnd.ibm.secrets-manager.secret+json'
+        collection_metadata_model['collection_total'] = 1
+
+        certificate_validity_model = {}  # CertificateValidity
+        certificate_validity_model['not_before'] = "2020-10-05T21:33:11Z"
+        certificate_validity_model['not_after'] = "2021-01-01T00:00:00Z"
+
+        certificate_secret_data_model = {}  # CertificateSecretData
+        certificate_secret_data_model['certificate'] = 'testString'
+        certificate_secret_data_model['private_key'] = 'testString'
+        certificate_secret_data_model['intermediate'] = 'testString'
+
+        secret_version_model = {}  # CertificateSecretVersion
+        secret_version_model['id'] = 'testString'
+        secret_version_model[
+            'crn'] = 'crn:v1:bluemix:public:secrets-manager:<region>:a/<account-id>:<service-instance>:secret:<secret-id>'
+        secret_version_model['version_id'] = '4a0225e9-17a0-46c1-ace7-f25bcf4237d4'
+        secret_version_model['creation_date'] = "2019-01-01T12:00:00Z"
+        secret_version_model['created_by'] = 'testString'
+        secret_version_model['validity'] = certificate_validity_model
+        secret_version_model['serial_number'] = 'testString'
+        secret_version_model['expiration_date'] = "2030-04-01T09:30:00Z"
+        secret_version_model['secret_data'] = certificate_secret_data_model
+
+        # Construct a json representation of a GetSecretVersion model
+        get_secret_version_model_json = {}
+        get_secret_version_model_json['metadata'] = collection_metadata_model
+        get_secret_version_model_json['resources'] = [secret_version_model]
+
+        # Construct a model instance of GetSecretVersion by calling from_dict on the json representation
+        get_secret_version_model = GetSecretVersion.from_dict(get_secret_version_model_json)
+        assert get_secret_version_model != False
+
+        # Construct a model instance of GetSecretVersion by calling from_dict on the json representation
+        get_secret_version_model_dict = GetSecretVersion.from_dict(get_secret_version_model_json).__dict__
+        get_secret_version_model2 = GetSecretVersion(**get_secret_version_model_dict)
+
+        # Verify the model instances are equivalent
+        assert get_secret_version_model == get_secret_version_model2
+
+        # Convert model instance back to dict and verify no loss of data
+        get_secret_version_model_json2 = get_secret_version_model.to_dict()
+        assert get_secret_version_model_json2 == get_secret_version_model_json
+
+
+class TestModel_GetSecretVersionMetadata():
+    """
+    Test Class for GetSecretVersionMetadata
+    """
+
+    def test_get_secret_version_metadata_serialization(self):
+        """
+        Test serialization/deserialization for GetSecretVersionMetadata
+        """
+
+        # Construct dict forms of any model objects needed in order to build this model.
+
+        collection_metadata_model = {}  # CollectionMetadata
+        collection_metadata_model['collection_type'] = 'application/vnd.ibm.secrets-manager.secret+json'
+        collection_metadata_model['collection_total'] = 1
+
+        secret_version_metadata_model = {}  # ArbitrarySecretVersionMetadata
+        secret_version_metadata_model['id'] = '4a0225e9-17a0-46c1-ace7-f25bcf4237d4'
+        secret_version_metadata_model['creation_date'] = "2019-01-01T12:00:00Z"
+        secret_version_metadata_model['created_by'] = 'testString'
+
+        # Construct a json representation of a GetSecretVersionMetadata model
+        get_secret_version_metadata_model_json = {}
+        get_secret_version_metadata_model_json['metadata'] = collection_metadata_model
+        get_secret_version_metadata_model_json['resources'] = [secret_version_metadata_model]
+
+        # Construct a model instance of GetSecretVersionMetadata by calling from_dict on the json representation
+        get_secret_version_metadata_model = GetSecretVersionMetadata.from_dict(get_secret_version_metadata_model_json)
+        assert get_secret_version_metadata_model != False
+
+        # Construct a model instance of GetSecretVersionMetadata by calling from_dict on the json representation
+        get_secret_version_metadata_model_dict = GetSecretVersionMetadata.from_dict(
+            get_secret_version_metadata_model_json).__dict__
+        get_secret_version_metadata_model2 = GetSecretVersionMetadata(**get_secret_version_metadata_model_dict)
+
+        # Verify the model instances are equivalent
+        assert get_secret_version_metadata_model == get_secret_version_metadata_model2
+
+        # Convert model instance back to dict and verify no loss of data
+        get_secret_version_metadata_model_json2 = get_secret_version_metadata_model.to_dict()
+        assert get_secret_version_metadata_model_json2 == get_secret_version_metadata_model_json
+
+
+class TestModel_ListSecrets():
     """
     Test Class for ListSecrets
     """
@@ -1878,14 +2111,7 @@ class TestListSecrets():
         collection_metadata_model['collection_type'] = 'application/vnd.ibm.secrets-manager.secret+json'
         collection_metadata_model['collection_total'] = 1
 
-        secret_version_model = {}  # SecretVersion
-        secret_version_model['id'] = '4a0225e9-17a0-46c1-ace7-f25bcf4237d4'
-        secret_version_model['creation_date'] = datetime_to_string(string_to_datetime("2019-01-01T12:00:00.000Z"))
-        secret_version_model['created_by'] = 'testString'
-        secret_version_model['auto_rotated'] = True
-
-        secret_resource_model = {}  # SecretResourceArbitrarySecretResource
-        secret_resource_model['type'] = 'testString'
+        secret_resource_model = {}  # ArbitrarySecretResource
         secret_resource_model['id'] = 'testString'
         secret_resource_model['name'] = 'testString'
         secret_resource_model['description'] = 'testString'
@@ -1896,11 +2122,12 @@ class TestListSecrets():
         secret_resource_model['secret_type'] = 'arbitrary'
         secret_resource_model[
             'crn'] = 'crn:v1:bluemix:public:secrets-manager:<region>:a/<account-id>:<service-instance>:secret:<secret-id>'
-        secret_resource_model['creation_date'] = datetime_to_string(string_to_datetime("2018-04-12T23:20:50.520Z"))
+        secret_resource_model['creation_date'] = "2018-04-12T23:20:50.520000Z"
         secret_resource_model['created_by'] = 'testString'
-        secret_resource_model['last_update_date'] = datetime_to_string(string_to_datetime("2018-04-12T23:20:50.520Z"))
-        secret_resource_model['versions'] = [secret_version_model]
-        secret_resource_model['expiration_date'] = datetime_to_string(string_to_datetime("2030-04-01T09:30:00.000Z"))
+        secret_resource_model['last_update_date'] = "2018-04-12T23:20:50.520000Z"
+        secret_resource_model['versions_total'] = 1
+        secret_resource_model['versions'] = [{}]
+        secret_resource_model['expiration_date'] = "2030-04-01T09:30:00Z"
         secret_resource_model['payload'] = 'testString'
         secret_resource_model['secret_data'] = {'foo': 'bar'}
 
@@ -1925,7 +2152,7 @@ class TestListSecrets():
         assert list_secrets_model_json2 == list_secrets_model_json
 
 
-class TestSecretGroupDef():
+class TestModel_SecretGroupDef():
     """
     Test Class for SecretGroupDef
     """
@@ -1945,10 +2172,8 @@ class TestSecretGroupDef():
         secret_group_resource_model['id'] = 'bc656587-8fda-4d05-9ad8-b1de1ec7e712'
         secret_group_resource_model['name'] = 'my-secret-group'
         secret_group_resource_model['description'] = 'Extended description for this group.'
-        secret_group_resource_model['creation_date'] = datetime_to_string(
-            string_to_datetime("2018-04-12T23:20:50.520Z"))
-        secret_group_resource_model['last_update_date'] = datetime_to_string(
-            string_to_datetime("2018-05-12T23:20:50.520Z"))
+        secret_group_resource_model['creation_date'] = "2018-04-12T23:20:50.520000Z"
+        secret_group_resource_model['last_update_date'] = "2018-05-12T23:20:50.520000Z"
         secret_group_resource_model['type'] = 'application/vnd.ibm.secrets-manager.secret.group+json'
         secret_group_resource_model['foo'] = {'foo': 'bar'}
 
@@ -1973,7 +2198,7 @@ class TestSecretGroupDef():
         assert secret_group_def_model_json2 == secret_group_def_model_json
 
 
-class TestSecretGroupMetadataUpdatable():
+class TestModel_SecretGroupMetadataUpdatable():
     """
     Test Class for SecretGroupMetadataUpdatable
     """
@@ -2007,7 +2232,7 @@ class TestSecretGroupMetadataUpdatable():
         assert secret_group_metadata_updatable_model_json2 == secret_group_metadata_updatable_model_json
 
 
-class TestSecretGroupResource():
+class TestModel_SecretGroupResource():
     """
     Test Class for SecretGroupResource
     """
@@ -2022,10 +2247,8 @@ class TestSecretGroupResource():
         secret_group_resource_model_json['id'] = 'bc656587-8fda-4d05-9ad8-b1de1ec7e712'
         secret_group_resource_model_json['name'] = 'my-secret-group'
         secret_group_resource_model_json['description'] = 'Extended description for this group.'
-        secret_group_resource_model_json['creation_date'] = datetime_to_string(
-            string_to_datetime("2018-04-12T23:20:50.520Z"))
-        secret_group_resource_model_json['last_update_date'] = datetime_to_string(
-            string_to_datetime("2018-05-12T23:20:50.520Z"))
+        secret_group_resource_model_json['creation_date'] = "2018-04-12T23:20:50.520000Z"
+        secret_group_resource_model_json['last_update_date'] = "2018-05-12T23:20:50.520000Z"
         secret_group_resource_model_json['type'] = 'application/vnd.ibm.secrets-manager.secret.group+json'
         secret_group_resource_model_json['foo'] = {'foo': 'bar'}
 
@@ -2045,54 +2268,7 @@ class TestSecretGroupResource():
         assert secret_group_resource_model_json2 == secret_group_resource_model_json
 
 
-class TestSecretMetadata():
-    """
-    Test Class for SecretMetadata
-    """
-
-    def test_secret_metadata_serialization(self):
-        """
-        Test serialization/deserialization for SecretMetadata
-        """
-
-        # Construct a json representation of a SecretMetadata model
-        secret_metadata_model_json = {}
-        secret_metadata_model_json['id'] = 'b0283d74-0894-830b-f81d-1f115f67729f'
-        secret_metadata_model_json['labels'] = ['dev', 'us-south']
-        secret_metadata_model_json['name'] = 'example-secret'
-        secret_metadata_model_json['description'] = 'Extended description for this secret.'
-        secret_metadata_model_json['secret_group_id'] = 'f5283d74-9024-230a-b72c-1f115f61290f'
-        secret_metadata_model_json['state'] = 1
-        secret_metadata_model_json['state_description'] = 'Active'
-        secret_metadata_model_json['secret_type'] = 'arbitrary'
-        secret_metadata_model_json['expiration_date'] = datetime_to_string(
-            string_to_datetime("2030-04-01T09:30:00.000Z"))
-        secret_metadata_model_json['ttl'] = {'foo': 'bar'}
-        secret_metadata_model_json['reuse_api_key'] = True
-        secret_metadata_model_json[
-            'crn'] = 'crn:v1:bluemix:public:secrets-manager:<region>:a/<account-id>:<service-instance>:secret:<secret-id>'
-        secret_metadata_model_json['creation_date'] = datetime_to_string(string_to_datetime("2018-04-12T23:20:50.520Z"))
-        secret_metadata_model_json['created_by'] = 'ServiceId-cb258cb9-8de3-4ac0-9aec-b2b2d27ac976'
-        secret_metadata_model_json['last_update_date'] = datetime_to_string(
-            string_to_datetime("2018-04-12T23:20:50.520Z"))
-
-        # Construct a model instance of SecretMetadata by calling from_dict on the json representation
-        secret_metadata_model = SecretMetadata.from_dict(secret_metadata_model_json)
-        assert secret_metadata_model != False
-
-        # Construct a model instance of SecretMetadata by calling from_dict on the json representation
-        secret_metadata_model_dict = SecretMetadata.from_dict(secret_metadata_model_json).__dict__
-        secret_metadata_model2 = SecretMetadata(**secret_metadata_model_dict)
-
-        # Verify the model instances are equivalent
-        assert secret_metadata_model == secret_metadata_model2
-
-        # Convert model instance back to dict and verify no loss of data
-        secret_metadata_model_json2 = secret_metadata_model.to_dict()
-        assert secret_metadata_model_json2 == secret_metadata_model_json
-
-
-class TestSecretMetadataRequest():
+class TestModel_SecretMetadataRequest():
     """
     Test Class for SecretMetadataRequest
     """
@@ -2108,7 +2284,7 @@ class TestSecretMetadataRequest():
         collection_metadata_model['collection_type'] = 'application/vnd.ibm.secrets-manager.secret+json'
         collection_metadata_model['collection_total'] = 1
 
-        secret_metadata_model = {}  # SecretMetadata
+        secret_metadata_model = {}  # ArbitrarySecretMetadata
         secret_metadata_model['id'] = 'b0283d74-0894-830b-f81d-1f115f67729f'
         secret_metadata_model['labels'] = ['dev', 'us-south']
         secret_metadata_model['name'] = 'example-secret'
@@ -2117,14 +2293,13 @@ class TestSecretMetadataRequest():
         secret_metadata_model['state'] = 1
         secret_metadata_model['state_description'] = 'Active'
         secret_metadata_model['secret_type'] = 'arbitrary'
-        secret_metadata_model['expiration_date'] = datetime_to_string(string_to_datetime("2030-04-01T09:30:00.000Z"))
-        secret_metadata_model['ttl'] = {'foo': 'bar'}
-        secret_metadata_model['reuse_api_key'] = True
         secret_metadata_model[
             'crn'] = 'crn:v1:bluemix:public:secrets-manager:<region>:a/<account-id>:<service-instance>:secret:<secret-id>'
-        secret_metadata_model['creation_date'] = datetime_to_string(string_to_datetime("2018-04-12T23:20:50.520Z"))
+        secret_metadata_model['creation_date'] = "2018-04-12T23:20:50.520000Z"
         secret_metadata_model['created_by'] = 'ServiceId-cb258cb9-8de3-4ac0-9aec-b2b2d27ac976'
-        secret_metadata_model['last_update_date'] = datetime_to_string(string_to_datetime("2018-04-12T23:20:50.520Z"))
+        secret_metadata_model['last_update_date'] = "2018-04-12T23:20:50.520000Z"
+        secret_metadata_model['versions_total'] = 1
+        secret_metadata_model['expiration_date'] = "2030-04-01T09:30:00Z"
 
         # Construct a json representation of a SecretMetadataRequest model
         secret_metadata_request_model_json = {}
@@ -2148,7 +2323,7 @@ class TestSecretMetadataRequest():
         assert secret_metadata_request_model_json2 == secret_metadata_request_model_json
 
 
-class TestSecretPolicyRotation():
+class TestModel_SecretPolicyRotation():
     """
     Test Class for SecretPolicyRotation
     """
@@ -2185,7 +2360,7 @@ class TestSecretPolicyRotation():
         assert secret_policy_rotation_model_json2 == secret_policy_rotation_model_json
 
 
-class TestSecretPolicyRotationRotation():
+class TestModel_SecretPolicyRotationRotation():
     """
     Test Class for SecretPolicyRotationRotation
     """
@@ -2219,82 +2394,426 @@ class TestSecretPolicyRotationRotation():
         assert secret_policy_rotation_rotation_model_json2 == secret_policy_rotation_rotation_model_json
 
 
-class TestSecretVersion():
+class TestModel_CertificateValidity():
     """
-    Test Class for SecretVersion
+    Test Class for CertificateValidity
     """
 
-    def test_secret_version_serialization(self):
+    def test_certificate_validity_serialization(self):
         """
-        Test serialization/deserialization for SecretVersion
+        Test serialization/deserialization for CertificateValidity
         """
 
-        # Construct a json representation of a SecretVersion model
-        secret_version_model_json = {}
-        secret_version_model_json['id'] = '4a0225e9-17a0-46c1-ace7-f25bcf4237d4'
-        secret_version_model_json['creation_date'] = datetime_to_string(string_to_datetime("2019-01-01T12:00:00.000Z"))
-        secret_version_model_json['created_by'] = 'testString'
-        secret_version_model_json['auto_rotated'] = True
+        # Construct a json representation of a CertificateValidity model
+        certificate_validity_model_json = {}
+        certificate_validity_model_json['not_before'] = "2020-10-05T21:33:11Z"
+        certificate_validity_model_json['not_after'] = "2021-01-01T00:00:00Z"
 
-        # Construct a model instance of SecretVersion by calling from_dict on the json representation
-        secret_version_model = SecretVersion.from_dict(secret_version_model_json)
-        assert secret_version_model != False
+        # Construct a model instance of CertificateValidity by calling from_dict on the json representation
+        certificate_validity_model = CertificateValidity.from_dict(certificate_validity_model_json)
+        assert certificate_validity_model != False
 
-        # Construct a model instance of SecretVersion by calling from_dict on the json representation
-        secret_version_model_dict = SecretVersion.from_dict(secret_version_model_json).__dict__
-        secret_version_model2 = SecretVersion(**secret_version_model_dict)
+        # Construct a model instance of CertificateValidity by calling from_dict on the json representation
+        certificate_validity_model_dict = CertificateValidity.from_dict(certificate_validity_model_json).__dict__
+        certificate_validity_model2 = CertificateValidity(**certificate_validity_model_dict)
 
         # Verify the model instances are equivalent
-        assert secret_version_model == secret_version_model2
+        assert certificate_validity_model == certificate_validity_model2
 
         # Convert model instance back to dict and verify no loss of data
-        secret_version_model_json2 = secret_version_model.to_dict()
-        assert secret_version_model_json2 == secret_version_model_json
+        certificate_validity_model_json2 = certificate_validity_model.to_dict()
+        assert certificate_validity_model_json2 == certificate_validity_model_json
 
 
-class TestEngineConfigOneOfIAMSecretEngineRootConfig():
+class TestModel_ArbitrarySecretMetadata():
     """
-    Test Class for EngineConfigOneOfIAMSecretEngineRootConfig
+    Test Class for ArbitrarySecretMetadata
     """
 
-    def test_engine_config_one_of_iam_secret_engine_root_config_serialization(self):
+    def test_arbitrary_secret_metadata_serialization(self):
         """
-        Test serialization/deserialization for EngineConfigOneOfIAMSecretEngineRootConfig
+        Test serialization/deserialization for ArbitrarySecretMetadata
         """
 
-        # Construct a json representation of a EngineConfigOneOfIAMSecretEngineRootConfig model
-        engine_config_one_of_iam_secret_engine_root_config_model_json = {}
-        engine_config_one_of_iam_secret_engine_root_config_model_json['api_key'] = 'API_KEY'
-        engine_config_one_of_iam_secret_engine_root_config_model_json[
-            'api_key_hash'] = 'a737c3a98ebfc16a0d5ddc6b277548491440780003e06f5924dc906bc8d78e91'
+        # Construct a json representation of a ArbitrarySecretMetadata model
+        arbitrary_secret_metadata_model_json = {}
+        arbitrary_secret_metadata_model_json['id'] = 'b0283d74-0894-830b-f81d-1f115f67729f'
+        arbitrary_secret_metadata_model_json['labels'] = ['dev', 'us-south']
+        arbitrary_secret_metadata_model_json['name'] = 'example-secret'
+        arbitrary_secret_metadata_model_json['description'] = 'Extended description for this secret.'
+        arbitrary_secret_metadata_model_json['secret_group_id'] = 'f5283d74-9024-230a-b72c-1f115f61290f'
+        arbitrary_secret_metadata_model_json['state'] = 1
+        arbitrary_secret_metadata_model_json['state_description'] = 'Active'
+        arbitrary_secret_metadata_model_json['secret_type'] = 'arbitrary'
+        arbitrary_secret_metadata_model_json[
+            'crn'] = 'crn:v1:bluemix:public:secrets-manager:<region>:a/<account-id>:<service-instance>:secret:<secret-id>'
+        arbitrary_secret_metadata_model_json['creation_date'] = "2018-04-12T23:20:50.520000Z"
+        arbitrary_secret_metadata_model_json['created_by'] = 'ServiceId-cb258cb9-8de3-4ac0-9aec-b2b2d27ac976'
+        arbitrary_secret_metadata_model_json['last_update_date'] = "2018-04-12T23:20:50.520000Z"
+        arbitrary_secret_metadata_model_json['versions_total'] = 1
+        arbitrary_secret_metadata_model_json['expiration_date'] = "2030-04-01T09:30:00Z"
 
-        # Construct a model instance of EngineConfigOneOfIAMSecretEngineRootConfig by calling from_dict on the json representation
-        engine_config_one_of_iam_secret_engine_root_config_model = EngineConfigOneOfIAMSecretEngineRootConfig.from_dict(
-            engine_config_one_of_iam_secret_engine_root_config_model_json)
-        assert engine_config_one_of_iam_secret_engine_root_config_model != False
+        # Construct a model instance of ArbitrarySecretMetadata by calling from_dict on the json representation
+        arbitrary_secret_metadata_model = ArbitrarySecretMetadata.from_dict(arbitrary_secret_metadata_model_json)
+        assert arbitrary_secret_metadata_model != False
 
-        # Construct a model instance of EngineConfigOneOfIAMSecretEngineRootConfig by calling from_dict on the json representation
-        engine_config_one_of_iam_secret_engine_root_config_model_dict = EngineConfigOneOfIAMSecretEngineRootConfig.from_dict(
-            engine_config_one_of_iam_secret_engine_root_config_model_json).__dict__
-        engine_config_one_of_iam_secret_engine_root_config_model2 = EngineConfigOneOfIAMSecretEngineRootConfig(
-            **engine_config_one_of_iam_secret_engine_root_config_model_dict)
+        # Construct a model instance of ArbitrarySecretMetadata by calling from_dict on the json representation
+        arbitrary_secret_metadata_model_dict = ArbitrarySecretMetadata.from_dict(
+            arbitrary_secret_metadata_model_json).__dict__
+        arbitrary_secret_metadata_model2 = ArbitrarySecretMetadata(**arbitrary_secret_metadata_model_dict)
 
         # Verify the model instances are equivalent
-        assert engine_config_one_of_iam_secret_engine_root_config_model == engine_config_one_of_iam_secret_engine_root_config_model2
+        assert arbitrary_secret_metadata_model == arbitrary_secret_metadata_model2
 
         # Convert model instance back to dict and verify no loss of data
-        engine_config_one_of_iam_secret_engine_root_config_model_json2 = engine_config_one_of_iam_secret_engine_root_config_model.to_dict()
-        assert engine_config_one_of_iam_secret_engine_root_config_model_json2 == engine_config_one_of_iam_secret_engine_root_config_model_json
+        arbitrary_secret_metadata_model_json2 = arbitrary_secret_metadata_model.to_dict()
+        assert arbitrary_secret_metadata_model_json2 == arbitrary_secret_metadata_model_json
 
 
-class TestGetSecretPoliciesOneOfGetSecretPolicyRotation():
+class TestModel_ArbitrarySecretResource():
     """
-    Test Class for GetSecretPoliciesOneOfGetSecretPolicyRotation
+    Test Class for ArbitrarySecretResource
     """
 
-    def test_get_secret_policies_one_of_get_secret_policy_rotation_serialization(self):
+    def test_arbitrary_secret_resource_serialization(self):
         """
-        Test serialization/deserialization for GetSecretPoliciesOneOfGetSecretPolicyRotation
+        Test serialization/deserialization for ArbitrarySecretResource
+        """
+
+        # Construct a json representation of a ArbitrarySecretResource model
+        arbitrary_secret_resource_model_json = {}
+        arbitrary_secret_resource_model_json['id'] = 'testString'
+        arbitrary_secret_resource_model_json['name'] = 'testString'
+        arbitrary_secret_resource_model_json['description'] = 'testString'
+        arbitrary_secret_resource_model_json['secret_group_id'] = 'testString'
+        arbitrary_secret_resource_model_json['labels'] = ['testString']
+        arbitrary_secret_resource_model_json['state'] = 0
+        arbitrary_secret_resource_model_json['state_description'] = 'Active'
+        arbitrary_secret_resource_model_json['secret_type'] = 'arbitrary'
+        arbitrary_secret_resource_model_json[
+            'crn'] = 'crn:v1:bluemix:public:secrets-manager:<region>:a/<account-id>:<service-instance>:secret:<secret-id>'
+        arbitrary_secret_resource_model_json['creation_date'] = "2018-04-12T23:20:50.520000Z"
+        arbitrary_secret_resource_model_json['created_by'] = 'testString'
+        arbitrary_secret_resource_model_json['last_update_date'] = "2018-04-12T23:20:50.520000Z"
+        arbitrary_secret_resource_model_json['versions_total'] = 1
+        arbitrary_secret_resource_model_json['versions'] = [{}]
+        arbitrary_secret_resource_model_json['expiration_date'] = "2030-04-01T09:30:00Z"
+        arbitrary_secret_resource_model_json['payload'] = 'testString'
+        arbitrary_secret_resource_model_json['secret_data'] = {'foo': 'bar'}
+
+        # Construct a model instance of ArbitrarySecretResource by calling from_dict on the json representation
+        arbitrary_secret_resource_model = ArbitrarySecretResource.from_dict(arbitrary_secret_resource_model_json)
+        assert arbitrary_secret_resource_model != False
+
+        # Construct a model instance of ArbitrarySecretResource by calling from_dict on the json representation
+        arbitrary_secret_resource_model_dict = ArbitrarySecretResource.from_dict(
+            arbitrary_secret_resource_model_json).__dict__
+        arbitrary_secret_resource_model2 = ArbitrarySecretResource(**arbitrary_secret_resource_model_dict)
+
+        # Verify the model instances are equivalent
+        assert arbitrary_secret_resource_model == arbitrary_secret_resource_model2
+
+        # Convert model instance back to dict and verify no loss of data
+        arbitrary_secret_resource_model_json2 = arbitrary_secret_resource_model.to_dict()
+        assert arbitrary_secret_resource_model_json2 == arbitrary_secret_resource_model_json
+
+
+class TestModel_ArbitrarySecretVersionMetadata():
+    """
+    Test Class for ArbitrarySecretVersionMetadata
+    """
+
+    def test_arbitrary_secret_version_metadata_serialization(self):
+        """
+        Test serialization/deserialization for ArbitrarySecretVersionMetadata
+        """
+
+        # Construct a json representation of a ArbitrarySecretVersionMetadata model
+        arbitrary_secret_version_metadata_model_json = {}
+        arbitrary_secret_version_metadata_model_json['id'] = '4a0225e9-17a0-46c1-ace7-f25bcf4237d4'
+        arbitrary_secret_version_metadata_model_json['creation_date'] = "2019-01-01T12:00:00Z"
+        arbitrary_secret_version_metadata_model_json['created_by'] = 'testString'
+
+        # Construct a model instance of ArbitrarySecretVersionMetadata by calling from_dict on the json representation
+        arbitrary_secret_version_metadata_model = ArbitrarySecretVersionMetadata.from_dict(
+            arbitrary_secret_version_metadata_model_json)
+        assert arbitrary_secret_version_metadata_model != False
+
+        # Construct a model instance of ArbitrarySecretVersionMetadata by calling from_dict on the json representation
+        arbitrary_secret_version_metadata_model_dict = ArbitrarySecretVersionMetadata.from_dict(
+            arbitrary_secret_version_metadata_model_json).__dict__
+        arbitrary_secret_version_metadata_model2 = ArbitrarySecretVersionMetadata(
+            **arbitrary_secret_version_metadata_model_dict)
+
+        # Verify the model instances are equivalent
+        assert arbitrary_secret_version_metadata_model == arbitrary_secret_version_metadata_model2
+
+        # Convert model instance back to dict and verify no loss of data
+        arbitrary_secret_version_metadata_model_json2 = arbitrary_secret_version_metadata_model.to_dict()
+        assert arbitrary_secret_version_metadata_model_json2 == arbitrary_secret_version_metadata_model_json
+
+
+class TestModel_CertificateSecretMetadata():
+    """
+    Test Class for CertificateSecretMetadata
+    """
+
+    def test_certificate_secret_metadata_serialization(self):
+        """
+        Test serialization/deserialization for CertificateSecretMetadata
+        """
+
+        # Construct dict forms of any model objects needed in order to build this model.
+
+        certificate_validity_model = {}  # CertificateValidity
+        certificate_validity_model['not_before'] = "2020-10-05T21:33:11Z"
+        certificate_validity_model['not_after'] = "2021-01-01T00:00:00Z"
+
+        # Construct a json representation of a CertificateSecretMetadata model
+        certificate_secret_metadata_model_json = {}
+        certificate_secret_metadata_model_json['id'] = 'b0283d74-0894-830b-f81d-1f115f67729f'
+        certificate_secret_metadata_model_json['labels'] = ['dev', 'us-south']
+        certificate_secret_metadata_model_json['name'] = 'example-secret'
+        certificate_secret_metadata_model_json['description'] = 'Extended description for this secret.'
+        certificate_secret_metadata_model_json['secret_group_id'] = 'f5283d74-9024-230a-b72c-1f115f61290f'
+        certificate_secret_metadata_model_json['state'] = 1
+        certificate_secret_metadata_model_json['state_description'] = 'Active'
+        certificate_secret_metadata_model_json['secret_type'] = 'arbitrary'
+        certificate_secret_metadata_model_json[
+            'crn'] = 'crn:v1:bluemix:public:secrets-manager:<region>:a/<account-id>:<service-instance>:secret:<secret-id>'
+        certificate_secret_metadata_model_json['creation_date'] = "2018-04-12T23:20:50.520000Z"
+        certificate_secret_metadata_model_json['created_by'] = 'ServiceId-cb258cb9-8de3-4ac0-9aec-b2b2d27ac976'
+        certificate_secret_metadata_model_json['last_update_date'] = "2018-04-12T23:20:50.520000Z"
+        certificate_secret_metadata_model_json['versions_total'] = 1
+        certificate_secret_metadata_model_json['serial_number'] = 'd9:be:fe:35:ba:09:42:b5'
+        certificate_secret_metadata_model_json['algorithm'] = 'sha256WithRSAEncryption'
+        certificate_secret_metadata_model_json['key_algorithm'] = 'rsaEncryption 2048 bit'
+        certificate_secret_metadata_model_json['issuer'] = 'GlobalSign'
+        certificate_secret_metadata_model_json['validity'] = certificate_validity_model
+        certificate_secret_metadata_model_json['common_name'] = 'example.com'
+        certificate_secret_metadata_model_json['intermediate_included'] = True
+        certificate_secret_metadata_model_json['private_key_included'] = True
+        certificate_secret_metadata_model_json['alt_names'] = ['testString']
+        certificate_secret_metadata_model_json['expiration_date'] = "2030-04-01T09:30:00Z"
+
+        # Construct a model instance of CertificateSecretMetadata by calling from_dict on the json representation
+        certificate_secret_metadata_model = CertificateSecretMetadata.from_dict(certificate_secret_metadata_model_json)
+        assert certificate_secret_metadata_model != False
+
+        # Construct a model instance of CertificateSecretMetadata by calling from_dict on the json representation
+        certificate_secret_metadata_model_dict = CertificateSecretMetadata.from_dict(
+            certificate_secret_metadata_model_json).__dict__
+        certificate_secret_metadata_model2 = CertificateSecretMetadata(**certificate_secret_metadata_model_dict)
+
+        # Verify the model instances are equivalent
+        assert certificate_secret_metadata_model == certificate_secret_metadata_model2
+
+        # Convert model instance back to dict and verify no loss of data
+        certificate_secret_metadata_model_json2 = certificate_secret_metadata_model.to_dict()
+        assert certificate_secret_metadata_model_json2 == certificate_secret_metadata_model_json
+
+
+class TestModel_CertificateSecretResource():
+    """
+    Test Class for CertificateSecretResource
+    """
+
+    def test_certificate_secret_resource_serialization(self):
+        """
+        Test serialization/deserialization for CertificateSecretResource
+        """
+
+        # Construct dict forms of any model objects needed in order to build this model.
+
+        certificate_validity_model = {}  # CertificateValidity
+        certificate_validity_model['not_before'] = "2020-10-05T21:33:11Z"
+        certificate_validity_model['not_after'] = "2021-01-01T00:00:00Z"
+
+        # Construct a json representation of a CertificateSecretResource model
+        certificate_secret_resource_model_json = {}
+        certificate_secret_resource_model_json['id'] = 'testString'
+        certificate_secret_resource_model_json['name'] = 'testString'
+        certificate_secret_resource_model_json['description'] = 'testString'
+        certificate_secret_resource_model_json['secret_group_id'] = 'testString'
+        certificate_secret_resource_model_json['labels'] = ['testString']
+        certificate_secret_resource_model_json['state'] = 0
+        certificate_secret_resource_model_json['state_description'] = 'Active'
+        certificate_secret_resource_model_json['secret_type'] = 'arbitrary'
+        certificate_secret_resource_model_json[
+            'crn'] = 'crn:v1:bluemix:public:secrets-manager:<region>:a/<account-id>:<service-instance>:secret:<secret-id>'
+        certificate_secret_resource_model_json['creation_date'] = "2018-04-12T23:20:50.520000Z"
+        certificate_secret_resource_model_json['created_by'] = 'testString'
+        certificate_secret_resource_model_json['last_update_date'] = "2018-04-12T23:20:50.520000Z"
+        certificate_secret_resource_model_json['versions_total'] = 1
+        certificate_secret_resource_model_json['versions'] = [{}]
+        certificate_secret_resource_model_json['certificate'] = 'testString'
+        certificate_secret_resource_model_json['private_key'] = 'testString'
+        certificate_secret_resource_model_json['intermediate'] = 'testString'
+        certificate_secret_resource_model_json['secret_data'] = {'foo': 'bar'}
+        certificate_secret_resource_model_json['serial_number'] = 'd9:be:fe:35:ba:09:42:b5'
+        certificate_secret_resource_model_json['algorithm'] = 'sha256WithRSAEncryption'
+        certificate_secret_resource_model_json['key_algorithm'] = 'rsaEncryption 2048 bit'
+        certificate_secret_resource_model_json['issuer'] = 'GlobalSign'
+        certificate_secret_resource_model_json['validity'] = certificate_validity_model
+        certificate_secret_resource_model_json['common_name'] = 'example.com'
+        certificate_secret_resource_model_json['intermediate_included'] = True
+        certificate_secret_resource_model_json['private_key_included'] = True
+        certificate_secret_resource_model_json['alt_names'] = ['testString']
+        certificate_secret_resource_model_json['expiration_date'] = "2030-04-01T09:30:00Z"
+
+        # Construct a model instance of CertificateSecretResource by calling from_dict on the json representation
+        certificate_secret_resource_model = CertificateSecretResource.from_dict(certificate_secret_resource_model_json)
+        assert certificate_secret_resource_model != False
+
+        # Construct a model instance of CertificateSecretResource by calling from_dict on the json representation
+        certificate_secret_resource_model_dict = CertificateSecretResource.from_dict(
+            certificate_secret_resource_model_json).__dict__
+        certificate_secret_resource_model2 = CertificateSecretResource(**certificate_secret_resource_model_dict)
+
+        # Verify the model instances are equivalent
+        assert certificate_secret_resource_model == certificate_secret_resource_model2
+
+        # Convert model instance back to dict and verify no loss of data
+        certificate_secret_resource_model_json2 = certificate_secret_resource_model.to_dict()
+        assert certificate_secret_resource_model_json2 == certificate_secret_resource_model_json
+
+
+class TestModel_CertificateSecretVersion():
+    """
+    Test Class for CertificateSecretVersion
+    """
+
+    def test_certificate_secret_version_serialization(self):
+        """
+        Test serialization/deserialization for CertificateSecretVersion
+        """
+
+        # Construct dict forms of any model objects needed in order to build this model.
+
+        certificate_validity_model = {}  # CertificateValidity
+        certificate_validity_model['not_before'] = "2020-10-05T21:33:11Z"
+        certificate_validity_model['not_after'] = "2021-01-01T00:00:00Z"
+
+        certificate_secret_data_model = {}  # CertificateSecretData
+        certificate_secret_data_model['certificate'] = 'testString'
+        certificate_secret_data_model['private_key'] = 'testString'
+        certificate_secret_data_model['intermediate'] = 'testString'
+
+        # Construct a json representation of a CertificateSecretVersion model
+        certificate_secret_version_model_json = {}
+        certificate_secret_version_model_json['id'] = 'testString'
+        certificate_secret_version_model_json[
+            'crn'] = 'crn:v1:bluemix:public:secrets-manager:<region>:a/<account-id>:<service-instance>:secret:<secret-id>'
+        certificate_secret_version_model_json['version_id'] = '4a0225e9-17a0-46c1-ace7-f25bcf4237d4'
+        certificate_secret_version_model_json['creation_date'] = "2019-01-01T12:00:00Z"
+        certificate_secret_version_model_json['created_by'] = 'testString'
+        certificate_secret_version_model_json['validity'] = certificate_validity_model
+        certificate_secret_version_model_json['serial_number'] = 'testString'
+        certificate_secret_version_model_json['expiration_date'] = "2030-04-01T09:30:00Z"
+        certificate_secret_version_model_json['secret_data'] = certificate_secret_data_model
+
+        # Construct a model instance of CertificateSecretVersion by calling from_dict on the json representation
+        certificate_secret_version_model = CertificateSecretVersion.from_dict(certificate_secret_version_model_json)
+        assert certificate_secret_version_model != False
+
+        # Construct a model instance of CertificateSecretVersion by calling from_dict on the json representation
+        certificate_secret_version_model_dict = CertificateSecretVersion.from_dict(
+            certificate_secret_version_model_json).__dict__
+        certificate_secret_version_model2 = CertificateSecretVersion(**certificate_secret_version_model_dict)
+
+        # Verify the model instances are equivalent
+        assert certificate_secret_version_model == certificate_secret_version_model2
+
+        # Convert model instance back to dict and verify no loss of data
+        certificate_secret_version_model_json2 = certificate_secret_version_model.to_dict()
+        assert certificate_secret_version_model_json2 == certificate_secret_version_model_json
+
+
+class TestModel_CertificateSecretVersionMetadata():
+    """
+    Test Class for CertificateSecretVersionMetadata
+    """
+
+    def test_certificate_secret_version_metadata_serialization(self):
+        """
+        Test serialization/deserialization for CertificateSecretVersionMetadata
+        """
+
+        # Construct dict forms of any model objects needed in order to build this model.
+
+        certificate_validity_model = {}  # CertificateValidity
+        certificate_validity_model['not_before'] = "2020-10-05T21:33:11Z"
+        certificate_validity_model['not_after'] = "2021-01-01T00:00:00Z"
+
+        # Construct a json representation of a CertificateSecretVersionMetadata model
+        certificate_secret_version_metadata_model_json = {}
+        certificate_secret_version_metadata_model_json['id'] = '4a0225e9-17a0-46c1-ace7-f25bcf4237d4'
+        certificate_secret_version_metadata_model_json['creation_date'] = "2019-01-01T12:00:00Z"
+        certificate_secret_version_metadata_model_json['created_by'] = 'testString'
+        certificate_secret_version_metadata_model_json['serial_number'] = 'testString'
+        certificate_secret_version_metadata_model_json['expiration_date'] = "2030-04-01T09:30:00Z"
+        certificate_secret_version_metadata_model_json['validity'] = certificate_validity_model
+
+        # Construct a model instance of CertificateSecretVersionMetadata by calling from_dict on the json representation
+        certificate_secret_version_metadata_model = CertificateSecretVersionMetadata.from_dict(
+            certificate_secret_version_metadata_model_json)
+        assert certificate_secret_version_metadata_model != False
+
+        # Construct a model instance of CertificateSecretVersionMetadata by calling from_dict on the json representation
+        certificate_secret_version_metadata_model_dict = CertificateSecretVersionMetadata.from_dict(
+            certificate_secret_version_metadata_model_json).__dict__
+        certificate_secret_version_metadata_model2 = CertificateSecretVersionMetadata(
+            **certificate_secret_version_metadata_model_dict)
+
+        # Verify the model instances are equivalent
+        assert certificate_secret_version_metadata_model == certificate_secret_version_metadata_model2
+
+        # Convert model instance back to dict and verify no loss of data
+        certificate_secret_version_metadata_model_json2 = certificate_secret_version_metadata_model.to_dict()
+        assert certificate_secret_version_metadata_model_json2 == certificate_secret_version_metadata_model_json
+
+
+class TestModel_DeleteCredentialsForIAMCredentialsSecret():
+    """
+    Test Class for DeleteCredentialsForIAMCredentialsSecret
+    """
+
+    def test_delete_credentials_for_iam_credentials_secret_serialization(self):
+        """
+        Test serialization/deserialization for DeleteCredentialsForIAMCredentialsSecret
+        """
+
+        # Construct a json representation of a DeleteCredentialsForIAMCredentialsSecret model
+        delete_credentials_for_iam_credentials_secret_model_json = {}
+        delete_credentials_for_iam_credentials_secret_model_json['service_id'] = 'testString'
+
+        # Construct a model instance of DeleteCredentialsForIAMCredentialsSecret by calling from_dict on the json representation
+        delete_credentials_for_iam_credentials_secret_model = DeleteCredentialsForIAMCredentialsSecret.from_dict(
+            delete_credentials_for_iam_credentials_secret_model_json)
+        assert delete_credentials_for_iam_credentials_secret_model != False
+
+        # Construct a model instance of DeleteCredentialsForIAMCredentialsSecret by calling from_dict on the json representation
+        delete_credentials_for_iam_credentials_secret_model_dict = DeleteCredentialsForIAMCredentialsSecret.from_dict(
+            delete_credentials_for_iam_credentials_secret_model_json).__dict__
+        delete_credentials_for_iam_credentials_secret_model2 = DeleteCredentialsForIAMCredentialsSecret(
+            **delete_credentials_for_iam_credentials_secret_model_dict)
+
+        # Verify the model instances are equivalent
+        assert delete_credentials_for_iam_credentials_secret_model == delete_credentials_for_iam_credentials_secret_model2
+
+        # Convert model instance back to dict and verify no loss of data
+        delete_credentials_for_iam_credentials_secret_model_json2 = delete_credentials_for_iam_credentials_secret_model.to_dict()
+        assert delete_credentials_for_iam_credentials_secret_model_json2 == delete_credentials_for_iam_credentials_secret_model_json
+
+
+class TestModel_GetSecretPolicyRotation():
+    """
+    Test Class for GetSecretPolicyRotation
+    """
+
+    def test_get_secret_policy_rotation_serialization(self):
+        """
+        Test serialization/deserialization for GetSecretPolicyRotation
         """
 
         # Construct dict forms of any model objects needed in order to build this model.
@@ -2307,331 +2826,442 @@ class TestGetSecretPoliciesOneOfGetSecretPolicyRotation():
         secret_policy_rotation_rotation_model['interval'] = 1
         secret_policy_rotation_rotation_model['unit'] = 'day'
 
-        get_secret_policies_one_of_get_secret_policy_rotation_resources_item_model = {}  # GetSecretPoliciesOneOfGetSecretPolicyRotationResourcesItem
-        get_secret_policies_one_of_get_secret_policy_rotation_resources_item_model['id'] = 'testString'
-        get_secret_policies_one_of_get_secret_policy_rotation_resources_item_model[
+        get_secret_policy_rotation_resources_item_model = {}  # GetSecretPolicyRotationResourcesItem
+        get_secret_policy_rotation_resources_item_model['id'] = 'testString'
+        get_secret_policy_rotation_resources_item_model[
             'crn'] = 'crn:v1:bluemix:public:kms:<region>:a/<account-id>:<service-instance:policy:<policy-id>'
-        get_secret_policies_one_of_get_secret_policy_rotation_resources_item_model[
-            'creation_date'] = datetime_to_string(string_to_datetime("2019-01-01T12:00:00.000Z"))
-        get_secret_policies_one_of_get_secret_policy_rotation_resources_item_model['created_by'] = 'testString'
-        get_secret_policies_one_of_get_secret_policy_rotation_resources_item_model[
-            'last_update_date'] = datetime_to_string(string_to_datetime("2019-01-01T12:00:00.000Z"))
-        get_secret_policies_one_of_get_secret_policy_rotation_resources_item_model['updated_by'] = 'testString'
-        get_secret_policies_one_of_get_secret_policy_rotation_resources_item_model[
+        get_secret_policy_rotation_resources_item_model['creation_date'] = "2019-01-01T12:00:00Z"
+        get_secret_policy_rotation_resources_item_model['created_by'] = 'testString'
+        get_secret_policy_rotation_resources_item_model['last_update_date'] = "2019-01-01T12:00:00Z"
+        get_secret_policy_rotation_resources_item_model['updated_by'] = 'testString'
+        get_secret_policy_rotation_resources_item_model[
             'type'] = 'application/vnd.ibm.secrets-manager.secret.policy+json'
-        get_secret_policies_one_of_get_secret_policy_rotation_resources_item_model[
-            'rotation'] = secret_policy_rotation_rotation_model
+        get_secret_policy_rotation_resources_item_model['rotation'] = secret_policy_rotation_rotation_model
 
-        # Construct a json representation of a GetSecretPoliciesOneOfGetSecretPolicyRotation model
-        get_secret_policies_one_of_get_secret_policy_rotation_model_json = {}
-        get_secret_policies_one_of_get_secret_policy_rotation_model_json['metadata'] = collection_metadata_model
-        get_secret_policies_one_of_get_secret_policy_rotation_model_json['resources'] = [
-            get_secret_policies_one_of_get_secret_policy_rotation_resources_item_model]
+        # Construct a json representation of a GetSecretPolicyRotation model
+        get_secret_policy_rotation_model_json = {}
+        get_secret_policy_rotation_model_json['metadata'] = collection_metadata_model
+        get_secret_policy_rotation_model_json['resources'] = [get_secret_policy_rotation_resources_item_model]
 
-        # Construct a model instance of GetSecretPoliciesOneOfGetSecretPolicyRotation by calling from_dict on the json representation
-        get_secret_policies_one_of_get_secret_policy_rotation_model = GetSecretPoliciesOneOfGetSecretPolicyRotation.from_dict(
-            get_secret_policies_one_of_get_secret_policy_rotation_model_json)
-        assert get_secret_policies_one_of_get_secret_policy_rotation_model != False
+        # Construct a model instance of GetSecretPolicyRotation by calling from_dict on the json representation
+        get_secret_policy_rotation_model = GetSecretPolicyRotation.from_dict(get_secret_policy_rotation_model_json)
+        assert get_secret_policy_rotation_model != False
 
-        # Construct a model instance of GetSecretPoliciesOneOfGetSecretPolicyRotation by calling from_dict on the json representation
-        get_secret_policies_one_of_get_secret_policy_rotation_model_dict = GetSecretPoliciesOneOfGetSecretPolicyRotation.from_dict(
-            get_secret_policies_one_of_get_secret_policy_rotation_model_json).__dict__
-        get_secret_policies_one_of_get_secret_policy_rotation_model2 = GetSecretPoliciesOneOfGetSecretPolicyRotation(
-            **get_secret_policies_one_of_get_secret_policy_rotation_model_dict)
+        # Construct a model instance of GetSecretPolicyRotation by calling from_dict on the json representation
+        get_secret_policy_rotation_model_dict = GetSecretPolicyRotation.from_dict(
+            get_secret_policy_rotation_model_json).__dict__
+        get_secret_policy_rotation_model2 = GetSecretPolicyRotation(**get_secret_policy_rotation_model_dict)
 
         # Verify the model instances are equivalent
-        assert get_secret_policies_one_of_get_secret_policy_rotation_model == get_secret_policies_one_of_get_secret_policy_rotation_model2
+        assert get_secret_policy_rotation_model == get_secret_policy_rotation_model2
 
         # Convert model instance back to dict and verify no loss of data
-        get_secret_policies_one_of_get_secret_policy_rotation_model_json2 = get_secret_policies_one_of_get_secret_policy_rotation_model.to_dict()
-        assert get_secret_policies_one_of_get_secret_policy_rotation_model_json2 == get_secret_policies_one_of_get_secret_policy_rotation_model_json
+        get_secret_policy_rotation_model_json2 = get_secret_policy_rotation_model.to_dict()
+        assert get_secret_policy_rotation_model_json2 == get_secret_policy_rotation_model_json
 
 
-class TestSecretActionOneOfDeleteCredentialsForIAMSecret():
+class TestModel_IAMCredentialsSecretEngineRootConfig():
     """
-    Test Class for SecretActionOneOfDeleteCredentialsForIAMSecret
+    Test Class for IAMCredentialsSecretEngineRootConfig
     """
 
-    def test_secret_action_one_of_delete_credentials_for_iam_secret_serialization(self):
+    def test_iam_credentials_secret_engine_root_config_serialization(self):
         """
-        Test serialization/deserialization for SecretActionOneOfDeleteCredentialsForIAMSecret
+        Test serialization/deserialization for IAMCredentialsSecretEngineRootConfig
         """
 
-        # Construct a json representation of a SecretActionOneOfDeleteCredentialsForIAMSecret model
-        secret_action_one_of_delete_credentials_for_iam_secret_model_json = {}
-        secret_action_one_of_delete_credentials_for_iam_secret_model_json['service_id'] = 'testString'
+        # Construct a json representation of a IAMCredentialsSecretEngineRootConfig model
+        iam_credentials_secret_engine_root_config_model_json = {}
+        iam_credentials_secret_engine_root_config_model_json['api_key'] = 'API_KEY'
+        iam_credentials_secret_engine_root_config_model_json[
+            'api_key_hash'] = 'a737c3a98ebfc16a0d5ddc6b277548491440780003e06f5924dc906bc8d78e91'
 
-        # Construct a model instance of SecretActionOneOfDeleteCredentialsForIAMSecret by calling from_dict on the json representation
-        secret_action_one_of_delete_credentials_for_iam_secret_model = SecretActionOneOfDeleteCredentialsForIAMSecret.from_dict(
-            secret_action_one_of_delete_credentials_for_iam_secret_model_json)
-        assert secret_action_one_of_delete_credentials_for_iam_secret_model != False
+        # Construct a model instance of IAMCredentialsSecretEngineRootConfig by calling from_dict on the json representation
+        iam_credentials_secret_engine_root_config_model = IAMCredentialsSecretEngineRootConfig.from_dict(
+            iam_credentials_secret_engine_root_config_model_json)
+        assert iam_credentials_secret_engine_root_config_model != False
 
-        # Construct a model instance of SecretActionOneOfDeleteCredentialsForIAMSecret by calling from_dict on the json representation
-        secret_action_one_of_delete_credentials_for_iam_secret_model_dict = SecretActionOneOfDeleteCredentialsForIAMSecret.from_dict(
-            secret_action_one_of_delete_credentials_for_iam_secret_model_json).__dict__
-        secret_action_one_of_delete_credentials_for_iam_secret_model2 = SecretActionOneOfDeleteCredentialsForIAMSecret(
-            **secret_action_one_of_delete_credentials_for_iam_secret_model_dict)
+        # Construct a model instance of IAMCredentialsSecretEngineRootConfig by calling from_dict on the json representation
+        iam_credentials_secret_engine_root_config_model_dict = IAMCredentialsSecretEngineRootConfig.from_dict(
+            iam_credentials_secret_engine_root_config_model_json).__dict__
+        iam_credentials_secret_engine_root_config_model2 = IAMCredentialsSecretEngineRootConfig(
+            **iam_credentials_secret_engine_root_config_model_dict)
 
         # Verify the model instances are equivalent
-        assert secret_action_one_of_delete_credentials_for_iam_secret_model == secret_action_one_of_delete_credentials_for_iam_secret_model2
+        assert iam_credentials_secret_engine_root_config_model == iam_credentials_secret_engine_root_config_model2
 
         # Convert model instance back to dict and verify no loss of data
-        secret_action_one_of_delete_credentials_for_iam_secret_model_json2 = secret_action_one_of_delete_credentials_for_iam_secret_model.to_dict()
-        assert secret_action_one_of_delete_credentials_for_iam_secret_model_json2 == secret_action_one_of_delete_credentials_for_iam_secret_model_json
+        iam_credentials_secret_engine_root_config_model_json2 = iam_credentials_secret_engine_root_config_model.to_dict()
+        assert iam_credentials_secret_engine_root_config_model_json2 == iam_credentials_secret_engine_root_config_model_json
 
 
-class TestSecretActionOneOfRotateArbitrarySecretBody():
+class TestModel_IAMCredentialsSecretMetadata():
     """
-    Test Class for SecretActionOneOfRotateArbitrarySecretBody
-    """
-
-    def test_secret_action_one_of_rotate_arbitrary_secret_body_serialization(self):
-        """
-        Test serialization/deserialization for SecretActionOneOfRotateArbitrarySecretBody
-        """
-
-        # Construct a json representation of a SecretActionOneOfRotateArbitrarySecretBody model
-        secret_action_one_of_rotate_arbitrary_secret_body_model_json = {}
-        secret_action_one_of_rotate_arbitrary_secret_body_model_json['payload'] = 'testString'
-
-        # Construct a model instance of SecretActionOneOfRotateArbitrarySecretBody by calling from_dict on the json representation
-        secret_action_one_of_rotate_arbitrary_secret_body_model = SecretActionOneOfRotateArbitrarySecretBody.from_dict(
-            secret_action_one_of_rotate_arbitrary_secret_body_model_json)
-        assert secret_action_one_of_rotate_arbitrary_secret_body_model != False
-
-        # Construct a model instance of SecretActionOneOfRotateArbitrarySecretBody by calling from_dict on the json representation
-        secret_action_one_of_rotate_arbitrary_secret_body_model_dict = SecretActionOneOfRotateArbitrarySecretBody.from_dict(
-            secret_action_one_of_rotate_arbitrary_secret_body_model_json).__dict__
-        secret_action_one_of_rotate_arbitrary_secret_body_model2 = SecretActionOneOfRotateArbitrarySecretBody(
-            **secret_action_one_of_rotate_arbitrary_secret_body_model_dict)
-
-        # Verify the model instances are equivalent
-        assert secret_action_one_of_rotate_arbitrary_secret_body_model == secret_action_one_of_rotate_arbitrary_secret_body_model2
-
-        # Convert model instance back to dict and verify no loss of data
-        secret_action_one_of_rotate_arbitrary_secret_body_model_json2 = secret_action_one_of_rotate_arbitrary_secret_body_model.to_dict()
-        assert secret_action_one_of_rotate_arbitrary_secret_body_model_json2 == secret_action_one_of_rotate_arbitrary_secret_body_model_json
-
-
-class TestSecretActionOneOfRotateUsernamePasswordSecretBody():
-    """
-    Test Class for SecretActionOneOfRotateUsernamePasswordSecretBody
+    Test Class for IAMCredentialsSecretMetadata
     """
 
-    def test_secret_action_one_of_rotate_username_password_secret_body_serialization(self):
+    def test_iam_credentials_secret_metadata_serialization(self):
         """
-        Test serialization/deserialization for SecretActionOneOfRotateUsernamePasswordSecretBody
-        """
-
-        # Construct a json representation of a SecretActionOneOfRotateUsernamePasswordSecretBody model
-        secret_action_one_of_rotate_username_password_secret_body_model_json = {}
-        secret_action_one_of_rotate_username_password_secret_body_model_json['password'] = 'testString'
-
-        # Construct a model instance of SecretActionOneOfRotateUsernamePasswordSecretBody by calling from_dict on the json representation
-        secret_action_one_of_rotate_username_password_secret_body_model = SecretActionOneOfRotateUsernamePasswordSecretBody.from_dict(
-            secret_action_one_of_rotate_username_password_secret_body_model_json)
-        assert secret_action_one_of_rotate_username_password_secret_body_model != False
-
-        # Construct a model instance of SecretActionOneOfRotateUsernamePasswordSecretBody by calling from_dict on the json representation
-        secret_action_one_of_rotate_username_password_secret_body_model_dict = SecretActionOneOfRotateUsernamePasswordSecretBody.from_dict(
-            secret_action_one_of_rotate_username_password_secret_body_model_json).__dict__
-        secret_action_one_of_rotate_username_password_secret_body_model2 = SecretActionOneOfRotateUsernamePasswordSecretBody(
-            **secret_action_one_of_rotate_username_password_secret_body_model_dict)
-
-        # Verify the model instances are equivalent
-        assert secret_action_one_of_rotate_username_password_secret_body_model == secret_action_one_of_rotate_username_password_secret_body_model2
-
-        # Convert model instance back to dict and verify no loss of data
-        secret_action_one_of_rotate_username_password_secret_body_model_json2 = secret_action_one_of_rotate_username_password_secret_body_model.to_dict()
-        assert secret_action_one_of_rotate_username_password_secret_body_model_json2 == secret_action_one_of_rotate_username_password_secret_body_model_json
-
-
-class TestSecretResourceArbitrarySecretResource():
-    """
-    Test Class for SecretResourceArbitrarySecretResource
-    """
-
-    def test_secret_resource_arbitrary_secret_resource_serialization(self):
-        """
-        Test serialization/deserialization for SecretResourceArbitrarySecretResource
+        Test serialization/deserialization for IAMCredentialsSecretMetadata
         """
 
-        # Construct dict forms of any model objects needed in order to build this model.
-
-        secret_version_model = {}  # SecretVersion
-        secret_version_model['id'] = '4a0225e9-17a0-46c1-ace7-f25bcf4237d4'
-        secret_version_model['creation_date'] = datetime_to_string(string_to_datetime("2019-01-01T12:00:00.000Z"))
-        secret_version_model['created_by'] = 'testString'
-        secret_version_model['auto_rotated'] = True
-
-        # Construct a json representation of a SecretResourceArbitrarySecretResource model
-        secret_resource_arbitrary_secret_resource_model_json = {}
-        secret_resource_arbitrary_secret_resource_model_json['type'] = 'testString'
-        secret_resource_arbitrary_secret_resource_model_json['id'] = 'testString'
-        secret_resource_arbitrary_secret_resource_model_json['name'] = 'testString'
-        secret_resource_arbitrary_secret_resource_model_json['description'] = 'testString'
-        secret_resource_arbitrary_secret_resource_model_json['secret_group_id'] = 'testString'
-        secret_resource_arbitrary_secret_resource_model_json['labels'] = ['testString']
-        secret_resource_arbitrary_secret_resource_model_json['state'] = 0
-        secret_resource_arbitrary_secret_resource_model_json['state_description'] = 'Active'
-        secret_resource_arbitrary_secret_resource_model_json['secret_type'] = 'arbitrary'
-        secret_resource_arbitrary_secret_resource_model_json[
+        # Construct a json representation of a IAMCredentialsSecretMetadata model
+        iam_credentials_secret_metadata_model_json = {}
+        iam_credentials_secret_metadata_model_json['id'] = 'b0283d74-0894-830b-f81d-1f115f67729f'
+        iam_credentials_secret_metadata_model_json['labels'] = ['dev', 'us-south']
+        iam_credentials_secret_metadata_model_json['name'] = 'example-secret'
+        iam_credentials_secret_metadata_model_json['description'] = 'Extended description for this secret.'
+        iam_credentials_secret_metadata_model_json['secret_group_id'] = 'f5283d74-9024-230a-b72c-1f115f61290f'
+        iam_credentials_secret_metadata_model_json['state'] = 1
+        iam_credentials_secret_metadata_model_json['state_description'] = 'Active'
+        iam_credentials_secret_metadata_model_json['secret_type'] = 'arbitrary'
+        iam_credentials_secret_metadata_model_json[
             'crn'] = 'crn:v1:bluemix:public:secrets-manager:<region>:a/<account-id>:<service-instance>:secret:<secret-id>'
-        secret_resource_arbitrary_secret_resource_model_json['creation_date'] = datetime_to_string(
-            string_to_datetime("2018-04-12T23:20:50.520Z"))
-        secret_resource_arbitrary_secret_resource_model_json['created_by'] = 'testString'
-        secret_resource_arbitrary_secret_resource_model_json['last_update_date'] = datetime_to_string(
-            string_to_datetime("2018-04-12T23:20:50.520Z"))
-        secret_resource_arbitrary_secret_resource_model_json['versions'] = [secret_version_model]
-        secret_resource_arbitrary_secret_resource_model_json['expiration_date'] = datetime_to_string(
-            string_to_datetime("2030-04-01T09:30:00.000Z"))
-        secret_resource_arbitrary_secret_resource_model_json['payload'] = 'testString'
-        secret_resource_arbitrary_secret_resource_model_json['secret_data'] = {'foo': 'bar'}
+        iam_credentials_secret_metadata_model_json['creation_date'] = "2018-04-12T23:20:50.520000Z"
+        iam_credentials_secret_metadata_model_json['created_by'] = 'ServiceId-cb258cb9-8de3-4ac0-9aec-b2b2d27ac976'
+        iam_credentials_secret_metadata_model_json['last_update_date'] = "2018-04-12T23:20:50.520000Z"
+        iam_credentials_secret_metadata_model_json['versions_total'] = 1
+        iam_credentials_secret_metadata_model_json['ttl'] = {'foo': 'bar'}
+        iam_credentials_secret_metadata_model_json['reuse_api_key'] = True
 
-        # Construct a model instance of SecretResourceArbitrarySecretResource by calling from_dict on the json representation
-        secret_resource_arbitrary_secret_resource_model = SecretResourceArbitrarySecretResource.from_dict(
-            secret_resource_arbitrary_secret_resource_model_json)
-        assert secret_resource_arbitrary_secret_resource_model != False
+        # Construct a model instance of IAMCredentialsSecretMetadata by calling from_dict on the json representation
+        iam_credentials_secret_metadata_model = IAMCredentialsSecretMetadata.from_dict(
+            iam_credentials_secret_metadata_model_json)
+        assert iam_credentials_secret_metadata_model != False
 
-        # Construct a model instance of SecretResourceArbitrarySecretResource by calling from_dict on the json representation
-        secret_resource_arbitrary_secret_resource_model_dict = SecretResourceArbitrarySecretResource.from_dict(
-            secret_resource_arbitrary_secret_resource_model_json).__dict__
-        secret_resource_arbitrary_secret_resource_model2 = SecretResourceArbitrarySecretResource(
-            **secret_resource_arbitrary_secret_resource_model_dict)
+        # Construct a model instance of IAMCredentialsSecretMetadata by calling from_dict on the json representation
+        iam_credentials_secret_metadata_model_dict = IAMCredentialsSecretMetadata.from_dict(
+            iam_credentials_secret_metadata_model_json).__dict__
+        iam_credentials_secret_metadata_model2 = IAMCredentialsSecretMetadata(
+            **iam_credentials_secret_metadata_model_dict)
 
         # Verify the model instances are equivalent
-        assert secret_resource_arbitrary_secret_resource_model == secret_resource_arbitrary_secret_resource_model2
+        assert iam_credentials_secret_metadata_model == iam_credentials_secret_metadata_model2
 
         # Convert model instance back to dict and verify no loss of data
-        secret_resource_arbitrary_secret_resource_model_json2 = secret_resource_arbitrary_secret_resource_model.to_dict()
-        assert secret_resource_arbitrary_secret_resource_model_json2 == secret_resource_arbitrary_secret_resource_model_json
+        iam_credentials_secret_metadata_model_json2 = iam_credentials_secret_metadata_model.to_dict()
+        assert iam_credentials_secret_metadata_model_json2 == iam_credentials_secret_metadata_model_json
 
 
-class TestSecretResourceIAMSecretResource():
+class TestModel_IAMCredentialsSecretResource():
     """
-    Test Class for SecretResourceIAMSecretResource
+    Test Class for IAMCredentialsSecretResource
     """
 
-    def test_secret_resource_iam_secret_resource_serialization(self):
+    def test_iam_credentials_secret_resource_serialization(self):
         """
-        Test serialization/deserialization for SecretResourceIAMSecretResource
+        Test serialization/deserialization for IAMCredentialsSecretResource
         """
 
-        # Construct dict forms of any model objects needed in order to build this model.
-
-        secret_version_model = {}  # SecretVersion
-        secret_version_model['id'] = '4a0225e9-17a0-46c1-ace7-f25bcf4237d4'
-        secret_version_model['creation_date'] = datetime_to_string(string_to_datetime("2019-01-01T12:00:00.000Z"))
-        secret_version_model['created_by'] = 'testString'
-        secret_version_model['auto_rotated'] = True
-
-        # Construct a json representation of a SecretResourceIAMSecretResource model
-        secret_resource_iam_secret_resource_model_json = {}
-        secret_resource_iam_secret_resource_model_json['type'] = 'testString'
-        secret_resource_iam_secret_resource_model_json['id'] = 'testString'
-        secret_resource_iam_secret_resource_model_json['name'] = 'testString'
-        secret_resource_iam_secret_resource_model_json['description'] = 'testString'
-        secret_resource_iam_secret_resource_model_json['secret_group_id'] = 'testString'
-        secret_resource_iam_secret_resource_model_json['labels'] = ['testString']
-        secret_resource_iam_secret_resource_model_json['state'] = 0
-        secret_resource_iam_secret_resource_model_json['state_description'] = 'Active'
-        secret_resource_iam_secret_resource_model_json['secret_type'] = 'arbitrary'
-        secret_resource_iam_secret_resource_model_json[
+        # Construct a json representation of a IAMCredentialsSecretResource model
+        iam_credentials_secret_resource_model_json = {}
+        iam_credentials_secret_resource_model_json['id'] = 'testString'
+        iam_credentials_secret_resource_model_json['name'] = 'testString'
+        iam_credentials_secret_resource_model_json['description'] = 'testString'
+        iam_credentials_secret_resource_model_json['secret_group_id'] = 'testString'
+        iam_credentials_secret_resource_model_json['labels'] = ['testString']
+        iam_credentials_secret_resource_model_json['state'] = 0
+        iam_credentials_secret_resource_model_json['state_description'] = 'Active'
+        iam_credentials_secret_resource_model_json['secret_type'] = 'arbitrary'
+        iam_credentials_secret_resource_model_json[
             'crn'] = 'crn:v1:bluemix:public:secrets-manager:<region>:a/<account-id>:<service-instance>:secret:<secret-id>'
-        secret_resource_iam_secret_resource_model_json['creation_date'] = datetime_to_string(
-            string_to_datetime("2018-04-12T23:20:50.520Z"))
-        secret_resource_iam_secret_resource_model_json['created_by'] = 'testString'
-        secret_resource_iam_secret_resource_model_json['last_update_date'] = datetime_to_string(
-            string_to_datetime("2018-04-12T23:20:50.520Z"))
-        secret_resource_iam_secret_resource_model_json['versions'] = [secret_version_model]
-        secret_resource_iam_secret_resource_model_json['ttl'] = {'foo': 'bar'}
-        secret_resource_iam_secret_resource_model_json['access_groups'] = [
+        iam_credentials_secret_resource_model_json['creation_date'] = "2018-04-12T23:20:50.520000Z"
+        iam_credentials_secret_resource_model_json['created_by'] = 'testString'
+        iam_credentials_secret_resource_model_json['last_update_date'] = "2018-04-12T23:20:50.520000Z"
+        iam_credentials_secret_resource_model_json['versions_total'] = 1
+        iam_credentials_secret_resource_model_json['versions'] = [{}]
+        iam_credentials_secret_resource_model_json['ttl'] = {'foo': 'bar'}
+        iam_credentials_secret_resource_model_json['access_groups'] = [
             'AccessGroupId-45884031-54be-4dd7-86ff-112511e92699', 'AccessGroupId-2c190fb5-0d9d-46c5-acf3-78ecd30e24a0']
-        secret_resource_iam_secret_resource_model_json['api_key'] = 'testString'
-        secret_resource_iam_secret_resource_model_json['service_id'] = 'testString'
-        secret_resource_iam_secret_resource_model_json['reuse_api_key'] = True
+        iam_credentials_secret_resource_model_json['api_key'] = 'testString'
+        iam_credentials_secret_resource_model_json['service_id'] = 'testString'
+        iam_credentials_secret_resource_model_json['reuse_api_key'] = True
 
-        # Construct a model instance of SecretResourceIAMSecretResource by calling from_dict on the json representation
-        secret_resource_iam_secret_resource_model = SecretResourceIAMSecretResource.from_dict(
-            secret_resource_iam_secret_resource_model_json)
-        assert secret_resource_iam_secret_resource_model != False
+        # Construct a model instance of IAMCredentialsSecretResource by calling from_dict on the json representation
+        iam_credentials_secret_resource_model = IAMCredentialsSecretResource.from_dict(
+            iam_credentials_secret_resource_model_json)
+        assert iam_credentials_secret_resource_model != False
 
-        # Construct a model instance of SecretResourceIAMSecretResource by calling from_dict on the json representation
-        secret_resource_iam_secret_resource_model_dict = SecretResourceIAMSecretResource.from_dict(
-            secret_resource_iam_secret_resource_model_json).__dict__
-        secret_resource_iam_secret_resource_model2 = SecretResourceIAMSecretResource(
-            **secret_resource_iam_secret_resource_model_dict)
+        # Construct a model instance of IAMCredentialsSecretResource by calling from_dict on the json representation
+        iam_credentials_secret_resource_model_dict = IAMCredentialsSecretResource.from_dict(
+            iam_credentials_secret_resource_model_json).__dict__
+        iam_credentials_secret_resource_model2 = IAMCredentialsSecretResource(
+            **iam_credentials_secret_resource_model_dict)
 
         # Verify the model instances are equivalent
-        assert secret_resource_iam_secret_resource_model == secret_resource_iam_secret_resource_model2
+        assert iam_credentials_secret_resource_model == iam_credentials_secret_resource_model2
 
         # Convert model instance back to dict and verify no loss of data
-        secret_resource_iam_secret_resource_model_json2 = secret_resource_iam_secret_resource_model.to_dict()
-        assert secret_resource_iam_secret_resource_model_json2 == secret_resource_iam_secret_resource_model_json
+        iam_credentials_secret_resource_model_json2 = iam_credentials_secret_resource_model.to_dict()
+        assert iam_credentials_secret_resource_model_json2 == iam_credentials_secret_resource_model_json
 
 
-class TestSecretResourceUsernamePasswordSecretResource():
+class TestModel_IAMCredentialsSecretVersionMetadata():
     """
-    Test Class for SecretResourceUsernamePasswordSecretResource
+    Test Class for IAMCredentialsSecretVersionMetadata
     """
 
-    def test_secret_resource_username_password_secret_resource_serialization(self):
+    def test_iam_credentials_secret_version_metadata_serialization(self):
         """
-        Test serialization/deserialization for SecretResourceUsernamePasswordSecretResource
+        Test serialization/deserialization for IAMCredentialsSecretVersionMetadata
         """
 
-        # Construct dict forms of any model objects needed in order to build this model.
+        # Construct a json representation of a IAMCredentialsSecretVersionMetadata model
+        iam_credentials_secret_version_metadata_model_json = {}
+        iam_credentials_secret_version_metadata_model_json['id'] = '4a0225e9-17a0-46c1-ace7-f25bcf4237d4'
+        iam_credentials_secret_version_metadata_model_json['creation_date'] = "2019-01-01T12:00:00Z"
+        iam_credentials_secret_version_metadata_model_json['created_by'] = 'testString'
 
-        secret_version_model = {}  # SecretVersion
-        secret_version_model['id'] = '4a0225e9-17a0-46c1-ace7-f25bcf4237d4'
-        secret_version_model['creation_date'] = datetime_to_string(string_to_datetime("2019-01-01T12:00:00.000Z"))
-        secret_version_model['created_by'] = 'testString'
-        secret_version_model['auto_rotated'] = True
+        # Construct a model instance of IAMCredentialsSecretVersionMetadata by calling from_dict on the json representation
+        iam_credentials_secret_version_metadata_model = IAMCredentialsSecretVersionMetadata.from_dict(
+            iam_credentials_secret_version_metadata_model_json)
+        assert iam_credentials_secret_version_metadata_model != False
 
-        # Construct a json representation of a SecretResourceUsernamePasswordSecretResource model
-        secret_resource_username_password_secret_resource_model_json = {}
-        secret_resource_username_password_secret_resource_model_json['type'] = 'testString'
-        secret_resource_username_password_secret_resource_model_json['id'] = 'testString'
-        secret_resource_username_password_secret_resource_model_json['name'] = 'testString'
-        secret_resource_username_password_secret_resource_model_json['description'] = 'testString'
-        secret_resource_username_password_secret_resource_model_json['secret_group_id'] = 'testString'
-        secret_resource_username_password_secret_resource_model_json['labels'] = ['testString']
-        secret_resource_username_password_secret_resource_model_json['state'] = 0
-        secret_resource_username_password_secret_resource_model_json['state_description'] = 'Active'
-        secret_resource_username_password_secret_resource_model_json['secret_type'] = 'arbitrary'
-        secret_resource_username_password_secret_resource_model_json[
+        # Construct a model instance of IAMCredentialsSecretVersionMetadata by calling from_dict on the json representation
+        iam_credentials_secret_version_metadata_model_dict = IAMCredentialsSecretVersionMetadata.from_dict(
+            iam_credentials_secret_version_metadata_model_json).__dict__
+        iam_credentials_secret_version_metadata_model2 = IAMCredentialsSecretVersionMetadata(
+            **iam_credentials_secret_version_metadata_model_dict)
+
+        # Verify the model instances are equivalent
+        assert iam_credentials_secret_version_metadata_model == iam_credentials_secret_version_metadata_model2
+
+        # Convert model instance back to dict and verify no loss of data
+        iam_credentials_secret_version_metadata_model_json2 = iam_credentials_secret_version_metadata_model.to_dict()
+        assert iam_credentials_secret_version_metadata_model_json2 == iam_credentials_secret_version_metadata_model_json
+
+
+class TestModel_RotateArbitrarySecretBody():
+    """
+    Test Class for RotateArbitrarySecretBody
+    """
+
+    def test_rotate_arbitrary_secret_body_serialization(self):
+        """
+        Test serialization/deserialization for RotateArbitrarySecretBody
+        """
+
+        # Construct a json representation of a RotateArbitrarySecretBody model
+        rotate_arbitrary_secret_body_model_json = {}
+        rotate_arbitrary_secret_body_model_json['payload'] = 'testString'
+
+        # Construct a model instance of RotateArbitrarySecretBody by calling from_dict on the json representation
+        rotate_arbitrary_secret_body_model = RotateArbitrarySecretBody.from_dict(
+            rotate_arbitrary_secret_body_model_json)
+        assert rotate_arbitrary_secret_body_model != False
+
+        # Construct a model instance of RotateArbitrarySecretBody by calling from_dict on the json representation
+        rotate_arbitrary_secret_body_model_dict = RotateArbitrarySecretBody.from_dict(
+            rotate_arbitrary_secret_body_model_json).__dict__
+        rotate_arbitrary_secret_body_model2 = RotateArbitrarySecretBody(**rotate_arbitrary_secret_body_model_dict)
+
+        # Verify the model instances are equivalent
+        assert rotate_arbitrary_secret_body_model == rotate_arbitrary_secret_body_model2
+
+        # Convert model instance back to dict and verify no loss of data
+        rotate_arbitrary_secret_body_model_json2 = rotate_arbitrary_secret_body_model.to_dict()
+        assert rotate_arbitrary_secret_body_model_json2 == rotate_arbitrary_secret_body_model_json
+
+
+class TestModel_RotateCertificateBody():
+    """
+    Test Class for RotateCertificateBody
+    """
+
+    def test_rotate_certificate_body_serialization(self):
+        """
+        Test serialization/deserialization for RotateCertificateBody
+        """
+
+        # Construct a json representation of a RotateCertificateBody model
+        rotate_certificate_body_model_json = {}
+        rotate_certificate_body_model_json['certificate'] = 'testString'
+        rotate_certificate_body_model_json['private_key'] = 'testString'
+        rotate_certificate_body_model_json['intermediate'] = 'testString'
+
+        # Construct a model instance of RotateCertificateBody by calling from_dict on the json representation
+        rotate_certificate_body_model = RotateCertificateBody.from_dict(rotate_certificate_body_model_json)
+        assert rotate_certificate_body_model != False
+
+        # Construct a model instance of RotateCertificateBody by calling from_dict on the json representation
+        rotate_certificate_body_model_dict = RotateCertificateBody.from_dict(
+            rotate_certificate_body_model_json).__dict__
+        rotate_certificate_body_model2 = RotateCertificateBody(**rotate_certificate_body_model_dict)
+
+        # Verify the model instances are equivalent
+        assert rotate_certificate_body_model == rotate_certificate_body_model2
+
+        # Convert model instance back to dict and verify no loss of data
+        rotate_certificate_body_model_json2 = rotate_certificate_body_model.to_dict()
+        assert rotate_certificate_body_model_json2 == rotate_certificate_body_model_json
+
+
+class TestModel_RotateUsernamePasswordSecretBody():
+    """
+    Test Class for RotateUsernamePasswordSecretBody
+    """
+
+    def test_rotate_username_password_secret_body_serialization(self):
+        """
+        Test serialization/deserialization for RotateUsernamePasswordSecretBody
+        """
+
+        # Construct a json representation of a RotateUsernamePasswordSecretBody model
+        rotate_username_password_secret_body_model_json = {}
+        rotate_username_password_secret_body_model_json['password'] = 'testString'
+
+        # Construct a model instance of RotateUsernamePasswordSecretBody by calling from_dict on the json representation
+        rotate_username_password_secret_body_model = RotateUsernamePasswordSecretBody.from_dict(
+            rotate_username_password_secret_body_model_json)
+        assert rotate_username_password_secret_body_model != False
+
+        # Construct a model instance of RotateUsernamePasswordSecretBody by calling from_dict on the json representation
+        rotate_username_password_secret_body_model_dict = RotateUsernamePasswordSecretBody.from_dict(
+            rotate_username_password_secret_body_model_json).__dict__
+        rotate_username_password_secret_body_model2 = RotateUsernamePasswordSecretBody(
+            **rotate_username_password_secret_body_model_dict)
+
+        # Verify the model instances are equivalent
+        assert rotate_username_password_secret_body_model == rotate_username_password_secret_body_model2
+
+        # Convert model instance back to dict and verify no loss of data
+        rotate_username_password_secret_body_model_json2 = rotate_username_password_secret_body_model.to_dict()
+        assert rotate_username_password_secret_body_model_json2 == rotate_username_password_secret_body_model_json
+
+
+class TestModel_UsernamePasswordSecretMetadata():
+    """
+    Test Class for UsernamePasswordSecretMetadata
+    """
+
+    def test_username_password_secret_metadata_serialization(self):
+        """
+        Test serialization/deserialization for UsernamePasswordSecretMetadata
+        """
+
+        # Construct a json representation of a UsernamePasswordSecretMetadata model
+        username_password_secret_metadata_model_json = {}
+        username_password_secret_metadata_model_json['id'] = 'b0283d74-0894-830b-f81d-1f115f67729f'
+        username_password_secret_metadata_model_json['labels'] = ['dev', 'us-south']
+        username_password_secret_metadata_model_json['name'] = 'example-secret'
+        username_password_secret_metadata_model_json['description'] = 'Extended description for this secret.'
+        username_password_secret_metadata_model_json['secret_group_id'] = 'f5283d74-9024-230a-b72c-1f115f61290f'
+        username_password_secret_metadata_model_json['state'] = 1
+        username_password_secret_metadata_model_json['state_description'] = 'Active'
+        username_password_secret_metadata_model_json['secret_type'] = 'arbitrary'
+        username_password_secret_metadata_model_json[
             'crn'] = 'crn:v1:bluemix:public:secrets-manager:<region>:a/<account-id>:<service-instance>:secret:<secret-id>'
-        secret_resource_username_password_secret_resource_model_json['creation_date'] = datetime_to_string(
-            string_to_datetime("2018-04-12T23:20:50.520Z"))
-        secret_resource_username_password_secret_resource_model_json['created_by'] = 'testString'
-        secret_resource_username_password_secret_resource_model_json['last_update_date'] = datetime_to_string(
-            string_to_datetime("2018-04-12T23:20:50.520Z"))
-        secret_resource_username_password_secret_resource_model_json['versions'] = [secret_version_model]
-        secret_resource_username_password_secret_resource_model_json['username'] = 'user123'
-        secret_resource_username_password_secret_resource_model_json['password'] = 'rainy-cloudy-coffee-book'
-        secret_resource_username_password_secret_resource_model_json['secret_data'] = {'foo': 'bar'}
-        secret_resource_username_password_secret_resource_model_json['expiration_date'] = datetime_to_string(
-            string_to_datetime("2030-04-01T09:30:00.000Z"))
-        secret_resource_username_password_secret_resource_model_json['next_rotation_date'] = datetime_to_string(
-            string_to_datetime("2025-04-12T23:20:50.520Z"))
+        username_password_secret_metadata_model_json['creation_date'] = "2018-04-12T23:20:50.520000Z"
+        username_password_secret_metadata_model_json['created_by'] = 'ServiceId-cb258cb9-8de3-4ac0-9aec-b2b2d27ac976'
+        username_password_secret_metadata_model_json['last_update_date'] = "2018-04-12T23:20:50.520000Z"
+        username_password_secret_metadata_model_json['versions_total'] = 1
+        username_password_secret_metadata_model_json['expiration_date'] = "2030-04-01T09:30:00Z"
 
-        # Construct a model instance of SecretResourceUsernamePasswordSecretResource by calling from_dict on the json representation
-        secret_resource_username_password_secret_resource_model = SecretResourceUsernamePasswordSecretResource.from_dict(
-            secret_resource_username_password_secret_resource_model_json)
-        assert secret_resource_username_password_secret_resource_model != False
+        # Construct a model instance of UsernamePasswordSecretMetadata by calling from_dict on the json representation
+        username_password_secret_metadata_model = UsernamePasswordSecretMetadata.from_dict(
+            username_password_secret_metadata_model_json)
+        assert username_password_secret_metadata_model != False
 
-        # Construct a model instance of SecretResourceUsernamePasswordSecretResource by calling from_dict on the json representation
-        secret_resource_username_password_secret_resource_model_dict = SecretResourceUsernamePasswordSecretResource.from_dict(
-            secret_resource_username_password_secret_resource_model_json).__dict__
-        secret_resource_username_password_secret_resource_model2 = SecretResourceUsernamePasswordSecretResource(
-            **secret_resource_username_password_secret_resource_model_dict)
+        # Construct a model instance of UsernamePasswordSecretMetadata by calling from_dict on the json representation
+        username_password_secret_metadata_model_dict = UsernamePasswordSecretMetadata.from_dict(
+            username_password_secret_metadata_model_json).__dict__
+        username_password_secret_metadata_model2 = UsernamePasswordSecretMetadata(
+            **username_password_secret_metadata_model_dict)
 
         # Verify the model instances are equivalent
-        assert secret_resource_username_password_secret_resource_model == secret_resource_username_password_secret_resource_model2
+        assert username_password_secret_metadata_model == username_password_secret_metadata_model2
 
         # Convert model instance back to dict and verify no loss of data
-        secret_resource_username_password_secret_resource_model_json2 = secret_resource_username_password_secret_resource_model.to_dict()
-        assert secret_resource_username_password_secret_resource_model_json2 == secret_resource_username_password_secret_resource_model_json
+        username_password_secret_metadata_model_json2 = username_password_secret_metadata_model.to_dict()
+        assert username_password_secret_metadata_model_json2 == username_password_secret_metadata_model_json
+
+
+class TestModel_UsernamePasswordSecretResource():
+    """
+    Test Class for UsernamePasswordSecretResource
+    """
+
+    def test_username_password_secret_resource_serialization(self):
+        """
+        Test serialization/deserialization for UsernamePasswordSecretResource
+        """
+
+        # Construct a json representation of a UsernamePasswordSecretResource model
+        username_password_secret_resource_model_json = {}
+        username_password_secret_resource_model_json['id'] = 'testString'
+        username_password_secret_resource_model_json['name'] = 'testString'
+        username_password_secret_resource_model_json['description'] = 'testString'
+        username_password_secret_resource_model_json['secret_group_id'] = 'testString'
+        username_password_secret_resource_model_json['labels'] = ['testString']
+        username_password_secret_resource_model_json['state'] = 0
+        username_password_secret_resource_model_json['state_description'] = 'Active'
+        username_password_secret_resource_model_json['secret_type'] = 'arbitrary'
+        username_password_secret_resource_model_json[
+            'crn'] = 'crn:v1:bluemix:public:secrets-manager:<region>:a/<account-id>:<service-instance>:secret:<secret-id>'
+        username_password_secret_resource_model_json['creation_date'] = "2018-04-12T23:20:50.520000Z"
+        username_password_secret_resource_model_json['created_by'] = 'testString'
+        username_password_secret_resource_model_json['last_update_date'] = "2018-04-12T23:20:50.520000Z"
+        username_password_secret_resource_model_json['versions_total'] = 1
+        username_password_secret_resource_model_json['versions'] = [{}]
+        username_password_secret_resource_model_json['username'] = 'user123'
+        username_password_secret_resource_model_json['password'] = 'rainy-cloudy-coffee-book'
+        username_password_secret_resource_model_json['secret_data'] = {'foo': 'bar'}
+        username_password_secret_resource_model_json['expiration_date'] = "2030-04-01T09:30:00Z"
+        username_password_secret_resource_model_json['next_rotation_date'] = "2025-04-12T23:20:50.520000Z"
+
+        # Construct a model instance of UsernamePasswordSecretResource by calling from_dict on the json representation
+        username_password_secret_resource_model = UsernamePasswordSecretResource.from_dict(
+            username_password_secret_resource_model_json)
+        assert username_password_secret_resource_model != False
+
+        # Construct a model instance of UsernamePasswordSecretResource by calling from_dict on the json representation
+        username_password_secret_resource_model_dict = UsernamePasswordSecretResource.from_dict(
+            username_password_secret_resource_model_json).__dict__
+        username_password_secret_resource_model2 = UsernamePasswordSecretResource(
+            **username_password_secret_resource_model_dict)
+
+        # Verify the model instances are equivalent
+        assert username_password_secret_resource_model == username_password_secret_resource_model2
+
+        # Convert model instance back to dict and verify no loss of data
+        username_password_secret_resource_model_json2 = username_password_secret_resource_model.to_dict()
+        assert username_password_secret_resource_model_json2 == username_password_secret_resource_model_json
+
+
+class TestModel_UsernamePasswordSecretVersionMetadata():
+    """
+    Test Class for UsernamePasswordSecretVersionMetadata
+    """
+
+    def test_username_password_secret_version_metadata_serialization(self):
+        """
+        Test serialization/deserialization for UsernamePasswordSecretVersionMetadata
+        """
+
+        # Construct a json representation of a UsernamePasswordSecretVersionMetadata model
+        username_password_secret_version_metadata_model_json = {}
+        username_password_secret_version_metadata_model_json['id'] = '4a0225e9-17a0-46c1-ace7-f25bcf4237d4'
+        username_password_secret_version_metadata_model_json['creation_date'] = "2019-01-01T12:00:00Z"
+        username_password_secret_version_metadata_model_json['created_by'] = 'testString'
+        username_password_secret_version_metadata_model_json['auto_rotated'] = True
+
+        # Construct a model instance of UsernamePasswordSecretVersionMetadata by calling from_dict on the json representation
+        username_password_secret_version_metadata_model = UsernamePasswordSecretVersionMetadata.from_dict(
+            username_password_secret_version_metadata_model_json)
+        assert username_password_secret_version_metadata_model != False
+
+        # Construct a model instance of UsernamePasswordSecretVersionMetadata by calling from_dict on the json representation
+        username_password_secret_version_metadata_model_dict = UsernamePasswordSecretVersionMetadata.from_dict(
+            username_password_secret_version_metadata_model_json).__dict__
+        username_password_secret_version_metadata_model2 = UsernamePasswordSecretVersionMetadata(
+            **username_password_secret_version_metadata_model_dict)
+
+        # Verify the model instances are equivalent
+        assert username_password_secret_version_metadata_model == username_password_secret_version_metadata_model2
+
+        # Convert model instance back to dict and verify no loss of data
+        username_password_secret_version_metadata_model_json2 = username_password_secret_version_metadata_model.to_dict()
+        assert username_password_secret_version_metadata_model_json2 == username_password_secret_version_metadata_model_json
 
 # endregion
 ##############################################################################
