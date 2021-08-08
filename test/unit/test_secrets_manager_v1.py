@@ -69,9 +69,9 @@ class TestNewInstance():
             service = SecretsManagerV1.new_instance(
             )
 
-class TestCreateSecretConfigElement():
+class TestCreateConfigElement():
     """
-    Test Class for create_secret_config_element
+    Test Class for create_config_element
     """
 
     def preprocess_url(self, request_url: str):
@@ -86,9 +86,9 @@ class TestCreateSecretConfigElement():
             return re.compile(request_url.rstrip('/') + '/+')
 
     @responses.activate
-    def test_create_secret_config_element_all_params(self):
+    def test_create_config_element_all_params(self):
         """
-        create_secret_config_element()
+        create_config_element()
         """
         # Set up mock
         url = self.preprocess_url(_base_url + '/api/v1/config/public_cert/certificate_authorities')
@@ -107,7 +107,7 @@ class TestCreateSecretConfigElement():
         config = { 'foo': 'bar' }
 
         # Invoke method
-        response = _service.create_secret_config_element(
+        response = _service.create_config_element(
             secret_type,
             config_element,
             name,
@@ -127,9 +127,9 @@ class TestCreateSecretConfigElement():
 
 
     @responses.activate
-    def test_create_secret_config_element_value_error(self):
+    def test_create_config_element_value_error(self):
         """
-        test_create_secret_config_element_value_error()
+        test_create_config_element_value_error()
         """
         # Set up mock
         url = self.preprocess_url(_base_url + '/api/v1/config/public_cert/certificate_authorities')
@@ -158,13 +158,13 @@ class TestCreateSecretConfigElement():
         for param in req_param_dict.keys():
             req_copy = {key:val if key is not param else None for (key,val) in req_param_dict.items()}
             with pytest.raises(ValueError):
-                _service.create_secret_config_element(**req_copy)
+                _service.create_config_element(**req_copy)
 
 
 
-class TestGetSecretConfigElement():
+class TestGetConfigElements():
     """
-    Test Class for get_secret_config_element
+    Test Class for get_config_elements
     """
 
     def preprocess_url(self, request_url: str):
@@ -179,9 +179,9 @@ class TestGetSecretConfigElement():
             return re.compile(request_url.rstrip('/') + '/+')
 
     @responses.activate
-    def test_get_secret_config_element_all_params(self):
+    def test_get_config_elements_all_params(self):
         """
-        get_secret_config_element()
+        get_config_elements()
         """
         # Set up mock
         url = self.preprocess_url(_base_url + '/api/v1/config/public_cert/certificate_authorities')
@@ -197,7 +197,7 @@ class TestGetSecretConfigElement():
         config_element = 'certificate_authorities'
 
         # Invoke method
-        response = _service.get_secret_config_element(
+        response = _service.get_config_elements(
             secret_type,
             config_element,
             headers={}
@@ -209,9 +209,9 @@ class TestGetSecretConfigElement():
 
 
     @responses.activate
-    def test_get_secret_config_element_value_error(self):
+    def test_get_config_elements_value_error(self):
         """
-        test_get_secret_config_element_value_error()
+        test_get_config_elements_value_error()
         """
         # Set up mock
         url = self.preprocess_url(_base_url + '/api/v1/config/public_cert/certificate_authorities')
@@ -234,13 +234,13 @@ class TestGetSecretConfigElement():
         for param in req_param_dict.keys():
             req_copy = {key:val if key is not param else None for (key,val) in req_param_dict.items()}
             with pytest.raises(ValueError):
-                _service.get_secret_config_element(**req_copy)
+                _service.get_config_elements(**req_copy)
 
 
 
-class TestUpdateSecretConfigElement():
+class TestUpdateConfigElement():
     """
-    Test Class for update_secret_config_element
+    Test Class for update_config_element
     """
 
     def preprocess_url(self, request_url: str):
@@ -255,9 +255,9 @@ class TestUpdateSecretConfigElement():
             return re.compile(request_url.rstrip('/') + '/+')
 
     @responses.activate
-    def test_update_secret_config_element_all_params(self):
+    def test_update_config_element_all_params(self):
         """
-        update_secret_config_element()
+        update_config_element()
         """
         # Set up mock
         url = self.preprocess_url(_base_url + '/api/v1/config/public_cert/certificate_authorities/testString')
@@ -276,7 +276,7 @@ class TestUpdateSecretConfigElement():
         config = { 'foo': 'bar' }
 
         # Invoke method
-        response = _service.update_secret_config_element(
+        response = _service.update_config_element(
             secret_type,
             config_element,
             config_name,
@@ -295,9 +295,9 @@ class TestUpdateSecretConfigElement():
 
 
     @responses.activate
-    def test_update_secret_config_element_value_error(self):
+    def test_update_config_element_value_error(self):
         """
-        test_update_secret_config_element_value_error()
+        test_update_config_element_value_error()
         """
         # Set up mock
         url = self.preprocess_url(_base_url + '/api/v1/config/public_cert/certificate_authorities/testString')
@@ -326,13 +326,13 @@ class TestUpdateSecretConfigElement():
         for param in req_param_dict.keys():
             req_copy = {key:val if key is not param else None for (key,val) in req_param_dict.items()}
             with pytest.raises(ValueError):
-                _service.update_secret_config_element(**req_copy)
+                _service.update_config_element(**req_copy)
 
 
 
-class TestDeleteSecretConfigElement():
+class TestDeleteConfigElement():
     """
-    Test Class for delete_secret_config_element
+    Test Class for delete_config_element
     """
 
     def preprocess_url(self, request_url: str):
@@ -347,9 +347,9 @@ class TestDeleteSecretConfigElement():
             return re.compile(request_url.rstrip('/') + '/+')
 
     @responses.activate
-    def test_delete_secret_config_element_all_params(self):
+    def test_delete_config_element_all_params(self):
         """
-        delete_secret_config_element()
+        delete_config_element()
         """
         # Set up mock
         url = self.preprocess_url(_base_url + '/api/v1/config/public_cert/certificate_authorities/testString')
@@ -363,7 +363,7 @@ class TestDeleteSecretConfigElement():
         config_name = 'testString'
 
         # Invoke method
-        response = _service.delete_secret_config_element(
+        response = _service.delete_config_element(
             secret_type,
             config_element,
             config_name,
@@ -376,9 +376,9 @@ class TestDeleteSecretConfigElement():
 
 
     @responses.activate
-    def test_delete_secret_config_element_value_error(self):
+    def test_delete_config_element_value_error(self):
         """
-        test_delete_secret_config_element_value_error()
+        test_delete_config_element_value_error()
         """
         # Set up mock
         url = self.preprocess_url(_base_url + '/api/v1/config/public_cert/certificate_authorities/testString')
@@ -400,13 +400,13 @@ class TestDeleteSecretConfigElement():
         for param in req_param_dict.keys():
             req_copy = {key:val if key is not param else None for (key,val) in req_param_dict.items()}
             with pytest.raises(ValueError):
-                _service.delete_secret_config_element(**req_copy)
+                _service.delete_config_element(**req_copy)
 
 
 
-class TestGetSingleSecretConfigElement():
+class TestGetConfigElement():
     """
-    Test Class for get_single_secret_config_element
+    Test Class for get_config_element
     """
 
     def preprocess_url(self, request_url: str):
@@ -421,9 +421,9 @@ class TestGetSingleSecretConfigElement():
             return re.compile(request_url.rstrip('/') + '/+')
 
     @responses.activate
-    def test_get_single_secret_config_element_all_params(self):
+    def test_get_config_element_all_params(self):
         """
-        get_single_secret_config_element()
+        get_config_element()
         """
         # Set up mock
         url = self.preprocess_url(_base_url + '/api/v1/config/public_cert/certificate_authorities/testString')
@@ -440,7 +440,7 @@ class TestGetSingleSecretConfigElement():
         config_name = 'testString'
 
         # Invoke method
-        response = _service.get_single_secret_config_element(
+        response = _service.get_config_element(
             secret_type,
             config_element,
             config_name,
@@ -453,9 +453,9 @@ class TestGetSingleSecretConfigElement():
 
 
     @responses.activate
-    def test_get_single_secret_config_element_value_error(self):
+    def test_get_config_element_value_error(self):
         """
-        test_get_single_secret_config_element_value_error()
+        test_get_config_element_value_error()
         """
         # Set up mock
         url = self.preprocess_url(_base_url + '/api/v1/config/public_cert/certificate_authorities/testString')
@@ -480,7 +480,7 @@ class TestGetSingleSecretConfigElement():
         for param in req_param_dict.keys():
             req_copy = {key:val if key is not param else None for (key,val) in req_param_dict.items()}
             with pytest.raises(ValueError):
-                _service.get_single_secret_config_element(**req_copy)
+                _service.get_config_element(**req_copy)
 
 
 

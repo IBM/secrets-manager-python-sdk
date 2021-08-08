@@ -91,7 +91,7 @@ class TestPublicCertSecret(unittest.TestCase):
     def test_create_configs_and_order_certificate(self):
         ca_config_name = generate_name() + '-ca'
 
-        response = secretsManager.create_secret_config_element(
+        response = secretsManager.create_config_element(
             'public_cert', 'certificate_authorities', ca_config_name, 'letsencrypt-stage', {
                 'PRIVATE_KEY': os.environ.get('CA_CONFIG_PRIVATE_KEY').replace("\\n", "\n"),
             })
@@ -100,7 +100,7 @@ class TestPublicCertSecret(unittest.TestCase):
 
         dns_config_name = generate_name() + '-dns'
 
-        response = secretsManager.create_secret_config_element(
+        response = secretsManager.create_config_element(
             'public_cert', 'dns_providers', dns_config_name, 'cis', {
                 "CIS_CRN": os.environ.get("DNS_CONFIG_CRN"),
                 "CIS_APIKEY": os.environ.get("SECRETS_MANAGER_API_APIKEY"),
@@ -133,7 +133,7 @@ class TestPublicCertSecret(unittest.TestCase):
     def test_create_get_list_delete_configs(self):
         ca_config_name = generate_name() + '-ca'
 
-        response = secretsManager.create_secret_config_element(
+        response = secretsManager.create_config_element(
             'public_cert', 'certificate_authorities', ca_config_name, 'letsencrypt-stage', {
                 'PRIVATE_KEY': os.environ.get('CA_CONFIG_PRIVATE_KEY').replace("\\n", "\n"),
             })
@@ -142,7 +142,7 @@ class TestPublicCertSecret(unittest.TestCase):
 
         dns_config_name = generate_name() + '-dns'
 
-        response = secretsManager.create_secret_config_element(
+        response = secretsManager.create_config_element(
             'public_cert', 'dns_providers', dns_config_name, 'cis', {
                 "CIS_CRN": os.environ.get("DNS_CONFIG_CRN"),
                 "CIS_APIKEY": os.environ.get("SECRETS_MANAGER_API_APIKEY"),
@@ -150,12 +150,12 @@ class TestPublicCertSecret(unittest.TestCase):
 
         assert response.status_code == 201
 
-        response = secretsManager.get_single_secret_config_element(
+        response = secretsManager.get_config_element(
             'public_cert', 'dns_providers', dns_config_name)
 
         assert response.status_code == 200
 
-        response = secretsManager.get_single_secret_config_element(
+        response = secretsManager.get_config_element(
             'public_cert', 'certificate_authorities', ca_config_name)
 
         assert response.status_code == 200
@@ -167,12 +167,12 @@ class TestPublicCertSecret(unittest.TestCase):
         assert response.result['resources'][0]['dns_providers'] is not None
         assert response.result['resources'][0]['certificate_authorities'] is not None
 
-        response = secretsManager.delete_secret_config_element(
+        response = secretsManager.delete_config_element(
             'public_cert', 'certificate_authorities', ca_config_name)
 
         assert response.status_code == 204
 
-        response = secretsManager.delete_secret_config_element(
+        response = secretsManager.delete_config_element(
             'public_cert', 'dns_providers', dns_config_name)
 
         assert response.status_code == 204

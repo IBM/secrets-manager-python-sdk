@@ -79,7 +79,7 @@ class SecretsManagerV1(BaseService):
     #########################
 
 
-    def create_secret_config_element(self,
+    def create_config_element(self,
         secret_type: str,
         config_element: str,
         name: str,
@@ -115,7 +115,7 @@ class SecretsManagerV1(BaseService):
         headers = {}
         sdk_headers = get_sdk_headers(service_name=self.DEFAULT_SERVICE_NAME,
                                       service_version='V1',
-                                      operation_id='create_secret_config_element')
+                                      operation_id='create_config_element')
         headers.update(sdk_headers)
 
         data = {
@@ -144,7 +144,7 @@ class SecretsManagerV1(BaseService):
         return response
 
 
-    def get_secret_config_element(self,
+    def get_config_elements(self,
         secret_type: str,
         config_element: str,
         **kwargs
@@ -168,7 +168,7 @@ class SecretsManagerV1(BaseService):
         headers = {}
         sdk_headers = get_sdk_headers(service_name=self.DEFAULT_SERVICE_NAME,
                                       service_version='V1',
-                                      operation_id='get_secret_config_element')
+                                      operation_id='get_config_elements')
         headers.update(sdk_headers)
 
         if 'headers' in kwargs:
@@ -187,7 +187,7 @@ class SecretsManagerV1(BaseService):
         return response
 
 
-    def update_secret_config_element(self,
+    def update_config_element(self,
         secret_type: str,
         config_element: str,
         config_name: str,
@@ -223,7 +223,7 @@ class SecretsManagerV1(BaseService):
         headers = {}
         sdk_headers = get_sdk_headers(service_name=self.DEFAULT_SERVICE_NAME,
                                       service_version='V1',
-                                      operation_id='update_secret_config_element')
+                                      operation_id='update_config_element')
         headers.update(sdk_headers)
 
         data = {
@@ -251,7 +251,7 @@ class SecretsManagerV1(BaseService):
         return response
 
 
-    def delete_secret_config_element(self,
+    def delete_config_element(self,
         secret_type: str,
         config_element: str,
         config_name: str,
@@ -279,7 +279,7 @@ class SecretsManagerV1(BaseService):
         headers = {}
         sdk_headers = get_sdk_headers(service_name=self.DEFAULT_SERVICE_NAME,
                                       service_version='V1',
-                                      operation_id='delete_secret_config_element')
+                                      operation_id='delete_config_element')
         headers.update(sdk_headers)
 
         if 'headers' in kwargs:
@@ -297,7 +297,7 @@ class SecretsManagerV1(BaseService):
         return response
 
 
-    def get_single_secret_config_element(self,
+    def get_config_element(self,
         secret_type: str,
         config_element: str,
         config_name: str,
@@ -325,7 +325,7 @@ class SecretsManagerV1(BaseService):
         headers = {}
         sdk_headers = get_sdk_headers(service_name=self.DEFAULT_SERVICE_NAME,
                                       service_version='V1',
-                                      operation_id='get_single_secret_config_element')
+                                      operation_id='get_config_element')
         headers.update(sdk_headers)
 
         if 'headers' in kwargs:
@@ -1384,27 +1384,9 @@ class SecretsManagerV1(BaseService):
         return response
 
 
-class CreateSecretConfigElementEnums:
+class CreateConfigElementEnums:
     """
-    Enums for create_secret_config_element parameters.
-    """
-
-    class SecretType(str, Enum):
-        """
-        The secret type.
-        """
-        PUBLIC_CERT = 'public_cert'
-    class ConfigElement(str, Enum):
-        """
-        The Config element type.
-        """
-        CERTIFICATE_AUTHORITIES = 'certificate_authorities'
-        DNS_PROVIDERS = 'dns_providers'
-
-
-class GetSecretConfigElementEnums:
-    """
-    Enums for get_secret_config_element parameters.
+    Enums for create_config_element parameters.
     """
 
     class SecretType(str, Enum):
@@ -1420,27 +1402,9 @@ class GetSecretConfigElementEnums:
         DNS_PROVIDERS = 'dns_providers'
 
 
-class UpdateSecretConfigElementEnums:
+class GetConfigElementsEnums:
     """
-    Enums for update_secret_config_element parameters.
-    """
-
-    class SecretType(str, Enum):
-        """
-        The secret type.
-        """
-        PUBLIC_CERT = 'public_cert'
-    class ConfigElement(str, Enum):
-        """
-        The Config element type.
-        """
-        CERTIFICATE_AUTHORITIES = 'certificate_authorities'
-        DNS_PROVIDERS = 'dns_providers'
-
-
-class DeleteSecretConfigElementEnums:
-    """
-    Enums for delete_secret_config_element parameters.
+    Enums for get_config_elements parameters.
     """
 
     class SecretType(str, Enum):
@@ -1456,9 +1420,45 @@ class DeleteSecretConfigElementEnums:
         DNS_PROVIDERS = 'dns_providers'
 
 
-class GetSingleSecretConfigElementEnums:
+class UpdateConfigElementEnums:
     """
-    Enums for get_single_secret_config_element parameters.
+    Enums for update_config_element parameters.
+    """
+
+    class SecretType(str, Enum):
+        """
+        The secret type.
+        """
+        PUBLIC_CERT = 'public_cert'
+    class ConfigElement(str, Enum):
+        """
+        The Config element type.
+        """
+        CERTIFICATE_AUTHORITIES = 'certificate_authorities'
+        DNS_PROVIDERS = 'dns_providers'
+
+
+class DeleteConfigElementEnums:
+    """
+    Enums for delete_config_element parameters.
+    """
+
+    class SecretType(str, Enum):
+        """
+        The secret type.
+        """
+        PUBLIC_CERT = 'public_cert'
+    class ConfigElement(str, Enum):
+        """
+        The Config element type.
+        """
+        CERTIFICATE_AUTHORITIES = 'certificate_authorities'
+        DNS_PROVIDERS = 'dns_providers'
+
+
+class GetConfigElementEnums:
+    """
+    Enums for get_config_element parameters.
     """
 
     class SecretType(str, Enum):
