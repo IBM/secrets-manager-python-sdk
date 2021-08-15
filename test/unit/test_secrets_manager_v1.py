@@ -2377,36 +2377,36 @@ class TestModel_CollectionMetadata():
         collection_metadata_model_json2 = collection_metadata_model.to_dict()
         assert collection_metadata_model_json2 == collection_metadata_model_json
 
-class TestModel_ConfigElement():
+class TestModel_ConfigElementDef():
     """
-    Test Class for ConfigElement
+    Test Class for ConfigElementDef
     """
 
-    def test_config_element_serialization(self):
+    def test_config_element_def_serialization(self):
         """
-        Test serialization/deserialization for ConfigElement
+        Test serialization/deserialization for ConfigElementDef
         """
 
-        # Construct a json representation of a ConfigElement model
-        config_element_model_json = {}
-        config_element_model_json['name'] = 'testString'
-        config_element_model_json['type'] = 'testString'
-        config_element_model_json['config'] = { 'foo': 'bar' }
+        # Construct a json representation of a ConfigElementDef model
+        config_element_def_model_json = {}
+        config_element_def_model_json['name'] = 'testString'
+        config_element_def_model_json['type'] = 'testString'
+        config_element_def_model_json['config'] = { 'foo': 'bar' }
 
-        # Construct a model instance of ConfigElement by calling from_dict on the json representation
-        config_element_model = ConfigElement.from_dict(config_element_model_json)
-        assert config_element_model != False
+        # Construct a model instance of ConfigElementDef by calling from_dict on the json representation
+        config_element_def_model = ConfigElementDef.from_dict(config_element_def_model_json)
+        assert config_element_def_model != False
 
-        # Construct a model instance of ConfigElement by calling from_dict on the json representation
-        config_element_model_dict = ConfigElement.from_dict(config_element_model_json).__dict__
-        config_element_model2 = ConfigElement(**config_element_model_dict)
+        # Construct a model instance of ConfigElementDef by calling from_dict on the json representation
+        config_element_def_model_dict = ConfigElementDef.from_dict(config_element_def_model_json).__dict__
+        config_element_def_model2 = ConfigElementDef(**config_element_def_model_dict)
 
         # Verify the model instances are equivalent
-        assert config_element_model == config_element_model2
+        assert config_element_def_model == config_element_def_model2
 
         # Convert model instance back to dict and verify no loss of data
-        config_element_model_json2 = config_element_model.to_dict()
-        assert config_element_model_json2 == config_element_model_json
+        config_element_def_model_json2 = config_element_def_model.to_dict()
+        assert config_element_def_model_json2 == config_element_def_model_json
 
 class TestModel_ConfigElementMetadata():
     """
@@ -2790,15 +2790,15 @@ class TestModel_GetSingleConfigElement():
         collection_metadata_model['collection_type'] = 'application/vnd.ibm.secrets-manager.config+json'
         collection_metadata_model['collection_total'] = 1
 
-        config_element_model = {} # ConfigElement
-        config_element_model['name'] = 'testString'
-        config_element_model['type'] = 'testString'
-        config_element_model['config'] = { 'foo': 'bar' }
+        config_element_def_model = {} # ConfigElementDef
+        config_element_def_model['name'] = 'testString'
+        config_element_def_model['type'] = 'testString'
+        config_element_def_model['config'] = { 'foo': 'bar' }
 
         # Construct a json representation of a GetSingleConfigElement model
         get_single_config_element_model_json = {}
         get_single_config_element_model_json['metadata'] = collection_metadata_model
-        get_single_config_element_model_json['resources'] = [config_element_model]
+        get_single_config_element_model_json['resources'] = [config_element_def_model]
 
         # Construct a model instance of GetSingleConfigElement by calling from_dict on the json representation
         get_single_config_element_model = GetSingleConfigElement.from_dict(get_single_config_element_model_json)
@@ -3865,28 +3865,27 @@ class TestModel_PublicCertificateMetadataSecretResource():
 
         # Construct a json representation of a PublicCertificateMetadataSecretResource model
         public_certificate_metadata_secret_resource_model_json = {}
-        public_certificate_metadata_secret_resource_model_json['id'] = 'testString'
-        public_certificate_metadata_secret_resource_model_json['name'] = 'testString'
-        public_certificate_metadata_secret_resource_model_json['description'] = 'testString'
-        public_certificate_metadata_secret_resource_model_json['secret_group_id'] = 'testString'
-        public_certificate_metadata_secret_resource_model_json['labels'] = ['testString']
+        public_certificate_metadata_secret_resource_model_json['id'] = 'b0283d74-0894-830b-f81d-1f115f67729f'
+        public_certificate_metadata_secret_resource_model_json['labels'] = ['dev', 'us-south']
+        public_certificate_metadata_secret_resource_model_json['name'] = 'example-secret'
+        public_certificate_metadata_secret_resource_model_json['description'] = 'Extended description for this secret.'
+        public_certificate_metadata_secret_resource_model_json['secret_group_id'] = 'f5283d74-9024-230a-b72c-1f115f61290f'
         public_certificate_metadata_secret_resource_model_json['state'] = 0
         public_certificate_metadata_secret_resource_model_json['state_description'] = 'Active'
         public_certificate_metadata_secret_resource_model_json['secret_type'] = 'arbitrary'
         public_certificate_metadata_secret_resource_model_json['crn'] = 'crn:v1:bluemix:public:secrets-manager:<region>:a/<account-id>:<service-instance>:secret:<secret-id>'
         public_certificate_metadata_secret_resource_model_json['creation_date'] = "2018-04-12T23:20:50.520000Z"
-        public_certificate_metadata_secret_resource_model_json['created_by'] = 'testString'
+        public_certificate_metadata_secret_resource_model_json['created_by'] = 'ServiceId-cb258cb9-8de3-4ac0-9aec-b2b2d27ac976'
         public_certificate_metadata_secret_resource_model_json['last_update_date'] = "2018-04-12T23:20:50.520000Z"
         public_certificate_metadata_secret_resource_model_json['versions_total'] = 1
-        public_certificate_metadata_secret_resource_model_json['versions'] = [{}]
         public_certificate_metadata_secret_resource_model_json['issuer'] = 'GlobalSign'
         public_certificate_metadata_secret_resource_model_json['bundle_certs'] = True
-        public_certificate_metadata_secret_resource_model_json['ca'] = 'testString'
-        public_certificate_metadata_secret_resource_model_json['dns'] = 'testString'
         public_certificate_metadata_secret_resource_model_json['algorithm'] = 'SHA256-RSA'
         public_certificate_metadata_secret_resource_model_json['key_algorithm'] = 'RSA2048'
         public_certificate_metadata_secret_resource_model_json['alt_names'] = ['testString']
         public_certificate_metadata_secret_resource_model_json['common_name'] = 'example.com'
+        public_certificate_metadata_secret_resource_model_json['private_key_included'] = True
+        public_certificate_metadata_secret_resource_model_json['intermediate_included'] = True
         public_certificate_metadata_secret_resource_model_json['rotation'] = rotation_model
         public_certificate_metadata_secret_resource_model_json['issuance_info'] = issuance_info_model
 

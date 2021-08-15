@@ -1854,7 +1854,7 @@ class CollectionMetadata():
         APPLICATION_VND_IBM_SECRETS_MANAGER_ERROR_JSON = 'application/vnd.ibm.secrets-manager.error+json'
 
 
-class ConfigElement():
+class ConfigElementDef():
     """
     Config element.
 
@@ -1868,7 +1868,7 @@ class ConfigElement():
                  type: str,
                  config: object) -> None:
         """
-        Initialize a ConfigElement object.
+        Initialize a ConfigElementDef object.
 
         :param str name: Config element name.
         :param str type: Dns provider config type.
@@ -1879,26 +1879,26 @@ class ConfigElement():
         self.config = config
 
     @classmethod
-    def from_dict(cls, _dict: Dict) -> 'ConfigElement':
-        """Initialize a ConfigElement object from a json dictionary."""
+    def from_dict(cls, _dict: Dict) -> 'ConfigElementDef':
+        """Initialize a ConfigElementDef object from a json dictionary."""
         args = {}
         if 'name' in _dict:
             args['name'] = _dict.get('name')
         else:
-            raise ValueError('Required property \'name\' not present in ConfigElement JSON')
+            raise ValueError('Required property \'name\' not present in ConfigElementDef JSON')
         if 'type' in _dict:
             args['type'] = _dict.get('type')
         else:
-            raise ValueError('Required property \'type\' not present in ConfigElement JSON')
+            raise ValueError('Required property \'type\' not present in ConfigElementDef JSON')
         if 'config' in _dict:
             args['config'] = _dict.get('config')
         else:
-            raise ValueError('Required property \'config\' not present in ConfigElement JSON')
+            raise ValueError('Required property \'config\' not present in ConfigElementDef JSON')
         return cls(**args)
 
     @classmethod
     def _from_dict(cls, _dict):
-        """Initialize a ConfigElement object from a json dictionary."""
+        """Initialize a ConfigElementDef object from a json dictionary."""
         return cls.from_dict(_dict)
 
     def to_dict(self) -> Dict:
@@ -1917,16 +1917,16 @@ class ConfigElement():
         return self.to_dict()
 
     def __str__(self) -> str:
-        """Return a `str` version of this ConfigElement object."""
+        """Return a `str` version of this ConfigElementDef object."""
         return json.dumps(self.to_dict(), indent=2)
 
-    def __eq__(self, other: 'ConfigElement') -> bool:
+    def __eq__(self, other: 'ConfigElementDef') -> bool:
         """Return `true` when self and other are equal, false otherwise."""
         if not isinstance(other, self.__class__):
             return False
         return self.__dict__ == other.__dict__
 
-    def __ne__(self, other: 'ConfigElement') -> bool:
+    def __ne__(self, other: 'ConfigElementDef') -> bool:
         """Return `true` when self and other are not equal, false otherwise."""
         return not self == other
 
@@ -2622,18 +2622,18 @@ class GetSingleConfigElement():
 
     :attr CollectionMetadata metadata: The metadata that describes the resource
           array.
-    :attr List[ConfigElement] resources: A collection of resources.
+    :attr List[ConfigElementDef] resources: A collection of resources.
     """
 
     def __init__(self,
                  metadata: 'CollectionMetadata',
-                 resources: List['ConfigElement']) -> None:
+                 resources: List['ConfigElementDef']) -> None:
         """
         Initialize a GetSingleConfigElement object.
 
         :param CollectionMetadata metadata: The metadata that describes the
                resource array.
-        :param List[ConfigElement] resources: A collection of resources.
+        :param List[ConfigElementDef] resources: A collection of resources.
         """
         self.metadata = metadata
         self.resources = resources
@@ -2647,7 +2647,7 @@ class GetSingleConfigElement():
         else:
             raise ValueError('Required property \'metadata\' not present in GetSingleConfigElement JSON')
         if 'resources' in _dict:
-            args['resources'] = [ConfigElement.from_dict(x) for x in _dict.get('resources')]
+            args['resources'] = [ConfigElementDef.from_dict(x) for x in _dict.get('resources')]
         else:
             raise ValueError('Required property \'resources\' not present in GetSingleConfigElement JSON')
         return cls(**args)
@@ -2887,6 +2887,8 @@ class Rotation():
         """
         Initialize a Rotation object.
 
+        :param bool auto_rotate: (optional)
+        :param bool rotate_keys: (optional)
         """
         self.auto_rotate = auto_rotate
         self.rotate_keys = rotate_keys
@@ -2909,10 +2911,10 @@ class Rotation():
     def to_dict(self) -> Dict:
         """Return a json dictionary representing this model."""
         _dict = {}
-        if hasattr(self, 'auto_rotate') and getattr(self, 'auto_rotate') is not None:
-            _dict['auto_rotate'] = getattr(self, 'auto_rotate')
-        if hasattr(self, 'rotate_keys') and getattr(self, 'rotate_keys') is not None:
-            _dict['rotate_keys'] = getattr(self, 'rotate_keys')
+        if hasattr(self, 'auto_rotate') and self.auto_rotate is not None:
+            _dict['auto_rotate'] = self.auto_rotate
+        if hasattr(self, 'rotate_keys') and self.rotate_keys is not None:
+            _dict['rotate_keys'] = self.rotate_keys
         return _dict
 
     def _to_dict(self):
@@ -3718,6 +3720,7 @@ class ArbitrarySecretMetadata(SecretMetadata):
         USERNAME_PASSWORD = 'username_password'
         IAM_CREDENTIALS = 'iam_credentials'
         IMPORTED_CERT = 'imported_cert'
+        PUBLIC_CERT = 'public_cert'
 
 
 class ArbitrarySecretResource(SecretResource):
@@ -4288,6 +4291,7 @@ class CertificateSecretMetadata(SecretMetadata):
         USERNAME_PASSWORD = 'username_password'
         IAM_CREDENTIALS = 'iam_credentials'
         IMPORTED_CERT = 'imported_cert'
+        PUBLIC_CERT = 'public_cert'
 
 
 class CertificateSecretResource(SecretResource):
@@ -5355,6 +5359,7 @@ class IAMCredentialsSecretMetadata(SecretMetadata):
         USERNAME_PASSWORD = 'username_password'
         IAM_CREDENTIALS = 'iam_credentials'
         IMPORTED_CERT = 'imported_cert'
+        PUBLIC_CERT = 'public_cert'
 
 
 class IAMCredentialsSecretResource(SecretResource):
@@ -5768,7 +5773,14 @@ class PublicCertificateMetadataSecretResource(SecretMetadata):
     """
     Metadata properties that describe a public certificate secret.
 
-    :attr str id: (optional) The v4 UUID that uniquely identifies the secret.
+    :attr str id: (optional) The unique ID of the secret.
+    :attr List[str] labels: (optional) Labels that you can use to filter for secrets
+          in your instance.
+          Up to 30 labels can be created. Labels can be between 2-30 characters, including
+          spaces. Special characters not permitted include the angled bracket, comma,
+          colon, ampersand, and vertical pipe character (|).
+          To protect your privacy, do not use personal data, such as your name or
+          location, as a label for your secret.
     :attr str name: A human-readable alias to assign to your secret.
           To protect your privacy, do not use personal data, such as your name or
           location, as an alias for your secret.
@@ -5779,13 +5791,6 @@ class PublicCertificateMetadataSecretResource(SecretMetadata):
           secret group to assign to this secret.
           If you omit this parameter, your secret is assigned to the `default` secret
           group.
-    :attr List[str] labels: (optional) Labels that you can use to filter for secrets
-          in your instance.
-          Up to 30 labels can be created. Labels can be between 2-30 characters, including
-          spaces. Special characters not permitted include the angled bracket, comma,
-          colon, ampersand, and vertical pipe character (|).
-          To protect your privacy, do not use personal data, such as your name or
-          location, as a label for your secret.
     :attr int state: (optional) The secret state based on NIST SP 800-57. States are
           integers and correspond to the Pre-activation = 0, Active = 1,  Suspended = 2,
           Deactivated = 3, and Destroyed = 5 values.
@@ -5793,23 +5798,17 @@ class PublicCertificateMetadataSecretResource(SecretMetadata):
           state.
     :attr str secret_type: (optional) The secret type.
     :attr str crn: (optional) The Cloud Resource Name (CRN) that uniquely identifies
-          your Secrets Manager resource.
+          the resource.
     :attr datetime creation_date: (optional) The date the secret was created. The
           date format follows RFC 3339.
     :attr str created_by: (optional) The unique identifier for the entity that
           created the secret.
-    :attr datetime last_update_date: (optional) Updates when the actual secret is
-          modified. The date format follows RFC 3339.
-    :attr int versions_total: (optional) The number of versions that are associated
-          with a secret.
-    :attr List[dict] versions: (optional) An array that contains metadata for each
-          secret version. For more information on the metadata properties, see [Get secret
-          version metadata](#get-secret-version-metadata).
+    :attr datetime last_update_date: (optional) Updates when any part of the secret
+          metadata is modified. The date format follows RFC 3339.
+    :attr int versions_total: (optional) The number of versions the secret has.
     :attr str issuer: (optional) The distinguished name that identifies the entity
           that signed and issued the certificate.
     :attr bool bundle_certs: (optional)
-    :attr str ca: (optional) The configured ca name.
-    :attr str dns: (optional) The configured dns provider.
     :attr str algorithm: (optional) The identifier for the cryptographic algorthim
           to be used by the issuing certificate authority to sign the ceritificate.
     :attr str key_algorithm: (optional) The identifier for the cryptographic
@@ -5819,6 +5818,8 @@ class PublicCertificateMetadataSecretResource(SecretMetadata):
           the certificate.
     :attr str common_name: (optional) The fully qualified domain name or host domain
           name for the certificate.
+    :attr bool private_key_included: (optional)
+    :attr bool intermediate_included: (optional)
     :attr Rotation rotation: (optional)
     :attr IssuanceInfo issuance_info: (optional) Public certificate issuance info.
     """
@@ -5827,9 +5828,9 @@ class PublicCertificateMetadataSecretResource(SecretMetadata):
                  name: str,
                  *,
                  id: str = None,
+                 labels: List[str] = None,
                  description: str = None,
                  secret_group_id: str = None,
-                 labels: List[str] = None,
                  state: int = None,
                  state_description: str = None,
                  secret_type: str = None,
@@ -5838,15 +5839,14 @@ class PublicCertificateMetadataSecretResource(SecretMetadata):
                  created_by: str = None,
                  last_update_date: datetime = None,
                  versions_total: int = None,
-                 versions: List[dict] = None,
                  issuer: str = None,
                  bundle_certs: bool = None,
-                 ca: str = None,
-                 dns: str = None,
                  algorithm: str = None,
                  key_algorithm: str = None,
                  alt_names: List[str] = None,
                  common_name: str = None,
+                 private_key_included: bool = None,
+                 intermediate_included: bool = None,
                  rotation: 'Rotation' = None,
                  issuance_info: 'IssuanceInfo' = None) -> None:
         """
@@ -5855,13 +5855,6 @@ class PublicCertificateMetadataSecretResource(SecretMetadata):
         :param str name: A human-readable alias to assign to your secret.
                To protect your privacy, do not use personal data, such as your name or
                location, as an alias for your secret.
-        :param str description: (optional) An extended description of your secret.
-               To protect your privacy, do not use personal data, such as your name or
-               location, as a description for your secret.
-        :param str secret_group_id: (optional) The v4 UUID that uniquely identifies
-               the secret group to assign to this secret.
-               If you omit this parameter, your secret is assigned to the `default` secret
-               group.
         :param List[str] labels: (optional) Labels that you can use to filter for
                secrets in your instance.
                Up to 30 labels can be created. Labels can be between 2-30 characters,
@@ -5869,9 +5862,10 @@ class PublicCertificateMetadataSecretResource(SecretMetadata):
                bracket, comma, colon, ampersand, and vertical pipe character (|).
                To protect your privacy, do not use personal data, such as your name or
                location, as a label for your secret.
+        :param str description: (optional) An extended description of your secret.
+               To protect your privacy, do not use personal data, such as your name or
+               location, as a description for your secret.
         :param bool bundle_certs: (optional)
-        :param str ca: (optional) The configured ca name.
-        :param str dns: (optional) The configured dns provider.
         :param str key_algorithm: (optional) The identifier for the cryptographic
                algorithm to be used to generate the public key that is associated with the
                certificate.
@@ -5885,10 +5879,10 @@ class PublicCertificateMetadataSecretResource(SecretMetadata):
         """
         # pylint: disable=super-init-not-called
         self.id = id
+        self.labels = labels
         self.name = name
         self.description = description
         self.secret_group_id = secret_group_id
-        self.labels = labels
         self.state = state
         self.state_description = state_description
         self.secret_type = secret_type
@@ -5897,15 +5891,14 @@ class PublicCertificateMetadataSecretResource(SecretMetadata):
         self.created_by = created_by
         self.last_update_date = last_update_date
         self.versions_total = versions_total
-        self.versions = versions
         self.issuer = issuer
         self.bundle_certs = bundle_certs
-        self.ca = ca
-        self.dns = dns
         self.algorithm = algorithm
         self.key_algorithm = key_algorithm
         self.alt_names = alt_names
         self.common_name = common_name
+        self.private_key_included = private_key_included
+        self.intermediate_included = intermediate_included
         self.rotation = rotation
         self.issuance_info = issuance_info
 
@@ -5915,6 +5908,8 @@ class PublicCertificateMetadataSecretResource(SecretMetadata):
         args = {}
         if 'id' in _dict:
             args['id'] = _dict.get('id')
+        if 'labels' in _dict:
+            args['labels'] = _dict.get('labels')
         if 'name' in _dict:
             args['name'] = _dict.get('name')
         else:
@@ -5923,8 +5918,6 @@ class PublicCertificateMetadataSecretResource(SecretMetadata):
             args['description'] = _dict.get('description')
         if 'secret_group_id' in _dict:
             args['secret_group_id'] = _dict.get('secret_group_id')
-        if 'labels' in _dict:
-            args['labels'] = _dict.get('labels')
         if 'state' in _dict:
             args['state'] = _dict.get('state')
         if 'state_description' in _dict:
@@ -5941,16 +5934,10 @@ class PublicCertificateMetadataSecretResource(SecretMetadata):
             args['last_update_date'] = string_to_datetime(_dict.get('last_update_date'))
         if 'versions_total' in _dict:
             args['versions_total'] = _dict.get('versions_total')
-        if 'versions' in _dict:
-            args['versions'] = _dict.get('versions')
         if 'issuer' in _dict:
             args['issuer'] = _dict.get('issuer')
         if 'bundle_certs' in _dict:
             args['bundle_certs'] = _dict.get('bundle_certs')
-        if 'ca' in _dict:
-            args['ca'] = _dict.get('ca')
-        if 'dns' in _dict:
-            args['dns'] = _dict.get('dns')
         if 'algorithm' in _dict:
             args['algorithm'] = _dict.get('algorithm')
         if 'key_algorithm' in _dict:
@@ -5959,6 +5946,10 @@ class PublicCertificateMetadataSecretResource(SecretMetadata):
             args['alt_names'] = _dict.get('alt_names')
         if 'common_name' in _dict:
             args['common_name'] = _dict.get('common_name')
+        if 'private_key_included' in _dict:
+            args['private_key_included'] = _dict.get('private_key_included')
+        if 'intermediate_included' in _dict:
+            args['intermediate_included'] = _dict.get('intermediate_included')
         if 'rotation' in _dict:
             args['rotation'] = Rotation.from_dict(_dict.get('rotation'))
         if 'issuance_info' in _dict:
@@ -5975,14 +5966,14 @@ class PublicCertificateMetadataSecretResource(SecretMetadata):
         _dict = {}
         if hasattr(self, 'id') and getattr(self, 'id') is not None:
             _dict['id'] = getattr(self, 'id')
+        if hasattr(self, 'labels') and self.labels is not None:
+            _dict['labels'] = self.labels
         if hasattr(self, 'name') and self.name is not None:
             _dict['name'] = self.name
         if hasattr(self, 'description') and self.description is not None:
             _dict['description'] = self.description
-        if hasattr(self, 'secret_group_id') and self.secret_group_id is not None:
-            _dict['secret_group_id'] = self.secret_group_id
-        if hasattr(self, 'labels') and self.labels is not None:
-            _dict['labels'] = self.labels
+        if hasattr(self, 'secret_group_id') and getattr(self, 'secret_group_id') is not None:
+            _dict['secret_group_id'] = getattr(self, 'secret_group_id')
         if hasattr(self, 'state') and getattr(self, 'state') is not None:
             _dict['state'] = getattr(self, 'state')
         if hasattr(self, 'state_description') and getattr(self, 'state_description') is not None:
@@ -5999,16 +5990,10 @@ class PublicCertificateMetadataSecretResource(SecretMetadata):
             _dict['last_update_date'] = datetime_to_string(getattr(self, 'last_update_date'))
         if hasattr(self, 'versions_total') and getattr(self, 'versions_total') is not None:
             _dict['versions_total'] = getattr(self, 'versions_total')
-        if hasattr(self, 'versions') and getattr(self, 'versions') is not None:
-            _dict['versions'] = getattr(self, 'versions')
         if hasattr(self, 'issuer') and getattr(self, 'issuer') is not None:
             _dict['issuer'] = getattr(self, 'issuer')
         if hasattr(self, 'bundle_certs') and self.bundle_certs is not None:
             _dict['bundle_certs'] = self.bundle_certs
-        if hasattr(self, 'ca') and self.ca is not None:
-            _dict['ca'] = self.ca
-        if hasattr(self, 'dns') and self.dns is not None:
-            _dict['dns'] = self.dns
         if hasattr(self, 'algorithm') and getattr(self, 'algorithm') is not None:
             _dict['algorithm'] = getattr(self, 'algorithm')
         if hasattr(self, 'key_algorithm') and self.key_algorithm is not None:
@@ -6017,6 +6002,10 @@ class PublicCertificateMetadataSecretResource(SecretMetadata):
             _dict['alt_names'] = self.alt_names
         if hasattr(self, 'common_name') and self.common_name is not None:
             _dict['common_name'] = self.common_name
+        if hasattr(self, 'private_key_included') and getattr(self, 'private_key_included') is not None:
+            _dict['private_key_included'] = getattr(self, 'private_key_included')
+        if hasattr(self, 'intermediate_included') and getattr(self, 'intermediate_included') is not None:
+            _dict['intermediate_included'] = getattr(self, 'intermediate_included')
         if hasattr(self, 'rotation') and self.rotation is not None:
             _dict['rotation'] = self.rotation.to_dict()
         if hasattr(self, 'issuance_info') and self.issuance_info is not None:
@@ -6049,6 +6038,7 @@ class PublicCertificateMetadataSecretResource(SecretMetadata):
         USERNAME_PASSWORD = 'username_password'
         IAM_CREDENTIALS = 'iam_credentials'
         IMPORTED_CERT = 'imported_cert'
+        PUBLIC_CERT = 'public_cert'
 
 
     class KeyAlgorithmEnum(str, Enum):
@@ -6963,6 +6953,7 @@ class UsernamePasswordSecretMetadata(SecretMetadata):
         USERNAME_PASSWORD = 'username_password'
         IAM_CREDENTIALS = 'iam_credentials'
         IMPORTED_CERT = 'imported_cert'
+        PUBLIC_CERT = 'public_cert'
 
 
 class UsernamePasswordSecretResource(SecretResource):
