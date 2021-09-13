@@ -33,13 +33,13 @@ from ibm_secrets_manager_sdk.secrets_manager_v1 import *
 
 _service = SecretsManagerV1(
     authenticator=NoAuthAuthenticator()
-    )
+)
 
 _base_url = 'https://secrets-manager.cloud.ibm.com'
 _service.set_service_url(_base_url)
 
 ##############################################################################
-# Start of Service: Config
+# Start of Service: SecretGroups
 ##############################################################################
 # region
 
@@ -69,9 +69,9 @@ class TestNewInstance():
             service = SecretsManagerV1.new_instance(
             )
 
-class TestCreateConfigElement():
+class TestCreateSecretGroup():
     """
-    Test Class for create_config_element
+    Test Class for create_secret_group
     """
 
     def preprocess_url(self, request_url: str):
@@ -86,33 +86,534 @@ class TestCreateConfigElement():
             return re.compile(request_url.rstrip('/') + '/+')
 
     @responses.activate
-    def test_create_config_element_all_params(self):
+    def test_create_secret_group_all_params(self):
         """
-        create_config_element()
+        create_secret_group()
         """
         # Set up mock
-        url = self.preprocess_url(_base_url + '/api/v1/config/public_cert/certificate_authorities')
-        mock_response = '{"metadata": {"collection_type": "application/vnd.ibm.secrets-manager.config+json", "collection_total": 1}, "resources": [{"name": "name", "type": "type", "config": {"anyKey": "anyValue"}}]}'
+        url = self.preprocess_url(_base_url + '/api/v1/secret_groups')
+        mock_response = '{"metadata": {"collection_type": "application/vnd.ibm.secrets-manager.config+json", "collection_total": 1}, "resources": [{"id": "bc656587-8fda-4d05-9ad8-b1de1ec7e712", "name": "my-secret-group", "description": "Extended description for this group.", "creation_date": "2018-04-12T23:20:50.520Z", "last_update_date": "2018-05-12T23:20:50.520Z", "type": "application/vnd.ibm.secrets-manager.secret.group+json"}]}'
+        responses.add(responses.POST,
+                      url,
+                      body=mock_response,
+                      content_type='application/json',
+                      status=200)
+
+        # Construct a dict representation of a CollectionMetadata model
+        collection_metadata_model = {}
+        collection_metadata_model['collection_type'] = 'application/vnd.ibm.secrets-manager.secret.group+json'
+        collection_metadata_model['collection_total'] = 1
+
+        # Construct a dict representation of a SecretGroupResource model
+        secret_group_resource_model = {}
+        secret_group_resource_model['name'] = 'my-secret-group'
+        secret_group_resource_model['description'] = 'Extended description for this group.'
+        secret_group_resource_model['foo'] = 'testString'
+
+        # Set up parameter values
+        metadata = collection_metadata_model
+        resources = [secret_group_resource_model]
+
+        # Invoke method
+        response = _service.create_secret_group(
+            metadata,
+            resources,
+            headers={}
+        )
+
+        # Check for correct operation
+        assert len(responses.calls) == 1
+        assert response.status_code == 200
+        # Validate body params
+        req_body = json.loads(str(responses.calls[0].request.body, 'utf-8'))
+        assert req_body['metadata'] == collection_metadata_model
+        assert req_body['resources'] == [secret_group_resource_model]
+
+    def test_create_secret_group_all_params_with_retries(self):
+    	# Enable retries and run test_create_secret_group_all_params.
+    	_service.enable_retries()
+    	self.test_create_secret_group_all_params()
+
+    	# Disable retries and run test_create_secret_group_all_params.
+    	_service.disable_retries()
+    	self.test_create_secret_group_all_params()
+
+    @responses.activate
+    def test_create_secret_group_value_error(self):
+        """
+        test_create_secret_group_value_error()
+        """
+        # Set up mock
+        url = self.preprocess_url(_base_url + '/api/v1/secret_groups')
+        mock_response = '{"metadata": {"collection_type": "application/vnd.ibm.secrets-manager.config+json", "collection_total": 1}, "resources": [{"id": "bc656587-8fda-4d05-9ad8-b1de1ec7e712", "name": "my-secret-group", "description": "Extended description for this group.", "creation_date": "2018-04-12T23:20:50.520Z", "last_update_date": "2018-05-12T23:20:50.520Z", "type": "application/vnd.ibm.secrets-manager.secret.group+json"}]}'
+        responses.add(responses.POST,
+                      url,
+                      body=mock_response,
+                      content_type='application/json',
+                      status=200)
+
+        # Construct a dict representation of a CollectionMetadata model
+        collection_metadata_model = {}
+        collection_metadata_model['collection_type'] = 'application/vnd.ibm.secrets-manager.secret.group+json'
+        collection_metadata_model['collection_total'] = 1
+
+        # Construct a dict representation of a SecretGroupResource model
+        secret_group_resource_model = {}
+        secret_group_resource_model['name'] = 'my-secret-group'
+        secret_group_resource_model['description'] = 'Extended description for this group.'
+        secret_group_resource_model['foo'] = 'testString'
+
+        # Set up parameter values
+        metadata = collection_metadata_model
+        resources = [secret_group_resource_model]
+
+        # Pass in all but one required param and check for a ValueError
+        req_param_dict = {
+            "metadata": metadata,
+            "resources": resources,
+        }
+        for param in req_param_dict.keys():
+            req_copy = {key:val if key is not param else None for (key,val) in req_param_dict.items()}
+            with pytest.raises(ValueError):
+                _service.create_secret_group(**req_copy)
+
+
+    def test_create_secret_group_value_error_with_retries(self):
+    	# Enable retries and run test_create_secret_group_value_error.
+    	_service.enable_retries()
+    	self.test_create_secret_group_value_error()
+
+    	# Disable retries and run test_create_secret_group_value_error.
+    	_service.disable_retries()
+    	self.test_create_secret_group_value_error()
+
+class TestListSecretGroups():
+    """
+    Test Class for list_secret_groups
+    """
+
+    def preprocess_url(self, request_url: str):
+        """
+        Preprocess the request URL to ensure the mock response will be found.
+        """
+        request_url = urllib.parse.unquote(request_url) # don't double-encode if already encoded
+        request_url = urllib.parse.quote(request_url, safe=':/')
+        if re.fullmatch('.*/+', request_url) is None:
+            return request_url
+        else:
+            return re.compile(request_url.rstrip('/') + '/+')
+
+    @responses.activate
+    def test_list_secret_groups_all_params(self):
+        """
+        list_secret_groups()
+        """
+        # Set up mock
+        url = self.preprocess_url(_base_url + '/api/v1/secret_groups')
+        mock_response = '{"metadata": {"collection_type": "application/vnd.ibm.secrets-manager.config+json", "collection_total": 1}, "resources": [{"id": "bc656587-8fda-4d05-9ad8-b1de1ec7e712", "name": "my-secret-group", "description": "Extended description for this group.", "creation_date": "2018-04-12T23:20:50.520Z", "last_update_date": "2018-05-12T23:20:50.520Z", "type": "application/vnd.ibm.secrets-manager.secret.group+json"}]}'
+        responses.add(responses.GET,
+                      url,
+                      body=mock_response,
+                      content_type='application/json',
+                      status=200)
+
+        # Invoke method
+        response = _service.list_secret_groups()
+
+
+        # Check for correct operation
+        assert len(responses.calls) == 1
+        assert response.status_code == 200
+
+    def test_list_secret_groups_all_params_with_retries(self):
+    	# Enable retries and run test_list_secret_groups_all_params.
+    	_service.enable_retries()
+    	self.test_list_secret_groups_all_params()
+
+    	# Disable retries and run test_list_secret_groups_all_params.
+    	_service.disable_retries()
+    	self.test_list_secret_groups_all_params()
+
+class TestGetSecretGroup():
+    """
+    Test Class for get_secret_group
+    """
+
+    def preprocess_url(self, request_url: str):
+        """
+        Preprocess the request URL to ensure the mock response will be found.
+        """
+        request_url = urllib.parse.unquote(request_url) # don't double-encode if already encoded
+        request_url = urllib.parse.quote(request_url, safe=':/')
+        if re.fullmatch('.*/+', request_url) is None:
+            return request_url
+        else:
+            return re.compile(request_url.rstrip('/') + '/+')
+
+    @responses.activate
+    def test_get_secret_group_all_params(self):
+        """
+        get_secret_group()
+        """
+        # Set up mock
+        url = self.preprocess_url(_base_url + '/api/v1/secret_groups/testString')
+        mock_response = '{"metadata": {"collection_type": "application/vnd.ibm.secrets-manager.config+json", "collection_total": 1}, "resources": [{"id": "bc656587-8fda-4d05-9ad8-b1de1ec7e712", "name": "my-secret-group", "description": "Extended description for this group.", "creation_date": "2018-04-12T23:20:50.520Z", "last_update_date": "2018-05-12T23:20:50.520Z", "type": "application/vnd.ibm.secrets-manager.secret.group+json"}]}'
+        responses.add(responses.GET,
+                      url,
+                      body=mock_response,
+                      content_type='application/json',
+                      status=200)
+
+        # Set up parameter values
+        id = 'testString'
+
+        # Invoke method
+        response = _service.get_secret_group(
+            id,
+            headers={}
+        )
+
+        # Check for correct operation
+        assert len(responses.calls) == 1
+        assert response.status_code == 200
+
+    def test_get_secret_group_all_params_with_retries(self):
+    	# Enable retries and run test_get_secret_group_all_params.
+    	_service.enable_retries()
+    	self.test_get_secret_group_all_params()
+
+    	# Disable retries and run test_get_secret_group_all_params.
+    	_service.disable_retries()
+    	self.test_get_secret_group_all_params()
+
+    @responses.activate
+    def test_get_secret_group_value_error(self):
+        """
+        test_get_secret_group_value_error()
+        """
+        # Set up mock
+        url = self.preprocess_url(_base_url + '/api/v1/secret_groups/testString')
+        mock_response = '{"metadata": {"collection_type": "application/vnd.ibm.secrets-manager.config+json", "collection_total": 1}, "resources": [{"id": "bc656587-8fda-4d05-9ad8-b1de1ec7e712", "name": "my-secret-group", "description": "Extended description for this group.", "creation_date": "2018-04-12T23:20:50.520Z", "last_update_date": "2018-05-12T23:20:50.520Z", "type": "application/vnd.ibm.secrets-manager.secret.group+json"}]}'
+        responses.add(responses.GET,
+                      url,
+                      body=mock_response,
+                      content_type='application/json',
+                      status=200)
+
+        # Set up parameter values
+        id = 'testString'
+
+        # Pass in all but one required param and check for a ValueError
+        req_param_dict = {
+            "id": id,
+        }
+        for param in req_param_dict.keys():
+            req_copy = {key:val if key is not param else None for (key,val) in req_param_dict.items()}
+            with pytest.raises(ValueError):
+                _service.get_secret_group(**req_copy)
+
+
+    def test_get_secret_group_value_error_with_retries(self):
+    	# Enable retries and run test_get_secret_group_value_error.
+    	_service.enable_retries()
+    	self.test_get_secret_group_value_error()
+
+    	# Disable retries and run test_get_secret_group_value_error.
+    	_service.disable_retries()
+    	self.test_get_secret_group_value_error()
+
+class TestUpdateSecretGroupMetadata():
+    """
+    Test Class for update_secret_group_metadata
+    """
+
+    def preprocess_url(self, request_url: str):
+        """
+        Preprocess the request URL to ensure the mock response will be found.
+        """
+        request_url = urllib.parse.unquote(request_url) # don't double-encode if already encoded
+        request_url = urllib.parse.quote(request_url, safe=':/')
+        if re.fullmatch('.*/+', request_url) is None:
+            return request_url
+        else:
+            return re.compile(request_url.rstrip('/') + '/+')
+
+    @responses.activate
+    def test_update_secret_group_metadata_all_params(self):
+        """
+        update_secret_group_metadata()
+        """
+        # Set up mock
+        url = self.preprocess_url(_base_url + '/api/v1/secret_groups/testString')
+        mock_response = '{"metadata": {"collection_type": "application/vnd.ibm.secrets-manager.config+json", "collection_total": 1}, "resources": [{"id": "bc656587-8fda-4d05-9ad8-b1de1ec7e712", "name": "my-secret-group", "description": "Extended description for this group.", "creation_date": "2018-04-12T23:20:50.520Z", "last_update_date": "2018-05-12T23:20:50.520Z", "type": "application/vnd.ibm.secrets-manager.secret.group+json"}]}'
+        responses.add(responses.PUT,
+                      url,
+                      body=mock_response,
+                      content_type='application/json',
+                      status=200)
+
+        # Construct a dict representation of a CollectionMetadata model
+        collection_metadata_model = {}
+        collection_metadata_model['collection_type'] = 'application/vnd.ibm.secrets-manager.secret.group+json'
+        collection_metadata_model['collection_total'] = 1
+
+        # Construct a dict representation of a SecretGroupMetadataUpdatable model
+        secret_group_metadata_updatable_model = {}
+        secret_group_metadata_updatable_model['name'] = 'updated-secret-group-name'
+        secret_group_metadata_updatable_model['description'] = 'Updated description for this group.'
+
+        # Set up parameter values
+        id = 'testString'
+        metadata = collection_metadata_model
+        resources = [secret_group_metadata_updatable_model]
+
+        # Invoke method
+        response = _service.update_secret_group_metadata(
+            id,
+            metadata,
+            resources,
+            headers={}
+        )
+
+        # Check for correct operation
+        assert len(responses.calls) == 1
+        assert response.status_code == 200
+        # Validate body params
+        req_body = json.loads(str(responses.calls[0].request.body, 'utf-8'))
+        assert req_body['metadata'] == collection_metadata_model
+        assert req_body['resources'] == [secret_group_metadata_updatable_model]
+
+    def test_update_secret_group_metadata_all_params_with_retries(self):
+    	# Enable retries and run test_update_secret_group_metadata_all_params.
+    	_service.enable_retries()
+    	self.test_update_secret_group_metadata_all_params()
+
+    	# Disable retries and run test_update_secret_group_metadata_all_params.
+    	_service.disable_retries()
+    	self.test_update_secret_group_metadata_all_params()
+
+    @responses.activate
+    def test_update_secret_group_metadata_value_error(self):
+        """
+        test_update_secret_group_metadata_value_error()
+        """
+        # Set up mock
+        url = self.preprocess_url(_base_url + '/api/v1/secret_groups/testString')
+        mock_response = '{"metadata": {"collection_type": "application/vnd.ibm.secrets-manager.config+json", "collection_total": 1}, "resources": [{"id": "bc656587-8fda-4d05-9ad8-b1de1ec7e712", "name": "my-secret-group", "description": "Extended description for this group.", "creation_date": "2018-04-12T23:20:50.520Z", "last_update_date": "2018-05-12T23:20:50.520Z", "type": "application/vnd.ibm.secrets-manager.secret.group+json"}]}'
+        responses.add(responses.PUT,
+                      url,
+                      body=mock_response,
+                      content_type='application/json',
+                      status=200)
+
+        # Construct a dict representation of a CollectionMetadata model
+        collection_metadata_model = {}
+        collection_metadata_model['collection_type'] = 'application/vnd.ibm.secrets-manager.secret.group+json'
+        collection_metadata_model['collection_total'] = 1
+
+        # Construct a dict representation of a SecretGroupMetadataUpdatable model
+        secret_group_metadata_updatable_model = {}
+        secret_group_metadata_updatable_model['name'] = 'updated-secret-group-name'
+        secret_group_metadata_updatable_model['description'] = 'Updated description for this group.'
+
+        # Set up parameter values
+        id = 'testString'
+        metadata = collection_metadata_model
+        resources = [secret_group_metadata_updatable_model]
+
+        # Pass in all but one required param and check for a ValueError
+        req_param_dict = {
+            "id": id,
+            "metadata": metadata,
+            "resources": resources,
+        }
+        for param in req_param_dict.keys():
+            req_copy = {key:val if key is not param else None for (key,val) in req_param_dict.items()}
+            with pytest.raises(ValueError):
+                _service.update_secret_group_metadata(**req_copy)
+
+
+    def test_update_secret_group_metadata_value_error_with_retries(self):
+    	# Enable retries and run test_update_secret_group_metadata_value_error.
+    	_service.enable_retries()
+    	self.test_update_secret_group_metadata_value_error()
+
+    	# Disable retries and run test_update_secret_group_metadata_value_error.
+    	_service.disable_retries()
+    	self.test_update_secret_group_metadata_value_error()
+
+class TestDeleteSecretGroup():
+    """
+    Test Class for delete_secret_group
+    """
+
+    def preprocess_url(self, request_url: str):
+        """
+        Preprocess the request URL to ensure the mock response will be found.
+        """
+        request_url = urllib.parse.unquote(request_url) # don't double-encode if already encoded
+        request_url = urllib.parse.quote(request_url, safe=':/')
+        if re.fullmatch('.*/+', request_url) is None:
+            return request_url
+        else:
+            return re.compile(request_url.rstrip('/') + '/+')
+
+    @responses.activate
+    def test_delete_secret_group_all_params(self):
+        """
+        delete_secret_group()
+        """
+        # Set up mock
+        url = self.preprocess_url(_base_url + '/api/v1/secret_groups/testString')
+        responses.add(responses.DELETE,
+                      url,
+                      status=204)
+
+        # Set up parameter values
+        id = 'testString'
+
+        # Invoke method
+        response = _service.delete_secret_group(
+            id,
+            headers={}
+        )
+
+        # Check for correct operation
+        assert len(responses.calls) == 1
+        assert response.status_code == 204
+
+    def test_delete_secret_group_all_params_with_retries(self):
+    	# Enable retries and run test_delete_secret_group_all_params.
+    	_service.enable_retries()
+    	self.test_delete_secret_group_all_params()
+
+    	# Disable retries and run test_delete_secret_group_all_params.
+    	_service.disable_retries()
+    	self.test_delete_secret_group_all_params()
+
+    @responses.activate
+    def test_delete_secret_group_value_error(self):
+        """
+        test_delete_secret_group_value_error()
+        """
+        # Set up mock
+        url = self.preprocess_url(_base_url + '/api/v1/secret_groups/testString')
+        responses.add(responses.DELETE,
+                      url,
+                      status=204)
+
+        # Set up parameter values
+        id = 'testString'
+
+        # Pass in all but one required param and check for a ValueError
+        req_param_dict = {
+            "id": id,
+        }
+        for param in req_param_dict.keys():
+            req_copy = {key:val if key is not param else None for (key,val) in req_param_dict.items()}
+            with pytest.raises(ValueError):
+                _service.delete_secret_group(**req_copy)
+
+
+    def test_delete_secret_group_value_error_with_retries(self):
+    	# Enable retries and run test_delete_secret_group_value_error.
+    	_service.enable_retries()
+    	self.test_delete_secret_group_value_error()
+
+    	# Disable retries and run test_delete_secret_group_value_error.
+    	_service.disable_retries()
+    	self.test_delete_secret_group_value_error()
+
+# endregion
+##############################################################################
+# End of Service: SecretGroups
+##############################################################################
+
+##############################################################################
+# Start of Service: Secrets
+##############################################################################
+# region
+
+class TestNewInstance():
+    """
+    Test Class for new_instance
+    """
+
+    def test_new_instance(self):
+        """
+        new_instance()
+        """
+        os.environ['TEST_SERVICE_AUTH_TYPE'] = 'noAuth'
+
+        service = SecretsManagerV1.new_instance(
+            service_name='TEST_SERVICE',
+        )
+
+        assert service is not None
+        assert isinstance(service, SecretsManagerV1)
+
+    def test_new_instance_without_authenticator(self):
+        """
+        new_instance_without_authenticator()
+        """
+        with pytest.raises(ValueError, match='authenticator must be provided'):
+            service = SecretsManagerV1.new_instance(
+            )
+
+class TestCreateSecret():
+    """
+    Test Class for create_secret
+    """
+
+    def preprocess_url(self, request_url: str):
+        """
+        Preprocess the request URL to ensure the mock response will be found.
+        """
+        request_url = urllib.parse.unquote(request_url) # don't double-encode if already encoded
+        request_url = urllib.parse.quote(request_url, safe=':/')
+        if re.fullmatch('.*/+', request_url) is None:
+            return request_url
+        else:
+            return re.compile(request_url.rstrip('/') + '/+')
+
+    @responses.activate
+    def test_create_secret_all_params(self):
+        """
+        create_secret()
+        """
+        # Set up mock
+        url = self.preprocess_url(_base_url + '/api/v1/secrets/arbitrary')
+        mock_response = '{"metadata": {"collection_type": "application/vnd.ibm.secrets-manager.config+json", "collection_total": 1}, "resources": [{"id": "id", "name": "name", "description": "description", "secret_group_id": "secret_group_id", "labels": ["labels"], "state": 0, "state_description": "Active", "secret_type": "arbitrary", "crn": "crn:v1:bluemix:public:secrets-manager:<region>:a/<account-id>:<service-instance>:secret:<secret-id>", "creation_date": "2018-04-12T23:20:50.520Z", "created_by": "created_by", "last_update_date": "2018-04-12T23:20:50.520Z", "versions_total": 1, "versions": [{"mapKey": "anyValue"}], "expiration_date": "2030-04-01T09:30:00.000Z", "payload": "payload", "secret_data": {"anyKey": "anyValue"}}]}'
         responses.add(responses.POST,
                       url,
                       body=mock_response,
                       content_type='application/json',
                       status=201)
 
+        # Construct a dict representation of a CollectionMetadata model
+        collection_metadata_model = {}
+        collection_metadata_model['collection_type'] = 'application/vnd.ibm.secrets-manager.config+json'
+        collection_metadata_model['collection_total'] = 1
+
+        # Construct a dict representation of a ArbitrarySecretResource model
+        secret_resource_model = {}
+        secret_resource_model['name'] = 'testString'
+        secret_resource_model['description'] = 'testString'
+        secret_resource_model['secret_group_id'] = 'testString'
+        secret_resource_model['labels'] = ['testString']
+        secret_resource_model['expiration_date'] = "2030-04-01T09:30:00Z"
+        secret_resource_model['payload'] = 'testString'
+
         # Set up parameter values
-        secret_type = 'public_cert'
-        config_element = 'certificate_authorities'
-        name = 'testString'
-        type = 'testString'
-        config = { 'foo': 'bar' }
+        secret_type = 'arbitrary'
+        metadata = collection_metadata_model
+        resources = [secret_resource_model]
 
         # Invoke method
-        response = _service.create_config_element(
+        response = _service.create_secret(
             secret_type,
-            config_element,
-            name,
-            type,
-            config,
+            metadata,
+            resources,
             headers={}
         )
 
@@ -121,50 +622,75 @@ class TestCreateConfigElement():
         assert response.status_code == 201
         # Validate body params
         req_body = json.loads(str(responses.calls[0].request.body, 'utf-8'))
-        assert req_body['name'] == 'testString'
-        assert req_body['type'] == 'testString'
-        assert req_body['config'] == { 'foo': 'bar' }
+        assert req_body['metadata'] == collection_metadata_model
+        assert req_body['resources'] == [secret_resource_model]
 
+    def test_create_secret_all_params_with_retries(self):
+    	# Enable retries and run test_create_secret_all_params.
+    	_service.enable_retries()
+    	self.test_create_secret_all_params()
+
+    	# Disable retries and run test_create_secret_all_params.
+    	_service.disable_retries()
+    	self.test_create_secret_all_params()
 
     @responses.activate
-    def test_create_config_element_value_error(self):
+    def test_create_secret_value_error(self):
         """
-        test_create_config_element_value_error()
+        test_create_secret_value_error()
         """
         # Set up mock
-        url = self.preprocess_url(_base_url + '/api/v1/config/public_cert/certificate_authorities')
-        mock_response = '{"metadata": {"collection_type": "application/vnd.ibm.secrets-manager.config+json", "collection_total": 1}, "resources": [{"name": "name", "type": "type", "config": {"anyKey": "anyValue"}}]}'
+        url = self.preprocess_url(_base_url + '/api/v1/secrets/arbitrary')
+        mock_response = '{"metadata": {"collection_type": "application/vnd.ibm.secrets-manager.config+json", "collection_total": 1}, "resources": [{"id": "id", "name": "name", "description": "description", "secret_group_id": "secret_group_id", "labels": ["labels"], "state": 0, "state_description": "Active", "secret_type": "arbitrary", "crn": "crn:v1:bluemix:public:secrets-manager:<region>:a/<account-id>:<service-instance>:secret:<secret-id>", "creation_date": "2018-04-12T23:20:50.520Z", "created_by": "created_by", "last_update_date": "2018-04-12T23:20:50.520Z", "versions_total": 1, "versions": [{"mapKey": "anyValue"}], "expiration_date": "2030-04-01T09:30:00.000Z", "payload": "payload", "secret_data": {"anyKey": "anyValue"}}]}'
         responses.add(responses.POST,
                       url,
                       body=mock_response,
                       content_type='application/json',
                       status=201)
 
+        # Construct a dict representation of a CollectionMetadata model
+        collection_metadata_model = {}
+        collection_metadata_model['collection_type'] = 'application/vnd.ibm.secrets-manager.config+json'
+        collection_metadata_model['collection_total'] = 1
+
+        # Construct a dict representation of a ArbitrarySecretResource model
+        secret_resource_model = {}
+        secret_resource_model['name'] = 'testString'
+        secret_resource_model['description'] = 'testString'
+        secret_resource_model['secret_group_id'] = 'testString'
+        secret_resource_model['labels'] = ['testString']
+        secret_resource_model['expiration_date'] = "2030-04-01T09:30:00Z"
+        secret_resource_model['payload'] = 'testString'
+
         # Set up parameter values
-        secret_type = 'public_cert'
-        config_element = 'certificate_authorities'
-        name = 'testString'
-        type = 'testString'
-        config = { 'foo': 'bar' }
+        secret_type = 'arbitrary'
+        metadata = collection_metadata_model
+        resources = [secret_resource_model]
 
         # Pass in all but one required param and check for a ValueError
         req_param_dict = {
             "secret_type": secret_type,
-            "config_element": config_element,
-            "name": name,
-            "type": type,
-            "config": config,
+            "metadata": metadata,
+            "resources": resources,
         }
         for param in req_param_dict.keys():
             req_copy = {key:val if key is not param else None for (key,val) in req_param_dict.items()}
             with pytest.raises(ValueError):
-                _service.create_config_element(**req_copy)
+                _service.create_secret(**req_copy)
 
 
+    def test_create_secret_value_error_with_retries(self):
+    	# Enable retries and run test_create_secret_value_error.
+    	_service.enable_retries()
+    	self.test_create_secret_value_error()
 
-class TestGetConfigElements():
+    	# Disable retries and run test_create_secret_value_error.
+    	_service.disable_retries()
+    	self.test_create_secret_value_error()
+
+class TestListSecrets():
     """
-    Test Class for get_config_elements
+    Test Class for list_secrets
     """
 
     def preprocess_url(self, request_url: str):
@@ -179,13 +705,13 @@ class TestGetConfigElements():
             return re.compile(request_url.rstrip('/') + '/+')
 
     @responses.activate
-    def test_get_config_elements_all_params(self):
+    def test_list_secrets_all_params(self):
         """
-        get_config_elements()
+        list_secrets()
         """
         # Set up mock
-        url = self.preprocess_url(_base_url + '/api/v1/config/public_cert/certificate_authorities')
-        mock_response = '{"metadata": {"collection_type": "application/vnd.ibm.secrets-manager.config+json", "collection_total": 1}, "resources": [{"certificate_authorities": [{"name": "name", "type": "type"}]}]}'
+        url = self.preprocess_url(_base_url + '/api/v1/secrets/arbitrary')
+        mock_response = '{"metadata": {"collection_type": "application/vnd.ibm.secrets-manager.config+json", "collection_total": 1}, "resources": [{"id": "id", "name": "name", "description": "description", "secret_group_id": "secret_group_id", "labels": ["labels"], "state": 0, "state_description": "Active", "secret_type": "arbitrary", "crn": "crn:v1:bluemix:public:secrets-manager:<region>:a/<account-id>:<service-instance>:secret:<secret-id>", "creation_date": "2018-04-12T23:20:50.520Z", "created_by": "created_by", "last_update_date": "2018-04-12T23:20:50.520Z", "versions_total": 1, "versions": [{"mapKey": "anyValue"}], "expiration_date": "2030-04-01T09:30:00.000Z", "payload": "payload", "secret_data": {"anyKey": "anyValue"}}]}'
         responses.add(responses.GET,
                       url,
                       body=mock_response,
@@ -193,13 +719,56 @@ class TestGetConfigElements():
                       status=200)
 
         # Set up parameter values
-        secret_type = 'public_cert'
-        config_element = 'certificate_authorities'
+        secret_type = 'arbitrary'
+        limit = 1
+        offset = 0
 
         # Invoke method
-        response = _service.get_config_elements(
+        response = _service.list_secrets(
             secret_type,
-            config_element,
+            limit=limit,
+            offset=offset,
+            headers={}
+        )
+
+        # Check for correct operation
+        assert len(responses.calls) == 1
+        assert response.status_code == 200
+        # Validate query params
+        query_string = responses.calls[0].request.url.split('?',1)[1]
+        query_string = urllib.parse.unquote_plus(query_string)
+        assert 'limit={}'.format(limit) in query_string
+        assert 'offset={}'.format(offset) in query_string
+
+    def test_list_secrets_all_params_with_retries(self):
+    	# Enable retries and run test_list_secrets_all_params.
+    	_service.enable_retries()
+    	self.test_list_secrets_all_params()
+
+    	# Disable retries and run test_list_secrets_all_params.
+    	_service.disable_retries()
+    	self.test_list_secrets_all_params()
+
+    @responses.activate
+    def test_list_secrets_required_params(self):
+        """
+        test_list_secrets_required_params()
+        """
+        # Set up mock
+        url = self.preprocess_url(_base_url + '/api/v1/secrets/arbitrary')
+        mock_response = '{"metadata": {"collection_type": "application/vnd.ibm.secrets-manager.config+json", "collection_total": 1}, "resources": [{"id": "id", "name": "name", "description": "description", "secret_group_id": "secret_group_id", "labels": ["labels"], "state": 0, "state_description": "Active", "secret_type": "arbitrary", "crn": "crn:v1:bluemix:public:secrets-manager:<region>:a/<account-id>:<service-instance>:secret:<secret-id>", "creation_date": "2018-04-12T23:20:50.520Z", "created_by": "created_by", "last_update_date": "2018-04-12T23:20:50.520Z", "versions_total": 1, "versions": [{"mapKey": "anyValue"}], "expiration_date": "2030-04-01T09:30:00.000Z", "payload": "payload", "secret_data": {"anyKey": "anyValue"}}]}'
+        responses.add(responses.GET,
+                      url,
+                      body=mock_response,
+                      content_type='application/json',
+                      status=200)
+
+        # Set up parameter values
+        secret_type = 'arbitrary'
+
+        # Invoke method
+        response = _service.list_secrets(
+            secret_type,
             headers={}
         )
 
@@ -207,15 +776,23 @@ class TestGetConfigElements():
         assert len(responses.calls) == 1
         assert response.status_code == 200
 
+    def test_list_secrets_required_params_with_retries(self):
+    	# Enable retries and run test_list_secrets_required_params.
+    	_service.enable_retries()
+    	self.test_list_secrets_required_params()
+
+    	# Disable retries and run test_list_secrets_required_params.
+    	_service.disable_retries()
+    	self.test_list_secrets_required_params()
 
     @responses.activate
-    def test_get_config_elements_value_error(self):
+    def test_list_secrets_value_error(self):
         """
-        test_get_config_elements_value_error()
+        test_list_secrets_value_error()
         """
         # Set up mock
-        url = self.preprocess_url(_base_url + '/api/v1/config/public_cert/certificate_authorities')
-        mock_response = '{"metadata": {"collection_type": "application/vnd.ibm.secrets-manager.config+json", "collection_total": 1}, "resources": [{"certificate_authorities": [{"name": "name", "type": "type"}]}]}'
+        url = self.preprocess_url(_base_url + '/api/v1/secrets/arbitrary')
+        mock_response = '{"metadata": {"collection_type": "application/vnd.ibm.secrets-manager.config+json", "collection_total": 1}, "resources": [{"id": "id", "name": "name", "description": "description", "secret_group_id": "secret_group_id", "labels": ["labels"], "state": 0, "state_description": "Active", "secret_type": "arbitrary", "crn": "crn:v1:bluemix:public:secrets-manager:<region>:a/<account-id>:<service-instance>:secret:<secret-id>", "creation_date": "2018-04-12T23:20:50.520Z", "created_by": "created_by", "last_update_date": "2018-04-12T23:20:50.520Z", "versions_total": 1, "versions": [{"mapKey": "anyValue"}], "expiration_date": "2030-04-01T09:30:00.000Z", "payload": "payload", "secret_data": {"anyKey": "anyValue"}}]}'
         responses.add(responses.GET,
                       url,
                       body=mock_response,
@@ -223,24 +800,30 @@ class TestGetConfigElements():
                       status=200)
 
         # Set up parameter values
-        secret_type = 'public_cert'
-        config_element = 'certificate_authorities'
+        secret_type = 'arbitrary'
 
         # Pass in all but one required param and check for a ValueError
         req_param_dict = {
             "secret_type": secret_type,
-            "config_element": config_element,
         }
         for param in req_param_dict.keys():
             req_copy = {key:val if key is not param else None for (key,val) in req_param_dict.items()}
             with pytest.raises(ValueError):
-                _service.get_config_elements(**req_copy)
+                _service.list_secrets(**req_copy)
 
 
+    def test_list_secrets_value_error_with_retries(self):
+    	# Enable retries and run test_list_secrets_value_error.
+    	_service.enable_retries()
+    	self.test_list_secrets_value_error()
 
-class TestUpdateConfigElement():
+    	# Disable retries and run test_list_secrets_value_error.
+    	_service.disable_retries()
+    	self.test_list_secrets_value_error()
+
+class TestListAllSecrets():
     """
-    Test Class for update_config_element
+    Test Class for list_all_secrets
     """
 
     def preprocess_url(self, request_url: str):
@@ -255,33 +838,719 @@ class TestUpdateConfigElement():
             return re.compile(request_url.rstrip('/') + '/+')
 
     @responses.activate
-    def test_update_config_element_all_params(self):
+    def test_list_all_secrets_all_params(self):
         """
-        update_config_element()
+        list_all_secrets()
         """
         # Set up mock
-        url = self.preprocess_url(_base_url + '/api/v1/config/public_cert/certificate_authorities/testString')
-        mock_response = '{"metadata": {"collection_type": "application/vnd.ibm.secrets-manager.config+json", "collection_total": 1}, "resources": [{"name": "name", "type": "type", "config": {"anyKey": "anyValue"}}]}'
-        responses.add(responses.PUT,
+        url = self.preprocess_url(_base_url + '/api/v1/secrets')
+        mock_response = '{"metadata": {"collection_type": "application/vnd.ibm.secrets-manager.config+json", "collection_total": 1}, "resources": [{"id": "id", "name": "name", "description": "description", "secret_group_id": "secret_group_id", "labels": ["labels"], "state": 0, "state_description": "Active", "secret_type": "arbitrary", "crn": "crn:v1:bluemix:public:secrets-manager:<region>:a/<account-id>:<service-instance>:secret:<secret-id>", "creation_date": "2018-04-12T23:20:50.520Z", "created_by": "created_by", "last_update_date": "2018-04-12T23:20:50.520Z", "versions_total": 1, "versions": [{"mapKey": "anyValue"}], "expiration_date": "2030-04-01T09:30:00.000Z", "payload": "payload", "secret_data": {"anyKey": "anyValue"}}]}'
+        responses.add(responses.GET,
                       url,
                       body=mock_response,
                       content_type='application/json',
                       status=200)
 
         # Set up parameter values
-        secret_type = 'public_cert'
-        config_element = 'certificate_authorities'
-        config_name = 'testString'
-        type = 'testString'
-        config = { 'foo': 'bar' }
+        limit = 1
+        offset = 0
+        search = 'testString'
+        sort_by = 'id'
+        groups = ['testString']
 
         # Invoke method
-        response = _service.update_config_element(
+        response = _service.list_all_secrets(
+            limit=limit,
+            offset=offset,
+            search=search,
+            sort_by=sort_by,
+            groups=groups,
+            headers={}
+        )
+
+        # Check for correct operation
+        assert len(responses.calls) == 1
+        assert response.status_code == 200
+        # Validate query params
+        query_string = responses.calls[0].request.url.split('?',1)[1]
+        query_string = urllib.parse.unquote_plus(query_string)
+        assert 'limit={}'.format(limit) in query_string
+        assert 'offset={}'.format(offset) in query_string
+        assert 'search={}'.format(search) in query_string
+        assert 'sort_by={}'.format(sort_by) in query_string
+        assert 'groups={}'.format(','.join(groups)) in query_string
+
+    def test_list_all_secrets_all_params_with_retries(self):
+    	# Enable retries and run test_list_all_secrets_all_params.
+    	_service.enable_retries()
+    	self.test_list_all_secrets_all_params()
+
+    	# Disable retries and run test_list_all_secrets_all_params.
+    	_service.disable_retries()
+    	self.test_list_all_secrets_all_params()
+
+    @responses.activate
+    def test_list_all_secrets_required_params(self):
+        """
+        test_list_all_secrets_required_params()
+        """
+        # Set up mock
+        url = self.preprocess_url(_base_url + '/api/v1/secrets')
+        mock_response = '{"metadata": {"collection_type": "application/vnd.ibm.secrets-manager.config+json", "collection_total": 1}, "resources": [{"id": "id", "name": "name", "description": "description", "secret_group_id": "secret_group_id", "labels": ["labels"], "state": 0, "state_description": "Active", "secret_type": "arbitrary", "crn": "crn:v1:bluemix:public:secrets-manager:<region>:a/<account-id>:<service-instance>:secret:<secret-id>", "creation_date": "2018-04-12T23:20:50.520Z", "created_by": "created_by", "last_update_date": "2018-04-12T23:20:50.520Z", "versions_total": 1, "versions": [{"mapKey": "anyValue"}], "expiration_date": "2030-04-01T09:30:00.000Z", "payload": "payload", "secret_data": {"anyKey": "anyValue"}}]}'
+        responses.add(responses.GET,
+                      url,
+                      body=mock_response,
+                      content_type='application/json',
+                      status=200)
+
+        # Invoke method
+        response = _service.list_all_secrets()
+
+
+        # Check for correct operation
+        assert len(responses.calls) == 1
+        assert response.status_code == 200
+
+    def test_list_all_secrets_required_params_with_retries(self):
+    	# Enable retries and run test_list_all_secrets_required_params.
+    	_service.enable_retries()
+    	self.test_list_all_secrets_required_params()
+
+    	# Disable retries and run test_list_all_secrets_required_params.
+    	_service.disable_retries()
+    	self.test_list_all_secrets_required_params()
+
+class TestGetSecret():
+    """
+    Test Class for get_secret
+    """
+
+    def preprocess_url(self, request_url: str):
+        """
+        Preprocess the request URL to ensure the mock response will be found.
+        """
+        request_url = urllib.parse.unquote(request_url) # don't double-encode if already encoded
+        request_url = urllib.parse.quote(request_url, safe=':/')
+        if re.fullmatch('.*/+', request_url) is None:
+            return request_url
+        else:
+            return re.compile(request_url.rstrip('/') + '/+')
+
+    @responses.activate
+    def test_get_secret_all_params(self):
+        """
+        get_secret()
+        """
+        # Set up mock
+        url = self.preprocess_url(_base_url + '/api/v1/secrets/arbitrary/testString')
+        mock_response = '{"metadata": {"collection_type": "application/vnd.ibm.secrets-manager.config+json", "collection_total": 1}, "resources": [{"id": "id", "name": "name", "description": "description", "secret_group_id": "secret_group_id", "labels": ["labels"], "state": 0, "state_description": "Active", "secret_type": "arbitrary", "crn": "crn:v1:bluemix:public:secrets-manager:<region>:a/<account-id>:<service-instance>:secret:<secret-id>", "creation_date": "2018-04-12T23:20:50.520Z", "created_by": "created_by", "last_update_date": "2018-04-12T23:20:50.520Z", "versions_total": 1, "versions": [{"mapKey": "anyValue"}], "expiration_date": "2030-04-01T09:30:00.000Z", "payload": "payload", "secret_data": {"anyKey": "anyValue"}}]}'
+        responses.add(responses.GET,
+                      url,
+                      body=mock_response,
+                      content_type='application/json',
+                      status=200)
+
+        # Set up parameter values
+        secret_type = 'arbitrary'
+        id = 'testString'
+
+        # Invoke method
+        response = _service.get_secret(
             secret_type,
-            config_element,
-            config_name,
-            type,
-            config,
+            id,
+            headers={}
+        )
+
+        # Check for correct operation
+        assert len(responses.calls) == 1
+        assert response.status_code == 200
+
+    def test_get_secret_all_params_with_retries(self):
+    	# Enable retries and run test_get_secret_all_params.
+    	_service.enable_retries()
+    	self.test_get_secret_all_params()
+
+    	# Disable retries and run test_get_secret_all_params.
+    	_service.disable_retries()
+    	self.test_get_secret_all_params()
+
+    @responses.activate
+    def test_get_secret_value_error(self):
+        """
+        test_get_secret_value_error()
+        """
+        # Set up mock
+        url = self.preprocess_url(_base_url + '/api/v1/secrets/arbitrary/testString')
+        mock_response = '{"metadata": {"collection_type": "application/vnd.ibm.secrets-manager.config+json", "collection_total": 1}, "resources": [{"id": "id", "name": "name", "description": "description", "secret_group_id": "secret_group_id", "labels": ["labels"], "state": 0, "state_description": "Active", "secret_type": "arbitrary", "crn": "crn:v1:bluemix:public:secrets-manager:<region>:a/<account-id>:<service-instance>:secret:<secret-id>", "creation_date": "2018-04-12T23:20:50.520Z", "created_by": "created_by", "last_update_date": "2018-04-12T23:20:50.520Z", "versions_total": 1, "versions": [{"mapKey": "anyValue"}], "expiration_date": "2030-04-01T09:30:00.000Z", "payload": "payload", "secret_data": {"anyKey": "anyValue"}}]}'
+        responses.add(responses.GET,
+                      url,
+                      body=mock_response,
+                      content_type='application/json',
+                      status=200)
+
+        # Set up parameter values
+        secret_type = 'arbitrary'
+        id = 'testString'
+
+        # Pass in all but one required param and check for a ValueError
+        req_param_dict = {
+            "secret_type": secret_type,
+            "id": id,
+        }
+        for param in req_param_dict.keys():
+            req_copy = {key:val if key is not param else None for (key,val) in req_param_dict.items()}
+            with pytest.raises(ValueError):
+                _service.get_secret(**req_copy)
+
+
+    def test_get_secret_value_error_with_retries(self):
+    	# Enable retries and run test_get_secret_value_error.
+    	_service.enable_retries()
+    	self.test_get_secret_value_error()
+
+    	# Disable retries and run test_get_secret_value_error.
+    	_service.disable_retries()
+    	self.test_get_secret_value_error()
+
+class TestUpdateSecret():
+    """
+    Test Class for update_secret
+    """
+
+    def preprocess_url(self, request_url: str):
+        """
+        Preprocess the request URL to ensure the mock response will be found.
+        """
+        request_url = urllib.parse.unquote(request_url) # don't double-encode if already encoded
+        request_url = urllib.parse.quote(request_url, safe=':/')
+        if re.fullmatch('.*/+', request_url) is None:
+            return request_url
+        else:
+            return re.compile(request_url.rstrip('/') + '/+')
+
+    @responses.activate
+    def test_update_secret_all_params(self):
+        """
+        update_secret()
+        """
+        # Set up mock
+        url = self.preprocess_url(_base_url + '/api/v1/secrets/arbitrary/testString')
+        mock_response = '{"metadata": {"collection_type": "application/vnd.ibm.secrets-manager.config+json", "collection_total": 1}, "resources": [{"id": "id", "name": "name", "description": "description", "secret_group_id": "secret_group_id", "labels": ["labels"], "state": 0, "state_description": "Active", "secret_type": "arbitrary", "crn": "crn:v1:bluemix:public:secrets-manager:<region>:a/<account-id>:<service-instance>:secret:<secret-id>", "creation_date": "2018-04-12T23:20:50.520Z", "created_by": "created_by", "last_update_date": "2018-04-12T23:20:50.520Z", "versions_total": 1, "versions": [{"mapKey": "anyValue"}], "expiration_date": "2030-04-01T09:30:00.000Z", "payload": "payload", "secret_data": {"anyKey": "anyValue"}}]}'
+        responses.add(responses.POST,
+                      url,
+                      body=mock_response,
+                      content_type='application/json',
+                      status=200)
+
+        # Construct a dict representation of a RotateArbitrarySecretBody model
+        secret_action_model = {}
+        secret_action_model['payload'] = 'testString'
+
+        # Set up parameter values
+        secret_type = 'arbitrary'
+        id = 'testString'
+        action = 'rotate'
+        secret_action = secret_action_model
+
+        # Invoke method
+        response = _service.update_secret(
+            secret_type,
+            id,
+            action,
+            secret_action,
+            headers={}
+        )
+
+        # Check for correct operation
+        assert len(responses.calls) == 1
+        assert response.status_code == 200
+        # Validate query params
+        query_string = responses.calls[0].request.url.split('?',1)[1]
+        query_string = urllib.parse.unquote_plus(query_string)
+        assert 'action={}'.format(action) in query_string
+        # Validate body params
+        req_body = json.loads(str(responses.calls[0].request.body, 'utf-8'))
+        assert req_body == secret_action
+
+    def test_update_secret_all_params_with_retries(self):
+    	# Enable retries and run test_update_secret_all_params.
+    	_service.enable_retries()
+    	self.test_update_secret_all_params()
+
+    	# Disable retries and run test_update_secret_all_params.
+    	_service.disable_retries()
+    	self.test_update_secret_all_params()
+
+    @responses.activate
+    def test_update_secret_value_error(self):
+        """
+        test_update_secret_value_error()
+        """
+        # Set up mock
+        url = self.preprocess_url(_base_url + '/api/v1/secrets/arbitrary/testString')
+        mock_response = '{"metadata": {"collection_type": "application/vnd.ibm.secrets-manager.config+json", "collection_total": 1}, "resources": [{"id": "id", "name": "name", "description": "description", "secret_group_id": "secret_group_id", "labels": ["labels"], "state": 0, "state_description": "Active", "secret_type": "arbitrary", "crn": "crn:v1:bluemix:public:secrets-manager:<region>:a/<account-id>:<service-instance>:secret:<secret-id>", "creation_date": "2018-04-12T23:20:50.520Z", "created_by": "created_by", "last_update_date": "2018-04-12T23:20:50.520Z", "versions_total": 1, "versions": [{"mapKey": "anyValue"}], "expiration_date": "2030-04-01T09:30:00.000Z", "payload": "payload", "secret_data": {"anyKey": "anyValue"}}]}'
+        responses.add(responses.POST,
+                      url,
+                      body=mock_response,
+                      content_type='application/json',
+                      status=200)
+
+        # Construct a dict representation of a RotateArbitrarySecretBody model
+        secret_action_model = {}
+        secret_action_model['payload'] = 'testString'
+
+        # Set up parameter values
+        secret_type = 'arbitrary'
+        id = 'testString'
+        action = 'rotate'
+        secret_action = secret_action_model
+
+        # Pass in all but one required param and check for a ValueError
+        req_param_dict = {
+            "secret_type": secret_type,
+            "id": id,
+            "action": action,
+            "secret_action": secret_action,
+        }
+        for param in req_param_dict.keys():
+            req_copy = {key:val if key is not param else None for (key,val) in req_param_dict.items()}
+            with pytest.raises(ValueError):
+                _service.update_secret(**req_copy)
+
+
+    def test_update_secret_value_error_with_retries(self):
+    	# Enable retries and run test_update_secret_value_error.
+    	_service.enable_retries()
+    	self.test_update_secret_value_error()
+
+    	# Disable retries and run test_update_secret_value_error.
+    	_service.disable_retries()
+    	self.test_update_secret_value_error()
+
+class TestDeleteSecret():
+    """
+    Test Class for delete_secret
+    """
+
+    def preprocess_url(self, request_url: str):
+        """
+        Preprocess the request URL to ensure the mock response will be found.
+        """
+        request_url = urllib.parse.unquote(request_url) # don't double-encode if already encoded
+        request_url = urllib.parse.quote(request_url, safe=':/')
+        if re.fullmatch('.*/+', request_url) is None:
+            return request_url
+        else:
+            return re.compile(request_url.rstrip('/') + '/+')
+
+    @responses.activate
+    def test_delete_secret_all_params(self):
+        """
+        delete_secret()
+        """
+        # Set up mock
+        url = self.preprocess_url(_base_url + '/api/v1/secrets/arbitrary/testString')
+        responses.add(responses.DELETE,
+                      url,
+                      status=204)
+
+        # Set up parameter values
+        secret_type = 'arbitrary'
+        id = 'testString'
+
+        # Invoke method
+        response = _service.delete_secret(
+            secret_type,
+            id,
+            headers={}
+        )
+
+        # Check for correct operation
+        assert len(responses.calls) == 1
+        assert response.status_code == 204
+
+    def test_delete_secret_all_params_with_retries(self):
+    	# Enable retries and run test_delete_secret_all_params.
+    	_service.enable_retries()
+    	self.test_delete_secret_all_params()
+
+    	# Disable retries and run test_delete_secret_all_params.
+    	_service.disable_retries()
+    	self.test_delete_secret_all_params()
+
+    @responses.activate
+    def test_delete_secret_value_error(self):
+        """
+        test_delete_secret_value_error()
+        """
+        # Set up mock
+        url = self.preprocess_url(_base_url + '/api/v1/secrets/arbitrary/testString')
+        responses.add(responses.DELETE,
+                      url,
+                      status=204)
+
+        # Set up parameter values
+        secret_type = 'arbitrary'
+        id = 'testString'
+
+        # Pass in all but one required param and check for a ValueError
+        req_param_dict = {
+            "secret_type": secret_type,
+            "id": id,
+        }
+        for param in req_param_dict.keys():
+            req_copy = {key:val if key is not param else None for (key,val) in req_param_dict.items()}
+            with pytest.raises(ValueError):
+                _service.delete_secret(**req_copy)
+
+
+    def test_delete_secret_value_error_with_retries(self):
+    	# Enable retries and run test_delete_secret_value_error.
+    	_service.enable_retries()
+    	self.test_delete_secret_value_error()
+
+    	# Disable retries and run test_delete_secret_value_error.
+    	_service.disable_retries()
+    	self.test_delete_secret_value_error()
+
+class TestGetSecretVersion():
+    """
+    Test Class for get_secret_version
+    """
+
+    def preprocess_url(self, request_url: str):
+        """
+        Preprocess the request URL to ensure the mock response will be found.
+        """
+        request_url = urllib.parse.unquote(request_url) # don't double-encode if already encoded
+        request_url = urllib.parse.quote(request_url, safe=':/')
+        if re.fullmatch('.*/+', request_url) is None:
+            return request_url
+        else:
+            return re.compile(request_url.rstrip('/') + '/+')
+
+    @responses.activate
+    def test_get_secret_version_all_params(self):
+        """
+        get_secret_version()
+        """
+        # Set up mock
+        url = self.preprocess_url(_base_url + '/api/v1/secrets/imported_cert/testString/versions/testString')
+        mock_response = '{"metadata": {"collection_type": "application/vnd.ibm.secrets-manager.config+json", "collection_total": 1}, "resources": [{"id": "id", "crn": "crn:v1:bluemix:public:secrets-manager:<region>:a/<account-id>:<service-instance>:secret:<secret-id>", "version_id": "4a0225e9-17a0-46c1-ace7-f25bcf4237d4", "creation_date": "2019-01-01T12:00:00.000Z", "created_by": "created_by", "validity": {"not_before": "2020-10-05T21:33:11.000Z", "not_after": "2021-01-01T00:00:00.000Z"}, "serial_number": "d9:be:fe:35:ba:09:42:b5", "expiration_date": "2030-04-01T09:30:00.000Z", "secret_data": {"certificate": "certificate", "private_key": "private_key", "intermediate": "intermediate"}}]}'
+        responses.add(responses.GET,
+                      url,
+                      body=mock_response,
+                      content_type='application/json',
+                      status=200)
+
+        # Set up parameter values
+        secret_type = 'imported_cert'
+        id = 'testString'
+        version_id = 'testString'
+
+        # Invoke method
+        response = _service.get_secret_version(
+            secret_type,
+            id,
+            version_id,
+            headers={}
+        )
+
+        # Check for correct operation
+        assert len(responses.calls) == 1
+        assert response.status_code == 200
+
+    def test_get_secret_version_all_params_with_retries(self):
+    	# Enable retries and run test_get_secret_version_all_params.
+    	_service.enable_retries()
+    	self.test_get_secret_version_all_params()
+
+    	# Disable retries and run test_get_secret_version_all_params.
+    	_service.disable_retries()
+    	self.test_get_secret_version_all_params()
+
+    @responses.activate
+    def test_get_secret_version_value_error(self):
+        """
+        test_get_secret_version_value_error()
+        """
+        # Set up mock
+        url = self.preprocess_url(_base_url + '/api/v1/secrets/imported_cert/testString/versions/testString')
+        mock_response = '{"metadata": {"collection_type": "application/vnd.ibm.secrets-manager.config+json", "collection_total": 1}, "resources": [{"id": "id", "crn": "crn:v1:bluemix:public:secrets-manager:<region>:a/<account-id>:<service-instance>:secret:<secret-id>", "version_id": "4a0225e9-17a0-46c1-ace7-f25bcf4237d4", "creation_date": "2019-01-01T12:00:00.000Z", "created_by": "created_by", "validity": {"not_before": "2020-10-05T21:33:11.000Z", "not_after": "2021-01-01T00:00:00.000Z"}, "serial_number": "d9:be:fe:35:ba:09:42:b5", "expiration_date": "2030-04-01T09:30:00.000Z", "secret_data": {"certificate": "certificate", "private_key": "private_key", "intermediate": "intermediate"}}]}'
+        responses.add(responses.GET,
+                      url,
+                      body=mock_response,
+                      content_type='application/json',
+                      status=200)
+
+        # Set up parameter values
+        secret_type = 'imported_cert'
+        id = 'testString'
+        version_id = 'testString'
+
+        # Pass in all but one required param and check for a ValueError
+        req_param_dict = {
+            "secret_type": secret_type,
+            "id": id,
+            "version_id": version_id,
+        }
+        for param in req_param_dict.keys():
+            req_copy = {key:val if key is not param else None for (key,val) in req_param_dict.items()}
+            with pytest.raises(ValueError):
+                _service.get_secret_version(**req_copy)
+
+
+    def test_get_secret_version_value_error_with_retries(self):
+    	# Enable retries and run test_get_secret_version_value_error.
+    	_service.enable_retries()
+    	self.test_get_secret_version_value_error()
+
+    	# Disable retries and run test_get_secret_version_value_error.
+    	_service.disable_retries()
+    	self.test_get_secret_version_value_error()
+
+class TestGetSecretVersionMetadata():
+    """
+    Test Class for get_secret_version_metadata
+    """
+
+    def preprocess_url(self, request_url: str):
+        """
+        Preprocess the request URL to ensure the mock response will be found.
+        """
+        request_url = urllib.parse.unquote(request_url) # don't double-encode if already encoded
+        request_url = urllib.parse.quote(request_url, safe=':/')
+        if re.fullmatch('.*/+', request_url) is None:
+            return request_url
+        else:
+            return re.compile(request_url.rstrip('/') + '/+')
+
+    @responses.activate
+    def test_get_secret_version_metadata_all_params(self):
+        """
+        get_secret_version_metadata()
+        """
+        # Set up mock
+        url = self.preprocess_url(_base_url + '/api/v1/secrets/imported_cert/testString/versions/testString/metadata')
+        mock_response = '{"metadata": {"collection_type": "application/vnd.ibm.secrets-manager.config+json", "collection_total": 1}, "resources": [{"id": "4a0225e9-17a0-46c1-ace7-f25bcf4237d4", "creation_date": "2019-01-01T12:00:00.000Z", "created_by": "created_by"}]}'
+        responses.add(responses.GET,
+                      url,
+                      body=mock_response,
+                      content_type='application/json',
+                      status=200)
+
+        # Set up parameter values
+        secret_type = 'imported_cert'
+        id = 'testString'
+        version_id = 'testString'
+
+        # Invoke method
+        response = _service.get_secret_version_metadata(
+            secret_type,
+            id,
+            version_id,
+            headers={}
+        )
+
+        # Check for correct operation
+        assert len(responses.calls) == 1
+        assert response.status_code == 200
+
+    def test_get_secret_version_metadata_all_params_with_retries(self):
+    	# Enable retries and run test_get_secret_version_metadata_all_params.
+    	_service.enable_retries()
+    	self.test_get_secret_version_metadata_all_params()
+
+    	# Disable retries and run test_get_secret_version_metadata_all_params.
+    	_service.disable_retries()
+    	self.test_get_secret_version_metadata_all_params()
+
+    @responses.activate
+    def test_get_secret_version_metadata_value_error(self):
+        """
+        test_get_secret_version_metadata_value_error()
+        """
+        # Set up mock
+        url = self.preprocess_url(_base_url + '/api/v1/secrets/imported_cert/testString/versions/testString/metadata')
+        mock_response = '{"metadata": {"collection_type": "application/vnd.ibm.secrets-manager.config+json", "collection_total": 1}, "resources": [{"id": "4a0225e9-17a0-46c1-ace7-f25bcf4237d4", "creation_date": "2019-01-01T12:00:00.000Z", "created_by": "created_by"}]}'
+        responses.add(responses.GET,
+                      url,
+                      body=mock_response,
+                      content_type='application/json',
+                      status=200)
+
+        # Set up parameter values
+        secret_type = 'imported_cert'
+        id = 'testString'
+        version_id = 'testString'
+
+        # Pass in all but one required param and check for a ValueError
+        req_param_dict = {
+            "secret_type": secret_type,
+            "id": id,
+            "version_id": version_id,
+        }
+        for param in req_param_dict.keys():
+            req_copy = {key:val if key is not param else None for (key,val) in req_param_dict.items()}
+            with pytest.raises(ValueError):
+                _service.get_secret_version_metadata(**req_copy)
+
+
+    def test_get_secret_version_metadata_value_error_with_retries(self):
+    	# Enable retries and run test_get_secret_version_metadata_value_error.
+    	_service.enable_retries()
+    	self.test_get_secret_version_metadata_value_error()
+
+    	# Disable retries and run test_get_secret_version_metadata_value_error.
+    	_service.disable_retries()
+    	self.test_get_secret_version_metadata_value_error()
+
+class TestGetSecretMetadata():
+    """
+    Test Class for get_secret_metadata
+    """
+
+    def preprocess_url(self, request_url: str):
+        """
+        Preprocess the request URL to ensure the mock response will be found.
+        """
+        request_url = urllib.parse.unquote(request_url) # don't double-encode if already encoded
+        request_url = urllib.parse.quote(request_url, safe=':/')
+        if re.fullmatch('.*/+', request_url) is None:
+            return request_url
+        else:
+            return re.compile(request_url.rstrip('/') + '/+')
+
+    @responses.activate
+    def test_get_secret_metadata_all_params(self):
+        """
+        get_secret_metadata()
+        """
+        # Set up mock
+        url = self.preprocess_url(_base_url + '/api/v1/secrets/arbitrary/testString/metadata')
+        mock_response = '{"metadata": {"collection_type": "application/vnd.ibm.secrets-manager.config+json", "collection_total": 1}, "resources": [{"id": "b0283d74-0894-830b-f81d-1f115f67729f", "labels": ["labels"], "name": "example-secret", "description": "Extended description for this secret.", "secret_group_id": "f5283d74-9024-230a-b72c-1f115f61290f", "state": 0, "state_description": "Active", "secret_type": "arbitrary", "crn": "crn:v1:bluemix:public:secrets-manager:<region>:a/<account-id>:<service-instance>:secret:<secret-id>", "creation_date": "2018-04-12T23:20:50.520Z", "created_by": "ServiceId-cb258cb9-8de3-4ac0-9aec-b2b2d27ac976", "last_update_date": "2018-04-12T23:20:50.520Z", "versions_total": 1, "expiration_date": "2030-04-01T09:30:00.000Z"}]}'
+        responses.add(responses.GET,
+                      url,
+                      body=mock_response,
+                      content_type='application/json',
+                      status=200)
+
+        # Set up parameter values
+        secret_type = 'arbitrary'
+        id = 'testString'
+
+        # Invoke method
+        response = _service.get_secret_metadata(
+            secret_type,
+            id,
+            headers={}
+        )
+
+        # Check for correct operation
+        assert len(responses.calls) == 1
+        assert response.status_code == 200
+
+    def test_get_secret_metadata_all_params_with_retries(self):
+    	# Enable retries and run test_get_secret_metadata_all_params.
+    	_service.enable_retries()
+    	self.test_get_secret_metadata_all_params()
+
+    	# Disable retries and run test_get_secret_metadata_all_params.
+    	_service.disable_retries()
+    	self.test_get_secret_metadata_all_params()
+
+    @responses.activate
+    def test_get_secret_metadata_value_error(self):
+        """
+        test_get_secret_metadata_value_error()
+        """
+        # Set up mock
+        url = self.preprocess_url(_base_url + '/api/v1/secrets/arbitrary/testString/metadata')
+        mock_response = '{"metadata": {"collection_type": "application/vnd.ibm.secrets-manager.config+json", "collection_total": 1}, "resources": [{"id": "b0283d74-0894-830b-f81d-1f115f67729f", "labels": ["labels"], "name": "example-secret", "description": "Extended description for this secret.", "secret_group_id": "f5283d74-9024-230a-b72c-1f115f61290f", "state": 0, "state_description": "Active", "secret_type": "arbitrary", "crn": "crn:v1:bluemix:public:secrets-manager:<region>:a/<account-id>:<service-instance>:secret:<secret-id>", "creation_date": "2018-04-12T23:20:50.520Z", "created_by": "ServiceId-cb258cb9-8de3-4ac0-9aec-b2b2d27ac976", "last_update_date": "2018-04-12T23:20:50.520Z", "versions_total": 1, "expiration_date": "2030-04-01T09:30:00.000Z"}]}'
+        responses.add(responses.GET,
+                      url,
+                      body=mock_response,
+                      content_type='application/json',
+                      status=200)
+
+        # Set up parameter values
+        secret_type = 'arbitrary'
+        id = 'testString'
+
+        # Pass in all but one required param and check for a ValueError
+        req_param_dict = {
+            "secret_type": secret_type,
+            "id": id,
+        }
+        for param in req_param_dict.keys():
+            req_copy = {key:val if key is not param else None for (key,val) in req_param_dict.items()}
+            with pytest.raises(ValueError):
+                _service.get_secret_metadata(**req_copy)
+
+
+    def test_get_secret_metadata_value_error_with_retries(self):
+    	# Enable retries and run test_get_secret_metadata_value_error.
+    	_service.enable_retries()
+    	self.test_get_secret_metadata_value_error()
+
+    	# Disable retries and run test_get_secret_metadata_value_error.
+    	_service.disable_retries()
+    	self.test_get_secret_metadata_value_error()
+
+class TestUpdateSecretMetadata():
+    """
+    Test Class for update_secret_metadata
+    """
+
+    def preprocess_url(self, request_url: str):
+        """
+        Preprocess the request URL to ensure the mock response will be found.
+        """
+        request_url = urllib.parse.unquote(request_url) # don't double-encode if already encoded
+        request_url = urllib.parse.quote(request_url, safe=':/')
+        if re.fullmatch('.*/+', request_url) is None:
+            return request_url
+        else:
+            return re.compile(request_url.rstrip('/') + '/+')
+
+    @responses.activate
+    def test_update_secret_metadata_all_params(self):
+        """
+        update_secret_metadata()
+        """
+        # Set up mock
+        url = self.preprocess_url(_base_url + '/api/v1/secrets/arbitrary/testString/metadata')
+        mock_response = '{"metadata": {"collection_type": "application/vnd.ibm.secrets-manager.config+json", "collection_total": 1}, "resources": [{"id": "b0283d74-0894-830b-f81d-1f115f67729f", "labels": ["labels"], "name": "example-secret", "description": "Extended description for this secret.", "secret_group_id": "f5283d74-9024-230a-b72c-1f115f61290f", "state": 0, "state_description": "Active", "secret_type": "arbitrary", "crn": "crn:v1:bluemix:public:secrets-manager:<region>:a/<account-id>:<service-instance>:secret:<secret-id>", "creation_date": "2018-04-12T23:20:50.520Z", "created_by": "ServiceId-cb258cb9-8de3-4ac0-9aec-b2b2d27ac976", "last_update_date": "2018-04-12T23:20:50.520Z", "versions_total": 1, "expiration_date": "2030-04-01T09:30:00.000Z"}]}'
+        responses.add(responses.PUT,
+                      url,
+                      body=mock_response,
+                      content_type='application/json',
+                      status=200)
+
+        # Construct a dict representation of a CollectionMetadata model
+        collection_metadata_model = {}
+        collection_metadata_model['collection_type'] = 'application/vnd.ibm.secrets-manager.config+json'
+        collection_metadata_model['collection_total'] = 1
+
+        # Construct a dict representation of a ArbitrarySecretMetadata model
+        secret_metadata_model = {}
+        secret_metadata_model['labels'] = ['dev', 'us-south']
+        secret_metadata_model['name'] = 'example-secret'
+        secret_metadata_model['description'] = 'Extended description for this secret.'
+        secret_metadata_model['expiration_date'] = "2030-04-01T09:30:00Z"
+
+        # Set up parameter values
+        secret_type = 'arbitrary'
+        id = 'testString'
+        metadata = collection_metadata_model
+        resources = [secret_metadata_model]
+
+        # Invoke method
+        response = _service.update_secret_metadata(
+            secret_type,
+            id,
+            metadata,
+            resources,
             headers={}
         )
 
@@ -290,348 +1559,75 @@ class TestUpdateConfigElement():
         assert response.status_code == 200
         # Validate body params
         req_body = json.loads(str(responses.calls[0].request.body, 'utf-8'))
-        assert req_body['type'] == 'testString'
-        assert req_body['config'] == { 'foo': 'bar' }
+        assert req_body['metadata'] == collection_metadata_model
+        assert req_body['resources'] == [secret_metadata_model]
 
+    def test_update_secret_metadata_all_params_with_retries(self):
+    	# Enable retries and run test_update_secret_metadata_all_params.
+    	_service.enable_retries()
+    	self.test_update_secret_metadata_all_params()
+
+    	# Disable retries and run test_update_secret_metadata_all_params.
+    	_service.disable_retries()
+    	self.test_update_secret_metadata_all_params()
 
     @responses.activate
-    def test_update_config_element_value_error(self):
+    def test_update_secret_metadata_value_error(self):
         """
-        test_update_config_element_value_error()
+        test_update_secret_metadata_value_error()
         """
         # Set up mock
-        url = self.preprocess_url(_base_url + '/api/v1/config/public_cert/certificate_authorities/testString')
-        mock_response = '{"metadata": {"collection_type": "application/vnd.ibm.secrets-manager.config+json", "collection_total": 1}, "resources": [{"name": "name", "type": "type", "config": {"anyKey": "anyValue"}}]}'
+        url = self.preprocess_url(_base_url + '/api/v1/secrets/arbitrary/testString/metadata')
+        mock_response = '{"metadata": {"collection_type": "application/vnd.ibm.secrets-manager.config+json", "collection_total": 1}, "resources": [{"id": "b0283d74-0894-830b-f81d-1f115f67729f", "labels": ["labels"], "name": "example-secret", "description": "Extended description for this secret.", "secret_group_id": "f5283d74-9024-230a-b72c-1f115f61290f", "state": 0, "state_description": "Active", "secret_type": "arbitrary", "crn": "crn:v1:bluemix:public:secrets-manager:<region>:a/<account-id>:<service-instance>:secret:<secret-id>", "creation_date": "2018-04-12T23:20:50.520Z", "created_by": "ServiceId-cb258cb9-8de3-4ac0-9aec-b2b2d27ac976", "last_update_date": "2018-04-12T23:20:50.520Z", "versions_total": 1, "expiration_date": "2030-04-01T09:30:00.000Z"}]}'
         responses.add(responses.PUT,
                       url,
                       body=mock_response,
                       content_type='application/json',
                       status=200)
 
+        # Construct a dict representation of a CollectionMetadata model
+        collection_metadata_model = {}
+        collection_metadata_model['collection_type'] = 'application/vnd.ibm.secrets-manager.config+json'
+        collection_metadata_model['collection_total'] = 1
+
+        # Construct a dict representation of a ArbitrarySecretMetadata model
+        secret_metadata_model = {}
+        secret_metadata_model['labels'] = ['dev', 'us-south']
+        secret_metadata_model['name'] = 'example-secret'
+        secret_metadata_model['description'] = 'Extended description for this secret.'
+        secret_metadata_model['expiration_date'] = "2030-04-01T09:30:00Z"
+
         # Set up parameter values
-        secret_type = 'public_cert'
-        config_element = 'certificate_authorities'
-        config_name = 'testString'
-        type = 'testString'
-        config = { 'foo': 'bar' }
+        secret_type = 'arbitrary'
+        id = 'testString'
+        metadata = collection_metadata_model
+        resources = [secret_metadata_model]
 
         # Pass in all but one required param and check for a ValueError
         req_param_dict = {
             "secret_type": secret_type,
-            "config_element": config_element,
-            "config_name": config_name,
-            "type": type,
-            "config": config,
+            "id": id,
+            "metadata": metadata,
+            "resources": resources,
         }
         for param in req_param_dict.keys():
             req_copy = {key:val if key is not param else None for (key,val) in req_param_dict.items()}
             with pytest.raises(ValueError):
-                _service.update_config_element(**req_copy)
+                _service.update_secret_metadata(**req_copy)
 
 
+    def test_update_secret_metadata_value_error_with_retries(self):
+    	# Enable retries and run test_update_secret_metadata_value_error.
+    	_service.enable_retries()
+    	self.test_update_secret_metadata_value_error()
 
-class TestDeleteConfigElement():
-    """
-    Test Class for delete_config_element
-    """
-
-    def preprocess_url(self, request_url: str):
-        """
-        Preprocess the request URL to ensure the mock response will be found.
-        """
-        request_url = urllib.parse.unquote(request_url) # don't double-encode if already encoded
-        request_url = urllib.parse.quote(request_url, safe=':/')
-        if re.fullmatch('.*/+', request_url) is None:
-            return request_url
-        else:
-            return re.compile(request_url.rstrip('/') + '/+')
-
-    @responses.activate
-    def test_delete_config_element_all_params(self):
-        """
-        delete_config_element()
-        """
-        # Set up mock
-        url = self.preprocess_url(_base_url + '/api/v1/config/public_cert/certificate_authorities/testString')
-        responses.add(responses.DELETE,
-                      url,
-                      status=204)
-
-        # Set up parameter values
-        secret_type = 'public_cert'
-        config_element = 'certificate_authorities'
-        config_name = 'testString'
-
-        # Invoke method
-        response = _service.delete_config_element(
-            secret_type,
-            config_element,
-            config_name,
-            headers={}
-        )
-
-        # Check for correct operation
-        assert len(responses.calls) == 1
-        assert response.status_code == 204
-
-
-    @responses.activate
-    def test_delete_config_element_value_error(self):
-        """
-        test_delete_config_element_value_error()
-        """
-        # Set up mock
-        url = self.preprocess_url(_base_url + '/api/v1/config/public_cert/certificate_authorities/testString')
-        responses.add(responses.DELETE,
-                      url,
-                      status=204)
-
-        # Set up parameter values
-        secret_type = 'public_cert'
-        config_element = 'certificate_authorities'
-        config_name = 'testString'
-
-        # Pass in all but one required param and check for a ValueError
-        req_param_dict = {
-            "secret_type": secret_type,
-            "config_element": config_element,
-            "config_name": config_name,
-        }
-        for param in req_param_dict.keys():
-            req_copy = {key:val if key is not param else None for (key,val) in req_param_dict.items()}
-            with pytest.raises(ValueError):
-                _service.delete_config_element(**req_copy)
-
-
-
-class TestGetConfigElement():
-    """
-    Test Class for get_config_element
-    """
-
-    def preprocess_url(self, request_url: str):
-        """
-        Preprocess the request URL to ensure the mock response will be found.
-        """
-        request_url = urllib.parse.unquote(request_url) # don't double-encode if already encoded
-        request_url = urllib.parse.quote(request_url, safe=':/')
-        if re.fullmatch('.*/+', request_url) is None:
-            return request_url
-        else:
-            return re.compile(request_url.rstrip('/') + '/+')
-
-    @responses.activate
-    def test_get_config_element_all_params(self):
-        """
-        get_config_element()
-        """
-        # Set up mock
-        url = self.preprocess_url(_base_url + '/api/v1/config/public_cert/certificate_authorities/testString')
-        mock_response = '{"metadata": {"collection_type": "application/vnd.ibm.secrets-manager.config+json", "collection_total": 1}, "resources": [{"name": "name", "type": "type", "config": {"anyKey": "anyValue"}}]}'
-        responses.add(responses.GET,
-                      url,
-                      body=mock_response,
-                      content_type='application/json',
-                      status=200)
-
-        # Set up parameter values
-        secret_type = 'public_cert'
-        config_element = 'certificate_authorities'
-        config_name = 'testString'
-
-        # Invoke method
-        response = _service.get_config_element(
-            secret_type,
-            config_element,
-            config_name,
-            headers={}
-        )
-
-        # Check for correct operation
-        assert len(responses.calls) == 1
-        assert response.status_code == 200
-
-
-    @responses.activate
-    def test_get_config_element_value_error(self):
-        """
-        test_get_config_element_value_error()
-        """
-        # Set up mock
-        url = self.preprocess_url(_base_url + '/api/v1/config/public_cert/certificate_authorities/testString')
-        mock_response = '{"metadata": {"collection_type": "application/vnd.ibm.secrets-manager.config+json", "collection_total": 1}, "resources": [{"name": "name", "type": "type", "config": {"anyKey": "anyValue"}}]}'
-        responses.add(responses.GET,
-                      url,
-                      body=mock_response,
-                      content_type='application/json',
-                      status=200)
-
-        # Set up parameter values
-        secret_type = 'public_cert'
-        config_element = 'certificate_authorities'
-        config_name = 'testString'
-
-        # Pass in all but one required param and check for a ValueError
-        req_param_dict = {
-            "secret_type": secret_type,
-            "config_element": config_element,
-            "config_name": config_name,
-        }
-        for param in req_param_dict.keys():
-            req_copy = {key:val if key is not param else None for (key,val) in req_param_dict.items()}
-            with pytest.raises(ValueError):
-                _service.get_config_element(**req_copy)
-
-
-
-class TestPutConfig():
-    """
-    Test Class for put_config
-    """
-
-    def preprocess_url(self, request_url: str):
-        """
-        Preprocess the request URL to ensure the mock response will be found.
-        """
-        request_url = urllib.parse.unquote(request_url) # don't double-encode if already encoded
-        request_url = urllib.parse.quote(request_url, safe=':/')
-        if re.fullmatch('.*/+', request_url) is None:
-            return request_url
-        else:
-            return re.compile(request_url.rstrip('/') + '/+')
-
-    @responses.activate
-    def test_put_config_all_params(self):
-        """
-        put_config()
-        """
-        # Set up mock
-        url = self.preprocess_url(_base_url + '/api/v1/config/iam_credentials')
-        responses.add(responses.PUT,
-                      url,
-                      status=204)
-
-        # Set up parameter values
-        secret_type = 'iam_credentials'
-        api_key = 'API_KEY'
-
-        # Invoke method
-        response = _service.put_config(
-            secret_type,
-            api_key,
-            headers={}
-        )
-
-        # Check for correct operation
-        assert len(responses.calls) == 1
-        assert response.status_code == 204
-        # Validate body params
-        req_body = json.loads(str(responses.calls[0].request.body, 'utf-8'))
-        assert req_body['api_key'] == 'API_KEY'
-
-
-    @responses.activate
-    def test_put_config_value_error(self):
-        """
-        test_put_config_value_error()
-        """
-        # Set up mock
-        url = self.preprocess_url(_base_url + '/api/v1/config/iam_credentials')
-        responses.add(responses.PUT,
-                      url,
-                      status=204)
-
-        # Set up parameter values
-        secret_type = 'iam_credentials'
-        api_key = 'API_KEY'
-
-        # Pass in all but one required param and check for a ValueError
-        req_param_dict = {
-            "secret_type": secret_type,
-            "api_key": api_key,
-        }
-        for param in req_param_dict.keys():
-            req_copy = {key:val if key is not param else None for (key,val) in req_param_dict.items()}
-            with pytest.raises(ValueError):
-                _service.put_config(**req_copy)
-
-
-
-class TestGetConfig():
-    """
-    Test Class for get_config
-    """
-
-    def preprocess_url(self, request_url: str):
-        """
-        Preprocess the request URL to ensure the mock response will be found.
-        """
-        request_url = urllib.parse.unquote(request_url) # don't double-encode if already encoded
-        request_url = urllib.parse.quote(request_url, safe=':/')
-        if re.fullmatch('.*/+', request_url) is None:
-            return request_url
-        else:
-            return re.compile(request_url.rstrip('/') + '/+')
-
-    @responses.activate
-    def test_get_config_all_params(self):
-        """
-        get_config()
-        """
-        # Set up mock
-        url = self.preprocess_url(_base_url + '/api/v1/config/iam_credentials')
-        mock_response = '{"metadata": {"collection_type": "application/vnd.ibm.secrets-manager.config+json", "collection_total": 1}, "resources": [{"certificate_authorities": [{"name": "name", "type": "type"}], "dns_providers": [{"name": "name", "type": "type"}]}]}'
-        responses.add(responses.GET,
-                      url,
-                      body=mock_response,
-                      content_type='application/json',
-                      status=200)
-
-        # Set up parameter values
-        secret_type = 'iam_credentials'
-
-        # Invoke method
-        response = _service.get_config(
-            secret_type,
-            headers={}
-        )
-
-        # Check for correct operation
-        assert len(responses.calls) == 1
-        assert response.status_code == 200
-
-
-    @responses.activate
-    def test_get_config_value_error(self):
-        """
-        test_get_config_value_error()
-        """
-        # Set up mock
-        url = self.preprocess_url(_base_url + '/api/v1/config/iam_credentials')
-        mock_response = '{"metadata": {"collection_type": "application/vnd.ibm.secrets-manager.config+json", "collection_total": 1}, "resources": [{"certificate_authorities": [{"name": "name", "type": "type"}], "dns_providers": [{"name": "name", "type": "type"}]}]}'
-        responses.add(responses.GET,
-                      url,
-                      body=mock_response,
-                      content_type='application/json',
-                      status=200)
-
-        # Set up parameter values
-        secret_type = 'iam_credentials'
-
-        # Pass in all but one required param and check for a ValueError
-        req_param_dict = {
-            "secret_type": secret_type,
-        }
-        for param in req_param_dict.keys():
-            req_copy = {key:val if key is not param else None for (key,val) in req_param_dict.items()}
-            with pytest.raises(ValueError):
-                _service.get_config(**req_copy)
-
-
+    	# Disable retries and run test_update_secret_metadata_value_error.
+    	_service.disable_retries()
+    	self.test_update_secret_metadata_value_error()
 
 # endregion
 ##############################################################################
-# End of Service: Config
+# End of Service: Secrets
 ##############################################################################
 
 ##############################################################################
@@ -739,6 +1735,14 @@ class TestPutPolicy():
         assert req_body['metadata'] == collection_metadata_model
         assert req_body['resources'] == [secret_policy_rotation_model]
 
+    def test_put_policy_all_params_with_retries(self):
+    	# Enable retries and run test_put_policy_all_params.
+    	_service.enable_retries()
+    	self.test_put_policy_all_params()
+
+    	# Disable retries and run test_put_policy_all_params.
+    	_service.disable_retries()
+    	self.test_put_policy_all_params()
 
     @responses.activate
     def test_put_policy_required_params(self):
@@ -792,6 +1796,14 @@ class TestPutPolicy():
         assert req_body['metadata'] == collection_metadata_model
         assert req_body['resources'] == [secret_policy_rotation_model]
 
+    def test_put_policy_required_params_with_retries(self):
+    	# Enable retries and run test_put_policy_required_params.
+    	_service.enable_retries()
+    	self.test_put_policy_required_params()
+
+    	# Disable retries and run test_put_policy_required_params.
+    	_service.disable_retries()
+    	self.test_put_policy_required_params()
 
     @responses.activate
     def test_put_policy_value_error(self):
@@ -841,6 +1853,14 @@ class TestPutPolicy():
                 _service.put_policy(**req_copy)
 
 
+    def test_put_policy_value_error_with_retries(self):
+    	# Enable retries and run test_put_policy_value_error.
+    	_service.enable_retries()
+    	self.test_put_policy_value_error()
+
+    	# Disable retries and run test_put_policy_value_error.
+    	_service.disable_retries()
+    	self.test_put_policy_value_error()
 
 class TestGetPolicy():
     """
@@ -893,6 +1913,14 @@ class TestGetPolicy():
         query_string = urllib.parse.unquote_plus(query_string)
         assert 'policy={}'.format(policy) in query_string
 
+    def test_get_policy_all_params_with_retries(self):
+    	# Enable retries and run test_get_policy_all_params.
+    	_service.enable_retries()
+    	self.test_get_policy_all_params()
+
+    	# Disable retries and run test_get_policy_all_params.
+    	_service.disable_retries()
+    	self.test_get_policy_all_params()
 
     @responses.activate
     def test_get_policy_required_params(self):
@@ -923,6 +1951,14 @@ class TestGetPolicy():
         assert len(responses.calls) == 1
         assert response.status_code == 200
 
+    def test_get_policy_required_params_with_retries(self):
+    	# Enable retries and run test_get_policy_required_params.
+    	_service.enable_retries()
+    	self.test_get_policy_required_params()
+
+    	# Disable retries and run test_get_policy_required_params.
+    	_service.disable_retries()
+    	self.test_get_policy_required_params()
 
     @responses.activate
     def test_get_policy_value_error(self):
@@ -953,6 +1989,14 @@ class TestGetPolicy():
                 _service.get_policy(**req_copy)
 
 
+    def test_get_policy_value_error_with_retries(self):
+    	# Enable retries and run test_get_policy_value_error.
+    	_service.enable_retries()
+    	self.test_get_policy_value_error()
+
+    	# Disable retries and run test_get_policy_value_error.
+    	_service.disable_retries()
+    	self.test_get_policy_value_error()
 
 # endregion
 ##############################################################################
@@ -960,7 +2004,7 @@ class TestGetPolicy():
 ##############################################################################
 
 ##############################################################################
-# Start of Service: SecretGroups
+# Start of Service: Config
 ##############################################################################
 # region
 
@@ -990,111 +2034,9 @@ class TestNewInstance():
             service = SecretsManagerV1.new_instance(
             )
 
-class TestCreateSecretGroup():
+class TestPutConfig():
     """
-    Test Class for create_secret_group
-    """
-
-    def preprocess_url(self, request_url: str):
-        """
-        Preprocess the request URL to ensure the mock response will be found.
-        """
-        request_url = urllib.parse.unquote(request_url) # don't double-encode if already encoded
-        request_url = urllib.parse.quote(request_url, safe=':/')
-        if re.fullmatch('.*/+', request_url) is None:
-            return request_url
-        else:
-            return re.compile(request_url.rstrip('/') + '/+')
-
-    @responses.activate
-    def test_create_secret_group_all_params(self):
-        """
-        create_secret_group()
-        """
-        # Set up mock
-        url = self.preprocess_url(_base_url + '/api/v1/secret_groups')
-        mock_response = '{"metadata": {"collection_type": "application/vnd.ibm.secrets-manager.config+json", "collection_total": 1}, "resources": [{"id": "bc656587-8fda-4d05-9ad8-b1de1ec7e712", "name": "my-secret-group", "description": "Extended description for this group.", "creation_date": "2018-04-12T23:20:50.520Z", "last_update_date": "2018-05-12T23:20:50.520Z", "type": "application/vnd.ibm.secrets-manager.secret.group+json"}]}'
-        responses.add(responses.POST,
-                      url,
-                      body=mock_response,
-                      content_type='application/json',
-                      status=200)
-
-        # Construct a dict representation of a CollectionMetadata model
-        collection_metadata_model = {}
-        collection_metadata_model['collection_type'] = 'application/vnd.ibm.secrets-manager.secret.group+json'
-        collection_metadata_model['collection_total'] = 1
-
-        # Construct a dict representation of a SecretGroupResource model
-        secret_group_resource_model = {}
-        secret_group_resource_model['name'] = 'my-secret-group'
-        secret_group_resource_model['description'] = 'Extended description for this group.'
-        secret_group_resource_model['foo'] = 'testString'
-
-        # Set up parameter values
-        metadata = collection_metadata_model
-        resources = [secret_group_resource_model]
-
-        # Invoke method
-        response = _service.create_secret_group(
-            metadata,
-            resources,
-            headers={}
-        )
-
-        # Check for correct operation
-        assert len(responses.calls) == 1
-        assert response.status_code == 200
-        # Validate body params
-        req_body = json.loads(str(responses.calls[0].request.body, 'utf-8'))
-        assert req_body['metadata'] == collection_metadata_model
-        assert req_body['resources'] == [secret_group_resource_model]
-
-
-    @responses.activate
-    def test_create_secret_group_value_error(self):
-        """
-        test_create_secret_group_value_error()
-        """
-        # Set up mock
-        url = self.preprocess_url(_base_url + '/api/v1/secret_groups')
-        mock_response = '{"metadata": {"collection_type": "application/vnd.ibm.secrets-manager.config+json", "collection_total": 1}, "resources": [{"id": "bc656587-8fda-4d05-9ad8-b1de1ec7e712", "name": "my-secret-group", "description": "Extended description for this group.", "creation_date": "2018-04-12T23:20:50.520Z", "last_update_date": "2018-05-12T23:20:50.520Z", "type": "application/vnd.ibm.secrets-manager.secret.group+json"}]}'
-        responses.add(responses.POST,
-                      url,
-                      body=mock_response,
-                      content_type='application/json',
-                      status=200)
-
-        # Construct a dict representation of a CollectionMetadata model
-        collection_metadata_model = {}
-        collection_metadata_model['collection_type'] = 'application/vnd.ibm.secrets-manager.secret.group+json'
-        collection_metadata_model['collection_total'] = 1
-
-        # Construct a dict representation of a SecretGroupResource model
-        secret_group_resource_model = {}
-        secret_group_resource_model['name'] = 'my-secret-group'
-        secret_group_resource_model['description'] = 'Extended description for this group.'
-        secret_group_resource_model['foo'] = 'testString'
-
-        # Set up parameter values
-        metadata = collection_metadata_model
-        resources = [secret_group_resource_model]
-
-        # Pass in all but one required param and check for a ValueError
-        req_param_dict = {
-            "metadata": metadata,
-            "resources": resources,
-        }
-        for param in req_param_dict.keys():
-            req_copy = {key:val if key is not param else None for (key,val) in req_param_dict.items()}
-            with pytest.raises(ValueError):
-                _service.create_secret_group(**req_copy)
-
-
-
-class TestListSecretGroups():
-    """
-    Test Class for list_secret_groups
+    Test Class for put_config
     """
 
     def preprocess_url(self, request_url: str):
@@ -1109,309 +2051,81 @@ class TestListSecretGroups():
             return re.compile(request_url.rstrip('/') + '/+')
 
     @responses.activate
-    def test_list_secret_groups_all_params(self):
+    def test_put_config_all_params(self):
         """
-        list_secret_groups()
-        """
-        # Set up mock
-        url = self.preprocess_url(_base_url + '/api/v1/secret_groups')
-        mock_response = '{"metadata": {"collection_type": "application/vnd.ibm.secrets-manager.config+json", "collection_total": 1}, "resources": [{"id": "bc656587-8fda-4d05-9ad8-b1de1ec7e712", "name": "my-secret-group", "description": "Extended description for this group.", "creation_date": "2018-04-12T23:20:50.520Z", "last_update_date": "2018-05-12T23:20:50.520Z", "type": "application/vnd.ibm.secrets-manager.secret.group+json"}]}'
-        responses.add(responses.GET,
-                      url,
-                      body=mock_response,
-                      content_type='application/json',
-                      status=200)
-
-        # Invoke method
-        response = _service.list_secret_groups()
-
-
-        # Check for correct operation
-        assert len(responses.calls) == 1
-        assert response.status_code == 200
-
-
-class TestGetSecretGroup():
-    """
-    Test Class for get_secret_group
-    """
-
-    def preprocess_url(self, request_url: str):
-        """
-        Preprocess the request URL to ensure the mock response will be found.
-        """
-        request_url = urllib.parse.unquote(request_url) # don't double-encode if already encoded
-        request_url = urllib.parse.quote(request_url, safe=':/')
-        if re.fullmatch('.*/+', request_url) is None:
-            return request_url
-        else:
-            return re.compile(request_url.rstrip('/') + '/+')
-
-    @responses.activate
-    def test_get_secret_group_all_params(self):
-        """
-        get_secret_group()
+        put_config()
         """
         # Set up mock
-        url = self.preprocess_url(_base_url + '/api/v1/secret_groups/testString')
-        mock_response = '{"metadata": {"collection_type": "application/vnd.ibm.secrets-manager.config+json", "collection_total": 1}, "resources": [{"id": "bc656587-8fda-4d05-9ad8-b1de1ec7e712", "name": "my-secret-group", "description": "Extended description for this group.", "creation_date": "2018-04-12T23:20:50.520Z", "last_update_date": "2018-05-12T23:20:50.520Z", "type": "application/vnd.ibm.secrets-manager.secret.group+json"}]}'
-        responses.add(responses.GET,
-                      url,
-                      body=mock_response,
-                      content_type='application/json',
-                      status=200)
-
-        # Set up parameter values
-        id = 'testString'
-
-        # Invoke method
-        response = _service.get_secret_group(
-            id,
-            headers={}
-        )
-
-        # Check for correct operation
-        assert len(responses.calls) == 1
-        assert response.status_code == 200
-
-
-    @responses.activate
-    def test_get_secret_group_value_error(self):
-        """
-        test_get_secret_group_value_error()
-        """
-        # Set up mock
-        url = self.preprocess_url(_base_url + '/api/v1/secret_groups/testString')
-        mock_response = '{"metadata": {"collection_type": "application/vnd.ibm.secrets-manager.config+json", "collection_total": 1}, "resources": [{"id": "bc656587-8fda-4d05-9ad8-b1de1ec7e712", "name": "my-secret-group", "description": "Extended description for this group.", "creation_date": "2018-04-12T23:20:50.520Z", "last_update_date": "2018-05-12T23:20:50.520Z", "type": "application/vnd.ibm.secrets-manager.secret.group+json"}]}'
-        responses.add(responses.GET,
-                      url,
-                      body=mock_response,
-                      content_type='application/json',
-                      status=200)
-
-        # Set up parameter values
-        id = 'testString'
-
-        # Pass in all but one required param and check for a ValueError
-        req_param_dict = {
-            "id": id,
-        }
-        for param in req_param_dict.keys():
-            req_copy = {key:val if key is not param else None for (key,val) in req_param_dict.items()}
-            with pytest.raises(ValueError):
-                _service.get_secret_group(**req_copy)
-
-
-
-class TestUpdateSecretGroupMetadata():
-    """
-    Test Class for update_secret_group_metadata
-    """
-
-    def preprocess_url(self, request_url: str):
-        """
-        Preprocess the request URL to ensure the mock response will be found.
-        """
-        request_url = urllib.parse.unquote(request_url) # don't double-encode if already encoded
-        request_url = urllib.parse.quote(request_url, safe=':/')
-        if re.fullmatch('.*/+', request_url) is None:
-            return request_url
-        else:
-            return re.compile(request_url.rstrip('/') + '/+')
-
-    @responses.activate
-    def test_update_secret_group_metadata_all_params(self):
-        """
-        update_secret_group_metadata()
-        """
-        # Set up mock
-        url = self.preprocess_url(_base_url + '/api/v1/secret_groups/testString')
-        mock_response = '{"metadata": {"collection_type": "application/vnd.ibm.secrets-manager.config+json", "collection_total": 1}, "resources": [{"id": "bc656587-8fda-4d05-9ad8-b1de1ec7e712", "name": "my-secret-group", "description": "Extended description for this group.", "creation_date": "2018-04-12T23:20:50.520Z", "last_update_date": "2018-05-12T23:20:50.520Z", "type": "application/vnd.ibm.secrets-manager.secret.group+json"}]}'
+        url = self.preprocess_url(_base_url + '/api/v1/config/iam_credentials')
         responses.add(responses.PUT,
-                      url,
-                      body=mock_response,
-                      content_type='application/json',
-                      status=200)
-
-        # Construct a dict representation of a CollectionMetadata model
-        collection_metadata_model = {}
-        collection_metadata_model['collection_type'] = 'application/vnd.ibm.secrets-manager.secret.group+json'
-        collection_metadata_model['collection_total'] = 1
-
-        # Construct a dict representation of a SecretGroupMetadataUpdatable model
-        secret_group_metadata_updatable_model = {}
-        secret_group_metadata_updatable_model['name'] = 'updated-secret-group-name'
-        secret_group_metadata_updatable_model['description'] = 'Updated description for this group.'
-
-        # Set up parameter values
-        id = 'testString'
-        metadata = collection_metadata_model
-        resources = [secret_group_metadata_updatable_model]
-
-        # Invoke method
-        response = _service.update_secret_group_metadata(
-            id,
-            metadata,
-            resources,
-            headers={}
-        )
-
-        # Check for correct operation
-        assert len(responses.calls) == 1
-        assert response.status_code == 200
-        # Validate body params
-        req_body = json.loads(str(responses.calls[0].request.body, 'utf-8'))
-        assert req_body['metadata'] == collection_metadata_model
-        assert req_body['resources'] == [secret_group_metadata_updatable_model]
-
-
-    @responses.activate
-    def test_update_secret_group_metadata_value_error(self):
-        """
-        test_update_secret_group_metadata_value_error()
-        """
-        # Set up mock
-        url = self.preprocess_url(_base_url + '/api/v1/secret_groups/testString')
-        mock_response = '{"metadata": {"collection_type": "application/vnd.ibm.secrets-manager.config+json", "collection_total": 1}, "resources": [{"id": "bc656587-8fda-4d05-9ad8-b1de1ec7e712", "name": "my-secret-group", "description": "Extended description for this group.", "creation_date": "2018-04-12T23:20:50.520Z", "last_update_date": "2018-05-12T23:20:50.520Z", "type": "application/vnd.ibm.secrets-manager.secret.group+json"}]}'
-        responses.add(responses.PUT,
-                      url,
-                      body=mock_response,
-                      content_type='application/json',
-                      status=200)
-
-        # Construct a dict representation of a CollectionMetadata model
-        collection_metadata_model = {}
-        collection_metadata_model['collection_type'] = 'application/vnd.ibm.secrets-manager.secret.group+json'
-        collection_metadata_model['collection_total'] = 1
-
-        # Construct a dict representation of a SecretGroupMetadataUpdatable model
-        secret_group_metadata_updatable_model = {}
-        secret_group_metadata_updatable_model['name'] = 'updated-secret-group-name'
-        secret_group_metadata_updatable_model['description'] = 'Updated description for this group.'
-
-        # Set up parameter values
-        id = 'testString'
-        metadata = collection_metadata_model
-        resources = [secret_group_metadata_updatable_model]
-
-        # Pass in all but one required param and check for a ValueError
-        req_param_dict = {
-            "id": id,
-            "metadata": metadata,
-            "resources": resources,
-        }
-        for param in req_param_dict.keys():
-            req_copy = {key:val if key is not param else None for (key,val) in req_param_dict.items()}
-            with pytest.raises(ValueError):
-                _service.update_secret_group_metadata(**req_copy)
-
-
-
-class TestDeleteSecretGroup():
-    """
-    Test Class for delete_secret_group
-    """
-
-    def preprocess_url(self, request_url: str):
-        """
-        Preprocess the request URL to ensure the mock response will be found.
-        """
-        request_url = urllib.parse.unquote(request_url) # don't double-encode if already encoded
-        request_url = urllib.parse.quote(request_url, safe=':/')
-        if re.fullmatch('.*/+', request_url) is None:
-            return request_url
-        else:
-            return re.compile(request_url.rstrip('/') + '/+')
-
-    @responses.activate
-    def test_delete_secret_group_all_params(self):
-        """
-        delete_secret_group()
-        """
-        # Set up mock
-        url = self.preprocess_url(_base_url + '/api/v1/secret_groups/testString')
-        responses.add(responses.DELETE,
                       url,
                       status=204)
 
         # Set up parameter values
-        id = 'testString'
+        secret_type = 'iam_credentials'
+        api_key = 'API_KEY'
 
         # Invoke method
-        response = _service.delete_secret_group(
-            id,
+        response = _service.put_config(
+            secret_type,
+            api_key,
             headers={}
         )
 
         # Check for correct operation
         assert len(responses.calls) == 1
         assert response.status_code == 204
+        # Validate body params
+        req_body = json.loads(str(responses.calls[0].request.body, 'utf-8'))
+        assert req_body['api_key'] == 'API_KEY'
 
+    def test_put_config_all_params_with_retries(self):
+    	# Enable retries and run test_put_config_all_params.
+    	_service.enable_retries()
+    	self.test_put_config_all_params()
+
+    	# Disable retries and run test_put_config_all_params.
+    	_service.disable_retries()
+    	self.test_put_config_all_params()
 
     @responses.activate
-    def test_delete_secret_group_value_error(self):
+    def test_put_config_value_error(self):
         """
-        test_delete_secret_group_value_error()
+        test_put_config_value_error()
         """
         # Set up mock
-        url = self.preprocess_url(_base_url + '/api/v1/secret_groups/testString')
-        responses.add(responses.DELETE,
+        url = self.preprocess_url(_base_url + '/api/v1/config/iam_credentials')
+        responses.add(responses.PUT,
                       url,
                       status=204)
 
         # Set up parameter values
-        id = 'testString'
+        secret_type = 'iam_credentials'
+        api_key = 'API_KEY'
 
         # Pass in all but one required param and check for a ValueError
         req_param_dict = {
-            "id": id,
+            "secret_type": secret_type,
+            "api_key": api_key,
         }
         for param in req_param_dict.keys():
             req_copy = {key:val if key is not param else None for (key,val) in req_param_dict.items()}
             with pytest.raises(ValueError):
-                _service.delete_secret_group(**req_copy)
+                _service.put_config(**req_copy)
 
 
+    def test_put_config_value_error_with_retries(self):
+    	# Enable retries and run test_put_config_value_error.
+    	_service.enable_retries()
+    	self.test_put_config_value_error()
 
-# endregion
-##############################################################################
-# End of Service: SecretGroups
-##############################################################################
+    	# Disable retries and run test_put_config_value_error.
+    	_service.disable_retries()
+    	self.test_put_config_value_error()
 
-##############################################################################
-# Start of Service: Secrets
-##############################################################################
-# region
-
-class TestNewInstance():
+class TestGetConfig():
     """
-    Test Class for new_instance
-    """
-
-    def test_new_instance(self):
-        """
-        new_instance()
-        """
-        os.environ['TEST_SERVICE_AUTH_TYPE'] = 'noAuth'
-
-        service = SecretsManagerV1.new_instance(
-            service_name='TEST_SERVICE',
-        )
-
-        assert service is not None
-        assert isinstance(service, SecretsManagerV1)
-
-    def test_new_instance_without_authenticator(self):
-        """
-        new_instance_without_authenticator()
-        """
-        with pytest.raises(ValueError, match='authenticator must be provided'):
-            service = SecretsManagerV1.new_instance(
-            )
-
-class TestCreateSecret():
-    """
-    Test Class for create_secret
+    Test Class for get_config
     """
 
     def preprocess_url(self, request_url: str):
@@ -1426,43 +2140,125 @@ class TestCreateSecret():
             return re.compile(request_url.rstrip('/') + '/+')
 
     @responses.activate
-    def test_create_secret_all_params(self):
+    def test_get_config_all_params(self):
         """
-        create_secret()
+        get_config()
         """
         # Set up mock
-        url = self.preprocess_url(_base_url + '/api/v1/secrets/arbitrary')
-        mock_response = '{"metadata": {"collection_type": "application/vnd.ibm.secrets-manager.config+json", "collection_total": 1}, "resources": [{"id": "id", "name": "name", "description": "description", "secret_group_id": "secret_group_id", "labels": ["labels"], "state": 0, "state_description": "Active", "secret_type": "arbitrary", "crn": "crn:v1:bluemix:public:secrets-manager:<region>:a/<account-id>:<service-instance>:secret:<secret-id>", "creation_date": "2018-04-12T23:20:50.520Z", "created_by": "created_by", "last_update_date": "2018-04-12T23:20:50.520Z", "versions_total": 1, "versions": [{"mapKey": "anyValue"}], "expiration_date": "2030-04-01T09:30:00.000Z", "payload": "payload", "secret_data": {"anyKey": "anyValue"}}]}'
+        url = self.preprocess_url(_base_url + '/api/v1/config/iam_credentials')
+        mock_response = '{"metadata": {"collection_type": "application/vnd.ibm.secrets-manager.config+json", "collection_total": 1}, "resources": [{"certificate_authorities": [{"name": "name", "type": "letsencrypt"}], "dns_providers": [{"name": "name", "type": "letsencrypt"}]}]}'
+        responses.add(responses.GET,
+                      url,
+                      body=mock_response,
+                      content_type='application/json',
+                      status=200)
+
+        # Set up parameter values
+        secret_type = 'iam_credentials'
+
+        # Invoke method
+        response = _service.get_config(
+            secret_type,
+            headers={}
+        )
+
+        # Check for correct operation
+        assert len(responses.calls) == 1
+        assert response.status_code == 200
+
+    def test_get_config_all_params_with_retries(self):
+    	# Enable retries and run test_get_config_all_params.
+    	_service.enable_retries()
+    	self.test_get_config_all_params()
+
+    	# Disable retries and run test_get_config_all_params.
+    	_service.disable_retries()
+    	self.test_get_config_all_params()
+
+    @responses.activate
+    def test_get_config_value_error(self):
+        """
+        test_get_config_value_error()
+        """
+        # Set up mock
+        url = self.preprocess_url(_base_url + '/api/v1/config/iam_credentials')
+        mock_response = '{"metadata": {"collection_type": "application/vnd.ibm.secrets-manager.config+json", "collection_total": 1}, "resources": [{"certificate_authorities": [{"name": "name", "type": "letsencrypt"}], "dns_providers": [{"name": "name", "type": "letsencrypt"}]}]}'
+        responses.add(responses.GET,
+                      url,
+                      body=mock_response,
+                      content_type='application/json',
+                      status=200)
+
+        # Set up parameter values
+        secret_type = 'iam_credentials'
+
+        # Pass in all but one required param and check for a ValueError
+        req_param_dict = {
+            "secret_type": secret_type,
+        }
+        for param in req_param_dict.keys():
+            req_copy = {key:val if key is not param else None for (key,val) in req_param_dict.items()}
+            with pytest.raises(ValueError):
+                _service.get_config(**req_copy)
+
+
+    def test_get_config_value_error_with_retries(self):
+    	# Enable retries and run test_get_config_value_error.
+    	_service.enable_retries()
+    	self.test_get_config_value_error()
+
+    	# Disable retries and run test_get_config_value_error.
+    	_service.disable_retries()
+    	self.test_get_config_value_error()
+
+class TestCreateConfigElement():
+    """
+    Test Class for create_config_element
+    """
+
+    def preprocess_url(self, request_url: str):
+        """
+        Preprocess the request URL to ensure the mock response will be found.
+        """
+        request_url = urllib.parse.unquote(request_url) # don't double-encode if already encoded
+        request_url = urllib.parse.quote(request_url, safe=':/')
+        if re.fullmatch('.*/+', request_url) is None:
+            return request_url
+        else:
+            return re.compile(request_url.rstrip('/') + '/+')
+
+    @responses.activate
+    def test_create_config_element_all_params(self):
+        """
+        create_config_element()
+        """
+        # Set up mock
+        url = self.preprocess_url(_base_url + '/api/v1/config/public_cert/certificate_authorities')
+        mock_response = '{"metadata": {"collection_type": "application/vnd.ibm.secrets-manager.config+json", "collection_total": 1}, "resources": [{"name": "name", "type": "letsencrypt", "config": {"private_key": "private_key"}}]}'
         responses.add(responses.POST,
                       url,
                       body=mock_response,
                       content_type='application/json',
                       status=201)
 
-        # Construct a dict representation of a CollectionMetadata model
-        collection_metadata_model = {}
-        collection_metadata_model['collection_type'] = 'application/vnd.ibm.secrets-manager.config+json'
-        collection_metadata_model['collection_total'] = 1
-
-        # Construct a dict representation of a ArbitrarySecretResource model
-        secret_resource_model = {}
-        secret_resource_model['name'] = 'testString'
-        secret_resource_model['description'] = 'testString'
-        secret_resource_model['secret_group_id'] = 'testString'
-        secret_resource_model['labels'] = ['testString']
-        secret_resource_model['expiration_date'] = "2030-04-01T09:30:00Z"
-        secret_resource_model['payload'] = 'testString'
+        # Construct a dict representation of a ConfigElementDefConfigLetsEncryptConfig model
+        config_element_def_config_model = {}
+        config_element_def_config_model['private_key'] = 'testString'
 
         # Set up parameter values
-        secret_type = 'arbitrary'
-        metadata = collection_metadata_model
-        resources = [secret_resource_model]
+        secret_type = 'public_cert'
+        config_element = 'certificate_authorities'
+        name = 'testString'
+        type = 'letsencrypt'
+        config = config_element_def_config_model
 
         # Invoke method
-        response = _service.create_secret(
+        response = _service.create_config_element(
             secret_type,
-            metadata,
-            resources,
+            config_element,
+            name,
+            type,
+            config,
             headers={}
         )
 
@@ -1471,59 +2267,70 @@ class TestCreateSecret():
         assert response.status_code == 201
         # Validate body params
         req_body = json.loads(str(responses.calls[0].request.body, 'utf-8'))
-        assert req_body['metadata'] == collection_metadata_model
-        assert req_body['resources'] == [secret_resource_model]
+        assert req_body['name'] == 'testString'
+        assert req_body['type'] == 'letsencrypt'
+        assert req_body['config'] == config_element_def_config_model
 
+    def test_create_config_element_all_params_with_retries(self):
+    	# Enable retries and run test_create_config_element_all_params.
+    	_service.enable_retries()
+    	self.test_create_config_element_all_params()
+
+    	# Disable retries and run test_create_config_element_all_params.
+    	_service.disable_retries()
+    	self.test_create_config_element_all_params()
 
     @responses.activate
-    def test_create_secret_value_error(self):
+    def test_create_config_element_value_error(self):
         """
-        test_create_secret_value_error()
+        test_create_config_element_value_error()
         """
         # Set up mock
-        url = self.preprocess_url(_base_url + '/api/v1/secrets/arbitrary')
-        mock_response = '{"metadata": {"collection_type": "application/vnd.ibm.secrets-manager.config+json", "collection_total": 1}, "resources": [{"id": "id", "name": "name", "description": "description", "secret_group_id": "secret_group_id", "labels": ["labels"], "state": 0, "state_description": "Active", "secret_type": "arbitrary", "crn": "crn:v1:bluemix:public:secrets-manager:<region>:a/<account-id>:<service-instance>:secret:<secret-id>", "creation_date": "2018-04-12T23:20:50.520Z", "created_by": "created_by", "last_update_date": "2018-04-12T23:20:50.520Z", "versions_total": 1, "versions": [{"mapKey": "anyValue"}], "expiration_date": "2030-04-01T09:30:00.000Z", "payload": "payload", "secret_data": {"anyKey": "anyValue"}}]}'
+        url = self.preprocess_url(_base_url + '/api/v1/config/public_cert/certificate_authorities')
+        mock_response = '{"metadata": {"collection_type": "application/vnd.ibm.secrets-manager.config+json", "collection_total": 1}, "resources": [{"name": "name", "type": "letsencrypt", "config": {"private_key": "private_key"}}]}'
         responses.add(responses.POST,
                       url,
                       body=mock_response,
                       content_type='application/json',
                       status=201)
 
-        # Construct a dict representation of a CollectionMetadata model
-        collection_metadata_model = {}
-        collection_metadata_model['collection_type'] = 'application/vnd.ibm.secrets-manager.config+json'
-        collection_metadata_model['collection_total'] = 1
-
-        # Construct a dict representation of a ArbitrarySecretResource model
-        secret_resource_model = {}
-        secret_resource_model['name'] = 'testString'
-        secret_resource_model['description'] = 'testString'
-        secret_resource_model['secret_group_id'] = 'testString'
-        secret_resource_model['labels'] = ['testString']
-        secret_resource_model['expiration_date'] = "2030-04-01T09:30:00Z"
-        secret_resource_model['payload'] = 'testString'
+        # Construct a dict representation of a ConfigElementDefConfigLetsEncryptConfig model
+        config_element_def_config_model = {}
+        config_element_def_config_model['private_key'] = 'testString'
 
         # Set up parameter values
-        secret_type = 'arbitrary'
-        metadata = collection_metadata_model
-        resources = [secret_resource_model]
+        secret_type = 'public_cert'
+        config_element = 'certificate_authorities'
+        name = 'testString'
+        type = 'letsencrypt'
+        config = config_element_def_config_model
 
         # Pass in all but one required param and check for a ValueError
         req_param_dict = {
             "secret_type": secret_type,
-            "metadata": metadata,
-            "resources": resources,
+            "config_element": config_element,
+            "name": name,
+            "type": type,
+            "config": config,
         }
         for param in req_param_dict.keys():
             req_copy = {key:val if key is not param else None for (key,val) in req_param_dict.items()}
             with pytest.raises(ValueError):
-                _service.create_secret(**req_copy)
+                _service.create_config_element(**req_copy)
 
 
+    def test_create_config_element_value_error_with_retries(self):
+    	# Enable retries and run test_create_config_element_value_error.
+    	_service.enable_retries()
+    	self.test_create_config_element_value_error()
 
-class TestListSecrets():
+    	# Disable retries and run test_create_config_element_value_error.
+    	_service.disable_retries()
+    	self.test_create_config_element_value_error()
+
+class TestGetConfigElements():
     """
-    Test Class for list_secrets
+    Test Class for get_config_elements
     """
 
     def preprocess_url(self, request_url: str):
@@ -1538,13 +2345,13 @@ class TestListSecrets():
             return re.compile(request_url.rstrip('/') + '/+')
 
     @responses.activate
-    def test_list_secrets_all_params(self):
+    def test_get_config_elements_all_params(self):
         """
-        list_secrets()
+        get_config_elements()
         """
         # Set up mock
-        url = self.preprocess_url(_base_url + '/api/v1/secrets/arbitrary')
-        mock_response = '{"metadata": {"collection_type": "application/vnd.ibm.secrets-manager.config+json", "collection_total": 1}, "resources": [{"id": "id", "name": "name", "description": "description", "secret_group_id": "secret_group_id", "labels": ["labels"], "state": 0, "state_description": "Active", "secret_type": "arbitrary", "crn": "crn:v1:bluemix:public:secrets-manager:<region>:a/<account-id>:<service-instance>:secret:<secret-id>", "creation_date": "2018-04-12T23:20:50.520Z", "created_by": "created_by", "last_update_date": "2018-04-12T23:20:50.520Z", "versions_total": 1, "versions": [{"mapKey": "anyValue"}], "expiration_date": "2030-04-01T09:30:00.000Z", "payload": "payload", "secret_data": {"anyKey": "anyValue"}}]}'
+        url = self.preprocess_url(_base_url + '/api/v1/config/public_cert/certificate_authorities')
+        mock_response = '{"metadata": {"collection_type": "application/vnd.ibm.secrets-manager.config+json", "collection_total": 1}, "resources": [{"certificate_authorities": [{"name": "name", "type": "letsencrypt"}]}]}'
         responses.add(responses.GET,
                       url,
                       body=mock_response,
@@ -1552,48 +2359,13 @@ class TestListSecrets():
                       status=200)
 
         # Set up parameter values
-        secret_type = 'arbitrary'
-        limit = 1
-        offset = 0
+        secret_type = 'public_cert'
+        config_element = 'certificate_authorities'
 
         # Invoke method
-        response = _service.list_secrets(
+        response = _service.get_config_elements(
             secret_type,
-            limit=limit,
-            offset=offset,
-            headers={}
-        )
-
-        # Check for correct operation
-        assert len(responses.calls) == 1
-        assert response.status_code == 200
-        # Validate query params
-        query_string = responses.calls[0].request.url.split('?',1)[1]
-        query_string = urllib.parse.unquote_plus(query_string)
-        assert 'limit={}'.format(limit) in query_string
-        assert 'offset={}'.format(offset) in query_string
-
-
-    @responses.activate
-    def test_list_secrets_required_params(self):
-        """
-        test_list_secrets_required_params()
-        """
-        # Set up mock
-        url = self.preprocess_url(_base_url + '/api/v1/secrets/arbitrary')
-        mock_response = '{"metadata": {"collection_type": "application/vnd.ibm.secrets-manager.config+json", "collection_total": 1}, "resources": [{"id": "id", "name": "name", "description": "description", "secret_group_id": "secret_group_id", "labels": ["labels"], "state": 0, "state_description": "Active", "secret_type": "arbitrary", "crn": "crn:v1:bluemix:public:secrets-manager:<region>:a/<account-id>:<service-instance>:secret:<secret-id>", "creation_date": "2018-04-12T23:20:50.520Z", "created_by": "created_by", "last_update_date": "2018-04-12T23:20:50.520Z", "versions_total": 1, "versions": [{"mapKey": "anyValue"}], "expiration_date": "2030-04-01T09:30:00.000Z", "payload": "payload", "secret_data": {"anyKey": "anyValue"}}]}'
-        responses.add(responses.GET,
-                      url,
-                      body=mock_response,
-                      content_type='application/json',
-                      status=200)
-
-        # Set up parameter values
-        secret_type = 'arbitrary'
-
-        # Invoke method
-        response = _service.list_secrets(
-            secret_type,
+            config_element,
             headers={}
         )
 
@@ -1601,15 +2373,23 @@ class TestListSecrets():
         assert len(responses.calls) == 1
         assert response.status_code == 200
 
+    def test_get_config_elements_all_params_with_retries(self):
+    	# Enable retries and run test_get_config_elements_all_params.
+    	_service.enable_retries()
+    	self.test_get_config_elements_all_params()
+
+    	# Disable retries and run test_get_config_elements_all_params.
+    	_service.disable_retries()
+    	self.test_get_config_elements_all_params()
 
     @responses.activate
-    def test_list_secrets_value_error(self):
+    def test_get_config_elements_value_error(self):
         """
-        test_list_secrets_value_error()
+        test_get_config_elements_value_error()
         """
         # Set up mock
-        url = self.preprocess_url(_base_url + '/api/v1/secrets/arbitrary')
-        mock_response = '{"metadata": {"collection_type": "application/vnd.ibm.secrets-manager.config+json", "collection_total": 1}, "resources": [{"id": "id", "name": "name", "description": "description", "secret_group_id": "secret_group_id", "labels": ["labels"], "state": 0, "state_description": "Active", "secret_type": "arbitrary", "crn": "crn:v1:bluemix:public:secrets-manager:<region>:a/<account-id>:<service-instance>:secret:<secret-id>", "creation_date": "2018-04-12T23:20:50.520Z", "created_by": "created_by", "last_update_date": "2018-04-12T23:20:50.520Z", "versions_total": 1, "versions": [{"mapKey": "anyValue"}], "expiration_date": "2030-04-01T09:30:00.000Z", "payload": "payload", "secret_data": {"anyKey": "anyValue"}}]}'
+        url = self.preprocess_url(_base_url + '/api/v1/config/public_cert/certificate_authorities')
+        mock_response = '{"metadata": {"collection_type": "application/vnd.ibm.secrets-manager.config+json", "collection_total": 1}, "resources": [{"certificate_authorities": [{"name": "name", "type": "letsencrypt"}]}]}'
         responses.add(responses.GET,
                       url,
                       body=mock_response,
@@ -1617,105 +2397,32 @@ class TestListSecrets():
                       status=200)
 
         # Set up parameter values
-        secret_type = 'arbitrary'
+        secret_type = 'public_cert'
+        config_element = 'certificate_authorities'
 
         # Pass in all but one required param and check for a ValueError
         req_param_dict = {
             "secret_type": secret_type,
+            "config_element": config_element,
         }
         for param in req_param_dict.keys():
             req_copy = {key:val if key is not param else None for (key,val) in req_param_dict.items()}
             with pytest.raises(ValueError):
-                _service.list_secrets(**req_copy)
+                _service.get_config_elements(**req_copy)
 
 
+    def test_get_config_elements_value_error_with_retries(self):
+    	# Enable retries and run test_get_config_elements_value_error.
+    	_service.enable_retries()
+    	self.test_get_config_elements_value_error()
 
-class TestListAllSecrets():
+    	# Disable retries and run test_get_config_elements_value_error.
+    	_service.disable_retries()
+    	self.test_get_config_elements_value_error()
+
+class TestUpdateConfigElement():
     """
-    Test Class for list_all_secrets
-    """
-
-    def preprocess_url(self, request_url: str):
-        """
-        Preprocess the request URL to ensure the mock response will be found.
-        """
-        request_url = urllib.parse.unquote(request_url) # don't double-encode if already encoded
-        request_url = urllib.parse.quote(request_url, safe=':/')
-        if re.fullmatch('.*/+', request_url) is None:
-            return request_url
-        else:
-            return re.compile(request_url.rstrip('/') + '/+')
-
-    @responses.activate
-    def test_list_all_secrets_all_params(self):
-        """
-        list_all_secrets()
-        """
-        # Set up mock
-        url = self.preprocess_url(_base_url + '/api/v1/secrets')
-        mock_response = '{"metadata": {"collection_type": "application/vnd.ibm.secrets-manager.config+json", "collection_total": 1}, "resources": [{"id": "id", "name": "name", "description": "description", "secret_group_id": "secret_group_id", "labels": ["labels"], "state": 0, "state_description": "Active", "secret_type": "arbitrary", "crn": "crn:v1:bluemix:public:secrets-manager:<region>:a/<account-id>:<service-instance>:secret:<secret-id>", "creation_date": "2018-04-12T23:20:50.520Z", "created_by": "created_by", "last_update_date": "2018-04-12T23:20:50.520Z", "versions_total": 1, "versions": [{"mapKey": "anyValue"}], "expiration_date": "2030-04-01T09:30:00.000Z", "payload": "payload", "secret_data": {"anyKey": "anyValue"}}]}'
-        responses.add(responses.GET,
-                      url,
-                      body=mock_response,
-                      content_type='application/json',
-                      status=200)
-
-        # Set up parameter values
-        limit = 1
-        offset = 0
-        search = 'testString'
-        sort_by = 'id'
-        groups = ['testString']
-
-        # Invoke method
-        response = _service.list_all_secrets(
-            limit=limit,
-            offset=offset,
-            search=search,
-            sort_by=sort_by,
-            groups=groups,
-            headers={}
-        )
-
-        # Check for correct operation
-        assert len(responses.calls) == 1
-        assert response.status_code == 200
-        # Validate query params
-        query_string = responses.calls[0].request.url.split('?',1)[1]
-        query_string = urllib.parse.unquote_plus(query_string)
-        assert 'limit={}'.format(limit) in query_string
-        assert 'offset={}'.format(offset) in query_string
-        assert 'search={}'.format(search) in query_string
-        assert 'sort_by={}'.format(sort_by) in query_string
-        assert 'groups={}'.format(','.join(groups)) in query_string
-
-
-    @responses.activate
-    def test_list_all_secrets_required_params(self):
-        """
-        test_list_all_secrets_required_params()
-        """
-        # Set up mock
-        url = self.preprocess_url(_base_url + '/api/v1/secrets')
-        mock_response = '{"metadata": {"collection_type": "application/vnd.ibm.secrets-manager.config+json", "collection_total": 1}, "resources": [{"id": "id", "name": "name", "description": "description", "secret_group_id": "secret_group_id", "labels": ["labels"], "state": 0, "state_description": "Active", "secret_type": "arbitrary", "crn": "crn:v1:bluemix:public:secrets-manager:<region>:a/<account-id>:<service-instance>:secret:<secret-id>", "creation_date": "2018-04-12T23:20:50.520Z", "created_by": "created_by", "last_update_date": "2018-04-12T23:20:50.520Z", "versions_total": 1, "versions": [{"mapKey": "anyValue"}], "expiration_date": "2030-04-01T09:30:00.000Z", "payload": "payload", "secret_data": {"anyKey": "anyValue"}}]}'
-        responses.add(responses.GET,
-                      url,
-                      body=mock_response,
-                      content_type='application/json',
-                      status=200)
-
-        # Invoke method
-        response = _service.list_all_secrets()
-
-
-        # Check for correct operation
-        assert len(responses.calls) == 1
-        assert response.status_code == 200
-
-
-class TestGetSecret():
-    """
-    Test Class for get_secret
+    Test Class for update_config_element
     """
 
     def preprocess_url(self, request_url: str):
@@ -1730,167 +2437,100 @@ class TestGetSecret():
             return re.compile(request_url.rstrip('/') + '/+')
 
     @responses.activate
-    def test_get_secret_all_params(self):
+    def test_update_config_element_all_params(self):
         """
-        get_secret()
+        update_config_element()
         """
         # Set up mock
-        url = self.preprocess_url(_base_url + '/api/v1/secrets/arbitrary/testString')
-        mock_response = '{"metadata": {"collection_type": "application/vnd.ibm.secrets-manager.config+json", "collection_total": 1}, "resources": [{"id": "id", "name": "name", "description": "description", "secret_group_id": "secret_group_id", "labels": ["labels"], "state": 0, "state_description": "Active", "secret_type": "arbitrary", "crn": "crn:v1:bluemix:public:secrets-manager:<region>:a/<account-id>:<service-instance>:secret:<secret-id>", "creation_date": "2018-04-12T23:20:50.520Z", "created_by": "created_by", "last_update_date": "2018-04-12T23:20:50.520Z", "versions_total": 1, "versions": [{"mapKey": "anyValue"}], "expiration_date": "2030-04-01T09:30:00.000Z", "payload": "payload", "secret_data": {"anyKey": "anyValue"}}]}'
-        responses.add(responses.GET,
+        url = self.preprocess_url(_base_url + '/api/v1/config/public_cert/certificate_authorities/testString')
+        mock_response = '{"metadata": {"collection_type": "application/vnd.ibm.secrets-manager.config+json", "collection_total": 1}, "resources": [{"name": "name", "type": "letsencrypt", "config": {"private_key": "private_key"}}]}'
+        responses.add(responses.PUT,
                       url,
                       body=mock_response,
                       content_type='application/json',
                       status=200)
 
         # Set up parameter values
-        secret_type = 'arbitrary'
-        id = 'testString'
+        secret_type = 'public_cert'
+        config_element = 'certificate_authorities'
+        config_name = 'testString'
+        type = 'letsencrypt'
+        config = { 'foo': 'bar' }
 
         # Invoke method
-        response = _service.get_secret(
+        response = _service.update_config_element(
             secret_type,
-            id,
+            config_element,
+            config_name,
+            type,
+            config,
             headers={}
         )
 
         # Check for correct operation
         assert len(responses.calls) == 1
         assert response.status_code == 200
-
-
-    @responses.activate
-    def test_get_secret_value_error(self):
-        """
-        test_get_secret_value_error()
-        """
-        # Set up mock
-        url = self.preprocess_url(_base_url + '/api/v1/secrets/arbitrary/testString')
-        mock_response = '{"metadata": {"collection_type": "application/vnd.ibm.secrets-manager.config+json", "collection_total": 1}, "resources": [{"id": "id", "name": "name", "description": "description", "secret_group_id": "secret_group_id", "labels": ["labels"], "state": 0, "state_description": "Active", "secret_type": "arbitrary", "crn": "crn:v1:bluemix:public:secrets-manager:<region>:a/<account-id>:<service-instance>:secret:<secret-id>", "creation_date": "2018-04-12T23:20:50.520Z", "created_by": "created_by", "last_update_date": "2018-04-12T23:20:50.520Z", "versions_total": 1, "versions": [{"mapKey": "anyValue"}], "expiration_date": "2030-04-01T09:30:00.000Z", "payload": "payload", "secret_data": {"anyKey": "anyValue"}}]}'
-        responses.add(responses.GET,
-                      url,
-                      body=mock_response,
-                      content_type='application/json',
-                      status=200)
-
-        # Set up parameter values
-        secret_type = 'arbitrary'
-        id = 'testString'
-
-        # Pass in all but one required param and check for a ValueError
-        req_param_dict = {
-            "secret_type": secret_type,
-            "id": id,
-        }
-        for param in req_param_dict.keys():
-            req_copy = {key:val if key is not param else None for (key,val) in req_param_dict.items()}
-            with pytest.raises(ValueError):
-                _service.get_secret(**req_copy)
-
-
-
-class TestUpdateSecret():
-    """
-    Test Class for update_secret
-    """
-
-    def preprocess_url(self, request_url: str):
-        """
-        Preprocess the request URL to ensure the mock response will be found.
-        """
-        request_url = urllib.parse.unquote(request_url) # don't double-encode if already encoded
-        request_url = urllib.parse.quote(request_url, safe=':/')
-        if re.fullmatch('.*/+', request_url) is None:
-            return request_url
-        else:
-            return re.compile(request_url.rstrip('/') + '/+')
-
-    @responses.activate
-    def test_update_secret_all_params(self):
-        """
-        update_secret()
-        """
-        # Set up mock
-        url = self.preprocess_url(_base_url + '/api/v1/secrets/arbitrary/testString')
-        mock_response = '{"metadata": {"collection_type": "application/vnd.ibm.secrets-manager.config+json", "collection_total": 1}, "resources": [{"id": "id", "name": "name", "description": "description", "secret_group_id": "secret_group_id", "labels": ["labels"], "state": 0, "state_description": "Active", "secret_type": "arbitrary", "crn": "crn:v1:bluemix:public:secrets-manager:<region>:a/<account-id>:<service-instance>:secret:<secret-id>", "creation_date": "2018-04-12T23:20:50.520Z", "created_by": "created_by", "last_update_date": "2018-04-12T23:20:50.520Z", "versions_total": 1, "versions": [{"mapKey": "anyValue"}], "expiration_date": "2030-04-01T09:30:00.000Z", "payload": "payload", "secret_data": {"anyKey": "anyValue"}}]}'
-        responses.add(responses.POST,
-                      url,
-                      body=mock_response,
-                      content_type='application/json',
-                      status=200)
-
-        # Construct a dict representation of a RotateArbitrarySecretBody model
-        secret_action_model = {}
-        secret_action_model['payload'] = 'testString'
-
-        # Set up parameter values
-        secret_type = 'arbitrary'
-        id = 'testString'
-        action = 'rotate'
-        secret_action = secret_action_model
-
-        # Invoke method
-        response = _service.update_secret(
-            secret_type,
-            id,
-            action,
-            secret_action,
-            headers={}
-        )
-
-        # Check for correct operation
-        assert len(responses.calls) == 1
-        assert response.status_code == 200
-        # Validate query params
-        query_string = responses.calls[0].request.url.split('?',1)[1]
-        query_string = urllib.parse.unquote_plus(query_string)
-        assert 'action={}'.format(action) in query_string
         # Validate body params
         req_body = json.loads(str(responses.calls[0].request.body, 'utf-8'))
-        assert req_body == secret_action
+        assert req_body['type'] == 'letsencrypt'
+        assert req_body['config'] == { 'foo': 'bar' }
 
+    def test_update_config_element_all_params_with_retries(self):
+    	# Enable retries and run test_update_config_element_all_params.
+    	_service.enable_retries()
+    	self.test_update_config_element_all_params()
+
+    	# Disable retries and run test_update_config_element_all_params.
+    	_service.disable_retries()
+    	self.test_update_config_element_all_params()
 
     @responses.activate
-    def test_update_secret_value_error(self):
+    def test_update_config_element_value_error(self):
         """
-        test_update_secret_value_error()
+        test_update_config_element_value_error()
         """
         # Set up mock
-        url = self.preprocess_url(_base_url + '/api/v1/secrets/arbitrary/testString')
-        mock_response = '{"metadata": {"collection_type": "application/vnd.ibm.secrets-manager.config+json", "collection_total": 1}, "resources": [{"id": "id", "name": "name", "description": "description", "secret_group_id": "secret_group_id", "labels": ["labels"], "state": 0, "state_description": "Active", "secret_type": "arbitrary", "crn": "crn:v1:bluemix:public:secrets-manager:<region>:a/<account-id>:<service-instance>:secret:<secret-id>", "creation_date": "2018-04-12T23:20:50.520Z", "created_by": "created_by", "last_update_date": "2018-04-12T23:20:50.520Z", "versions_total": 1, "versions": [{"mapKey": "anyValue"}], "expiration_date": "2030-04-01T09:30:00.000Z", "payload": "payload", "secret_data": {"anyKey": "anyValue"}}]}'
-        responses.add(responses.POST,
+        url = self.preprocess_url(_base_url + '/api/v1/config/public_cert/certificate_authorities/testString')
+        mock_response = '{"metadata": {"collection_type": "application/vnd.ibm.secrets-manager.config+json", "collection_total": 1}, "resources": [{"name": "name", "type": "letsencrypt", "config": {"private_key": "private_key"}}]}'
+        responses.add(responses.PUT,
                       url,
                       body=mock_response,
                       content_type='application/json',
                       status=200)
 
-        # Construct a dict representation of a RotateArbitrarySecretBody model
-        secret_action_model = {}
-        secret_action_model['payload'] = 'testString'
-
         # Set up parameter values
-        secret_type = 'arbitrary'
-        id = 'testString'
-        action = 'rotate'
-        secret_action = secret_action_model
+        secret_type = 'public_cert'
+        config_element = 'certificate_authorities'
+        config_name = 'testString'
+        type = 'letsencrypt'
+        config = { 'foo': 'bar' }
 
         # Pass in all but one required param and check for a ValueError
         req_param_dict = {
             "secret_type": secret_type,
-            "id": id,
-            "action": action,
-            "secret_action": secret_action,
+            "config_element": config_element,
+            "config_name": config_name,
+            "type": type,
+            "config": config,
         }
         for param in req_param_dict.keys():
             req_copy = {key:val if key is not param else None for (key,val) in req_param_dict.items()}
             with pytest.raises(ValueError):
-                _service.update_secret(**req_copy)
+                _service.update_config_element(**req_copy)
 
 
+    def test_update_config_element_value_error_with_retries(self):
+    	# Enable retries and run test_update_config_element_value_error.
+    	_service.enable_retries()
+    	self.test_update_config_element_value_error()
 
-class TestDeleteSecret():
+    	# Disable retries and run test_update_config_element_value_error.
+    	_service.disable_retries()
+    	self.test_update_config_element_value_error()
+
+class TestDeleteConfigElement():
     """
-    Test Class for delete_secret
+    Test Class for delete_config_element
     """
 
     def preprocess_url(self, request_url: str):
@@ -1905,24 +2545,26 @@ class TestDeleteSecret():
             return re.compile(request_url.rstrip('/') + '/+')
 
     @responses.activate
-    def test_delete_secret_all_params(self):
+    def test_delete_config_element_all_params(self):
         """
-        delete_secret()
+        delete_config_element()
         """
         # Set up mock
-        url = self.preprocess_url(_base_url + '/api/v1/secrets/arbitrary/testString')
+        url = self.preprocess_url(_base_url + '/api/v1/config/public_cert/certificate_authorities/testString')
         responses.add(responses.DELETE,
                       url,
                       status=204)
 
         # Set up parameter values
-        secret_type = 'arbitrary'
-        id = 'testString'
+        secret_type = 'public_cert'
+        config_element = 'certificate_authorities'
+        config_name = 'testString'
 
         # Invoke method
-        response = _service.delete_secret(
+        response = _service.delete_config_element(
             secret_type,
-            id,
+            config_element,
+            config_name,
             headers={}
         )
 
@@ -1930,37 +2572,55 @@ class TestDeleteSecret():
         assert len(responses.calls) == 1
         assert response.status_code == 204
 
+    def test_delete_config_element_all_params_with_retries(self):
+    	# Enable retries and run test_delete_config_element_all_params.
+    	_service.enable_retries()
+    	self.test_delete_config_element_all_params()
+
+    	# Disable retries and run test_delete_config_element_all_params.
+    	_service.disable_retries()
+    	self.test_delete_config_element_all_params()
 
     @responses.activate
-    def test_delete_secret_value_error(self):
+    def test_delete_config_element_value_error(self):
         """
-        test_delete_secret_value_error()
+        test_delete_config_element_value_error()
         """
         # Set up mock
-        url = self.preprocess_url(_base_url + '/api/v1/secrets/arbitrary/testString')
+        url = self.preprocess_url(_base_url + '/api/v1/config/public_cert/certificate_authorities/testString')
         responses.add(responses.DELETE,
                       url,
                       status=204)
 
         # Set up parameter values
-        secret_type = 'arbitrary'
-        id = 'testString'
+        secret_type = 'public_cert'
+        config_element = 'certificate_authorities'
+        config_name = 'testString'
 
         # Pass in all but one required param and check for a ValueError
         req_param_dict = {
             "secret_type": secret_type,
-            "id": id,
+            "config_element": config_element,
+            "config_name": config_name,
         }
         for param in req_param_dict.keys():
             req_copy = {key:val if key is not param else None for (key,val) in req_param_dict.items()}
             with pytest.raises(ValueError):
-                _service.delete_secret(**req_copy)
+                _service.delete_config_element(**req_copy)
 
 
+    def test_delete_config_element_value_error_with_retries(self):
+    	# Enable retries and run test_delete_config_element_value_error.
+    	_service.enable_retries()
+    	self.test_delete_config_element_value_error()
 
-class TestGetSecretVersion():
+    	# Disable retries and run test_delete_config_element_value_error.
+    	_service.disable_retries()
+    	self.test_delete_config_element_value_error()
+
+class TestGetConfigElement():
     """
-    Test Class for get_secret_version
+    Test Class for get_config_element
     """
 
     def preprocess_url(self, request_url: str):
@@ -1975,13 +2635,13 @@ class TestGetSecretVersion():
             return re.compile(request_url.rstrip('/') + '/+')
 
     @responses.activate
-    def test_get_secret_version_all_params(self):
+    def test_get_config_element_all_params(self):
         """
-        get_secret_version()
+        get_config_element()
         """
         # Set up mock
-        url = self.preprocess_url(_base_url + '/api/v1/secrets/imported_cert/testString/versions/testString')
-        mock_response = '{"metadata": {"collection_type": "application/vnd.ibm.secrets-manager.config+json", "collection_total": 1}, "resources": [{"id": "id", "crn": "crn:v1:bluemix:public:secrets-manager:<region>:a/<account-id>:<service-instance>:secret:<secret-id>", "version_id": "4a0225e9-17a0-46c1-ace7-f25bcf4237d4", "creation_date": "2019-01-01T12:00:00.000Z", "created_by": "created_by", "validity": {"not_before": "2020-10-05T21:33:11.000Z", "not_after": "2021-01-01T00:00:00.000Z"}, "serial_number": "serial_number", "expiration_date": "2030-04-01T09:30:00.000Z", "secret_data": {"certificate": "certificate", "private_key": "private_key", "intermediate": "intermediate"}}]}'
+        url = self.preprocess_url(_base_url + '/api/v1/config/public_cert/certificate_authorities/testString')
+        mock_response = '{"metadata": {"collection_type": "application/vnd.ibm.secrets-manager.config+json", "collection_total": 1}, "resources": [{"name": "name", "type": "letsencrypt", "config": {"private_key": "private_key"}}]}'
         responses.add(responses.GET,
                       url,
                       body=mock_response,
@@ -1989,15 +2649,15 @@ class TestGetSecretVersion():
                       status=200)
 
         # Set up parameter values
-        secret_type = 'imported_cert'
-        id = 'testString'
-        version_id = 'testString'
+        secret_type = 'public_cert'
+        config_element = 'certificate_authorities'
+        config_name = 'testString'
 
         # Invoke method
-        response = _service.get_secret_version(
+        response = _service.get_config_element(
             secret_type,
-            id,
-            version_id,
+            config_element,
+            config_name,
             headers={}
         )
 
@@ -2005,15 +2665,23 @@ class TestGetSecretVersion():
         assert len(responses.calls) == 1
         assert response.status_code == 200
 
+    def test_get_config_element_all_params_with_retries(self):
+    	# Enable retries and run test_get_config_element_all_params.
+    	_service.enable_retries()
+    	self.test_get_config_element_all_params()
+
+    	# Disable retries and run test_get_config_element_all_params.
+    	_service.disable_retries()
+    	self.test_get_config_element_all_params()
 
     @responses.activate
-    def test_get_secret_version_value_error(self):
+    def test_get_config_element_value_error(self):
         """
-        test_get_secret_version_value_error()
+        test_get_config_element_value_error()
         """
         # Set up mock
-        url = self.preprocess_url(_base_url + '/api/v1/secrets/imported_cert/testString/versions/testString')
-        mock_response = '{"metadata": {"collection_type": "application/vnd.ibm.secrets-manager.config+json", "collection_total": 1}, "resources": [{"id": "id", "crn": "crn:v1:bluemix:public:secrets-manager:<region>:a/<account-id>:<service-instance>:secret:<secret-id>", "version_id": "4a0225e9-17a0-46c1-ace7-f25bcf4237d4", "creation_date": "2019-01-01T12:00:00.000Z", "created_by": "created_by", "validity": {"not_before": "2020-10-05T21:33:11.000Z", "not_after": "2021-01-01T00:00:00.000Z"}, "serial_number": "serial_number", "expiration_date": "2030-04-01T09:30:00.000Z", "secret_data": {"certificate": "certificate", "private_key": "private_key", "intermediate": "intermediate"}}]}'
+        url = self.preprocess_url(_base_url + '/api/v1/config/public_cert/certificate_authorities/testString')
+        mock_response = '{"metadata": {"collection_type": "application/vnd.ibm.secrets-manager.config+json", "collection_total": 1}, "resources": [{"name": "name", "type": "letsencrypt", "config": {"private_key": "private_key"}}]}'
         responses.add(responses.GET,
                       url,
                       body=mock_response,
@@ -2021,294 +2689,34 @@ class TestGetSecretVersion():
                       status=200)
 
         # Set up parameter values
-        secret_type = 'imported_cert'
-        id = 'testString'
-        version_id = 'testString'
+        secret_type = 'public_cert'
+        config_element = 'certificate_authorities'
+        config_name = 'testString'
 
         # Pass in all but one required param and check for a ValueError
         req_param_dict = {
             "secret_type": secret_type,
-            "id": id,
-            "version_id": version_id,
+            "config_element": config_element,
+            "config_name": config_name,
         }
         for param in req_param_dict.keys():
             req_copy = {key:val if key is not param else None for (key,val) in req_param_dict.items()}
             with pytest.raises(ValueError):
-                _service.get_secret_version(**req_copy)
+                _service.get_config_element(**req_copy)
 
 
+    def test_get_config_element_value_error_with_retries(self):
+    	# Enable retries and run test_get_config_element_value_error.
+    	_service.enable_retries()
+    	self.test_get_config_element_value_error()
 
-class TestGetSecretVersionMetadata():
-    """
-    Test Class for get_secret_version_metadata
-    """
-
-    def preprocess_url(self, request_url: str):
-        """
-        Preprocess the request URL to ensure the mock response will be found.
-        """
-        request_url = urllib.parse.unquote(request_url) # don't double-encode if already encoded
-        request_url = urllib.parse.quote(request_url, safe=':/')
-        if re.fullmatch('.*/+', request_url) is None:
-            return request_url
-        else:
-            return re.compile(request_url.rstrip('/') + '/+')
-
-    @responses.activate
-    def test_get_secret_version_metadata_all_params(self):
-        """
-        get_secret_version_metadata()
-        """
-        # Set up mock
-        url = self.preprocess_url(_base_url + '/api/v1/secrets/imported_cert/testString/versions/testString/metadata')
-        mock_response = '{"metadata": {"collection_type": "application/vnd.ibm.secrets-manager.config+json", "collection_total": 1}, "resources": [{"id": "4a0225e9-17a0-46c1-ace7-f25bcf4237d4", "creation_date": "2019-01-01T12:00:00.000Z", "created_by": "created_by"}]}'
-        responses.add(responses.GET,
-                      url,
-                      body=mock_response,
-                      content_type='application/json',
-                      status=200)
-
-        # Set up parameter values
-        secret_type = 'imported_cert'
-        id = 'testString'
-        version_id = 'testString'
-
-        # Invoke method
-        response = _service.get_secret_version_metadata(
-            secret_type,
-            id,
-            version_id,
-            headers={}
-        )
-
-        # Check for correct operation
-        assert len(responses.calls) == 1
-        assert response.status_code == 200
-
-
-    @responses.activate
-    def test_get_secret_version_metadata_value_error(self):
-        """
-        test_get_secret_version_metadata_value_error()
-        """
-        # Set up mock
-        url = self.preprocess_url(_base_url + '/api/v1/secrets/imported_cert/testString/versions/testString/metadata')
-        mock_response = '{"metadata": {"collection_type": "application/vnd.ibm.secrets-manager.config+json", "collection_total": 1}, "resources": [{"id": "4a0225e9-17a0-46c1-ace7-f25bcf4237d4", "creation_date": "2019-01-01T12:00:00.000Z", "created_by": "created_by"}]}'
-        responses.add(responses.GET,
-                      url,
-                      body=mock_response,
-                      content_type='application/json',
-                      status=200)
-
-        # Set up parameter values
-        secret_type = 'imported_cert'
-        id = 'testString'
-        version_id = 'testString'
-
-        # Pass in all but one required param and check for a ValueError
-        req_param_dict = {
-            "secret_type": secret_type,
-            "id": id,
-            "version_id": version_id,
-        }
-        for param in req_param_dict.keys():
-            req_copy = {key:val if key is not param else None for (key,val) in req_param_dict.items()}
-            with pytest.raises(ValueError):
-                _service.get_secret_version_metadata(**req_copy)
-
-
-
-class TestGetSecretMetadata():
-    """
-    Test Class for get_secret_metadata
-    """
-
-    def preprocess_url(self, request_url: str):
-        """
-        Preprocess the request URL to ensure the mock response will be found.
-        """
-        request_url = urllib.parse.unquote(request_url) # don't double-encode if already encoded
-        request_url = urllib.parse.quote(request_url, safe=':/')
-        if re.fullmatch('.*/+', request_url) is None:
-            return request_url
-        else:
-            return re.compile(request_url.rstrip('/') + '/+')
-
-    @responses.activate
-    def test_get_secret_metadata_all_params(self):
-        """
-        get_secret_metadata()
-        """
-        # Set up mock
-        url = self.preprocess_url(_base_url + '/api/v1/secrets/arbitrary/testString/metadata')
-        mock_response = '{"metadata": {"collection_type": "application/vnd.ibm.secrets-manager.config+json", "collection_total": 1}, "resources": [{"id": "b0283d74-0894-830b-f81d-1f115f67729f", "labels": ["labels"], "name": "example-secret", "description": "Extended description for this secret.", "secret_group_id": "f5283d74-9024-230a-b72c-1f115f61290f", "state": 0, "state_description": "Active", "secret_type": "arbitrary", "crn": "crn:v1:bluemix:public:secrets-manager:<region>:a/<account-id>:<service-instance>:secret:<secret-id>", "creation_date": "2018-04-12T23:20:50.520Z", "created_by": "ServiceId-cb258cb9-8de3-4ac0-9aec-b2b2d27ac976", "last_update_date": "2018-04-12T23:20:50.520Z", "versions_total": 1, "expiration_date": "2030-04-01T09:30:00.000Z"}]}'
-        responses.add(responses.GET,
-                      url,
-                      body=mock_response,
-                      content_type='application/json',
-                      status=200)
-
-        # Set up parameter values
-        secret_type = 'arbitrary'
-        id = 'testString'
-
-        # Invoke method
-        response = _service.get_secret_metadata(
-            secret_type,
-            id,
-            headers={}
-        )
-
-        # Check for correct operation
-        assert len(responses.calls) == 1
-        assert response.status_code == 200
-
-
-    @responses.activate
-    def test_get_secret_metadata_value_error(self):
-        """
-        test_get_secret_metadata_value_error()
-        """
-        # Set up mock
-        url = self.preprocess_url(_base_url + '/api/v1/secrets/arbitrary/testString/metadata')
-        mock_response = '{"metadata": {"collection_type": "application/vnd.ibm.secrets-manager.config+json", "collection_total": 1}, "resources": [{"id": "b0283d74-0894-830b-f81d-1f115f67729f", "labels": ["labels"], "name": "example-secret", "description": "Extended description for this secret.", "secret_group_id": "f5283d74-9024-230a-b72c-1f115f61290f", "state": 0, "state_description": "Active", "secret_type": "arbitrary", "crn": "crn:v1:bluemix:public:secrets-manager:<region>:a/<account-id>:<service-instance>:secret:<secret-id>", "creation_date": "2018-04-12T23:20:50.520Z", "created_by": "ServiceId-cb258cb9-8de3-4ac0-9aec-b2b2d27ac976", "last_update_date": "2018-04-12T23:20:50.520Z", "versions_total": 1, "expiration_date": "2030-04-01T09:30:00.000Z"}]}'
-        responses.add(responses.GET,
-                      url,
-                      body=mock_response,
-                      content_type='application/json',
-                      status=200)
-
-        # Set up parameter values
-        secret_type = 'arbitrary'
-        id = 'testString'
-
-        # Pass in all but one required param and check for a ValueError
-        req_param_dict = {
-            "secret_type": secret_type,
-            "id": id,
-        }
-        for param in req_param_dict.keys():
-            req_copy = {key:val if key is not param else None for (key,val) in req_param_dict.items()}
-            with pytest.raises(ValueError):
-                _service.get_secret_metadata(**req_copy)
-
-
-
-class TestUpdateSecretMetadata():
-    """
-    Test Class for update_secret_metadata
-    """
-
-    def preprocess_url(self, request_url: str):
-        """
-        Preprocess the request URL to ensure the mock response will be found.
-        """
-        request_url = urllib.parse.unquote(request_url) # don't double-encode if already encoded
-        request_url = urllib.parse.quote(request_url, safe=':/')
-        if re.fullmatch('.*/+', request_url) is None:
-            return request_url
-        else:
-            return re.compile(request_url.rstrip('/') + '/+')
-
-    @responses.activate
-    def test_update_secret_metadata_all_params(self):
-        """
-        update_secret_metadata()
-        """
-        # Set up mock
-        url = self.preprocess_url(_base_url + '/api/v1/secrets/arbitrary/testString/metadata')
-        mock_response = '{"metadata": {"collection_type": "application/vnd.ibm.secrets-manager.config+json", "collection_total": 1}, "resources": [{"id": "b0283d74-0894-830b-f81d-1f115f67729f", "labels": ["labels"], "name": "example-secret", "description": "Extended description for this secret.", "secret_group_id": "f5283d74-9024-230a-b72c-1f115f61290f", "state": 0, "state_description": "Active", "secret_type": "arbitrary", "crn": "crn:v1:bluemix:public:secrets-manager:<region>:a/<account-id>:<service-instance>:secret:<secret-id>", "creation_date": "2018-04-12T23:20:50.520Z", "created_by": "ServiceId-cb258cb9-8de3-4ac0-9aec-b2b2d27ac976", "last_update_date": "2018-04-12T23:20:50.520Z", "versions_total": 1, "expiration_date": "2030-04-01T09:30:00.000Z"}]}'
-        responses.add(responses.PUT,
-                      url,
-                      body=mock_response,
-                      content_type='application/json',
-                      status=200)
-
-        # Construct a dict representation of a CollectionMetadata model
-        collection_metadata_model = {}
-        collection_metadata_model['collection_type'] = 'application/vnd.ibm.secrets-manager.config+json'
-        collection_metadata_model['collection_total'] = 1
-
-        # Construct a dict representation of a ArbitrarySecretMetadata model
-        secret_metadata_model = {}
-        secret_metadata_model['labels'] = ['dev', 'us-south']
-        secret_metadata_model['name'] = 'example-secret'
-        secret_metadata_model['description'] = 'Extended description for this secret.'
-        secret_metadata_model['expiration_date'] = "2030-04-01T09:30:00Z"
-
-        # Set up parameter values
-        secret_type = 'arbitrary'
-        id = 'testString'
-        metadata = collection_metadata_model
-        resources = [secret_metadata_model]
-
-        # Invoke method
-        response = _service.update_secret_metadata(
-            secret_type,
-            id,
-            metadata,
-            resources,
-            headers={}
-        )
-
-        # Check for correct operation
-        assert len(responses.calls) == 1
-        assert response.status_code == 200
-        # Validate body params
-        req_body = json.loads(str(responses.calls[0].request.body, 'utf-8'))
-        assert req_body['metadata'] == collection_metadata_model
-        assert req_body['resources'] == [secret_metadata_model]
-
-
-    @responses.activate
-    def test_update_secret_metadata_value_error(self):
-        """
-        test_update_secret_metadata_value_error()
-        """
-        # Set up mock
-        url = self.preprocess_url(_base_url + '/api/v1/secrets/arbitrary/testString/metadata')
-        mock_response = '{"metadata": {"collection_type": "application/vnd.ibm.secrets-manager.config+json", "collection_total": 1}, "resources": [{"id": "b0283d74-0894-830b-f81d-1f115f67729f", "labels": ["labels"], "name": "example-secret", "description": "Extended description for this secret.", "secret_group_id": "f5283d74-9024-230a-b72c-1f115f61290f", "state": 0, "state_description": "Active", "secret_type": "arbitrary", "crn": "crn:v1:bluemix:public:secrets-manager:<region>:a/<account-id>:<service-instance>:secret:<secret-id>", "creation_date": "2018-04-12T23:20:50.520Z", "created_by": "ServiceId-cb258cb9-8de3-4ac0-9aec-b2b2d27ac976", "last_update_date": "2018-04-12T23:20:50.520Z", "versions_total": 1, "expiration_date": "2030-04-01T09:30:00.000Z"}]}'
-        responses.add(responses.PUT,
-                      url,
-                      body=mock_response,
-                      content_type='application/json',
-                      status=200)
-
-        # Construct a dict representation of a CollectionMetadata model
-        collection_metadata_model = {}
-        collection_metadata_model['collection_type'] = 'application/vnd.ibm.secrets-manager.config+json'
-        collection_metadata_model['collection_total'] = 1
-
-        # Construct a dict representation of a ArbitrarySecretMetadata model
-        secret_metadata_model = {}
-        secret_metadata_model['labels'] = ['dev', 'us-south']
-        secret_metadata_model['name'] = 'example-secret'
-        secret_metadata_model['description'] = 'Extended description for this secret.'
-        secret_metadata_model['expiration_date'] = "2030-04-01T09:30:00Z"
-
-        # Set up parameter values
-        secret_type = 'arbitrary'
-        id = 'testString'
-        metadata = collection_metadata_model
-        resources = [secret_metadata_model]
-
-        # Pass in all but one required param and check for a ValueError
-        req_param_dict = {
-            "secret_type": secret_type,
-            "id": id,
-            "metadata": metadata,
-            "resources": resources,
-        }
-        for param in req_param_dict.keys():
-            req_copy = {key:val if key is not param else None for (key,val) in req_param_dict.items()}
-            with pytest.raises(ValueError):
-                _service.update_secret_metadata(**req_copy)
-
-
+    	# Disable retries and run test_get_config_element_value_error.
+    	_service.disable_retries()
+    	self.test_get_config_element_value_error()
 
 # endregion
 ##############################################################################
-# End of Service: Secrets
+# End of Service: Config
 ##############################################################################
 
 
@@ -2387,11 +2795,16 @@ class TestModel_ConfigElementDef():
         Test serialization/deserialization for ConfigElementDef
         """
 
+        # Construct dict forms of any model objects needed in order to build this model.
+
+        config_element_def_config_model = {} # ConfigElementDefConfigLetsEncryptConfig
+        config_element_def_config_model['private_key'] = 'testString'
+
         # Construct a json representation of a ConfigElementDef model
         config_element_def_model_json = {}
         config_element_def_model_json['name'] = 'testString'
-        config_element_def_model_json['type'] = 'testString'
-        config_element_def_model_json['config'] = { 'foo': 'bar' }
+        config_element_def_model_json['type'] = 'letsencrypt'
+        config_element_def_model_json['config'] = config_element_def_config_model
 
         # Construct a model instance of ConfigElementDef by calling from_dict on the json representation
         config_element_def_model = ConfigElementDef.from_dict(config_element_def_model_json)
@@ -2421,7 +2834,7 @@ class TestModel_ConfigElementMetadata():
         # Construct a json representation of a ConfigElementMetadata model
         config_element_metadata_model_json = {}
         config_element_metadata_model_json['name'] = 'testString'
-        config_element_metadata_model_json['type'] = 'testString'
+        config_element_metadata_model_json['type'] = 'letsencrypt'
 
         # Construct a model instance of ConfigElementMetadata by calling from_dict on the json representation
         config_element_metadata_model = ConfigElementMetadata.from_dict(config_element_metadata_model_json)
@@ -2511,7 +2924,7 @@ class TestModel_GetConfig():
 
         config_element_metadata_model = {} # ConfigElementMetadata
         config_element_metadata_model['name'] = 'testString'
-        config_element_metadata_model['type'] = 'testString'
+        config_element_metadata_model['type'] = 'letsencrypt'
 
         get_config_resources_item_model = {} # PublicCertSecretEngineRootConfig
         get_config_resources_item_model['certificate_authorities'] = [config_element_metadata_model]
@@ -2555,7 +2968,7 @@ class TestModel_GetConfigElements():
 
         config_element_metadata_model = {} # ConfigElementMetadata
         config_element_metadata_model['name'] = 'testString'
-        config_element_metadata_model['type'] = 'testString'
+        config_element_metadata_model['type'] = 'letsencrypt'
 
         get_config_elements_resources_item_model = {} # GetConfigElementsResourcesItemCertificateAuthoritiesConfig
         get_config_elements_resources_item_model['certificate_authorities'] = [config_element_metadata_model]
@@ -2709,7 +3122,7 @@ class TestModel_GetSecretVersion():
         secret_version_model['creation_date'] = "2019-01-01T12:00:00Z"
         secret_version_model['created_by'] = 'testString'
         secret_version_model['validity'] = certificate_validity_model
-        secret_version_model['serial_number'] = 'testString'
+        secret_version_model['serial_number'] = 'd9:be:fe:35:ba:09:42:b5'
         secret_version_model['expiration_date'] = "2030-04-01T09:30:00Z"
         secret_version_model['secret_data'] = certificate_secret_data_model
 
@@ -2790,10 +3203,13 @@ class TestModel_GetSingleConfigElement():
         collection_metadata_model['collection_type'] = 'application/vnd.ibm.secrets-manager.config+json'
         collection_metadata_model['collection_total'] = 1
 
+        config_element_def_config_model = {} # ConfigElementDefConfigLetsEncryptConfig
+        config_element_def_config_model['private_key'] = 'testString'
+
         config_element_def_model = {} # ConfigElementDef
         config_element_def_model['name'] = 'testString'
-        config_element_def_model['type'] = 'testString'
-        config_element_def_model['config'] = { 'foo': 'bar' }
+        config_element_def_model['type'] = 'letsencrypt'
+        config_element_def_model['config'] = config_element_def_config_model
 
         # Construct a json representation of a GetSingleConfigElement model
         get_single_config_element_model_json = {}
@@ -2919,8 +3335,8 @@ class TestModel_Rotation():
 
         # Construct a json representation of a Rotation model
         rotation_model_json = {}
-        rotation_model_json['auto_rotate'] = True
-        rotation_model_json['rotate_keys'] = True
+        rotation_model_json['auto_rotate'] = False
+        rotation_model_json['rotate_keys'] = False
 
         # Construct a model instance of Rotation by calling from_dict on the json representation
         rotation_model = Rotation.from_dict(rotation_model_json)
@@ -3174,6 +3590,36 @@ class TestModel_CertificateValidity():
         # Convert model instance back to dict and verify no loss of data
         certificate_validity_model_json2 = certificate_validity_model.to_dict()
         assert certificate_validity_model_json2 == certificate_validity_model_json
+
+class TestModel_Warning():
+    """
+    Test Class for Warning
+    """
+
+    def test_warning_serialization(self):
+        """
+        Test serialization/deserialization for Warning
+        """
+
+        # Construct a json representation of a Warning model
+        warning_model_json = {}
+        warning_model_json['code'] = 'testString'
+        warning_model_json['message'] = 'testString'
+
+        # Construct a model instance of Warning by calling from_dict on the json representation
+        warning_model = Warning.from_dict(warning_model_json)
+        assert warning_model != False
+
+        # Construct a model instance of Warning by calling from_dict on the json representation
+        warning_model_dict = Warning.from_dict(warning_model_json).__dict__
+        warning_model2 = Warning(**warning_model_dict)
+
+        # Verify the model instances are equivalent
+        assert warning_model == warning_model2
+
+        # Convert model instance back to dict and verify no loss of data
+        warning_model_json2 = warning_model.to_dict()
+        assert warning_model_json2 == warning_model_json
 
 class TestModel_ArbitrarySecretMetadata():
     """
@@ -3441,7 +3887,7 @@ class TestModel_CertificateSecretVersion():
         certificate_secret_version_model_json['creation_date'] = "2019-01-01T12:00:00Z"
         certificate_secret_version_model_json['created_by'] = 'testString'
         certificate_secret_version_model_json['validity'] = certificate_validity_model
-        certificate_secret_version_model_json['serial_number'] = 'testString'
+        certificate_secret_version_model_json['serial_number'] = 'd9:be:fe:35:ba:09:42:b5'
         certificate_secret_version_model_json['expiration_date'] = "2030-04-01T09:30:00Z"
         certificate_secret_version_model_json['secret_data'] = certificate_secret_data_model
 
@@ -3481,7 +3927,7 @@ class TestModel_CertificateSecretVersionMetadata():
         certificate_secret_version_metadata_model_json['id'] = '4a0225e9-17a0-46c1-ace7-f25bcf4237d4'
         certificate_secret_version_metadata_model_json['creation_date'] = "2019-01-01T12:00:00Z"
         certificate_secret_version_metadata_model_json['created_by'] = 'testString'
-        certificate_secret_version_metadata_model_json['serial_number'] = 'testString'
+        certificate_secret_version_metadata_model_json['serial_number'] = 'd9:be:fe:35:ba:09:42:b5'
         certificate_secret_version_metadata_model_json['expiration_date'] = "2030-04-01T09:30:00Z"
         certificate_secret_version_metadata_model_json['validity'] = certificate_validity_model
 
@@ -3499,6 +3945,95 @@ class TestModel_CertificateSecretVersionMetadata():
         # Convert model instance back to dict and verify no loss of data
         certificate_secret_version_metadata_model_json2 = certificate_secret_version_metadata_model.to_dict()
         assert certificate_secret_version_metadata_model_json2 == certificate_secret_version_metadata_model_json
+
+class TestModel_ConfigElementDefConfigClassicInfrastructureConfig():
+    """
+    Test Class for ConfigElementDefConfigClassicInfrastructureConfig
+    """
+
+    def test_config_element_def_config_classic_infrastructure_config_serialization(self):
+        """
+        Test serialization/deserialization for ConfigElementDefConfigClassicInfrastructureConfig
+        """
+
+        # Construct a json representation of a ConfigElementDefConfigClassicInfrastructureConfig model
+        config_element_def_config_classic_infrastructure_config_model_json = {}
+        config_element_def_config_classic_infrastructure_config_model_json['classic_infrastructure_username'] = 'testString'
+        config_element_def_config_classic_infrastructure_config_model_json['classic_infrastructure_password'] = 'testString'
+
+        # Construct a model instance of ConfigElementDefConfigClassicInfrastructureConfig by calling from_dict on the json representation
+        config_element_def_config_classic_infrastructure_config_model = ConfigElementDefConfigClassicInfrastructureConfig.from_dict(config_element_def_config_classic_infrastructure_config_model_json)
+        assert config_element_def_config_classic_infrastructure_config_model != False
+
+        # Construct a model instance of ConfigElementDefConfigClassicInfrastructureConfig by calling from_dict on the json representation
+        config_element_def_config_classic_infrastructure_config_model_dict = ConfigElementDefConfigClassicInfrastructureConfig.from_dict(config_element_def_config_classic_infrastructure_config_model_json).__dict__
+        config_element_def_config_classic_infrastructure_config_model2 = ConfigElementDefConfigClassicInfrastructureConfig(**config_element_def_config_classic_infrastructure_config_model_dict)
+
+        # Verify the model instances are equivalent
+        assert config_element_def_config_classic_infrastructure_config_model == config_element_def_config_classic_infrastructure_config_model2
+
+        # Convert model instance back to dict and verify no loss of data
+        config_element_def_config_classic_infrastructure_config_model_json2 = config_element_def_config_classic_infrastructure_config_model.to_dict()
+        assert config_element_def_config_classic_infrastructure_config_model_json2 == config_element_def_config_classic_infrastructure_config_model_json
+
+class TestModel_ConfigElementDefConfigCloudInternetServicesConfig():
+    """
+    Test Class for ConfigElementDefConfigCloudInternetServicesConfig
+    """
+
+    def test_config_element_def_config_cloud_internet_services_config_serialization(self):
+        """
+        Test serialization/deserialization for ConfigElementDefConfigCloudInternetServicesConfig
+        """
+
+        # Construct a json representation of a ConfigElementDefConfigCloudInternetServicesConfig model
+        config_element_def_config_cloud_internet_services_config_model_json = {}
+        config_element_def_config_cloud_internet_services_config_model_json['cis_crn'] = 'crn:v1:bluemix:public:internet-svcs:global:a/<account-id>:<service-instance>::'
+        config_element_def_config_cloud_internet_services_config_model_json['cis_apikey'] = 'testString'
+
+        # Construct a model instance of ConfigElementDefConfigCloudInternetServicesConfig by calling from_dict on the json representation
+        config_element_def_config_cloud_internet_services_config_model = ConfigElementDefConfigCloudInternetServicesConfig.from_dict(config_element_def_config_cloud_internet_services_config_model_json)
+        assert config_element_def_config_cloud_internet_services_config_model != False
+
+        # Construct a model instance of ConfigElementDefConfigCloudInternetServicesConfig by calling from_dict on the json representation
+        config_element_def_config_cloud_internet_services_config_model_dict = ConfigElementDefConfigCloudInternetServicesConfig.from_dict(config_element_def_config_cloud_internet_services_config_model_json).__dict__
+        config_element_def_config_cloud_internet_services_config_model2 = ConfigElementDefConfigCloudInternetServicesConfig(**config_element_def_config_cloud_internet_services_config_model_dict)
+
+        # Verify the model instances are equivalent
+        assert config_element_def_config_cloud_internet_services_config_model == config_element_def_config_cloud_internet_services_config_model2
+
+        # Convert model instance back to dict and verify no loss of data
+        config_element_def_config_cloud_internet_services_config_model_json2 = config_element_def_config_cloud_internet_services_config_model.to_dict()
+        assert config_element_def_config_cloud_internet_services_config_model_json2 == config_element_def_config_cloud_internet_services_config_model_json
+
+class TestModel_ConfigElementDefConfigLetsEncryptConfig():
+    """
+    Test Class for ConfigElementDefConfigLetsEncryptConfig
+    """
+
+    def test_config_element_def_config_lets_encrypt_config_serialization(self):
+        """
+        Test serialization/deserialization for ConfigElementDefConfigLetsEncryptConfig
+        """
+
+        # Construct a json representation of a ConfigElementDefConfigLetsEncryptConfig model
+        config_element_def_config_lets_encrypt_config_model_json = {}
+        config_element_def_config_lets_encrypt_config_model_json['private_key'] = 'testString'
+
+        # Construct a model instance of ConfigElementDefConfigLetsEncryptConfig by calling from_dict on the json representation
+        config_element_def_config_lets_encrypt_config_model = ConfigElementDefConfigLetsEncryptConfig.from_dict(config_element_def_config_lets_encrypt_config_model_json)
+        assert config_element_def_config_lets_encrypt_config_model != False
+
+        # Construct a model instance of ConfigElementDefConfigLetsEncryptConfig by calling from_dict on the json representation
+        config_element_def_config_lets_encrypt_config_model_dict = ConfigElementDefConfigLetsEncryptConfig.from_dict(config_element_def_config_lets_encrypt_config_model_json).__dict__
+        config_element_def_config_lets_encrypt_config_model2 = ConfigElementDefConfigLetsEncryptConfig(**config_element_def_config_lets_encrypt_config_model_dict)
+
+        # Verify the model instances are equivalent
+        assert config_element_def_config_lets_encrypt_config_model == config_element_def_config_lets_encrypt_config_model2
+
+        # Convert model instance back to dict and verify no loss of data
+        config_element_def_config_lets_encrypt_config_model_json2 = config_element_def_config_lets_encrypt_config_model.to_dict()
+        assert config_element_def_config_lets_encrypt_config_model_json2 == config_element_def_config_lets_encrypt_config_model_json
 
 class TestModel_DeleteCredentialsForIAMCredentialsSecret():
     """
@@ -3543,7 +4078,7 @@ class TestModel_GetConfigElementsResourcesItemCertificateAuthoritiesConfig():
 
         config_element_metadata_model = {} # ConfigElementMetadata
         config_element_metadata_model['name'] = 'testString'
-        config_element_metadata_model['type'] = 'testString'
+        config_element_metadata_model['type'] = 'letsencrypt'
 
         # Construct a json representation of a GetConfigElementsResourcesItemCertificateAuthoritiesConfig model
         get_config_elements_resources_item_certificate_authorities_config_model_json = {}
@@ -3578,7 +4113,7 @@ class TestModel_GetConfigElementsResourcesItemDnsProvidersConfig():
 
         config_element_metadata_model = {} # ConfigElementMetadata
         config_element_metadata_model['name'] = 'testString'
-        config_element_metadata_model['type'] = 'testString'
+        config_element_metadata_model['type'] = 'letsencrypt'
 
         # Construct a json representation of a GetConfigElementsResourcesItemDnsProvidersConfig model
         get_config_elements_resources_item_dns_providers_config_model_json = {}
@@ -3814,7 +4349,7 @@ class TestModel_PublicCertSecretEngineRootConfig():
 
         config_element_metadata_model = {} # ConfigElementMetadata
         config_element_metadata_model['name'] = 'testString'
-        config_element_metadata_model['type'] = 'testString'
+        config_element_metadata_model['type'] = 'letsencrypt'
 
         # Construct a json representation of a PublicCertSecretEngineRootConfig model
         public_cert_secret_engine_root_config_model_json = {}
@@ -3849,8 +4384,8 @@ class TestModel_PublicCertificateMetadataSecretResource():
         # Construct dict forms of any model objects needed in order to build this model.
 
         rotation_model = {} # Rotation
-        rotation_model['auto_rotate'] = True
-        rotation_model['rotate_keys'] = True
+        rotation_model['auto_rotate'] = False
+        rotation_model['rotate_keys'] = False
 
         issuance_info_model = {} # IssuanceInfo
         issuance_info_model['ordered_on'] = "2018-04-12T23:20:50.520000Z"
@@ -3884,8 +4419,8 @@ class TestModel_PublicCertificateMetadataSecretResource():
         public_certificate_metadata_secret_resource_model_json['key_algorithm'] = 'RSA2048'
         public_certificate_metadata_secret_resource_model_json['alt_names'] = ['testString']
         public_certificate_metadata_secret_resource_model_json['common_name'] = 'example.com'
-        public_certificate_metadata_secret_resource_model_json['private_key_included'] = True
         public_certificate_metadata_secret_resource_model_json['intermediate_included'] = True
+        public_certificate_metadata_secret_resource_model_json['private_key_included'] = True
         public_certificate_metadata_secret_resource_model_json['rotation'] = rotation_model
         public_certificate_metadata_secret_resource_model_json['issuance_info'] = issuance_info_model
 
@@ -3917,8 +4452,8 @@ class TestModel_PublicCertificateSecretResource():
         # Construct dict forms of any model objects needed in order to build this model.
 
         rotation_model = {} # Rotation
-        rotation_model['auto_rotate'] = True
-        rotation_model['rotate_keys'] = True
+        rotation_model['auto_rotate'] = False
+        rotation_model['rotate_keys'] = False
 
         issuance_info_model = {} # IssuanceInfo
         issuance_info_model['ordered_on'] = "2018-04-12T23:20:50.520000Z"
@@ -4132,10 +4667,17 @@ class TestModel_SecretPolicyRotationRotationPublicCertPolicyRotation():
         Test serialization/deserialization for SecretPolicyRotationRotationPublicCertPolicyRotation
         """
 
+        # Construct dict forms of any model objects needed in order to build this model.
+
+        warning_model = {} # Warning
+        warning_model['code'] = 'testString'
+        warning_model['message'] = 'testString'
+
         # Construct a json representation of a SecretPolicyRotationRotationPublicCertPolicyRotation model
         secret_policy_rotation_rotation_public_cert_policy_rotation_model_json = {}
         secret_policy_rotation_rotation_public_cert_policy_rotation_model_json['auto_rotate'] = False
         secret_policy_rotation_rotation_public_cert_policy_rotation_model_json['rotate_keys'] = False
+        secret_policy_rotation_rotation_public_cert_policy_rotation_model_json['warning'] = warning_model
 
         # Construct a model instance of SecretPolicyRotationRotationPublicCertPolicyRotation by calling from_dict on the json representation
         secret_policy_rotation_rotation_public_cert_policy_rotation_model = SecretPolicyRotationRotationPublicCertPolicyRotation.from_dict(secret_policy_rotation_rotation_public_cert_policy_rotation_model_json)

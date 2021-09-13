@@ -14,12 +14,15 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-# IBM OpenAPI SDK Code Generator Version: 3.37.0-a85661cd-20210802-190136
+# IBM OpenAPI SDK Code Generator Version: 3.38.1-1037b405-20210908-184149
  
 """
 With IBM Cloud® Secrets Manager, you can create, lease, and centrally manage secrets that
 are used in IBM Cloud services or your custom-built applications. Secrets are stored in a
 dedicated instance of Secrets Manager, built on open source HashiCorp Vault.
+
+API Version: 1.0.0
+See: https://cloud.ibm.com/docs/secrets-manager
 """
 
 from datetime import datetime
@@ -66,7 +69,7 @@ class SecretsManagerV1(BaseService):
         Construct a new client for the secrets-manager service.
 
         :param Authenticator authenticator: The authenticator specifies the authentication mechanism.
-               Get up to date information from https://github.com/IBM/python-sdk-core/blob/master/README.md
+               Get up to date information from https://github.com/IBM/python-sdk-core/blob/main/README.md
                about initializing the authenticator of your choice.
         """
         BaseService.__init__(self,
@@ -75,500 +78,7 @@ class SecretsManagerV1(BaseService):
 
 
     #########################
-    # config
-    #########################
-
-
-    def create_config_element(self,
-        secret_type: str,
-        config_element: str,
-        name: str,
-        type: str,
-        config: object,
-        **kwargs
-    ) -> DetailedResponse:
-        """
-        Create config element.
-
-        Create a config element.
-
-        :param str secret_type: The secret type.
-        :param str config_element: The Config element type.
-        :param str name: Config element name.
-        :param str type: Dns provider config type.
-        :param object config:
-        :param dict headers: A `dict` containing the request headers
-        :return: A `DetailedResponse` containing the result, headers and HTTP status code.
-        :rtype: DetailedResponse with `dict` result representing a `GetSingleConfigElement` object
-        """
-
-        if secret_type is None:
-            raise ValueError('secret_type must be provided')
-        if config_element is None:
-            raise ValueError('config_element must be provided')
-        if name is None:
-            raise ValueError('name must be provided')
-        if type is None:
-            raise ValueError('type must be provided')
-        if config is None:
-            raise ValueError('config must be provided')
-        headers = {}
-        sdk_headers = get_sdk_headers(service_name=self.DEFAULT_SERVICE_NAME,
-                                      service_version='V1',
-                                      operation_id='create_config_element')
-        headers.update(sdk_headers)
-
-        data = {
-            'name': name,
-            'type': type,
-            'config': config
-        }
-        data = {k: v for (k, v) in data.items() if v is not None}
-        data = json.dumps(data)
-        headers['content-type'] = 'application/json'
-
-        if 'headers' in kwargs:
-            headers.update(kwargs.get('headers'))
-        headers['Accept'] = 'application/json'
-
-        path_param_keys = ['secret_type', 'config_element']
-        path_param_values = self.encode_path_vars(secret_type, config_element)
-        path_param_dict = dict(zip(path_param_keys, path_param_values))
-        url = '/api/v1/config/{secret_type}/{config_element}'.format(**path_param_dict)
-        request = self.prepare_request(method='POST',
-                                       url=url,
-                                       headers=headers,
-                                       data=data)
-
-        response = self.send(request, **kwargs)
-        return response
-
-
-    def get_config_elements(self,
-        secret_type: str,
-        config_element: str,
-        **kwargs
-    ) -> DetailedResponse:
-        """
-        Get config elements by type.
-
-        Get a config elements.
-
-        :param str secret_type: The secret type.
-        :param str config_element: The Config element type.
-        :param dict headers: A `dict` containing the request headers
-        :return: A `DetailedResponse` containing the result, headers and HTTP status code.
-        :rtype: DetailedResponse with `dict` result representing a `GetConfigElements` object
-        """
-
-        if secret_type is None:
-            raise ValueError('secret_type must be provided')
-        if config_element is None:
-            raise ValueError('config_element must be provided')
-        headers = {}
-        sdk_headers = get_sdk_headers(service_name=self.DEFAULT_SERVICE_NAME,
-                                      service_version='V1',
-                                      operation_id='get_config_elements')
-        headers.update(sdk_headers)
-
-        if 'headers' in kwargs:
-            headers.update(kwargs.get('headers'))
-        headers['Accept'] = 'application/json'
-
-        path_param_keys = ['secret_type', 'config_element']
-        path_param_values = self.encode_path_vars(secret_type, config_element)
-        path_param_dict = dict(zip(path_param_keys, path_param_values))
-        url = '/api/v1/config/{secret_type}/{config_element}'.format(**path_param_dict)
-        request = self.prepare_request(method='GET',
-                                       url=url,
-                                       headers=headers)
-
-        response = self.send(request, **kwargs)
-        return response
-
-
-    def update_config_element(self,
-        secret_type: str,
-        config_element: str,
-        config_name: str,
-        type: str,
-        config: object,
-        **kwargs
-    ) -> DetailedResponse:
-        """
-        Update config element.
-
-        Update a config element.
-
-        :param str secret_type: The secret type.
-        :param str config_element: The Config element type.
-        :param str config_name: Config name.
-        :param str type: Dns provider config type.
-        :param object config:
-        :param dict headers: A `dict` containing the request headers
-        :return: A `DetailedResponse` containing the result, headers and HTTP status code.
-        :rtype: DetailedResponse with `dict` result representing a `GetSingleConfigElement` object
-        """
-
-        if secret_type is None:
-            raise ValueError('secret_type must be provided')
-        if config_element is None:
-            raise ValueError('config_element must be provided')
-        if config_name is None:
-            raise ValueError('config_name must be provided')
-        if type is None:
-            raise ValueError('type must be provided')
-        if config is None:
-            raise ValueError('config must be provided')
-        headers = {}
-        sdk_headers = get_sdk_headers(service_name=self.DEFAULT_SERVICE_NAME,
-                                      service_version='V1',
-                                      operation_id='update_config_element')
-        headers.update(sdk_headers)
-
-        data = {
-            'type': type,
-            'config': config
-        }
-        data = {k: v for (k, v) in data.items() if v is not None}
-        data = json.dumps(data)
-        headers['content-type'] = 'application/json'
-
-        if 'headers' in kwargs:
-            headers.update(kwargs.get('headers'))
-        headers['Accept'] = 'application/json'
-
-        path_param_keys = ['secret_type', 'config_element', 'config_name']
-        path_param_values = self.encode_path_vars(secret_type, config_element, config_name)
-        path_param_dict = dict(zip(path_param_keys, path_param_values))
-        url = '/api/v1/config/{secret_type}/{config_element}/{config_name}'.format(**path_param_dict)
-        request = self.prepare_request(method='PUT',
-                                       url=url,
-                                       headers=headers,
-                                       data=data)
-
-        response = self.send(request, **kwargs)
-        return response
-
-
-    def delete_config_element(self,
-        secret_type: str,
-        config_element: str,
-        config_name: str,
-        **kwargs
-    ) -> DetailedResponse:
-        """
-        Delete config element.
-
-        Delete a config element.
-
-        :param str secret_type: The secret type.
-        :param str config_element: The Config element type.
-        :param str config_name: Config name.
-        :param dict headers: A `dict` containing the request headers
-        :return: A `DetailedResponse` containing the result, headers and HTTP status code.
-        :rtype: DetailedResponse
-        """
-
-        if secret_type is None:
-            raise ValueError('secret_type must be provided')
-        if config_element is None:
-            raise ValueError('config_element must be provided')
-        if config_name is None:
-            raise ValueError('config_name must be provided')
-        headers = {}
-        sdk_headers = get_sdk_headers(service_name=self.DEFAULT_SERVICE_NAME,
-                                      service_version='V1',
-                                      operation_id='delete_config_element')
-        headers.update(sdk_headers)
-
-        if 'headers' in kwargs:
-            headers.update(kwargs.get('headers'))
-
-        path_param_keys = ['secret_type', 'config_element', 'config_name']
-        path_param_values = self.encode_path_vars(secret_type, config_element, config_name)
-        path_param_dict = dict(zip(path_param_keys, path_param_values))
-        url = '/api/v1/config/{secret_type}/{config_element}/{config_name}'.format(**path_param_dict)
-        request = self.prepare_request(method='DELETE',
-                                       url=url,
-                                       headers=headers)
-
-        response = self.send(request, **kwargs)
-        return response
-
-
-    def get_config_element(self,
-        secret_type: str,
-        config_element: str,
-        config_name: str,
-        **kwargs
-    ) -> DetailedResponse:
-        """
-        Get config element.
-
-        Get a config element.
-
-        :param str secret_type: The secret type.
-        :param str config_element: The Config element type.
-        :param str config_name: Config name.
-        :param dict headers: A `dict` containing the request headers
-        :return: A `DetailedResponse` containing the result, headers and HTTP status code.
-        :rtype: DetailedResponse with `dict` result representing a `GetSingleConfigElement` object
-        """
-
-        if secret_type is None:
-            raise ValueError('secret_type must be provided')
-        if config_element is None:
-            raise ValueError('config_element must be provided')
-        if config_name is None:
-            raise ValueError('config_name must be provided')
-        headers = {}
-        sdk_headers = get_sdk_headers(service_name=self.DEFAULT_SERVICE_NAME,
-                                      service_version='V1',
-                                      operation_id='get_config_element')
-        headers.update(sdk_headers)
-
-        if 'headers' in kwargs:
-            headers.update(kwargs.get('headers'))
-        headers['Accept'] = 'application/json'
-
-        path_param_keys = ['secret_type', 'config_element', 'config_name']
-        path_param_values = self.encode_path_vars(secret_type, config_element, config_name)
-        path_param_dict = dict(zip(path_param_keys, path_param_values))
-        url = '/api/v1/config/{secret_type}/{config_element}/{config_name}'.format(**path_param_dict)
-        request = self.prepare_request(method='GET',
-                                       url=url,
-                                       headers=headers)
-
-        response = self.send(request, **kwargs)
-        return response
-
-
-    def put_config(self,
-        secret_type: str,
-        api_key: str,
-        **kwargs
-    ) -> DetailedResponse:
-        """
-        Configure secrets of a given type.
-
-        Updates the configuration for the given secret type.
-
-        :param str secret_type: The secret type.
-        :param str api_key: An IBM Cloud API key that has the capability to create
-               and manage service IDs.
-               The API key must be assigned the Editor platform role on the Access Groups
-               Service and the Operator platform role on the IAM Identity Service. For
-               more information, see [Configuring the IAM secrets
-               engine](https://cloud.ibm.com/docs/secrets-manager?topic=secrets-manager-iam-credentials#configure-iam-secrets-engine-api).
-        :param dict headers: A `dict` containing the request headers
-        :return: A `DetailedResponse` containing the result, headers and HTTP status code.
-        :rtype: DetailedResponse
-        """
-
-        if secret_type is None:
-            raise ValueError('secret_type must be provided')
-        if api_key is None:
-            raise ValueError('api_key must be provided')
-        headers = {}
-        sdk_headers = get_sdk_headers(service_name=self.DEFAULT_SERVICE_NAME,
-                                      service_version='V1',
-                                      operation_id='put_config')
-        headers.update(sdk_headers)
-
-        data = {
-            'api_key': api_key
-        }
-        data = {k: v for (k, v) in data.items() if v is not None}
-        data = json.dumps(data)
-        headers['content-type'] = 'application/json'
-
-        if 'headers' in kwargs:
-            headers.update(kwargs.get('headers'))
-
-        path_param_keys = ['secret_type']
-        path_param_values = self.encode_path_vars(secret_type)
-        path_param_dict = dict(zip(path_param_keys, path_param_values))
-        url = '/api/v1/config/{secret_type}'.format(**path_param_dict)
-        request = self.prepare_request(method='PUT',
-                                       url=url,
-                                       headers=headers,
-                                       data=data)
-
-        response = self.send(request, **kwargs)
-        return response
-
-
-    def get_config(self,
-        secret_type: str,
-        **kwargs
-    ) -> DetailedResponse:
-        """
-        Get the configuration for a secret type.
-
-        Retrieves the configuration that is associated with the given secret type.
-
-        :param str secret_type: The secret type.
-        :param dict headers: A `dict` containing the request headers
-        :return: A `DetailedResponse` containing the result, headers and HTTP status code.
-        :rtype: DetailedResponse with `dict` result representing a `GetConfig` object
-        """
-
-        if secret_type is None:
-            raise ValueError('secret_type must be provided')
-        headers = {}
-        sdk_headers = get_sdk_headers(service_name=self.DEFAULT_SERVICE_NAME,
-                                      service_version='V1',
-                                      operation_id='get_config')
-        headers.update(sdk_headers)
-
-        if 'headers' in kwargs:
-            headers.update(kwargs.get('headers'))
-        headers['Accept'] = 'application/json'
-
-        path_param_keys = ['secret_type']
-        path_param_values = self.encode_path_vars(secret_type)
-        path_param_dict = dict(zip(path_param_keys, path_param_values))
-        url = '/api/v1/config/{secret_type}'.format(**path_param_dict)
-        request = self.prepare_request(method='GET',
-                                       url=url,
-                                       headers=headers)
-
-        response = self.send(request, **kwargs)
-        return response
-
-    #########################
-    # policies
-    #########################
-
-
-    def put_policy(self,
-        secret_type: str,
-        id: str,
-        metadata: 'CollectionMetadata',
-        resources: List['SecretPolicyRotation'],
-        *,
-        policy: str = None,
-        **kwargs
-    ) -> DetailedResponse:
-        """
-        Set secret policies.
-
-        Creates or updates one or more policies, such as an [automatic rotation
-        policy](http://cloud.ibm.com/docs/secrets-manager?topic=secrets-manager-rotate-secrets#auto-rotate-secret),
-        for the specified secret.
-
-        :param str secret_type: The secret type.
-        :param str id: The v4 UUID that uniquely identifies the secret.
-        :param CollectionMetadata metadata: The metadata that describes the
-               resource array.
-        :param List[SecretPolicyRotation] resources: A collection of resources.
-        :param str policy: (optional) The type of policy that is associated with
-               the specified secret.
-        :param dict headers: A `dict` containing the request headers
-        :return: A `DetailedResponse` containing the result, headers and HTTP status code.
-        :rtype: DetailedResponse with `dict` result representing a `GetSecretPolicies` object
-        """
-
-        if secret_type is None:
-            raise ValueError('secret_type must be provided')
-        if id is None:
-            raise ValueError('id must be provided')
-        if metadata is None:
-            raise ValueError('metadata must be provided')
-        if resources is None:
-            raise ValueError('resources must be provided')
-        metadata = convert_model(metadata)
-        resources = [convert_model(x) for x in resources]
-        headers = {}
-        sdk_headers = get_sdk_headers(service_name=self.DEFAULT_SERVICE_NAME,
-                                      service_version='V1',
-                                      operation_id='put_policy')
-        headers.update(sdk_headers)
-
-        params = {
-            'policy': policy
-        }
-
-        data = {
-            'metadata': metadata,
-            'resources': resources
-        }
-        data = {k: v for (k, v) in data.items() if v is not None}
-        data = json.dumps(data)
-        headers['content-type'] = 'application/json'
-
-        if 'headers' in kwargs:
-            headers.update(kwargs.get('headers'))
-        headers['Accept'] = 'application/json'
-
-        path_param_keys = ['secret_type', 'id']
-        path_param_values = self.encode_path_vars(secret_type, id)
-        path_param_dict = dict(zip(path_param_keys, path_param_values))
-        url = '/api/v1/secrets/{secret_type}/{id}/policies'.format(**path_param_dict)
-        request = self.prepare_request(method='PUT',
-                                       url=url,
-                                       headers=headers,
-                                       params=params,
-                                       data=data)
-
-        response = self.send(request, **kwargs)
-        return response
-
-
-    def get_policy(self,
-        secret_type: str,
-        id: str,
-        *,
-        policy: str = None,
-        **kwargs
-    ) -> DetailedResponse:
-        """
-        List secret policies.
-
-        Retrieves a list of policies that are associated with a specified secret.
-
-        :param str secret_type: The secret type.
-        :param str id: The v4 UUID that uniquely identifies the secret.
-        :param str policy: (optional) The type of policy that is associated with
-               the specified secret.
-        :param dict headers: A `dict` containing the request headers
-        :return: A `DetailedResponse` containing the result, headers and HTTP status code.
-        :rtype: DetailedResponse with `dict` result representing a `GetSecretPolicies` object
-        """
-
-        if secret_type is None:
-            raise ValueError('secret_type must be provided')
-        if id is None:
-            raise ValueError('id must be provided')
-        headers = {}
-        sdk_headers = get_sdk_headers(service_name=self.DEFAULT_SERVICE_NAME,
-                                      service_version='V1',
-                                      operation_id='get_policy')
-        headers.update(sdk_headers)
-
-        params = {
-            'policy': policy
-        }
-
-        if 'headers' in kwargs:
-            headers.update(kwargs.get('headers'))
-        headers['Accept'] = 'application/json'
-
-        path_param_keys = ['secret_type', 'id']
-        path_param_values = self.encode_path_vars(secret_type, id)
-        path_param_dict = dict(zip(path_param_keys, path_param_values))
-        url = '/api/v1/secrets/{secret_type}/{id}/policies'.format(**path_param_dict)
-        request = self.prepare_request(method='GET',
-                                       url=url,
-                                       headers=headers,
-                                       params=params)
-
-        response = self.send(request, **kwargs)
-        return response
-
-    #########################
-    # secretGroups
+    # Secret groups
     #########################
 
 
@@ -802,7 +312,7 @@ class SecretsManagerV1(BaseService):
         return response
 
     #########################
-    # secrets
+    # Secrets
     #########################
 
 
@@ -1383,157 +893,510 @@ class SecretsManagerV1(BaseService):
         response = self.send(request, **kwargs)
         return response
 
-
-class CreateConfigElementEnums:
-    """
-    Enums for create_config_element parameters.
-    """
-
-    class SecretType(str, Enum):
-        """
-        The secret type.
-        """
-        PUBLIC_CERT = 'public_cert'
-    class ConfigElement(str, Enum):
-        """
-        The Config element type.
-        """
-        CERTIFICATE_AUTHORITIES = 'certificate_authorities'
-        DNS_PROVIDERS = 'dns_providers'
+    #########################
+    # Policies
+    #########################
 
 
-class GetConfigElementsEnums:
-    """
-    Enums for get_config_elements parameters.
-    """
+    def put_policy(self,
+        secret_type: str,
+        id: str,
+        metadata: 'CollectionMetadata',
+        resources: List['SecretPolicyRotation'],
+        *,
+        policy: str = None,
+        **kwargs
+    ) -> DetailedResponse:
+        """
+        Set secret policies.
 
-    class SecretType(str, Enum):
-        """
-        The secret type.
-        """
-        PUBLIC_CERT = 'public_cert'
-    class ConfigElement(str, Enum):
-        """
-        The Config element type.
-        """
-        CERTIFICATE_AUTHORITIES = 'certificate_authorities'
-        DNS_PROVIDERS = 'dns_providers'
+        Creates or updates one or more policies, such as an [automatic rotation
+        policy](http://cloud.ibm.com/docs/secrets-manager?topic=secrets-manager-rotate-secrets#auto-rotate-secret),
+        for the specified secret.
 
+        :param str secret_type: The secret type.
+        :param str id: The v4 UUID that uniquely identifies the secret.
+        :param CollectionMetadata metadata: The metadata that describes the
+               resource array.
+        :param List[SecretPolicyRotation] resources: A collection of resources.
+        :param str policy: (optional) The type of policy that is associated with
+               the specified secret.
+        :param dict headers: A `dict` containing the request headers
+        :return: A `DetailedResponse` containing the result, headers and HTTP status code.
+        :rtype: DetailedResponse with `dict` result representing a `GetSecretPolicies` object
+        """
 
-class UpdateConfigElementEnums:
-    """
-    Enums for update_config_element parameters.
-    """
+        if secret_type is None:
+            raise ValueError('secret_type must be provided')
+        if id is None:
+            raise ValueError('id must be provided')
+        if metadata is None:
+            raise ValueError('metadata must be provided')
+        if resources is None:
+            raise ValueError('resources must be provided')
+        metadata = convert_model(metadata)
+        resources = [convert_model(x) for x in resources]
+        headers = {}
+        sdk_headers = get_sdk_headers(service_name=self.DEFAULT_SERVICE_NAME,
+                                      service_version='V1',
+                                      operation_id='put_policy')
+        headers.update(sdk_headers)
 
-    class SecretType(str, Enum):
-        """
-        The secret type.
-        """
-        PUBLIC_CERT = 'public_cert'
-    class ConfigElement(str, Enum):
-        """
-        The Config element type.
-        """
-        CERTIFICATE_AUTHORITIES = 'certificate_authorities'
-        DNS_PROVIDERS = 'dns_providers'
+        params = {
+            'policy': policy
+        }
 
+        data = {
+            'metadata': metadata,
+            'resources': resources
+        }
+        data = {k: v for (k, v) in data.items() if v is not None}
+        data = json.dumps(data)
+        headers['content-type'] = 'application/json'
 
-class DeleteConfigElementEnums:
-    """
-    Enums for delete_config_element parameters.
-    """
+        if 'headers' in kwargs:
+            headers.update(kwargs.get('headers'))
+        headers['Accept'] = 'application/json'
 
-    class SecretType(str, Enum):
-        """
-        The secret type.
-        """
-        PUBLIC_CERT = 'public_cert'
-    class ConfigElement(str, Enum):
-        """
-        The Config element type.
-        """
-        CERTIFICATE_AUTHORITIES = 'certificate_authorities'
-        DNS_PROVIDERS = 'dns_providers'
+        path_param_keys = ['secret_type', 'id']
+        path_param_values = self.encode_path_vars(secret_type, id)
+        path_param_dict = dict(zip(path_param_keys, path_param_values))
+        url = '/api/v1/secrets/{secret_type}/{id}/policies'.format(**path_param_dict)
+        request = self.prepare_request(method='PUT',
+                                       url=url,
+                                       headers=headers,
+                                       params=params,
+                                       data=data)
 
-
-class GetConfigElementEnums:
-    """
-    Enums for get_config_element parameters.
-    """
-
-    class SecretType(str, Enum):
-        """
-        The secret type.
-        """
-        PUBLIC_CERT = 'public_cert'
-    class ConfigElement(str, Enum):
-        """
-        The Config element type.
-        """
-        CERTIFICATE_AUTHORITIES = 'certificate_authorities'
-        DNS_PROVIDERS = 'dns_providers'
-
-
-class PutConfigEnums:
-    """
-    Enums for put_config parameters.
-    """
-
-    class SecretType(str, Enum):
-        """
-        The secret type.
-        """
-        IAM_CREDENTIALS = 'iam_credentials'
-        PUBLIC_CERT = 'public_cert'
+        response = self.send(request, **kwargs)
+        return response
 
 
-class GetConfigEnums:
-    """
-    Enums for get_config parameters.
-    """
+    def get_policy(self,
+        secret_type: str,
+        id: str,
+        *,
+        policy: str = None,
+        **kwargs
+    ) -> DetailedResponse:
+        """
+        List secret policies.
 
-    class SecretType(str, Enum):
+        Retrieves a list of policies that are associated with a specified secret.
+
+        :param str secret_type: The secret type.
+        :param str id: The v4 UUID that uniquely identifies the secret.
+        :param str policy: (optional) The type of policy that is associated with
+               the specified secret.
+        :param dict headers: A `dict` containing the request headers
+        :return: A `DetailedResponse` containing the result, headers and HTTP status code.
+        :rtype: DetailedResponse with `dict` result representing a `GetSecretPolicies` object
         """
-        The secret type.
-        """
-        IAM_CREDENTIALS = 'iam_credentials'
-        PUBLIC_CERT = 'public_cert'
+
+        if secret_type is None:
+            raise ValueError('secret_type must be provided')
+        if id is None:
+            raise ValueError('id must be provided')
+        headers = {}
+        sdk_headers = get_sdk_headers(service_name=self.DEFAULT_SERVICE_NAME,
+                                      service_version='V1',
+                                      operation_id='get_policy')
+        headers.update(sdk_headers)
+
+        params = {
+            'policy': policy
+        }
+
+        if 'headers' in kwargs:
+            headers.update(kwargs.get('headers'))
+        headers['Accept'] = 'application/json'
+
+        path_param_keys = ['secret_type', 'id']
+        path_param_values = self.encode_path_vars(secret_type, id)
+        path_param_dict = dict(zip(path_param_keys, path_param_values))
+        url = '/api/v1/secrets/{secret_type}/{id}/policies'.format(**path_param_dict)
+        request = self.prepare_request(method='GET',
+                                       url=url,
+                                       headers=headers,
+                                       params=params)
+
+        response = self.send(request, **kwargs)
+        return response
+
+    #########################
+    # Config
+    #########################
 
 
-class PutPolicyEnums:
-    """
-    Enums for put_policy parameters.
-    """
+    def put_config(self,
+        secret_type: str,
+        api_key: str,
+        **kwargs
+    ) -> DetailedResponse:
+        """
+        Set the configuration of a secret type.
 
-    class SecretType(str, Enum):
+        Sets the configuration for the specified secret type.
+        Use this method to configure the IAM credentials (`iam_credentials`) engine for
+        your service instance. Looking to set up certificate ordering? To configure the
+        public certificates (`public_cert`) engine, use the [Add a
+        configuration](#create_config_element) method.
+
+        :param str secret_type: The secret type.
+        :param str api_key: An IBM Cloud API key that has the capability to create
+               and manage service IDs.
+               The API key must be assigned the Editor platform role on the Access Groups
+               Service and the Operator platform role on the IAM Identity Service. For
+               more information, see [Configuring the IAM secrets
+               engine](https://cloud.ibm.com/docs/secrets-manager?topic=secrets-manager-iam-credentials#configure-iam-secrets-engine-api).
+        :param dict headers: A `dict` containing the request headers
+        :return: A `DetailedResponse` containing the result, headers and HTTP status code.
+        :rtype: DetailedResponse
         """
-        The secret type.
-        """
-        USERNAME_PASSWORD = 'username_password'
-        PUBLIC_CERT = 'public_cert'
-    class Policy(str, Enum):
-        """
-        The type of policy that is associated with the specified secret.
-        """
-        ROTATION = 'rotation'
+
+        if secret_type is None:
+            raise ValueError('secret_type must be provided')
+        if api_key is None:
+            raise ValueError('api_key must be provided')
+        headers = {}
+        sdk_headers = get_sdk_headers(service_name=self.DEFAULT_SERVICE_NAME,
+                                      service_version='V1',
+                                      operation_id='put_config')
+        headers.update(sdk_headers)
+
+        data = {
+            'api_key': api_key
+        }
+        data = {k: v for (k, v) in data.items() if v is not None}
+        data = json.dumps(data)
+        headers['content-type'] = 'application/json'
+
+        if 'headers' in kwargs:
+            headers.update(kwargs.get('headers'))
+
+        path_param_keys = ['secret_type']
+        path_param_values = self.encode_path_vars(secret_type)
+        path_param_dict = dict(zip(path_param_keys, path_param_values))
+        url = '/api/v1/config/{secret_type}'.format(**path_param_dict)
+        request = self.prepare_request(method='PUT',
+                                       url=url,
+                                       headers=headers,
+                                       data=data)
+
+        response = self.send(request, **kwargs)
+        return response
 
 
-class GetPolicyEnums:
-    """
-    Enums for get_policy parameters.
-    """
+    def get_config(self,
+        secret_type: str,
+        **kwargs
+    ) -> DetailedResponse:
+        """
+        Get the configuration of a secret type.
 
-    class SecretType(str, Enum):
+        Retrieves the configuration that is associated with the specified secret type.
+
+        :param str secret_type: The secret type.
+        :param dict headers: A `dict` containing the request headers
+        :return: A `DetailedResponse` containing the result, headers and HTTP status code.
+        :rtype: DetailedResponse with `dict` result representing a `GetConfig` object
         """
-        The secret type.
+
+        if secret_type is None:
+            raise ValueError('secret_type must be provided')
+        headers = {}
+        sdk_headers = get_sdk_headers(service_name=self.DEFAULT_SERVICE_NAME,
+                                      service_version='V1',
+                                      operation_id='get_config')
+        headers.update(sdk_headers)
+
+        if 'headers' in kwargs:
+            headers.update(kwargs.get('headers'))
+        headers['Accept'] = 'application/json'
+
+        path_param_keys = ['secret_type']
+        path_param_values = self.encode_path_vars(secret_type)
+        path_param_dict = dict(zip(path_param_keys, path_param_values))
+        url = '/api/v1/config/{secret_type}'.format(**path_param_dict)
+        request = self.prepare_request(method='GET',
+                                       url=url,
+                                       headers=headers)
+
+        response = self.send(request, **kwargs)
+        return response
+
+
+    def create_config_element(self,
+        secret_type: str,
+        config_element: str,
+        name: str,
+        type: str,
+        config: 'ConfigElementDefConfig',
+        **kwargs
+    ) -> DetailedResponse:
         """
-        USERNAME_PASSWORD = 'username_password'
-        PUBLIC_CERT = 'public_cert'
-    class Policy(str, Enum):
+        Add a configuration.
+
+        Adds a configuration element to the specified secret type.
+        Use this method to define the configurations that are required to enable the
+        public certificates (`public_cert`) engine. You can add up to 10 certificate
+        authority and DNS provider configurations for your instance.
+
+        :param str secret_type: The secret type.
+        :param str config_element: The configuration element to define or manage.
+        :param str name: The human-readable name to assign to your configuration.
+        :param str type: The type of configuration. Value options differ depending
+               on the `config_element` property that you want to define.
+        :param ConfigElementDefConfig config: The configuration to define for the
+               specified secret type.
+        :param dict headers: A `dict` containing the request headers
+        :return: A `DetailedResponse` containing the result, headers and HTTP status code.
+        :rtype: DetailedResponse with `dict` result representing a `GetSingleConfigElement` object
         """
-        The type of policy that is associated with the specified secret.
+
+        if secret_type is None:
+            raise ValueError('secret_type must be provided')
+        if config_element is None:
+            raise ValueError('config_element must be provided')
+        if name is None:
+            raise ValueError('name must be provided')
+        if type is None:
+            raise ValueError('type must be provided')
+        if config is None:
+            raise ValueError('config must be provided')
+        config = convert_model(config)
+        headers = {}
+        sdk_headers = get_sdk_headers(service_name=self.DEFAULT_SERVICE_NAME,
+                                      service_version='V1',
+                                      operation_id='create_config_element')
+        headers.update(sdk_headers)
+
+        data = {
+            'name': name,
+            'type': type,
+            'config': config
+        }
+        data = {k: v for (k, v) in data.items() if v is not None}
+        data = json.dumps(data)
+        headers['content-type'] = 'application/json'
+
+        if 'headers' in kwargs:
+            headers.update(kwargs.get('headers'))
+        headers['Accept'] = 'application/json'
+
+        path_param_keys = ['secret_type', 'config_element']
+        path_param_values = self.encode_path_vars(secret_type, config_element)
+        path_param_dict = dict(zip(path_param_keys, path_param_values))
+        url = '/api/v1/config/{secret_type}/{config_element}'.format(**path_param_dict)
+        request = self.prepare_request(method='POST',
+                                       url=url,
+                                       headers=headers,
+                                       data=data)
+
+        response = self.send(request, **kwargs)
+        return response
+
+
+    def get_config_elements(self,
+        secret_type: str,
+        config_element: str,
+        **kwargs
+    ) -> DetailedResponse:
         """
-        ROTATION = 'rotation'
+        List configurations.
+
+        Lists the configuration elements that are associated with a specified secret type.
+
+        :param str secret_type: The secret type.
+        :param str config_element: The configuration element to define or manage.
+        :param dict headers: A `dict` containing the request headers
+        :return: A `DetailedResponse` containing the result, headers and HTTP status code.
+        :rtype: DetailedResponse with `dict` result representing a `GetConfigElements` object
+        """
+
+        if secret_type is None:
+            raise ValueError('secret_type must be provided')
+        if config_element is None:
+            raise ValueError('config_element must be provided')
+        headers = {}
+        sdk_headers = get_sdk_headers(service_name=self.DEFAULT_SERVICE_NAME,
+                                      service_version='V1',
+                                      operation_id='get_config_elements')
+        headers.update(sdk_headers)
+
+        if 'headers' in kwargs:
+            headers.update(kwargs.get('headers'))
+        headers['Accept'] = 'application/json'
+
+        path_param_keys = ['secret_type', 'config_element']
+        path_param_values = self.encode_path_vars(secret_type, config_element)
+        path_param_dict = dict(zip(path_param_keys, path_param_values))
+        url = '/api/v1/config/{secret_type}/{config_element}'.format(**path_param_dict)
+        request = self.prepare_request(method='GET',
+                                       url=url,
+                                       headers=headers)
+
+        response = self.send(request, **kwargs)
+        return response
+
+
+    def update_config_element(self,
+        secret_type: str,
+        config_element: str,
+        config_name: str,
+        type: str,
+        config: object,
+        **kwargs
+    ) -> DetailedResponse:
+        """
+        Update a configuration.
+
+        Updates a configuration element that is associated with the specified secret type.
+
+        :param str secret_type: The secret type.
+        :param str config_element: The configuration element to define or manage.
+        :param str config_name: The name of your configuration.
+        :param str type: The type of configuration. Value options differ depending
+               on the `config_element` property that you want to define.
+        :param object config:
+        :param dict headers: A `dict` containing the request headers
+        :return: A `DetailedResponse` containing the result, headers and HTTP status code.
+        :rtype: DetailedResponse with `dict` result representing a `GetSingleConfigElement` object
+        """
+
+        if secret_type is None:
+            raise ValueError('secret_type must be provided')
+        if config_element is None:
+            raise ValueError('config_element must be provided')
+        if config_name is None:
+            raise ValueError('config_name must be provided')
+        if type is None:
+            raise ValueError('type must be provided')
+        if config is None:
+            raise ValueError('config must be provided')
+        headers = {}
+        sdk_headers = get_sdk_headers(service_name=self.DEFAULT_SERVICE_NAME,
+                                      service_version='V1',
+                                      operation_id='update_config_element')
+        headers.update(sdk_headers)
+
+        data = {
+            'type': type,
+            'config': config
+        }
+        data = {k: v for (k, v) in data.items() if v is not None}
+        data = json.dumps(data)
+        headers['content-type'] = 'application/json'
+
+        if 'headers' in kwargs:
+            headers.update(kwargs.get('headers'))
+        headers['Accept'] = 'application/json'
+
+        path_param_keys = ['secret_type', 'config_element', 'config_name']
+        path_param_values = self.encode_path_vars(secret_type, config_element, config_name)
+        path_param_dict = dict(zip(path_param_keys, path_param_values))
+        url = '/api/v1/config/{secret_type}/{config_element}/{config_name}'.format(**path_param_dict)
+        request = self.prepare_request(method='PUT',
+                                       url=url,
+                                       headers=headers,
+                                       data=data)
+
+        response = self.send(request, **kwargs)
+        return response
+
+
+    def delete_config_element(self,
+        secret_type: str,
+        config_element: str,
+        config_name: str,
+        **kwargs
+    ) -> DetailedResponse:
+        """
+        Remove a configuration.
+
+        Removes a configuration element from the specified secret type.
+
+        :param str secret_type: The secret type.
+        :param str config_element: The configuration element to define or manage.
+        :param str config_name: The name of your configuration.
+        :param dict headers: A `dict` containing the request headers
+        :return: A `DetailedResponse` containing the result, headers and HTTP status code.
+        :rtype: DetailedResponse
+        """
+
+        if secret_type is None:
+            raise ValueError('secret_type must be provided')
+        if config_element is None:
+            raise ValueError('config_element must be provided')
+        if config_name is None:
+            raise ValueError('config_name must be provided')
+        headers = {}
+        sdk_headers = get_sdk_headers(service_name=self.DEFAULT_SERVICE_NAME,
+                                      service_version='V1',
+                                      operation_id='delete_config_element')
+        headers.update(sdk_headers)
+
+        if 'headers' in kwargs:
+            headers.update(kwargs.get('headers'))
+
+        path_param_keys = ['secret_type', 'config_element', 'config_name']
+        path_param_values = self.encode_path_vars(secret_type, config_element, config_name)
+        path_param_dict = dict(zip(path_param_keys, path_param_values))
+        url = '/api/v1/config/{secret_type}/{config_element}/{config_name}'.format(**path_param_dict)
+        request = self.prepare_request(method='DELETE',
+                                       url=url,
+                                       headers=headers)
+
+        response = self.send(request, **kwargs)
+        return response
+
+
+    def get_config_element(self,
+        secret_type: str,
+        config_element: str,
+        config_name: str,
+        **kwargs
+    ) -> DetailedResponse:
+        """
+        Get a configuration.
+
+        Retrieves the details of a specific configuration that is associated with a secret
+        type.
+
+        :param str secret_type: The secret type.
+        :param str config_element: The configuration element to define or manage.
+        :param str config_name: The name of your configuration.
+        :param dict headers: A `dict` containing the request headers
+        :return: A `DetailedResponse` containing the result, headers and HTTP status code.
+        :rtype: DetailedResponse with `dict` result representing a `GetSingleConfigElement` object
+        """
+
+        if secret_type is None:
+            raise ValueError('secret_type must be provided')
+        if config_element is None:
+            raise ValueError('config_element must be provided')
+        if config_name is None:
+            raise ValueError('config_name must be provided')
+        headers = {}
+        sdk_headers = get_sdk_headers(service_name=self.DEFAULT_SERVICE_NAME,
+                                      service_version='V1',
+                                      operation_id='get_config_element')
+        headers.update(sdk_headers)
+
+        if 'headers' in kwargs:
+            headers.update(kwargs.get('headers'))
+        headers['Accept'] = 'application/json'
+
+        path_param_keys = ['secret_type', 'config_element', 'config_name']
+        path_param_values = self.encode_path_vars(secret_type, config_element, config_name)
+        path_param_dict = dict(zip(path_param_keys, path_param_values))
+        url = '/api/v1/config/{secret_type}/{config_element}/{config_name}'.format(**path_param_dict)
+        request = self.prepare_request(method='GET',
+                                       url=url,
+                                       headers=headers)
+
+        response = self.send(request, **kwargs)
+        return response
 
 
 class CreateSecretEnums:
@@ -1650,6 +1513,7 @@ class GetSecretVersionEnums:
         The secret type. Supported options include: imported_cert.
         """
         IMPORTED_CERT = 'imported_cert'
+        PUBLIC_CERT = 'public_cert'
 
 
 class GetSecretVersionMetadataEnums:
@@ -1662,6 +1526,7 @@ class GetSecretVersionMetadataEnums:
         The secret type. Supported options include: imported_cert.
         """
         IMPORTED_CERT = 'imported_cert'
+        PUBLIC_CERT = 'public_cert'
 
 
 class GetSecretMetadataEnums:
@@ -1694,6 +1559,158 @@ class UpdateSecretMetadataEnums:
         IMPORTED_CERT = 'imported_cert'
         PUBLIC_CERT = 'public_cert'
         USERNAME_PASSWORD = 'username_password'
+
+
+class PutPolicyEnums:
+    """
+    Enums for put_policy parameters.
+    """
+
+    class SecretType(str, Enum):
+        """
+        The secret type.
+        """
+        USERNAME_PASSWORD = 'username_password'
+        PUBLIC_CERT = 'public_cert'
+    class Policy(str, Enum):
+        """
+        The type of policy that is associated with the specified secret.
+        """
+        ROTATION = 'rotation'
+
+
+class GetPolicyEnums:
+    """
+    Enums for get_policy parameters.
+    """
+
+    class SecretType(str, Enum):
+        """
+        The secret type.
+        """
+        USERNAME_PASSWORD = 'username_password'
+        PUBLIC_CERT = 'public_cert'
+    class Policy(str, Enum):
+        """
+        The type of policy that is associated with the specified secret.
+        """
+        ROTATION = 'rotation'
+
+
+class PutConfigEnums:
+    """
+    Enums for put_config parameters.
+    """
+
+    class SecretType(str, Enum):
+        """
+        The secret type.
+        """
+        IAM_CREDENTIALS = 'iam_credentials'
+        PUBLIC_CERT = 'public_cert'
+
+
+class GetConfigEnums:
+    """
+    Enums for get_config parameters.
+    """
+
+    class SecretType(str, Enum):
+        """
+        The secret type.
+        """
+        IAM_CREDENTIALS = 'iam_credentials'
+        PUBLIC_CERT = 'public_cert'
+
+
+class CreateConfigElementEnums:
+    """
+    Enums for create_config_element parameters.
+    """
+
+    class SecretType(str, Enum):
+        """
+        The secret type.
+        """
+        PUBLIC_CERT = 'public_cert'
+    class ConfigElement(str, Enum):
+        """
+        The configuration element to define or manage.
+        """
+        CERTIFICATE_AUTHORITIES = 'certificate_authorities'
+        DNS_PROVIDERS = 'dns_providers'
+
+
+class GetConfigElementsEnums:
+    """
+    Enums for get_config_elements parameters.
+    """
+
+    class SecretType(str, Enum):
+        """
+        The secret type.
+        """
+        PUBLIC_CERT = 'public_cert'
+    class ConfigElement(str, Enum):
+        """
+        The configuration element to define or manage.
+        """
+        CERTIFICATE_AUTHORITIES = 'certificate_authorities'
+        DNS_PROVIDERS = 'dns_providers'
+
+
+class UpdateConfigElementEnums:
+    """
+    Enums for update_config_element parameters.
+    """
+
+    class SecretType(str, Enum):
+        """
+        The secret type.
+        """
+        PUBLIC_CERT = 'public_cert'
+    class ConfigElement(str, Enum):
+        """
+        The configuration element to define or manage.
+        """
+        CERTIFICATE_AUTHORITIES = 'certificate_authorities'
+        DNS_PROVIDERS = 'dns_providers'
+
+
+class DeleteConfigElementEnums:
+    """
+    Enums for delete_config_element parameters.
+    """
+
+    class SecretType(str, Enum):
+        """
+        The secret type.
+        """
+        PUBLIC_CERT = 'public_cert'
+    class ConfigElement(str, Enum):
+        """
+        The configuration element to define or manage.
+        """
+        CERTIFICATE_AUTHORITIES = 'certificate_authorities'
+        DNS_PROVIDERS = 'dns_providers'
+
+
+class GetConfigElementEnums:
+    """
+    Enums for get_config_element parameters.
+    """
+
+    class SecretType(str, Enum):
+        """
+        The secret type.
+        """
+        PUBLIC_CERT = 'public_cert'
+    class ConfigElement(str, Enum):
+        """
+        The configuration element to define or manage.
+        """
+        CERTIFICATE_AUTHORITIES = 'certificate_authorities'
+        DNS_PROVIDERS = 'dns_providers'
 
 
 ##############################################################################
@@ -1856,23 +1873,27 @@ class CollectionMetadata():
 
 class ConfigElementDef():
     """
-    Config element.
+    The configuration to add or update.
 
-    :attr str name: Config element name.
-    :attr str type: Dns provider config type.
-    :attr object config:
+    :attr str name: The human-readable name to assign to your configuration.
+    :attr str type: The type of configuration. Value options differ depending on the
+          `config_element` property that you want to define.
+    :attr ConfigElementDefConfig config: The configuration to define for the
+          specified secret type.
     """
 
     def __init__(self,
                  name: str,
                  type: str,
-                 config: object) -> None:
+                 config: 'ConfigElementDefConfig') -> None:
         """
         Initialize a ConfigElementDef object.
 
-        :param str name: Config element name.
-        :param str type: Dns provider config type.
-        :param object config:
+        :param str name: The human-readable name to assign to your configuration.
+        :param str type: The type of configuration. Value options differ depending
+               on the `config_element` property that you want to define.
+        :param ConfigElementDefConfig config: The configuration to define for the
+               specified secret type.
         """
         self.name = name
         self.type = type
@@ -1909,7 +1930,10 @@ class ConfigElementDef():
         if hasattr(self, 'type') and self.type is not None:
             _dict['type'] = self.type
         if hasattr(self, 'config') and self.config is not None:
-            _dict['config'] = self.config
+            if isinstance(self.config, dict):
+                _dict['config'] = self.config
+            else:
+                _dict['config'] = self.config.to_dict()
         return _dict
 
     def _to_dict(self):
@@ -1930,12 +1954,39 @@ class ConfigElementDef():
         """Return `true` when self and other are not equal, false otherwise."""
         return not self == other
 
+    class TypeEnum(str, Enum):
+        """
+        The type of configuration. Value options differ depending on the `config_element`
+        property that you want to define.
+        """
+        LETSENCRYPT = 'letsencrypt'
+        LETSENCRYPT_STAGE = 'letsencrypt-stage'
+        CIS = 'cis'
+        CLASSIC_INFRASTRUCTURE = 'classic_infrastructure'
+
+
+class ConfigElementDefConfig():
+    """
+    The configuration to define for the specified secret type.
+
+    """
+
+    def __init__(self) -> None:
+        """
+        Initialize a ConfigElementDefConfig object.
+
+        """
+        msg = "Cannot instantiate base class. Instead, instantiate one of the defined subclasses: {0}".format(
+                  ", ".join(['ConfigElementDefConfigLetsEncryptConfig', 'ConfigElementDefConfigCloudInternetServicesConfig', 'ConfigElementDefConfigClassicInfrastructureConfig']))
+        raise Exception(msg)
+
 class ConfigElementMetadata():
     """
-    Dns provider config metadata.
+    Properties that describe a configuration element.
 
-    :attr str name: Config element name.
-    :attr str type: Dns provider config type.
+    :attr str name: The human-readable name to assign to your configuration.
+    :attr str type: The type of configuration. Value options differ depending on the
+          `config_element` property that you want to define.
     """
 
     def __init__(self,
@@ -1944,8 +1995,9 @@ class ConfigElementMetadata():
         """
         Initialize a ConfigElementMetadata object.
 
-        :param str name: Config element name.
-        :param str type: Dns provider config type.
+        :param str name: The human-readable name to assign to your configuration.
+        :param str type: The type of configuration. Value options differ depending
+               on the `config_element` property that you want to define.
         """
         self.name = name
         self.type = type
@@ -1995,6 +2047,17 @@ class ConfigElementMetadata():
     def __ne__(self, other: 'ConfigElementMetadata') -> bool:
         """Return `true` when self and other are not equal, false otherwise."""
         return not self == other
+
+    class TypeEnum(str, Enum):
+        """
+        The type of configuration. Value options differ depending on the `config_element`
+        property that you want to define.
+        """
+        LETSENCRYPT = 'letsencrypt'
+        LETSENCRYPT_STAGE = 'letsencrypt-stage'
+        CIS = 'cis'
+        CLASSIC_INFRASTRUCTURE = 'classic_infrastructure'
+
 
 class CreateSecret():
     """
@@ -2072,7 +2135,7 @@ class CreateSecret():
 
 class GetConfig():
     """
-    Configuration that is used to generate IAM credentials.
+    Configuration for the specified secret type.
 
     :attr CollectionMetadata metadata: The metadata that describes the resource
           array.
@@ -2146,7 +2209,7 @@ class GetConfig():
 
 class GetConfigElements():
     """
-    Config elements.
+    Properties that describe a list of configurations.
 
     :attr CollectionMetadata metadata: The metadata that describes the resource
           array.
@@ -2618,7 +2681,7 @@ class GetSecretVersionMetadata():
 
 class GetSingleConfigElement():
     """
-    Config element.
+    Properties that describe a configuration.
 
     :attr CollectionMetadata metadata: The metadata that describes the resource
           array.
@@ -2686,21 +2749,29 @@ class GetSingleConfigElement():
 
 class IssuanceInfo():
     """
-    Public certificate issuance info.
+    Issuance information that is associated with your certificate.
 
     :attr datetime ordered_on: (optional) The date the certificate was ordered. The
           date format follows RFC 3339.
-    :attr str error_code: (optional) The issuance info error code.
-    :attr str error_message: (optional) The issuance info error message.
-    :attr bool bundle_certs: (optional)
+    :attr str error_code: (optional) An code that identifies an issuance error.
+          This field, along with `error_message`, is returned when Secrets Manager
+          successfully processes your request, but a certificate is unable to be issued by
+          the certificate authority.
+    :attr str error_message: (optional) A human-readable message that provides
+          details about the issuance error.
+    :attr bool bundle_certs: (optional) Indicates whether the issued certificate is
+          bundled with intermediate certificates.
     :attr int state: (optional) The secret state based on NIST SP 800-57. States are
           integers and correspond to the Pre-activation = 0, Active = 1,  Suspended = 2,
           Deactivated = 3, and Destroyed = 5 values.
     :attr str state_description: (optional) A text representation of the secret
           state.
-    :attr bool auto_rotated: (optional)
-    :attr str ca: (optional)
-    :attr str dns: (optional)
+    :attr bool auto_rotated: (optional) Indicates whether the issued certificate is
+          configured with an automatic rotation policy.
+    :attr str ca: (optional) The name that was assigned to the certificate authority
+          configuration.
+    :attr str dns: (optional) The name that was assigned to the DNS provider
+          configuration.
     """
 
     def __init__(self,
@@ -2876,8 +2947,15 @@ class Rotation():
     """
     Rotation.
 
-    :attr bool auto_rotate: (optional)
-    :attr bool rotate_keys: (optional)
+    :attr bool auto_rotate: (optional) Determines whether Secrets Manager rotates
+          your certificate automatically.
+          If set to `true`, the service reorders your certificate 31 days before it
+          expires. To access the previous  version of the certifcate, you can use the [Get
+          a version of a secret](#get-secret-version) method.
+    :attr bool rotate_keys: (optional) Determines whether Secrets Manager rotates
+          the private key for your certificate automatically.
+          If set to `true`, the service generates and stores a new private key for your
+          rotated certificate.
     """
 
     def __init__(self,
@@ -2887,8 +2965,15 @@ class Rotation():
         """
         Initialize a Rotation object.
 
-        :param bool auto_rotate: (optional)
-        :param bool rotate_keys: (optional)
+        :param bool auto_rotate: (optional) Determines whether Secrets Manager
+               rotates your certificate automatically.
+               If set to `true`, the service reorders your certificate 31 days before it
+               expires. To access the previous  version of the certifcate, you can use the
+               [Get a version of a secret](#get-secret-version) method.
+        :param bool rotate_keys: (optional) Determines whether Secrets Manager
+               rotates the private key for your certificate automatically.
+               If set to `true`, the service generates and stores a new private key for
+               your rotated certificate.
         """
         self.auto_rotate = auto_rotate
         self.rotate_keys = rotate_keys
@@ -3514,6 +3599,74 @@ class CertificateValidity():
         return self.__dict__ == other.__dict__
 
     def __ne__(self, other: 'CertificateValidity') -> bool:
+        """Return `true` when self and other are not equal, false otherwise."""
+        return not self == other
+
+class Warning():
+    """
+    Warning response.
+
+    :attr str code: A warning code identifier.
+    :attr str message: A human-readable message that provides details about the
+          warning.
+    """
+
+    def __init__(self,
+                 code: str,
+                 message: str) -> None:
+        """
+        Initialize a Warning object.
+
+        :param str code: A warning code identifier.
+        :param str message: A human-readable message that provides details about
+               the warning.
+        """
+        self.code = code
+        self.message = message
+
+    @classmethod
+    def from_dict(cls, _dict: Dict) -> 'Warning':
+        """Initialize a Warning object from a json dictionary."""
+        args = {}
+        if 'code' in _dict:
+            args['code'] = _dict.get('code')
+        else:
+            raise ValueError('Required property \'code\' not present in Warning JSON')
+        if 'message' in _dict:
+            args['message'] = _dict.get('message')
+        else:
+            raise ValueError('Required property \'message\' not present in Warning JSON')
+        return cls(**args)
+
+    @classmethod
+    def _from_dict(cls, _dict):
+        """Initialize a Warning object from a json dictionary."""
+        return cls.from_dict(_dict)
+
+    def to_dict(self) -> Dict:
+        """Return a json dictionary representing this model."""
+        _dict = {}
+        if hasattr(self, 'code') and self.code is not None:
+            _dict['code'] = self.code
+        if hasattr(self, 'message') and self.message is not None:
+            _dict['message'] = self.message
+        return _dict
+
+    def _to_dict(self):
+        """Return a json dictionary representing this model."""
+        return self.to_dict()
+
+    def __str__(self) -> str:
+        """Return a `str` version of this Warning object."""
+        return json.dumps(self.to_dict(), indent=2)
+
+    def __eq__(self, other: 'Warning') -> bool:
+        """Return `true` when self and other are equal, false otherwise."""
+        if not isinstance(other, self.__class__):
+            return False
+        return self.__dict__ == other.__dict__
+
+    def __ne__(self, other: 'Warning') -> bool:
         """Return `true` when self and other are not equal, false otherwise."""
         return not self == other
 
@@ -4629,7 +4782,8 @@ class CertificateSecretVersion(SecretVersion):
     :attr str created_by: (optional) The unique identifier for the entity that
           created the secret version.
     :attr CertificateValidity validity: (optional)
-    :attr str serial_number: (optional)
+    :attr str serial_number: (optional) The unique serial number that was assigned
+          to the certificate by the issuing certificate authority.
     :attr datetime expiration_date: (optional) The date that the certificate
           expires. The date format follows RFC 3339.
     :attr CertificateSecretData secret_data: (optional)
@@ -4650,7 +4804,6 @@ class CertificateSecretVersion(SecretVersion):
         Initialize a CertificateSecretVersion object.
 
         :param CertificateValidity validity: (optional)
-        :param str serial_number: (optional)
         :param CertificateSecretData secret_data: (optional)
         """
         # pylint: disable=super-init-not-called
@@ -4708,8 +4861,8 @@ class CertificateSecretVersion(SecretVersion):
             _dict['created_by'] = getattr(self, 'created_by')
         if hasattr(self, 'validity') and self.validity is not None:
             _dict['validity'] = self.validity.to_dict()
-        if hasattr(self, 'serial_number') and self.serial_number is not None:
-            _dict['serial_number'] = self.serial_number
+        if hasattr(self, 'serial_number') and getattr(self, 'serial_number') is not None:
+            _dict['serial_number'] = getattr(self, 'serial_number')
         if hasattr(self, 'expiration_date') and getattr(self, 'expiration_date') is not None:
             _dict['expiration_date'] = datetime_to_string(getattr(self, 'expiration_date'))
         if hasattr(self, 'secret_data') and self.secret_data is not None:
@@ -4743,7 +4896,8 @@ class CertificateSecretVersionMetadata(SecretVersionMetadata):
           was created.
     :attr str created_by: (optional) The unique identifier for the entity that
           created the secret version.
-    :attr str serial_number: (optional)
+    :attr str serial_number: (optional) The unique serial number that was assigned
+          to the certificate by the issuing certificate authority.
     :attr datetime expiration_date: (optional) The date that the certificate
           expires. The date format follows RFC 3339.
     :attr CertificateValidity validity: (optional)
@@ -4760,7 +4914,6 @@ class CertificateSecretVersionMetadata(SecretVersionMetadata):
         """
         Initialize a CertificateSecretVersionMetadata object.
 
-        :param str serial_number: (optional)
         :param CertificateValidity validity: (optional)
         """
         # pylint: disable=super-init-not-called
@@ -4803,8 +4956,8 @@ class CertificateSecretVersionMetadata(SecretVersionMetadata):
             _dict['creation_date'] = datetime_to_string(getattr(self, 'creation_date'))
         if hasattr(self, 'created_by') and getattr(self, 'created_by') is not None:
             _dict['created_by'] = getattr(self, 'created_by')
-        if hasattr(self, 'serial_number') and self.serial_number is not None:
-            _dict['serial_number'] = self.serial_number
+        if hasattr(self, 'serial_number') and getattr(self, 'serial_number') is not None:
+            _dict['serial_number'] = getattr(self, 'serial_number')
         if hasattr(self, 'expiration_date') and getattr(self, 'expiration_date') is not None:
             _dict['expiration_date'] = datetime_to_string(getattr(self, 'expiration_date'))
         if hasattr(self, 'validity') and self.validity is not None:
@@ -4826,6 +4979,226 @@ class CertificateSecretVersionMetadata(SecretVersionMetadata):
         return self.__dict__ == other.__dict__
 
     def __ne__(self, other: 'CertificateSecretVersionMetadata') -> bool:
+        """Return `true` when self and other are not equal, false otherwise."""
+        return not self == other
+
+class ConfigElementDefConfigClassicInfrastructureConfig(ConfigElementDefConfig):
+    """
+    Properties that describe an IBM Cloud classic infrastructure (SoftLayer)
+    configuration.
+
+    :attr str classic_infrastructure_username: The username that is associated with
+          your classic infrastructure account.
+    :attr str classic_infrastructure_password: Your classic infrastructure API key.
+    """
+
+    def __init__(self,
+                 classic_infrastructure_username: str,
+                 classic_infrastructure_password: str) -> None:
+        """
+        Initialize a ConfigElementDefConfigClassicInfrastructureConfig object.
+
+        :param str classic_infrastructure_username: The username that is associated
+               with your classic infrastructure account.
+        :param str classic_infrastructure_password: Your classic infrastructure API
+               key.
+        """
+        # pylint: disable=super-init-not-called
+        self.classic_infrastructure_username = classic_infrastructure_username
+        self.classic_infrastructure_password = classic_infrastructure_password
+
+    @classmethod
+    def from_dict(cls, _dict: Dict) -> 'ConfigElementDefConfigClassicInfrastructureConfig':
+        """Initialize a ConfigElementDefConfigClassicInfrastructureConfig object from a json dictionary."""
+        args = {}
+        if 'classic_infrastructure_username' in _dict:
+            args['classic_infrastructure_username'] = _dict.get('classic_infrastructure_username')
+        else:
+            raise ValueError('Required property \'classic_infrastructure_username\' not present in ConfigElementDefConfigClassicInfrastructureConfig JSON')
+        if 'classic_infrastructure_password' in _dict:
+            args['classic_infrastructure_password'] = _dict.get('classic_infrastructure_password')
+        else:
+            raise ValueError('Required property \'classic_infrastructure_password\' not present in ConfigElementDefConfigClassicInfrastructureConfig JSON')
+        return cls(**args)
+
+    @classmethod
+    def _from_dict(cls, _dict):
+        """Initialize a ConfigElementDefConfigClassicInfrastructureConfig object from a json dictionary."""
+        return cls.from_dict(_dict)
+
+    def to_dict(self) -> Dict:
+        """Return a json dictionary representing this model."""
+        _dict = {}
+        if hasattr(self, 'classic_infrastructure_username') and self.classic_infrastructure_username is not None:
+            _dict['classic_infrastructure_username'] = self.classic_infrastructure_username
+        if hasattr(self, 'classic_infrastructure_password') and self.classic_infrastructure_password is not None:
+            _dict['classic_infrastructure_password'] = self.classic_infrastructure_password
+        return _dict
+
+    def _to_dict(self):
+        """Return a json dictionary representing this model."""
+        return self.to_dict()
+
+    def __str__(self) -> str:
+        """Return a `str` version of this ConfigElementDefConfigClassicInfrastructureConfig object."""
+        return json.dumps(self.to_dict(), indent=2)
+
+    def __eq__(self, other: 'ConfigElementDefConfigClassicInfrastructureConfig') -> bool:
+        """Return `true` when self and other are equal, false otherwise."""
+        if not isinstance(other, self.__class__):
+            return False
+        return self.__dict__ == other.__dict__
+
+    def __ne__(self, other: 'ConfigElementDefConfigClassicInfrastructureConfig') -> bool:
+        """Return `true` when self and other are not equal, false otherwise."""
+        return not self == other
+
+class ConfigElementDefConfigCloudInternetServicesConfig(ConfigElementDefConfig):
+    """
+    Properties that describe an IBM Cloud Internet Services (CIS) configuration.
+
+    :attr str cis_crn: The Cloud Resource Name (CRN) that is associated with the CIS
+          instance.
+    :attr str cis_apikey: (optional) An IBM Cloud API key that has the capability to
+          list domains in your CIS instance.
+          To grant Secrets Manager the ability to view the CIS instance and all of its
+          domains, the API key must be assigned the Reader service role on Internet
+          Services (`internet-svcs`).
+          If you need to manage specific domains, you can assign the Manager role. For
+          production environments, it is recommended that you assign the Reader access
+          role, and then use the
+          [IAM Policy Management
+          API](https://cloud.ibm.com/apidocs/iam-policy-management#create-policy) to
+          control specific domains. For more information, see the
+          [docs](https://cloud.ibm.com/docs/secrets-manager?topic=secrets-manager-prepare-order-certificates#authorize-specific-domains).
+    """
+
+    def __init__(self,
+                 cis_crn: str,
+                 *,
+                 cis_apikey: str = None) -> None:
+        """
+        Initialize a ConfigElementDefConfigCloudInternetServicesConfig object.
+
+        :param str cis_crn: The Cloud Resource Name (CRN) that is associated with
+               the CIS instance.
+        :param str cis_apikey: (optional) An IBM Cloud API key that has the
+               capability to list domains in your CIS instance.
+               To grant Secrets Manager the ability to view the CIS instance and all of
+               its domains, the API key must be assigned the Reader service role on
+               Internet Services (`internet-svcs`).
+               If you need to manage specific domains, you can assign the Manager role.
+               For production environments, it is recommended that you assign the Reader
+               access role, and then use the
+               [IAM Policy Management
+               API](https://cloud.ibm.com/apidocs/iam-policy-management#create-policy) to
+               control specific domains. For more information, see the
+               [docs](https://cloud.ibm.com/docs/secrets-manager?topic=secrets-manager-prepare-order-certificates#authorize-specific-domains).
+        """
+        # pylint: disable=super-init-not-called
+        self.cis_crn = cis_crn
+        self.cis_apikey = cis_apikey
+
+    @classmethod
+    def from_dict(cls, _dict: Dict) -> 'ConfigElementDefConfigCloudInternetServicesConfig':
+        """Initialize a ConfigElementDefConfigCloudInternetServicesConfig object from a json dictionary."""
+        args = {}
+        if 'cis_crn' in _dict:
+            args['cis_crn'] = _dict.get('cis_crn')
+        else:
+            raise ValueError('Required property \'cis_crn\' not present in ConfigElementDefConfigCloudInternetServicesConfig JSON')
+        if 'cis_apikey' in _dict:
+            args['cis_apikey'] = _dict.get('cis_apikey')
+        return cls(**args)
+
+    @classmethod
+    def _from_dict(cls, _dict):
+        """Initialize a ConfigElementDefConfigCloudInternetServicesConfig object from a json dictionary."""
+        return cls.from_dict(_dict)
+
+    def to_dict(self) -> Dict:
+        """Return a json dictionary representing this model."""
+        _dict = {}
+        if hasattr(self, 'cis_crn') and self.cis_crn is not None:
+            _dict['cis_crn'] = self.cis_crn
+        if hasattr(self, 'cis_apikey') and self.cis_apikey is not None:
+            _dict['cis_apikey'] = self.cis_apikey
+        return _dict
+
+    def _to_dict(self):
+        """Return a json dictionary representing this model."""
+        return self.to_dict()
+
+    def __str__(self) -> str:
+        """Return a `str` version of this ConfigElementDefConfigCloudInternetServicesConfig object."""
+        return json.dumps(self.to_dict(), indent=2)
+
+    def __eq__(self, other: 'ConfigElementDefConfigCloudInternetServicesConfig') -> bool:
+        """Return `true` when self and other are equal, false otherwise."""
+        if not isinstance(other, self.__class__):
+            return False
+        return self.__dict__ == other.__dict__
+
+    def __ne__(self, other: 'ConfigElementDefConfigCloudInternetServicesConfig') -> bool:
+        """Return `true` when self and other are not equal, false otherwise."""
+        return not self == other
+
+class ConfigElementDefConfigLetsEncryptConfig(ConfigElementDefConfig):
+    """
+    Properties that describe a Let's Encrypt configuration.
+
+    :attr str private_key: The private key that is associated with your ACME
+          account.
+    """
+
+    def __init__(self,
+                 private_key: str) -> None:
+        """
+        Initialize a ConfigElementDefConfigLetsEncryptConfig object.
+
+        :param str private_key: The private key that is associated with your ACME
+               account.
+        """
+        # pylint: disable=super-init-not-called
+        self.private_key = private_key
+
+    @classmethod
+    def from_dict(cls, _dict: Dict) -> 'ConfigElementDefConfigLetsEncryptConfig':
+        """Initialize a ConfigElementDefConfigLetsEncryptConfig object from a json dictionary."""
+        args = {}
+        if 'private_key' in _dict:
+            args['private_key'] = _dict.get('private_key')
+        else:
+            raise ValueError('Required property \'private_key\' not present in ConfigElementDefConfigLetsEncryptConfig JSON')
+        return cls(**args)
+
+    @classmethod
+    def _from_dict(cls, _dict):
+        """Initialize a ConfigElementDefConfigLetsEncryptConfig object from a json dictionary."""
+        return cls.from_dict(_dict)
+
+    def to_dict(self) -> Dict:
+        """Return a json dictionary representing this model."""
+        _dict = {}
+        if hasattr(self, 'private_key') and self.private_key is not None:
+            _dict['private_key'] = self.private_key
+        return _dict
+
+    def _to_dict(self):
+        """Return a json dictionary representing this model."""
+        return self.to_dict()
+
+    def __str__(self) -> str:
+        """Return a `str` version of this ConfigElementDefConfigLetsEncryptConfig object."""
+        return json.dumps(self.to_dict(), indent=2)
+
+    def __eq__(self, other: 'ConfigElementDefConfigLetsEncryptConfig') -> bool:
+        """Return `true` when self and other are equal, false otherwise."""
+        if not isinstance(other, self.__class__):
+            return False
+        return self.__dict__ == other.__dict__
+
+    def __ne__(self, other: 'ConfigElementDefConfigLetsEncryptConfig') -> bool:
         """Return `true` when self and other are not equal, false otherwise."""
         return not self == other
 
@@ -4890,7 +5263,7 @@ class DeleteCredentialsForIAMCredentialsSecret(SecretAction):
 
 class GetConfigElementsResourcesItemCertificateAuthoritiesConfig(GetConfigElementsResourcesItem):
     """
-    Certificate authorities config.
+    Certificate authorities configuration.
 
     :attr List[ConfigElementMetadata] certificate_authorities:
     """
@@ -4947,7 +5320,7 @@ class GetConfigElementsResourcesItemCertificateAuthoritiesConfig(GetConfigElemen
 
 class GetConfigElementsResourcesItemDnsProvidersConfig(GetConfigElementsResourcesItem):
     """
-    Dns providers config.
+    DNS providers configuration.
 
     :attr List[ConfigElementMetadata] dns_providers:
     """
@@ -5075,7 +5448,7 @@ class GetSecretPolicyRotation(GetSecretPolicies):
 
 class IAMCredentialsSecretEngineRootConfig(GetConfigResourcesItem):
     """
-    Configuration that is used to generate IAM credentials.
+    Configuration for the IAM credentials engine.
 
     :attr str api_key: An IBM Cloud API key that has the capability to create and
           manage service IDs.
@@ -5705,12 +6078,12 @@ class IAMCredentialsSecretVersionMetadata(SecretVersionMetadata):
 
 class PublicCertSecretEngineRootConfig(GetConfigResourcesItem):
     """
-    Configuration for `public_cert` secret.
+    Configuration for the public certificates engine.
 
-    :attr List[ConfigElementMetadata] certificate_authorities: (optional)
-          `public_cert` certificate authorites configuration.
-    :attr List[ConfigElementMetadata] dns_providers: (optional) `public_cert` dns
-          provider configuration.
+    :attr List[ConfigElementMetadata] certificate_authorities: (optional) The
+          certificate authority configurations that are associated with your instance.
+    :attr List[ConfigElementMetadata] dns_providers: (optional) The DNS provider
+          configurations that are associated with your instance.
     """
 
     def __init__(self,
@@ -5720,8 +6093,8 @@ class PublicCertSecretEngineRootConfig(GetConfigResourcesItem):
         """
         Initialize a PublicCertSecretEngineRootConfig object.
 
-        :param List[ConfigElementMetadata] dns_providers: (optional) `public_cert`
-               dns provider configuration.
+        :param List[ConfigElementMetadata] dns_providers: (optional) The DNS
+               provider configurations that are associated with your instance.
         """
         # pylint: disable=super-init-not-called
         self.certificate_authorities = certificate_authorities
@@ -5808,7 +6181,9 @@ class PublicCertificateMetadataSecretResource(SecretMetadata):
     :attr int versions_total: (optional) The number of versions the secret has.
     :attr str issuer: (optional) The distinguished name that identifies the entity
           that signed and issued the certificate.
-    :attr bool bundle_certs: (optional)
+    :attr bool bundle_certs: (optional) Determines whether your issued certificate
+          is bundled with intermediate certificates.
+          Set to `false` for the certificate file to contain only the issued certificate.
     :attr str algorithm: (optional) The identifier for the cryptographic algorthim
           to be used by the issuing certificate authority to sign the ceritificate.
     :attr str key_algorithm: (optional) The identifier for the cryptographic
@@ -5818,10 +6193,13 @@ class PublicCertificateMetadataSecretResource(SecretMetadata):
           the certificate.
     :attr str common_name: (optional) The fully qualified domain name or host domain
           name for the certificate.
-    :attr bool private_key_included: (optional)
-    :attr bool intermediate_included: (optional)
+    :attr bool intermediate_included: (optional) Indicates whether the certificate
+          was ordered with an associated intermediate certificate.
+    :attr bool private_key_included: (optional) Indicates whether the certificate
+          was ordered with an associated private key.
     :attr Rotation rotation: (optional)
-    :attr IssuanceInfo issuance_info: (optional) Public certificate issuance info.
+    :attr IssuanceInfo issuance_info: (optional) Issuance information that is
+          associated with your certificate.
     """
 
     def __init__(self,
@@ -5845,8 +6223,8 @@ class PublicCertificateMetadataSecretResource(SecretMetadata):
                  key_algorithm: str = None,
                  alt_names: List[str] = None,
                  common_name: str = None,
-                 private_key_included: bool = None,
                  intermediate_included: bool = None,
+                 private_key_included: bool = None,
                  rotation: 'Rotation' = None,
                  issuance_info: 'IssuanceInfo' = None) -> None:
         """
@@ -5865,7 +6243,10 @@ class PublicCertificateMetadataSecretResource(SecretMetadata):
         :param str description: (optional) An extended description of your secret.
                To protect your privacy, do not use personal data, such as your name or
                location, as a description for your secret.
-        :param bool bundle_certs: (optional)
+        :param bool bundle_certs: (optional) Determines whether your issued
+               certificate is bundled with intermediate certificates.
+               Set to `false` for the certificate file to contain only the issued
+               certificate.
         :param str key_algorithm: (optional) The identifier for the cryptographic
                algorithm to be used to generate the public key that is associated with the
                certificate.
@@ -5874,8 +6255,8 @@ class PublicCertificateMetadataSecretResource(SecretMetadata):
         :param str common_name: (optional) The fully qualified domain name or host
                domain name for the certificate.
         :param Rotation rotation: (optional)
-        :param IssuanceInfo issuance_info: (optional) Public certificate issuance
-               info.
+        :param IssuanceInfo issuance_info: (optional) Issuance information that is
+               associated with your certificate.
         """
         # pylint: disable=super-init-not-called
         self.id = id
@@ -5897,8 +6278,8 @@ class PublicCertificateMetadataSecretResource(SecretMetadata):
         self.key_algorithm = key_algorithm
         self.alt_names = alt_names
         self.common_name = common_name
-        self.private_key_included = private_key_included
         self.intermediate_included = intermediate_included
+        self.private_key_included = private_key_included
         self.rotation = rotation
         self.issuance_info = issuance_info
 
@@ -5946,10 +6327,10 @@ class PublicCertificateMetadataSecretResource(SecretMetadata):
             args['alt_names'] = _dict.get('alt_names')
         if 'common_name' in _dict:
             args['common_name'] = _dict.get('common_name')
-        if 'private_key_included' in _dict:
-            args['private_key_included'] = _dict.get('private_key_included')
         if 'intermediate_included' in _dict:
             args['intermediate_included'] = _dict.get('intermediate_included')
+        if 'private_key_included' in _dict:
+            args['private_key_included'] = _dict.get('private_key_included')
         if 'rotation' in _dict:
             args['rotation'] = Rotation.from_dict(_dict.get('rotation'))
         if 'issuance_info' in _dict:
@@ -6002,10 +6383,10 @@ class PublicCertificateMetadataSecretResource(SecretMetadata):
             _dict['alt_names'] = self.alt_names
         if hasattr(self, 'common_name') and self.common_name is not None:
             _dict['common_name'] = self.common_name
-        if hasattr(self, 'private_key_included') and getattr(self, 'private_key_included') is not None:
-            _dict['private_key_included'] = getattr(self, 'private_key_included')
         if hasattr(self, 'intermediate_included') and getattr(self, 'intermediate_included') is not None:
             _dict['intermediate_included'] = getattr(self, 'intermediate_included')
+        if hasattr(self, 'private_key_included') and getattr(self, 'private_key_included') is not None:
+            _dict['private_key_included'] = getattr(self, 'private_key_included')
         if hasattr(self, 'rotation') and self.rotation is not None:
             _dict['rotation'] = self.rotation.to_dict()
         if hasattr(self, 'issuance_info') and self.issuance_info is not None:
@@ -6095,9 +6476,15 @@ class PublicCertificateSecretResource(SecretResource):
           version metadata](#get-secret-version-metadata).
     :attr str issuer: (optional) The distinguished name that identifies the entity
           that signed and issued the certificate.
-    :attr bool bundle_certs: (optional)
-    :attr str ca: (optional) The configured ca name.
-    :attr str dns: (optional) The configured dns provider.
+    :attr bool bundle_certs: (optional) Determines whether your issued certificate
+          is bundled with intermediate certificates.
+          Set to `false` for the certificate file to contain only the issued certificate.
+    :attr str ca: (optional) The name of the certificate authority configuration.
+          To view a list of your configured authorities, use the [List configurations
+          API](#get-secret-config-element).
+    :attr str dns: (optional) The name of the DNS provider configuration.
+          To view a list of your configured authorities, use the [List configurations
+          API](#get-secret-config-element).
     :attr str algorithm: (optional) The identifier for the cryptographic algorthim
           to be used by the issuing certificate authority to sign the ceritificate.
     :attr str key_algorithm: (optional) The identifier for the cryptographic
@@ -6108,7 +6495,8 @@ class PublicCertificateSecretResource(SecretResource):
     :attr str common_name: (optional) The fully qualified domain name or host domain
           name for the certificate.
     :attr Rotation rotation: (optional)
-    :attr IssuanceInfo issuance_info: (optional) Public certificate issuance info.
+    :attr IssuanceInfo issuance_info: (optional) Issuance information that is
+          associated with your certificate.
     :attr object secret_data: (optional)
     """
 
@@ -6159,9 +6547,17 @@ class PublicCertificateSecretResource(SecretResource):
                bracket, comma, colon, ampersand, and vertical pipe character (|).
                To protect your privacy, do not use personal data, such as your name or
                location, as a label for your secret.
-        :param bool bundle_certs: (optional)
-        :param str ca: (optional) The configured ca name.
-        :param str dns: (optional) The configured dns provider.
+        :param bool bundle_certs: (optional) Determines whether your issued
+               certificate is bundled with intermediate certificates.
+               Set to `false` for the certificate file to contain only the issued
+               certificate.
+        :param str ca: (optional) The name of the certificate authority
+               configuration.
+               To view a list of your configured authorities, use the [List configurations
+               API](#get-secret-config-element).
+        :param str dns: (optional) The name of the DNS provider configuration.
+               To view a list of your configured authorities, use the [List configurations
+               API](#get-secret-config-element).
         :param str key_algorithm: (optional) The identifier for the cryptographic
                algorithm to be used to generate the public key that is associated with the
                certificate.
@@ -6170,8 +6566,8 @@ class PublicCertificateSecretResource(SecretResource):
         :param str common_name: (optional) The fully qualified domain name or host
                domain name for the certificate.
         :param Rotation rotation: (optional)
-        :param IssuanceInfo issuance_info: (optional) Public certificate issuance
-               info.
+        :param IssuanceInfo issuance_info: (optional) Issuance information that is
+               associated with your certificate.
         """
         # pylint: disable=super-init-not-called
         self.id = id
@@ -6689,20 +7085,25 @@ class SecretPolicyRotationRotationPublicCertPolicyRotation(SecretPolicyRotationR
 
     :attr bool auto_rotate:
     :attr bool rotate_keys:
+    :attr Warning warning: (optional) Warning response.
     """
 
     def __init__(self,
                  auto_rotate: bool,
-                 rotate_keys: bool) -> None:
+                 rotate_keys: bool,
+                 *,
+                 warning: 'Warning' = None) -> None:
         """
         Initialize a SecretPolicyRotationRotationPublicCertPolicyRotation object.
 
         :param bool auto_rotate:
         :param bool rotate_keys:
+        :param Warning warning: (optional) Warning response.
         """
         # pylint: disable=super-init-not-called
         self.auto_rotate = auto_rotate
         self.rotate_keys = rotate_keys
+        self.warning = warning
 
     @classmethod
     def from_dict(cls, _dict: Dict) -> 'SecretPolicyRotationRotationPublicCertPolicyRotation':
@@ -6716,6 +7117,8 @@ class SecretPolicyRotationRotationPublicCertPolicyRotation(SecretPolicyRotationR
             args['rotate_keys'] = _dict.get('rotate_keys')
         else:
             raise ValueError('Required property \'rotate_keys\' not present in SecretPolicyRotationRotationPublicCertPolicyRotation JSON')
+        if 'warning' in _dict:
+            args['warning'] = Warning.from_dict(_dict.get('warning'))
         return cls(**args)
 
     @classmethod
@@ -6730,6 +7133,8 @@ class SecretPolicyRotationRotationPublicCertPolicyRotation(SecretPolicyRotationR
             _dict['auto_rotate'] = self.auto_rotate
         if hasattr(self, 'rotate_keys') and self.rotate_keys is not None:
             _dict['rotate_keys'] = self.rotate_keys
+        if hasattr(self, 'warning') and self.warning is not None:
+            _dict['warning'] = self.warning.to_dict()
         return _dict
 
     def _to_dict(self):

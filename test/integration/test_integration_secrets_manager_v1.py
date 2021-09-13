@@ -93,7 +93,7 @@ class TestPublicCertSecret(unittest.TestCase):
 
         response = secretsManager.create_config_element(
             'public_cert', 'certificate_authorities', ca_config_name, 'letsencrypt-stage', {
-                'PRIVATE_KEY': os.environ.get('CA_CONFIG_PRIVATE_KEY').replace("\\n", "\n"),
+                'private_key': os.environ.get('CA_CONFIG_PRIVATE_KEY').replace("\\n", "\n"),
             })
 
         assert response.status_code == 201
@@ -102,8 +102,8 @@ class TestPublicCertSecret(unittest.TestCase):
 
         response = secretsManager.create_config_element(
             'public_cert', 'dns_providers', dns_config_name, 'cis', {
-                "CIS_CRN": os.environ.get("DNS_CONFIG_CRN"),
-                "CIS_APIKEY": os.environ.get("SECRETS_MANAGER_API_APIKEY"),
+                "cis_crn": os.environ.get("DNS_CONFIG_CRN"),
+                "cis_apikey": os.environ.get("SECRETS_MANAGER_API_APIKEY"),
             })
 
         assert response.status_code == 201
@@ -135,7 +135,7 @@ class TestPublicCertSecret(unittest.TestCase):
 
         response = secretsManager.create_config_element(
             'public_cert', 'certificate_authorities', ca_config_name, 'letsencrypt-stage', {
-                'PRIVATE_KEY': os.environ.get('CA_CONFIG_PRIVATE_KEY').replace("\\n", "\n"),
+                'private_key': os.environ.get('CA_CONFIG_PRIVATE_KEY').replace("\\n", "\n"),
             })
 
         assert response.status_code == 201
@@ -144,8 +144,8 @@ class TestPublicCertSecret(unittest.TestCase):
 
         response = secretsManager.create_config_element(
             'public_cert', 'dns_providers', dns_config_name, 'cis', {
-                "CIS_CRN": os.environ.get("DNS_CONFIG_CRN"),
-                "CIS_APIKEY": os.environ.get("SECRETS_MANAGER_API_APIKEY"),
+                "cis_crn": os.environ.get("DNS_CONFIG_CRN"),
+                "cis_apikey": os.environ.get("SECRETS_MANAGER_API_APIKEY"),
             })
 
         assert response.status_code == 201
