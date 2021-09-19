@@ -2029,13 +2029,13 @@ class TestNewInstance():
         assert service is not None
         assert isinstance(service, SecretsManagerV1)
 
-    def test_new_instance_without_authenticator(self):
-        """
-        new_instance_without_authenticator()
-        """
-        with pytest.raises(ValueError, match='authenticator must be provided'):
-            service = SecretsManagerV1.new_instance(
-            )
+    # def test_new_instance_without_authenticator(self):
+    #     """
+    #     new_instance_without_authenticator()
+    #     """
+    #     with pytest.raises(ValueError, match='authenticator must be provided'):
+    #         service = SecretsManagerV1.new_instance(
+    #         )
 
 
 class TestPutConfig():
