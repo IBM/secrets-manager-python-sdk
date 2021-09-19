@@ -30,13 +30,13 @@ import responses
 import urllib
 from ibm_secrets_manager_sdk.secrets_manager_v1 import *
 
-
 _service = SecretsManagerV1(
     authenticator=NoAuthAuthenticator()
 )
 
 _base_url = 'https://secrets-manager.cloud.ibm.com'
 _service.set_service_url(_base_url)
+
 
 ##############################################################################
 # Start of Service: SecretGroups
@@ -69,6 +69,7 @@ class TestNewInstance():
             service = SecretsManagerV1.new_instance(
             )
 
+
 class TestCreateSecretGroup():
     """
     Test Class for create_secret_group
@@ -78,7 +79,7 @@ class TestCreateSecretGroup():
         """
         Preprocess the request URL to ensure the mock response will be found.
         """
-        request_url = urllib.parse.unquote(request_url) # don't double-encode if already encoded
+        request_url = urllib.parse.unquote(request_url)  # don't double-encode if already encoded
         request_url = urllib.parse.quote(request_url, safe=':/')
         if re.fullmatch('.*/+', request_url) is None:
             return request_url
@@ -130,13 +131,13 @@ class TestCreateSecretGroup():
         assert req_body['resources'] == [secret_group_resource_model]
 
     def test_create_secret_group_all_params_with_retries(self):
-    	# Enable retries and run test_create_secret_group_all_params.
-    	_service.enable_retries()
-    	self.test_create_secret_group_all_params()
+        # Enable retries and run test_create_secret_group_all_params.
+        _service.enable_retries()
+        self.test_create_secret_group_all_params()
 
-    	# Disable retries and run test_create_secret_group_all_params.
-    	_service.disable_retries()
-    	self.test_create_secret_group_all_params()
+        # Disable retries and run test_create_secret_group_all_params.
+        _service.disable_retries()
+        self.test_create_secret_group_all_params()
 
     @responses.activate
     def test_create_secret_group_value_error(self):
@@ -173,19 +174,19 @@ class TestCreateSecretGroup():
             "resources": resources,
         }
         for param in req_param_dict.keys():
-            req_copy = {key:val if key is not param else None for (key,val) in req_param_dict.items()}
+            req_copy = {key: val if key is not param else None for (key, val) in req_param_dict.items()}
             with pytest.raises(ValueError):
                 _service.create_secret_group(**req_copy)
 
-
     def test_create_secret_group_value_error_with_retries(self):
-    	# Enable retries and run test_create_secret_group_value_error.
-    	_service.enable_retries()
-    	self.test_create_secret_group_value_error()
+        # Enable retries and run test_create_secret_group_value_error.
+        _service.enable_retries()
+        self.test_create_secret_group_value_error()
 
-    	# Disable retries and run test_create_secret_group_value_error.
-    	_service.disable_retries()
-    	self.test_create_secret_group_value_error()
+        # Disable retries and run test_create_secret_group_value_error.
+        _service.disable_retries()
+        self.test_create_secret_group_value_error()
+
 
 class TestListSecretGroups():
     """
@@ -196,7 +197,7 @@ class TestListSecretGroups():
         """
         Preprocess the request URL to ensure the mock response will be found.
         """
-        request_url = urllib.parse.unquote(request_url) # don't double-encode if already encoded
+        request_url = urllib.parse.unquote(request_url)  # don't double-encode if already encoded
         request_url = urllib.parse.quote(request_url, safe=':/')
         if re.fullmatch('.*/+', request_url) is None:
             return request_url
@@ -220,19 +221,19 @@ class TestListSecretGroups():
         # Invoke method
         response = _service.list_secret_groups()
 
-
         # Check for correct operation
         assert len(responses.calls) == 1
         assert response.status_code == 200
 
     def test_list_secret_groups_all_params_with_retries(self):
-    	# Enable retries and run test_list_secret_groups_all_params.
-    	_service.enable_retries()
-    	self.test_list_secret_groups_all_params()
+        # Enable retries and run test_list_secret_groups_all_params.
+        _service.enable_retries()
+        self.test_list_secret_groups_all_params()
 
-    	# Disable retries and run test_list_secret_groups_all_params.
-    	_service.disable_retries()
-    	self.test_list_secret_groups_all_params()
+        # Disable retries and run test_list_secret_groups_all_params.
+        _service.disable_retries()
+        self.test_list_secret_groups_all_params()
+
 
 class TestGetSecretGroup():
     """
@@ -243,7 +244,7 @@ class TestGetSecretGroup():
         """
         Preprocess the request URL to ensure the mock response will be found.
         """
-        request_url = urllib.parse.unquote(request_url) # don't double-encode if already encoded
+        request_url = urllib.parse.unquote(request_url)  # don't double-encode if already encoded
         request_url = urllib.parse.quote(request_url, safe=':/')
         if re.fullmatch('.*/+', request_url) is None:
             return request_url
@@ -278,13 +279,13 @@ class TestGetSecretGroup():
         assert response.status_code == 200
 
     def test_get_secret_group_all_params_with_retries(self):
-    	# Enable retries and run test_get_secret_group_all_params.
-    	_service.enable_retries()
-    	self.test_get_secret_group_all_params()
+        # Enable retries and run test_get_secret_group_all_params.
+        _service.enable_retries()
+        self.test_get_secret_group_all_params()
 
-    	# Disable retries and run test_get_secret_group_all_params.
-    	_service.disable_retries()
-    	self.test_get_secret_group_all_params()
+        # Disable retries and run test_get_secret_group_all_params.
+        _service.disable_retries()
+        self.test_get_secret_group_all_params()
 
     @responses.activate
     def test_get_secret_group_value_error(self):
@@ -308,19 +309,19 @@ class TestGetSecretGroup():
             "id": id,
         }
         for param in req_param_dict.keys():
-            req_copy = {key:val if key is not param else None for (key,val) in req_param_dict.items()}
+            req_copy = {key: val if key is not param else None for (key, val) in req_param_dict.items()}
             with pytest.raises(ValueError):
                 _service.get_secret_group(**req_copy)
 
-
     def test_get_secret_group_value_error_with_retries(self):
-    	# Enable retries and run test_get_secret_group_value_error.
-    	_service.enable_retries()
-    	self.test_get_secret_group_value_error()
+        # Enable retries and run test_get_secret_group_value_error.
+        _service.enable_retries()
+        self.test_get_secret_group_value_error()
 
-    	# Disable retries and run test_get_secret_group_value_error.
-    	_service.disable_retries()
-    	self.test_get_secret_group_value_error()
+        # Disable retries and run test_get_secret_group_value_error.
+        _service.disable_retries()
+        self.test_get_secret_group_value_error()
+
 
 class TestUpdateSecretGroupMetadata():
     """
@@ -331,7 +332,7 @@ class TestUpdateSecretGroupMetadata():
         """
         Preprocess the request URL to ensure the mock response will be found.
         """
-        request_url = urllib.parse.unquote(request_url) # don't double-encode if already encoded
+        request_url = urllib.parse.unquote(request_url)  # don't double-encode if already encoded
         request_url = urllib.parse.quote(request_url, safe=':/')
         if re.fullmatch('.*/+', request_url) is None:
             return request_url
@@ -384,13 +385,13 @@ class TestUpdateSecretGroupMetadata():
         assert req_body['resources'] == [secret_group_metadata_updatable_model]
 
     def test_update_secret_group_metadata_all_params_with_retries(self):
-    	# Enable retries and run test_update_secret_group_metadata_all_params.
-    	_service.enable_retries()
-    	self.test_update_secret_group_metadata_all_params()
+        # Enable retries and run test_update_secret_group_metadata_all_params.
+        _service.enable_retries()
+        self.test_update_secret_group_metadata_all_params()
 
-    	# Disable retries and run test_update_secret_group_metadata_all_params.
-    	_service.disable_retries()
-    	self.test_update_secret_group_metadata_all_params()
+        # Disable retries and run test_update_secret_group_metadata_all_params.
+        _service.disable_retries()
+        self.test_update_secret_group_metadata_all_params()
 
     @responses.activate
     def test_update_secret_group_metadata_value_error(self):
@@ -428,19 +429,19 @@ class TestUpdateSecretGroupMetadata():
             "resources": resources,
         }
         for param in req_param_dict.keys():
-            req_copy = {key:val if key is not param else None for (key,val) in req_param_dict.items()}
+            req_copy = {key: val if key is not param else None for (key, val) in req_param_dict.items()}
             with pytest.raises(ValueError):
                 _service.update_secret_group_metadata(**req_copy)
 
-
     def test_update_secret_group_metadata_value_error_with_retries(self):
-    	# Enable retries and run test_update_secret_group_metadata_value_error.
-    	_service.enable_retries()
-    	self.test_update_secret_group_metadata_value_error()
+        # Enable retries and run test_update_secret_group_metadata_value_error.
+        _service.enable_retries()
+        self.test_update_secret_group_metadata_value_error()
 
-    	# Disable retries and run test_update_secret_group_metadata_value_error.
-    	_service.disable_retries()
-    	self.test_update_secret_group_metadata_value_error()
+        # Disable retries and run test_update_secret_group_metadata_value_error.
+        _service.disable_retries()
+        self.test_update_secret_group_metadata_value_error()
+
 
 class TestDeleteSecretGroup():
     """
@@ -451,7 +452,7 @@ class TestDeleteSecretGroup():
         """
         Preprocess the request URL to ensure the mock response will be found.
         """
-        request_url = urllib.parse.unquote(request_url) # don't double-encode if already encoded
+        request_url = urllib.parse.unquote(request_url)  # don't double-encode if already encoded
         request_url = urllib.parse.quote(request_url, safe=':/')
         if re.fullmatch('.*/+', request_url) is None:
             return request_url
@@ -483,13 +484,13 @@ class TestDeleteSecretGroup():
         assert response.status_code == 204
 
     def test_delete_secret_group_all_params_with_retries(self):
-    	# Enable retries and run test_delete_secret_group_all_params.
-    	_service.enable_retries()
-    	self.test_delete_secret_group_all_params()
+        # Enable retries and run test_delete_secret_group_all_params.
+        _service.enable_retries()
+        self.test_delete_secret_group_all_params()
 
-    	# Disable retries and run test_delete_secret_group_all_params.
-    	_service.disable_retries()
-    	self.test_delete_secret_group_all_params()
+        # Disable retries and run test_delete_secret_group_all_params.
+        _service.disable_retries()
+        self.test_delete_secret_group_all_params()
 
     @responses.activate
     def test_delete_secret_group_value_error(self):
@@ -510,19 +511,19 @@ class TestDeleteSecretGroup():
             "id": id,
         }
         for param in req_param_dict.keys():
-            req_copy = {key:val if key is not param else None for (key,val) in req_param_dict.items()}
+            req_copy = {key: val if key is not param else None for (key, val) in req_param_dict.items()}
             with pytest.raises(ValueError):
                 _service.delete_secret_group(**req_copy)
 
-
     def test_delete_secret_group_value_error_with_retries(self):
-    	# Enable retries and run test_delete_secret_group_value_error.
-    	_service.enable_retries()
-    	self.test_delete_secret_group_value_error()
+        # Enable retries and run test_delete_secret_group_value_error.
+        _service.enable_retries()
+        self.test_delete_secret_group_value_error()
 
-    	# Disable retries and run test_delete_secret_group_value_error.
-    	_service.disable_retries()
-    	self.test_delete_secret_group_value_error()
+        # Disable retries and run test_delete_secret_group_value_error.
+        _service.disable_retries()
+        self.test_delete_secret_group_value_error()
+
 
 # endregion
 ##############################################################################
@@ -560,6 +561,7 @@ class TestNewInstance():
             service = SecretsManagerV1.new_instance(
             )
 
+
 class TestCreateSecret():
     """
     Test Class for create_secret
@@ -569,7 +571,7 @@ class TestCreateSecret():
         """
         Preprocess the request URL to ensure the mock response will be found.
         """
-        request_url = urllib.parse.unquote(request_url) # don't double-encode if already encoded
+        request_url = urllib.parse.unquote(request_url)  # don't double-encode if already encoded
         request_url = urllib.parse.quote(request_url, safe=':/')
         if re.fullmatch('.*/+', request_url) is None:
             return request_url
@@ -626,13 +628,13 @@ class TestCreateSecret():
         assert req_body['resources'] == [secret_resource_model]
 
     def test_create_secret_all_params_with_retries(self):
-    	# Enable retries and run test_create_secret_all_params.
-    	_service.enable_retries()
-    	self.test_create_secret_all_params()
+        # Enable retries and run test_create_secret_all_params.
+        _service.enable_retries()
+        self.test_create_secret_all_params()
 
-    	# Disable retries and run test_create_secret_all_params.
-    	_service.disable_retries()
-    	self.test_create_secret_all_params()
+        # Disable retries and run test_create_secret_all_params.
+        _service.disable_retries()
+        self.test_create_secret_all_params()
 
     @responses.activate
     def test_create_secret_value_error(self):
@@ -674,19 +676,19 @@ class TestCreateSecret():
             "resources": resources,
         }
         for param in req_param_dict.keys():
-            req_copy = {key:val if key is not param else None for (key,val) in req_param_dict.items()}
+            req_copy = {key: val if key is not param else None for (key, val) in req_param_dict.items()}
             with pytest.raises(ValueError):
                 _service.create_secret(**req_copy)
 
-
     def test_create_secret_value_error_with_retries(self):
-    	# Enable retries and run test_create_secret_value_error.
-    	_service.enable_retries()
-    	self.test_create_secret_value_error()
+        # Enable retries and run test_create_secret_value_error.
+        _service.enable_retries()
+        self.test_create_secret_value_error()
 
-    	# Disable retries and run test_create_secret_value_error.
-    	_service.disable_retries()
-    	self.test_create_secret_value_error()
+        # Disable retries and run test_create_secret_value_error.
+        _service.disable_retries()
+        self.test_create_secret_value_error()
+
 
 class TestListSecrets():
     """
@@ -697,7 +699,7 @@ class TestListSecrets():
         """
         Preprocess the request URL to ensure the mock response will be found.
         """
-        request_url = urllib.parse.unquote(request_url) # don't double-encode if already encoded
+        request_url = urllib.parse.unquote(request_url)  # don't double-encode if already encoded
         request_url = urllib.parse.quote(request_url, safe=':/')
         if re.fullmatch('.*/+', request_url) is None:
             return request_url
@@ -735,19 +737,19 @@ class TestListSecrets():
         assert len(responses.calls) == 1
         assert response.status_code == 200
         # Validate query params
-        query_string = responses.calls[0].request.url.split('?',1)[1]
+        query_string = responses.calls[0].request.url.split('?', 1)[1]
         query_string = urllib.parse.unquote_plus(query_string)
         assert 'limit={}'.format(limit) in query_string
         assert 'offset={}'.format(offset) in query_string
 
     def test_list_secrets_all_params_with_retries(self):
-    	# Enable retries and run test_list_secrets_all_params.
-    	_service.enable_retries()
-    	self.test_list_secrets_all_params()
+        # Enable retries and run test_list_secrets_all_params.
+        _service.enable_retries()
+        self.test_list_secrets_all_params()
 
-    	# Disable retries and run test_list_secrets_all_params.
-    	_service.disable_retries()
-    	self.test_list_secrets_all_params()
+        # Disable retries and run test_list_secrets_all_params.
+        _service.disable_retries()
+        self.test_list_secrets_all_params()
 
     @responses.activate
     def test_list_secrets_required_params(self):
@@ -777,13 +779,13 @@ class TestListSecrets():
         assert response.status_code == 200
 
     def test_list_secrets_required_params_with_retries(self):
-    	# Enable retries and run test_list_secrets_required_params.
-    	_service.enable_retries()
-    	self.test_list_secrets_required_params()
+        # Enable retries and run test_list_secrets_required_params.
+        _service.enable_retries()
+        self.test_list_secrets_required_params()
 
-    	# Disable retries and run test_list_secrets_required_params.
-    	_service.disable_retries()
-    	self.test_list_secrets_required_params()
+        # Disable retries and run test_list_secrets_required_params.
+        _service.disable_retries()
+        self.test_list_secrets_required_params()
 
     @responses.activate
     def test_list_secrets_value_error(self):
@@ -807,19 +809,19 @@ class TestListSecrets():
             "secret_type": secret_type,
         }
         for param in req_param_dict.keys():
-            req_copy = {key:val if key is not param else None for (key,val) in req_param_dict.items()}
+            req_copy = {key: val if key is not param else None for (key, val) in req_param_dict.items()}
             with pytest.raises(ValueError):
                 _service.list_secrets(**req_copy)
 
-
     def test_list_secrets_value_error_with_retries(self):
-    	# Enable retries and run test_list_secrets_value_error.
-    	_service.enable_retries()
-    	self.test_list_secrets_value_error()
+        # Enable retries and run test_list_secrets_value_error.
+        _service.enable_retries()
+        self.test_list_secrets_value_error()
 
-    	# Disable retries and run test_list_secrets_value_error.
-    	_service.disable_retries()
-    	self.test_list_secrets_value_error()
+        # Disable retries and run test_list_secrets_value_error.
+        _service.disable_retries()
+        self.test_list_secrets_value_error()
+
 
 class TestListAllSecrets():
     """
@@ -830,7 +832,7 @@ class TestListAllSecrets():
         """
         Preprocess the request URL to ensure the mock response will be found.
         """
-        request_url = urllib.parse.unquote(request_url) # don't double-encode if already encoded
+        request_url = urllib.parse.unquote(request_url)  # don't double-encode if already encoded
         request_url = urllib.parse.quote(request_url, safe=':/')
         if re.fullmatch('.*/+', request_url) is None:
             return request_url
@@ -872,7 +874,7 @@ class TestListAllSecrets():
         assert len(responses.calls) == 1
         assert response.status_code == 200
         # Validate query params
-        query_string = responses.calls[0].request.url.split('?',1)[1]
+        query_string = responses.calls[0].request.url.split('?', 1)[1]
         query_string = urllib.parse.unquote_plus(query_string)
         assert 'limit={}'.format(limit) in query_string
         assert 'offset={}'.format(offset) in query_string
@@ -881,13 +883,13 @@ class TestListAllSecrets():
         assert 'groups={}'.format(','.join(groups)) in query_string
 
     def test_list_all_secrets_all_params_with_retries(self):
-    	# Enable retries and run test_list_all_secrets_all_params.
-    	_service.enable_retries()
-    	self.test_list_all_secrets_all_params()
+        # Enable retries and run test_list_all_secrets_all_params.
+        _service.enable_retries()
+        self.test_list_all_secrets_all_params()
 
-    	# Disable retries and run test_list_all_secrets_all_params.
-    	_service.disable_retries()
-    	self.test_list_all_secrets_all_params()
+        # Disable retries and run test_list_all_secrets_all_params.
+        _service.disable_retries()
+        self.test_list_all_secrets_all_params()
 
     @responses.activate
     def test_list_all_secrets_required_params(self):
@@ -906,19 +908,19 @@ class TestListAllSecrets():
         # Invoke method
         response = _service.list_all_secrets()
 
-
         # Check for correct operation
         assert len(responses.calls) == 1
         assert response.status_code == 200
 
     def test_list_all_secrets_required_params_with_retries(self):
-    	# Enable retries and run test_list_all_secrets_required_params.
-    	_service.enable_retries()
-    	self.test_list_all_secrets_required_params()
+        # Enable retries and run test_list_all_secrets_required_params.
+        _service.enable_retries()
+        self.test_list_all_secrets_required_params()
 
-    	# Disable retries and run test_list_all_secrets_required_params.
-    	_service.disable_retries()
-    	self.test_list_all_secrets_required_params()
+        # Disable retries and run test_list_all_secrets_required_params.
+        _service.disable_retries()
+        self.test_list_all_secrets_required_params()
+
 
 class TestGetSecret():
     """
@@ -929,7 +931,7 @@ class TestGetSecret():
         """
         Preprocess the request URL to ensure the mock response will be found.
         """
-        request_url = urllib.parse.unquote(request_url) # don't double-encode if already encoded
+        request_url = urllib.parse.unquote(request_url)  # don't double-encode if already encoded
         request_url = urllib.parse.quote(request_url, safe=':/')
         if re.fullmatch('.*/+', request_url) is None:
             return request_url
@@ -966,13 +968,13 @@ class TestGetSecret():
         assert response.status_code == 200
 
     def test_get_secret_all_params_with_retries(self):
-    	# Enable retries and run test_get_secret_all_params.
-    	_service.enable_retries()
-    	self.test_get_secret_all_params()
+        # Enable retries and run test_get_secret_all_params.
+        _service.enable_retries()
+        self.test_get_secret_all_params()
 
-    	# Disable retries and run test_get_secret_all_params.
-    	_service.disable_retries()
-    	self.test_get_secret_all_params()
+        # Disable retries and run test_get_secret_all_params.
+        _service.disable_retries()
+        self.test_get_secret_all_params()
 
     @responses.activate
     def test_get_secret_value_error(self):
@@ -998,19 +1000,19 @@ class TestGetSecret():
             "id": id,
         }
         for param in req_param_dict.keys():
-            req_copy = {key:val if key is not param else None for (key,val) in req_param_dict.items()}
+            req_copy = {key: val if key is not param else None for (key, val) in req_param_dict.items()}
             with pytest.raises(ValueError):
                 _service.get_secret(**req_copy)
 
-
     def test_get_secret_value_error_with_retries(self):
-    	# Enable retries and run test_get_secret_value_error.
-    	_service.enable_retries()
-    	self.test_get_secret_value_error()
+        # Enable retries and run test_get_secret_value_error.
+        _service.enable_retries()
+        self.test_get_secret_value_error()
 
-    	# Disable retries and run test_get_secret_value_error.
-    	_service.disable_retries()
-    	self.test_get_secret_value_error()
+        # Disable retries and run test_get_secret_value_error.
+        _service.disable_retries()
+        self.test_get_secret_value_error()
+
 
 class TestUpdateSecret():
     """
@@ -1021,7 +1023,7 @@ class TestUpdateSecret():
         """
         Preprocess the request URL to ensure the mock response will be found.
         """
-        request_url = urllib.parse.unquote(request_url) # don't double-encode if already encoded
+        request_url = urllib.parse.unquote(request_url)  # don't double-encode if already encoded
         request_url = urllib.parse.quote(request_url, safe=':/')
         if re.fullmatch('.*/+', request_url) is None:
             return request_url
@@ -1065,7 +1067,7 @@ class TestUpdateSecret():
         assert len(responses.calls) == 1
         assert response.status_code == 200
         # Validate query params
-        query_string = responses.calls[0].request.url.split('?',1)[1]
+        query_string = responses.calls[0].request.url.split('?', 1)[1]
         query_string = urllib.parse.unquote_plus(query_string)
         assert 'action={}'.format(action) in query_string
         # Validate body params
@@ -1073,13 +1075,13 @@ class TestUpdateSecret():
         assert req_body == secret_action
 
     def test_update_secret_all_params_with_retries(self):
-    	# Enable retries and run test_update_secret_all_params.
-    	_service.enable_retries()
-    	self.test_update_secret_all_params()
+        # Enable retries and run test_update_secret_all_params.
+        _service.enable_retries()
+        self.test_update_secret_all_params()
 
-    	# Disable retries and run test_update_secret_all_params.
-    	_service.disable_retries()
-    	self.test_update_secret_all_params()
+        # Disable retries and run test_update_secret_all_params.
+        _service.disable_retries()
+        self.test_update_secret_all_params()
 
     @responses.activate
     def test_update_secret_value_error(self):
@@ -1113,19 +1115,19 @@ class TestUpdateSecret():
             "secret_action": secret_action,
         }
         for param in req_param_dict.keys():
-            req_copy = {key:val if key is not param else None for (key,val) in req_param_dict.items()}
+            req_copy = {key: val if key is not param else None for (key, val) in req_param_dict.items()}
             with pytest.raises(ValueError):
                 _service.update_secret(**req_copy)
 
-
     def test_update_secret_value_error_with_retries(self):
-    	# Enable retries and run test_update_secret_value_error.
-    	_service.enable_retries()
-    	self.test_update_secret_value_error()
+        # Enable retries and run test_update_secret_value_error.
+        _service.enable_retries()
+        self.test_update_secret_value_error()
 
-    	# Disable retries and run test_update_secret_value_error.
-    	_service.disable_retries()
-    	self.test_update_secret_value_error()
+        # Disable retries and run test_update_secret_value_error.
+        _service.disable_retries()
+        self.test_update_secret_value_error()
+
 
 class TestDeleteSecret():
     """
@@ -1136,7 +1138,7 @@ class TestDeleteSecret():
         """
         Preprocess the request URL to ensure the mock response will be found.
         """
-        request_url = urllib.parse.unquote(request_url) # don't double-encode if already encoded
+        request_url = urllib.parse.unquote(request_url)  # don't double-encode if already encoded
         request_url = urllib.parse.quote(request_url, safe=':/')
         if re.fullmatch('.*/+', request_url) is None:
             return request_url
@@ -1170,13 +1172,13 @@ class TestDeleteSecret():
         assert response.status_code == 204
 
     def test_delete_secret_all_params_with_retries(self):
-    	# Enable retries and run test_delete_secret_all_params.
-    	_service.enable_retries()
-    	self.test_delete_secret_all_params()
+        # Enable retries and run test_delete_secret_all_params.
+        _service.enable_retries()
+        self.test_delete_secret_all_params()
 
-    	# Disable retries and run test_delete_secret_all_params.
-    	_service.disable_retries()
-    	self.test_delete_secret_all_params()
+        # Disable retries and run test_delete_secret_all_params.
+        _service.disable_retries()
+        self.test_delete_secret_all_params()
 
     @responses.activate
     def test_delete_secret_value_error(self):
@@ -1199,19 +1201,19 @@ class TestDeleteSecret():
             "id": id,
         }
         for param in req_param_dict.keys():
-            req_copy = {key:val if key is not param else None for (key,val) in req_param_dict.items()}
+            req_copy = {key: val if key is not param else None for (key, val) in req_param_dict.items()}
             with pytest.raises(ValueError):
                 _service.delete_secret(**req_copy)
 
-
     def test_delete_secret_value_error_with_retries(self):
-    	# Enable retries and run test_delete_secret_value_error.
-    	_service.enable_retries()
-    	self.test_delete_secret_value_error()
+        # Enable retries and run test_delete_secret_value_error.
+        _service.enable_retries()
+        self.test_delete_secret_value_error()
 
-    	# Disable retries and run test_delete_secret_value_error.
-    	_service.disable_retries()
-    	self.test_delete_secret_value_error()
+        # Disable retries and run test_delete_secret_value_error.
+        _service.disable_retries()
+        self.test_delete_secret_value_error()
+
 
 class TestGetSecretVersion():
     """
@@ -1222,7 +1224,7 @@ class TestGetSecretVersion():
         """
         Preprocess the request URL to ensure the mock response will be found.
         """
-        request_url = urllib.parse.unquote(request_url) # don't double-encode if already encoded
+        request_url = urllib.parse.unquote(request_url)  # don't double-encode if already encoded
         request_url = urllib.parse.quote(request_url, safe=':/')
         if re.fullmatch('.*/+', request_url) is None:
             return request_url
@@ -1261,13 +1263,13 @@ class TestGetSecretVersion():
         assert response.status_code == 200
 
     def test_get_secret_version_all_params_with_retries(self):
-    	# Enable retries and run test_get_secret_version_all_params.
-    	_service.enable_retries()
-    	self.test_get_secret_version_all_params()
+        # Enable retries and run test_get_secret_version_all_params.
+        _service.enable_retries()
+        self.test_get_secret_version_all_params()
 
-    	# Disable retries and run test_get_secret_version_all_params.
-    	_service.disable_retries()
-    	self.test_get_secret_version_all_params()
+        # Disable retries and run test_get_secret_version_all_params.
+        _service.disable_retries()
+        self.test_get_secret_version_all_params()
 
     @responses.activate
     def test_get_secret_version_value_error(self):
@@ -1295,19 +1297,19 @@ class TestGetSecretVersion():
             "version_id": version_id,
         }
         for param in req_param_dict.keys():
-            req_copy = {key:val if key is not param else None for (key,val) in req_param_dict.items()}
+            req_copy = {key: val if key is not param else None for (key, val) in req_param_dict.items()}
             with pytest.raises(ValueError):
                 _service.get_secret_version(**req_copy)
 
-
     def test_get_secret_version_value_error_with_retries(self):
-    	# Enable retries and run test_get_secret_version_value_error.
-    	_service.enable_retries()
-    	self.test_get_secret_version_value_error()
+        # Enable retries and run test_get_secret_version_value_error.
+        _service.enable_retries()
+        self.test_get_secret_version_value_error()
 
-    	# Disable retries and run test_get_secret_version_value_error.
-    	_service.disable_retries()
-    	self.test_get_secret_version_value_error()
+        # Disable retries and run test_get_secret_version_value_error.
+        _service.disable_retries()
+        self.test_get_secret_version_value_error()
+
 
 class TestGetSecretVersionMetadata():
     """
@@ -1318,7 +1320,7 @@ class TestGetSecretVersionMetadata():
         """
         Preprocess the request URL to ensure the mock response will be found.
         """
-        request_url = urllib.parse.unquote(request_url) # don't double-encode if already encoded
+        request_url = urllib.parse.unquote(request_url)  # don't double-encode if already encoded
         request_url = urllib.parse.quote(request_url, safe=':/')
         if re.fullmatch('.*/+', request_url) is None:
             return request_url
@@ -1357,13 +1359,13 @@ class TestGetSecretVersionMetadata():
         assert response.status_code == 200
 
     def test_get_secret_version_metadata_all_params_with_retries(self):
-    	# Enable retries and run test_get_secret_version_metadata_all_params.
-    	_service.enable_retries()
-    	self.test_get_secret_version_metadata_all_params()
+        # Enable retries and run test_get_secret_version_metadata_all_params.
+        _service.enable_retries()
+        self.test_get_secret_version_metadata_all_params()
 
-    	# Disable retries and run test_get_secret_version_metadata_all_params.
-    	_service.disable_retries()
-    	self.test_get_secret_version_metadata_all_params()
+        # Disable retries and run test_get_secret_version_metadata_all_params.
+        _service.disable_retries()
+        self.test_get_secret_version_metadata_all_params()
 
     @responses.activate
     def test_get_secret_version_metadata_value_error(self):
@@ -1391,19 +1393,19 @@ class TestGetSecretVersionMetadata():
             "version_id": version_id,
         }
         for param in req_param_dict.keys():
-            req_copy = {key:val if key is not param else None for (key,val) in req_param_dict.items()}
+            req_copy = {key: val if key is not param else None for (key, val) in req_param_dict.items()}
             with pytest.raises(ValueError):
                 _service.get_secret_version_metadata(**req_copy)
 
-
     def test_get_secret_version_metadata_value_error_with_retries(self):
-    	# Enable retries and run test_get_secret_version_metadata_value_error.
-    	_service.enable_retries()
-    	self.test_get_secret_version_metadata_value_error()
+        # Enable retries and run test_get_secret_version_metadata_value_error.
+        _service.enable_retries()
+        self.test_get_secret_version_metadata_value_error()
 
-    	# Disable retries and run test_get_secret_version_metadata_value_error.
-    	_service.disable_retries()
-    	self.test_get_secret_version_metadata_value_error()
+        # Disable retries and run test_get_secret_version_metadata_value_error.
+        _service.disable_retries()
+        self.test_get_secret_version_metadata_value_error()
+
 
 class TestGetSecretMetadata():
     """
@@ -1414,7 +1416,7 @@ class TestGetSecretMetadata():
         """
         Preprocess the request URL to ensure the mock response will be found.
         """
-        request_url = urllib.parse.unquote(request_url) # don't double-encode if already encoded
+        request_url = urllib.parse.unquote(request_url)  # don't double-encode if already encoded
         request_url = urllib.parse.quote(request_url, safe=':/')
         if re.fullmatch('.*/+', request_url) is None:
             return request_url
@@ -1451,13 +1453,13 @@ class TestGetSecretMetadata():
         assert response.status_code == 200
 
     def test_get_secret_metadata_all_params_with_retries(self):
-    	# Enable retries and run test_get_secret_metadata_all_params.
-    	_service.enable_retries()
-    	self.test_get_secret_metadata_all_params()
+        # Enable retries and run test_get_secret_metadata_all_params.
+        _service.enable_retries()
+        self.test_get_secret_metadata_all_params()
 
-    	# Disable retries and run test_get_secret_metadata_all_params.
-    	_service.disable_retries()
-    	self.test_get_secret_metadata_all_params()
+        # Disable retries and run test_get_secret_metadata_all_params.
+        _service.disable_retries()
+        self.test_get_secret_metadata_all_params()
 
     @responses.activate
     def test_get_secret_metadata_value_error(self):
@@ -1483,19 +1485,19 @@ class TestGetSecretMetadata():
             "id": id,
         }
         for param in req_param_dict.keys():
-            req_copy = {key:val if key is not param else None for (key,val) in req_param_dict.items()}
+            req_copy = {key: val if key is not param else None for (key, val) in req_param_dict.items()}
             with pytest.raises(ValueError):
                 _service.get_secret_metadata(**req_copy)
 
-
     def test_get_secret_metadata_value_error_with_retries(self):
-    	# Enable retries and run test_get_secret_metadata_value_error.
-    	_service.enable_retries()
-    	self.test_get_secret_metadata_value_error()
+        # Enable retries and run test_get_secret_metadata_value_error.
+        _service.enable_retries()
+        self.test_get_secret_metadata_value_error()
 
-    	# Disable retries and run test_get_secret_metadata_value_error.
-    	_service.disable_retries()
-    	self.test_get_secret_metadata_value_error()
+        # Disable retries and run test_get_secret_metadata_value_error.
+        _service.disable_retries()
+        self.test_get_secret_metadata_value_error()
+
 
 class TestUpdateSecretMetadata():
     """
@@ -1506,7 +1508,7 @@ class TestUpdateSecretMetadata():
         """
         Preprocess the request URL to ensure the mock response will be found.
         """
-        request_url = urllib.parse.unquote(request_url) # don't double-encode if already encoded
+        request_url = urllib.parse.unquote(request_url)  # don't double-encode if already encoded
         request_url = urllib.parse.quote(request_url, safe=':/')
         if re.fullmatch('.*/+', request_url) is None:
             return request_url
@@ -1563,13 +1565,13 @@ class TestUpdateSecretMetadata():
         assert req_body['resources'] == [secret_metadata_model]
 
     def test_update_secret_metadata_all_params_with_retries(self):
-    	# Enable retries and run test_update_secret_metadata_all_params.
-    	_service.enable_retries()
-    	self.test_update_secret_metadata_all_params()
+        # Enable retries and run test_update_secret_metadata_all_params.
+        _service.enable_retries()
+        self.test_update_secret_metadata_all_params()
 
-    	# Disable retries and run test_update_secret_metadata_all_params.
-    	_service.disable_retries()
-    	self.test_update_secret_metadata_all_params()
+        # Disable retries and run test_update_secret_metadata_all_params.
+        _service.disable_retries()
+        self.test_update_secret_metadata_all_params()
 
     @responses.activate
     def test_update_secret_metadata_value_error(self):
@@ -1611,19 +1613,19 @@ class TestUpdateSecretMetadata():
             "resources": resources,
         }
         for param in req_param_dict.keys():
-            req_copy = {key:val if key is not param else None for (key,val) in req_param_dict.items()}
+            req_copy = {key: val if key is not param else None for (key, val) in req_param_dict.items()}
             with pytest.raises(ValueError):
                 _service.update_secret_metadata(**req_copy)
 
-
     def test_update_secret_metadata_value_error_with_retries(self):
-    	# Enable retries and run test_update_secret_metadata_value_error.
-    	_service.enable_retries()
-    	self.test_update_secret_metadata_value_error()
+        # Enable retries and run test_update_secret_metadata_value_error.
+        _service.enable_retries()
+        self.test_update_secret_metadata_value_error()
 
-    	# Disable retries and run test_update_secret_metadata_value_error.
-    	_service.disable_retries()
-    	self.test_update_secret_metadata_value_error()
+        # Disable retries and run test_update_secret_metadata_value_error.
+        _service.disable_retries()
+        self.test_update_secret_metadata_value_error()
+
 
 # endregion
 ##############################################################################
@@ -1661,6 +1663,7 @@ class TestNewInstance():
             service = SecretsManagerV1.new_instance(
             )
 
+
 class TestPutPolicy():
     """
     Test Class for put_policy
@@ -1670,7 +1673,7 @@ class TestPutPolicy():
         """
         Preprocess the request URL to ensure the mock response will be found.
         """
-        request_url = urllib.parse.unquote(request_url) # don't double-encode if already encoded
+        request_url = urllib.parse.unquote(request_url)  # don't double-encode if already encoded
         request_url = urllib.parse.quote(request_url, safe=':/')
         if re.fullmatch('.*/+', request_url) is None:
             return request_url
@@ -1727,7 +1730,7 @@ class TestPutPolicy():
         assert len(responses.calls) == 1
         assert response.status_code == 200
         # Validate query params
-        query_string = responses.calls[0].request.url.split('?',1)[1]
+        query_string = responses.calls[0].request.url.split('?', 1)[1]
         query_string = urllib.parse.unquote_plus(query_string)
         assert 'policy={}'.format(policy) in query_string
         # Validate body params
@@ -1736,13 +1739,13 @@ class TestPutPolicy():
         assert req_body['resources'] == [secret_policy_rotation_model]
 
     def test_put_policy_all_params_with_retries(self):
-    	# Enable retries and run test_put_policy_all_params.
-    	_service.enable_retries()
-    	self.test_put_policy_all_params()
+        # Enable retries and run test_put_policy_all_params.
+        _service.enable_retries()
+        self.test_put_policy_all_params()
 
-    	# Disable retries and run test_put_policy_all_params.
-    	_service.disable_retries()
-    	self.test_put_policy_all_params()
+        # Disable retries and run test_put_policy_all_params.
+        _service.disable_retries()
+        self.test_put_policy_all_params()
 
     @responses.activate
     def test_put_policy_required_params(self):
@@ -1797,13 +1800,13 @@ class TestPutPolicy():
         assert req_body['resources'] == [secret_policy_rotation_model]
 
     def test_put_policy_required_params_with_retries(self):
-    	# Enable retries and run test_put_policy_required_params.
-    	_service.enable_retries()
-    	self.test_put_policy_required_params()
+        # Enable retries and run test_put_policy_required_params.
+        _service.enable_retries()
+        self.test_put_policy_required_params()
 
-    	# Disable retries and run test_put_policy_required_params.
-    	_service.disable_retries()
-    	self.test_put_policy_required_params()
+        # Disable retries and run test_put_policy_required_params.
+        _service.disable_retries()
+        self.test_put_policy_required_params()
 
     @responses.activate
     def test_put_policy_value_error(self):
@@ -1848,19 +1851,19 @@ class TestPutPolicy():
             "resources": resources,
         }
         for param in req_param_dict.keys():
-            req_copy = {key:val if key is not param else None for (key,val) in req_param_dict.items()}
+            req_copy = {key: val if key is not param else None for (key, val) in req_param_dict.items()}
             with pytest.raises(ValueError):
                 _service.put_policy(**req_copy)
 
-
     def test_put_policy_value_error_with_retries(self):
-    	# Enable retries and run test_put_policy_value_error.
-    	_service.enable_retries()
-    	self.test_put_policy_value_error()
+        # Enable retries and run test_put_policy_value_error.
+        _service.enable_retries()
+        self.test_put_policy_value_error()
 
-    	# Disable retries and run test_put_policy_value_error.
-    	_service.disable_retries()
-    	self.test_put_policy_value_error()
+        # Disable retries and run test_put_policy_value_error.
+        _service.disable_retries()
+        self.test_put_policy_value_error()
+
 
 class TestGetPolicy():
     """
@@ -1871,7 +1874,7 @@ class TestGetPolicy():
         """
         Preprocess the request URL to ensure the mock response will be found.
         """
-        request_url = urllib.parse.unquote(request_url) # don't double-encode if already encoded
+        request_url = urllib.parse.unquote(request_url)  # don't double-encode if already encoded
         request_url = urllib.parse.quote(request_url, safe=':/')
         if re.fullmatch('.*/+', request_url) is None:
             return request_url
@@ -1909,18 +1912,18 @@ class TestGetPolicy():
         assert len(responses.calls) == 1
         assert response.status_code == 200
         # Validate query params
-        query_string = responses.calls[0].request.url.split('?',1)[1]
+        query_string = responses.calls[0].request.url.split('?', 1)[1]
         query_string = urllib.parse.unquote_plus(query_string)
         assert 'policy={}'.format(policy) in query_string
 
     def test_get_policy_all_params_with_retries(self):
-    	# Enable retries and run test_get_policy_all_params.
-    	_service.enable_retries()
-    	self.test_get_policy_all_params()
+        # Enable retries and run test_get_policy_all_params.
+        _service.enable_retries()
+        self.test_get_policy_all_params()
 
-    	# Disable retries and run test_get_policy_all_params.
-    	_service.disable_retries()
-    	self.test_get_policy_all_params()
+        # Disable retries and run test_get_policy_all_params.
+        _service.disable_retries()
+        self.test_get_policy_all_params()
 
     @responses.activate
     def test_get_policy_required_params(self):
@@ -1952,13 +1955,13 @@ class TestGetPolicy():
         assert response.status_code == 200
 
     def test_get_policy_required_params_with_retries(self):
-    	# Enable retries and run test_get_policy_required_params.
-    	_service.enable_retries()
-    	self.test_get_policy_required_params()
+        # Enable retries and run test_get_policy_required_params.
+        _service.enable_retries()
+        self.test_get_policy_required_params()
 
-    	# Disable retries and run test_get_policy_required_params.
-    	_service.disable_retries()
-    	self.test_get_policy_required_params()
+        # Disable retries and run test_get_policy_required_params.
+        _service.disable_retries()
+        self.test_get_policy_required_params()
 
     @responses.activate
     def test_get_policy_value_error(self):
@@ -1984,19 +1987,19 @@ class TestGetPolicy():
             "id": id,
         }
         for param in req_param_dict.keys():
-            req_copy = {key:val if key is not param else None for (key,val) in req_param_dict.items()}
+            req_copy = {key: val if key is not param else None for (key, val) in req_param_dict.items()}
             with pytest.raises(ValueError):
                 _service.get_policy(**req_copy)
 
-
     def test_get_policy_value_error_with_retries(self):
-    	# Enable retries and run test_get_policy_value_error.
-    	_service.enable_retries()
-    	self.test_get_policy_value_error()
+        # Enable retries and run test_get_policy_value_error.
+        _service.enable_retries()
+        self.test_get_policy_value_error()
 
-    	# Disable retries and run test_get_policy_value_error.
-    	_service.disable_retries()
-    	self.test_get_policy_value_error()
+        # Disable retries and run test_get_policy_value_error.
+        _service.disable_retries()
+        self.test_get_policy_value_error()
+
 
 # endregion
 ##############################################################################
@@ -2034,6 +2037,7 @@ class TestNewInstance():
             service = SecretsManagerV1.new_instance(
             )
 
+
 class TestPutConfig():
     """
     Test Class for put_config
@@ -2043,7 +2047,7 @@ class TestPutConfig():
         """
         Preprocess the request URL to ensure the mock response will be found.
         """
-        request_url = urllib.parse.unquote(request_url) # don't double-encode if already encoded
+        request_url = urllib.parse.unquote(request_url)  # don't double-encode if already encoded
         request_url = urllib.parse.quote(request_url, safe=':/')
         if re.fullmatch('.*/+', request_url) is None:
             return request_url
@@ -2080,13 +2084,13 @@ class TestPutConfig():
         assert req_body['api_key'] == 'API_KEY'
 
     def test_put_config_all_params_with_retries(self):
-    	# Enable retries and run test_put_config_all_params.
-    	_service.enable_retries()
-    	self.test_put_config_all_params()
+        # Enable retries and run test_put_config_all_params.
+        _service.enable_retries()
+        self.test_put_config_all_params()
 
-    	# Disable retries and run test_put_config_all_params.
-    	_service.disable_retries()
-    	self.test_put_config_all_params()
+        # Disable retries and run test_put_config_all_params.
+        _service.disable_retries()
+        self.test_put_config_all_params()
 
     @responses.activate
     def test_put_config_value_error(self):
@@ -2109,19 +2113,19 @@ class TestPutConfig():
             "api_key": api_key,
         }
         for param in req_param_dict.keys():
-            req_copy = {key:val if key is not param else None for (key,val) in req_param_dict.items()}
+            req_copy = {key: val if key is not param else None for (key, val) in req_param_dict.items()}
             with pytest.raises(ValueError):
                 _service.put_config(**req_copy)
 
-
     def test_put_config_value_error_with_retries(self):
-    	# Enable retries and run test_put_config_value_error.
-    	_service.enable_retries()
-    	self.test_put_config_value_error()
+        # Enable retries and run test_put_config_value_error.
+        _service.enable_retries()
+        self.test_put_config_value_error()
 
-    	# Disable retries and run test_put_config_value_error.
-    	_service.disable_retries()
-    	self.test_put_config_value_error()
+        # Disable retries and run test_put_config_value_error.
+        _service.disable_retries()
+        self.test_put_config_value_error()
+
 
 class TestGetConfig():
     """
@@ -2132,7 +2136,7 @@ class TestGetConfig():
         """
         Preprocess the request URL to ensure the mock response will be found.
         """
-        request_url = urllib.parse.unquote(request_url) # don't double-encode if already encoded
+        request_url = urllib.parse.unquote(request_url)  # don't double-encode if already encoded
         request_url = urllib.parse.quote(request_url, safe=':/')
         if re.fullmatch('.*/+', request_url) is None:
             return request_url
@@ -2167,13 +2171,13 @@ class TestGetConfig():
         assert response.status_code == 200
 
     def test_get_config_all_params_with_retries(self):
-    	# Enable retries and run test_get_config_all_params.
-    	_service.enable_retries()
-    	self.test_get_config_all_params()
+        # Enable retries and run test_get_config_all_params.
+        _service.enable_retries()
+        self.test_get_config_all_params()
 
-    	# Disable retries and run test_get_config_all_params.
-    	_service.disable_retries()
-    	self.test_get_config_all_params()
+        # Disable retries and run test_get_config_all_params.
+        _service.disable_retries()
+        self.test_get_config_all_params()
 
     @responses.activate
     def test_get_config_value_error(self):
@@ -2197,19 +2201,19 @@ class TestGetConfig():
             "secret_type": secret_type,
         }
         for param in req_param_dict.keys():
-            req_copy = {key:val if key is not param else None for (key,val) in req_param_dict.items()}
+            req_copy = {key: val if key is not param else None for (key, val) in req_param_dict.items()}
             with pytest.raises(ValueError):
                 _service.get_config(**req_copy)
 
-
     def test_get_config_value_error_with_retries(self):
-    	# Enable retries and run test_get_config_value_error.
-    	_service.enable_retries()
-    	self.test_get_config_value_error()
+        # Enable retries and run test_get_config_value_error.
+        _service.enable_retries()
+        self.test_get_config_value_error()
 
-    	# Disable retries and run test_get_config_value_error.
-    	_service.disable_retries()
-    	self.test_get_config_value_error()
+        # Disable retries and run test_get_config_value_error.
+        _service.disable_retries()
+        self.test_get_config_value_error()
+
 
 class TestCreateConfigElement():
     """
@@ -2220,7 +2224,7 @@ class TestCreateConfigElement():
         """
         Preprocess the request URL to ensure the mock response will be found.
         """
-        request_url = urllib.parse.unquote(request_url) # don't double-encode if already encoded
+        request_url = urllib.parse.unquote(request_url)  # don't double-encode if already encoded
         request_url = urllib.parse.quote(request_url, safe=':/')
         if re.fullmatch('.*/+', request_url) is None:
             return request_url
@@ -2272,13 +2276,13 @@ class TestCreateConfigElement():
         assert req_body['config'] == config_element_def_config_model
 
     def test_create_config_element_all_params_with_retries(self):
-    	# Enable retries and run test_create_config_element_all_params.
-    	_service.enable_retries()
-    	self.test_create_config_element_all_params()
+        # Enable retries and run test_create_config_element_all_params.
+        _service.enable_retries()
+        self.test_create_config_element_all_params()
 
-    	# Disable retries and run test_create_config_element_all_params.
-    	_service.disable_retries()
-    	self.test_create_config_element_all_params()
+        # Disable retries and run test_create_config_element_all_params.
+        _service.disable_retries()
+        self.test_create_config_element_all_params()
 
     @responses.activate
     def test_create_config_element_value_error(self):
@@ -2314,19 +2318,19 @@ class TestCreateConfigElement():
             "config": config,
         }
         for param in req_param_dict.keys():
-            req_copy = {key:val if key is not param else None for (key,val) in req_param_dict.items()}
+            req_copy = {key: val if key is not param else None for (key, val) in req_param_dict.items()}
             with pytest.raises(ValueError):
                 _service.create_config_element(**req_copy)
 
-
     def test_create_config_element_value_error_with_retries(self):
-    	# Enable retries and run test_create_config_element_value_error.
-    	_service.enable_retries()
-    	self.test_create_config_element_value_error()
+        # Enable retries and run test_create_config_element_value_error.
+        _service.enable_retries()
+        self.test_create_config_element_value_error()
 
-    	# Disable retries and run test_create_config_element_value_error.
-    	_service.disable_retries()
-    	self.test_create_config_element_value_error()
+        # Disable retries and run test_create_config_element_value_error.
+        _service.disable_retries()
+        self.test_create_config_element_value_error()
+
 
 class TestGetConfigElements():
     """
@@ -2337,7 +2341,7 @@ class TestGetConfigElements():
         """
         Preprocess the request URL to ensure the mock response will be found.
         """
-        request_url = urllib.parse.unquote(request_url) # don't double-encode if already encoded
+        request_url = urllib.parse.unquote(request_url)  # don't double-encode if already encoded
         request_url = urllib.parse.quote(request_url, safe=':/')
         if re.fullmatch('.*/+', request_url) is None:
             return request_url
@@ -2374,13 +2378,13 @@ class TestGetConfigElements():
         assert response.status_code == 200
 
     def test_get_config_elements_all_params_with_retries(self):
-    	# Enable retries and run test_get_config_elements_all_params.
-    	_service.enable_retries()
-    	self.test_get_config_elements_all_params()
+        # Enable retries and run test_get_config_elements_all_params.
+        _service.enable_retries()
+        self.test_get_config_elements_all_params()
 
-    	# Disable retries and run test_get_config_elements_all_params.
-    	_service.disable_retries()
-    	self.test_get_config_elements_all_params()
+        # Disable retries and run test_get_config_elements_all_params.
+        _service.disable_retries()
+        self.test_get_config_elements_all_params()
 
     @responses.activate
     def test_get_config_elements_value_error(self):
@@ -2406,19 +2410,19 @@ class TestGetConfigElements():
             "config_element": config_element,
         }
         for param in req_param_dict.keys():
-            req_copy = {key:val if key is not param else None for (key,val) in req_param_dict.items()}
+            req_copy = {key: val if key is not param else None for (key, val) in req_param_dict.items()}
             with pytest.raises(ValueError):
                 _service.get_config_elements(**req_copy)
 
-
     def test_get_config_elements_value_error_with_retries(self):
-    	# Enable retries and run test_get_config_elements_value_error.
-    	_service.enable_retries()
-    	self.test_get_config_elements_value_error()
+        # Enable retries and run test_get_config_elements_value_error.
+        _service.enable_retries()
+        self.test_get_config_elements_value_error()
 
-    	# Disable retries and run test_get_config_elements_value_error.
-    	_service.disable_retries()
-    	self.test_get_config_elements_value_error()
+        # Disable retries and run test_get_config_elements_value_error.
+        _service.disable_retries()
+        self.test_get_config_elements_value_error()
+
 
 class TestUpdateConfigElement():
     """
@@ -2429,7 +2433,7 @@ class TestUpdateConfigElement():
         """
         Preprocess the request URL to ensure the mock response will be found.
         """
-        request_url = urllib.parse.unquote(request_url) # don't double-encode if already encoded
+        request_url = urllib.parse.unquote(request_url)  # don't double-encode if already encoded
         request_url = urllib.parse.quote(request_url, safe=':/')
         if re.fullmatch('.*/+', request_url) is None:
             return request_url
@@ -2455,7 +2459,7 @@ class TestUpdateConfigElement():
         config_element = 'certificate_authorities'
         config_name = 'testString'
         type = 'letsencrypt'
-        config = { 'foo': 'bar' }
+        config = {'foo': 'bar'}
 
         # Invoke method
         response = _service.update_config_element(
@@ -2473,16 +2477,16 @@ class TestUpdateConfigElement():
         # Validate body params
         req_body = json.loads(str(responses.calls[0].request.body, 'utf-8'))
         assert req_body['type'] == 'letsencrypt'
-        assert req_body['config'] == { 'foo': 'bar' }
+        assert req_body['config'] == {'foo': 'bar'}
 
     def test_update_config_element_all_params_with_retries(self):
-    	# Enable retries and run test_update_config_element_all_params.
-    	_service.enable_retries()
-    	self.test_update_config_element_all_params()
+        # Enable retries and run test_update_config_element_all_params.
+        _service.enable_retries()
+        self.test_update_config_element_all_params()
 
-    	# Disable retries and run test_update_config_element_all_params.
-    	_service.disable_retries()
-    	self.test_update_config_element_all_params()
+        # Disable retries and run test_update_config_element_all_params.
+        _service.disable_retries()
+        self.test_update_config_element_all_params()
 
     @responses.activate
     def test_update_config_element_value_error(self):
@@ -2503,7 +2507,7 @@ class TestUpdateConfigElement():
         config_element = 'certificate_authorities'
         config_name = 'testString'
         type = 'letsencrypt'
-        config = { 'foo': 'bar' }
+        config = {'foo': 'bar'}
 
         # Pass in all but one required param and check for a ValueError
         req_param_dict = {
@@ -2514,19 +2518,19 @@ class TestUpdateConfigElement():
             "config": config,
         }
         for param in req_param_dict.keys():
-            req_copy = {key:val if key is not param else None for (key,val) in req_param_dict.items()}
+            req_copy = {key: val if key is not param else None for (key, val) in req_param_dict.items()}
             with pytest.raises(ValueError):
                 _service.update_config_element(**req_copy)
 
-
     def test_update_config_element_value_error_with_retries(self):
-    	# Enable retries and run test_update_config_element_value_error.
-    	_service.enable_retries()
-    	self.test_update_config_element_value_error()
+        # Enable retries and run test_update_config_element_value_error.
+        _service.enable_retries()
+        self.test_update_config_element_value_error()
 
-    	# Disable retries and run test_update_config_element_value_error.
-    	_service.disable_retries()
-    	self.test_update_config_element_value_error()
+        # Disable retries and run test_update_config_element_value_error.
+        _service.disable_retries()
+        self.test_update_config_element_value_error()
+
 
 class TestDeleteConfigElement():
     """
@@ -2537,7 +2541,7 @@ class TestDeleteConfigElement():
         """
         Preprocess the request URL to ensure the mock response will be found.
         """
-        request_url = urllib.parse.unquote(request_url) # don't double-encode if already encoded
+        request_url = urllib.parse.unquote(request_url)  # don't double-encode if already encoded
         request_url = urllib.parse.quote(request_url, safe=':/')
         if re.fullmatch('.*/+', request_url) is None:
             return request_url
@@ -2573,13 +2577,13 @@ class TestDeleteConfigElement():
         assert response.status_code == 204
 
     def test_delete_config_element_all_params_with_retries(self):
-    	# Enable retries and run test_delete_config_element_all_params.
-    	_service.enable_retries()
-    	self.test_delete_config_element_all_params()
+        # Enable retries and run test_delete_config_element_all_params.
+        _service.enable_retries()
+        self.test_delete_config_element_all_params()
 
-    	# Disable retries and run test_delete_config_element_all_params.
-    	_service.disable_retries()
-    	self.test_delete_config_element_all_params()
+        # Disable retries and run test_delete_config_element_all_params.
+        _service.disable_retries()
+        self.test_delete_config_element_all_params()
 
     @responses.activate
     def test_delete_config_element_value_error(self):
@@ -2604,19 +2608,19 @@ class TestDeleteConfigElement():
             "config_name": config_name,
         }
         for param in req_param_dict.keys():
-            req_copy = {key:val if key is not param else None for (key,val) in req_param_dict.items()}
+            req_copy = {key: val if key is not param else None for (key, val) in req_param_dict.items()}
             with pytest.raises(ValueError):
                 _service.delete_config_element(**req_copy)
 
-
     def test_delete_config_element_value_error_with_retries(self):
-    	# Enable retries and run test_delete_config_element_value_error.
-    	_service.enable_retries()
-    	self.test_delete_config_element_value_error()
+        # Enable retries and run test_delete_config_element_value_error.
+        _service.enable_retries()
+        self.test_delete_config_element_value_error()
 
-    	# Disable retries and run test_delete_config_element_value_error.
-    	_service.disable_retries()
-    	self.test_delete_config_element_value_error()
+        # Disable retries and run test_delete_config_element_value_error.
+        _service.disable_retries()
+        self.test_delete_config_element_value_error()
+
 
 class TestGetConfigElement():
     """
@@ -2627,7 +2631,7 @@ class TestGetConfigElement():
         """
         Preprocess the request URL to ensure the mock response will be found.
         """
-        request_url = urllib.parse.unquote(request_url) # don't double-encode if already encoded
+        request_url = urllib.parse.unquote(request_url)  # don't double-encode if already encoded
         request_url = urllib.parse.quote(request_url, safe=':/')
         if re.fullmatch('.*/+', request_url) is None:
             return request_url
@@ -2666,13 +2670,13 @@ class TestGetConfigElement():
         assert response.status_code == 200
 
     def test_get_config_element_all_params_with_retries(self):
-    	# Enable retries and run test_get_config_element_all_params.
-    	_service.enable_retries()
-    	self.test_get_config_element_all_params()
+        # Enable retries and run test_get_config_element_all_params.
+        _service.enable_retries()
+        self.test_get_config_element_all_params()
 
-    	# Disable retries and run test_get_config_element_all_params.
-    	_service.disable_retries()
-    	self.test_get_config_element_all_params()
+        # Disable retries and run test_get_config_element_all_params.
+        _service.disable_retries()
+        self.test_get_config_element_all_params()
 
     @responses.activate
     def test_get_config_element_value_error(self):
@@ -2700,19 +2704,19 @@ class TestGetConfigElement():
             "config_name": config_name,
         }
         for param in req_param_dict.keys():
-            req_copy = {key:val if key is not param else None for (key,val) in req_param_dict.items()}
+            req_copy = {key: val if key is not param else None for (key, val) in req_param_dict.items()}
             with pytest.raises(ValueError):
                 _service.get_config_element(**req_copy)
 
-
     def test_get_config_element_value_error_with_retries(self):
-    	# Enable retries and run test_get_config_element_value_error.
-    	_service.enable_retries()
-    	self.test_get_config_element_value_error()
+        # Enable retries and run test_get_config_element_value_error.
+        _service.enable_retries()
+        self.test_get_config_element_value_error()
 
-    	# Disable retries and run test_get_config_element_value_error.
-    	_service.disable_retries()
-    	self.test_get_config_element_value_error()
+        # Disable retries and run test_get_config_element_value_error.
+        _service.disable_retries()
+        self.test_get_config_element_value_error()
+
 
 # endregion
 ##############################################################################
@@ -2745,7 +2749,8 @@ class TestModel_CertificateSecretData():
         assert certificate_secret_data_model != False
 
         # Construct a model instance of CertificateSecretData by calling from_dict on the json representation
-        certificate_secret_data_model_dict = CertificateSecretData.from_dict(certificate_secret_data_model_json).__dict__
+        certificate_secret_data_model_dict = CertificateSecretData.from_dict(
+            certificate_secret_data_model_json).__dict__
         certificate_secret_data_model2 = CertificateSecretData(**certificate_secret_data_model_dict)
 
         # Verify the model instances are equivalent
@@ -2754,6 +2759,7 @@ class TestModel_CertificateSecretData():
         # Convert model instance back to dict and verify no loss of data
         certificate_secret_data_model_json2 = certificate_secret_data_model.to_dict()
         assert certificate_secret_data_model_json2 == certificate_secret_data_model_json
+
 
 class TestModel_CollectionMetadata():
     """
@@ -2785,6 +2791,7 @@ class TestModel_CollectionMetadata():
         collection_metadata_model_json2 = collection_metadata_model.to_dict()
         assert collection_metadata_model_json2 == collection_metadata_model_json
 
+
 class TestModel_ConfigElementDef():
     """
     Test Class for ConfigElementDef
@@ -2797,7 +2804,7 @@ class TestModel_ConfigElementDef():
 
         # Construct dict forms of any model objects needed in order to build this model.
 
-        config_element_def_config_model = {} # ConfigElementDefConfigLetsEncryptConfig
+        config_element_def_config_model = {}  # ConfigElementDefConfigLetsEncryptConfig
         config_element_def_config_model['private_key'] = 'testString'
 
         # Construct a json representation of a ConfigElementDef model
@@ -2821,6 +2828,7 @@ class TestModel_ConfigElementDef():
         config_element_def_model_json2 = config_element_def_model.to_dict()
         assert config_element_def_model_json2 == config_element_def_model_json
 
+
 class TestModel_ConfigElementMetadata():
     """
     Test Class for ConfigElementMetadata
@@ -2841,7 +2849,8 @@ class TestModel_ConfigElementMetadata():
         assert config_element_metadata_model != False
 
         # Construct a model instance of ConfigElementMetadata by calling from_dict on the json representation
-        config_element_metadata_model_dict = ConfigElementMetadata.from_dict(config_element_metadata_model_json).__dict__
+        config_element_metadata_model_dict = ConfigElementMetadata.from_dict(
+            config_element_metadata_model_json).__dict__
         config_element_metadata_model2 = ConfigElementMetadata(**config_element_metadata_model_dict)
 
         # Verify the model instances are equivalent
@@ -2850,6 +2859,7 @@ class TestModel_ConfigElementMetadata():
         # Convert model instance back to dict and verify no loss of data
         config_element_metadata_model_json2 = config_element_metadata_model.to_dict()
         assert config_element_metadata_model_json2 == config_element_metadata_model_json
+
 
 class TestModel_CreateSecret():
     """
@@ -2863,11 +2873,11 @@ class TestModel_CreateSecret():
 
         # Construct dict forms of any model objects needed in order to build this model.
 
-        collection_metadata_model = {} # CollectionMetadata
+        collection_metadata_model = {}  # CollectionMetadata
         collection_metadata_model['collection_type'] = 'application/vnd.ibm.secrets-manager.config+json'
         collection_metadata_model['collection_total'] = 1
 
-        secret_resource_model = {} # ArbitrarySecretResource
+        secret_resource_model = {}  # ArbitrarySecretResource
         secret_resource_model['id'] = 'testString'
         secret_resource_model['name'] = 'testString'
         secret_resource_model['description'] = 'testString'
@@ -2876,7 +2886,8 @@ class TestModel_CreateSecret():
         secret_resource_model['state'] = 0
         secret_resource_model['state_description'] = 'Active'
         secret_resource_model['secret_type'] = 'arbitrary'
-        secret_resource_model['crn'] = 'crn:v1:bluemix:public:secrets-manager:<region>:a/<account-id>:<service-instance>:secret:<secret-id>'
+        secret_resource_model[
+            'crn'] = 'crn:v1:bluemix:public:secrets-manager:<region>:a/<account-id>:<service-instance>:secret:<secret-id>'
         secret_resource_model['creation_date'] = "2018-04-12T23:20:50.520000Z"
         secret_resource_model['created_by'] = 'testString'
         secret_resource_model['last_update_date'] = "2018-04-12T23:20:50.520000Z"
@@ -2884,7 +2895,7 @@ class TestModel_CreateSecret():
         secret_resource_model['versions'] = [{}]
         secret_resource_model['expiration_date'] = "2030-04-01T09:30:00Z"
         secret_resource_model['payload'] = 'testString'
-        secret_resource_model['secret_data'] = { 'foo': 'bar' }
+        secret_resource_model['secret_data'] = {'foo': 'bar'}
 
         # Construct a json representation of a CreateSecret model
         create_secret_model_json = {}
@@ -2906,6 +2917,7 @@ class TestModel_CreateSecret():
         create_secret_model_json2 = create_secret_model.to_dict()
         assert create_secret_model_json2 == create_secret_model_json
 
+
 class TestModel_GetConfig():
     """
     Test Class for GetConfig
@@ -2918,15 +2930,15 @@ class TestModel_GetConfig():
 
         # Construct dict forms of any model objects needed in order to build this model.
 
-        collection_metadata_model = {} # CollectionMetadata
+        collection_metadata_model = {}  # CollectionMetadata
         collection_metadata_model['collection_type'] = 'application/vnd.ibm.secrets-manager.config+json'
         collection_metadata_model['collection_total'] = 1
 
-        config_element_metadata_model = {} # ConfigElementMetadata
+        config_element_metadata_model = {}  # ConfigElementMetadata
         config_element_metadata_model['name'] = 'testString'
         config_element_metadata_model['type'] = 'letsencrypt'
 
-        get_config_resources_item_model = {} # PublicCertSecretEngineRootConfig
+        get_config_resources_item_model = {}  # PublicCertSecretEngineRootConfig
         get_config_resources_item_model['certificate_authorities'] = [config_element_metadata_model]
         get_config_resources_item_model['dns_providers'] = [config_element_metadata_model]
 
@@ -2950,6 +2962,7 @@ class TestModel_GetConfig():
         get_config_model_json2 = get_config_model.to_dict()
         assert get_config_model_json2 == get_config_model_json
 
+
 class TestModel_GetConfigElements():
     """
     Test Class for GetConfigElements
@@ -2962,15 +2975,15 @@ class TestModel_GetConfigElements():
 
         # Construct dict forms of any model objects needed in order to build this model.
 
-        collection_metadata_model = {} # CollectionMetadata
+        collection_metadata_model = {}  # CollectionMetadata
         collection_metadata_model['collection_type'] = 'application/vnd.ibm.secrets-manager.config+json'
         collection_metadata_model['collection_total'] = 1
 
-        config_element_metadata_model = {} # ConfigElementMetadata
+        config_element_metadata_model = {}  # ConfigElementMetadata
         config_element_metadata_model['name'] = 'testString'
         config_element_metadata_model['type'] = 'letsencrypt'
 
-        get_config_elements_resources_item_model = {} # GetConfigElementsResourcesItemCertificateAuthoritiesConfig
+        get_config_elements_resources_item_model = {}  # GetConfigElementsResourcesItemCertificateAuthoritiesConfig
         get_config_elements_resources_item_model['certificate_authorities'] = [config_element_metadata_model]
 
         # Construct a json representation of a GetConfigElements model
@@ -2993,6 +3006,7 @@ class TestModel_GetConfigElements():
         get_config_elements_model_json2 = get_config_elements_model.to_dict()
         assert get_config_elements_model_json2 == get_config_elements_model_json
 
+
 class TestModel_GetSecret():
     """
     Test Class for GetSecret
@@ -3005,11 +3019,11 @@ class TestModel_GetSecret():
 
         # Construct dict forms of any model objects needed in order to build this model.
 
-        collection_metadata_model = {} # CollectionMetadata
+        collection_metadata_model = {}  # CollectionMetadata
         collection_metadata_model['collection_type'] = 'application/vnd.ibm.secrets-manager.config+json'
         collection_metadata_model['collection_total'] = 1
 
-        secret_resource_model = {} # ArbitrarySecretResource
+        secret_resource_model = {}  # ArbitrarySecretResource
         secret_resource_model['id'] = 'testString'
         secret_resource_model['name'] = 'testString'
         secret_resource_model['description'] = 'testString'
@@ -3018,7 +3032,8 @@ class TestModel_GetSecret():
         secret_resource_model['state'] = 0
         secret_resource_model['state_description'] = 'Active'
         secret_resource_model['secret_type'] = 'arbitrary'
-        secret_resource_model['crn'] = 'crn:v1:bluemix:public:secrets-manager:<region>:a/<account-id>:<service-instance>:secret:<secret-id>'
+        secret_resource_model[
+            'crn'] = 'crn:v1:bluemix:public:secrets-manager:<region>:a/<account-id>:<service-instance>:secret:<secret-id>'
         secret_resource_model['creation_date'] = "2018-04-12T23:20:50.520000Z"
         secret_resource_model['created_by'] = 'testString'
         secret_resource_model['last_update_date'] = "2018-04-12T23:20:50.520000Z"
@@ -3026,7 +3041,7 @@ class TestModel_GetSecret():
         secret_resource_model['versions'] = [{}]
         secret_resource_model['expiration_date'] = "2030-04-01T09:30:00Z"
         secret_resource_model['payload'] = 'testString'
-        secret_resource_model['secret_data'] = { 'foo': 'bar' }
+        secret_resource_model['secret_data'] = {'foo': 'bar'}
 
         # Construct a json representation of a GetSecret model
         get_secret_model_json = {}
@@ -3048,6 +3063,7 @@ class TestModel_GetSecret():
         get_secret_model_json2 = get_secret_model.to_dict()
         assert get_secret_model_json2 == get_secret_model_json
 
+
 class TestModel_GetSecretPolicyRotationResourcesItem():
     """
     Test Class for GetSecretPolicyRotationResourcesItem
@@ -3060,28 +3076,33 @@ class TestModel_GetSecretPolicyRotationResourcesItem():
 
         # Construct dict forms of any model objects needed in order to build this model.
 
-        secret_policy_rotation_rotation_model = {} # SecretPolicyRotationRotationPolicyRotation
+        secret_policy_rotation_rotation_model = {}  # SecretPolicyRotationRotationPolicyRotation
         secret_policy_rotation_rotation_model['interval'] = 1
         secret_policy_rotation_rotation_model['unit'] = 'day'
 
         # Construct a json representation of a GetSecretPolicyRotationResourcesItem model
         get_secret_policy_rotation_resources_item_model_json = {}
         get_secret_policy_rotation_resources_item_model_json['id'] = 'testString'
-        get_secret_policy_rotation_resources_item_model_json['crn'] = 'crn:v1:bluemix:public:kms:<region>:a/<account-id>:<service-instance:policy:<policy-id>'
+        get_secret_policy_rotation_resources_item_model_json[
+            'crn'] = 'crn:v1:bluemix:public:kms:<region>:a/<account-id>:<service-instance:policy:<policy-id>'
         get_secret_policy_rotation_resources_item_model_json['creation_date'] = "2019-01-01T12:00:00Z"
         get_secret_policy_rotation_resources_item_model_json['created_by'] = 'testString'
         get_secret_policy_rotation_resources_item_model_json['last_update_date'] = "2019-01-01T12:00:00Z"
         get_secret_policy_rotation_resources_item_model_json['updated_by'] = 'testString'
-        get_secret_policy_rotation_resources_item_model_json['type'] = 'application/vnd.ibm.secrets-manager.secret.policy+json'
+        get_secret_policy_rotation_resources_item_model_json[
+            'type'] = 'application/vnd.ibm.secrets-manager.secret.policy+json'
         get_secret_policy_rotation_resources_item_model_json['rotation'] = secret_policy_rotation_rotation_model
 
         # Construct a model instance of GetSecretPolicyRotationResourcesItem by calling from_dict on the json representation
-        get_secret_policy_rotation_resources_item_model = GetSecretPolicyRotationResourcesItem.from_dict(get_secret_policy_rotation_resources_item_model_json)
+        get_secret_policy_rotation_resources_item_model = GetSecretPolicyRotationResourcesItem.from_dict(
+            get_secret_policy_rotation_resources_item_model_json)
         assert get_secret_policy_rotation_resources_item_model != False
 
         # Construct a model instance of GetSecretPolicyRotationResourcesItem by calling from_dict on the json representation
-        get_secret_policy_rotation_resources_item_model_dict = GetSecretPolicyRotationResourcesItem.from_dict(get_secret_policy_rotation_resources_item_model_json).__dict__
-        get_secret_policy_rotation_resources_item_model2 = GetSecretPolicyRotationResourcesItem(**get_secret_policy_rotation_resources_item_model_dict)
+        get_secret_policy_rotation_resources_item_model_dict = GetSecretPolicyRotationResourcesItem.from_dict(
+            get_secret_policy_rotation_resources_item_model_json).__dict__
+        get_secret_policy_rotation_resources_item_model2 = GetSecretPolicyRotationResourcesItem(
+            **get_secret_policy_rotation_resources_item_model_dict)
 
         # Verify the model instances are equivalent
         assert get_secret_policy_rotation_resources_item_model == get_secret_policy_rotation_resources_item_model2
@@ -3089,6 +3110,7 @@ class TestModel_GetSecretPolicyRotationResourcesItem():
         # Convert model instance back to dict and verify no loss of data
         get_secret_policy_rotation_resources_item_model_json2 = get_secret_policy_rotation_resources_item_model.to_dict()
         assert get_secret_policy_rotation_resources_item_model_json2 == get_secret_policy_rotation_resources_item_model_json
+
 
 class TestModel_GetSecretVersion():
     """
@@ -3102,22 +3124,23 @@ class TestModel_GetSecretVersion():
 
         # Construct dict forms of any model objects needed in order to build this model.
 
-        collection_metadata_model = {} # CollectionMetadata
+        collection_metadata_model = {}  # CollectionMetadata
         collection_metadata_model['collection_type'] = 'application/vnd.ibm.secrets-manager.config+json'
         collection_metadata_model['collection_total'] = 1
 
-        certificate_validity_model = {} # CertificateValidity
+        certificate_validity_model = {}  # CertificateValidity
         certificate_validity_model['not_before'] = "2020-10-05T21:33:11Z"
         certificate_validity_model['not_after'] = "2021-01-01T00:00:00Z"
 
-        certificate_secret_data_model = {} # CertificateSecretData
+        certificate_secret_data_model = {}  # CertificateSecretData
         certificate_secret_data_model['certificate'] = 'testString'
         certificate_secret_data_model['private_key'] = 'testString'
         certificate_secret_data_model['intermediate'] = 'testString'
 
-        secret_version_model = {} # CertificateSecretVersion
+        secret_version_model = {}  # CertificateSecretVersion
         secret_version_model['id'] = 'testString'
-        secret_version_model['crn'] = 'crn:v1:bluemix:public:secrets-manager:<region>:a/<account-id>:<service-instance>:secret:<secret-id>'
+        secret_version_model[
+            'crn'] = 'crn:v1:bluemix:public:secrets-manager:<region>:a/<account-id>:<service-instance>:secret:<secret-id>'
         secret_version_model['version_id'] = '4a0225e9-17a0-46c1-ace7-f25bcf4237d4'
         secret_version_model['creation_date'] = "2019-01-01T12:00:00Z"
         secret_version_model['created_by'] = 'testString'
@@ -3146,6 +3169,7 @@ class TestModel_GetSecretVersion():
         get_secret_version_model_json2 = get_secret_version_model.to_dict()
         assert get_secret_version_model_json2 == get_secret_version_model_json
 
+
 class TestModel_GetSecretVersionMetadata():
     """
     Test Class for GetSecretVersionMetadata
@@ -3158,11 +3182,11 @@ class TestModel_GetSecretVersionMetadata():
 
         # Construct dict forms of any model objects needed in order to build this model.
 
-        collection_metadata_model = {} # CollectionMetadata
+        collection_metadata_model = {}  # CollectionMetadata
         collection_metadata_model['collection_type'] = 'application/vnd.ibm.secrets-manager.config+json'
         collection_metadata_model['collection_total'] = 1
 
-        secret_version_metadata_model = {} # ArbitrarySecretVersionMetadata
+        secret_version_metadata_model = {}  # ArbitrarySecretVersionMetadata
         secret_version_metadata_model['id'] = '4a0225e9-17a0-46c1-ace7-f25bcf4237d4'
         secret_version_metadata_model['creation_date'] = "2019-01-01T12:00:00Z"
         secret_version_metadata_model['created_by'] = 'testString'
@@ -3177,7 +3201,8 @@ class TestModel_GetSecretVersionMetadata():
         assert get_secret_version_metadata_model != False
 
         # Construct a model instance of GetSecretVersionMetadata by calling from_dict on the json representation
-        get_secret_version_metadata_model_dict = GetSecretVersionMetadata.from_dict(get_secret_version_metadata_model_json).__dict__
+        get_secret_version_metadata_model_dict = GetSecretVersionMetadata.from_dict(
+            get_secret_version_metadata_model_json).__dict__
         get_secret_version_metadata_model2 = GetSecretVersionMetadata(**get_secret_version_metadata_model_dict)
 
         # Verify the model instances are equivalent
@@ -3186,6 +3211,7 @@ class TestModel_GetSecretVersionMetadata():
         # Convert model instance back to dict and verify no loss of data
         get_secret_version_metadata_model_json2 = get_secret_version_metadata_model.to_dict()
         assert get_secret_version_metadata_model_json2 == get_secret_version_metadata_model_json
+
 
 class TestModel_GetSingleConfigElement():
     """
@@ -3199,14 +3225,14 @@ class TestModel_GetSingleConfigElement():
 
         # Construct dict forms of any model objects needed in order to build this model.
 
-        collection_metadata_model = {} # CollectionMetadata
+        collection_metadata_model = {}  # CollectionMetadata
         collection_metadata_model['collection_type'] = 'application/vnd.ibm.secrets-manager.config+json'
         collection_metadata_model['collection_total'] = 1
 
-        config_element_def_config_model = {} # ConfigElementDefConfigLetsEncryptConfig
+        config_element_def_config_model = {}  # ConfigElementDefConfigLetsEncryptConfig
         config_element_def_config_model['private_key'] = 'testString'
 
-        config_element_def_model = {} # ConfigElementDef
+        config_element_def_model = {}  # ConfigElementDef
         config_element_def_model['name'] = 'testString'
         config_element_def_model['type'] = 'letsencrypt'
         config_element_def_model['config'] = config_element_def_config_model
@@ -3221,7 +3247,8 @@ class TestModel_GetSingleConfigElement():
         assert get_single_config_element_model != False
 
         # Construct a model instance of GetSingleConfigElement by calling from_dict on the json representation
-        get_single_config_element_model_dict = GetSingleConfigElement.from_dict(get_single_config_element_model_json).__dict__
+        get_single_config_element_model_dict = GetSingleConfigElement.from_dict(
+            get_single_config_element_model_json).__dict__
         get_single_config_element_model2 = GetSingleConfigElement(**get_single_config_element_model_dict)
 
         # Verify the model instances are equivalent
@@ -3230,6 +3257,7 @@ class TestModel_GetSingleConfigElement():
         # Convert model instance back to dict and verify no loss of data
         get_single_config_element_model_json2 = get_single_config_element_model.to_dict()
         assert get_single_config_element_model_json2 == get_single_config_element_model_json
+
 
 class TestModel_IssuanceInfo():
     """
@@ -3268,6 +3296,7 @@ class TestModel_IssuanceInfo():
         issuance_info_model_json2 = issuance_info_model.to_dict()
         assert issuance_info_model_json2 == issuance_info_model_json
 
+
 class TestModel_ListSecrets():
     """
     Test Class for ListSecrets
@@ -3280,11 +3309,11 @@ class TestModel_ListSecrets():
 
         # Construct dict forms of any model objects needed in order to build this model.
 
-        collection_metadata_model = {} # CollectionMetadata
+        collection_metadata_model = {}  # CollectionMetadata
         collection_metadata_model['collection_type'] = 'application/vnd.ibm.secrets-manager.config+json'
         collection_metadata_model['collection_total'] = 1
 
-        secret_resource_model = {} # ArbitrarySecretResource
+        secret_resource_model = {}  # ArbitrarySecretResource
         secret_resource_model['id'] = 'testString'
         secret_resource_model['name'] = 'testString'
         secret_resource_model['description'] = 'testString'
@@ -3293,7 +3322,8 @@ class TestModel_ListSecrets():
         secret_resource_model['state'] = 0
         secret_resource_model['state_description'] = 'Active'
         secret_resource_model['secret_type'] = 'arbitrary'
-        secret_resource_model['crn'] = 'crn:v1:bluemix:public:secrets-manager:<region>:a/<account-id>:<service-instance>:secret:<secret-id>'
+        secret_resource_model[
+            'crn'] = 'crn:v1:bluemix:public:secrets-manager:<region>:a/<account-id>:<service-instance>:secret:<secret-id>'
         secret_resource_model['creation_date'] = "2018-04-12T23:20:50.520000Z"
         secret_resource_model['created_by'] = 'testString'
         secret_resource_model['last_update_date'] = "2018-04-12T23:20:50.520000Z"
@@ -3301,7 +3331,7 @@ class TestModel_ListSecrets():
         secret_resource_model['versions'] = [{}]
         secret_resource_model['expiration_date'] = "2030-04-01T09:30:00Z"
         secret_resource_model['payload'] = 'testString'
-        secret_resource_model['secret_data'] = { 'foo': 'bar' }
+        secret_resource_model['secret_data'] = {'foo': 'bar'}
 
         # Construct a json representation of a ListSecrets model
         list_secrets_model_json = {}
@@ -3322,6 +3352,7 @@ class TestModel_ListSecrets():
         # Convert model instance back to dict and verify no loss of data
         list_secrets_model_json2 = list_secrets_model.to_dict()
         assert list_secrets_model_json2 == list_secrets_model_json
+
 
 class TestModel_Rotation():
     """
@@ -3353,6 +3384,7 @@ class TestModel_Rotation():
         rotation_model_json2 = rotation_model.to_dict()
         assert rotation_model_json2 == rotation_model_json
 
+
 class TestModel_SecretGroupDef():
     """
     Test Class for SecretGroupDef
@@ -3365,11 +3397,11 @@ class TestModel_SecretGroupDef():
 
         # Construct dict forms of any model objects needed in order to build this model.
 
-        collection_metadata_model = {} # CollectionMetadata
+        collection_metadata_model = {}  # CollectionMetadata
         collection_metadata_model['collection_type'] = 'application/vnd.ibm.secrets-manager.config+json'
         collection_metadata_model['collection_total'] = 1
 
-        secret_group_resource_model = {} # SecretGroupResource
+        secret_group_resource_model = {}  # SecretGroupResource
         secret_group_resource_model['id'] = 'bc656587-8fda-4d05-9ad8-b1de1ec7e712'
         secret_group_resource_model['name'] = 'my-secret-group'
         secret_group_resource_model['description'] = 'Extended description for this group.'
@@ -3398,6 +3430,7 @@ class TestModel_SecretGroupDef():
         secret_group_def_model_json2 = secret_group_def_model.to_dict()
         assert secret_group_def_model_json2 == secret_group_def_model_json
 
+
 class TestModel_SecretGroupMetadataUpdatable():
     """
     Test Class for SecretGroupMetadataUpdatable
@@ -3414,12 +3447,15 @@ class TestModel_SecretGroupMetadataUpdatable():
         secret_group_metadata_updatable_model_json['description'] = 'testString'
 
         # Construct a model instance of SecretGroupMetadataUpdatable by calling from_dict on the json representation
-        secret_group_metadata_updatable_model = SecretGroupMetadataUpdatable.from_dict(secret_group_metadata_updatable_model_json)
+        secret_group_metadata_updatable_model = SecretGroupMetadataUpdatable.from_dict(
+            secret_group_metadata_updatable_model_json)
         assert secret_group_metadata_updatable_model != False
 
         # Construct a model instance of SecretGroupMetadataUpdatable by calling from_dict on the json representation
-        secret_group_metadata_updatable_model_dict = SecretGroupMetadataUpdatable.from_dict(secret_group_metadata_updatable_model_json).__dict__
-        secret_group_metadata_updatable_model2 = SecretGroupMetadataUpdatable(**secret_group_metadata_updatable_model_dict)
+        secret_group_metadata_updatable_model_dict = SecretGroupMetadataUpdatable.from_dict(
+            secret_group_metadata_updatable_model_json).__dict__
+        secret_group_metadata_updatable_model2 = SecretGroupMetadataUpdatable(
+            **secret_group_metadata_updatable_model_dict)
 
         # Verify the model instances are equivalent
         assert secret_group_metadata_updatable_model == secret_group_metadata_updatable_model2
@@ -3427,6 +3463,7 @@ class TestModel_SecretGroupMetadataUpdatable():
         # Convert model instance back to dict and verify no loss of data
         secret_group_metadata_updatable_model_json2 = secret_group_metadata_updatable_model.to_dict()
         assert secret_group_metadata_updatable_model_json2 == secret_group_metadata_updatable_model_json
+
 
 class TestModel_SecretGroupResource():
     """
@@ -3473,6 +3510,7 @@ class TestModel_SecretGroupResource():
         actual_dict = secret_group_resource_model.get_properties()
         assert actual_dict == expected_dict
 
+
 class TestModel_SecretMetadataRequest():
     """
     Test Class for SecretMetadataRequest
@@ -3485,11 +3523,11 @@ class TestModel_SecretMetadataRequest():
 
         # Construct dict forms of any model objects needed in order to build this model.
 
-        collection_metadata_model = {} # CollectionMetadata
+        collection_metadata_model = {}  # CollectionMetadata
         collection_metadata_model['collection_type'] = 'application/vnd.ibm.secrets-manager.config+json'
         collection_metadata_model['collection_total'] = 1
 
-        secret_metadata_model = {} # ArbitrarySecretMetadata
+        secret_metadata_model = {}  # ArbitrarySecretMetadata
         secret_metadata_model['id'] = 'b0283d74-0894-830b-f81d-1f115f67729f'
         secret_metadata_model['labels'] = ['dev', 'us-south']
         secret_metadata_model['name'] = 'example-secret'
@@ -3498,7 +3536,8 @@ class TestModel_SecretMetadataRequest():
         secret_metadata_model['state'] = 0
         secret_metadata_model['state_description'] = 'Active'
         secret_metadata_model['secret_type'] = 'arbitrary'
-        secret_metadata_model['crn'] = 'crn:v1:bluemix:public:secrets-manager:<region>:a/<account-id>:<service-instance>:secret:<secret-id>'
+        secret_metadata_model[
+            'crn'] = 'crn:v1:bluemix:public:secrets-manager:<region>:a/<account-id>:<service-instance>:secret:<secret-id>'
         secret_metadata_model['creation_date'] = "2018-04-12T23:20:50.520000Z"
         secret_metadata_model['created_by'] = 'ServiceId-cb258cb9-8de3-4ac0-9aec-b2b2d27ac976'
         secret_metadata_model['last_update_date'] = "2018-04-12T23:20:50.520000Z"
@@ -3515,7 +3554,8 @@ class TestModel_SecretMetadataRequest():
         assert secret_metadata_request_model != False
 
         # Construct a model instance of SecretMetadataRequest by calling from_dict on the json representation
-        secret_metadata_request_model_dict = SecretMetadataRequest.from_dict(secret_metadata_request_model_json).__dict__
+        secret_metadata_request_model_dict = SecretMetadataRequest.from_dict(
+            secret_metadata_request_model_json).__dict__
         secret_metadata_request_model2 = SecretMetadataRequest(**secret_metadata_request_model_dict)
 
         # Verify the model instances are equivalent
@@ -3524,6 +3564,7 @@ class TestModel_SecretMetadataRequest():
         # Convert model instance back to dict and verify no loss of data
         secret_metadata_request_model_json2 = secret_metadata_request_model.to_dict()
         assert secret_metadata_request_model_json2 == secret_metadata_request_model_json
+
 
 class TestModel_SecretPolicyRotation():
     """
@@ -3537,7 +3578,7 @@ class TestModel_SecretPolicyRotation():
 
         # Construct dict forms of any model objects needed in order to build this model.
 
-        secret_policy_rotation_rotation_model = {} # SecretPolicyRotationRotationPolicyRotation
+        secret_policy_rotation_rotation_model = {}  # SecretPolicyRotationRotationPolicyRotation
         secret_policy_rotation_rotation_model['interval'] = 1
         secret_policy_rotation_rotation_model['unit'] = 'day'
 
@@ -3560,6 +3601,7 @@ class TestModel_SecretPolicyRotation():
         # Convert model instance back to dict and verify no loss of data
         secret_policy_rotation_model_json2 = secret_policy_rotation_model.to_dict()
         assert secret_policy_rotation_model_json2 == secret_policy_rotation_model_json
+
 
 class TestModel_CertificateValidity():
     """
@@ -3591,6 +3633,7 @@ class TestModel_CertificateValidity():
         certificate_validity_model_json2 = certificate_validity_model.to_dict()
         assert certificate_validity_model_json2 == certificate_validity_model_json
 
+
 class TestModel_Warning():
     """
     Test Class for Warning
@@ -3621,6 +3664,7 @@ class TestModel_Warning():
         warning_model_json2 = warning_model.to_dict()
         assert warning_model_json2 == warning_model_json
 
+
 class TestModel_ArbitrarySecretMetadata():
     """
     Test Class for ArbitrarySecretMetadata
@@ -3641,7 +3685,8 @@ class TestModel_ArbitrarySecretMetadata():
         arbitrary_secret_metadata_model_json['state'] = 0
         arbitrary_secret_metadata_model_json['state_description'] = 'Active'
         arbitrary_secret_metadata_model_json['secret_type'] = 'arbitrary'
-        arbitrary_secret_metadata_model_json['crn'] = 'crn:v1:bluemix:public:secrets-manager:<region>:a/<account-id>:<service-instance>:secret:<secret-id>'
+        arbitrary_secret_metadata_model_json[
+            'crn'] = 'crn:v1:bluemix:public:secrets-manager:<region>:a/<account-id>:<service-instance>:secret:<secret-id>'
         arbitrary_secret_metadata_model_json['creation_date'] = "2018-04-12T23:20:50.520000Z"
         arbitrary_secret_metadata_model_json['created_by'] = 'ServiceId-cb258cb9-8de3-4ac0-9aec-b2b2d27ac976'
         arbitrary_secret_metadata_model_json['last_update_date'] = "2018-04-12T23:20:50.520000Z"
@@ -3653,7 +3698,8 @@ class TestModel_ArbitrarySecretMetadata():
         assert arbitrary_secret_metadata_model != False
 
         # Construct a model instance of ArbitrarySecretMetadata by calling from_dict on the json representation
-        arbitrary_secret_metadata_model_dict = ArbitrarySecretMetadata.from_dict(arbitrary_secret_metadata_model_json).__dict__
+        arbitrary_secret_metadata_model_dict = ArbitrarySecretMetadata.from_dict(
+            arbitrary_secret_metadata_model_json).__dict__
         arbitrary_secret_metadata_model2 = ArbitrarySecretMetadata(**arbitrary_secret_metadata_model_dict)
 
         # Verify the model instances are equivalent
@@ -3662,6 +3708,7 @@ class TestModel_ArbitrarySecretMetadata():
         # Convert model instance back to dict and verify no loss of data
         arbitrary_secret_metadata_model_json2 = arbitrary_secret_metadata_model.to_dict()
         assert arbitrary_secret_metadata_model_json2 == arbitrary_secret_metadata_model_json
+
 
 class TestModel_ArbitrarySecretResource():
     """
@@ -3683,7 +3730,8 @@ class TestModel_ArbitrarySecretResource():
         arbitrary_secret_resource_model_json['state'] = 0
         arbitrary_secret_resource_model_json['state_description'] = 'Active'
         arbitrary_secret_resource_model_json['secret_type'] = 'arbitrary'
-        arbitrary_secret_resource_model_json['crn'] = 'crn:v1:bluemix:public:secrets-manager:<region>:a/<account-id>:<service-instance>:secret:<secret-id>'
+        arbitrary_secret_resource_model_json[
+            'crn'] = 'crn:v1:bluemix:public:secrets-manager:<region>:a/<account-id>:<service-instance>:secret:<secret-id>'
         arbitrary_secret_resource_model_json['creation_date'] = "2018-04-12T23:20:50.520000Z"
         arbitrary_secret_resource_model_json['created_by'] = 'testString'
         arbitrary_secret_resource_model_json['last_update_date'] = "2018-04-12T23:20:50.520000Z"
@@ -3691,14 +3739,15 @@ class TestModel_ArbitrarySecretResource():
         arbitrary_secret_resource_model_json['versions'] = [{}]
         arbitrary_secret_resource_model_json['expiration_date'] = "2030-04-01T09:30:00Z"
         arbitrary_secret_resource_model_json['payload'] = 'testString'
-        arbitrary_secret_resource_model_json['secret_data'] = { 'foo': 'bar' }
+        arbitrary_secret_resource_model_json['secret_data'] = {'foo': 'bar'}
 
         # Construct a model instance of ArbitrarySecretResource by calling from_dict on the json representation
         arbitrary_secret_resource_model = ArbitrarySecretResource.from_dict(arbitrary_secret_resource_model_json)
         assert arbitrary_secret_resource_model != False
 
         # Construct a model instance of ArbitrarySecretResource by calling from_dict on the json representation
-        arbitrary_secret_resource_model_dict = ArbitrarySecretResource.from_dict(arbitrary_secret_resource_model_json).__dict__
+        arbitrary_secret_resource_model_dict = ArbitrarySecretResource.from_dict(
+            arbitrary_secret_resource_model_json).__dict__
         arbitrary_secret_resource_model2 = ArbitrarySecretResource(**arbitrary_secret_resource_model_dict)
 
         # Verify the model instances are equivalent
@@ -3707,6 +3756,7 @@ class TestModel_ArbitrarySecretResource():
         # Convert model instance back to dict and verify no loss of data
         arbitrary_secret_resource_model_json2 = arbitrary_secret_resource_model.to_dict()
         assert arbitrary_secret_resource_model_json2 == arbitrary_secret_resource_model_json
+
 
 class TestModel_ArbitrarySecretVersionMetadata():
     """
@@ -3725,12 +3775,15 @@ class TestModel_ArbitrarySecretVersionMetadata():
         arbitrary_secret_version_metadata_model_json['created_by'] = 'testString'
 
         # Construct a model instance of ArbitrarySecretVersionMetadata by calling from_dict on the json representation
-        arbitrary_secret_version_metadata_model = ArbitrarySecretVersionMetadata.from_dict(arbitrary_secret_version_metadata_model_json)
+        arbitrary_secret_version_metadata_model = ArbitrarySecretVersionMetadata.from_dict(
+            arbitrary_secret_version_metadata_model_json)
         assert arbitrary_secret_version_metadata_model != False
 
         # Construct a model instance of ArbitrarySecretVersionMetadata by calling from_dict on the json representation
-        arbitrary_secret_version_metadata_model_dict = ArbitrarySecretVersionMetadata.from_dict(arbitrary_secret_version_metadata_model_json).__dict__
-        arbitrary_secret_version_metadata_model2 = ArbitrarySecretVersionMetadata(**arbitrary_secret_version_metadata_model_dict)
+        arbitrary_secret_version_metadata_model_dict = ArbitrarySecretVersionMetadata.from_dict(
+            arbitrary_secret_version_metadata_model_json).__dict__
+        arbitrary_secret_version_metadata_model2 = ArbitrarySecretVersionMetadata(
+            **arbitrary_secret_version_metadata_model_dict)
 
         # Verify the model instances are equivalent
         assert arbitrary_secret_version_metadata_model == arbitrary_secret_version_metadata_model2
@@ -3738,6 +3791,7 @@ class TestModel_ArbitrarySecretVersionMetadata():
         # Convert model instance back to dict and verify no loss of data
         arbitrary_secret_version_metadata_model_json2 = arbitrary_secret_version_metadata_model.to_dict()
         assert arbitrary_secret_version_metadata_model_json2 == arbitrary_secret_version_metadata_model_json
+
 
 class TestModel_CertificateSecretMetadata():
     """
@@ -3751,7 +3805,7 @@ class TestModel_CertificateSecretMetadata():
 
         # Construct dict forms of any model objects needed in order to build this model.
 
-        certificate_validity_model = {} # CertificateValidity
+        certificate_validity_model = {}  # CertificateValidity
         certificate_validity_model['not_before'] = "2020-10-05T21:33:11Z"
         certificate_validity_model['not_after'] = "2021-01-01T00:00:00Z"
 
@@ -3765,7 +3819,8 @@ class TestModel_CertificateSecretMetadata():
         certificate_secret_metadata_model_json['state'] = 0
         certificate_secret_metadata_model_json['state_description'] = 'Active'
         certificate_secret_metadata_model_json['secret_type'] = 'arbitrary'
-        certificate_secret_metadata_model_json['crn'] = 'crn:v1:bluemix:public:secrets-manager:<region>:a/<account-id>:<service-instance>:secret:<secret-id>'
+        certificate_secret_metadata_model_json[
+            'crn'] = 'crn:v1:bluemix:public:secrets-manager:<region>:a/<account-id>:<service-instance>:secret:<secret-id>'
         certificate_secret_metadata_model_json['creation_date'] = "2018-04-12T23:20:50.520000Z"
         certificate_secret_metadata_model_json['created_by'] = 'ServiceId-cb258cb9-8de3-4ac0-9aec-b2b2d27ac976'
         certificate_secret_metadata_model_json['last_update_date'] = "2018-04-12T23:20:50.520000Z"
@@ -3786,7 +3841,8 @@ class TestModel_CertificateSecretMetadata():
         assert certificate_secret_metadata_model != False
 
         # Construct a model instance of CertificateSecretMetadata by calling from_dict on the json representation
-        certificate_secret_metadata_model_dict = CertificateSecretMetadata.from_dict(certificate_secret_metadata_model_json).__dict__
+        certificate_secret_metadata_model_dict = CertificateSecretMetadata.from_dict(
+            certificate_secret_metadata_model_json).__dict__
         certificate_secret_metadata_model2 = CertificateSecretMetadata(**certificate_secret_metadata_model_dict)
 
         # Verify the model instances are equivalent
@@ -3795,6 +3851,7 @@ class TestModel_CertificateSecretMetadata():
         # Convert model instance back to dict and verify no loss of data
         certificate_secret_metadata_model_json2 = certificate_secret_metadata_model.to_dict()
         assert certificate_secret_metadata_model_json2 == certificate_secret_metadata_model_json
+
 
 class TestModel_CertificateSecretResource():
     """
@@ -3808,7 +3865,7 @@ class TestModel_CertificateSecretResource():
 
         # Construct dict forms of any model objects needed in order to build this model.
 
-        certificate_validity_model = {} # CertificateValidity
+        certificate_validity_model = {}  # CertificateValidity
         certificate_validity_model['not_before'] = "2020-10-05T21:33:11Z"
         certificate_validity_model['not_after'] = "2021-01-01T00:00:00Z"
 
@@ -3822,7 +3879,8 @@ class TestModel_CertificateSecretResource():
         certificate_secret_resource_model_json['state'] = 0
         certificate_secret_resource_model_json['state_description'] = 'Active'
         certificate_secret_resource_model_json['secret_type'] = 'arbitrary'
-        certificate_secret_resource_model_json['crn'] = 'crn:v1:bluemix:public:secrets-manager:<region>:a/<account-id>:<service-instance>:secret:<secret-id>'
+        certificate_secret_resource_model_json[
+            'crn'] = 'crn:v1:bluemix:public:secrets-manager:<region>:a/<account-id>:<service-instance>:secret:<secret-id>'
         certificate_secret_resource_model_json['creation_date'] = "2018-04-12T23:20:50.520000Z"
         certificate_secret_resource_model_json['created_by'] = 'testString'
         certificate_secret_resource_model_json['last_update_date'] = "2018-04-12T23:20:50.520000Z"
@@ -3831,7 +3889,7 @@ class TestModel_CertificateSecretResource():
         certificate_secret_resource_model_json['certificate'] = 'testString'
         certificate_secret_resource_model_json['private_key'] = 'testString'
         certificate_secret_resource_model_json['intermediate'] = 'testString'
-        certificate_secret_resource_model_json['secret_data'] = { 'foo': 'bar' }
+        certificate_secret_resource_model_json['secret_data'] = {'foo': 'bar'}
         certificate_secret_resource_model_json['serial_number'] = 'd9:be:fe:35:ba:09:42:b5'
         certificate_secret_resource_model_json['algorithm'] = 'sha256WithRSAEncryption'
         certificate_secret_resource_model_json['key_algorithm'] = 'RSA2048'
@@ -3848,7 +3906,8 @@ class TestModel_CertificateSecretResource():
         assert certificate_secret_resource_model != False
 
         # Construct a model instance of CertificateSecretResource by calling from_dict on the json representation
-        certificate_secret_resource_model_dict = CertificateSecretResource.from_dict(certificate_secret_resource_model_json).__dict__
+        certificate_secret_resource_model_dict = CertificateSecretResource.from_dict(
+            certificate_secret_resource_model_json).__dict__
         certificate_secret_resource_model2 = CertificateSecretResource(**certificate_secret_resource_model_dict)
 
         # Verify the model instances are equivalent
@@ -3857,6 +3916,7 @@ class TestModel_CertificateSecretResource():
         # Convert model instance back to dict and verify no loss of data
         certificate_secret_resource_model_json2 = certificate_secret_resource_model.to_dict()
         assert certificate_secret_resource_model_json2 == certificate_secret_resource_model_json
+
 
 class TestModel_CertificateSecretVersion():
     """
@@ -3870,11 +3930,11 @@ class TestModel_CertificateSecretVersion():
 
         # Construct dict forms of any model objects needed in order to build this model.
 
-        certificate_validity_model = {} # CertificateValidity
+        certificate_validity_model = {}  # CertificateValidity
         certificate_validity_model['not_before'] = "2020-10-05T21:33:11Z"
         certificate_validity_model['not_after'] = "2021-01-01T00:00:00Z"
 
-        certificate_secret_data_model = {} # CertificateSecretData
+        certificate_secret_data_model = {}  # CertificateSecretData
         certificate_secret_data_model['certificate'] = 'testString'
         certificate_secret_data_model['private_key'] = 'testString'
         certificate_secret_data_model['intermediate'] = 'testString'
@@ -3882,7 +3942,8 @@ class TestModel_CertificateSecretVersion():
         # Construct a json representation of a CertificateSecretVersion model
         certificate_secret_version_model_json = {}
         certificate_secret_version_model_json['id'] = 'testString'
-        certificate_secret_version_model_json['crn'] = 'crn:v1:bluemix:public:secrets-manager:<region>:a/<account-id>:<service-instance>:secret:<secret-id>'
+        certificate_secret_version_model_json[
+            'crn'] = 'crn:v1:bluemix:public:secrets-manager:<region>:a/<account-id>:<service-instance>:secret:<secret-id>'
         certificate_secret_version_model_json['version_id'] = '4a0225e9-17a0-46c1-ace7-f25bcf4237d4'
         certificate_secret_version_model_json['creation_date'] = "2019-01-01T12:00:00Z"
         certificate_secret_version_model_json['created_by'] = 'testString'
@@ -3896,7 +3957,8 @@ class TestModel_CertificateSecretVersion():
         assert certificate_secret_version_model != False
 
         # Construct a model instance of CertificateSecretVersion by calling from_dict on the json representation
-        certificate_secret_version_model_dict = CertificateSecretVersion.from_dict(certificate_secret_version_model_json).__dict__
+        certificate_secret_version_model_dict = CertificateSecretVersion.from_dict(
+            certificate_secret_version_model_json).__dict__
         certificate_secret_version_model2 = CertificateSecretVersion(**certificate_secret_version_model_dict)
 
         # Verify the model instances are equivalent
@@ -3905,6 +3967,7 @@ class TestModel_CertificateSecretVersion():
         # Convert model instance back to dict and verify no loss of data
         certificate_secret_version_model_json2 = certificate_secret_version_model.to_dict()
         assert certificate_secret_version_model_json2 == certificate_secret_version_model_json
+
 
 class TestModel_CertificateSecretVersionMetadata():
     """
@@ -3918,7 +3981,7 @@ class TestModel_CertificateSecretVersionMetadata():
 
         # Construct dict forms of any model objects needed in order to build this model.
 
-        certificate_validity_model = {} # CertificateValidity
+        certificate_validity_model = {}  # CertificateValidity
         certificate_validity_model['not_before'] = "2020-10-05T21:33:11Z"
         certificate_validity_model['not_after'] = "2021-01-01T00:00:00Z"
 
@@ -3932,12 +3995,15 @@ class TestModel_CertificateSecretVersionMetadata():
         certificate_secret_version_metadata_model_json['validity'] = certificate_validity_model
 
         # Construct a model instance of CertificateSecretVersionMetadata by calling from_dict on the json representation
-        certificate_secret_version_metadata_model = CertificateSecretVersionMetadata.from_dict(certificate_secret_version_metadata_model_json)
+        certificate_secret_version_metadata_model = CertificateSecretVersionMetadata.from_dict(
+            certificate_secret_version_metadata_model_json)
         assert certificate_secret_version_metadata_model != False
 
         # Construct a model instance of CertificateSecretVersionMetadata by calling from_dict on the json representation
-        certificate_secret_version_metadata_model_dict = CertificateSecretVersionMetadata.from_dict(certificate_secret_version_metadata_model_json).__dict__
-        certificate_secret_version_metadata_model2 = CertificateSecretVersionMetadata(**certificate_secret_version_metadata_model_dict)
+        certificate_secret_version_metadata_model_dict = CertificateSecretVersionMetadata.from_dict(
+            certificate_secret_version_metadata_model_json).__dict__
+        certificate_secret_version_metadata_model2 = CertificateSecretVersionMetadata(
+            **certificate_secret_version_metadata_model_dict)
 
         # Verify the model instances are equivalent
         assert certificate_secret_version_metadata_model == certificate_secret_version_metadata_model2
@@ -3945,6 +4011,7 @@ class TestModel_CertificateSecretVersionMetadata():
         # Convert model instance back to dict and verify no loss of data
         certificate_secret_version_metadata_model_json2 = certificate_secret_version_metadata_model.to_dict()
         assert certificate_secret_version_metadata_model_json2 == certificate_secret_version_metadata_model_json
+
 
 class TestModel_ConfigElementDefConfigClassicInfrastructureConfig():
     """
@@ -3958,16 +4025,21 @@ class TestModel_ConfigElementDefConfigClassicInfrastructureConfig():
 
         # Construct a json representation of a ConfigElementDefConfigClassicInfrastructureConfig model
         config_element_def_config_classic_infrastructure_config_model_json = {}
-        config_element_def_config_classic_infrastructure_config_model_json['classic_infrastructure_username'] = 'testString'
-        config_element_def_config_classic_infrastructure_config_model_json['classic_infrastructure_password'] = 'testString'
+        config_element_def_config_classic_infrastructure_config_model_json[
+            'classic_infrastructure_username'] = 'testString'
+        config_element_def_config_classic_infrastructure_config_model_json[
+            'classic_infrastructure_password'] = 'testString'
 
         # Construct a model instance of ConfigElementDefConfigClassicInfrastructureConfig by calling from_dict on the json representation
-        config_element_def_config_classic_infrastructure_config_model = ConfigElementDefConfigClassicInfrastructureConfig.from_dict(config_element_def_config_classic_infrastructure_config_model_json)
+        config_element_def_config_classic_infrastructure_config_model = ConfigElementDefConfigClassicInfrastructureConfig.from_dict(
+            config_element_def_config_classic_infrastructure_config_model_json)
         assert config_element_def_config_classic_infrastructure_config_model != False
 
         # Construct a model instance of ConfigElementDefConfigClassicInfrastructureConfig by calling from_dict on the json representation
-        config_element_def_config_classic_infrastructure_config_model_dict = ConfigElementDefConfigClassicInfrastructureConfig.from_dict(config_element_def_config_classic_infrastructure_config_model_json).__dict__
-        config_element_def_config_classic_infrastructure_config_model2 = ConfigElementDefConfigClassicInfrastructureConfig(**config_element_def_config_classic_infrastructure_config_model_dict)
+        config_element_def_config_classic_infrastructure_config_model_dict = ConfigElementDefConfigClassicInfrastructureConfig.from_dict(
+            config_element_def_config_classic_infrastructure_config_model_json).__dict__
+        config_element_def_config_classic_infrastructure_config_model2 = ConfigElementDefConfigClassicInfrastructureConfig(
+            **config_element_def_config_classic_infrastructure_config_model_dict)
 
         # Verify the model instances are equivalent
         assert config_element_def_config_classic_infrastructure_config_model == config_element_def_config_classic_infrastructure_config_model2
@@ -3975,6 +4047,7 @@ class TestModel_ConfigElementDefConfigClassicInfrastructureConfig():
         # Convert model instance back to dict and verify no loss of data
         config_element_def_config_classic_infrastructure_config_model_json2 = config_element_def_config_classic_infrastructure_config_model.to_dict()
         assert config_element_def_config_classic_infrastructure_config_model_json2 == config_element_def_config_classic_infrastructure_config_model_json
+
 
 class TestModel_ConfigElementDefConfigCloudInternetServicesConfig():
     """
@@ -3988,16 +4061,20 @@ class TestModel_ConfigElementDefConfigCloudInternetServicesConfig():
 
         # Construct a json representation of a ConfigElementDefConfigCloudInternetServicesConfig model
         config_element_def_config_cloud_internet_services_config_model_json = {}
-        config_element_def_config_cloud_internet_services_config_model_json['cis_crn'] = 'crn:v1:bluemix:public:internet-svcs:global:a/<account-id>:<service-instance>::'
+        config_element_def_config_cloud_internet_services_config_model_json[
+            'cis_crn'] = 'crn:v1:bluemix:public:internet-svcs:global:a/<account-id>:<service-instance>::'
         config_element_def_config_cloud_internet_services_config_model_json['cis_apikey'] = 'testString'
 
         # Construct a model instance of ConfigElementDefConfigCloudInternetServicesConfig by calling from_dict on the json representation
-        config_element_def_config_cloud_internet_services_config_model = ConfigElementDefConfigCloudInternetServicesConfig.from_dict(config_element_def_config_cloud_internet_services_config_model_json)
+        config_element_def_config_cloud_internet_services_config_model = ConfigElementDefConfigCloudInternetServicesConfig.from_dict(
+            config_element_def_config_cloud_internet_services_config_model_json)
         assert config_element_def_config_cloud_internet_services_config_model != False
 
         # Construct a model instance of ConfigElementDefConfigCloudInternetServicesConfig by calling from_dict on the json representation
-        config_element_def_config_cloud_internet_services_config_model_dict = ConfigElementDefConfigCloudInternetServicesConfig.from_dict(config_element_def_config_cloud_internet_services_config_model_json).__dict__
-        config_element_def_config_cloud_internet_services_config_model2 = ConfigElementDefConfigCloudInternetServicesConfig(**config_element_def_config_cloud_internet_services_config_model_dict)
+        config_element_def_config_cloud_internet_services_config_model_dict = ConfigElementDefConfigCloudInternetServicesConfig.from_dict(
+            config_element_def_config_cloud_internet_services_config_model_json).__dict__
+        config_element_def_config_cloud_internet_services_config_model2 = ConfigElementDefConfigCloudInternetServicesConfig(
+            **config_element_def_config_cloud_internet_services_config_model_dict)
 
         # Verify the model instances are equivalent
         assert config_element_def_config_cloud_internet_services_config_model == config_element_def_config_cloud_internet_services_config_model2
@@ -4005,6 +4082,7 @@ class TestModel_ConfigElementDefConfigCloudInternetServicesConfig():
         # Convert model instance back to dict and verify no loss of data
         config_element_def_config_cloud_internet_services_config_model_json2 = config_element_def_config_cloud_internet_services_config_model.to_dict()
         assert config_element_def_config_cloud_internet_services_config_model_json2 == config_element_def_config_cloud_internet_services_config_model_json
+
 
 class TestModel_ConfigElementDefConfigLetsEncryptConfig():
     """
@@ -4021,12 +4099,15 @@ class TestModel_ConfigElementDefConfigLetsEncryptConfig():
         config_element_def_config_lets_encrypt_config_model_json['private_key'] = 'testString'
 
         # Construct a model instance of ConfigElementDefConfigLetsEncryptConfig by calling from_dict on the json representation
-        config_element_def_config_lets_encrypt_config_model = ConfigElementDefConfigLetsEncryptConfig.from_dict(config_element_def_config_lets_encrypt_config_model_json)
+        config_element_def_config_lets_encrypt_config_model = ConfigElementDefConfigLetsEncryptConfig.from_dict(
+            config_element_def_config_lets_encrypt_config_model_json)
         assert config_element_def_config_lets_encrypt_config_model != False
 
         # Construct a model instance of ConfigElementDefConfigLetsEncryptConfig by calling from_dict on the json representation
-        config_element_def_config_lets_encrypt_config_model_dict = ConfigElementDefConfigLetsEncryptConfig.from_dict(config_element_def_config_lets_encrypt_config_model_json).__dict__
-        config_element_def_config_lets_encrypt_config_model2 = ConfigElementDefConfigLetsEncryptConfig(**config_element_def_config_lets_encrypt_config_model_dict)
+        config_element_def_config_lets_encrypt_config_model_dict = ConfigElementDefConfigLetsEncryptConfig.from_dict(
+            config_element_def_config_lets_encrypt_config_model_json).__dict__
+        config_element_def_config_lets_encrypt_config_model2 = ConfigElementDefConfigLetsEncryptConfig(
+            **config_element_def_config_lets_encrypt_config_model_dict)
 
         # Verify the model instances are equivalent
         assert config_element_def_config_lets_encrypt_config_model == config_element_def_config_lets_encrypt_config_model2
@@ -4034,6 +4115,7 @@ class TestModel_ConfigElementDefConfigLetsEncryptConfig():
         # Convert model instance back to dict and verify no loss of data
         config_element_def_config_lets_encrypt_config_model_json2 = config_element_def_config_lets_encrypt_config_model.to_dict()
         assert config_element_def_config_lets_encrypt_config_model_json2 == config_element_def_config_lets_encrypt_config_model_json
+
 
 class TestModel_DeleteCredentialsForIAMCredentialsSecret():
     """
@@ -4050,12 +4132,15 @@ class TestModel_DeleteCredentialsForIAMCredentialsSecret():
         delete_credentials_for_iam_credentials_secret_model_json['service_id'] = 'testString'
 
         # Construct a model instance of DeleteCredentialsForIAMCredentialsSecret by calling from_dict on the json representation
-        delete_credentials_for_iam_credentials_secret_model = DeleteCredentialsForIAMCredentialsSecret.from_dict(delete_credentials_for_iam_credentials_secret_model_json)
+        delete_credentials_for_iam_credentials_secret_model = DeleteCredentialsForIAMCredentialsSecret.from_dict(
+            delete_credentials_for_iam_credentials_secret_model_json)
         assert delete_credentials_for_iam_credentials_secret_model != False
 
         # Construct a model instance of DeleteCredentialsForIAMCredentialsSecret by calling from_dict on the json representation
-        delete_credentials_for_iam_credentials_secret_model_dict = DeleteCredentialsForIAMCredentialsSecret.from_dict(delete_credentials_for_iam_credentials_secret_model_json).__dict__
-        delete_credentials_for_iam_credentials_secret_model2 = DeleteCredentialsForIAMCredentialsSecret(**delete_credentials_for_iam_credentials_secret_model_dict)
+        delete_credentials_for_iam_credentials_secret_model_dict = DeleteCredentialsForIAMCredentialsSecret.from_dict(
+            delete_credentials_for_iam_credentials_secret_model_json).__dict__
+        delete_credentials_for_iam_credentials_secret_model2 = DeleteCredentialsForIAMCredentialsSecret(
+            **delete_credentials_for_iam_credentials_secret_model_dict)
 
         # Verify the model instances are equivalent
         assert delete_credentials_for_iam_credentials_secret_model == delete_credentials_for_iam_credentials_secret_model2
@@ -4063,6 +4148,7 @@ class TestModel_DeleteCredentialsForIAMCredentialsSecret():
         # Convert model instance back to dict and verify no loss of data
         delete_credentials_for_iam_credentials_secret_model_json2 = delete_credentials_for_iam_credentials_secret_model.to_dict()
         assert delete_credentials_for_iam_credentials_secret_model_json2 == delete_credentials_for_iam_credentials_secret_model_json
+
 
 class TestModel_GetConfigElementsResourcesItemCertificateAuthoritiesConfig():
     """
@@ -4076,21 +4162,25 @@ class TestModel_GetConfigElementsResourcesItemCertificateAuthoritiesConfig():
 
         # Construct dict forms of any model objects needed in order to build this model.
 
-        config_element_metadata_model = {} # ConfigElementMetadata
+        config_element_metadata_model = {}  # ConfigElementMetadata
         config_element_metadata_model['name'] = 'testString'
         config_element_metadata_model['type'] = 'letsencrypt'
 
         # Construct a json representation of a GetConfigElementsResourcesItemCertificateAuthoritiesConfig model
         get_config_elements_resources_item_certificate_authorities_config_model_json = {}
-        get_config_elements_resources_item_certificate_authorities_config_model_json['certificate_authorities'] = [config_element_metadata_model]
+        get_config_elements_resources_item_certificate_authorities_config_model_json['certificate_authorities'] = [
+            config_element_metadata_model]
 
         # Construct a model instance of GetConfigElementsResourcesItemCertificateAuthoritiesConfig by calling from_dict on the json representation
-        get_config_elements_resources_item_certificate_authorities_config_model = GetConfigElementsResourcesItemCertificateAuthoritiesConfig.from_dict(get_config_elements_resources_item_certificate_authorities_config_model_json)
+        get_config_elements_resources_item_certificate_authorities_config_model = GetConfigElementsResourcesItemCertificateAuthoritiesConfig.from_dict(
+            get_config_elements_resources_item_certificate_authorities_config_model_json)
         assert get_config_elements_resources_item_certificate_authorities_config_model != False
 
         # Construct a model instance of GetConfigElementsResourcesItemCertificateAuthoritiesConfig by calling from_dict on the json representation
-        get_config_elements_resources_item_certificate_authorities_config_model_dict = GetConfigElementsResourcesItemCertificateAuthoritiesConfig.from_dict(get_config_elements_resources_item_certificate_authorities_config_model_json).__dict__
-        get_config_elements_resources_item_certificate_authorities_config_model2 = GetConfigElementsResourcesItemCertificateAuthoritiesConfig(**get_config_elements_resources_item_certificate_authorities_config_model_dict)
+        get_config_elements_resources_item_certificate_authorities_config_model_dict = GetConfigElementsResourcesItemCertificateAuthoritiesConfig.from_dict(
+            get_config_elements_resources_item_certificate_authorities_config_model_json).__dict__
+        get_config_elements_resources_item_certificate_authorities_config_model2 = GetConfigElementsResourcesItemCertificateAuthoritiesConfig(
+            **get_config_elements_resources_item_certificate_authorities_config_model_dict)
 
         # Verify the model instances are equivalent
         assert get_config_elements_resources_item_certificate_authorities_config_model == get_config_elements_resources_item_certificate_authorities_config_model2
@@ -4098,6 +4188,7 @@ class TestModel_GetConfigElementsResourcesItemCertificateAuthoritiesConfig():
         # Convert model instance back to dict and verify no loss of data
         get_config_elements_resources_item_certificate_authorities_config_model_json2 = get_config_elements_resources_item_certificate_authorities_config_model.to_dict()
         assert get_config_elements_resources_item_certificate_authorities_config_model_json2 == get_config_elements_resources_item_certificate_authorities_config_model_json
+
 
 class TestModel_GetConfigElementsResourcesItemDnsProvidersConfig():
     """
@@ -4111,21 +4202,25 @@ class TestModel_GetConfigElementsResourcesItemDnsProvidersConfig():
 
         # Construct dict forms of any model objects needed in order to build this model.
 
-        config_element_metadata_model = {} # ConfigElementMetadata
+        config_element_metadata_model = {}  # ConfigElementMetadata
         config_element_metadata_model['name'] = 'testString'
         config_element_metadata_model['type'] = 'letsencrypt'
 
         # Construct a json representation of a GetConfigElementsResourcesItemDnsProvidersConfig model
         get_config_elements_resources_item_dns_providers_config_model_json = {}
-        get_config_elements_resources_item_dns_providers_config_model_json['dns_providers'] = [config_element_metadata_model]
+        get_config_elements_resources_item_dns_providers_config_model_json['dns_providers'] = [
+            config_element_metadata_model]
 
         # Construct a model instance of GetConfigElementsResourcesItemDnsProvidersConfig by calling from_dict on the json representation
-        get_config_elements_resources_item_dns_providers_config_model = GetConfigElementsResourcesItemDnsProvidersConfig.from_dict(get_config_elements_resources_item_dns_providers_config_model_json)
+        get_config_elements_resources_item_dns_providers_config_model = GetConfigElementsResourcesItemDnsProvidersConfig.from_dict(
+            get_config_elements_resources_item_dns_providers_config_model_json)
         assert get_config_elements_resources_item_dns_providers_config_model != False
 
         # Construct a model instance of GetConfigElementsResourcesItemDnsProvidersConfig by calling from_dict on the json representation
-        get_config_elements_resources_item_dns_providers_config_model_dict = GetConfigElementsResourcesItemDnsProvidersConfig.from_dict(get_config_elements_resources_item_dns_providers_config_model_json).__dict__
-        get_config_elements_resources_item_dns_providers_config_model2 = GetConfigElementsResourcesItemDnsProvidersConfig(**get_config_elements_resources_item_dns_providers_config_model_dict)
+        get_config_elements_resources_item_dns_providers_config_model_dict = GetConfigElementsResourcesItemDnsProvidersConfig.from_dict(
+            get_config_elements_resources_item_dns_providers_config_model_json).__dict__
+        get_config_elements_resources_item_dns_providers_config_model2 = GetConfigElementsResourcesItemDnsProvidersConfig(
+            **get_config_elements_resources_item_dns_providers_config_model_dict)
 
         # Verify the model instances are equivalent
         assert get_config_elements_resources_item_dns_providers_config_model == get_config_elements_resources_item_dns_providers_config_model2
@@ -4133,6 +4228,7 @@ class TestModel_GetConfigElementsResourcesItemDnsProvidersConfig():
         # Convert model instance back to dict and verify no loss of data
         get_config_elements_resources_item_dns_providers_config_model_json2 = get_config_elements_resources_item_dns_providers_config_model.to_dict()
         assert get_config_elements_resources_item_dns_providers_config_model_json2 == get_config_elements_resources_item_dns_providers_config_model_json
+
 
 class TestModel_GetSecretPolicyRotation():
     """
@@ -4146,22 +4242,24 @@ class TestModel_GetSecretPolicyRotation():
 
         # Construct dict forms of any model objects needed in order to build this model.
 
-        collection_metadata_model = {} # CollectionMetadata
+        collection_metadata_model = {}  # CollectionMetadata
         collection_metadata_model['collection_type'] = 'application/vnd.ibm.secrets-manager.config+json'
         collection_metadata_model['collection_total'] = 1
 
-        secret_policy_rotation_rotation_model = {} # SecretPolicyRotationRotationPolicyRotation
+        secret_policy_rotation_rotation_model = {}  # SecretPolicyRotationRotationPolicyRotation
         secret_policy_rotation_rotation_model['interval'] = 1
         secret_policy_rotation_rotation_model['unit'] = 'day'
 
-        get_secret_policy_rotation_resources_item_model = {} # GetSecretPolicyRotationResourcesItem
+        get_secret_policy_rotation_resources_item_model = {}  # GetSecretPolicyRotationResourcesItem
         get_secret_policy_rotation_resources_item_model['id'] = 'testString'
-        get_secret_policy_rotation_resources_item_model['crn'] = 'crn:v1:bluemix:public:kms:<region>:a/<account-id>:<service-instance:policy:<policy-id>'
+        get_secret_policy_rotation_resources_item_model[
+            'crn'] = 'crn:v1:bluemix:public:kms:<region>:a/<account-id>:<service-instance:policy:<policy-id>'
         get_secret_policy_rotation_resources_item_model['creation_date'] = "2019-01-01T12:00:00Z"
         get_secret_policy_rotation_resources_item_model['created_by'] = 'testString'
         get_secret_policy_rotation_resources_item_model['last_update_date'] = "2019-01-01T12:00:00Z"
         get_secret_policy_rotation_resources_item_model['updated_by'] = 'testString'
-        get_secret_policy_rotation_resources_item_model['type'] = 'application/vnd.ibm.secrets-manager.secret.policy+json'
+        get_secret_policy_rotation_resources_item_model[
+            'type'] = 'application/vnd.ibm.secrets-manager.secret.policy+json'
         get_secret_policy_rotation_resources_item_model['rotation'] = secret_policy_rotation_rotation_model
 
         # Construct a json representation of a GetSecretPolicyRotation model
@@ -4174,7 +4272,8 @@ class TestModel_GetSecretPolicyRotation():
         assert get_secret_policy_rotation_model != False
 
         # Construct a model instance of GetSecretPolicyRotation by calling from_dict on the json representation
-        get_secret_policy_rotation_model_dict = GetSecretPolicyRotation.from_dict(get_secret_policy_rotation_model_json).__dict__
+        get_secret_policy_rotation_model_dict = GetSecretPolicyRotation.from_dict(
+            get_secret_policy_rotation_model_json).__dict__
         get_secret_policy_rotation_model2 = GetSecretPolicyRotation(**get_secret_policy_rotation_model_dict)
 
         # Verify the model instances are equivalent
@@ -4183,6 +4282,7 @@ class TestModel_GetSecretPolicyRotation():
         # Convert model instance back to dict and verify no loss of data
         get_secret_policy_rotation_model_json2 = get_secret_policy_rotation_model.to_dict()
         assert get_secret_policy_rotation_model_json2 == get_secret_policy_rotation_model_json
+
 
 class TestModel_IAMCredentialsSecretEngineRootConfig():
     """
@@ -4197,15 +4297,19 @@ class TestModel_IAMCredentialsSecretEngineRootConfig():
         # Construct a json representation of a IAMCredentialsSecretEngineRootConfig model
         iam_credentials_secret_engine_root_config_model_json = {}
         iam_credentials_secret_engine_root_config_model_json['api_key'] = 'API_KEY'
-        iam_credentials_secret_engine_root_config_model_json['api_key_hash'] = 'a737c3a98ebfc16a0d5ddc6b277548491440780003e06f5924dc906bc8d78e91'
+        iam_credentials_secret_engine_root_config_model_json[
+            'api_key_hash'] = 'a737c3a98ebfc16a0d5ddc6b277548491440780003e06f5924dc906bc8d78e91'
 
         # Construct a model instance of IAMCredentialsSecretEngineRootConfig by calling from_dict on the json representation
-        iam_credentials_secret_engine_root_config_model = IAMCredentialsSecretEngineRootConfig.from_dict(iam_credentials_secret_engine_root_config_model_json)
+        iam_credentials_secret_engine_root_config_model = IAMCredentialsSecretEngineRootConfig.from_dict(
+            iam_credentials_secret_engine_root_config_model_json)
         assert iam_credentials_secret_engine_root_config_model != False
 
         # Construct a model instance of IAMCredentialsSecretEngineRootConfig by calling from_dict on the json representation
-        iam_credentials_secret_engine_root_config_model_dict = IAMCredentialsSecretEngineRootConfig.from_dict(iam_credentials_secret_engine_root_config_model_json).__dict__
-        iam_credentials_secret_engine_root_config_model2 = IAMCredentialsSecretEngineRootConfig(**iam_credentials_secret_engine_root_config_model_dict)
+        iam_credentials_secret_engine_root_config_model_dict = IAMCredentialsSecretEngineRootConfig.from_dict(
+            iam_credentials_secret_engine_root_config_model_json).__dict__
+        iam_credentials_secret_engine_root_config_model2 = IAMCredentialsSecretEngineRootConfig(
+            **iam_credentials_secret_engine_root_config_model_dict)
 
         # Verify the model instances are equivalent
         assert iam_credentials_secret_engine_root_config_model == iam_credentials_secret_engine_root_config_model2
@@ -4213,6 +4317,7 @@ class TestModel_IAMCredentialsSecretEngineRootConfig():
         # Convert model instance back to dict and verify no loss of data
         iam_credentials_secret_engine_root_config_model_json2 = iam_credentials_secret_engine_root_config_model.to_dict()
         assert iam_credentials_secret_engine_root_config_model_json2 == iam_credentials_secret_engine_root_config_model_json
+
 
 class TestModel_IAMCredentialsSecretMetadata():
     """
@@ -4234,7 +4339,8 @@ class TestModel_IAMCredentialsSecretMetadata():
         iam_credentials_secret_metadata_model_json['state'] = 0
         iam_credentials_secret_metadata_model_json['state_description'] = 'Active'
         iam_credentials_secret_metadata_model_json['secret_type'] = 'arbitrary'
-        iam_credentials_secret_metadata_model_json['crn'] = 'crn:v1:bluemix:public:secrets-manager:<region>:a/<account-id>:<service-instance>:secret:<secret-id>'
+        iam_credentials_secret_metadata_model_json[
+            'crn'] = 'crn:v1:bluemix:public:secrets-manager:<region>:a/<account-id>:<service-instance>:secret:<secret-id>'
         iam_credentials_secret_metadata_model_json['creation_date'] = "2018-04-12T23:20:50.520000Z"
         iam_credentials_secret_metadata_model_json['created_by'] = 'ServiceId-cb258cb9-8de3-4ac0-9aec-b2b2d27ac976'
         iam_credentials_secret_metadata_model_json['last_update_date'] = "2018-04-12T23:20:50.520000Z"
@@ -4243,12 +4349,15 @@ class TestModel_IAMCredentialsSecretMetadata():
         iam_credentials_secret_metadata_model_json['reuse_api_key'] = True
 
         # Construct a model instance of IAMCredentialsSecretMetadata by calling from_dict on the json representation
-        iam_credentials_secret_metadata_model = IAMCredentialsSecretMetadata.from_dict(iam_credentials_secret_metadata_model_json)
+        iam_credentials_secret_metadata_model = IAMCredentialsSecretMetadata.from_dict(
+            iam_credentials_secret_metadata_model_json)
         assert iam_credentials_secret_metadata_model != False
 
         # Construct a model instance of IAMCredentialsSecretMetadata by calling from_dict on the json representation
-        iam_credentials_secret_metadata_model_dict = IAMCredentialsSecretMetadata.from_dict(iam_credentials_secret_metadata_model_json).__dict__
-        iam_credentials_secret_metadata_model2 = IAMCredentialsSecretMetadata(**iam_credentials_secret_metadata_model_dict)
+        iam_credentials_secret_metadata_model_dict = IAMCredentialsSecretMetadata.from_dict(
+            iam_credentials_secret_metadata_model_json).__dict__
+        iam_credentials_secret_metadata_model2 = IAMCredentialsSecretMetadata(
+            **iam_credentials_secret_metadata_model_dict)
 
         # Verify the model instances are equivalent
         assert iam_credentials_secret_metadata_model == iam_credentials_secret_metadata_model2
@@ -4256,6 +4365,7 @@ class TestModel_IAMCredentialsSecretMetadata():
         # Convert model instance back to dict and verify no loss of data
         iam_credentials_secret_metadata_model_json2 = iam_credentials_secret_metadata_model.to_dict()
         assert iam_credentials_secret_metadata_model_json2 == iam_credentials_secret_metadata_model_json
+
 
 class TestModel_IAMCredentialsSecretResource():
     """
@@ -4277,25 +4387,30 @@ class TestModel_IAMCredentialsSecretResource():
         iam_credentials_secret_resource_model_json['state'] = 0
         iam_credentials_secret_resource_model_json['state_description'] = 'Active'
         iam_credentials_secret_resource_model_json['secret_type'] = 'arbitrary'
-        iam_credentials_secret_resource_model_json['crn'] = 'crn:v1:bluemix:public:secrets-manager:<region>:a/<account-id>:<service-instance>:secret:<secret-id>'
+        iam_credentials_secret_resource_model_json[
+            'crn'] = 'crn:v1:bluemix:public:secrets-manager:<region>:a/<account-id>:<service-instance>:secret:<secret-id>'
         iam_credentials_secret_resource_model_json['creation_date'] = "2018-04-12T23:20:50.520000Z"
         iam_credentials_secret_resource_model_json['created_by'] = 'testString'
         iam_credentials_secret_resource_model_json['last_update_date'] = "2018-04-12T23:20:50.520000Z"
         iam_credentials_secret_resource_model_json['versions_total'] = 1
         iam_credentials_secret_resource_model_json['versions'] = [{}]
         iam_credentials_secret_resource_model_json['ttl'] = '24h'
-        iam_credentials_secret_resource_model_json['access_groups'] = ['AccessGroupId-45884031-54be-4dd7-86ff-112511e92699', 'AccessGroupId-2c190fb5-0d9d-46c5-acf3-78ecd30e24a0']
+        iam_credentials_secret_resource_model_json['access_groups'] = [
+            'AccessGroupId-45884031-54be-4dd7-86ff-112511e92699', 'AccessGroupId-2c190fb5-0d9d-46c5-acf3-78ecd30e24a0']
         iam_credentials_secret_resource_model_json['api_key'] = 'testString'
         iam_credentials_secret_resource_model_json['service_id'] = 'testString'
         iam_credentials_secret_resource_model_json['reuse_api_key'] = False
 
         # Construct a model instance of IAMCredentialsSecretResource by calling from_dict on the json representation
-        iam_credentials_secret_resource_model = IAMCredentialsSecretResource.from_dict(iam_credentials_secret_resource_model_json)
+        iam_credentials_secret_resource_model = IAMCredentialsSecretResource.from_dict(
+            iam_credentials_secret_resource_model_json)
         assert iam_credentials_secret_resource_model != False
 
         # Construct a model instance of IAMCredentialsSecretResource by calling from_dict on the json representation
-        iam_credentials_secret_resource_model_dict = IAMCredentialsSecretResource.from_dict(iam_credentials_secret_resource_model_json).__dict__
-        iam_credentials_secret_resource_model2 = IAMCredentialsSecretResource(**iam_credentials_secret_resource_model_dict)
+        iam_credentials_secret_resource_model_dict = IAMCredentialsSecretResource.from_dict(
+            iam_credentials_secret_resource_model_json).__dict__
+        iam_credentials_secret_resource_model2 = IAMCredentialsSecretResource(
+            **iam_credentials_secret_resource_model_dict)
 
         # Verify the model instances are equivalent
         assert iam_credentials_secret_resource_model == iam_credentials_secret_resource_model2
@@ -4303,6 +4418,7 @@ class TestModel_IAMCredentialsSecretResource():
         # Convert model instance back to dict and verify no loss of data
         iam_credentials_secret_resource_model_json2 = iam_credentials_secret_resource_model.to_dict()
         assert iam_credentials_secret_resource_model_json2 == iam_credentials_secret_resource_model_json
+
 
 class TestModel_IAMCredentialsSecretVersionMetadata():
     """
@@ -4321,12 +4437,15 @@ class TestModel_IAMCredentialsSecretVersionMetadata():
         iam_credentials_secret_version_metadata_model_json['created_by'] = 'testString'
 
         # Construct a model instance of IAMCredentialsSecretVersionMetadata by calling from_dict on the json representation
-        iam_credentials_secret_version_metadata_model = IAMCredentialsSecretVersionMetadata.from_dict(iam_credentials_secret_version_metadata_model_json)
+        iam_credentials_secret_version_metadata_model = IAMCredentialsSecretVersionMetadata.from_dict(
+            iam_credentials_secret_version_metadata_model_json)
         assert iam_credentials_secret_version_metadata_model != False
 
         # Construct a model instance of IAMCredentialsSecretVersionMetadata by calling from_dict on the json representation
-        iam_credentials_secret_version_metadata_model_dict = IAMCredentialsSecretVersionMetadata.from_dict(iam_credentials_secret_version_metadata_model_json).__dict__
-        iam_credentials_secret_version_metadata_model2 = IAMCredentialsSecretVersionMetadata(**iam_credentials_secret_version_metadata_model_dict)
+        iam_credentials_secret_version_metadata_model_dict = IAMCredentialsSecretVersionMetadata.from_dict(
+            iam_credentials_secret_version_metadata_model_json).__dict__
+        iam_credentials_secret_version_metadata_model2 = IAMCredentialsSecretVersionMetadata(
+            **iam_credentials_secret_version_metadata_model_dict)
 
         # Verify the model instances are equivalent
         assert iam_credentials_secret_version_metadata_model == iam_credentials_secret_version_metadata_model2
@@ -4334,6 +4453,7 @@ class TestModel_IAMCredentialsSecretVersionMetadata():
         # Convert model instance back to dict and verify no loss of data
         iam_credentials_secret_version_metadata_model_json2 = iam_credentials_secret_version_metadata_model.to_dict()
         assert iam_credentials_secret_version_metadata_model_json2 == iam_credentials_secret_version_metadata_model_json
+
 
 class TestModel_PublicCertSecretEngineRootConfig():
     """
@@ -4347,7 +4467,7 @@ class TestModel_PublicCertSecretEngineRootConfig():
 
         # Construct dict forms of any model objects needed in order to build this model.
 
-        config_element_metadata_model = {} # ConfigElementMetadata
+        config_element_metadata_model = {}  # ConfigElementMetadata
         config_element_metadata_model['name'] = 'testString'
         config_element_metadata_model['type'] = 'letsencrypt'
 
@@ -4357,12 +4477,15 @@ class TestModel_PublicCertSecretEngineRootConfig():
         public_cert_secret_engine_root_config_model_json['dns_providers'] = [config_element_metadata_model]
 
         # Construct a model instance of PublicCertSecretEngineRootConfig by calling from_dict on the json representation
-        public_cert_secret_engine_root_config_model = PublicCertSecretEngineRootConfig.from_dict(public_cert_secret_engine_root_config_model_json)
+        public_cert_secret_engine_root_config_model = PublicCertSecretEngineRootConfig.from_dict(
+            public_cert_secret_engine_root_config_model_json)
         assert public_cert_secret_engine_root_config_model != False
 
         # Construct a model instance of PublicCertSecretEngineRootConfig by calling from_dict on the json representation
-        public_cert_secret_engine_root_config_model_dict = PublicCertSecretEngineRootConfig.from_dict(public_cert_secret_engine_root_config_model_json).__dict__
-        public_cert_secret_engine_root_config_model2 = PublicCertSecretEngineRootConfig(**public_cert_secret_engine_root_config_model_dict)
+        public_cert_secret_engine_root_config_model_dict = PublicCertSecretEngineRootConfig.from_dict(
+            public_cert_secret_engine_root_config_model_json).__dict__
+        public_cert_secret_engine_root_config_model2 = PublicCertSecretEngineRootConfig(
+            **public_cert_secret_engine_root_config_model_dict)
 
         # Verify the model instances are equivalent
         assert public_cert_secret_engine_root_config_model == public_cert_secret_engine_root_config_model2
@@ -4370,6 +4493,7 @@ class TestModel_PublicCertSecretEngineRootConfig():
         # Convert model instance back to dict and verify no loss of data
         public_cert_secret_engine_root_config_model_json2 = public_cert_secret_engine_root_config_model.to_dict()
         assert public_cert_secret_engine_root_config_model_json2 == public_cert_secret_engine_root_config_model_json
+
 
 class TestModel_PublicCertificateMetadataSecretResource():
     """
@@ -4383,11 +4507,11 @@ class TestModel_PublicCertificateMetadataSecretResource():
 
         # Construct dict forms of any model objects needed in order to build this model.
 
-        rotation_model = {} # Rotation
+        rotation_model = {}  # Rotation
         rotation_model['auto_rotate'] = False
         rotation_model['rotate_keys'] = False
 
-        issuance_info_model = {} # IssuanceInfo
+        issuance_info_model = {}  # IssuanceInfo
         issuance_info_model['ordered_on'] = "2018-04-12T23:20:50.520000Z"
         issuance_info_model['error_code'] = 'testString'
         issuance_info_model['error_message'] = 'testString'
@@ -4404,13 +4528,16 @@ class TestModel_PublicCertificateMetadataSecretResource():
         public_certificate_metadata_secret_resource_model_json['labels'] = ['dev', 'us-south']
         public_certificate_metadata_secret_resource_model_json['name'] = 'example-secret'
         public_certificate_metadata_secret_resource_model_json['description'] = 'Extended description for this secret.'
-        public_certificate_metadata_secret_resource_model_json['secret_group_id'] = 'f5283d74-9024-230a-b72c-1f115f61290f'
+        public_certificate_metadata_secret_resource_model_json[
+            'secret_group_id'] = 'f5283d74-9024-230a-b72c-1f115f61290f'
         public_certificate_metadata_secret_resource_model_json['state'] = 0
         public_certificate_metadata_secret_resource_model_json['state_description'] = 'Active'
         public_certificate_metadata_secret_resource_model_json['secret_type'] = 'arbitrary'
-        public_certificate_metadata_secret_resource_model_json['crn'] = 'crn:v1:bluemix:public:secrets-manager:<region>:a/<account-id>:<service-instance>:secret:<secret-id>'
+        public_certificate_metadata_secret_resource_model_json[
+            'crn'] = 'crn:v1:bluemix:public:secrets-manager:<region>:a/<account-id>:<service-instance>:secret:<secret-id>'
         public_certificate_metadata_secret_resource_model_json['creation_date'] = "2018-04-12T23:20:50.520000Z"
-        public_certificate_metadata_secret_resource_model_json['created_by'] = 'ServiceId-cb258cb9-8de3-4ac0-9aec-b2b2d27ac976'
+        public_certificate_metadata_secret_resource_model_json[
+            'created_by'] = 'ServiceId-cb258cb9-8de3-4ac0-9aec-b2b2d27ac976'
         public_certificate_metadata_secret_resource_model_json['last_update_date'] = "2018-04-12T23:20:50.520000Z"
         public_certificate_metadata_secret_resource_model_json['versions_total'] = 1
         public_certificate_metadata_secret_resource_model_json['issuer'] = 'GlobalSign'
@@ -4425,12 +4552,15 @@ class TestModel_PublicCertificateMetadataSecretResource():
         public_certificate_metadata_secret_resource_model_json['issuance_info'] = issuance_info_model
 
         # Construct a model instance of PublicCertificateMetadataSecretResource by calling from_dict on the json representation
-        public_certificate_metadata_secret_resource_model = PublicCertificateMetadataSecretResource.from_dict(public_certificate_metadata_secret_resource_model_json)
+        public_certificate_metadata_secret_resource_model = PublicCertificateMetadataSecretResource.from_dict(
+            public_certificate_metadata_secret_resource_model_json)
         assert public_certificate_metadata_secret_resource_model != False
 
         # Construct a model instance of PublicCertificateMetadataSecretResource by calling from_dict on the json representation
-        public_certificate_metadata_secret_resource_model_dict = PublicCertificateMetadataSecretResource.from_dict(public_certificate_metadata_secret_resource_model_json).__dict__
-        public_certificate_metadata_secret_resource_model2 = PublicCertificateMetadataSecretResource(**public_certificate_metadata_secret_resource_model_dict)
+        public_certificate_metadata_secret_resource_model_dict = PublicCertificateMetadataSecretResource.from_dict(
+            public_certificate_metadata_secret_resource_model_json).__dict__
+        public_certificate_metadata_secret_resource_model2 = PublicCertificateMetadataSecretResource(
+            **public_certificate_metadata_secret_resource_model_dict)
 
         # Verify the model instances are equivalent
         assert public_certificate_metadata_secret_resource_model == public_certificate_metadata_secret_resource_model2
@@ -4438,6 +4568,7 @@ class TestModel_PublicCertificateMetadataSecretResource():
         # Convert model instance back to dict and verify no loss of data
         public_certificate_metadata_secret_resource_model_json2 = public_certificate_metadata_secret_resource_model.to_dict()
         assert public_certificate_metadata_secret_resource_model_json2 == public_certificate_metadata_secret_resource_model_json
+
 
 class TestModel_PublicCertificateSecretResource():
     """
@@ -4451,11 +4582,11 @@ class TestModel_PublicCertificateSecretResource():
 
         # Construct dict forms of any model objects needed in order to build this model.
 
-        rotation_model = {} # Rotation
+        rotation_model = {}  # Rotation
         rotation_model['auto_rotate'] = False
         rotation_model['rotate_keys'] = False
 
-        issuance_info_model = {} # IssuanceInfo
+        issuance_info_model = {}  # IssuanceInfo
         issuance_info_model['ordered_on'] = "2018-04-12T23:20:50.520000Z"
         issuance_info_model['error_code'] = 'testString'
         issuance_info_model['error_message'] = 'testString'
@@ -4476,7 +4607,8 @@ class TestModel_PublicCertificateSecretResource():
         public_certificate_secret_resource_model_json['state'] = 0
         public_certificate_secret_resource_model_json['state_description'] = 'Active'
         public_certificate_secret_resource_model_json['secret_type'] = 'arbitrary'
-        public_certificate_secret_resource_model_json['crn'] = 'crn:v1:bluemix:public:secrets-manager:<region>:a/<account-id>:<service-instance>:secret:<secret-id>'
+        public_certificate_secret_resource_model_json[
+            'crn'] = 'crn:v1:bluemix:public:secrets-manager:<region>:a/<account-id>:<service-instance>:secret:<secret-id>'
         public_certificate_secret_resource_model_json['creation_date'] = "2018-04-12T23:20:50.520000Z"
         public_certificate_secret_resource_model_json['created_by'] = 'testString'
         public_certificate_secret_resource_model_json['last_update_date'] = "2018-04-12T23:20:50.520000Z"
@@ -4492,15 +4624,18 @@ class TestModel_PublicCertificateSecretResource():
         public_certificate_secret_resource_model_json['common_name'] = 'example.com'
         public_certificate_secret_resource_model_json['rotation'] = rotation_model
         public_certificate_secret_resource_model_json['issuance_info'] = issuance_info_model
-        public_certificate_secret_resource_model_json['secret_data'] = { 'foo': 'bar' }
+        public_certificate_secret_resource_model_json['secret_data'] = {'foo': 'bar'}
 
         # Construct a model instance of PublicCertificateSecretResource by calling from_dict on the json representation
-        public_certificate_secret_resource_model = PublicCertificateSecretResource.from_dict(public_certificate_secret_resource_model_json)
+        public_certificate_secret_resource_model = PublicCertificateSecretResource.from_dict(
+            public_certificate_secret_resource_model_json)
         assert public_certificate_secret_resource_model != False
 
         # Construct a model instance of PublicCertificateSecretResource by calling from_dict on the json representation
-        public_certificate_secret_resource_model_dict = PublicCertificateSecretResource.from_dict(public_certificate_secret_resource_model_json).__dict__
-        public_certificate_secret_resource_model2 = PublicCertificateSecretResource(**public_certificate_secret_resource_model_dict)
+        public_certificate_secret_resource_model_dict = PublicCertificateSecretResource.from_dict(
+            public_certificate_secret_resource_model_json).__dict__
+        public_certificate_secret_resource_model2 = PublicCertificateSecretResource(
+            **public_certificate_secret_resource_model_dict)
 
         # Verify the model instances are equivalent
         assert public_certificate_secret_resource_model == public_certificate_secret_resource_model2
@@ -4508,6 +4643,7 @@ class TestModel_PublicCertificateSecretResource():
         # Convert model instance back to dict and verify no loss of data
         public_certificate_secret_resource_model_json2 = public_certificate_secret_resource_model.to_dict()
         assert public_certificate_secret_resource_model_json2 == public_certificate_secret_resource_model_json
+
 
 class TestModel_RotateArbitrarySecretBody():
     """
@@ -4524,11 +4660,13 @@ class TestModel_RotateArbitrarySecretBody():
         rotate_arbitrary_secret_body_model_json['payload'] = 'testString'
 
         # Construct a model instance of RotateArbitrarySecretBody by calling from_dict on the json representation
-        rotate_arbitrary_secret_body_model = RotateArbitrarySecretBody.from_dict(rotate_arbitrary_secret_body_model_json)
+        rotate_arbitrary_secret_body_model = RotateArbitrarySecretBody.from_dict(
+            rotate_arbitrary_secret_body_model_json)
         assert rotate_arbitrary_secret_body_model != False
 
         # Construct a model instance of RotateArbitrarySecretBody by calling from_dict on the json representation
-        rotate_arbitrary_secret_body_model_dict = RotateArbitrarySecretBody.from_dict(rotate_arbitrary_secret_body_model_json).__dict__
+        rotate_arbitrary_secret_body_model_dict = RotateArbitrarySecretBody.from_dict(
+            rotate_arbitrary_secret_body_model_json).__dict__
         rotate_arbitrary_secret_body_model2 = RotateArbitrarySecretBody(**rotate_arbitrary_secret_body_model_dict)
 
         # Verify the model instances are equivalent
@@ -4537,6 +4675,7 @@ class TestModel_RotateArbitrarySecretBody():
         # Convert model instance back to dict and verify no loss of data
         rotate_arbitrary_secret_body_model_json2 = rotate_arbitrary_secret_body_model.to_dict()
         assert rotate_arbitrary_secret_body_model_json2 == rotate_arbitrary_secret_body_model_json
+
 
 class TestModel_RotateCertificateBody():
     """
@@ -4559,7 +4698,8 @@ class TestModel_RotateCertificateBody():
         assert rotate_certificate_body_model != False
 
         # Construct a model instance of RotateCertificateBody by calling from_dict on the json representation
-        rotate_certificate_body_model_dict = RotateCertificateBody.from_dict(rotate_certificate_body_model_json).__dict__
+        rotate_certificate_body_model_dict = RotateCertificateBody.from_dict(
+            rotate_certificate_body_model_json).__dict__
         rotate_certificate_body_model2 = RotateCertificateBody(**rotate_certificate_body_model_dict)
 
         # Verify the model instances are equivalent
@@ -4568,6 +4708,7 @@ class TestModel_RotateCertificateBody():
         # Convert model instance back to dict and verify no loss of data
         rotate_certificate_body_model_json2 = rotate_certificate_body_model.to_dict()
         assert rotate_certificate_body_model_json2 == rotate_certificate_body_model_json
+
 
 class TestModel_RotatePublicCertBody():
     """
@@ -4598,6 +4739,7 @@ class TestModel_RotatePublicCertBody():
         rotate_public_cert_body_model_json2 = rotate_public_cert_body_model.to_dict()
         assert rotate_public_cert_body_model_json2 == rotate_public_cert_body_model_json
 
+
 class TestModel_RotateUsernamePasswordSecretBody():
     """
     Test Class for RotateUsernamePasswordSecretBody
@@ -4613,12 +4755,15 @@ class TestModel_RotateUsernamePasswordSecretBody():
         rotate_username_password_secret_body_model_json['password'] = 'testString'
 
         # Construct a model instance of RotateUsernamePasswordSecretBody by calling from_dict on the json representation
-        rotate_username_password_secret_body_model = RotateUsernamePasswordSecretBody.from_dict(rotate_username_password_secret_body_model_json)
+        rotate_username_password_secret_body_model = RotateUsernamePasswordSecretBody.from_dict(
+            rotate_username_password_secret_body_model_json)
         assert rotate_username_password_secret_body_model != False
 
         # Construct a model instance of RotateUsernamePasswordSecretBody by calling from_dict on the json representation
-        rotate_username_password_secret_body_model_dict = RotateUsernamePasswordSecretBody.from_dict(rotate_username_password_secret_body_model_json).__dict__
-        rotate_username_password_secret_body_model2 = RotateUsernamePasswordSecretBody(**rotate_username_password_secret_body_model_dict)
+        rotate_username_password_secret_body_model_dict = RotateUsernamePasswordSecretBody.from_dict(
+            rotate_username_password_secret_body_model_json).__dict__
+        rotate_username_password_secret_body_model2 = RotateUsernamePasswordSecretBody(
+            **rotate_username_password_secret_body_model_dict)
 
         # Verify the model instances are equivalent
         assert rotate_username_password_secret_body_model == rotate_username_password_secret_body_model2
@@ -4626,6 +4771,7 @@ class TestModel_RotateUsernamePasswordSecretBody():
         # Convert model instance back to dict and verify no loss of data
         rotate_username_password_secret_body_model_json2 = rotate_username_password_secret_body_model.to_dict()
         assert rotate_username_password_secret_body_model_json2 == rotate_username_password_secret_body_model_json
+
 
 class TestModel_SecretPolicyRotationRotationPolicyRotation():
     """
@@ -4643,12 +4789,15 @@ class TestModel_SecretPolicyRotationRotationPolicyRotation():
         secret_policy_rotation_rotation_policy_rotation_model_json['unit'] = 'day'
 
         # Construct a model instance of SecretPolicyRotationRotationPolicyRotation by calling from_dict on the json representation
-        secret_policy_rotation_rotation_policy_rotation_model = SecretPolicyRotationRotationPolicyRotation.from_dict(secret_policy_rotation_rotation_policy_rotation_model_json)
+        secret_policy_rotation_rotation_policy_rotation_model = SecretPolicyRotationRotationPolicyRotation.from_dict(
+            secret_policy_rotation_rotation_policy_rotation_model_json)
         assert secret_policy_rotation_rotation_policy_rotation_model != False
 
         # Construct a model instance of SecretPolicyRotationRotationPolicyRotation by calling from_dict on the json representation
-        secret_policy_rotation_rotation_policy_rotation_model_dict = SecretPolicyRotationRotationPolicyRotation.from_dict(secret_policy_rotation_rotation_policy_rotation_model_json).__dict__
-        secret_policy_rotation_rotation_policy_rotation_model2 = SecretPolicyRotationRotationPolicyRotation(**secret_policy_rotation_rotation_policy_rotation_model_dict)
+        secret_policy_rotation_rotation_policy_rotation_model_dict = SecretPolicyRotationRotationPolicyRotation.from_dict(
+            secret_policy_rotation_rotation_policy_rotation_model_json).__dict__
+        secret_policy_rotation_rotation_policy_rotation_model2 = SecretPolicyRotationRotationPolicyRotation(
+            **secret_policy_rotation_rotation_policy_rotation_model_dict)
 
         # Verify the model instances are equivalent
         assert secret_policy_rotation_rotation_policy_rotation_model == secret_policy_rotation_rotation_policy_rotation_model2
@@ -4656,6 +4805,7 @@ class TestModel_SecretPolicyRotationRotationPolicyRotation():
         # Convert model instance back to dict and verify no loss of data
         secret_policy_rotation_rotation_policy_rotation_model_json2 = secret_policy_rotation_rotation_policy_rotation_model.to_dict()
         assert secret_policy_rotation_rotation_policy_rotation_model_json2 == secret_policy_rotation_rotation_policy_rotation_model_json
+
 
 class TestModel_SecretPolicyRotationRotationPublicCertPolicyRotation():
     """
@@ -4669,7 +4819,7 @@ class TestModel_SecretPolicyRotationRotationPublicCertPolicyRotation():
 
         # Construct dict forms of any model objects needed in order to build this model.
 
-        warning_model = {} # Warning
+        warning_model = {}  # Warning
         warning_model['code'] = 'testString'
         warning_model['message'] = 'testString'
 
@@ -4680,12 +4830,15 @@ class TestModel_SecretPolicyRotationRotationPublicCertPolicyRotation():
         secret_policy_rotation_rotation_public_cert_policy_rotation_model_json['warning'] = warning_model
 
         # Construct a model instance of SecretPolicyRotationRotationPublicCertPolicyRotation by calling from_dict on the json representation
-        secret_policy_rotation_rotation_public_cert_policy_rotation_model = SecretPolicyRotationRotationPublicCertPolicyRotation.from_dict(secret_policy_rotation_rotation_public_cert_policy_rotation_model_json)
+        secret_policy_rotation_rotation_public_cert_policy_rotation_model = SecretPolicyRotationRotationPublicCertPolicyRotation.from_dict(
+            secret_policy_rotation_rotation_public_cert_policy_rotation_model_json)
         assert secret_policy_rotation_rotation_public_cert_policy_rotation_model != False
 
         # Construct a model instance of SecretPolicyRotationRotationPublicCertPolicyRotation by calling from_dict on the json representation
-        secret_policy_rotation_rotation_public_cert_policy_rotation_model_dict = SecretPolicyRotationRotationPublicCertPolicyRotation.from_dict(secret_policy_rotation_rotation_public_cert_policy_rotation_model_json).__dict__
-        secret_policy_rotation_rotation_public_cert_policy_rotation_model2 = SecretPolicyRotationRotationPublicCertPolicyRotation(**secret_policy_rotation_rotation_public_cert_policy_rotation_model_dict)
+        secret_policy_rotation_rotation_public_cert_policy_rotation_model_dict = SecretPolicyRotationRotationPublicCertPolicyRotation.from_dict(
+            secret_policy_rotation_rotation_public_cert_policy_rotation_model_json).__dict__
+        secret_policy_rotation_rotation_public_cert_policy_rotation_model2 = SecretPolicyRotationRotationPublicCertPolicyRotation(
+            **secret_policy_rotation_rotation_public_cert_policy_rotation_model_dict)
 
         # Verify the model instances are equivalent
         assert secret_policy_rotation_rotation_public_cert_policy_rotation_model == secret_policy_rotation_rotation_public_cert_policy_rotation_model2
@@ -4693,6 +4846,7 @@ class TestModel_SecretPolicyRotationRotationPublicCertPolicyRotation():
         # Convert model instance back to dict and verify no loss of data
         secret_policy_rotation_rotation_public_cert_policy_rotation_model_json2 = secret_policy_rotation_rotation_public_cert_policy_rotation_model.to_dict()
         assert secret_policy_rotation_rotation_public_cert_policy_rotation_model_json2 == secret_policy_rotation_rotation_public_cert_policy_rotation_model_json
+
 
 class TestModel_UsernamePasswordSecretMetadata():
     """
@@ -4714,7 +4868,8 @@ class TestModel_UsernamePasswordSecretMetadata():
         username_password_secret_metadata_model_json['state'] = 0
         username_password_secret_metadata_model_json['state_description'] = 'Active'
         username_password_secret_metadata_model_json['secret_type'] = 'arbitrary'
-        username_password_secret_metadata_model_json['crn'] = 'crn:v1:bluemix:public:secrets-manager:<region>:a/<account-id>:<service-instance>:secret:<secret-id>'
+        username_password_secret_metadata_model_json[
+            'crn'] = 'crn:v1:bluemix:public:secrets-manager:<region>:a/<account-id>:<service-instance>:secret:<secret-id>'
         username_password_secret_metadata_model_json['creation_date'] = "2018-04-12T23:20:50.520000Z"
         username_password_secret_metadata_model_json['created_by'] = 'ServiceId-cb258cb9-8de3-4ac0-9aec-b2b2d27ac976'
         username_password_secret_metadata_model_json['last_update_date'] = "2018-04-12T23:20:50.520000Z"
@@ -4722,12 +4877,15 @@ class TestModel_UsernamePasswordSecretMetadata():
         username_password_secret_metadata_model_json['expiration_date'] = "2030-04-01T09:30:00Z"
 
         # Construct a model instance of UsernamePasswordSecretMetadata by calling from_dict on the json representation
-        username_password_secret_metadata_model = UsernamePasswordSecretMetadata.from_dict(username_password_secret_metadata_model_json)
+        username_password_secret_metadata_model = UsernamePasswordSecretMetadata.from_dict(
+            username_password_secret_metadata_model_json)
         assert username_password_secret_metadata_model != False
 
         # Construct a model instance of UsernamePasswordSecretMetadata by calling from_dict on the json representation
-        username_password_secret_metadata_model_dict = UsernamePasswordSecretMetadata.from_dict(username_password_secret_metadata_model_json).__dict__
-        username_password_secret_metadata_model2 = UsernamePasswordSecretMetadata(**username_password_secret_metadata_model_dict)
+        username_password_secret_metadata_model_dict = UsernamePasswordSecretMetadata.from_dict(
+            username_password_secret_metadata_model_json).__dict__
+        username_password_secret_metadata_model2 = UsernamePasswordSecretMetadata(
+            **username_password_secret_metadata_model_dict)
 
         # Verify the model instances are equivalent
         assert username_password_secret_metadata_model == username_password_secret_metadata_model2
@@ -4735,6 +4893,7 @@ class TestModel_UsernamePasswordSecretMetadata():
         # Convert model instance back to dict and verify no loss of data
         username_password_secret_metadata_model_json2 = username_password_secret_metadata_model.to_dict()
         assert username_password_secret_metadata_model_json2 == username_password_secret_metadata_model_json
+
 
 class TestModel_UsernamePasswordSecretResource():
     """
@@ -4756,7 +4915,8 @@ class TestModel_UsernamePasswordSecretResource():
         username_password_secret_resource_model_json['state'] = 0
         username_password_secret_resource_model_json['state_description'] = 'Active'
         username_password_secret_resource_model_json['secret_type'] = 'arbitrary'
-        username_password_secret_resource_model_json['crn'] = 'crn:v1:bluemix:public:secrets-manager:<region>:a/<account-id>:<service-instance>:secret:<secret-id>'
+        username_password_secret_resource_model_json[
+            'crn'] = 'crn:v1:bluemix:public:secrets-manager:<region>:a/<account-id>:<service-instance>:secret:<secret-id>'
         username_password_secret_resource_model_json['creation_date'] = "2018-04-12T23:20:50.520000Z"
         username_password_secret_resource_model_json['created_by'] = 'testString'
         username_password_secret_resource_model_json['last_update_date'] = "2018-04-12T23:20:50.520000Z"
@@ -4764,17 +4924,20 @@ class TestModel_UsernamePasswordSecretResource():
         username_password_secret_resource_model_json['versions'] = [{}]
         username_password_secret_resource_model_json['username'] = 'user123'
         username_password_secret_resource_model_json['password'] = 'rainy-cloudy-coffee-book'
-        username_password_secret_resource_model_json['secret_data'] = { 'foo': 'bar' }
+        username_password_secret_resource_model_json['secret_data'] = {'foo': 'bar'}
         username_password_secret_resource_model_json['expiration_date'] = "2030-04-01T09:30:00Z"
         username_password_secret_resource_model_json['next_rotation_date'] = "2025-04-12T23:20:50.520000Z"
 
         # Construct a model instance of UsernamePasswordSecretResource by calling from_dict on the json representation
-        username_password_secret_resource_model = UsernamePasswordSecretResource.from_dict(username_password_secret_resource_model_json)
+        username_password_secret_resource_model = UsernamePasswordSecretResource.from_dict(
+            username_password_secret_resource_model_json)
         assert username_password_secret_resource_model != False
 
         # Construct a model instance of UsernamePasswordSecretResource by calling from_dict on the json representation
-        username_password_secret_resource_model_dict = UsernamePasswordSecretResource.from_dict(username_password_secret_resource_model_json).__dict__
-        username_password_secret_resource_model2 = UsernamePasswordSecretResource(**username_password_secret_resource_model_dict)
+        username_password_secret_resource_model_dict = UsernamePasswordSecretResource.from_dict(
+            username_password_secret_resource_model_json).__dict__
+        username_password_secret_resource_model2 = UsernamePasswordSecretResource(
+            **username_password_secret_resource_model_dict)
 
         # Verify the model instances are equivalent
         assert username_password_secret_resource_model == username_password_secret_resource_model2
@@ -4782,6 +4945,7 @@ class TestModel_UsernamePasswordSecretResource():
         # Convert model instance back to dict and verify no loss of data
         username_password_secret_resource_model_json2 = username_password_secret_resource_model.to_dict()
         assert username_password_secret_resource_model_json2 == username_password_secret_resource_model_json
+
 
 class TestModel_UsernamePasswordSecretVersionMetadata():
     """
@@ -4801,12 +4965,15 @@ class TestModel_UsernamePasswordSecretVersionMetadata():
         username_password_secret_version_metadata_model_json['auto_rotated'] = True
 
         # Construct a model instance of UsernamePasswordSecretVersionMetadata by calling from_dict on the json representation
-        username_password_secret_version_metadata_model = UsernamePasswordSecretVersionMetadata.from_dict(username_password_secret_version_metadata_model_json)
+        username_password_secret_version_metadata_model = UsernamePasswordSecretVersionMetadata.from_dict(
+            username_password_secret_version_metadata_model_json)
         assert username_password_secret_version_metadata_model != False
 
         # Construct a model instance of UsernamePasswordSecretVersionMetadata by calling from_dict on the json representation
-        username_password_secret_version_metadata_model_dict = UsernamePasswordSecretVersionMetadata.from_dict(username_password_secret_version_metadata_model_json).__dict__
-        username_password_secret_version_metadata_model2 = UsernamePasswordSecretVersionMetadata(**username_password_secret_version_metadata_model_dict)
+        username_password_secret_version_metadata_model_dict = UsernamePasswordSecretVersionMetadata.from_dict(
+            username_password_secret_version_metadata_model_json).__dict__
+        username_password_secret_version_metadata_model2 = UsernamePasswordSecretVersionMetadata(
+            **username_password_secret_version_metadata_model_dict)
 
         # Verify the model instances are equivalent
         assert username_password_secret_version_metadata_model == username_password_secret_version_metadata_model2
@@ -4814,7 +4981,6 @@ class TestModel_UsernamePasswordSecretVersionMetadata():
         # Convert model instance back to dict and verify no loss of data
         username_password_secret_version_metadata_model_json2 = username_password_secret_version_metadata_model.to_dict()
         assert username_password_secret_version_metadata_model_json2 == username_password_secret_version_metadata_model_json
-
 
 # endregion
 ##############################################################################
