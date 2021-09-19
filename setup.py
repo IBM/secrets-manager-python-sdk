@@ -19,7 +19,7 @@ import os
 import sys
 import pkg_resources
 
-__version__ = '1.0.0'
+__version__ = '1.0.1'
 PACKAGE_NAME = 'ibm_secrets_manager_sdk'
 PACKAGE_DESC = 'IBM Cloud Secrets Manager Python SDK'
 
