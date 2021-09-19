@@ -15,7 +15,7 @@
 # limitations under the License.
 
 # IBM OpenAPI SDK Code Generator Version: 3.38.1-1037b405-20210908-184149
- 
+
 """
 With IBM Cloud® Secrets Manager, you can create, lease, and centrally manage secrets that
 are used in IBM Cloud services or your custom-built applications. Secrets are stored in a
@@ -37,6 +37,7 @@ from ibm_cloud_sdk_core.utils import convert_list, convert_model, datetime_to_st
 
 from .common import get_sdk_headers
 
+
 ##############################################################################
 # Service
 ##############################################################################
@@ -50,7 +51,7 @@ class SecretsManagerV1(BaseService):
     @classmethod
     def new_instance(cls,
                      service_name: str = DEFAULT_SERVICE_NAME,
-                    ) -> 'SecretsManagerV1':
+                     ) -> 'SecretsManagerV1':
         """
         Return a new client for the secrets-manager service using the specified
                parameters and external configuration.
@@ -58,13 +59,13 @@ class SecretsManagerV1(BaseService):
         authenticator = get_authenticator_from_environment(service_name)
         service = cls(
             authenticator
-            )
+        )
         service.configure_service(service_name)
         return service
 
     def __init__(self,
                  authenticator: Authenticator = None,
-                ) -> None:
+                 ) -> None:
         """
         Construct a new client for the secrets-manager service.
 
@@ -76,17 +77,15 @@ class SecretsManagerV1(BaseService):
                              service_url=self.DEFAULT_SERVICE_URL,
                              authenticator=authenticator)
 
-
     #########################
     # Secret groups
     #########################
 
-
     def create_secret_group(self,
-        metadata: 'CollectionMetadata',
-        resources: List['SecretGroupResource'],
-        **kwargs
-    ) -> DetailedResponse:
+                            metadata: 'CollectionMetadata',
+                            resources: List['SecretGroupResource'],
+                            **kwargs
+                            ) -> DetailedResponse:
         """
         Create a secret group.
 
@@ -137,10 +136,9 @@ class SecretsManagerV1(BaseService):
         response = self.send(request, **kwargs)
         return response
 
-
     def list_secret_groups(self,
-        **kwargs
-    ) -> DetailedResponse:
+                           **kwargs
+                           ) -> DetailedResponse:
         """
         List secret groups.
 
@@ -170,11 +168,10 @@ class SecretsManagerV1(BaseService):
         response = self.send(request, **kwargs)
         return response
 
-
     def get_secret_group(self,
-        id: str,
-        **kwargs
-    ) -> DetailedResponse:
+                         id: str,
+                         **kwargs
+                         ) -> DetailedResponse:
         """
         Get a secret group.
 
@@ -210,13 +207,12 @@ class SecretsManagerV1(BaseService):
         response = self.send(request, **kwargs)
         return response
 
-
     def update_secret_group_metadata(self,
-        id: str,
-        metadata: 'CollectionMetadata',
-        resources: List['SecretGroupMetadataUpdatable'],
-        **kwargs
-    ) -> DetailedResponse:
+                                     id: str,
+                                     metadata: 'CollectionMetadata',
+                                     resources: List['SecretGroupMetadataUpdatable'],
+                                     **kwargs
+                                     ) -> DetailedResponse:
         """
         Update a secret group.
 
@@ -270,11 +266,10 @@ class SecretsManagerV1(BaseService):
         response = self.send(request, **kwargs)
         return response
 
-
     def delete_secret_group(self,
-        id: str,
-        **kwargs
-    ) -> DetailedResponse:
+                            id: str,
+                            **kwargs
+                            ) -> DetailedResponse:
         """
         Delete a secret group.
 
@@ -315,13 +310,12 @@ class SecretsManagerV1(BaseService):
     # Secrets
     #########################
 
-
     def create_secret(self,
-        secret_type: str,
-        metadata: 'CollectionMetadata',
-        resources: List['SecretResource'],
-        **kwargs
-    ) -> DetailedResponse:
+                      secret_type: str,
+                      metadata: 'CollectionMetadata',
+                      resources: List['SecretResource'],
+                      **kwargs
+                      ) -> DetailedResponse:
         """
         Create a secret.
 
@@ -383,14 +377,13 @@ class SecretsManagerV1(BaseService):
         response = self.send(request, **kwargs)
         return response
 
-
     def list_secrets(self,
-        secret_type: str,
-        *,
-        limit: int = None,
-        offset: int = None,
-        **kwargs
-    ) -> DetailedResponse:
+                     secret_type: str,
+                     *,
+                     limit: int = None,
+                     offset: int = None,
+                     **kwargs
+                     ) -> DetailedResponse:
         """
         List secrets by type.
 
@@ -443,16 +436,15 @@ class SecretsManagerV1(BaseService):
         response = self.send(request, **kwargs)
         return response
 
-
     def list_all_secrets(self,
-        *,
-        limit: int = None,
-        offset: int = None,
-        search: str = None,
-        sort_by: str = None,
-        groups: List[str] = None,
-        **kwargs
-    ) -> DetailedResponse:
+                         *,
+                         limit: int = None,
+                         offset: int = None,
+                         search: str = None,
+                         sort_by: str = None,
+                         groups: List[str] = None,
+                         **kwargs
+                         ) -> DetailedResponse:
         """
         List all secrets.
 
@@ -519,12 +511,11 @@ class SecretsManagerV1(BaseService):
         response = self.send(request, **kwargs)
         return response
 
-
     def get_secret(self,
-        secret_type: str,
-        id: str,
-        **kwargs
-    ) -> DetailedResponse:
+                   secret_type: str,
+                   id: str,
+                   **kwargs
+                   ) -> DetailedResponse:
         """
         Get a secret.
 
@@ -565,14 +556,13 @@ class SecretsManagerV1(BaseService):
         response = self.send(request, **kwargs)
         return response
 
-
     def update_secret(self,
-        secret_type: str,
-        id: str,
-        action: str,
-        secret_action: 'SecretAction',
-        **kwargs
-    ) -> DetailedResponse:
+                      secret_type: str,
+                      id: str,
+                      action: str,
+                      secret_action: 'SecretAction',
+                      **kwargs
+                      ) -> DetailedResponse:
         """
         Invoke an action on a secret.
 
@@ -632,12 +622,11 @@ class SecretsManagerV1(BaseService):
         response = self.send(request, **kwargs)
         return response
 
-
     def delete_secret(self,
-        secret_type: str,
-        id: str,
-        **kwargs
-    ) -> DetailedResponse:
+                      secret_type: str,
+                      id: str,
+                      **kwargs
+                      ) -> DetailedResponse:
         """
         Delete a secret.
 
@@ -674,13 +663,12 @@ class SecretsManagerV1(BaseService):
         response = self.send(request, **kwargs)
         return response
 
-
     def get_secret_version(self,
-        secret_type: str,
-        id: str,
-        version_id: str,
-        **kwargs
-    ) -> DetailedResponse:
+                           secret_type: str,
+                           id: str,
+                           version_id: str,
+                           **kwargs
+                           ) -> DetailedResponse:
         """
         Get a version of a secret.
 
@@ -728,13 +716,12 @@ class SecretsManagerV1(BaseService):
         response = self.send(request, **kwargs)
         return response
 
-
     def get_secret_version_metadata(self,
-        secret_type: str,
-        id: str,
-        version_id: str,
-        **kwargs
-    ) -> DetailedResponse:
+                                    secret_type: str,
+                                    id: str,
+                                    version_id: str,
+                                    **kwargs
+                                    ) -> DetailedResponse:
         """
         Get secret version metadata.
 
@@ -782,12 +769,11 @@ class SecretsManagerV1(BaseService):
         response = self.send(request, **kwargs)
         return response
 
-
     def get_secret_metadata(self,
-        secret_type: str,
-        id: str,
-        **kwargs
-    ) -> DetailedResponse:
+                            secret_type: str,
+                            id: str,
+                            **kwargs
+                            ) -> DetailedResponse:
         """
         Get secret metadata.
 
@@ -828,14 +814,13 @@ class SecretsManagerV1(BaseService):
         response = self.send(request, **kwargs)
         return response
 
-
     def update_secret_metadata(self,
-        secret_type: str,
-        id: str,
-        metadata: 'CollectionMetadata',
-        resources: List['SecretMetadata'],
-        **kwargs
-    ) -> DetailedResponse:
+                               secret_type: str,
+                               id: str,
+                               metadata: 'CollectionMetadata',
+                               resources: List['SecretMetadata'],
+                               **kwargs
+                               ) -> DetailedResponse:
         """
         Update secret metadata.
 
@@ -897,16 +882,15 @@ class SecretsManagerV1(BaseService):
     # Policies
     #########################
 
-
     def put_policy(self,
-        secret_type: str,
-        id: str,
-        metadata: 'CollectionMetadata',
-        resources: List['SecretPolicyRotation'],
-        *,
-        policy: str = None,
-        **kwargs
-    ) -> DetailedResponse:
+                   secret_type: str,
+                   id: str,
+                   metadata: 'CollectionMetadata',
+                   resources: List['SecretPolicyRotation'],
+                   *,
+                   policy: str = None,
+                   **kwargs
+                   ) -> DetailedResponse:
         """
         Set secret policies.
 
@@ -971,14 +955,13 @@ class SecretsManagerV1(BaseService):
         response = self.send(request, **kwargs)
         return response
 
-
     def get_policy(self,
-        secret_type: str,
-        id: str,
-        *,
-        policy: str = None,
-        **kwargs
-    ) -> DetailedResponse:
+                   secret_type: str,
+                   id: str,
+                   *,
+                   policy: str = None,
+                   **kwargs
+                   ) -> DetailedResponse:
         """
         List secret policies.
 
@@ -1027,12 +1010,11 @@ class SecretsManagerV1(BaseService):
     # Config
     #########################
 
-
     def put_config(self,
-        secret_type: str,
-        api_key: str,
-        **kwargs
-    ) -> DetailedResponse:
+                   secret_type: str,
+                   api_key: str,
+                   **kwargs
+                   ) -> DetailedResponse:
         """
         Set the configuration of a secret type.
 
@@ -1086,11 +1068,10 @@ class SecretsManagerV1(BaseService):
         response = self.send(request, **kwargs)
         return response
 
-
     def get_config(self,
-        secret_type: str,
-        **kwargs
-    ) -> DetailedResponse:
+                   secret_type: str,
+                   **kwargs
+                   ) -> DetailedResponse:
         """
         Get the configuration of a secret type.
 
@@ -1125,15 +1106,14 @@ class SecretsManagerV1(BaseService):
         response = self.send(request, **kwargs)
         return response
 
-
     def create_config_element(self,
-        secret_type: str,
-        config_element: str,
-        name: str,
-        type: str,
-        config: 'ConfigElementDefConfig',
-        **kwargs
-    ) -> DetailedResponse:
+                              secret_type: str,
+                              config_element: str,
+                              name: str,
+                              type: str,
+                              config: 'ConfigElementDefConfig',
+                              **kwargs
+                              ) -> DetailedResponse:
         """
         Add a configuration.
 
@@ -1196,12 +1176,11 @@ class SecretsManagerV1(BaseService):
         response = self.send(request, **kwargs)
         return response
 
-
     def get_config_elements(self,
-        secret_type: str,
-        config_element: str,
-        **kwargs
-    ) -> DetailedResponse:
+                            secret_type: str,
+                            config_element: str,
+                            **kwargs
+                            ) -> DetailedResponse:
         """
         List configurations.
 
@@ -1239,15 +1218,14 @@ class SecretsManagerV1(BaseService):
         response = self.send(request, **kwargs)
         return response
 
-
     def update_config_element(self,
-        secret_type: str,
-        config_element: str,
-        config_name: str,
-        type: str,
-        config: object,
-        **kwargs
-    ) -> DetailedResponse:
+                              secret_type: str,
+                              config_element: str,
+                              config_name: str,
+                              type: str,
+                              config: object,
+                              **kwargs
+                              ) -> DetailedResponse:
         """
         Update a configuration.
 
@@ -1304,13 +1282,12 @@ class SecretsManagerV1(BaseService):
         response = self.send(request, **kwargs)
         return response
 
-
     def delete_config_element(self,
-        secret_type: str,
-        config_element: str,
-        config_name: str,
-        **kwargs
-    ) -> DetailedResponse:
+                              secret_type: str,
+                              config_element: str,
+                              config_name: str,
+                              **kwargs
+                              ) -> DetailedResponse:
         """
         Remove a configuration.
 
@@ -1350,13 +1327,12 @@ class SecretsManagerV1(BaseService):
         response = self.send(request, **kwargs)
         return response
 
-
     def get_config_element(self,
-        secret_type: str,
-        config_element: str,
-        config_name: str,
-        **kwargs
-    ) -> DetailedResponse:
+                           secret_type: str,
+                           config_element: str,
+                           config_name: str,
+                           **kwargs
+                           ) -> DetailedResponse:
         """
         Get a configuration.
 
@@ -1479,6 +1455,7 @@ class UpdateSecretEnums:
         IMPORTED_CERT = 'imported_cert'
         PUBLIC_CERT = 'public_cert'
         USERNAME_PASSWORD = 'username_password'
+
     class Action(str, Enum):
         """
         The action to perform on the specified secret.
@@ -1572,6 +1549,7 @@ class PutPolicyEnums:
         """
         USERNAME_PASSWORD = 'username_password'
         PUBLIC_CERT = 'public_cert'
+
     class Policy(str, Enum):
         """
         The type of policy that is associated with the specified secret.
@@ -1590,6 +1568,7 @@ class GetPolicyEnums:
         """
         USERNAME_PASSWORD = 'username_password'
         PUBLIC_CERT = 'public_cert'
+
     class Policy(str, Enum):
         """
         The type of policy that is associated with the specified secret.
@@ -1633,6 +1612,7 @@ class CreateConfigElementEnums:
         The secret type.
         """
         PUBLIC_CERT = 'public_cert'
+
     class ConfigElement(str, Enum):
         """
         The configuration element to define or manage.
@@ -1651,6 +1631,7 @@ class GetConfigElementsEnums:
         The secret type.
         """
         PUBLIC_CERT = 'public_cert'
+
     class ConfigElement(str, Enum):
         """
         The configuration element to define or manage.
@@ -1669,6 +1650,7 @@ class UpdateConfigElementEnums:
         The secret type.
         """
         PUBLIC_CERT = 'public_cert'
+
     class ConfigElement(str, Enum):
         """
         The configuration element to define or manage.
@@ -1687,6 +1669,7 @@ class DeleteConfigElementEnums:
         The secret type.
         """
         PUBLIC_CERT = 'public_cert'
+
     class ConfigElement(str, Enum):
         """
         The configuration element to define or manage.
@@ -1705,6 +1688,7 @@ class GetConfigElementEnums:
         The secret type.
         """
         PUBLIC_CERT = 'public_cert'
+
     class ConfigElement(str, Enum):
         """
         The configuration element to define or manage.
@@ -1792,6 +1776,7 @@ class CertificateSecretData():
     def __ne__(self, other: 'CertificateSecretData') -> bool:
         """Return `true` when self and other are not equal, false otherwise."""
         return not self == other
+
 
 class CollectionMetadata():
     """
@@ -1977,8 +1962,10 @@ class ConfigElementDefConfig():
 
         """
         msg = "Cannot instantiate base class. Instead, instantiate one of the defined subclasses: {0}".format(
-                  ", ".join(['ConfigElementDefConfigLetsEncryptConfig', 'ConfigElementDefConfigCloudInternetServicesConfig', 'ConfigElementDefConfigClassicInfrastructureConfig']))
+            ", ".join(['ConfigElementDefConfigLetsEncryptConfig', 'ConfigElementDefConfigCloudInternetServicesConfig',
+                       'ConfigElementDefConfigClassicInfrastructureConfig']))
         raise Exception(msg)
+
 
 class ConfigElementMetadata():
     """
@@ -2133,6 +2120,7 @@ class CreateSecret():
         """Return `true` when self and other are not equal, false otherwise."""
         return not self == other
 
+
 class GetConfig():
     """
     Configuration for the specified secret type.
@@ -2206,6 +2194,7 @@ class GetConfig():
     def __ne__(self, other: 'GetConfig') -> bool:
         """Return `true` when self and other are not equal, false otherwise."""
         return not self == other
+
 
 class GetConfigElements():
     """
@@ -2282,6 +2271,7 @@ class GetConfigElements():
         """Return `true` when self and other are not equal, false otherwise."""
         return not self == other
 
+
 class GetConfigElementsResourcesItem():
     """
     GetConfigElementsResourcesItem.
@@ -2294,8 +2284,10 @@ class GetConfigElementsResourcesItem():
 
         """
         msg = "Cannot instantiate base class. Instead, instantiate one of the defined subclasses: {0}".format(
-                  ", ".join(['GetConfigElementsResourcesItemCertificateAuthoritiesConfig', 'GetConfigElementsResourcesItemDnsProvidersConfig']))
+            ", ".join(['GetConfigElementsResourcesItemCertificateAuthoritiesConfig',
+                       'GetConfigElementsResourcesItemDnsProvidersConfig']))
         raise Exception(msg)
+
 
 class GetConfigResourcesItem():
     """
@@ -2309,8 +2301,9 @@ class GetConfigResourcesItem():
 
         """
         msg = "Cannot instantiate base class. Instead, instantiate one of the defined subclasses: {0}".format(
-                  ", ".join(['PublicCertSecretEngineRootConfig', 'IAMCredentialsSecretEngineRootConfig']))
+            ", ".join(['PublicCertSecretEngineRootConfig', 'IAMCredentialsSecretEngineRootConfig']))
         raise Exception(msg)
+
 
 class GetSecret():
     """
@@ -2386,6 +2379,7 @@ class GetSecret():
         """Return `true` when self and other are not equal, false otherwise."""
         return not self == other
 
+
 class GetSecretPolicies():
     """
     GetSecretPolicies.
@@ -2398,8 +2392,9 @@ class GetSecretPolicies():
 
         """
         msg = "Cannot instantiate base class. Instead, instantiate one of the defined subclasses: {0}".format(
-                  ", ".join(['GetSecretPolicyRotation']))
+            ", ".join(['GetSecretPolicyRotation']))
         raise Exception(msg)
+
 
 class GetSecretPolicyRotationResourcesItem():
     """
@@ -2605,6 +2600,7 @@ class GetSecretVersion():
         """Return `true` when self and other are not equal, false otherwise."""
         return not self == other
 
+
 class GetSecretVersionMetadata():
     """
     Properties that describe the version of a secret.
@@ -2679,6 +2675,7 @@ class GetSecretVersionMetadata():
         """Return `true` when self and other are not equal, false otherwise."""
         return not self == other
 
+
 class GetSingleConfigElement():
     """
     Properties that describe a configuration.
@@ -2746,6 +2743,7 @@ class GetSingleConfigElement():
     def __ne__(self, other: 'GetSingleConfigElement') -> bool:
         """Return `true` when self and other are not equal, false otherwise."""
         return not self == other
+
 
 class IssuanceInfo():
     """
@@ -2869,6 +2867,7 @@ class IssuanceInfo():
         """Return `true` when self and other are not equal, false otherwise."""
         return not self == other
 
+
 class ListSecrets():
     """
     Properties that describe a list of secrets.
@@ -2942,6 +2941,7 @@ class ListSecrets():
     def __ne__(self, other: 'ListSecrets') -> bool:
         """Return `true` when self and other are not equal, false otherwise."""
         return not self == other
+
 
 class Rotation():
     """
@@ -3020,6 +3020,7 @@ class Rotation():
         """Return `true` when self and other are not equal, false otherwise."""
         return not self == other
 
+
 class SecretAction():
     """
     SecretAction.
@@ -3032,8 +3033,10 @@ class SecretAction():
 
         """
         msg = "Cannot instantiate base class. Instead, instantiate one of the defined subclasses: {0}".format(
-                  ", ".join(['RotateArbitrarySecretBody', 'RotatePublicCertBody', 'RotateUsernamePasswordSecretBody', 'RotateCertificateBody', 'DeleteCredentialsForIAMCredentialsSecret']))
+            ", ".join(['RotateArbitrarySecretBody', 'RotatePublicCertBody', 'RotateUsernamePasswordSecretBody',
+                       'RotateCertificateBody', 'DeleteCredentialsForIAMCredentialsSecret']))
         raise Exception(msg)
+
 
 class SecretGroupDef():
     """
@@ -3102,6 +3105,7 @@ class SecretGroupDef():
     def __ne__(self, other: 'SecretGroupDef') -> bool:
         """Return `true` when self and other are not equal, false otherwise."""
         return not self == other
+
 
 class SecretGroupMetadataUpdatable():
     """
@@ -3176,6 +3180,7 @@ class SecretGroupMetadataUpdatable():
         """Return `true` when self and other are not equal, false otherwise."""
         return not self == other
 
+
 class SecretGroupResource():
     """
     Properties that describe a secret group.
@@ -3244,7 +3249,7 @@ class SecretGroupResource():
             args['last_update_date'] = string_to_datetime(_dict.get('last_update_date'))
         if 'type' in _dict:
             args['type'] = _dict.get('type')
-        args.update({k:v for (k, v) in _dict.items() if k not in cls._properties})
+        args.update({k: v for (k, v) in _dict.items() if k not in cls._properties})
         return cls(**args)
 
     @classmethod
@@ -3307,6 +3312,7 @@ class SecretGroupResource():
         """Return `true` when self and other are not equal, false otherwise."""
         return not self == other
 
+
 class SecretMetadata():
     """
     SecretMetadata.
@@ -3319,8 +3325,10 @@ class SecretMetadata():
 
         """
         msg = "Cannot instantiate base class. Instead, instantiate one of the defined subclasses: {0}".format(
-                  ", ".join(['ArbitrarySecretMetadata', 'UsernamePasswordSecretMetadata', 'IAMCredentialsSecretMetadata', 'CertificateSecretMetadata', 'PublicCertificateMetadataSecretResource']))
+            ", ".join(['ArbitrarySecretMetadata', 'UsernamePasswordSecretMetadata', 'IAMCredentialsSecretMetadata',
+                       'CertificateSecretMetadata', 'PublicCertificateMetadataSecretResource']))
         raise Exception(msg)
+
 
 class SecretMetadataRequest():
     """
@@ -3395,6 +3403,7 @@ class SecretMetadataRequest():
     def __ne__(self, other: 'SecretMetadataRequest') -> bool:
         """Return `true` when self and other are not equal, false otherwise."""
         return not self == other
+
 
 class SecretPolicyRotation():
     """
@@ -3487,8 +3496,10 @@ class SecretPolicyRotationRotation():
 
         """
         msg = "Cannot instantiate base class. Instead, instantiate one of the defined subclasses: {0}".format(
-                  ", ".join(['SecretPolicyRotationRotationPolicyRotation', 'SecretPolicyRotationRotationPublicCertPolicyRotation']))
+            ", ".join(
+                ['SecretPolicyRotationRotationPolicyRotation', 'SecretPolicyRotationRotationPublicCertPolicyRotation']))
         raise Exception(msg)
+
 
 class SecretResource():
     """
@@ -3502,8 +3513,10 @@ class SecretResource():
 
         """
         msg = "Cannot instantiate base class. Instead, instantiate one of the defined subclasses: {0}".format(
-                  ", ".join(['ArbitrarySecretResource', 'UsernamePasswordSecretResource', 'IAMCredentialsSecretResource', 'CertificateSecretResource', 'PublicCertificateSecretResource']))
+            ", ".join(['ArbitrarySecretResource', 'UsernamePasswordSecretResource', 'IAMCredentialsSecretResource',
+                       'CertificateSecretResource', 'PublicCertificateSecretResource']))
         raise Exception(msg)
+
 
 class SecretVersion():
     """
@@ -3517,8 +3530,9 @@ class SecretVersion():
 
         """
         msg = "Cannot instantiate base class. Instead, instantiate one of the defined subclasses: {0}".format(
-                  ", ".join(['CertificateSecretVersion']))
+            ", ".join(['CertificateSecretVersion']))
         raise Exception(msg)
+
 
 class SecretVersionMetadata():
     """
@@ -3532,8 +3546,10 @@ class SecretVersionMetadata():
 
         """
         msg = "Cannot instantiate base class. Instead, instantiate one of the defined subclasses: {0}".format(
-                  ", ".join(['ArbitrarySecretVersionMetadata', 'UsernamePasswordSecretVersionMetadata', 'IAMCredentialsSecretVersionMetadata', 'CertificateSecretVersionMetadata']))
+            ", ".join(['ArbitrarySecretVersionMetadata', 'UsernamePasswordSecretVersionMetadata',
+                       'IAMCredentialsSecretVersionMetadata', 'CertificateSecretVersionMetadata']))
         raise Exception(msg)
+
 
 class CertificateValidity():
     """
@@ -3602,6 +3618,7 @@ class CertificateValidity():
         """Return `true` when self and other are not equal, false otherwise."""
         return not self == other
 
+
 class Warning():
     """
     Warning response.
@@ -3669,6 +3686,7 @@ class Warning():
     def __ne__(self, other: 'Warning') -> bool:
         """Return `true` when self and other are not equal, false otherwise."""
         return not self == other
+
 
 class ArbitrarySecretMetadata(SecretMetadata):
     """
@@ -4180,6 +4198,7 @@ class ArbitrarySecretVersionMetadata(SecretVersionMetadata):
     def __ne__(self, other: 'ArbitrarySecretVersionMetadata') -> bool:
         """Return `true` when self and other are not equal, false otherwise."""
         return not self == other
+
 
 class CertificateSecretMetadata(SecretMetadata):
     """
@@ -4887,6 +4906,7 @@ class CertificateSecretVersion(SecretVersion):
         """Return `true` when self and other are not equal, false otherwise."""
         return not self == other
 
+
 class CertificateSecretVersionMetadata(SecretVersionMetadata):
     """
     Properties that describe a secret version.
@@ -4982,6 +5002,7 @@ class CertificateSecretVersionMetadata(SecretVersionMetadata):
         """Return `true` when self and other are not equal, false otherwise."""
         return not self == other
 
+
 class ConfigElementDefConfigClassicInfrastructureConfig(ConfigElementDefConfig):
     """
     Properties that describe an IBM Cloud classic infrastructure (SoftLayer)
@@ -5014,11 +5035,13 @@ class ConfigElementDefConfigClassicInfrastructureConfig(ConfigElementDefConfig):
         if 'classic_infrastructure_username' in _dict:
             args['classic_infrastructure_username'] = _dict.get('classic_infrastructure_username')
         else:
-            raise ValueError('Required property \'classic_infrastructure_username\' not present in ConfigElementDefConfigClassicInfrastructureConfig JSON')
+            raise ValueError(
+                'Required property \'classic_infrastructure_username\' not present in ConfigElementDefConfigClassicInfrastructureConfig JSON')
         if 'classic_infrastructure_password' in _dict:
             args['classic_infrastructure_password'] = _dict.get('classic_infrastructure_password')
         else:
-            raise ValueError('Required property \'classic_infrastructure_password\' not present in ConfigElementDefConfigClassicInfrastructureConfig JSON')
+            raise ValueError(
+                'Required property \'classic_infrastructure_password\' not present in ConfigElementDefConfigClassicInfrastructureConfig JSON')
         return cls(**args)
 
     @classmethod
@@ -5052,6 +5075,7 @@ class ConfigElementDefConfigClassicInfrastructureConfig(ConfigElementDefConfig):
     def __ne__(self, other: 'ConfigElementDefConfigClassicInfrastructureConfig') -> bool:
         """Return `true` when self and other are not equal, false otherwise."""
         return not self == other
+
 
 class ConfigElementDefConfigCloudInternetServicesConfig(ConfigElementDefConfig):
     """
@@ -5106,7 +5130,8 @@ class ConfigElementDefConfigCloudInternetServicesConfig(ConfigElementDefConfig):
         if 'cis_crn' in _dict:
             args['cis_crn'] = _dict.get('cis_crn')
         else:
-            raise ValueError('Required property \'cis_crn\' not present in ConfigElementDefConfigCloudInternetServicesConfig JSON')
+            raise ValueError(
+                'Required property \'cis_crn\' not present in ConfigElementDefConfigCloudInternetServicesConfig JSON')
         if 'cis_apikey' in _dict:
             args['cis_apikey'] = _dict.get('cis_apikey')
         return cls(**args)
@@ -5143,6 +5168,7 @@ class ConfigElementDefConfigCloudInternetServicesConfig(ConfigElementDefConfig):
         """Return `true` when self and other are not equal, false otherwise."""
         return not self == other
 
+
 class ConfigElementDefConfigLetsEncryptConfig(ConfigElementDefConfig):
     """
     Properties that describe a Let's Encrypt configuration.
@@ -5169,7 +5195,8 @@ class ConfigElementDefConfigLetsEncryptConfig(ConfigElementDefConfig):
         if 'private_key' in _dict:
             args['private_key'] = _dict.get('private_key')
         else:
-            raise ValueError('Required property \'private_key\' not present in ConfigElementDefConfigLetsEncryptConfig JSON')
+            raise ValueError(
+                'Required property \'private_key\' not present in ConfigElementDefConfigLetsEncryptConfig JSON')
         return cls(**args)
 
     @classmethod
@@ -5202,6 +5229,7 @@ class ConfigElementDefConfigLetsEncryptConfig(ConfigElementDefConfig):
         """Return `true` when self and other are not equal, false otherwise."""
         return not self == other
 
+
 class DeleteCredentialsForIAMCredentialsSecret(SecretAction):
     """
     Delete the credentials that are associated with an `iam_credentials` secret.
@@ -5228,7 +5256,8 @@ class DeleteCredentialsForIAMCredentialsSecret(SecretAction):
         if 'service_id' in _dict:
             args['service_id'] = _dict.get('service_id')
         else:
-            raise ValueError('Required property \'service_id\' not present in DeleteCredentialsForIAMCredentialsSecret JSON')
+            raise ValueError(
+                'Required property \'service_id\' not present in DeleteCredentialsForIAMCredentialsSecret JSON')
         return cls(**args)
 
     @classmethod
@@ -5261,6 +5290,7 @@ class DeleteCredentialsForIAMCredentialsSecret(SecretAction):
         """Return `true` when self and other are not equal, false otherwise."""
         return not self == other
 
+
 class GetConfigElementsResourcesItemCertificateAuthoritiesConfig(GetConfigElementsResourcesItem):
     """
     Certificate authorities configuration.
@@ -5283,9 +5313,11 @@ class GetConfigElementsResourcesItemCertificateAuthoritiesConfig(GetConfigElemen
         """Initialize a GetConfigElementsResourcesItemCertificateAuthoritiesConfig object from a json dictionary."""
         args = {}
         if 'certificate_authorities' in _dict:
-            args['certificate_authorities'] = [ConfigElementMetadata.from_dict(x) for x in _dict.get('certificate_authorities')]
+            args['certificate_authorities'] = [ConfigElementMetadata.from_dict(x) for x in
+                                               _dict.get('certificate_authorities')]
         else:
-            raise ValueError('Required property \'certificate_authorities\' not present in GetConfigElementsResourcesItemCertificateAuthoritiesConfig JSON')
+            raise ValueError(
+                'Required property \'certificate_authorities\' not present in GetConfigElementsResourcesItemCertificateAuthoritiesConfig JSON')
         return cls(**args)
 
     @classmethod
@@ -5318,6 +5350,7 @@ class GetConfigElementsResourcesItemCertificateAuthoritiesConfig(GetConfigElemen
         """Return `true` when self and other are not equal, false otherwise."""
         return not self == other
 
+
 class GetConfigElementsResourcesItemDnsProvidersConfig(GetConfigElementsResourcesItem):
     """
     DNS providers configuration.
@@ -5342,7 +5375,8 @@ class GetConfigElementsResourcesItemDnsProvidersConfig(GetConfigElementsResource
         if 'dns_providers' in _dict:
             args['dns_providers'] = [ConfigElementMetadata.from_dict(x) for x in _dict.get('dns_providers')]
         else:
-            raise ValueError('Required property \'dns_providers\' not present in GetConfigElementsResourcesItemDnsProvidersConfig JSON')
+            raise ValueError(
+                'Required property \'dns_providers\' not present in GetConfigElementsResourcesItemDnsProvidersConfig JSON')
         return cls(**args)
 
     @classmethod
@@ -5374,6 +5408,7 @@ class GetConfigElementsResourcesItemDnsProvidersConfig(GetConfigElementsResource
     def __ne__(self, other: 'GetConfigElementsResourcesItemDnsProvidersConfig') -> bool:
         """Return `true` when self and other are not equal, false otherwise."""
         return not self == other
+
 
 class GetSecretPolicyRotation(GetSecretPolicies):
     """
@@ -5445,6 +5480,7 @@ class GetSecretPolicyRotation(GetSecretPolicies):
     def __ne__(self, other: 'GetSecretPolicyRotation') -> bool:
         """Return `true` when self and other are not equal, false otherwise."""
         return not self == other
+
 
 class IAMCredentialsSecretEngineRootConfig(GetConfigResourcesItem):
     """
@@ -5521,6 +5557,7 @@ class IAMCredentialsSecretEngineRootConfig(GetConfigResourcesItem):
     def __ne__(self, other: 'IAMCredentialsSecretEngineRootConfig') -> bool:
         """Return `true` when self and other are not equal, false otherwise."""
         return not self == other
+
 
 class IAMCredentialsSecretMetadata(SecretMetadata):
     """
@@ -6076,6 +6113,7 @@ class IAMCredentialsSecretVersionMetadata(SecretVersionMetadata):
         """Return `true` when self and other are not equal, false otherwise."""
         return not self == other
 
+
 class PublicCertSecretEngineRootConfig(GetConfigResourcesItem):
     """
     Configuration for the public certificates engine.
@@ -6105,7 +6143,8 @@ class PublicCertSecretEngineRootConfig(GetConfigResourcesItem):
         """Initialize a PublicCertSecretEngineRootConfig object from a json dictionary."""
         args = {}
         if 'certificate_authorities' in _dict:
-            args['certificate_authorities'] = [ConfigElementMetadata.from_dict(x) for x in _dict.get('certificate_authorities')]
+            args['certificate_authorities'] = [ConfigElementMetadata.from_dict(x) for x in
+                                               _dict.get('certificate_authorities')]
         if 'dns_providers' in _dict:
             args['dns_providers'] = [ConfigElementMetadata.from_dict(x) for x in _dict.get('dns_providers')]
         return cls(**args)
@@ -6141,6 +6180,7 @@ class PublicCertSecretEngineRootConfig(GetConfigResourcesItem):
     def __ne__(self, other: 'PublicCertSecretEngineRootConfig') -> bool:
         """Return `true` when self and other are not equal, false otherwise."""
         return not self == other
+
 
 class PublicCertificateMetadataSecretResource(SecretMetadata):
     """
@@ -6420,7 +6460,6 @@ class PublicCertificateMetadataSecretResource(SecretMetadata):
         IAM_CREDENTIALS = 'iam_credentials'
         IMPORTED_CERT = 'imported_cert'
         PUBLIC_CERT = 'public_cert'
-
 
     class KeyAlgorithmEnum(str, Enum):
         """
@@ -6741,7 +6780,6 @@ class PublicCertificateSecretResource(SecretResource):
         IAM_CREDENTIALS = 'iam_credentials'
         IMPORTED_CERT = 'imported_cert'
 
-
     class KeyAlgorithmEnum(str, Enum):
         """
         The identifier for the cryptographic algorithm to be used to generate the public
@@ -6809,6 +6847,7 @@ class RotateArbitrarySecretBody(SecretAction):
     def __ne__(self, other: 'RotateArbitrarySecretBody') -> bool:
         """Return `true` when self and other are not equal, false otherwise."""
         return not self == other
+
 
 class RotateCertificateBody(SecretAction):
     """
@@ -6888,6 +6927,7 @@ class RotateCertificateBody(SecretAction):
         """Return `true` when self and other are not equal, false otherwise."""
         return not self == other
 
+
 class RotatePublicCertBody(SecretAction):
     """
     The request body of a `rotate` action.
@@ -6944,6 +6984,7 @@ class RotatePublicCertBody(SecretAction):
     def __ne__(self, other: 'RotatePublicCertBody') -> bool:
         """Return `true` when self and other are not equal, false otherwise."""
         return not self == other
+
 
 class RotateUsernamePasswordSecretBody(SecretAction):
     """
@@ -7003,6 +7044,7 @@ class RotateUsernamePasswordSecretBody(SecretAction):
         """Return `true` when self and other are not equal, false otherwise."""
         return not self == other
 
+
 class SecretPolicyRotationRotationPolicyRotation(SecretPolicyRotationRotation):
     """
     The secret rotation time interval.
@@ -7032,11 +7074,13 @@ class SecretPolicyRotationRotationPolicyRotation(SecretPolicyRotationRotation):
         if 'interval' in _dict:
             args['interval'] = _dict.get('interval')
         else:
-            raise ValueError('Required property \'interval\' not present in SecretPolicyRotationRotationPolicyRotation JSON')
+            raise ValueError(
+                'Required property \'interval\' not present in SecretPolicyRotationRotationPolicyRotation JSON')
         if 'unit' in _dict:
             args['unit'] = _dict.get('unit')
         else:
-            raise ValueError('Required property \'unit\' not present in SecretPolicyRotationRotationPolicyRotation JSON')
+            raise ValueError(
+                'Required property \'unit\' not present in SecretPolicyRotationRotationPolicyRotation JSON')
         return cls(**args)
 
     @classmethod
@@ -7112,11 +7156,13 @@ class SecretPolicyRotationRotationPublicCertPolicyRotation(SecretPolicyRotationR
         if 'auto_rotate' in _dict:
             args['auto_rotate'] = _dict.get('auto_rotate')
         else:
-            raise ValueError('Required property \'auto_rotate\' not present in SecretPolicyRotationRotationPublicCertPolicyRotation JSON')
+            raise ValueError(
+                'Required property \'auto_rotate\' not present in SecretPolicyRotationRotationPublicCertPolicyRotation JSON')
         if 'rotate_keys' in _dict:
             args['rotate_keys'] = _dict.get('rotate_keys')
         else:
-            raise ValueError('Required property \'rotate_keys\' not present in SecretPolicyRotationRotationPublicCertPolicyRotation JSON')
+            raise ValueError(
+                'Required property \'rotate_keys\' not present in SecretPolicyRotationRotationPublicCertPolicyRotation JSON')
         if 'warning' in _dict:
             args['warning'] = Warning.from_dict(_dict.get('warning'))
         return cls(**args)
@@ -7154,6 +7200,7 @@ class SecretPolicyRotationRotationPublicCertPolicyRotation(SecretPolicyRotationR
     def __ne__(self, other: 'SecretPolicyRotationRotationPublicCertPolicyRotation') -> bool:
         """Return `true` when self and other are not equal, false otherwise."""
         return not self == other
+
 
 class UsernamePasswordSecretMetadata(SecretMetadata):
     """
