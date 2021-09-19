@@ -86,6 +86,98 @@ class TestArbitrarySecret(unittest.TestCase):
             assert response.status_code == 204
 
 
+class TestPublicCertSecret(unittest.TestCase):
+
+    def test_create_configs_and_order_certificate(self):
+        ca_config_name = generate_name() + '-ca'
+
+        response = secretsManager.create_config_element(
+            'public_cert', 'certificate_authorities', ca_config_name, 'letsencrypt-stage', {
+                'private_key': os.environ.get('CA_CONFIG_PRIVATE_KEY').replace("\\n", "\n"),
+            })
+
+        assert response.status_code == 201
+
+        dns_config_name = generate_name() + '-dns'
+
+        response = secretsManager.create_config_element(
+            'public_cert', 'dns_providers', dns_config_name, 'cis', {
+                "cis_crn": os.environ.get("DNS_CONFIG_CRN"),
+                "cis_apikey": os.environ.get("DNS_CONFIG_API_KEY"),
+            })
+
+        assert response.status_code == 201
+
+        response = secretsManager.create_secret(
+            'public_cert',
+            {'collection_type': 'application/vnd.ibm.secrets-manager.secret+json', 'collection_total': 1},
+            [
+                {
+                    'name': generate_name(),
+                    'description': 'Integration test generated',
+                    'labels': ['label1', 'label2'],
+                    'common_name': 'integration.secrets-manager.test.appdomain.cloud',
+                    'alt_names': ['integration2.secrets-manager.test.appdomain.cloud'],
+                    'key_algorithm': 'RSA2048',
+                    'ca': ca_config_name,
+                    'dns': dns_config_name,
+                    'rotation': {
+                        'auto_rotate': False,
+                        'rotate_keys': False
+                    }
+                }]
+        )
+        assert response.status_code == 202
+        secret_id = response.result['resources'][0]['id']
+
+    def test_create_get_list_delete_configs(self):
+        ca_config_name = generate_name() + '-ca'
+
+        response = secretsManager.create_config_element(
+            'public_cert', 'certificate_authorities', ca_config_name, 'letsencrypt-stage', {
+                'private_key': os.environ.get('CA_CONFIG_PRIVATE_KEY').replace("\\n", "\n"),
+            })
+
+        assert response.status_code == 201
+
+        dns_config_name = generate_name() + '-dns'
+
+        response = secretsManager.create_config_element(
+            'public_cert', 'dns_providers', dns_config_name, 'cis', {
+                "cis_crn": os.environ.get("DNS_CONFIG_CRN"),
+                "cis_apikey": os.environ.get("DNS_CONFIG_API_KEY"),
+            })
+
+        assert response.status_code == 201
+
+        response = secretsManager.get_config_element(
+            'public_cert', 'dns_providers', dns_config_name)
+
+        assert response.status_code == 200
+
+        response = secretsManager.get_config_element(
+            'public_cert', 'certificate_authorities', ca_config_name)
+
+        assert response.status_code == 200
+
+        response = secretsManager.get_config('public_cert')
+
+        assert response.status_code == 200
+
+        assert response.result['resources'][0]['dns_providers'] is not None
+        assert response.result['resources'][0]['certificate_authorities'] is not None
+
+        response = secretsManager.delete_config_element(
+            'public_cert', 'certificate_authorities', ca_config_name)
+
+        assert response.status_code == 204
+
+        response = secretsManager.delete_config_element(
+            'public_cert', 'dns_providers', dns_config_name)
+
+        assert response.status_code == 204
+
+
 class TestUsernamePasswordSecret(unittest.TestCase):
 
     def test_secret_group(self):

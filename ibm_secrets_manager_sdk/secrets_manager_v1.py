@@ -14,12 +14,15 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-# IBM OpenAPI SDK Code Generator Version: 3.34.0-e2a502a2-20210616-185634
+# IBM OpenAPI SDK Code Generator Version: 3.38.1-1037b405-20210908-184149
 
 """
 With IBM Cloud® Secrets Manager, you can create, lease, and centrally manage secrets that
 are used in IBM Cloud services or your custom-built applications. Secrets are stored in a
 dedicated instance of Secrets Manager, built on open source HashiCorp Vault.
+
+API Version: 1.0.0
+See: https://cloud.ibm.com/docs/secrets-manager
 """
 
 from datetime import datetime
@@ -67,7 +70,7 @@ class SecretsManagerV1(BaseService):
         Construct a new client for the secrets-manager service.
 
         :param Authenticator authenticator: The authenticator specifies the authentication mechanism.
-               Get up to date information from https://github.com/IBM/python-sdk-core/blob/master/README.md
+               Get up to date information from https://github.com/IBM/python-sdk-core/blob/main/README.md
                about initializing the authenticator of your choice.
         """
         BaseService.__init__(self,
@@ -75,225 +78,7 @@ class SecretsManagerV1(BaseService):
                              authenticator=authenticator)
 
     #########################
-    # config
-    #########################
-
-    def put_config(self,
-                   secret_type: str,
-                   engine_config: 'EngineConfig',
-                   **kwargs
-                   ) -> DetailedResponse:
-        """
-        Configure secrets of a given type.
-
-        Updates the configuration for the given secret type.
-
-        :param str secret_type: The secret type.
-        :param EngineConfig engine_config: Properties to update for a secrets
-               engine.
-        :param dict headers: A `dict` containing the request headers
-        :return: A `DetailedResponse` containing the result, headers and HTTP status code.
-        :rtype: DetailedResponse
-        """
-
-        if secret_type is None:
-            raise ValueError('secret_type must be provided')
-        if engine_config is None:
-            raise ValueError('engine_config must be provided')
-        if isinstance(engine_config, EngineConfig):
-            engine_config = convert_model(engine_config)
-        headers = {}
-        sdk_headers = get_sdk_headers(service_name=self.DEFAULT_SERVICE_NAME,
-                                      service_version='V1',
-                                      operation_id='put_config')
-        headers.update(sdk_headers)
-
-        data = json.dumps(engine_config)
-        headers['content-type'] = 'application/json'
-
-        if 'headers' in kwargs:
-            headers.update(kwargs.get('headers'))
-
-        path_param_keys = ['secret_type']
-        path_param_values = self.encode_path_vars(secret_type)
-        path_param_dict = dict(zip(path_param_keys, path_param_values))
-        url = '/api/v1/config/{secret_type}'.format(**path_param_dict)
-        request = self.prepare_request(method='PUT',
-                                       url=url,
-                                       headers=headers,
-                                       data=data)
-
-        response = self.send(request)
-        return response
-
-    def get_config(self,
-                   secret_type: str,
-                   **kwargs
-                   ) -> DetailedResponse:
-        """
-        Get the configuration for a secret type.
-
-        Retrieves the configuration that is associated with the given secret type.
-
-        :param str secret_type: The secret type.
-        :param dict headers: A `dict` containing the request headers
-        :return: A `DetailedResponse` containing the result, headers and HTTP status code.
-        :rtype: DetailedResponse with `dict` result representing a `GetConfig` object
-        """
-
-        if secret_type is None:
-            raise ValueError('secret_type must be provided')
-        headers = {}
-        sdk_headers = get_sdk_headers(service_name=self.DEFAULT_SERVICE_NAME,
-                                      service_version='V1',
-                                      operation_id='get_config')
-        headers.update(sdk_headers)
-
-        if 'headers' in kwargs:
-            headers.update(kwargs.get('headers'))
-        headers['Accept'] = 'application/json'
-
-        path_param_keys = ['secret_type']
-        path_param_values = self.encode_path_vars(secret_type)
-        path_param_dict = dict(zip(path_param_keys, path_param_values))
-        url = '/api/v1/config/{secret_type}'.format(**path_param_dict)
-        request = self.prepare_request(method='GET',
-                                       url=url,
-                                       headers=headers)
-
-        response = self.send(request)
-        return response
-
-    #########################
-    # policies
-    #########################
-
-    def put_policy(self,
-                   secret_type: str,
-                   id: str,
-                   metadata: 'CollectionMetadata',
-                   resources: List['SecretPolicyRotation'],
-                   *,
-                   policy: str = None,
-                   **kwargs
-                   ) -> DetailedResponse:
-        """
-        Set secret policies.
-
-        Creates or updates one or more policies, such as an [automatic rotation
-        policy](http://cloud.ibm.com/docs/secrets-manager?topic=secrets-manager-rotate-secrets#auto-rotate-secret),
-        for the specified secret.
-
-        :param str secret_type: The secret type.
-        :param str id: The v4 UUID that uniquely identifies the secret.
-        :param CollectionMetadata metadata: The metadata that describes the
-               resource array.
-        :param List[SecretPolicyRotation] resources: A collection of resources.
-        :param str policy: (optional) The type of policy that is associated with
-               the specified secret.
-        :param dict headers: A `dict` containing the request headers
-        :return: A `DetailedResponse` containing the result, headers and HTTP status code.
-        :rtype: DetailedResponse with `dict` result representing a `GetSecretPolicies` object
-        """
-
-        if secret_type is None:
-            raise ValueError('secret_type must be provided')
-        if id is None:
-            raise ValueError('id must be provided')
-        if metadata is None:
-            raise ValueError('metadata must be provided')
-        if resources is None:
-            raise ValueError('resources must be provided')
-        metadata = convert_model(metadata)
-        resources = [convert_model(x) for x in resources]
-        headers = {}
-        sdk_headers = get_sdk_headers(service_name=self.DEFAULT_SERVICE_NAME,
-                                      service_version='V1',
-                                      operation_id='put_policy')
-        headers.update(sdk_headers)
-
-        params = {
-            'policy': policy
-        }
-
-        data = {
-            'metadata': metadata,
-            'resources': resources
-        }
-        data = {k: v for (k, v) in data.items() if v is not None}
-        data = json.dumps(data)
-        headers['content-type'] = 'application/json'
-
-        if 'headers' in kwargs:
-            headers.update(kwargs.get('headers'))
-        headers['Accept'] = 'application/json'
-
-        path_param_keys = ['secret_type', 'id']
-        path_param_values = self.encode_path_vars(secret_type, id)
-        path_param_dict = dict(zip(path_param_keys, path_param_values))
-        url = '/api/v1/secrets/{secret_type}/{id}/policies'.format(**path_param_dict)
-        request = self.prepare_request(method='PUT',
-                                       url=url,
-                                       headers=headers,
-                                       params=params,
-                                       data=data)
-
-        response = self.send(request)
-        return response
-
-    def get_policy(self,
-                   secret_type: str,
-                   id: str,
-                   *,
-                   policy: str = None,
-                   **kwargs
-                   ) -> DetailedResponse:
-        """
-        List secret policies.
-
-        Retrieves a list of policies that are associated with a specified secret.
-
-        :param str secret_type: The secret type.
-        :param str id: The v4 UUID that uniquely identifies the secret.
-        :param str policy: (optional) The type of policy that is associated with
-               the specified secret.
-        :param dict headers: A `dict` containing the request headers
-        :return: A `DetailedResponse` containing the result, headers and HTTP status code.
-        :rtype: DetailedResponse with `dict` result representing a `GetSecretPolicies` object
-        """
-
-        if secret_type is None:
-            raise ValueError('secret_type must be provided')
-        if id is None:
-            raise ValueError('id must be provided')
-        headers = {}
-        sdk_headers = get_sdk_headers(service_name=self.DEFAULT_SERVICE_NAME,
-                                      service_version='V1',
-                                      operation_id='get_policy')
-        headers.update(sdk_headers)
-
-        params = {
-            'policy': policy
-        }
-
-        if 'headers' in kwargs:
-            headers.update(kwargs.get('headers'))
-        headers['Accept'] = 'application/json'
-
-        path_param_keys = ['secret_type', 'id']
-        path_param_values = self.encode_path_vars(secret_type, id)
-        path_param_dict = dict(zip(path_param_keys, path_param_values))
-        url = '/api/v1/secrets/{secret_type}/{id}/policies'.format(**path_param_dict)
-        request = self.prepare_request(method='GET',
-                                       url=url,
-                                       headers=headers,
-                                       params=params)
-
-        response = self.send(request)
-        return response
-
-    #########################
-    # secretGroups
+    # Secret groups
     #########################
 
     def create_secret_group(self,
@@ -348,7 +133,7 @@ class SecretsManagerV1(BaseService):
                                        headers=headers,
                                        data=data)
 
-        response = self.send(request)
+        response = self.send(request, **kwargs)
         return response
 
     def list_secret_groups(self,
@@ -380,7 +165,7 @@ class SecretsManagerV1(BaseService):
                                        url=url,
                                        headers=headers)
 
-        response = self.send(request)
+        response = self.send(request, **kwargs)
         return response
 
     def get_secret_group(self,
@@ -419,7 +204,7 @@ class SecretsManagerV1(BaseService):
                                        url=url,
                                        headers=headers)
 
-        response = self.send(request)
+        response = self.send(request, **kwargs)
         return response
 
     def update_secret_group_metadata(self,
@@ -478,7 +263,7 @@ class SecretsManagerV1(BaseService):
                                        headers=headers,
                                        data=data)
 
-        response = self.send(request)
+        response = self.send(request, **kwargs)
         return response
 
     def delete_secret_group(self,
@@ -518,11 +303,11 @@ class SecretsManagerV1(BaseService):
                                        url=url,
                                        headers=headers)
 
-        response = self.send(request)
+        response = self.send(request, **kwargs)
         return response
 
     #########################
-    # secrets
+    # Secrets
     #########################
 
     def create_secret(self,
@@ -589,7 +374,7 @@ class SecretsManagerV1(BaseService):
                                        headers=headers,
                                        data=data)
 
-        response = self.send(request)
+        response = self.send(request, **kwargs)
         return response
 
     def list_secrets(self,
@@ -648,7 +433,7 @@ class SecretsManagerV1(BaseService):
                                        headers=headers,
                                        params=params)
 
-        response = self.send(request)
+        response = self.send(request, **kwargs)
         return response
 
     def list_all_secrets(self,
@@ -723,7 +508,7 @@ class SecretsManagerV1(BaseService):
                                        headers=headers,
                                        params=params)
 
-        response = self.send(request)
+        response = self.send(request, **kwargs)
         return response
 
     def get_secret(self,
@@ -768,7 +553,7 @@ class SecretsManagerV1(BaseService):
                                        url=url,
                                        headers=headers)
 
-        response = self.send(request)
+        response = self.send(request, **kwargs)
         return response
 
     def update_secret(self,
@@ -783,8 +568,8 @@ class SecretsManagerV1(BaseService):
 
         Invokes an action on a specified secret. This method supports the following
         actions:
-        - `rotate`: Replace the value of an `arbitrary`, `username_password` or
-        `imported_cert` secret.
+        - `rotate`: Replace the value of an `arbitrary`, `username_password`,
+        `public_cert` or `imported_cert` secret.
         - `delete_credentials`: Delete the API key that is associated with an
         `iam_credentials` secret.
 
@@ -834,7 +619,7 @@ class SecretsManagerV1(BaseService):
                                        params=params,
                                        data=data)
 
-        response = self.send(request)
+        response = self.send(request, **kwargs)
         return response
 
     def delete_secret(self,
@@ -875,7 +660,7 @@ class SecretsManagerV1(BaseService):
                                        url=url,
                                        headers=headers)
 
-        response = self.send(request)
+        response = self.send(request, **kwargs)
         return response
 
     def get_secret_version(self,
@@ -928,7 +713,7 @@ class SecretsManagerV1(BaseService):
                                        url=url,
                                        headers=headers)
 
-        response = self.send(request)
+        response = self.send(request, **kwargs)
         return response
 
     def get_secret_version_metadata(self,
@@ -981,7 +766,7 @@ class SecretsManagerV1(BaseService):
                                        url=url,
                                        headers=headers)
 
-        response = self.send(request)
+        response = self.send(request, **kwargs)
         return response
 
     def get_secret_metadata(self,
@@ -1026,7 +811,7 @@ class SecretsManagerV1(BaseService):
                                        url=url,
                                        headers=headers)
 
-        response = self.send(request)
+        response = self.send(request, **kwargs)
         return response
 
     def update_secret_metadata(self,
@@ -1090,68 +875,504 @@ class SecretsManagerV1(BaseService):
                                        headers=headers,
                                        data=data)
 
-        response = self.send(request)
+        response = self.send(request, **kwargs)
         return response
 
+    #########################
+    # Policies
+    #########################
 
-class PutConfigEnums:
-    """
-    Enums for put_config parameters.
-    """
-
-    class SecretType(str, Enum):
+    def put_policy(self,
+                   secret_type: str,
+                   id: str,
+                   metadata: 'CollectionMetadata',
+                   resources: List['SecretPolicyRotation'],
+                   *,
+                   policy: str = None,
+                   **kwargs
+                   ) -> DetailedResponse:
         """
-        The secret type.
-        """
-        IAM_CREDENTIALS = 'iam_credentials'
+        Set secret policies.
 
+        Creates or updates one or more policies, such as an [automatic rotation
+        policy](http://cloud.ibm.com/docs/secrets-manager?topic=secrets-manager-rotate-secrets#auto-rotate-secret),
+        for the specified secret.
 
-class GetConfigEnums:
-    """
-    Enums for get_config parameters.
-    """
+        :param str secret_type: The secret type.
+        :param str id: The v4 UUID that uniquely identifies the secret.
+        :param CollectionMetadata metadata: The metadata that describes the
+               resource array.
+        :param List[SecretPolicyRotation] resources: A collection of resources.
+        :param str policy: (optional) The type of policy that is associated with
+               the specified secret.
+        :param dict headers: A `dict` containing the request headers
+        :return: A `DetailedResponse` containing the result, headers and HTTP status code.
+        :rtype: DetailedResponse with `dict` result representing a `GetSecretPolicies` object
+        """
 
-    class SecretType(str, Enum):
-        """
-        The secret type.
-        """
-        IAM_CREDENTIALS = 'iam_credentials'
+        if secret_type is None:
+            raise ValueError('secret_type must be provided')
+        if id is None:
+            raise ValueError('id must be provided')
+        if metadata is None:
+            raise ValueError('metadata must be provided')
+        if resources is None:
+            raise ValueError('resources must be provided')
+        metadata = convert_model(metadata)
+        resources = [convert_model(x) for x in resources]
+        headers = {}
+        sdk_headers = get_sdk_headers(service_name=self.DEFAULT_SERVICE_NAME,
+                                      service_version='V1',
+                                      operation_id='put_policy')
+        headers.update(sdk_headers)
 
+        params = {
+            'policy': policy
+        }
 
-class PutPolicyEnums:
-    """
-    Enums for put_policy parameters.
-    """
+        data = {
+            'metadata': metadata,
+            'resources': resources
+        }
+        data = {k: v for (k, v) in data.items() if v is not None}
+        data = json.dumps(data)
+        headers['content-type'] = 'application/json'
 
-    class SecretType(str, Enum):
-        """
-        The secret type.
-        """
-        USERNAME_PASSWORD = 'username_password'
+        if 'headers' in kwargs:
+            headers.update(kwargs.get('headers'))
+        headers['Accept'] = 'application/json'
 
-    class Policy(str, Enum):
-        """
-        The type of policy that is associated with the specified secret.
-        """
-        ROTATION = 'rotation'
+        path_param_keys = ['secret_type', 'id']
+        path_param_values = self.encode_path_vars(secret_type, id)
+        path_param_dict = dict(zip(path_param_keys, path_param_values))
+        url = '/api/v1/secrets/{secret_type}/{id}/policies'.format(**path_param_dict)
+        request = self.prepare_request(method='PUT',
+                                       url=url,
+                                       headers=headers,
+                                       params=params,
+                                       data=data)
 
+        response = self.send(request, **kwargs)
+        return response
 
-class GetPolicyEnums:
-    """
-    Enums for get_policy parameters.
-    """
+    def get_policy(self,
+                   secret_type: str,
+                   id: str,
+                   *,
+                   policy: str = None,
+                   **kwargs
+                   ) -> DetailedResponse:
+        """
+        List secret policies.
 
-    class SecretType(str, Enum):
-        """
-        The secret type.
-        """
-        USERNAME_PASSWORD = 'username_password'
+        Retrieves a list of policies that are associated with a specified secret.
 
-    class Policy(str, Enum):
+        :param str secret_type: The secret type.
+        :param str id: The v4 UUID that uniquely identifies the secret.
+        :param str policy: (optional) The type of policy that is associated with
+               the specified secret.
+        :param dict headers: A `dict` containing the request headers
+        :return: A `DetailedResponse` containing the result, headers and HTTP status code.
+        :rtype: DetailedResponse with `dict` result representing a `GetSecretPolicies` object
         """
-        The type of policy that is associated with the specified secret.
+
+        if secret_type is None:
+            raise ValueError('secret_type must be provided')
+        if id is None:
+            raise ValueError('id must be provided')
+        headers = {}
+        sdk_headers = get_sdk_headers(service_name=self.DEFAULT_SERVICE_NAME,
+                                      service_version='V1',
+                                      operation_id='get_policy')
+        headers.update(sdk_headers)
+
+        params = {
+            'policy': policy
+        }
+
+        if 'headers' in kwargs:
+            headers.update(kwargs.get('headers'))
+        headers['Accept'] = 'application/json'
+
+        path_param_keys = ['secret_type', 'id']
+        path_param_values = self.encode_path_vars(secret_type, id)
+        path_param_dict = dict(zip(path_param_keys, path_param_values))
+        url = '/api/v1/secrets/{secret_type}/{id}/policies'.format(**path_param_dict)
+        request = self.prepare_request(method='GET',
+                                       url=url,
+                                       headers=headers,
+                                       params=params)
+
+        response = self.send(request, **kwargs)
+        return response
+
+    #########################
+    # Config
+    #########################
+
+    def put_config(self,
+                   secret_type: str,
+                   api_key: str,
+                   **kwargs
+                   ) -> DetailedResponse:
         """
-        ROTATION = 'rotation'
+        Set the configuration of a secret type.
+
+        Sets the configuration for the specified secret type.
+        Use this method to configure the IAM credentials (`iam_credentials`) engine for
+        your service instance. Looking to set up certificate ordering? To configure the
+        public certificates (`public_cert`) engine, use the [Add a
+        configuration](#create_config_element) method.
+
+        :param str secret_type: The secret type.
+        :param str api_key: An IBM Cloud API key that has the capability to create
+               and manage service IDs.
+               The API key must be assigned the Editor platform role on the Access Groups
+               Service and the Operator platform role on the IAM Identity Service. For
+               more information, see [Configuring the IAM secrets
+               engine](https://cloud.ibm.com/docs/secrets-manager?topic=secrets-manager-iam-credentials#configure-iam-secrets-engine-api).
+        :param dict headers: A `dict` containing the request headers
+        :return: A `DetailedResponse` containing the result, headers and HTTP status code.
+        :rtype: DetailedResponse
+        """
+
+        if secret_type is None:
+            raise ValueError('secret_type must be provided')
+        if api_key is None:
+            raise ValueError('api_key must be provided')
+        headers = {}
+        sdk_headers = get_sdk_headers(service_name=self.DEFAULT_SERVICE_NAME,
+                                      service_version='V1',
+                                      operation_id='put_config')
+        headers.update(sdk_headers)
+
+        data = {
+            'api_key': api_key
+        }
+        data = {k: v for (k, v) in data.items() if v is not None}
+        data = json.dumps(data)
+        headers['content-type'] = 'application/json'
+
+        if 'headers' in kwargs:
+            headers.update(kwargs.get('headers'))
+
+        path_param_keys = ['secret_type']
+        path_param_values = self.encode_path_vars(secret_type)
+        path_param_dict = dict(zip(path_param_keys, path_param_values))
+        url = '/api/v1/config/{secret_type}'.format(**path_param_dict)
+        request = self.prepare_request(method='PUT',
+                                       url=url,
+                                       headers=headers,
+                                       data=data)
+
+        response = self.send(request, **kwargs)
+        return response
+
+    def get_config(self,
+                   secret_type: str,
+                   **kwargs
+                   ) -> DetailedResponse:
+        """
+        Get the configuration of a secret type.
+
+        Retrieves the configuration that is associated with the specified secret type.
+
+        :param str secret_type: The secret type.
+        :param dict headers: A `dict` containing the request headers
+        :return: A `DetailedResponse` containing the result, headers and HTTP status code.
+        :rtype: DetailedResponse with `dict` result representing a `GetConfig` object
+        """
+
+        if secret_type is None:
+            raise ValueError('secret_type must be provided')
+        headers = {}
+        sdk_headers = get_sdk_headers(service_name=self.DEFAULT_SERVICE_NAME,
+                                      service_version='V1',
+                                      operation_id='get_config')
+        headers.update(sdk_headers)
+
+        if 'headers' in kwargs:
+            headers.update(kwargs.get('headers'))
+        headers['Accept'] = 'application/json'
+
+        path_param_keys = ['secret_type']
+        path_param_values = self.encode_path_vars(secret_type)
+        path_param_dict = dict(zip(path_param_keys, path_param_values))
+        url = '/api/v1/config/{secret_type}'.format(**path_param_dict)
+        request = self.prepare_request(method='GET',
+                                       url=url,
+                                       headers=headers)
+
+        response = self.send(request, **kwargs)
+        return response
+
+    def create_config_element(self,
+                              secret_type: str,
+                              config_element: str,
+                              name: str,
+                              type: str,
+                              config: 'ConfigElementDefConfig',
+                              **kwargs
+                              ) -> DetailedResponse:
+        """
+        Add a configuration.
+
+        Adds a configuration element to the specified secret type.
+        Use this method to define the configurations that are required to enable the
+        public certificates (`public_cert`) engine. You can add up to 10 certificate
+        authority and DNS provider configurations for your instance.
+
+        :param str secret_type: The secret type.
+        :param str config_element: The configuration element to define or manage.
+        :param str name: The human-readable name to assign to your configuration.
+        :param str type: The type of configuration. Value options differ depending
+               on the `config_element` property that you want to define.
+        :param ConfigElementDefConfig config: The configuration to define for the
+               specified secret type.
+        :param dict headers: A `dict` containing the request headers
+        :return: A `DetailedResponse` containing the result, headers and HTTP status code.
+        :rtype: DetailedResponse with `dict` result representing a `GetSingleConfigElement` object
+        """
+
+        if secret_type is None:
+            raise ValueError('secret_type must be provided')
+        if config_element is None:
+            raise ValueError('config_element must be provided')
+        if name is None:
+            raise ValueError('name must be provided')
+        if type is None:
+            raise ValueError('type must be provided')
+        if config is None:
+            raise ValueError('config must be provided')
+        config = convert_model(config)
+        headers = {}
+        sdk_headers = get_sdk_headers(service_name=self.DEFAULT_SERVICE_NAME,
+                                      service_version='V1',
+                                      operation_id='create_config_element')
+        headers.update(sdk_headers)
+
+        data = {
+            'name': name,
+            'type': type,
+            'config': config
+        }
+        data = {k: v for (k, v) in data.items() if v is not None}
+        data = json.dumps(data)
+        headers['content-type'] = 'application/json'
+
+        if 'headers' in kwargs:
+            headers.update(kwargs.get('headers'))
+        headers['Accept'] = 'application/json'
+
+        path_param_keys = ['secret_type', 'config_element']
+        path_param_values = self.encode_path_vars(secret_type, config_element)
+        path_param_dict = dict(zip(path_param_keys, path_param_values))
+        url = '/api/v1/config/{secret_type}/{config_element}'.format(**path_param_dict)
+        request = self.prepare_request(method='POST',
+                                       url=url,
+                                       headers=headers,
+                                       data=data)
+
+        response = self.send(request, **kwargs)
+        return response
+
+    def get_config_elements(self,
+                            secret_type: str,
+                            config_element: str,
+                            **kwargs
+                            ) -> DetailedResponse:
+        """
+        List configurations.
+
+        Lists the configuration elements that are associated with a specified secret type.
+
+        :param str secret_type: The secret type.
+        :param str config_element: The configuration element to define or manage.
+        :param dict headers: A `dict` containing the request headers
+        :return: A `DetailedResponse` containing the result, headers and HTTP status code.
+        :rtype: DetailedResponse with `dict` result representing a `GetConfigElements` object
+        """
+
+        if secret_type is None:
+            raise ValueError('secret_type must be provided')
+        if config_element is None:
+            raise ValueError('config_element must be provided')
+        headers = {}
+        sdk_headers = get_sdk_headers(service_name=self.DEFAULT_SERVICE_NAME,
+                                      service_version='V1',
+                                      operation_id='get_config_elements')
+        headers.update(sdk_headers)
+
+        if 'headers' in kwargs:
+            headers.update(kwargs.get('headers'))
+        headers['Accept'] = 'application/json'
+
+        path_param_keys = ['secret_type', 'config_element']
+        path_param_values = self.encode_path_vars(secret_type, config_element)
+        path_param_dict = dict(zip(path_param_keys, path_param_values))
+        url = '/api/v1/config/{secret_type}/{config_element}'.format(**path_param_dict)
+        request = self.prepare_request(method='GET',
+                                       url=url,
+                                       headers=headers)
+
+        response = self.send(request, **kwargs)
+        return response
+
+    def update_config_element(self,
+                              secret_type: str,
+                              config_element: str,
+                              config_name: str,
+                              type: str,
+                              config: object,
+                              **kwargs
+                              ) -> DetailedResponse:
+        """
+        Update a configuration.
+
+        Updates a configuration element that is associated with the specified secret type.
+
+        :param str secret_type: The secret type.
+        :param str config_element: The configuration element to define or manage.
+        :param str config_name: The name of your configuration.
+        :param str type: The type of configuration. Value options differ depending
+               on the `config_element` property that you want to define.
+        :param object config:
+        :param dict headers: A `dict` containing the request headers
+        :return: A `DetailedResponse` containing the result, headers and HTTP status code.
+        :rtype: DetailedResponse with `dict` result representing a `GetSingleConfigElement` object
+        """
+
+        if secret_type is None:
+            raise ValueError('secret_type must be provided')
+        if config_element is None:
+            raise ValueError('config_element must be provided')
+        if config_name is None:
+            raise ValueError('config_name must be provided')
+        if type is None:
+            raise ValueError('type must be provided')
+        if config is None:
+            raise ValueError('config must be provided')
+        headers = {}
+        sdk_headers = get_sdk_headers(service_name=self.DEFAULT_SERVICE_NAME,
+                                      service_version='V1',
+                                      operation_id='update_config_element')
+        headers.update(sdk_headers)
+
+        data = {
+            'type': type,
+            'config': config
+        }
+        data = {k: v for (k, v) in data.items() if v is not None}
+        data = json.dumps(data)
+        headers['content-type'] = 'application/json'
+
+        if 'headers' in kwargs:
+            headers.update(kwargs.get('headers'))
+        headers['Accept'] = 'application/json'
+
+        path_param_keys = ['secret_type', 'config_element', 'config_name']
+        path_param_values = self.encode_path_vars(secret_type, config_element, config_name)
+        path_param_dict = dict(zip(path_param_keys, path_param_values))
+        url = '/api/v1/config/{secret_type}/{config_element}/{config_name}'.format(**path_param_dict)
+        request = self.prepare_request(method='PUT',
+                                       url=url,
+                                       headers=headers,
+                                       data=data)
+
+        response = self.send(request, **kwargs)
+        return response
+
+    def delete_config_element(self,
+                              secret_type: str,
+                              config_element: str,
+                              config_name: str,
+                              **kwargs
+                              ) -> DetailedResponse:
+        """
+        Remove a configuration.
+
+        Removes a configuration element from the specified secret type.
+
+        :param str secret_type: The secret type.
+        :param str config_element: The configuration element to define or manage.
+        :param str config_name: The name of your configuration.
+        :param dict headers: A `dict` containing the request headers
+        :return: A `DetailedResponse` containing the result, headers and HTTP status code.
+        :rtype: DetailedResponse
+        """
+
+        if secret_type is None:
+            raise ValueError('secret_type must be provided')
+        if config_element is None:
+            raise ValueError('config_element must be provided')
+        if config_name is None:
+            raise ValueError('config_name must be provided')
+        headers = {}
+        sdk_headers = get_sdk_headers(service_name=self.DEFAULT_SERVICE_NAME,
+                                      service_version='V1',
+                                      operation_id='delete_config_element')
+        headers.update(sdk_headers)
+
+        if 'headers' in kwargs:
+            headers.update(kwargs.get('headers'))
+
+        path_param_keys = ['secret_type', 'config_element', 'config_name']
+        path_param_values = self.encode_path_vars(secret_type, config_element, config_name)
+        path_param_dict = dict(zip(path_param_keys, path_param_values))
+        url = '/api/v1/config/{secret_type}/{config_element}/{config_name}'.format(**path_param_dict)
+        request = self.prepare_request(method='DELETE',
+                                       url=url,
+                                       headers=headers)
+
+        response = self.send(request, **kwargs)
+        return response
+
+    def get_config_element(self,
+                           secret_type: str,
+                           config_element: str,
+                           config_name: str,
+                           **kwargs
+                           ) -> DetailedResponse:
+        """
+        Get a configuration.
+
+        Retrieves the details of a specific configuration that is associated with a secret
+        type.
+
+        :param str secret_type: The secret type.
+        :param str config_element: The configuration element to define or manage.
+        :param str config_name: The name of your configuration.
+        :param dict headers: A `dict` containing the request headers
+        :return: A `DetailedResponse` containing the result, headers and HTTP status code.
+        :rtype: DetailedResponse with `dict` result representing a `GetSingleConfigElement` object
+        """
+
+        if secret_type is None:
+            raise ValueError('secret_type must be provided')
+        if config_element is None:
+            raise ValueError('config_element must be provided')
+        if config_name is None:
+            raise ValueError('config_name must be provided')
+        headers = {}
+        sdk_headers = get_sdk_headers(service_name=self.DEFAULT_SERVICE_NAME,
+                                      service_version='V1',
+                                      operation_id='get_config_element')
+        headers.update(sdk_headers)
+
+        if 'headers' in kwargs:
+            headers.update(kwargs.get('headers'))
+        headers['Accept'] = 'application/json'
+
+        path_param_keys = ['secret_type', 'config_element', 'config_name']
+        path_param_values = self.encode_path_vars(secret_type, config_element, config_name)
+        path_param_dict = dict(zip(path_param_keys, path_param_values))
+        url = '/api/v1/config/{secret_type}/{config_element}/{config_name}'.format(**path_param_dict)
+        request = self.prepare_request(method='GET',
+                                       url=url,
+                                       headers=headers)
+
+        response = self.send(request, **kwargs)
+        return response
 
 
 class CreateSecretEnums:
@@ -1164,9 +1385,10 @@ class CreateSecretEnums:
         The secret type.
         """
         ARBITRARY = 'arbitrary'
-        USERNAME_PASSWORD = 'username_password'
         IAM_CREDENTIALS = 'iam_credentials'
         IMPORTED_CERT = 'imported_cert'
+        PUBLIC_CERT = 'public_cert'
+        USERNAME_PASSWORD = 'username_password'
 
 
 class ListSecretsEnums:
@@ -1179,9 +1401,10 @@ class ListSecretsEnums:
         The secret type.
         """
         ARBITRARY = 'arbitrary'
-        USERNAME_PASSWORD = 'username_password'
         IAM_CREDENTIALS = 'iam_credentials'
         IMPORTED_CERT = 'imported_cert'
+        PUBLIC_CERT = 'public_cert'
+        USERNAME_PASSWORD = 'username_password'
 
 
 class ListAllSecretsEnums:
@@ -1212,9 +1435,10 @@ class GetSecretEnums:
         The secret type.
         """
         ARBITRARY = 'arbitrary'
-        USERNAME_PASSWORD = 'username_password'
         IAM_CREDENTIALS = 'iam_credentials'
         IMPORTED_CERT = 'imported_cert'
+        PUBLIC_CERT = 'public_cert'
+        USERNAME_PASSWORD = 'username_password'
 
 
 class UpdateSecretEnums:
@@ -1227,9 +1451,10 @@ class UpdateSecretEnums:
         The secret type.
         """
         ARBITRARY = 'arbitrary'
-        USERNAME_PASSWORD = 'username_password'
         IAM_CREDENTIALS = 'iam_credentials'
         IMPORTED_CERT = 'imported_cert'
+        PUBLIC_CERT = 'public_cert'
+        USERNAME_PASSWORD = 'username_password'
 
     class Action(str, Enum):
         """
@@ -1249,9 +1474,10 @@ class DeleteSecretEnums:
         The secret type.
         """
         ARBITRARY = 'arbitrary'
-        USERNAME_PASSWORD = 'username_password'
         IAM_CREDENTIALS = 'iam_credentials'
         IMPORTED_CERT = 'imported_cert'
+        PUBLIC_CERT = 'public_cert'
+        USERNAME_PASSWORD = 'username_password'
 
 
 class GetSecretVersionEnums:
@@ -1264,6 +1490,7 @@ class GetSecretVersionEnums:
         The secret type. Supported options include: imported_cert.
         """
         IMPORTED_CERT = 'imported_cert'
+        PUBLIC_CERT = 'public_cert'
 
 
 class GetSecretVersionMetadataEnums:
@@ -1276,6 +1503,7 @@ class GetSecretVersionMetadataEnums:
         The secret type. Supported options include: imported_cert.
         """
         IMPORTED_CERT = 'imported_cert'
+        PUBLIC_CERT = 'public_cert'
 
 
 class GetSecretMetadataEnums:
@@ -1288,9 +1516,10 @@ class GetSecretMetadataEnums:
         The secret type.
         """
         ARBITRARY = 'arbitrary'
-        USERNAME_PASSWORD = 'username_password'
         IAM_CREDENTIALS = 'iam_credentials'
         IMPORTED_CERT = 'imported_cert'
+        PUBLIC_CERT = 'public_cert'
+        USERNAME_PASSWORD = 'username_password'
 
 
 class UpdateSecretMetadataEnums:
@@ -1303,9 +1532,169 @@ class UpdateSecretMetadataEnums:
         The secret type.
         """
         ARBITRARY = 'arbitrary'
-        USERNAME_PASSWORD = 'username_password'
         IAM_CREDENTIALS = 'iam_credentials'
         IMPORTED_CERT = 'imported_cert'
+        PUBLIC_CERT = 'public_cert'
+        USERNAME_PASSWORD = 'username_password'
+
+
+class PutPolicyEnums:
+    """
+    Enums for put_policy parameters.
+    """
+
+    class SecretType(str, Enum):
+        """
+        The secret type.
+        """
+        USERNAME_PASSWORD = 'username_password'
+        PUBLIC_CERT = 'public_cert'
+
+    class Policy(str, Enum):
+        """
+        The type of policy that is associated with the specified secret.
+        """
+        ROTATION = 'rotation'
+
+
+class GetPolicyEnums:
+    """
+    Enums for get_policy parameters.
+    """
+
+    class SecretType(str, Enum):
+        """
+        The secret type.
+        """
+        USERNAME_PASSWORD = 'username_password'
+        PUBLIC_CERT = 'public_cert'
+
+    class Policy(str, Enum):
+        """
+        The type of policy that is associated with the specified secret.
+        """
+        ROTATION = 'rotation'
+
+
+class PutConfigEnums:
+    """
+    Enums for put_config parameters.
+    """
+
+    class SecretType(str, Enum):
+        """
+        The secret type.
+        """
+        IAM_CREDENTIALS = 'iam_credentials'
+        PUBLIC_CERT = 'public_cert'
+
+
+class GetConfigEnums:
+    """
+    Enums for get_config parameters.
+    """
+
+    class SecretType(str, Enum):
+        """
+        The secret type.
+        """
+        IAM_CREDENTIALS = 'iam_credentials'
+        PUBLIC_CERT = 'public_cert'
+
+
+class CreateConfigElementEnums:
+    """
+    Enums for create_config_element parameters.
+    """
+
+    class SecretType(str, Enum):
+        """
+        The secret type.
+        """
+        PUBLIC_CERT = 'public_cert'
+
+    class ConfigElement(str, Enum):
+        """
+        The configuration element to define or manage.
+        """
+        CERTIFICATE_AUTHORITIES = 'certificate_authorities'
+        DNS_PROVIDERS = 'dns_providers'
+
+
+class GetConfigElementsEnums:
+    """
+    Enums for get_config_elements parameters.
+    """
+
+    class SecretType(str, Enum):
+        """
+        The secret type.
+        """
+        PUBLIC_CERT = 'public_cert'
+
+    class ConfigElement(str, Enum):
+        """
+        The configuration element to define or manage.
+        """
+        CERTIFICATE_AUTHORITIES = 'certificate_authorities'
+        DNS_PROVIDERS = 'dns_providers'
+
+
+class UpdateConfigElementEnums:
+    """
+    Enums for update_config_element parameters.
+    """
+
+    class SecretType(str, Enum):
+        """
+        The secret type.
+        """
+        PUBLIC_CERT = 'public_cert'
+
+    class ConfigElement(str, Enum):
+        """
+        The configuration element to define or manage.
+        """
+        CERTIFICATE_AUTHORITIES = 'certificate_authorities'
+        DNS_PROVIDERS = 'dns_providers'
+
+
+class DeleteConfigElementEnums:
+    """
+    Enums for delete_config_element parameters.
+    """
+
+    class SecretType(str, Enum):
+        """
+        The secret type.
+        """
+        PUBLIC_CERT = 'public_cert'
+
+    class ConfigElement(str, Enum):
+        """
+        The configuration element to define or manage.
+        """
+        CERTIFICATE_AUTHORITIES = 'certificate_authorities'
+        DNS_PROVIDERS = 'dns_providers'
+
+
+class GetConfigElementEnums:
+    """
+    Enums for get_config_element parameters.
+    """
+
+    class SecretType(str, Enum):
+        """
+        The secret type.
+        """
+        PUBLIC_CERT = 'public_cert'
+
+    class ConfigElement(str, Enum):
+        """
+        The configuration element to define or manage.
+        """
+        CERTIFICATE_AUTHORITIES = 'certificate_authorities'
+        DNS_PROVIDERS = 'dns_providers'
 
 
 ##############################################################################
@@ -1459,11 +1848,202 @@ class CollectionMetadata():
         """
         The type of resources in the resource array.
         """
+        APPLICATION_VND_IBM_SECRETS_MANAGER_CONFIG_JSON = 'application/vnd.ibm.secrets-manager.config+json'
         APPLICATION_VND_IBM_SECRETS_MANAGER_SECRET_JSON = 'application/vnd.ibm.secrets-manager.secret+json'
         APPLICATION_VND_IBM_SECRETS_MANAGER_SECRET_VERSION_JSON = 'application/vnd.ibm.secrets-manager.secret.version+json'
         APPLICATION_VND_IBM_SECRETS_MANAGER_SECRET_POLICY_JSON = 'application/vnd.ibm.secrets-manager.secret.policy+json'
         APPLICATION_VND_IBM_SECRETS_MANAGER_SECRET_GROUP_JSON = 'application/vnd.ibm.secrets-manager.secret.group+json'
         APPLICATION_VND_IBM_SECRETS_MANAGER_ERROR_JSON = 'application/vnd.ibm.secrets-manager.error+json'
+
+
+class ConfigElementDef():
+    """
+    The configuration to add or update.
+
+    :attr str name: The human-readable name to assign to your configuration.
+    :attr str type: The type of configuration. Value options differ depending on the
+          `config_element` property that you want to define.
+    :attr ConfigElementDefConfig config: The configuration to define for the
+          specified secret type.
+    """
+
+    def __init__(self,
+                 name: str,
+                 type: str,
+                 config: 'ConfigElementDefConfig') -> None:
+        """
+        Initialize a ConfigElementDef object.
+
+        :param str name: The human-readable name to assign to your configuration.
+        :param str type: The type of configuration. Value options differ depending
+               on the `config_element` property that you want to define.
+        :param ConfigElementDefConfig config: The configuration to define for the
+               specified secret type.
+        """
+        self.name = name
+        self.type = type
+        self.config = config
+
+    @classmethod
+    def from_dict(cls, _dict: Dict) -> 'ConfigElementDef':
+        """Initialize a ConfigElementDef object from a json dictionary."""
+        args = {}
+        if 'name' in _dict:
+            args['name'] = _dict.get('name')
+        else:
+            raise ValueError('Required property \'name\' not present in ConfigElementDef JSON')
+        if 'type' in _dict:
+            args['type'] = _dict.get('type')
+        else:
+            raise ValueError('Required property \'type\' not present in ConfigElementDef JSON')
+        if 'config' in _dict:
+            args['config'] = _dict.get('config')
+        else:
+            raise ValueError('Required property \'config\' not present in ConfigElementDef JSON')
+        return cls(**args)
+
+    @classmethod
+    def _from_dict(cls, _dict):
+        """Initialize a ConfigElementDef object from a json dictionary."""
+        return cls.from_dict(_dict)
+
+    def to_dict(self) -> Dict:
+        """Return a json dictionary representing this model."""
+        _dict = {}
+        if hasattr(self, 'name') and self.name is not None:
+            _dict['name'] = self.name
+        if hasattr(self, 'type') and self.type is not None:
+            _dict['type'] = self.type
+        if hasattr(self, 'config') and self.config is not None:
+            if isinstance(self.config, dict):
+                _dict['config'] = self.config
+            else:
+                _dict['config'] = self.config.to_dict()
+        return _dict
+
+    def _to_dict(self):
+        """Return a json dictionary representing this model."""
+        return self.to_dict()
+
+    def __str__(self) -> str:
+        """Return a `str` version of this ConfigElementDef object."""
+        return json.dumps(self.to_dict(), indent=2)
+
+    def __eq__(self, other: 'ConfigElementDef') -> bool:
+        """Return `true` when self and other are equal, false otherwise."""
+        if not isinstance(other, self.__class__):
+            return False
+        return self.__dict__ == other.__dict__
+
+    def __ne__(self, other: 'ConfigElementDef') -> bool:
+        """Return `true` when self and other are not equal, false otherwise."""
+        return not self == other
+
+    class TypeEnum(str, Enum):
+        """
+        The type of configuration. Value options differ depending on the `config_element`
+        property that you want to define.
+        """
+        LETSENCRYPT = 'letsencrypt'
+        LETSENCRYPT_STAGE = 'letsencrypt-stage'
+        CIS = 'cis'
+        CLASSIC_INFRASTRUCTURE = 'classic_infrastructure'
+
+
+class ConfigElementDefConfig():
+    """
+    The configuration to define for the specified secret type.
+
+    """
+
+    def __init__(self) -> None:
+        """
+        Initialize a ConfigElementDefConfig object.
+
+        """
+        msg = "Cannot instantiate base class. Instead, instantiate one of the defined subclasses: {0}".format(
+            ", ".join(['ConfigElementDefConfigLetsEncryptConfig', 'ConfigElementDefConfigCloudInternetServicesConfig',
+                       'ConfigElementDefConfigClassicInfrastructureConfig']))
+        raise Exception(msg)
+
+
+class ConfigElementMetadata():
+    """
+    Properties that describe a configuration element.
+
+    :attr str name: The human-readable name to assign to your configuration.
+    :attr str type: The type of configuration. Value options differ depending on the
+          `config_element` property that you want to define.
+    """
+
+    def __init__(self,
+                 name: str,
+                 type: str) -> None:
+        """
+        Initialize a ConfigElementMetadata object.
+
+        :param str name: The human-readable name to assign to your configuration.
+        :param str type: The type of configuration. Value options differ depending
+               on the `config_element` property that you want to define.
+        """
+        self.name = name
+        self.type = type
+
+    @classmethod
+    def from_dict(cls, _dict: Dict) -> 'ConfigElementMetadata':
+        """Initialize a ConfigElementMetadata object from a json dictionary."""
+        args = {}
+        if 'name' in _dict:
+            args['name'] = _dict.get('name')
+        else:
+            raise ValueError('Required property \'name\' not present in ConfigElementMetadata JSON')
+        if 'type' in _dict:
+            args['type'] = _dict.get('type')
+        else:
+            raise ValueError('Required property \'type\' not present in ConfigElementMetadata JSON')
+        return cls(**args)
+
+    @classmethod
+    def _from_dict(cls, _dict):
+        """Initialize a ConfigElementMetadata object from a json dictionary."""
+        return cls.from_dict(_dict)
+
+    def to_dict(self) -> Dict:
+        """Return a json dictionary representing this model."""
+        _dict = {}
+        if hasattr(self, 'name') and self.name is not None:
+            _dict['name'] = self.name
+        if hasattr(self, 'type') and self.type is not None:
+            _dict['type'] = self.type
+        return _dict
+
+    def _to_dict(self):
+        """Return a json dictionary representing this model."""
+        return self.to_dict()
+
+    def __str__(self) -> str:
+        """Return a `str` version of this ConfigElementMetadata object."""
+        return json.dumps(self.to_dict(), indent=2)
+
+    def __eq__(self, other: 'ConfigElementMetadata') -> bool:
+        """Return `true` when self and other are equal, false otherwise."""
+        if not isinstance(other, self.__class__):
+            return False
+        return self.__dict__ == other.__dict__
+
+    def __ne__(self, other: 'ConfigElementMetadata') -> bool:
+        """Return `true` when self and other are not equal, false otherwise."""
+        return not self == other
+
+    class TypeEnum(str, Enum):
+        """
+        The type of configuration. Value options differ depending on the `config_element`
+        property that you want to define.
+        """
+        LETSENCRYPT = 'letsencrypt'
+        LETSENCRYPT_STAGE = 'letsencrypt-stage'
+        CIS = 'cis'
+        CLASSIC_INFRASTRUCTURE = 'classic_infrastructure'
 
 
 class CreateSecret():
@@ -1541,42 +2121,24 @@ class CreateSecret():
         return not self == other
 
 
-class EngineConfig():
-    """
-    EngineConfig.
-
-    """
-
-    def __init__(self) -> None:
-        """
-        Initialize a EngineConfig object.
-
-        """
-        msg = "Cannot instantiate base class. Instead, instantiate one of the defined subclasses: {0}".format(
-            ", ".join(['IAMCredentialsSecretEngineRootConfig']))
-        raise Exception(msg)
-
-
 class GetConfig():
     """
-    Configuration that is used to generate IAM credentials.
+    Configuration for the specified secret type.
 
     :attr CollectionMetadata metadata: The metadata that describes the resource
           array.
-    :attr List[IAMCredentialsSecretEngineRootConfig] resources: A collection of
-          resources.
+    :attr List[GetConfigResourcesItem] resources: A collection of resources.
     """
 
     def __init__(self,
                  metadata: 'CollectionMetadata',
-                 resources: List['IAMCredentialsSecretEngineRootConfig']) -> None:
+                 resources: List['GetConfigResourcesItem']) -> None:
         """
         Initialize a GetConfig object.
 
         :param CollectionMetadata metadata: The metadata that describes the
                resource array.
-        :param List[IAMCredentialsSecretEngineRootConfig] resources: A collection
-               of resources.
+        :param List[GetConfigResourcesItem] resources: A collection of resources.
         """
         self.metadata = metadata
         self.resources = resources
@@ -1590,7 +2152,7 @@ class GetConfig():
         else:
             raise ValueError('Required property \'metadata\' not present in GetConfig JSON')
         if 'resources' in _dict:
-            args['resources'] = [IAMCredentialsSecretEngineRootConfig.from_dict(x) for x in _dict.get('resources')]
+            args['resources'] = _dict.get('resources')
         else:
             raise ValueError('Required property \'resources\' not present in GetConfig JSON')
         return cls(**args)
@@ -1606,7 +2168,13 @@ class GetConfig():
         if hasattr(self, 'metadata') and self.metadata is not None:
             _dict['metadata'] = self.metadata.to_dict()
         if hasattr(self, 'resources') and self.resources is not None:
-            _dict['resources'] = [x.to_dict() for x in self.resources]
+            resources_list = []
+            for x in self.resources:
+                if isinstance(x, dict):
+                    resources_list.append(x)
+                else:
+                    resources_list.append(x.to_dict())
+            _dict['resources'] = resources_list
         return _dict
 
     def _to_dict(self):
@@ -1626,6 +2194,115 @@ class GetConfig():
     def __ne__(self, other: 'GetConfig') -> bool:
         """Return `true` when self and other are not equal, false otherwise."""
         return not self == other
+
+
+class GetConfigElements():
+    """
+    Properties that describe a list of configurations.
+
+    :attr CollectionMetadata metadata: The metadata that describes the resource
+          array.
+    :attr List[GetConfigElementsResourcesItem] resources: A collection of resources.
+    """
+
+    def __init__(self,
+                 metadata: 'CollectionMetadata',
+                 resources: List['GetConfigElementsResourcesItem']) -> None:
+        """
+        Initialize a GetConfigElements object.
+
+        :param CollectionMetadata metadata: The metadata that describes the
+               resource array.
+        :param List[GetConfigElementsResourcesItem] resources: A collection of
+               resources.
+        """
+        self.metadata = metadata
+        self.resources = resources
+
+    @classmethod
+    def from_dict(cls, _dict: Dict) -> 'GetConfigElements':
+        """Initialize a GetConfigElements object from a json dictionary."""
+        args = {}
+        if 'metadata' in _dict:
+            args['metadata'] = CollectionMetadata.from_dict(_dict.get('metadata'))
+        else:
+            raise ValueError('Required property \'metadata\' not present in GetConfigElements JSON')
+        if 'resources' in _dict:
+            args['resources'] = _dict.get('resources')
+        else:
+            raise ValueError('Required property \'resources\' not present in GetConfigElements JSON')
+        return cls(**args)
+
+    @classmethod
+    def _from_dict(cls, _dict):
+        """Initialize a GetConfigElements object from a json dictionary."""
+        return cls.from_dict(_dict)
+
+    def to_dict(self) -> Dict:
+        """Return a json dictionary representing this model."""
+        _dict = {}
+        if hasattr(self, 'metadata') and self.metadata is not None:
+            _dict['metadata'] = self.metadata.to_dict()
+        if hasattr(self, 'resources') and self.resources is not None:
+            resources_list = []
+            for x in self.resources:
+                if isinstance(x, dict):
+                    resources_list.append(x)
+                else:
+                    resources_list.append(x.to_dict())
+            _dict['resources'] = resources_list
+        return _dict
+
+    def _to_dict(self):
+        """Return a json dictionary representing this model."""
+        return self.to_dict()
+
+    def __str__(self) -> str:
+        """Return a `str` version of this GetConfigElements object."""
+        return json.dumps(self.to_dict(), indent=2)
+
+    def __eq__(self, other: 'GetConfigElements') -> bool:
+        """Return `true` when self and other are equal, false otherwise."""
+        if not isinstance(other, self.__class__):
+            return False
+        return self.__dict__ == other.__dict__
+
+    def __ne__(self, other: 'GetConfigElements') -> bool:
+        """Return `true` when self and other are not equal, false otherwise."""
+        return not self == other
+
+
+class GetConfigElementsResourcesItem():
+    """
+    GetConfigElementsResourcesItem.
+
+    """
+
+    def __init__(self) -> None:
+        """
+        Initialize a GetConfigElementsResourcesItem object.
+
+        """
+        msg = "Cannot instantiate base class. Instead, instantiate one of the defined subclasses: {0}".format(
+            ", ".join(['GetConfigElementsResourcesItemCertificateAuthoritiesConfig',
+                       'GetConfigElementsResourcesItemDnsProvidersConfig']))
+        raise Exception(msg)
+
+
+class GetConfigResourcesItem():
+    """
+    GetConfigResourcesItem.
+
+    """
+
+    def __init__(self) -> None:
+        """
+        Initialize a GetConfigResourcesItem object.
+
+        """
+        msg = "Cannot instantiate base class. Instead, instantiate one of the defined subclasses: {0}".format(
+            ", ".join(['PublicCertSecretEngineRootConfig', 'IAMCredentialsSecretEngineRootConfig']))
+        raise Exception(msg)
 
 
 class GetSecret():
@@ -1736,7 +2413,7 @@ class GetSecretPolicyRotationResourcesItem():
           updated the policy.
     :attr str type: The MIME type that represents the policy. Currently, only the
           default is supported.
-    :attr SecretPolicyRotationRotation rotation: The secret rotation time interval.
+    :attr SecretPolicyRotationRotation rotation:
     """
 
     def __init__(self,
@@ -1755,8 +2432,7 @@ class GetSecretPolicyRotationResourcesItem():
         :param str id: The v4 UUID that uniquely identifies the policy.
         :param str type: The MIME type that represents the policy. Currently, only
                the default is supported.
-        :param SecretPolicyRotationRotation rotation: The secret rotation time
-               interval.
+        :param SecretPolicyRotationRotation rotation:
         """
         self.id = id
         self.crn = crn
@@ -1790,7 +2466,7 @@ class GetSecretPolicyRotationResourcesItem():
         else:
             raise ValueError('Required property \'type\' not present in GetSecretPolicyRotationResourcesItem JSON')
         if 'rotation' in _dict:
-            args['rotation'] = SecretPolicyRotationRotation.from_dict(_dict.get('rotation'))
+            args['rotation'] = _dict.get('rotation')
         else:
             raise ValueError('Required property \'rotation\' not present in GetSecretPolicyRotationResourcesItem JSON')
         return cls(**args)
@@ -1818,7 +2494,10 @@ class GetSecretPolicyRotationResourcesItem():
         if hasattr(self, 'type') and self.type is not None:
             _dict['type'] = self.type
         if hasattr(self, 'rotation') and self.rotation is not None:
-            _dict['rotation'] = self.rotation.to_dict()
+            if isinstance(self.rotation, dict):
+                _dict['rotation'] = self.rotation
+            else:
+                _dict['rotation'] = self.rotation.to_dict()
         return _dict
 
     def _to_dict(self):
@@ -1997,6 +2676,198 @@ class GetSecretVersionMetadata():
         return not self == other
 
 
+class GetSingleConfigElement():
+    """
+    Properties that describe a configuration.
+
+    :attr CollectionMetadata metadata: The metadata that describes the resource
+          array.
+    :attr List[ConfigElementDef] resources: A collection of resources.
+    """
+
+    def __init__(self,
+                 metadata: 'CollectionMetadata',
+                 resources: List['ConfigElementDef']) -> None:
+        """
+        Initialize a GetSingleConfigElement object.
+
+        :param CollectionMetadata metadata: The metadata that describes the
+               resource array.
+        :param List[ConfigElementDef] resources: A collection of resources.
+        """
+        self.metadata = metadata
+        self.resources = resources
+
+    @classmethod
+    def from_dict(cls, _dict: Dict) -> 'GetSingleConfigElement':
+        """Initialize a GetSingleConfigElement object from a json dictionary."""
+        args = {}
+        if 'metadata' in _dict:
+            args['metadata'] = CollectionMetadata.from_dict(_dict.get('metadata'))
+        else:
+            raise ValueError('Required property \'metadata\' not present in GetSingleConfigElement JSON')
+        if 'resources' in _dict:
+            args['resources'] = [ConfigElementDef.from_dict(x) for x in _dict.get('resources')]
+        else:
+            raise ValueError('Required property \'resources\' not present in GetSingleConfigElement JSON')
+        return cls(**args)
+
+    @classmethod
+    def _from_dict(cls, _dict):
+        """Initialize a GetSingleConfigElement object from a json dictionary."""
+        return cls.from_dict(_dict)
+
+    def to_dict(self) -> Dict:
+        """Return a json dictionary representing this model."""
+        _dict = {}
+        if hasattr(self, 'metadata') and self.metadata is not None:
+            _dict['metadata'] = self.metadata.to_dict()
+        if hasattr(self, 'resources') and self.resources is not None:
+            _dict['resources'] = [x.to_dict() for x in self.resources]
+        return _dict
+
+    def _to_dict(self):
+        """Return a json dictionary representing this model."""
+        return self.to_dict()
+
+    def __str__(self) -> str:
+        """Return a `str` version of this GetSingleConfigElement object."""
+        return json.dumps(self.to_dict(), indent=2)
+
+    def __eq__(self, other: 'GetSingleConfigElement') -> bool:
+        """Return `true` when self and other are equal, false otherwise."""
+        if not isinstance(other, self.__class__):
+            return False
+        return self.__dict__ == other.__dict__
+
+    def __ne__(self, other: 'GetSingleConfigElement') -> bool:
+        """Return `true` when self and other are not equal, false otherwise."""
+        return not self == other
+
+
+class IssuanceInfo():
+    """
+    Issuance information that is associated with your certificate.
+
+    :attr datetime ordered_on: (optional) The date the certificate was ordered. The
+          date format follows RFC 3339.
+    :attr str error_code: (optional) An code that identifies an issuance error.
+          This field, along with `error_message`, is returned when Secrets Manager
+          successfully processes your request, but a certificate is unable to be issued by
+          the certificate authority.
+    :attr str error_message: (optional) A human-readable message that provides
+          details about the issuance error.
+    :attr bool bundle_certs: (optional) Indicates whether the issued certificate is
+          bundled with intermediate certificates.
+    :attr int state: (optional) The secret state based on NIST SP 800-57. States are
+          integers and correspond to the Pre-activation = 0, Active = 1,  Suspended = 2,
+          Deactivated = 3, and Destroyed = 5 values.
+    :attr str state_description: (optional) A text representation of the secret
+          state.
+    :attr bool auto_rotated: (optional) Indicates whether the issued certificate is
+          configured with an automatic rotation policy.
+    :attr str ca: (optional) The name that was assigned to the certificate authority
+          configuration.
+    :attr str dns: (optional) The name that was assigned to the DNS provider
+          configuration.
+    """
+
+    def __init__(self,
+                 *,
+                 ordered_on: datetime = None,
+                 error_code: str = None,
+                 error_message: str = None,
+                 bundle_certs: bool = None,
+                 state: int = None,
+                 state_description: str = None,
+                 auto_rotated: bool = None,
+                 ca: str = None,
+                 dns: str = None) -> None:
+        """
+        Initialize a IssuanceInfo object.
+
+        """
+        self.ordered_on = ordered_on
+        self.error_code = error_code
+        self.error_message = error_message
+        self.bundle_certs = bundle_certs
+        self.state = state
+        self.state_description = state_description
+        self.auto_rotated = auto_rotated
+        self.ca = ca
+        self.dns = dns
+
+    @classmethod
+    def from_dict(cls, _dict: Dict) -> 'IssuanceInfo':
+        """Initialize a IssuanceInfo object from a json dictionary."""
+        args = {}
+        if 'ordered_on' in _dict:
+            args['ordered_on'] = string_to_datetime(_dict.get('ordered_on'))
+        if 'error_code' in _dict:
+            args['error_code'] = _dict.get('error_code')
+        if 'error_message' in _dict:
+            args['error_message'] = _dict.get('error_message')
+        if 'bundle_certs' in _dict:
+            args['bundle_certs'] = _dict.get('bundle_certs')
+        if 'state' in _dict:
+            args['state'] = _dict.get('state')
+        if 'state_description' in _dict:
+            args['state_description'] = _dict.get('state_description')
+        if 'auto_rotated' in _dict:
+            args['auto_rotated'] = _dict.get('auto_rotated')
+        if 'ca' in _dict:
+            args['ca'] = _dict.get('ca')
+        if 'dns' in _dict:
+            args['dns'] = _dict.get('dns')
+        return cls(**args)
+
+    @classmethod
+    def _from_dict(cls, _dict):
+        """Initialize a IssuanceInfo object from a json dictionary."""
+        return cls.from_dict(_dict)
+
+    def to_dict(self) -> Dict:
+        """Return a json dictionary representing this model."""
+        _dict = {}
+        if hasattr(self, 'ordered_on') and getattr(self, 'ordered_on') is not None:
+            _dict['ordered_on'] = datetime_to_string(getattr(self, 'ordered_on'))
+        if hasattr(self, 'error_code') and getattr(self, 'error_code') is not None:
+            _dict['error_code'] = getattr(self, 'error_code')
+        if hasattr(self, 'error_message') and getattr(self, 'error_message') is not None:
+            _dict['error_message'] = getattr(self, 'error_message')
+        if hasattr(self, 'bundle_certs') and getattr(self, 'bundle_certs') is not None:
+            _dict['bundle_certs'] = getattr(self, 'bundle_certs')
+        if hasattr(self, 'state') and getattr(self, 'state') is not None:
+            _dict['state'] = getattr(self, 'state')
+        if hasattr(self, 'state_description') and getattr(self, 'state_description') is not None:
+            _dict['state_description'] = getattr(self, 'state_description')
+        if hasattr(self, 'auto_rotated') and getattr(self, 'auto_rotated') is not None:
+            _dict['auto_rotated'] = getattr(self, 'auto_rotated')
+        if hasattr(self, 'ca') and getattr(self, 'ca') is not None:
+            _dict['ca'] = getattr(self, 'ca')
+        if hasattr(self, 'dns') and getattr(self, 'dns') is not None:
+            _dict['dns'] = getattr(self, 'dns')
+        return _dict
+
+    def _to_dict(self):
+        """Return a json dictionary representing this model."""
+        return self.to_dict()
+
+    def __str__(self) -> str:
+        """Return a `str` version of this IssuanceInfo object."""
+        return json.dumps(self.to_dict(), indent=2)
+
+    def __eq__(self, other: 'IssuanceInfo') -> bool:
+        """Return `true` when self and other are equal, false otherwise."""
+        if not isinstance(other, self.__class__):
+            return False
+        return self.__dict__ == other.__dict__
+
+    def __ne__(self, other: 'IssuanceInfo') -> bool:
+        """Return `true` when self and other are not equal, false otherwise."""
+        return not self == other
+
+
 class ListSecrets():
     """
     Properties that describe a list of secrets.
@@ -2072,6 +2943,84 @@ class ListSecrets():
         return not self == other
 
 
+class Rotation():
+    """
+    Rotation.
+
+    :attr bool auto_rotate: (optional) Determines whether Secrets Manager rotates
+          your certificate automatically.
+          If set to `true`, the service reorders your certificate 31 days before it
+          expires. To access the previous  version of the certifcate, you can use the [Get
+          a version of a secret](#get-secret-version) method.
+    :attr bool rotate_keys: (optional) Determines whether Secrets Manager rotates
+          the private key for your certificate automatically.
+          If set to `true`, the service generates and stores a new private key for your
+          rotated certificate.
+    """
+
+    def __init__(self,
+                 *,
+                 auto_rotate: bool = None,
+                 rotate_keys: bool = None) -> None:
+        """
+        Initialize a Rotation object.
+
+        :param bool auto_rotate: (optional) Determines whether Secrets Manager
+               rotates your certificate automatically.
+               If set to `true`, the service reorders your certificate 31 days before it
+               expires. To access the previous  version of the certifcate, you can use the
+               [Get a version of a secret](#get-secret-version) method.
+        :param bool rotate_keys: (optional) Determines whether Secrets Manager
+               rotates the private key for your certificate automatically.
+               If set to `true`, the service generates and stores a new private key for
+               your rotated certificate.
+        """
+        self.auto_rotate = auto_rotate
+        self.rotate_keys = rotate_keys
+
+    @classmethod
+    def from_dict(cls, _dict: Dict) -> 'Rotation':
+        """Initialize a Rotation object from a json dictionary."""
+        args = {}
+        if 'auto_rotate' in _dict:
+            args['auto_rotate'] = _dict.get('auto_rotate')
+        if 'rotate_keys' in _dict:
+            args['rotate_keys'] = _dict.get('rotate_keys')
+        return cls(**args)
+
+    @classmethod
+    def _from_dict(cls, _dict):
+        """Initialize a Rotation object from a json dictionary."""
+        return cls.from_dict(_dict)
+
+    def to_dict(self) -> Dict:
+        """Return a json dictionary representing this model."""
+        _dict = {}
+        if hasattr(self, 'auto_rotate') and self.auto_rotate is not None:
+            _dict['auto_rotate'] = self.auto_rotate
+        if hasattr(self, 'rotate_keys') and self.rotate_keys is not None:
+            _dict['rotate_keys'] = self.rotate_keys
+        return _dict
+
+    def _to_dict(self):
+        """Return a json dictionary representing this model."""
+        return self.to_dict()
+
+    def __str__(self) -> str:
+        """Return a `str` version of this Rotation object."""
+        return json.dumps(self.to_dict(), indent=2)
+
+    def __eq__(self, other: 'Rotation') -> bool:
+        """Return `true` when self and other are equal, false otherwise."""
+        if not isinstance(other, self.__class__):
+            return False
+        return self.__dict__ == other.__dict__
+
+    def __ne__(self, other: 'Rotation') -> bool:
+        """Return `true` when self and other are not equal, false otherwise."""
+        return not self == other
+
+
 class SecretAction():
     """
     SecretAction.
@@ -2084,8 +3033,8 @@ class SecretAction():
 
         """
         msg = "Cannot instantiate base class. Instead, instantiate one of the defined subclasses: {0}".format(
-            ", ".join(['RotateArbitrarySecretBody', 'RotateUsernamePasswordSecretBody', 'RotateCertificateBody',
-                       'DeleteCredentialsForIAMCredentialsSecret']))
+            ", ".join(['RotateArbitrarySecretBody', 'RotatePublicCertBody', 'RotateUsernamePasswordSecretBody',
+                       'RotateCertificateBody', 'DeleteCredentialsForIAMCredentialsSecret']))
         raise Exception(msg)
 
 
@@ -2332,6 +3281,23 @@ class SecretGroupResource():
         """Return a json dictionary representing this model."""
         return self.to_dict()
 
+    def get_properties(self) -> Dict:
+        """Return a dictionary of arbitrary properties from this instance of SecretGroupResource"""
+        _dict = {}
+
+        for _key in [k for k in vars(self).keys() if k not in SecretGroupResource._properties]:
+            _dict[_key] = getattr(self, _key)
+        return _dict
+
+    def set_properties(self, _dict: dict):
+        """Set a dictionary of arbitrary properties to this instance of SecretGroupResource"""
+        for _key in [k for k in vars(self).keys() if k not in SecretGroupResource._properties]:
+            delattr(self, _key)
+
+        for _key, _value in _dict.items():
+            if _key not in SecretGroupResource._properties:
+                setattr(self, _key, _value)
+
     def __str__(self) -> str:
         """Return a `str` version of this SecretGroupResource object."""
         return json.dumps(self.to_dict(), indent=2)
@@ -2360,7 +3326,7 @@ class SecretMetadata():
         """
         msg = "Cannot instantiate base class. Instead, instantiate one of the defined subclasses: {0}".format(
             ", ".join(['ArbitrarySecretMetadata', 'UsernamePasswordSecretMetadata', 'IAMCredentialsSecretMetadata',
-                       'CertificateSecretMetadata']))
+                       'CertificateSecretMetadata', 'PublicCertificateMetadataSecretResource']))
         raise Exception(msg)
 
 
@@ -2445,7 +3411,7 @@ class SecretPolicyRotation():
 
     :attr str type: The MIME type that represents the policy. Currently, only the
           default is supported.
-    :attr SecretPolicyRotationRotation rotation: The secret rotation time interval.
+    :attr SecretPolicyRotationRotation rotation:
     """
 
     def __init__(self,
@@ -2456,8 +3422,7 @@ class SecretPolicyRotation():
 
         :param str type: The MIME type that represents the policy. Currently, only
                the default is supported.
-        :param SecretPolicyRotationRotation rotation: The secret rotation time
-               interval.
+        :param SecretPolicyRotationRotation rotation:
         """
         self.type = type
         self.rotation = rotation
@@ -2471,7 +3436,7 @@ class SecretPolicyRotation():
         else:
             raise ValueError('Required property \'type\' not present in SecretPolicyRotation JSON')
         if 'rotation' in _dict:
-            args['rotation'] = SecretPolicyRotationRotation.from_dict(_dict.get('rotation'))
+            args['rotation'] = _dict.get('rotation')
         else:
             raise ValueError('Required property \'rotation\' not present in SecretPolicyRotation JSON')
         return cls(**args)
@@ -2487,7 +3452,10 @@ class SecretPolicyRotation():
         if hasattr(self, 'type') and self.type is not None:
             _dict['type'] = self.type
         if hasattr(self, 'rotation') and self.rotation is not None:
-            _dict['rotation'] = self.rotation.to_dict()
+            if isinstance(self.rotation, dict):
+                _dict['rotation'] = self.rotation
+            else:
+                _dict['rotation'] = self.rotation.to_dict()
         return _dict
 
     def _to_dict(self):
@@ -2518,77 +3486,19 @@ class SecretPolicyRotation():
 
 class SecretPolicyRotationRotation():
     """
-    The secret rotation time interval.
+    SecretPolicyRotationRotation.
 
-    :attr int interval: Specifies the length of the secret rotation time interval.
-    :attr str unit: Specifies the units for the secret rotation time interval.
     """
 
-    def __init__(self,
-                 interval: int,
-                 unit: str) -> None:
+    def __init__(self) -> None:
         """
         Initialize a SecretPolicyRotationRotation object.
 
-        :param int interval: Specifies the length of the secret rotation time
-               interval.
-        :param str unit: Specifies the units for the secret rotation time interval.
         """
-        self.interval = interval
-        self.unit = unit
-
-    @classmethod
-    def from_dict(cls, _dict: Dict) -> 'SecretPolicyRotationRotation':
-        """Initialize a SecretPolicyRotationRotation object from a json dictionary."""
-        args = {}
-        if 'interval' in _dict:
-            args['interval'] = _dict.get('interval')
-        else:
-            raise ValueError('Required property \'interval\' not present in SecretPolicyRotationRotation JSON')
-        if 'unit' in _dict:
-            args['unit'] = _dict.get('unit')
-        else:
-            raise ValueError('Required property \'unit\' not present in SecretPolicyRotationRotation JSON')
-        return cls(**args)
-
-    @classmethod
-    def _from_dict(cls, _dict):
-        """Initialize a SecretPolicyRotationRotation object from a json dictionary."""
-        return cls.from_dict(_dict)
-
-    def to_dict(self) -> Dict:
-        """Return a json dictionary representing this model."""
-        _dict = {}
-        if hasattr(self, 'interval') and self.interval is not None:
-            _dict['interval'] = self.interval
-        if hasattr(self, 'unit') and self.unit is not None:
-            _dict['unit'] = self.unit
-        return _dict
-
-    def _to_dict(self):
-        """Return a json dictionary representing this model."""
-        return self.to_dict()
-
-    def __str__(self) -> str:
-        """Return a `str` version of this SecretPolicyRotationRotation object."""
-        return json.dumps(self.to_dict(), indent=2)
-
-    def __eq__(self, other: 'SecretPolicyRotationRotation') -> bool:
-        """Return `true` when self and other are equal, false otherwise."""
-        if not isinstance(other, self.__class__):
-            return False
-        return self.__dict__ == other.__dict__
-
-    def __ne__(self, other: 'SecretPolicyRotationRotation') -> bool:
-        """Return `true` when self and other are not equal, false otherwise."""
-        return not self == other
-
-    class UnitEnum(str, Enum):
-        """
-        Specifies the units for the secret rotation time interval.
-        """
-        DAY = 'day'
-        MONTH = 'month'
+        msg = "Cannot instantiate base class. Instead, instantiate one of the defined subclasses: {0}".format(
+            ", ".join(
+                ['SecretPolicyRotationRotationPolicyRotation', 'SecretPolicyRotationRotationPublicCertPolicyRotation']))
+        raise Exception(msg)
 
 
 class SecretResource():
@@ -2604,7 +3514,7 @@ class SecretResource():
         """
         msg = "Cannot instantiate base class. Instead, instantiate one of the defined subclasses: {0}".format(
             ", ".join(['ArbitrarySecretResource', 'UsernamePasswordSecretResource', 'IAMCredentialsSecretResource',
-                       'CertificateSecretResource']))
+                       'CertificateSecretResource', 'PublicCertificateSecretResource']))
         raise Exception(msg)
 
 
@@ -2705,6 +3615,75 @@ class CertificateValidity():
         return self.__dict__ == other.__dict__
 
     def __ne__(self, other: 'CertificateValidity') -> bool:
+        """Return `true` when self and other are not equal, false otherwise."""
+        return not self == other
+
+
+class Warning():
+    """
+    Warning response.
+
+    :attr str code: A warning code identifier.
+    :attr str message: A human-readable message that provides details about the
+          warning.
+    """
+
+    def __init__(self,
+                 code: str,
+                 message: str) -> None:
+        """
+        Initialize a Warning object.
+
+        :param str code: A warning code identifier.
+        :param str message: A human-readable message that provides details about
+               the warning.
+        """
+        self.code = code
+        self.message = message
+
+    @classmethod
+    def from_dict(cls, _dict: Dict) -> 'Warning':
+        """Initialize a Warning object from a json dictionary."""
+        args = {}
+        if 'code' in _dict:
+            args['code'] = _dict.get('code')
+        else:
+            raise ValueError('Required property \'code\' not present in Warning JSON')
+        if 'message' in _dict:
+            args['message'] = _dict.get('message')
+        else:
+            raise ValueError('Required property \'message\' not present in Warning JSON')
+        return cls(**args)
+
+    @classmethod
+    def _from_dict(cls, _dict):
+        """Initialize a Warning object from a json dictionary."""
+        return cls.from_dict(_dict)
+
+    def to_dict(self) -> Dict:
+        """Return a json dictionary representing this model."""
+        _dict = {}
+        if hasattr(self, 'code') and self.code is not None:
+            _dict['code'] = self.code
+        if hasattr(self, 'message') and self.message is not None:
+            _dict['message'] = self.message
+        return _dict
+
+    def _to_dict(self):
+        """Return a json dictionary representing this model."""
+        return self.to_dict()
+
+    def __str__(self) -> str:
+        """Return a `str` version of this Warning object."""
+        return json.dumps(self.to_dict(), indent=2)
+
+    def __eq__(self, other: 'Warning') -> bool:
+        """Return `true` when self and other are equal, false otherwise."""
+        if not isinstance(other, self.__class__):
+            return False
+        return self.__dict__ == other.__dict__
+
+    def __ne__(self, other: 'Warning') -> bool:
         """Return `true` when self and other are not equal, false otherwise."""
         return not self == other
 
@@ -2912,6 +3891,7 @@ class ArbitrarySecretMetadata(SecretMetadata):
         USERNAME_PASSWORD = 'username_password'
         IAM_CREDENTIALS = 'iam_credentials'
         IMPORTED_CERT = 'imported_cert'
+        PUBLIC_CERT = 'public_cert'
 
 
 class ArbitrarySecretResource(SecretResource):
@@ -3483,6 +4463,7 @@ class CertificateSecretMetadata(SecretMetadata):
         USERNAME_PASSWORD = 'username_password'
         IAM_CREDENTIALS = 'iam_credentials'
         IMPORTED_CERT = 'imported_cert'
+        PUBLIC_CERT = 'public_cert'
 
 
 class CertificateSecretResource(SecretResource):
@@ -3820,7 +4801,8 @@ class CertificateSecretVersion(SecretVersion):
     :attr str created_by: (optional) The unique identifier for the entity that
           created the secret version.
     :attr CertificateValidity validity: (optional)
-    :attr str serial_number: (optional)
+    :attr str serial_number: (optional) The unique serial number that was assigned
+          to the certificate by the issuing certificate authority.
     :attr datetime expiration_date: (optional) The date that the certificate
           expires. The date format follows RFC 3339.
     :attr CertificateSecretData secret_data: (optional)
@@ -3841,7 +4823,6 @@ class CertificateSecretVersion(SecretVersion):
         Initialize a CertificateSecretVersion object.
 
         :param CertificateValidity validity: (optional)
-        :param str serial_number: (optional)
         :param CertificateSecretData secret_data: (optional)
         """
         # pylint: disable=super-init-not-called
@@ -3899,8 +4880,8 @@ class CertificateSecretVersion(SecretVersion):
             _dict['created_by'] = getattr(self, 'created_by')
         if hasattr(self, 'validity') and self.validity is not None:
             _dict['validity'] = self.validity.to_dict()
-        if hasattr(self, 'serial_number') and self.serial_number is not None:
-            _dict['serial_number'] = self.serial_number
+        if hasattr(self, 'serial_number') and getattr(self, 'serial_number') is not None:
+            _dict['serial_number'] = getattr(self, 'serial_number')
         if hasattr(self, 'expiration_date') and getattr(self, 'expiration_date') is not None:
             _dict['expiration_date'] = datetime_to_string(getattr(self, 'expiration_date'))
         if hasattr(self, 'secret_data') and self.secret_data is not None:
@@ -3935,7 +4916,8 @@ class CertificateSecretVersionMetadata(SecretVersionMetadata):
           was created.
     :attr str created_by: (optional) The unique identifier for the entity that
           created the secret version.
-    :attr str serial_number: (optional)
+    :attr str serial_number: (optional) The unique serial number that was assigned
+          to the certificate by the issuing certificate authority.
     :attr datetime expiration_date: (optional) The date that the certificate
           expires. The date format follows RFC 3339.
     :attr CertificateValidity validity: (optional)
@@ -3952,7 +4934,6 @@ class CertificateSecretVersionMetadata(SecretVersionMetadata):
         """
         Initialize a CertificateSecretVersionMetadata object.
 
-        :param str serial_number: (optional)
         :param CertificateValidity validity: (optional)
         """
         # pylint: disable=super-init-not-called
@@ -3995,8 +4976,8 @@ class CertificateSecretVersionMetadata(SecretVersionMetadata):
             _dict['creation_date'] = datetime_to_string(getattr(self, 'creation_date'))
         if hasattr(self, 'created_by') and getattr(self, 'created_by') is not None:
             _dict['created_by'] = getattr(self, 'created_by')
-        if hasattr(self, 'serial_number') and self.serial_number is not None:
-            _dict['serial_number'] = self.serial_number
+        if hasattr(self, 'serial_number') and getattr(self, 'serial_number') is not None:
+            _dict['serial_number'] = getattr(self, 'serial_number')
         if hasattr(self, 'expiration_date') and getattr(self, 'expiration_date') is not None:
             _dict['expiration_date'] = datetime_to_string(getattr(self, 'expiration_date'))
         if hasattr(self, 'validity') and self.validity is not None:
@@ -4018,6 +4999,233 @@ class CertificateSecretVersionMetadata(SecretVersionMetadata):
         return self.__dict__ == other.__dict__
 
     def __ne__(self, other: 'CertificateSecretVersionMetadata') -> bool:
+        """Return `true` when self and other are not equal, false otherwise."""
+        return not self == other
+
+
+class ConfigElementDefConfigClassicInfrastructureConfig(ConfigElementDefConfig):
+    """
+    Properties that describe an IBM Cloud classic infrastructure (SoftLayer)
+    configuration.
+
+    :attr str classic_infrastructure_username: The username that is associated with
+          your classic infrastructure account.
+    :attr str classic_infrastructure_password: Your classic infrastructure API key.
+    """
+
+    def __init__(self,
+                 classic_infrastructure_username: str,
+                 classic_infrastructure_password: str) -> None:
+        """
+        Initialize a ConfigElementDefConfigClassicInfrastructureConfig object.
+
+        :param str classic_infrastructure_username: The username that is associated
+               with your classic infrastructure account.
+        :param str classic_infrastructure_password: Your classic infrastructure API
+               key.
+        """
+        # pylint: disable=super-init-not-called
+        self.classic_infrastructure_username = classic_infrastructure_username
+        self.classic_infrastructure_password = classic_infrastructure_password
+
+    @classmethod
+    def from_dict(cls, _dict: Dict) -> 'ConfigElementDefConfigClassicInfrastructureConfig':
+        """Initialize a ConfigElementDefConfigClassicInfrastructureConfig object from a json dictionary."""
+        args = {}
+        if 'classic_infrastructure_username' in _dict:
+            args['classic_infrastructure_username'] = _dict.get('classic_infrastructure_username')
+        else:
+            raise ValueError(
+                'Required property \'classic_infrastructure_username\' not present in ConfigElementDefConfigClassicInfrastructureConfig JSON')
+        if 'classic_infrastructure_password' in _dict:
+            args['classic_infrastructure_password'] = _dict.get('classic_infrastructure_password')
+        else:
+            raise ValueError(
+                'Required property \'classic_infrastructure_password\' not present in ConfigElementDefConfigClassicInfrastructureConfig JSON')
+        return cls(**args)
+
+    @classmethod
+    def _from_dict(cls, _dict):
+        """Initialize a ConfigElementDefConfigClassicInfrastructureConfig object from a json dictionary."""
+        return cls.from_dict(_dict)
+
+    def to_dict(self) -> Dict:
+        """Return a json dictionary representing this model."""
+        _dict = {}
+        if hasattr(self, 'classic_infrastructure_username') and self.classic_infrastructure_username is not None:
+            _dict['classic_infrastructure_username'] = self.classic_infrastructure_username
+        if hasattr(self, 'classic_infrastructure_password') and self.classic_infrastructure_password is not None:
+            _dict['classic_infrastructure_password'] = self.classic_infrastructure_password
+        return _dict
+
+    def _to_dict(self):
+        """Return a json dictionary representing this model."""
+        return self.to_dict()
+
+    def __str__(self) -> str:
+        """Return a `str` version of this ConfigElementDefConfigClassicInfrastructureConfig object."""
+        return json.dumps(self.to_dict(), indent=2)
+
+    def __eq__(self, other: 'ConfigElementDefConfigClassicInfrastructureConfig') -> bool:
+        """Return `true` when self and other are equal, false otherwise."""
+        if not isinstance(other, self.__class__):
+            return False
+        return self.__dict__ == other.__dict__
+
+    def __ne__(self, other: 'ConfigElementDefConfigClassicInfrastructureConfig') -> bool:
+        """Return `true` when self and other are not equal, false otherwise."""
+        return not self == other
+
+
+class ConfigElementDefConfigCloudInternetServicesConfig(ConfigElementDefConfig):
+    """
+    Properties that describe an IBM Cloud Internet Services (CIS) configuration.
+
+    :attr str cis_crn: The Cloud Resource Name (CRN) that is associated with the CIS
+          instance.
+    :attr str cis_apikey: (optional) An IBM Cloud API key that has the capability to
+          list domains in your CIS instance.
+          To grant Secrets Manager the ability to view the CIS instance and all of its
+          domains, the API key must be assigned the Reader service role on Internet
+          Services (`internet-svcs`).
+          If you need to manage specific domains, you can assign the Manager role. For
+          production environments, it is recommended that you assign the Reader access
+          role, and then use the
+          [IAM Policy Management
+          API](https://cloud.ibm.com/apidocs/iam-policy-management#create-policy) to
+          control specific domains. For more information, see the
+          [docs](https://cloud.ibm.com/docs/secrets-manager?topic=secrets-manager-prepare-order-certificates#authorize-specific-domains).
+    """
+
+    def __init__(self,
+                 cis_crn: str,
+                 *,
+                 cis_apikey: str = None) -> None:
+        """
+        Initialize a ConfigElementDefConfigCloudInternetServicesConfig object.
+
+        :param str cis_crn: The Cloud Resource Name (CRN) that is associated with
+               the CIS instance.
+        :param str cis_apikey: (optional) An IBM Cloud API key that has the
+               capability to list domains in your CIS instance.
+               To grant Secrets Manager the ability to view the CIS instance and all of
+               its domains, the API key must be assigned the Reader service role on
+               Internet Services (`internet-svcs`).
+               If you need to manage specific domains, you can assign the Manager role.
+               For production environments, it is recommended that you assign the Reader
+               access role, and then use the
+               [IAM Policy Management
+               API](https://cloud.ibm.com/apidocs/iam-policy-management#create-policy) to
+               control specific domains. For more information, see the
+               [docs](https://cloud.ibm.com/docs/secrets-manager?topic=secrets-manager-prepare-order-certificates#authorize-specific-domains).
+        """
+        # pylint: disable=super-init-not-called
+        self.cis_crn = cis_crn
+        self.cis_apikey = cis_apikey
+
+    @classmethod
+    def from_dict(cls, _dict: Dict) -> 'ConfigElementDefConfigCloudInternetServicesConfig':
+        """Initialize a ConfigElementDefConfigCloudInternetServicesConfig object from a json dictionary."""
+        args = {}
+        if 'cis_crn' in _dict:
+            args['cis_crn'] = _dict.get('cis_crn')
+        else:
+            raise ValueError(
+                'Required property \'cis_crn\' not present in ConfigElementDefConfigCloudInternetServicesConfig JSON')
+        if 'cis_apikey' in _dict:
+            args['cis_apikey'] = _dict.get('cis_apikey')
+        return cls(**args)
+
+    @classmethod
+    def _from_dict(cls, _dict):
+        """Initialize a ConfigElementDefConfigCloudInternetServicesConfig object from a json dictionary."""
+        return cls.from_dict(_dict)
+
+    def to_dict(self) -> Dict:
+        """Return a json dictionary representing this model."""
+        _dict = {}
+        if hasattr(self, 'cis_crn') and self.cis_crn is not None:
+            _dict['cis_crn'] = self.cis_crn
+        if hasattr(self, 'cis_apikey') and self.cis_apikey is not None:
+            _dict['cis_apikey'] = self.cis_apikey
+        return _dict
+
+    def _to_dict(self):
+        """Return a json dictionary representing this model."""
+        return self.to_dict()
+
+    def __str__(self) -> str:
+        """Return a `str` version of this ConfigElementDefConfigCloudInternetServicesConfig object."""
+        return json.dumps(self.to_dict(), indent=2)
+
+    def __eq__(self, other: 'ConfigElementDefConfigCloudInternetServicesConfig') -> bool:
+        """Return `true` when self and other are equal, false otherwise."""
+        if not isinstance(other, self.__class__):
+            return False
+        return self.__dict__ == other.__dict__
+
+    def __ne__(self, other: 'ConfigElementDefConfigCloudInternetServicesConfig') -> bool:
+        """Return `true` when self and other are not equal, false otherwise."""
+        return not self == other
+
+
+class ConfigElementDefConfigLetsEncryptConfig(ConfigElementDefConfig):
+    """
+    Properties that describe a Let's Encrypt configuration.
+
+    :attr str private_key: The private key that is associated with your ACME
+          account.
+    """
+
+    def __init__(self,
+                 private_key: str) -> None:
+        """
+        Initialize a ConfigElementDefConfigLetsEncryptConfig object.
+
+        :param str private_key: The private key that is associated with your ACME
+               account.
+        """
+        # pylint: disable=super-init-not-called
+        self.private_key = private_key
+
+    @classmethod
+    def from_dict(cls, _dict: Dict) -> 'ConfigElementDefConfigLetsEncryptConfig':
+        """Initialize a ConfigElementDefConfigLetsEncryptConfig object from a json dictionary."""
+        args = {}
+        if 'private_key' in _dict:
+            args['private_key'] = _dict.get('private_key')
+        else:
+            raise ValueError(
+                'Required property \'private_key\' not present in ConfigElementDefConfigLetsEncryptConfig JSON')
+        return cls(**args)
+
+    @classmethod
+    def _from_dict(cls, _dict):
+        """Initialize a ConfigElementDefConfigLetsEncryptConfig object from a json dictionary."""
+        return cls.from_dict(_dict)
+
+    def to_dict(self) -> Dict:
+        """Return a json dictionary representing this model."""
+        _dict = {}
+        if hasattr(self, 'private_key') and self.private_key is not None:
+            _dict['private_key'] = self.private_key
+        return _dict
+
+    def _to_dict(self):
+        """Return a json dictionary representing this model."""
+        return self.to_dict()
+
+    def __str__(self) -> str:
+        """Return a `str` version of this ConfigElementDefConfigLetsEncryptConfig object."""
+        return json.dumps(self.to_dict(), indent=2)
+
+    def __eq__(self, other: 'ConfigElementDefConfigLetsEncryptConfig') -> bool:
+        """Return `true` when self and other are equal, false otherwise."""
+        if not isinstance(other, self.__class__):
+            return False
+        return self.__dict__ == other.__dict__
+
+    def __ne__(self, other: 'ConfigElementDefConfigLetsEncryptConfig') -> bool:
         """Return `true` when self and other are not equal, false otherwise."""
         return not self == other
 
@@ -4079,6 +5287,125 @@ class DeleteCredentialsForIAMCredentialsSecret(SecretAction):
         return self.__dict__ == other.__dict__
 
     def __ne__(self, other: 'DeleteCredentialsForIAMCredentialsSecret') -> bool:
+        """Return `true` when self and other are not equal, false otherwise."""
+        return not self == other
+
+
+class GetConfigElementsResourcesItemCertificateAuthoritiesConfig(GetConfigElementsResourcesItem):
+    """
+    Certificate authorities configuration.
+
+    :attr List[ConfigElementMetadata] certificate_authorities:
+    """
+
+    def __init__(self,
+                 certificate_authorities: List['ConfigElementMetadata']) -> None:
+        """
+        Initialize a GetConfigElementsResourcesItemCertificateAuthoritiesConfig object.
+
+        :param List[ConfigElementMetadata] certificate_authorities:
+        """
+        # pylint: disable=super-init-not-called
+        self.certificate_authorities = certificate_authorities
+
+    @classmethod
+    def from_dict(cls, _dict: Dict) -> 'GetConfigElementsResourcesItemCertificateAuthoritiesConfig':
+        """Initialize a GetConfigElementsResourcesItemCertificateAuthoritiesConfig object from a json dictionary."""
+        args = {}
+        if 'certificate_authorities' in _dict:
+            args['certificate_authorities'] = [ConfigElementMetadata.from_dict(x) for x in
+                                               _dict.get('certificate_authorities')]
+        else:
+            raise ValueError(
+                'Required property \'certificate_authorities\' not present in GetConfigElementsResourcesItemCertificateAuthoritiesConfig JSON')
+        return cls(**args)
+
+    @classmethod
+    def _from_dict(cls, _dict):
+        """Initialize a GetConfigElementsResourcesItemCertificateAuthoritiesConfig object from a json dictionary."""
+        return cls.from_dict(_dict)
+
+    def to_dict(self) -> Dict:
+        """Return a json dictionary representing this model."""
+        _dict = {}
+        if hasattr(self, 'certificate_authorities') and self.certificate_authorities is not None:
+            _dict['certificate_authorities'] = [x.to_dict() for x in self.certificate_authorities]
+        return _dict
+
+    def _to_dict(self):
+        """Return a json dictionary representing this model."""
+        return self.to_dict()
+
+    def __str__(self) -> str:
+        """Return a `str` version of this GetConfigElementsResourcesItemCertificateAuthoritiesConfig object."""
+        return json.dumps(self.to_dict(), indent=2)
+
+    def __eq__(self, other: 'GetConfigElementsResourcesItemCertificateAuthoritiesConfig') -> bool:
+        """Return `true` when self and other are equal, false otherwise."""
+        if not isinstance(other, self.__class__):
+            return False
+        return self.__dict__ == other.__dict__
+
+    def __ne__(self, other: 'GetConfigElementsResourcesItemCertificateAuthoritiesConfig') -> bool:
+        """Return `true` when self and other are not equal, false otherwise."""
+        return not self == other
+
+
+class GetConfigElementsResourcesItemDnsProvidersConfig(GetConfigElementsResourcesItem):
+    """
+    DNS providers configuration.
+
+    :attr List[ConfigElementMetadata] dns_providers:
+    """
+
+    def __init__(self,
+                 dns_providers: List['ConfigElementMetadata']) -> None:
+        """
+        Initialize a GetConfigElementsResourcesItemDnsProvidersConfig object.
+
+        :param List[ConfigElementMetadata] dns_providers:
+        """
+        # pylint: disable=super-init-not-called
+        self.dns_providers = dns_providers
+
+    @classmethod
+    def from_dict(cls, _dict: Dict) -> 'GetConfigElementsResourcesItemDnsProvidersConfig':
+        """Initialize a GetConfigElementsResourcesItemDnsProvidersConfig object from a json dictionary."""
+        args = {}
+        if 'dns_providers' in _dict:
+            args['dns_providers'] = [ConfigElementMetadata.from_dict(x) for x in _dict.get('dns_providers')]
+        else:
+            raise ValueError(
+                'Required property \'dns_providers\' not present in GetConfigElementsResourcesItemDnsProvidersConfig JSON')
+        return cls(**args)
+
+    @classmethod
+    def _from_dict(cls, _dict):
+        """Initialize a GetConfigElementsResourcesItemDnsProvidersConfig object from a json dictionary."""
+        return cls.from_dict(_dict)
+
+    def to_dict(self) -> Dict:
+        """Return a json dictionary representing this model."""
+        _dict = {}
+        if hasattr(self, 'dns_providers') and self.dns_providers is not None:
+            _dict['dns_providers'] = [x.to_dict() for x in self.dns_providers]
+        return _dict
+
+    def _to_dict(self):
+        """Return a json dictionary representing this model."""
+        return self.to_dict()
+
+    def __str__(self) -> str:
+        """Return a `str` version of this GetConfigElementsResourcesItemDnsProvidersConfig object."""
+        return json.dumps(self.to_dict(), indent=2)
+
+    def __eq__(self, other: 'GetConfigElementsResourcesItemDnsProvidersConfig') -> bool:
+        """Return `true` when self and other are equal, false otherwise."""
+        if not isinstance(other, self.__class__):
+            return False
+        return self.__dict__ == other.__dict__
+
+    def __ne__(self, other: 'GetConfigElementsResourcesItemDnsProvidersConfig') -> bool:
         """Return `true` when self and other are not equal, false otherwise."""
         return not self == other
 
@@ -4155,9 +5482,9 @@ class GetSecretPolicyRotation(GetSecretPolicies):
         return not self == other
 
 
-class IAMCredentialsSecretEngineRootConfig(EngineConfig):
+class IAMCredentialsSecretEngineRootConfig(GetConfigResourcesItem):
     """
-    Configuration that is used to generate IAM credentials.
+    Configuration for the IAM credentials engine.
 
     :attr str api_key: An IBM Cloud API key that has the capability to create and
           manage service IDs.
@@ -4442,6 +5769,7 @@ class IAMCredentialsSecretMetadata(SecretMetadata):
         USERNAME_PASSWORD = 'username_password'
         IAM_CREDENTIALS = 'iam_credentials'
         IMPORTED_CERT = 'imported_cert'
+        PUBLIC_CERT = 'public_cert'
 
 
 class IAMCredentialsSecretResource(SecretResource):
@@ -4786,6 +6114,683 @@ class IAMCredentialsSecretVersionMetadata(SecretVersionMetadata):
         return not self == other
 
 
+class PublicCertSecretEngineRootConfig(GetConfigResourcesItem):
+    """
+    Configuration for the public certificates engine.
+
+    :attr List[ConfigElementMetadata] certificate_authorities: (optional) The
+          certificate authority configurations that are associated with your instance.
+    :attr List[ConfigElementMetadata] dns_providers: (optional) The DNS provider
+          configurations that are associated with your instance.
+    """
+
+    def __init__(self,
+                 *,
+                 certificate_authorities: List['ConfigElementMetadata'] = None,
+                 dns_providers: List['ConfigElementMetadata'] = None) -> None:
+        """
+        Initialize a PublicCertSecretEngineRootConfig object.
+
+        :param List[ConfigElementMetadata] dns_providers: (optional) The DNS
+               provider configurations that are associated with your instance.
+        """
+        # pylint: disable=super-init-not-called
+        self.certificate_authorities = certificate_authorities
+        self.dns_providers = dns_providers
+
+    @classmethod
+    def from_dict(cls, _dict: Dict) -> 'PublicCertSecretEngineRootConfig':
+        """Initialize a PublicCertSecretEngineRootConfig object from a json dictionary."""
+        args = {}
+        if 'certificate_authorities' in _dict:
+            args['certificate_authorities'] = [ConfigElementMetadata.from_dict(x) for x in
+                                               _dict.get('certificate_authorities')]
+        if 'dns_providers' in _dict:
+            args['dns_providers'] = [ConfigElementMetadata.from_dict(x) for x in _dict.get('dns_providers')]
+        return cls(**args)
+
+    @classmethod
+    def _from_dict(cls, _dict):
+        """Initialize a PublicCertSecretEngineRootConfig object from a json dictionary."""
+        return cls.from_dict(_dict)
+
+    def to_dict(self) -> Dict:
+        """Return a json dictionary representing this model."""
+        _dict = {}
+        if hasattr(self, 'certificate_authorities') and getattr(self, 'certificate_authorities') is not None:
+            _dict['certificate_authorities'] = [x.to_dict() for x in getattr(self, 'certificate_authorities')]
+        if hasattr(self, 'dns_providers') and self.dns_providers is not None:
+            _dict['dns_providers'] = [x.to_dict() for x in self.dns_providers]
+        return _dict
+
+    def _to_dict(self):
+        """Return a json dictionary representing this model."""
+        return self.to_dict()
+
+    def __str__(self) -> str:
+        """Return a `str` version of this PublicCertSecretEngineRootConfig object."""
+        return json.dumps(self.to_dict(), indent=2)
+
+    def __eq__(self, other: 'PublicCertSecretEngineRootConfig') -> bool:
+        """Return `true` when self and other are equal, false otherwise."""
+        if not isinstance(other, self.__class__):
+            return False
+        return self.__dict__ == other.__dict__
+
+    def __ne__(self, other: 'PublicCertSecretEngineRootConfig') -> bool:
+        """Return `true` when self and other are not equal, false otherwise."""
+        return not self == other
+
+
+class PublicCertificateMetadataSecretResource(SecretMetadata):
+    """
+    Metadata properties that describe a public certificate secret.
+
+    :attr str id: (optional) The unique ID of the secret.
+    :attr List[str] labels: (optional) Labels that you can use to filter for secrets
+          in your instance.
+          Up to 30 labels can be created. Labels can be between 2-30 characters, including
+          spaces. Special characters not permitted include the angled bracket, comma,
+          colon, ampersand, and vertical pipe character (|).
+          To protect your privacy, do not use personal data, such as your name or
+          location, as a label for your secret.
+    :attr str name: A human-readable alias to assign to your secret.
+          To protect your privacy, do not use personal data, such as your name or
+          location, as an alias for your secret.
+    :attr str description: (optional) An extended description of your secret.
+          To protect your privacy, do not use personal data, such as your name or
+          location, as a description for your secret.
+    :attr str secret_group_id: (optional) The v4 UUID that uniquely identifies the
+          secret group to assign to this secret.
+          If you omit this parameter, your secret is assigned to the `default` secret
+          group.
+    :attr int state: (optional) The secret state based on NIST SP 800-57. States are
+          integers and correspond to the Pre-activation = 0, Active = 1,  Suspended = 2,
+          Deactivated = 3, and Destroyed = 5 values.
+    :attr str state_description: (optional) A text representation of the secret
+          state.
+    :attr str secret_type: (optional) The secret type.
+    :attr str crn: (optional) The Cloud Resource Name (CRN) that uniquely identifies
+          the resource.
+    :attr datetime creation_date: (optional) The date the secret was created. The
+          date format follows RFC 3339.
+    :attr str created_by: (optional) The unique identifier for the entity that
+          created the secret.
+    :attr datetime last_update_date: (optional) Updates when any part of the secret
+          metadata is modified. The date format follows RFC 3339.
+    :attr int versions_total: (optional) The number of versions the secret has.
+    :attr str issuer: (optional) The distinguished name that identifies the entity
+          that signed and issued the certificate.
+    :attr bool bundle_certs: (optional) Determines whether your issued certificate
+          is bundled with intermediate certificates.
+          Set to `false` for the certificate file to contain only the issued certificate.
+    :attr str algorithm: (optional) The identifier for the cryptographic algorthim
+          to be used by the issuing certificate authority to sign the ceritificate.
+    :attr str key_algorithm: (optional) The identifier for the cryptographic
+          algorithm to be used to generate the public key that is associated with the
+          certificate.
+    :attr List[str] alt_names: (optional) The alternative names that are defined for
+          the certificate.
+    :attr str common_name: (optional) The fully qualified domain name or host domain
+          name for the certificate.
+    :attr bool intermediate_included: (optional) Indicates whether the certificate
+          was ordered with an associated intermediate certificate.
+    :attr bool private_key_included: (optional) Indicates whether the certificate
+          was ordered with an associated private key.
+    :attr Rotation rotation: (optional)
+    :attr IssuanceInfo issuance_info: (optional) Issuance information that is
+          associated with your certificate.
+    """
+
+    def __init__(self,
+                 name: str,
+                 *,
+                 id: str = None,
+                 labels: List[str] = None,
+                 description: str = None,
+                 secret_group_id: str = None,
+                 state: int = None,
+                 state_description: str = None,
+                 secret_type: str = None,
+                 crn: str = None,
+                 creation_date: datetime = None,
+                 created_by: str = None,
+                 last_update_date: datetime = None,
+                 versions_total: int = None,
+                 issuer: str = None,
+                 bundle_certs: bool = None,
+                 algorithm: str = None,
+                 key_algorithm: str = None,
+                 alt_names: List[str] = None,
+                 common_name: str = None,
+                 intermediate_included: bool = None,
+                 private_key_included: bool = None,
+                 rotation: 'Rotation' = None,
+                 issuance_info: 'IssuanceInfo' = None) -> None:
+        """
+        Initialize a PublicCertificateMetadataSecretResource object.
+
+        :param str name: A human-readable alias to assign to your secret.
+               To protect your privacy, do not use personal data, such as your name or
+               location, as an alias for your secret.
+        :param List[str] labels: (optional) Labels that you can use to filter for
+               secrets in your instance.
+               Up to 30 labels can be created. Labels can be between 2-30 characters,
+               including spaces. Special characters not permitted include the angled
+               bracket, comma, colon, ampersand, and vertical pipe character (|).
+               To protect your privacy, do not use personal data, such as your name or
+               location, as a label for your secret.
+        :param str description: (optional) An extended description of your secret.
+               To protect your privacy, do not use personal data, such as your name or
+               location, as a description for your secret.
+        :param bool bundle_certs: (optional) Determines whether your issued
+               certificate is bundled with intermediate certificates.
+               Set to `false` for the certificate file to contain only the issued
+               certificate.
+        :param str key_algorithm: (optional) The identifier for the cryptographic
+               algorithm to be used to generate the public key that is associated with the
+               certificate.
+        :param List[str] alt_names: (optional) The alternative names that are
+               defined for the certificate.
+        :param str common_name: (optional) The fully qualified domain name or host
+               domain name for the certificate.
+        :param Rotation rotation: (optional)
+        :param IssuanceInfo issuance_info: (optional) Issuance information that is
+               associated with your certificate.
+        """
+        # pylint: disable=super-init-not-called
+        self.id = id
+        self.labels = labels
+        self.name = name
+        self.description = description
+        self.secret_group_id = secret_group_id
+        self.state = state
+        self.state_description = state_description
+        self.secret_type = secret_type
+        self.crn = crn
+        self.creation_date = creation_date
+        self.created_by = created_by
+        self.last_update_date = last_update_date
+        self.versions_total = versions_total
+        self.issuer = issuer
+        self.bundle_certs = bundle_certs
+        self.algorithm = algorithm
+        self.key_algorithm = key_algorithm
+        self.alt_names = alt_names
+        self.common_name = common_name
+        self.intermediate_included = intermediate_included
+        self.private_key_included = private_key_included
+        self.rotation = rotation
+        self.issuance_info = issuance_info
+
+    @classmethod
+    def from_dict(cls, _dict: Dict) -> 'PublicCertificateMetadataSecretResource':
+        """Initialize a PublicCertificateMetadataSecretResource object from a json dictionary."""
+        args = {}
+        if 'id' in _dict:
+            args['id'] = _dict.get('id')
+        if 'labels' in _dict:
+            args['labels'] = _dict.get('labels')
+        if 'name' in _dict:
+            args['name'] = _dict.get('name')
+        else:
+            raise ValueError('Required property \'name\' not present in PublicCertificateMetadataSecretResource JSON')
+        if 'description' in _dict:
+            args['description'] = _dict.get('description')
+        if 'secret_group_id' in _dict:
+            args['secret_group_id'] = _dict.get('secret_group_id')
+        if 'state' in _dict:
+            args['state'] = _dict.get('state')
+        if 'state_description' in _dict:
+            args['state_description'] = _dict.get('state_description')
+        if 'secret_type' in _dict:
+            args['secret_type'] = _dict.get('secret_type')
+        if 'crn' in _dict:
+            args['crn'] = _dict.get('crn')
+        if 'creation_date' in _dict:
+            args['creation_date'] = string_to_datetime(_dict.get('creation_date'))
+        if 'created_by' in _dict:
+            args['created_by'] = _dict.get('created_by')
+        if 'last_update_date' in _dict:
+            args['last_update_date'] = string_to_datetime(_dict.get('last_update_date'))
+        if 'versions_total' in _dict:
+            args['versions_total'] = _dict.get('versions_total')
+        if 'issuer' in _dict:
+            args['issuer'] = _dict.get('issuer')
+        if 'bundle_certs' in _dict:
+            args['bundle_certs'] = _dict.get('bundle_certs')
+        if 'algorithm' in _dict:
+            args['algorithm'] = _dict.get('algorithm')
+        if 'key_algorithm' in _dict:
+            args['key_algorithm'] = _dict.get('key_algorithm')
+        if 'alt_names' in _dict:
+            args['alt_names'] = _dict.get('alt_names')
+        if 'common_name' in _dict:
+            args['common_name'] = _dict.get('common_name')
+        if 'intermediate_included' in _dict:
+            args['intermediate_included'] = _dict.get('intermediate_included')
+        if 'private_key_included' in _dict:
+            args['private_key_included'] = _dict.get('private_key_included')
+        if 'rotation' in _dict:
+            args['rotation'] = Rotation.from_dict(_dict.get('rotation'))
+        if 'issuance_info' in _dict:
+            args['issuance_info'] = IssuanceInfo.from_dict(_dict.get('issuance_info'))
+        return cls(**args)
+
+    @classmethod
+    def _from_dict(cls, _dict):
+        """Initialize a PublicCertificateMetadataSecretResource object from a json dictionary."""
+        return cls.from_dict(_dict)
+
+    def to_dict(self) -> Dict:
+        """Return a json dictionary representing this model."""
+        _dict = {}
+        if hasattr(self, 'id') and getattr(self, 'id') is not None:
+            _dict['id'] = getattr(self, 'id')
+        if hasattr(self, 'labels') and self.labels is not None:
+            _dict['labels'] = self.labels
+        if hasattr(self, 'name') and self.name is not None:
+            _dict['name'] = self.name
+        if hasattr(self, 'description') and self.description is not None:
+            _dict['description'] = self.description
+        if hasattr(self, 'secret_group_id') and getattr(self, 'secret_group_id') is not None:
+            _dict['secret_group_id'] = getattr(self, 'secret_group_id')
+        if hasattr(self, 'state') and getattr(self, 'state') is not None:
+            _dict['state'] = getattr(self, 'state')
+        if hasattr(self, 'state_description') and getattr(self, 'state_description') is not None:
+            _dict['state_description'] = getattr(self, 'state_description')
+        if hasattr(self, 'secret_type') and getattr(self, 'secret_type') is not None:
+            _dict['secret_type'] = getattr(self, 'secret_type')
+        if hasattr(self, 'crn') and getattr(self, 'crn') is not None:
+            _dict['crn'] = getattr(self, 'crn')
+        if hasattr(self, 'creation_date') and getattr(self, 'creation_date') is not None:
+            _dict['creation_date'] = datetime_to_string(getattr(self, 'creation_date'))
+        if hasattr(self, 'created_by') and getattr(self, 'created_by') is not None:
+            _dict['created_by'] = getattr(self, 'created_by')
+        if hasattr(self, 'last_update_date') and getattr(self, 'last_update_date') is not None:
+            _dict['last_update_date'] = datetime_to_string(getattr(self, 'last_update_date'))
+        if hasattr(self, 'versions_total') and getattr(self, 'versions_total') is not None:
+            _dict['versions_total'] = getattr(self, 'versions_total')
+        if hasattr(self, 'issuer') and getattr(self, 'issuer') is not None:
+            _dict['issuer'] = getattr(self, 'issuer')
+        if hasattr(self, 'bundle_certs') and self.bundle_certs is not None:
+            _dict['bundle_certs'] = self.bundle_certs
+        if hasattr(self, 'algorithm') and getattr(self, 'algorithm') is not None:
+            _dict['algorithm'] = getattr(self, 'algorithm')
+        if hasattr(self, 'key_algorithm') and self.key_algorithm is not None:
+            _dict['key_algorithm'] = self.key_algorithm
+        if hasattr(self, 'alt_names') and self.alt_names is not None:
+            _dict['alt_names'] = self.alt_names
+        if hasattr(self, 'common_name') and self.common_name is not None:
+            _dict['common_name'] = self.common_name
+        if hasattr(self, 'intermediate_included') and getattr(self, 'intermediate_included') is not None:
+            _dict['intermediate_included'] = getattr(self, 'intermediate_included')
+        if hasattr(self, 'private_key_included') and getattr(self, 'private_key_included') is not None:
+            _dict['private_key_included'] = getattr(self, 'private_key_included')
+        if hasattr(self, 'rotation') and self.rotation is not None:
+            _dict['rotation'] = self.rotation.to_dict()
+        if hasattr(self, 'issuance_info') and self.issuance_info is not None:
+            _dict['issuance_info'] = self.issuance_info.to_dict()
+        return _dict
+
+    def _to_dict(self):
+        """Return a json dictionary representing this model."""
+        return self.to_dict()
+
+    def __str__(self) -> str:
+        """Return a `str` version of this PublicCertificateMetadataSecretResource object."""
+        return json.dumps(self.to_dict(), indent=2)
+
+    def __eq__(self, other: 'PublicCertificateMetadataSecretResource') -> bool:
+        """Return `true` when self and other are equal, false otherwise."""
+        if not isinstance(other, self.__class__):
+            return False
+        return self.__dict__ == other.__dict__
+
+    def __ne__(self, other: 'PublicCertificateMetadataSecretResource') -> bool:
+        """Return `true` when self and other are not equal, false otherwise."""
+        return not self == other
+
+    class SecretTypeEnum(str, Enum):
+        """
+        The secret type.
+        """
+        ARBITRARY = 'arbitrary'
+        USERNAME_PASSWORD = 'username_password'
+        IAM_CREDENTIALS = 'iam_credentials'
+        IMPORTED_CERT = 'imported_cert'
+        PUBLIC_CERT = 'public_cert'
+
+    class KeyAlgorithmEnum(str, Enum):
+        """
+        The identifier for the cryptographic algorithm to be used to generate the public
+        key that is associated with the certificate.
+        """
+        RSA2048 = 'RSA2048'
+        RSA4096 = 'RSA4096'
+        EC256 = 'EC256'
+        EC384 = 'EC384'
+
+
+class PublicCertificateSecretResource(SecretResource):
+    """
+    Properties that describe a secret.
+
+    :attr str id: (optional) The v4 UUID that uniquely identifies the secret.
+    :attr str name: A human-readable alias to assign to your secret.
+          To protect your privacy, do not use personal data, such as your name or
+          location, as an alias for your secret.
+    :attr str description: (optional) An extended description of your secret.
+          To protect your privacy, do not use personal data, such as your name or
+          location, as a description for your secret.
+    :attr str secret_group_id: (optional) The v4 UUID that uniquely identifies the
+          secret group to assign to this secret.
+          If you omit this parameter, your secret is assigned to the `default` secret
+          group.
+    :attr List[str] labels: (optional) Labels that you can use to filter for secrets
+          in your instance.
+          Up to 30 labels can be created. Labels can be between 2-30 characters, including
+          spaces. Special characters not permitted include the angled bracket, comma,
+          colon, ampersand, and vertical pipe character (|).
+          To protect your privacy, do not use personal data, such as your name or
+          location, as a label for your secret.
+    :attr int state: (optional) The secret state based on NIST SP 800-57. States are
+          integers and correspond to the Pre-activation = 0, Active = 1,  Suspended = 2,
+          Deactivated = 3, and Destroyed = 5 values.
+    :attr str state_description: (optional) A text representation of the secret
+          state.
+    :attr str secret_type: (optional) The secret type.
+    :attr str crn: (optional) The Cloud Resource Name (CRN) that uniquely identifies
+          your Secrets Manager resource.
+    :attr datetime creation_date: (optional) The date the secret was created. The
+          date format follows RFC 3339.
+    :attr str created_by: (optional) The unique identifier for the entity that
+          created the secret.
+    :attr datetime last_update_date: (optional) Updates when the actual secret is
+          modified. The date format follows RFC 3339.
+    :attr int versions_total: (optional) The number of versions that are associated
+          with a secret.
+    :attr List[dict] versions: (optional) An array that contains metadata for each
+          secret version. For more information on the metadata properties, see [Get secret
+          version metadata](#get-secret-version-metadata).
+    :attr str issuer: (optional) The distinguished name that identifies the entity
+          that signed and issued the certificate.
+    :attr bool bundle_certs: (optional) Determines whether your issued certificate
+          is bundled with intermediate certificates.
+          Set to `false` for the certificate file to contain only the issued certificate.
+    :attr str ca: (optional) The name of the certificate authority configuration.
+          To view a list of your configured authorities, use the [List configurations
+          API](#get-secret-config-element).
+    :attr str dns: (optional) The name of the DNS provider configuration.
+          To view a list of your configured authorities, use the [List configurations
+          API](#get-secret-config-element).
+    :attr str algorithm: (optional) The identifier for the cryptographic algorthim
+          to be used by the issuing certificate authority to sign the ceritificate.
+    :attr str key_algorithm: (optional) The identifier for the cryptographic
+          algorithm to be used to generate the public key that is associated with the
+          certificate.
+    :attr List[str] alt_names: (optional) The alternative names that are defined for
+          the certificate.
+    :attr str common_name: (optional) The fully qualified domain name or host domain
+          name for the certificate.
+    :attr Rotation rotation: (optional)
+    :attr IssuanceInfo issuance_info: (optional) Issuance information that is
+          associated with your certificate.
+    :attr object secret_data: (optional)
+    """
+
+    def __init__(self,
+                 name: str,
+                 *,
+                 id: str = None,
+                 description: str = None,
+                 secret_group_id: str = None,
+                 labels: List[str] = None,
+                 state: int = None,
+                 state_description: str = None,
+                 secret_type: str = None,
+                 crn: str = None,
+                 creation_date: datetime = None,
+                 created_by: str = None,
+                 last_update_date: datetime = None,
+                 versions_total: int = None,
+                 versions: List[dict] = None,
+                 issuer: str = None,
+                 bundle_certs: bool = None,
+                 ca: str = None,
+                 dns: str = None,
+                 algorithm: str = None,
+                 key_algorithm: str = None,
+                 alt_names: List[str] = None,
+                 common_name: str = None,
+                 rotation: 'Rotation' = None,
+                 issuance_info: 'IssuanceInfo' = None,
+                 secret_data: object = None) -> None:
+        """
+        Initialize a PublicCertificateSecretResource object.
+
+        :param str name: A human-readable alias to assign to your secret.
+               To protect your privacy, do not use personal data, such as your name or
+               location, as an alias for your secret.
+        :param str description: (optional) An extended description of your secret.
+               To protect your privacy, do not use personal data, such as your name or
+               location, as a description for your secret.
+        :param str secret_group_id: (optional) The v4 UUID that uniquely identifies
+               the secret group to assign to this secret.
+               If you omit this parameter, your secret is assigned to the `default` secret
+               group.
+        :param List[str] labels: (optional) Labels that you can use to filter for
+               secrets in your instance.
+               Up to 30 labels can be created. Labels can be between 2-30 characters,
+               including spaces. Special characters not permitted include the angled
+               bracket, comma, colon, ampersand, and vertical pipe character (|).
+               To protect your privacy, do not use personal data, such as your name or
+               location, as a label for your secret.
+        :param bool bundle_certs: (optional) Determines whether your issued
+               certificate is bundled with intermediate certificates.
+               Set to `false` for the certificate file to contain only the issued
+               certificate.
+        :param str ca: (optional) The name of the certificate authority
+               configuration.
+               To view a list of your configured authorities, use the [List configurations
+               API](#get-secret-config-element).
+        :param str dns: (optional) The name of the DNS provider configuration.
+               To view a list of your configured authorities, use the [List configurations
+               API](#get-secret-config-element).
+        :param str key_algorithm: (optional) The identifier for the cryptographic
+               algorithm to be used to generate the public key that is associated with the
+               certificate.
+        :param List[str] alt_names: (optional) The alternative names that are
+               defined for the certificate.
+        :param str common_name: (optional) The fully qualified domain name or host
+               domain name for the certificate.
+        :param Rotation rotation: (optional)
+        :param IssuanceInfo issuance_info: (optional) Issuance information that is
+               associated with your certificate.
+        """
+        # pylint: disable=super-init-not-called
+        self.id = id
+        self.name = name
+        self.description = description
+        self.secret_group_id = secret_group_id
+        self.labels = labels
+        self.state = state
+        self.state_description = state_description
+        self.secret_type = secret_type
+        self.crn = crn
+        self.creation_date = creation_date
+        self.created_by = created_by
+        self.last_update_date = last_update_date
+        self.versions_total = versions_total
+        self.versions = versions
+        self.issuer = issuer
+        self.bundle_certs = bundle_certs
+        self.ca = ca
+        self.dns = dns
+        self.algorithm = algorithm
+        self.key_algorithm = key_algorithm
+        self.alt_names = alt_names
+        self.common_name = common_name
+        self.rotation = rotation
+        self.issuance_info = issuance_info
+        self.secret_data = secret_data
+
+    @classmethod
+    def from_dict(cls, _dict: Dict) -> 'PublicCertificateSecretResource':
+        """Initialize a PublicCertificateSecretResource object from a json dictionary."""
+        args = {}
+        if 'id' in _dict:
+            args['id'] = _dict.get('id')
+        if 'name' in _dict:
+            args['name'] = _dict.get('name')
+        else:
+            raise ValueError('Required property \'name\' not present in PublicCertificateSecretResource JSON')
+        if 'description' in _dict:
+            args['description'] = _dict.get('description')
+        if 'secret_group_id' in _dict:
+            args['secret_group_id'] = _dict.get('secret_group_id')
+        if 'labels' in _dict:
+            args['labels'] = _dict.get('labels')
+        if 'state' in _dict:
+            args['state'] = _dict.get('state')
+        if 'state_description' in _dict:
+            args['state_description'] = _dict.get('state_description')
+        if 'secret_type' in _dict:
+            args['secret_type'] = _dict.get('secret_type')
+        if 'crn' in _dict:
+            args['crn'] = _dict.get('crn')
+        if 'creation_date' in _dict:
+            args['creation_date'] = string_to_datetime(_dict.get('creation_date'))
+        if 'created_by' in _dict:
+            args['created_by'] = _dict.get('created_by')
+        if 'last_update_date' in _dict:
+            args['last_update_date'] = string_to_datetime(_dict.get('last_update_date'))
+        if 'versions_total' in _dict:
+            args['versions_total'] = _dict.get('versions_total')
+        if 'versions' in _dict:
+            args['versions'] = _dict.get('versions')
+        if 'issuer' in _dict:
+            args['issuer'] = _dict.get('issuer')
+        if 'bundle_certs' in _dict:
+            args['bundle_certs'] = _dict.get('bundle_certs')
+        if 'ca' in _dict:
+            args['ca'] = _dict.get('ca')
+        if 'dns' in _dict:
+            args['dns'] = _dict.get('dns')
+        if 'algorithm' in _dict:
+            args['algorithm'] = _dict.get('algorithm')
+        if 'key_algorithm' in _dict:
+            args['key_algorithm'] = _dict.get('key_algorithm')
+        if 'alt_names' in _dict:
+            args['alt_names'] = _dict.get('alt_names')
+        if 'common_name' in _dict:
+            args['common_name'] = _dict.get('common_name')
+        if 'rotation' in _dict:
+            args['rotation'] = Rotation.from_dict(_dict.get('rotation'))
+        if 'issuance_info' in _dict:
+            args['issuance_info'] = IssuanceInfo.from_dict(_dict.get('issuance_info'))
+        if 'secret_data' in _dict:
+            args['secret_data'] = _dict.get('secret_data')
+        return cls(**args)
+
+    @classmethod
+    def _from_dict(cls, _dict):
+        """Initialize a PublicCertificateSecretResource object from a json dictionary."""
+        return cls.from_dict(_dict)
+
+    def to_dict(self) -> Dict:
+        """Return a json dictionary representing this model."""
+        _dict = {}
+        if hasattr(self, 'id') and getattr(self, 'id') is not None:
+            _dict['id'] = getattr(self, 'id')
+        if hasattr(self, 'name') and self.name is not None:
+            _dict['name'] = self.name
+        if hasattr(self, 'description') and self.description is not None:
+            _dict['description'] = self.description
+        if hasattr(self, 'secret_group_id') and self.secret_group_id is not None:
+            _dict['secret_group_id'] = self.secret_group_id
+        if hasattr(self, 'labels') and self.labels is not None:
+            _dict['labels'] = self.labels
+        if hasattr(self, 'state') and getattr(self, 'state') is not None:
+            _dict['state'] = getattr(self, 'state')
+        if hasattr(self, 'state_description') and getattr(self, 'state_description') is not None:
+            _dict['state_description'] = getattr(self, 'state_description')
+        if hasattr(self, 'secret_type') and getattr(self, 'secret_type') is not None:
+            _dict['secret_type'] = getattr(self, 'secret_type')
+        if hasattr(self, 'crn') and getattr(self, 'crn') is not None:
+            _dict['crn'] = getattr(self, 'crn')
+        if hasattr(self, 'creation_date') and getattr(self, 'creation_date') is not None:
+            _dict['creation_date'] = datetime_to_string(getattr(self, 'creation_date'))
+        if hasattr(self, 'created_by') and getattr(self, 'created_by') is not None:
+            _dict['created_by'] = getattr(self, 'created_by')
+        if hasattr(self, 'last_update_date') and getattr(self, 'last_update_date') is not None:
+            _dict['last_update_date'] = datetime_to_string(getattr(self, 'last_update_date'))
+        if hasattr(self, 'versions_total') and getattr(self, 'versions_total') is not None:
+            _dict['versions_total'] = getattr(self, 'versions_total')
+        if hasattr(self, 'versions') and getattr(self, 'versions') is not None:
+            _dict['versions'] = getattr(self, 'versions')
+        if hasattr(self, 'issuer') and getattr(self, 'issuer') is not None:
+            _dict['issuer'] = getattr(self, 'issuer')
+        if hasattr(self, 'bundle_certs') and self.bundle_certs is not None:
+            _dict['bundle_certs'] = self.bundle_certs
+        if hasattr(self, 'ca') and self.ca is not None:
+            _dict['ca'] = self.ca
+        if hasattr(self, 'dns') and self.dns is not None:
+            _dict['dns'] = self.dns
+        if hasattr(self, 'algorithm') and getattr(self, 'algorithm') is not None:
+            _dict['algorithm'] = getattr(self, 'algorithm')
+        if hasattr(self, 'key_algorithm') and self.key_algorithm is not None:
+            _dict['key_algorithm'] = self.key_algorithm
+        if hasattr(self, 'alt_names') and self.alt_names is not None:
+            _dict['alt_names'] = self.alt_names
+        if hasattr(self, 'common_name') and self.common_name is not None:
+            _dict['common_name'] = self.common_name
+        if hasattr(self, 'rotation') and self.rotation is not None:
+            _dict['rotation'] = self.rotation.to_dict()
+        if hasattr(self, 'issuance_info') and self.issuance_info is not None:
+            _dict['issuance_info'] = self.issuance_info.to_dict()
+        if hasattr(self, 'secret_data') and getattr(self, 'secret_data') is not None:
+            _dict['secret_data'] = getattr(self, 'secret_data')
+        return _dict
+
+    def _to_dict(self):
+        """Return a json dictionary representing this model."""
+        return self.to_dict()
+
+    def __str__(self) -> str:
+        """Return a `str` version of this PublicCertificateSecretResource object."""
+        return json.dumps(self.to_dict(), indent=2)
+
+    def __eq__(self, other: 'PublicCertificateSecretResource') -> bool:
+        """Return `true` when self and other are equal, false otherwise."""
+        if not isinstance(other, self.__class__):
+            return False
+        return self.__dict__ == other.__dict__
+
+    def __ne__(self, other: 'PublicCertificateSecretResource') -> bool:
+        """Return `true` when self and other are not equal, false otherwise."""
+        return not self == other
+
+    class SecretTypeEnum(str, Enum):
+        """
+        The secret type.
+        """
+        ARBITRARY = 'arbitrary'
+        USERNAME_PASSWORD = 'username_password'
+        IAM_CREDENTIALS = 'iam_credentials'
+        IMPORTED_CERT = 'imported_cert'
+
+    class KeyAlgorithmEnum(str, Enum):
+        """
+        The identifier for the cryptographic algorithm to be used to generate the public
+        key that is associated with the certificate.
+        """
+        RSA2048 = 'RSA2048'
+        RSA4096 = 'RSA4096'
+        EC256 = 'EC256'
+        EC384 = 'EC384'
+
+
 class RotateArbitrarySecretBody(SecretAction):
     """
     The request body of a `rotate` action.
@@ -4923,6 +6928,64 @@ class RotateCertificateBody(SecretAction):
         return not self == other
 
 
+class RotatePublicCertBody(SecretAction):
+    """
+    The request body of a `rotate` action.
+
+    :attr bool rotate_keys: Determine whether keys should be rotated.
+    """
+
+    def __init__(self,
+                 rotate_keys: bool) -> None:
+        """
+        Initialize a RotatePublicCertBody object.
+
+        :param bool rotate_keys: Determine whether keys should be rotated.
+        """
+        # pylint: disable=super-init-not-called
+        self.rotate_keys = rotate_keys
+
+    @classmethod
+    def from_dict(cls, _dict: Dict) -> 'RotatePublicCertBody':
+        """Initialize a RotatePublicCertBody object from a json dictionary."""
+        args = {}
+        if 'rotate_keys' in _dict:
+            args['rotate_keys'] = _dict.get('rotate_keys')
+        else:
+            raise ValueError('Required property \'rotate_keys\' not present in RotatePublicCertBody JSON')
+        return cls(**args)
+
+    @classmethod
+    def _from_dict(cls, _dict):
+        """Initialize a RotatePublicCertBody object from a json dictionary."""
+        return cls.from_dict(_dict)
+
+    def to_dict(self) -> Dict:
+        """Return a json dictionary representing this model."""
+        _dict = {}
+        if hasattr(self, 'rotate_keys') and self.rotate_keys is not None:
+            _dict['rotate_keys'] = self.rotate_keys
+        return _dict
+
+    def _to_dict(self):
+        """Return a json dictionary representing this model."""
+        return self.to_dict()
+
+    def __str__(self) -> str:
+        """Return a `str` version of this RotatePublicCertBody object."""
+        return json.dumps(self.to_dict(), indent=2)
+
+    def __eq__(self, other: 'RotatePublicCertBody') -> bool:
+        """Return `true` when self and other are equal, false otherwise."""
+        if not isinstance(other, self.__class__):
+            return False
+        return self.__dict__ == other.__dict__
+
+    def __ne__(self, other: 'RotatePublicCertBody') -> bool:
+        """Return `true` when self and other are not equal, false otherwise."""
+        return not self == other
+
+
 class RotateUsernamePasswordSecretBody(SecretAction):
     """
     The request body of a `rotate` action.
@@ -4978,6 +7041,163 @@ class RotateUsernamePasswordSecretBody(SecretAction):
         return self.__dict__ == other.__dict__
 
     def __ne__(self, other: 'RotateUsernamePasswordSecretBody') -> bool:
+        """Return `true` when self and other are not equal, false otherwise."""
+        return not self == other
+
+
+class SecretPolicyRotationRotationPolicyRotation(SecretPolicyRotationRotation):
+    """
+    The secret rotation time interval.
+
+    :attr int interval: Specifies the length of the secret rotation time interval.
+    :attr str unit: Specifies the units for the secret rotation time interval.
+    """
+
+    def __init__(self,
+                 interval: int,
+                 unit: str) -> None:
+        """
+        Initialize a SecretPolicyRotationRotationPolicyRotation object.
+
+        :param int interval: Specifies the length of the secret rotation time
+               interval.
+        :param str unit: Specifies the units for the secret rotation time interval.
+        """
+        # pylint: disable=super-init-not-called
+        self.interval = interval
+        self.unit = unit
+
+    @classmethod
+    def from_dict(cls, _dict: Dict) -> 'SecretPolicyRotationRotationPolicyRotation':
+        """Initialize a SecretPolicyRotationRotationPolicyRotation object from a json dictionary."""
+        args = {}
+        if 'interval' in _dict:
+            args['interval'] = _dict.get('interval')
+        else:
+            raise ValueError(
+                'Required property \'interval\' not present in SecretPolicyRotationRotationPolicyRotation JSON')
+        if 'unit' in _dict:
+            args['unit'] = _dict.get('unit')
+        else:
+            raise ValueError(
+                'Required property \'unit\' not present in SecretPolicyRotationRotationPolicyRotation JSON')
+        return cls(**args)
+
+    @classmethod
+    def _from_dict(cls, _dict):
+        """Initialize a SecretPolicyRotationRotationPolicyRotation object from a json dictionary."""
+        return cls.from_dict(_dict)
+
+    def to_dict(self) -> Dict:
+        """Return a json dictionary representing this model."""
+        _dict = {}
+        if hasattr(self, 'interval') and self.interval is not None:
+            _dict['interval'] = self.interval
+        if hasattr(self, 'unit') and self.unit is not None:
+            _dict['unit'] = self.unit
+        return _dict
+
+    def _to_dict(self):
+        """Return a json dictionary representing this model."""
+        return self.to_dict()
+
+    def __str__(self) -> str:
+        """Return a `str` version of this SecretPolicyRotationRotationPolicyRotation object."""
+        return json.dumps(self.to_dict(), indent=2)
+
+    def __eq__(self, other: 'SecretPolicyRotationRotationPolicyRotation') -> bool:
+        """Return `true` when self and other are equal, false otherwise."""
+        if not isinstance(other, self.__class__):
+            return False
+        return self.__dict__ == other.__dict__
+
+    def __ne__(self, other: 'SecretPolicyRotationRotationPolicyRotation') -> bool:
+        """Return `true` when self and other are not equal, false otherwise."""
+        return not self == other
+
+    class UnitEnum(str, Enum):
+        """
+        Specifies the units for the secret rotation time interval.
+        """
+        DAY = 'day'
+        MONTH = 'month'
+
+
+class SecretPolicyRotationRotationPublicCertPolicyRotation(SecretPolicyRotationRotation):
+    """
+    The `public_cert` secret rotation policy.
+
+    :attr bool auto_rotate:
+    :attr bool rotate_keys:
+    :attr Warning warning: (optional) Warning response.
+    """
+
+    def __init__(self,
+                 auto_rotate: bool,
+                 rotate_keys: bool,
+                 *,
+                 warning: 'Warning' = None) -> None:
+        """
+        Initialize a SecretPolicyRotationRotationPublicCertPolicyRotation object.
+
+        :param bool auto_rotate:
+        :param bool rotate_keys:
+        :param Warning warning: (optional) Warning response.
+        """
+        # pylint: disable=super-init-not-called
+        self.auto_rotate = auto_rotate
+        self.rotate_keys = rotate_keys
+        self.warning = warning
+
+    @classmethod
+    def from_dict(cls, _dict: Dict) -> 'SecretPolicyRotationRotationPublicCertPolicyRotation':
+        """Initialize a SecretPolicyRotationRotationPublicCertPolicyRotation object from a json dictionary."""
+        args = {}
+        if 'auto_rotate' in _dict:
+            args['auto_rotate'] = _dict.get('auto_rotate')
+        else:
+            raise ValueError(
+                'Required property \'auto_rotate\' not present in SecretPolicyRotationRotationPublicCertPolicyRotation JSON')
+        if 'rotate_keys' in _dict:
+            args['rotate_keys'] = _dict.get('rotate_keys')
+        else:
+            raise ValueError(
+                'Required property \'rotate_keys\' not present in SecretPolicyRotationRotationPublicCertPolicyRotation JSON')
+        if 'warning' in _dict:
+            args['warning'] = Warning.from_dict(_dict.get('warning'))
+        return cls(**args)
+
+    @classmethod
+    def _from_dict(cls, _dict):
+        """Initialize a SecretPolicyRotationRotationPublicCertPolicyRotation object from a json dictionary."""
+        return cls.from_dict(_dict)
+
+    def to_dict(self) -> Dict:
+        """Return a json dictionary representing this model."""
+        _dict = {}
+        if hasattr(self, 'auto_rotate') and self.auto_rotate is not None:
+            _dict['auto_rotate'] = self.auto_rotate
+        if hasattr(self, 'rotate_keys') and self.rotate_keys is not None:
+            _dict['rotate_keys'] = self.rotate_keys
+        if hasattr(self, 'warning') and self.warning is not None:
+            _dict['warning'] = self.warning.to_dict()
+        return _dict
+
+    def _to_dict(self):
+        """Return a json dictionary representing this model."""
+        return self.to_dict()
+
+    def __str__(self) -> str:
+        """Return a `str` version of this SecretPolicyRotationRotationPublicCertPolicyRotation object."""
+        return json.dumps(self.to_dict(), indent=2)
+
+    def __eq__(self, other: 'SecretPolicyRotationRotationPublicCertPolicyRotation') -> bool:
+        """Return `true` when self and other are equal, false otherwise."""
+        if not isinstance(other, self.__class__):
+            return False
+        return self.__dict__ == other.__dict__
+
+    def __ne__(self, other: 'SecretPolicyRotationRotationPublicCertPolicyRotation') -> bool:
         """Return `true` when self and other are not equal, false otherwise."""
         return not self == other
 
@@ -5185,6 +7405,7 @@ class UsernamePasswordSecretMetadata(SecretMetadata):
         USERNAME_PASSWORD = 'username_password'
         IAM_CREDENTIALS = 'iam_credentials'
         IMPORTED_CERT = 'imported_cert'
+        PUBLIC_CERT = 'public_cert'
 
 
 class UsernamePasswordSecretResource(SecretResource):
