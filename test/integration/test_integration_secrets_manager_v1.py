@@ -76,7 +76,7 @@ class TestArbitrarySecret(unittest.TestCase):
             )
         except ApiException as err:
             assert err.code == 409
-            assert err.message == 'A secret with the same name already exists: conflict_integration_test_secret'
+            assert err.message == 'A secret with the same name already exists: {}'.format(secretName)
         finally:
             # delete arbitrary secret
             response = secretsManager.delete_secret(
