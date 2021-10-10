@@ -14,7 +14,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-# IBM OpenAPI SDK Code Generator Version: 3.38.1-1037b405-20210908-184149
+# IBM OpenAPI SDK Code Generator Version: 3.40.0-910cf8c2-20211006-154754
 
 """
 With IBM Cloud® Secrets Manager, you can create, lease, and centrally manage secrets that
@@ -677,8 +677,7 @@ class SecretsManagerV1(BaseService):
         A successful request returns the secret data that is associated with the specified
         version of your secret, along with other metadata.
 
-        :param str secret_type: The secret type. Supported options include:
-               imported_cert.
+        :param str secret_type: The secret type.
         :param str id: The v4 UUID that uniquely identifies the secret.
         :param str version_id: The v4 UUID that uniquely identifies the secret
                version. You can also use `previous` to retrieve the previous version.
@@ -730,8 +729,7 @@ class SecretsManagerV1(BaseService):
         A successful request returns the metadata that is associated with the specified
         version of your secret.
 
-        :param str secret_type: The secret type. Supported options include:
-               imported_cert.
+        :param str secret_type: The secret type.
         :param str id: The v4 UUID that uniquely identifies the secret.
         :param str version_id: The v4 UUID that uniquely identifies the secret
                version. You can also use `previous` to retrieve the previous version.
@@ -1012,7 +1010,7 @@ class SecretsManagerV1(BaseService):
 
     def put_config(self,
                    secret_type: str,
-                   api_key: str,
+                   engine_config: 'EngineConfig',
                    **kwargs
                    ) -> DetailedResponse:
         """
@@ -1024,13 +1022,9 @@ class SecretsManagerV1(BaseService):
         public certificates (`public_cert`) engine, use the [Add a
         configuration](#create_config_element) method.
 
-        :param str secret_type: The secret type.
-        :param str api_key: An IBM Cloud API key that has the capability to create
-               and manage service IDs.
-               The API key must be assigned the Editor platform role on the Access Groups
-               Service and the Operator platform role on the IAM Identity Service. For
-               more information, see [Configuring the IAM secrets
-               engine](https://cloud.ibm.com/docs/secrets-manager?topic=secrets-manager-iam-credentials#configure-iam-secrets-engine-api).
+        :param str secret_type:
+        :param EngineConfig engine_config: Properties to update for a secrets
+               engine.
         :param dict headers: A `dict` containing the request headers
         :return: A `DetailedResponse` containing the result, headers and HTTP status code.
         :rtype: DetailedResponse
@@ -1038,19 +1032,17 @@ class SecretsManagerV1(BaseService):
 
         if secret_type is None:
             raise ValueError('secret_type must be provided')
-        if api_key is None:
-            raise ValueError('api_key must be provided')
+        if engine_config is None:
+            raise ValueError('engine_config must be provided')
+        if isinstance(engine_config, EngineConfig):
+            engine_config = convert_model(engine_config)
         headers = {}
         sdk_headers = get_sdk_headers(service_name=self.DEFAULT_SERVICE_NAME,
                                       service_version='V1',
                                       operation_id='put_config')
         headers.update(sdk_headers)
 
-        data = {
-            'api_key': api_key
-        }
-        data = {k: v for (k, v) in data.items() if v is not None}
-        data = json.dumps(data)
+        data = json.dumps(engine_config)
         headers['content-type'] = 'application/json'
 
         if 'headers' in kwargs:
@@ -1218,6 +1210,53 @@ class SecretsManagerV1(BaseService):
         response = self.send(request, **kwargs)
         return response
 
+    def get_config_element(self,
+                           secret_type: str,
+                           config_element: str,
+                           config_name: str,
+                           **kwargs
+                           ) -> DetailedResponse:
+        """
+        Get a configuration.
+
+        Retrieves the details of a specific configuration that is associated with a secret
+        type.
+
+        :param str secret_type: The secret type.
+        :param str config_element: The configuration element to define or manage.
+        :param str config_name: The name of your configuration.
+        :param dict headers: A `dict` containing the request headers
+        :return: A `DetailedResponse` containing the result, headers and HTTP status code.
+        :rtype: DetailedResponse with `dict` result representing a `GetSingleConfigElement` object
+        """
+
+        if secret_type is None:
+            raise ValueError('secret_type must be provided')
+        if config_element is None:
+            raise ValueError('config_element must be provided')
+        if config_name is None:
+            raise ValueError('config_name must be provided')
+        headers = {}
+        sdk_headers = get_sdk_headers(service_name=self.DEFAULT_SERVICE_NAME,
+                                      service_version='V1',
+                                      operation_id='get_config_element')
+        headers.update(sdk_headers)
+
+        if 'headers' in kwargs:
+            headers.update(kwargs.get('headers'))
+        headers['Accept'] = 'application/json'
+
+        path_param_keys = ['secret_type', 'config_element', 'config_name']
+        path_param_values = self.encode_path_vars(secret_type, config_element, config_name)
+        path_param_dict = dict(zip(path_param_keys, path_param_values))
+        url = '/api/v1/config/{secret_type}/{config_element}/{config_name}'.format(**path_param_dict)
+        request = self.prepare_request(method='GET',
+                                       url=url,
+                                       headers=headers)
+
+        response = self.send(request, **kwargs)
+        return response
+
     def update_config_element(self,
                               secret_type: str,
                               config_element: str,
@@ -1289,9 +1328,9 @@ class SecretsManagerV1(BaseService):
                               **kwargs
                               ) -> DetailedResponse:
         """
-        Remove a configuration.
+        Delete a configuration.
 
-        Removes a configuration element from the specified secret type.
+        Deletes a configuration element from the specified secret type.
 
         :param str secret_type: The secret type.
         :param str config_element: The configuration element to define or manage.
@@ -1321,53 +1360,6 @@ class SecretsManagerV1(BaseService):
         path_param_dict = dict(zip(path_param_keys, path_param_values))
         url = '/api/v1/config/{secret_type}/{config_element}/{config_name}'.format(**path_param_dict)
         request = self.prepare_request(method='DELETE',
-                                       url=url,
-                                       headers=headers)
-
-        response = self.send(request, **kwargs)
-        return response
-
-    def get_config_element(self,
-                           secret_type: str,
-                           config_element: str,
-                           config_name: str,
-                           **kwargs
-                           ) -> DetailedResponse:
-        """
-        Get a configuration.
-
-        Retrieves the details of a specific configuration that is associated with a secret
-        type.
-
-        :param str secret_type: The secret type.
-        :param str config_element: The configuration element to define or manage.
-        :param str config_name: The name of your configuration.
-        :param dict headers: A `dict` containing the request headers
-        :return: A `DetailedResponse` containing the result, headers and HTTP status code.
-        :rtype: DetailedResponse with `dict` result representing a `GetSingleConfigElement` object
-        """
-
-        if secret_type is None:
-            raise ValueError('secret_type must be provided')
-        if config_element is None:
-            raise ValueError('config_element must be provided')
-        if config_name is None:
-            raise ValueError('config_name must be provided')
-        headers = {}
-        sdk_headers = get_sdk_headers(service_name=self.DEFAULT_SERVICE_NAME,
-                                      service_version='V1',
-                                      operation_id='get_config_element')
-        headers.update(sdk_headers)
-
-        if 'headers' in kwargs:
-            headers.update(kwargs.get('headers'))
-        headers['Accept'] = 'application/json'
-
-        path_param_keys = ['secret_type', 'config_element', 'config_name']
-        path_param_values = self.encode_path_vars(secret_type, config_element, config_name)
-        path_param_dict = dict(zip(path_param_keys, path_param_values))
-        url = '/api/v1/config/{secret_type}/{config_element}/{config_name}'.format(**path_param_dict)
-        request = self.prepare_request(method='GET',
                                        url=url,
                                        headers=headers)
 
@@ -1487,7 +1479,7 @@ class GetSecretVersionEnums:
 
     class SecretType(str, Enum):
         """
-        The secret type. Supported options include: imported_cert.
+        The secret type.
         """
         IMPORTED_CERT = 'imported_cert'
         PUBLIC_CERT = 'public_cert'
@@ -1500,7 +1492,7 @@ class GetSecretVersionMetadataEnums:
 
     class SecretType(str, Enum):
         """
-        The secret type. Supported options include: imported_cert.
+        The secret type.
         """
         IMPORTED_CERT = 'imported_cert'
         PUBLIC_CERT = 'public_cert'
@@ -1583,10 +1575,9 @@ class PutConfigEnums:
 
     class SecretType(str, Enum):
         """
-        The secret type.
+        
         """
         IAM_CREDENTIALS = 'iam_credentials'
-        PUBLIC_CERT = 'public_cert'
 
 
 class GetConfigEnums:
@@ -1640,6 +1631,25 @@ class GetConfigElementsEnums:
         DNS_PROVIDERS = 'dns_providers'
 
 
+class GetConfigElementEnums:
+    """
+    Enums for get_config_element parameters.
+    """
+
+    class SecretType(str, Enum):
+        """
+        The secret type.
+        """
+        PUBLIC_CERT = 'public_cert'
+
+    class ConfigElement(str, Enum):
+        """
+        The configuration element to define or manage.
+        """
+        CERTIFICATE_AUTHORITIES = 'certificate_authorities'
+        DNS_PROVIDERS = 'dns_providers'
+
+
 class UpdateConfigElementEnums:
     """
     Enums for update_config_element parameters.
@@ -1662,25 +1672,6 @@ class UpdateConfigElementEnums:
 class DeleteConfigElementEnums:
     """
     Enums for delete_config_element parameters.
-    """
-
-    class SecretType(str, Enum):
-        """
-        The secret type.
-        """
-        PUBLIC_CERT = 'public_cert'
-
-    class ConfigElement(str, Enum):
-        """
-        The configuration element to define or manage.
-        """
-        CERTIFICATE_AUTHORITIES = 'certificate_authorities'
-        DNS_PROVIDERS = 'dns_providers'
-
-
-class GetConfigElementEnums:
-    """
-    Enums for get_config_element parameters.
     """
 
     class SecretType(str, Enum):
@@ -2119,6 +2110,22 @@ class CreateSecret():
     def __ne__(self, other: 'CreateSecret') -> bool:
         """Return `true` when self and other are not equal, false otherwise."""
         return not self == other
+
+
+class EngineConfig():
+    """
+    EngineConfig.
+
+    """
+
+    def __init__(self) -> None:
+        """
+        Initialize a EngineConfig object.
+
+        """
+        msg = "Cannot instantiate base class. Instead, instantiate one of the defined subclasses: {0}".format(
+            ", ".join(['CreateIAMCredentialsSecretEngineRootConfig']))
+        raise Exception(msg)
 
 
 class GetConfig():
@@ -3619,75 +3626,6 @@ class CertificateValidity():
         return not self == other
 
 
-class Warning():
-    """
-    Warning response.
-
-    :attr str code: A warning code identifier.
-    :attr str message: A human-readable message that provides details about the
-          warning.
-    """
-
-    def __init__(self,
-                 code: str,
-                 message: str) -> None:
-        """
-        Initialize a Warning object.
-
-        :param str code: A warning code identifier.
-        :param str message: A human-readable message that provides details about
-               the warning.
-        """
-        self.code = code
-        self.message = message
-
-    @classmethod
-    def from_dict(cls, _dict: Dict) -> 'Warning':
-        """Initialize a Warning object from a json dictionary."""
-        args = {}
-        if 'code' in _dict:
-            args['code'] = _dict.get('code')
-        else:
-            raise ValueError('Required property \'code\' not present in Warning JSON')
-        if 'message' in _dict:
-            args['message'] = _dict.get('message')
-        else:
-            raise ValueError('Required property \'message\' not present in Warning JSON')
-        return cls(**args)
-
-    @classmethod
-    def _from_dict(cls, _dict):
-        """Initialize a Warning object from a json dictionary."""
-        return cls.from_dict(_dict)
-
-    def to_dict(self) -> Dict:
-        """Return a json dictionary representing this model."""
-        _dict = {}
-        if hasattr(self, 'code') and self.code is not None:
-            _dict['code'] = self.code
-        if hasattr(self, 'message') and self.message is not None:
-            _dict['message'] = self.message
-        return _dict
-
-    def _to_dict(self):
-        """Return a json dictionary representing this model."""
-        return self.to_dict()
-
-    def __str__(self) -> str:
-        """Return a `str` version of this Warning object."""
-        return json.dumps(self.to_dict(), indent=2)
-
-    def __eq__(self, other: 'Warning') -> bool:
-        """Return `true` when self and other are equal, false otherwise."""
-        if not isinstance(other, self.__class__):
-            return False
-        return self.__dict__ == other.__dict__
-
-    def __ne__(self, other: 'Warning') -> bool:
-        """Return `true` when self and other are not equal, false otherwise."""
-        return not self == other
-
-
 class ArbitrarySecretMetadata(SecretMetadata):
     """
     Metadata properties that describe an arbitrary secret.
@@ -5010,7 +4948,16 @@ class ConfigElementDefConfigClassicInfrastructureConfig(ConfigElementDefConfig):
 
     :attr str classic_infrastructure_username: The username that is associated with
           your classic infrastructure account.
+          In most cases, your classic infrastructure username is your
+          `<account_id>_<email_address>`. In the console, you can find your username by
+          going to **Manage > Access (IAM) > Users > name > VPN password.** For more
+          information, see the
+          [docs](https://cloud.ibm.com/docs/secrets-manager?topic=secrets-manager-prepare-order-certificates#authorize-classic-infrastructure).
     :attr str classic_infrastructure_password: Your classic infrastructure API key.
+          In the console, you can view or create a classic infrastructure API key by going
+          to **Manage > Access (IAM)
+          > Users > name > API keys.** For more information, see the
+          [docs](https://cloud.ibm.com/docs/secrets-manager?topic=secrets-manager-prepare-order-certificates#authorize-classic-infrastructure).
     """
 
     def __init__(self,
@@ -5021,8 +4968,17 @@ class ConfigElementDefConfigClassicInfrastructureConfig(ConfigElementDefConfig):
 
         :param str classic_infrastructure_username: The username that is associated
                with your classic infrastructure account.
+               In most cases, your classic infrastructure username is your
+               `<account_id>_<email_address>`. In the console, you can find your username
+               by going to **Manage > Access (IAM) > Users > name > VPN password.** For
+               more information, see the
+               [docs](https://cloud.ibm.com/docs/secrets-manager?topic=secrets-manager-prepare-order-certificates#authorize-classic-infrastructure).
         :param str classic_infrastructure_password: Your classic infrastructure API
                key.
+               In the console, you can view or create a classic infrastructure API key by
+               going to **Manage > Access (IAM)
+               > Users > name > API keys.** For more information, see the
+               [docs](https://cloud.ibm.com/docs/secrets-manager?topic=secrets-manager-prepare-order-certificates#authorize-classic-infrastructure).
         """
         # pylint: disable=super-init-not-called
         self.classic_infrastructure_username = classic_infrastructure_username
@@ -5173,8 +5129,12 @@ class ConfigElementDefConfigLetsEncryptConfig(ConfigElementDefConfig):
     """
     Properties that describe a Let's Encrypt configuration.
 
-    :attr str private_key: The private key that is associated with your ACME
-          account.
+    :attr str private_key: The private key that is associated with your Automatic
+          Certificate Management Environment (ACME) account.
+          If you have a working ACME client or account for Let's Encrypt, you can use the
+          existing private key to  enable communications with Secrets Manager. If you
+          don't have an account yet, you can create one. For more information, see the
+          [docs](https://cloud.ibm.com/docs/secrets-manager?topic=secrets-manager-prepare-order-certificates#create-acme-account).
     """
 
     def __init__(self,
@@ -5182,8 +5142,13 @@ class ConfigElementDefConfigLetsEncryptConfig(ConfigElementDefConfig):
         """
         Initialize a ConfigElementDefConfigLetsEncryptConfig object.
 
-        :param str private_key: The private key that is associated with your ACME
-               account.
+        :param str private_key: The private key that is associated with your
+               Automatic Certificate Management Environment (ACME) account.
+               If you have a working ACME client or account for Let's Encrypt, you can use
+               the existing private key to  enable communications with Secrets Manager. If
+               you don't have an account yet, you can create one. For more information,
+               see the
+               [docs](https://cloud.ibm.com/docs/secrets-manager?topic=secrets-manager-prepare-order-certificates#create-acme-account).
         """
         # pylint: disable=super-init-not-called
         self.private_key = private_key
@@ -5226,6 +5191,84 @@ class ConfigElementDefConfigLetsEncryptConfig(ConfigElementDefConfig):
         return self.__dict__ == other.__dict__
 
     def __ne__(self, other: 'ConfigElementDefConfigLetsEncryptConfig') -> bool:
+        """Return `true` when self and other are not equal, false otherwise."""
+        return not self == other
+
+
+class CreateIAMCredentialsSecretEngineRootConfig(EngineConfig):
+    """
+    Configuration for the IAM credentials engine.
+
+    :attr str api_key: An IBM Cloud API key that has the capability to create and
+          manage service IDs.
+          The API key must be assigned the Editor platform role on the Access Groups
+          Service and the Operator platform role on the IAM Identity Service. For more
+          information, see the
+          [docs](https://cloud.ibm.com/docs/secrets-manager?topic=secrets-manager-configure-iam-engine).
+    :attr str api_key_hash: (optional) The hash value of the IBM Cloud API key that
+          is used to create and manage service IDs.
+    """
+
+    def __init__(self,
+                 api_key: str,
+                 *,
+                 api_key_hash: str = None) -> None:
+        """
+        Initialize a CreateIAMCredentialsSecretEngineRootConfig object.
+
+        :param str api_key: An IBM Cloud API key that has the capability to create
+               and manage service IDs.
+               The API key must be assigned the Editor platform role on the Access Groups
+               Service and the Operator platform role on the IAM Identity Service. For
+               more information, see the
+               [docs](https://cloud.ibm.com/docs/secrets-manager?topic=secrets-manager-configure-iam-engine).
+        """
+        # pylint: disable=super-init-not-called
+        self.api_key = api_key
+        self.api_key_hash = api_key_hash
+
+    @classmethod
+    def from_dict(cls, _dict: Dict) -> 'CreateIAMCredentialsSecretEngineRootConfig':
+        """Initialize a CreateIAMCredentialsSecretEngineRootConfig object from a json dictionary."""
+        args = {}
+        if 'api_key' in _dict:
+            args['api_key'] = _dict.get('api_key')
+        else:
+            raise ValueError(
+                'Required property \'api_key\' not present in CreateIAMCredentialsSecretEngineRootConfig JSON')
+        if 'api_key_hash' in _dict:
+            args['api_key_hash'] = _dict.get('api_key_hash')
+        return cls(**args)
+
+    @classmethod
+    def _from_dict(cls, _dict):
+        """Initialize a CreateIAMCredentialsSecretEngineRootConfig object from a json dictionary."""
+        return cls.from_dict(_dict)
+
+    def to_dict(self) -> Dict:
+        """Return a json dictionary representing this model."""
+        _dict = {}
+        if hasattr(self, 'api_key') and self.api_key is not None:
+            _dict['api_key'] = self.api_key
+        if hasattr(self, 'api_key_hash') and getattr(self, 'api_key_hash') is not None:
+            _dict['api_key_hash'] = getattr(self, 'api_key_hash')
+        return _dict
+
+    def _to_dict(self):
+        """Return a json dictionary representing this model."""
+        return self.to_dict()
+
+    def __str__(self) -> str:
+        """Return a `str` version of this CreateIAMCredentialsSecretEngineRootConfig object."""
+        return json.dumps(self.to_dict(), indent=2)
+
+    def __eq__(self, other: 'CreateIAMCredentialsSecretEngineRootConfig') -> bool:
+        """Return `true` when self and other are equal, false otherwise."""
+        if not isinstance(other, self.__class__):
+            return False
+        return self.__dict__ == other.__dict__
+
+    def __ne__(self, other: 'CreateIAMCredentialsSecretEngineRootConfig') -> bool:
         """Return `true` when self and other are not equal, false otherwise."""
         return not self == other
 
@@ -5490,8 +5533,8 @@ class IAMCredentialsSecretEngineRootConfig(GetConfigResourcesItem):
           manage service IDs.
           The API key must be assigned the Editor platform role on the Access Groups
           Service and the Operator platform role on the IAM Identity Service. For more
-          information, see [Configuring the IAM secrets
-          engine](https://cloud.ibm.com/docs/secrets-manager?topic=secrets-manager-iam-credentials#configure-iam-secrets-engine-api).
+          information, see the
+          [docs](https://cloud.ibm.com/docs/secrets-manager?topic=secrets-manager-configure-iam-engine).
     :attr str api_key_hash: (optional) The hash value of the IBM Cloud API key that
           is used to create and manage service IDs.
     """
@@ -5507,8 +5550,8 @@ class IAMCredentialsSecretEngineRootConfig(GetConfigResourcesItem):
                and manage service IDs.
                The API key must be assigned the Editor platform role on the Access Groups
                Service and the Operator platform role on the IAM Identity Service. For
-               more information, see [Configuring the IAM secrets
-               engine](https://cloud.ibm.com/docs/secrets-manager?topic=secrets-manager-iam-credentials#configure-iam-secrets-engine-api).
+               more information, see the
+               [docs](https://cloud.ibm.com/docs/secrets-manager?topic=secrets-manager-configure-iam-engine).
         """
         # pylint: disable=super-init-not-called
         self.api_key = api_key
@@ -5821,9 +5864,12 @@ class IAMCredentialsSecretResource(SecretResource):
     :attr List[str] access_groups: (optional) The access groups that define the
           capabilities of the service ID and API key that are generated for an
           `iam_credentials` secret.
-          **Tip:** To find the ID of an access group, go to **Manage > Access (IAM) >
-          Access groups** in the IBM Cloud console. Select the access group to inspect,
-          and click **Details** to view its ID.
+          **Tip:** To list the access groups that are available in an account, you can use
+          the [IAM Access Groups
+          API](https://cloud.ibm.com/apidocs/iam-access-groups#list-access-groups). To
+          find the ID of an access group in the console, go to **Manage > Access (IAM) >
+          Access groups**. Select the access group to inspect, and click **Details** to
+          view its ID.
     :attr str api_key: (optional) The API key that is generated for this secret.
           After the secret reaches the end of its lease (see the `ttl` field), the API key
           is deleted automatically. If you want to continue to use the same API key for
@@ -5889,9 +5935,12 @@ class IAMCredentialsSecretResource(SecretResource):
         :param List[str] access_groups: (optional) The access groups that define
                the capabilities of the service ID and API key that are generated for an
                `iam_credentials` secret.
-               **Tip:** To find the ID of an access group, go to **Manage > Access (IAM) >
-               Access groups** in the IBM Cloud console. Select the access group to
-               inspect, and click **Details** to view its ID.
+               **Tip:** To list the access groups that are available in an account, you
+               can use the [IAM Access Groups
+               API](https://cloud.ibm.com/apidocs/iam-access-groups#list-access-groups).
+               To find the ID of an access group in the console, go to **Manage > Access
+               (IAM) > Access groups**. Select the access group to inspect, and click
+               **Details** to view its ID.
         :param bool reuse_api_key: (optional) Set to `true` to reuse the service ID
                and API key for this secret.
                Use this field to control whether to use the same service ID and API key
@@ -6529,6 +6578,10 @@ class PublicCertificateSecretResource(SecretResource):
     :attr str key_algorithm: (optional) The identifier for the cryptographic
           algorithm to be used to generate the public key that is associated with the
           certificate.
+          The algorithm that you select determines the encryption algorthim (`RSA` or
+          `ECDSA`) and key size to be used to generate keys and sign certificates. For
+          longer living certificates it is recommended to use longer keys to provide more
+          encryption protection.
     :attr List[str] alt_names: (optional) The alternative names that are defined for
           the certificate.
     :attr str common_name: (optional) The fully qualified domain name or host domain
@@ -6536,7 +6589,8 @@ class PublicCertificateSecretResource(SecretResource):
     :attr Rotation rotation: (optional)
     :attr IssuanceInfo issuance_info: (optional) Issuance information that is
           associated with your certificate.
-    :attr object secret_data: (optional)
+    :attr object secret_data: (optional) The data that is associated with the
+          secret.
     """
 
     def __init__(self,
@@ -6600,6 +6654,10 @@ class PublicCertificateSecretResource(SecretResource):
         :param str key_algorithm: (optional) The identifier for the cryptographic
                algorithm to be used to generate the public key that is associated with the
                certificate.
+               The algorithm that you select determines the encryption algorthim (`RSA` or
+               `ECDSA`) and key size to be used to generate keys and sign certificates.
+               For longer living certificates it is recommended to use longer keys to
+               provide more encryption protection.
         :param List[str] alt_names: (optional) The alternative names that are
                defined for the certificate.
         :param str common_name: (optional) The fully qualified domain name or host
@@ -6784,6 +6842,10 @@ class PublicCertificateSecretResource(SecretResource):
         """
         The identifier for the cryptographic algorithm to be used to generate the public
         key that is associated with the certificate.
+        The algorithm that you select determines the encryption algorthim (`RSA` or
+        `ECDSA`) and key size to be used to generate keys and sign certificates. For
+        longer living certificates it is recommended to use longer keys to provide more
+        encryption protection.
         """
         RSA2048 = 'RSA2048'
         RSA4096 = 'RSA4096'
@@ -7129,25 +7191,20 @@ class SecretPolicyRotationRotationPublicCertPolicyRotation(SecretPolicyRotationR
 
     :attr bool auto_rotate:
     :attr bool rotate_keys:
-    :attr Warning warning: (optional) Warning response.
     """
 
     def __init__(self,
                  auto_rotate: bool,
-                 rotate_keys: bool,
-                 *,
-                 warning: 'Warning' = None) -> None:
+                 rotate_keys: bool) -> None:
         """
         Initialize a SecretPolicyRotationRotationPublicCertPolicyRotation object.
 
         :param bool auto_rotate:
         :param bool rotate_keys:
-        :param Warning warning: (optional) Warning response.
         """
         # pylint: disable=super-init-not-called
         self.auto_rotate = auto_rotate
         self.rotate_keys = rotate_keys
-        self.warning = warning
 
     @classmethod
     def from_dict(cls, _dict: Dict) -> 'SecretPolicyRotationRotationPublicCertPolicyRotation':
@@ -7163,8 +7220,6 @@ class SecretPolicyRotationRotationPublicCertPolicyRotation(SecretPolicyRotationR
         else:
             raise ValueError(
                 'Required property \'rotate_keys\' not present in SecretPolicyRotationRotationPublicCertPolicyRotation JSON')
-        if 'warning' in _dict:
-            args['warning'] = Warning.from_dict(_dict.get('warning'))
         return cls(**args)
 
     @classmethod
@@ -7179,8 +7234,6 @@ class SecretPolicyRotationRotationPublicCertPolicyRotation(SecretPolicyRotationR
             _dict['auto_rotate'] = self.auto_rotate
         if hasattr(self, 'rotate_keys') and self.rotate_keys is not None:
             _dict['rotate_keys'] = self.rotate_keys
-        if hasattr(self, 'warning') and self.warning is not None:
-            _dict['warning'] = self.warning.to_dict()
         return _dict
 
     def _to_dict(self):
