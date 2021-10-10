@@ -2065,14 +2065,18 @@ class TestPutConfig():
                       url,
                       status=204)
 
+        # Construct a dict representation of a CreateIAMCredentialsSecretEngineRootConfig model
+        engine_config_model = {}
+        engine_config_model['api_key'] = 'API_KEY'
+
         # Set up parameter values
         secret_type = 'iam_credentials'
-        api_key = 'API_KEY'
+        engine_config = engine_config_model
 
         # Invoke method
         response = _service.put_config(
             secret_type,
-            api_key,
+            engine_config,
             headers={}
         )
 
@@ -2081,7 +2085,7 @@ class TestPutConfig():
         assert response.status_code == 204
         # Validate body params
         req_body = json.loads(str(responses.calls[0].request.body, 'utf-8'))
-        assert req_body['api_key'] == 'API_KEY'
+        assert req_body == engine_config
 
     def test_put_config_all_params_with_retries(self):
         # Enable retries and run test_put_config_all_params.
@@ -2103,14 +2107,18 @@ class TestPutConfig():
                       url,
                       status=204)
 
+        # Construct a dict representation of a CreateIAMCredentialsSecretEngineRootConfig model
+        engine_config_model = {}
+        engine_config_model['api_key'] = 'API_KEY'
+
         # Set up parameter values
         secret_type = 'iam_credentials'
-        api_key = 'API_KEY'
+        engine_config = engine_config_model
 
         # Pass in all but one required param and check for a ValueError
         req_param_dict = {
             "secret_type": secret_type,
-            "api_key": api_key,
+            "engine_config": engine_config,
         }
         for param in req_param_dict.keys():
             req_copy = {key: val if key is not param else None for (key, val) in req_param_dict.items()}
@@ -2424,6 +2432,102 @@ class TestGetConfigElements():
         self.test_get_config_elements_value_error()
 
 
+class TestGetConfigElement():
+    """
+    Test Class for get_config_element
+    """
+
+    def preprocess_url(self, request_url: str):
+        """
+        Preprocess the request URL to ensure the mock response will be found.
+        """
+        request_url = urllib.parse.unquote(request_url)  # don't double-encode if already encoded
+        request_url = urllib.parse.quote(request_url, safe=':/')
+        if re.fullmatch('.*/+', request_url) is None:
+            return request_url
+        else:
+            return re.compile(request_url.rstrip('/') + '/+')
+
+    @responses.activate
+    def test_get_config_element_all_params(self):
+        """
+        get_config_element()
+        """
+        # Set up mock
+        url = self.preprocess_url(_base_url + '/api/v1/config/public_cert/certificate_authorities/testString')
+        mock_response = '{"metadata": {"collection_type": "application/vnd.ibm.secrets-manager.config+json", "collection_total": 1}, "resources": [{"name": "name", "type": "letsencrypt", "config": {"private_key": "private_key"}}]}'
+        responses.add(responses.GET,
+                      url,
+                      body=mock_response,
+                      content_type='application/json',
+                      status=200)
+
+        # Set up parameter values
+        secret_type = 'public_cert'
+        config_element = 'certificate_authorities'
+        config_name = 'testString'
+
+        # Invoke method
+        response = _service.get_config_element(
+            secret_type,
+            config_element,
+            config_name,
+            headers={}
+        )
+
+        # Check for correct operation
+        assert len(responses.calls) == 1
+        assert response.status_code == 200
+
+    def test_get_config_element_all_params_with_retries(self):
+        # Enable retries and run test_get_config_element_all_params.
+        _service.enable_retries()
+        self.test_get_config_element_all_params()
+
+        # Disable retries and run test_get_config_element_all_params.
+        _service.disable_retries()
+        self.test_get_config_element_all_params()
+
+    @responses.activate
+    def test_get_config_element_value_error(self):
+        """
+        test_get_config_element_value_error()
+        """
+        # Set up mock
+        url = self.preprocess_url(_base_url + '/api/v1/config/public_cert/certificate_authorities/testString')
+        mock_response = '{"metadata": {"collection_type": "application/vnd.ibm.secrets-manager.config+json", "collection_total": 1}, "resources": [{"name": "name", "type": "letsencrypt", "config": {"private_key": "private_key"}}]}'
+        responses.add(responses.GET,
+                      url,
+                      body=mock_response,
+                      content_type='application/json',
+                      status=200)
+
+        # Set up parameter values
+        secret_type = 'public_cert'
+        config_element = 'certificate_authorities'
+        config_name = 'testString'
+
+        # Pass in all but one required param and check for a ValueError
+        req_param_dict = {
+            "secret_type": secret_type,
+            "config_element": config_element,
+            "config_name": config_name,
+        }
+        for param in req_param_dict.keys():
+            req_copy = {key: val if key is not param else None for (key, val) in req_param_dict.items()}
+            with pytest.raises(ValueError):
+                _service.get_config_element(**req_copy)
+
+    def test_get_config_element_value_error_with_retries(self):
+        # Enable retries and run test_get_config_element_value_error.
+        _service.enable_retries()
+        self.test_get_config_element_value_error()
+
+        # Disable retries and run test_get_config_element_value_error.
+        _service.disable_retries()
+        self.test_get_config_element_value_error()
+
+
 class TestUpdateConfigElement():
     """
     Test Class for update_config_element
@@ -2620,102 +2724,6 @@ class TestDeleteConfigElement():
         # Disable retries and run test_delete_config_element_value_error.
         _service.disable_retries()
         self.test_delete_config_element_value_error()
-
-
-class TestGetConfigElement():
-    """
-    Test Class for get_config_element
-    """
-
-    def preprocess_url(self, request_url: str):
-        """
-        Preprocess the request URL to ensure the mock response will be found.
-        """
-        request_url = urllib.parse.unquote(request_url)  # don't double-encode if already encoded
-        request_url = urllib.parse.quote(request_url, safe=':/')
-        if re.fullmatch('.*/+', request_url) is None:
-            return request_url
-        else:
-            return re.compile(request_url.rstrip('/') + '/+')
-
-    @responses.activate
-    def test_get_config_element_all_params(self):
-        """
-        get_config_element()
-        """
-        # Set up mock
-        url = self.preprocess_url(_base_url + '/api/v1/config/public_cert/certificate_authorities/testString')
-        mock_response = '{"metadata": {"collection_type": "application/vnd.ibm.secrets-manager.config+json", "collection_total": 1}, "resources": [{"name": "name", "type": "letsencrypt", "config": {"private_key": "private_key"}}]}'
-        responses.add(responses.GET,
-                      url,
-                      body=mock_response,
-                      content_type='application/json',
-                      status=200)
-
-        # Set up parameter values
-        secret_type = 'public_cert'
-        config_element = 'certificate_authorities'
-        config_name = 'testString'
-
-        # Invoke method
-        response = _service.get_config_element(
-            secret_type,
-            config_element,
-            config_name,
-            headers={}
-        )
-
-        # Check for correct operation
-        assert len(responses.calls) == 1
-        assert response.status_code == 200
-
-    def test_get_config_element_all_params_with_retries(self):
-        # Enable retries and run test_get_config_element_all_params.
-        _service.enable_retries()
-        self.test_get_config_element_all_params()
-
-        # Disable retries and run test_get_config_element_all_params.
-        _service.disable_retries()
-        self.test_get_config_element_all_params()
-
-    @responses.activate
-    def test_get_config_element_value_error(self):
-        """
-        test_get_config_element_value_error()
-        """
-        # Set up mock
-        url = self.preprocess_url(_base_url + '/api/v1/config/public_cert/certificate_authorities/testString')
-        mock_response = '{"metadata": {"collection_type": "application/vnd.ibm.secrets-manager.config+json", "collection_total": 1}, "resources": [{"name": "name", "type": "letsencrypt", "config": {"private_key": "private_key"}}]}'
-        responses.add(responses.GET,
-                      url,
-                      body=mock_response,
-                      content_type='application/json',
-                      status=200)
-
-        # Set up parameter values
-        secret_type = 'public_cert'
-        config_element = 'certificate_authorities'
-        config_name = 'testString'
-
-        # Pass in all but one required param and check for a ValueError
-        req_param_dict = {
-            "secret_type": secret_type,
-            "config_element": config_element,
-            "config_name": config_name,
-        }
-        for param in req_param_dict.keys():
-            req_copy = {key: val if key is not param else None for (key, val) in req_param_dict.items()}
-            with pytest.raises(ValueError):
-                _service.get_config_element(**req_copy)
-
-    def test_get_config_element_value_error_with_retries(self):
-        # Enable retries and run test_get_config_element_value_error.
-        _service.enable_retries()
-        self.test_get_config_element_value_error()
-
-        # Disable retries and run test_get_config_element_value_error.
-        _service.disable_retries()
-        self.test_get_config_element_value_error()
 
 
 # endregion
@@ -3634,37 +3642,6 @@ class TestModel_CertificateValidity():
         assert certificate_validity_model_json2 == certificate_validity_model_json
 
 
-class TestModel_Warning():
-    """
-    Test Class for Warning
-    """
-
-    def test_warning_serialization(self):
-        """
-        Test serialization/deserialization for Warning
-        """
-
-        # Construct a json representation of a Warning model
-        warning_model_json = {}
-        warning_model_json['code'] = 'testString'
-        warning_model_json['message'] = 'testString'
-
-        # Construct a model instance of Warning by calling from_dict on the json representation
-        warning_model = Warning.from_dict(warning_model_json)
-        assert warning_model != False
-
-        # Construct a model instance of Warning by calling from_dict on the json representation
-        warning_model_dict = Warning.from_dict(warning_model_json).__dict__
-        warning_model2 = Warning(**warning_model_dict)
-
-        # Verify the model instances are equivalent
-        assert warning_model == warning_model2
-
-        # Convert model instance back to dict and verify no loss of data
-        warning_model_json2 = warning_model.to_dict()
-        assert warning_model_json2 == warning_model_json
-
-
 class TestModel_ArbitrarySecretMetadata():
     """
     Test Class for ArbitrarySecretMetadata
@@ -3891,7 +3868,7 @@ class TestModel_CertificateSecretResource():
         certificate_secret_resource_model_json['intermediate'] = 'testString'
         certificate_secret_resource_model_json['secret_data'] = {'foo': 'bar'}
         certificate_secret_resource_model_json['serial_number'] = 'd9:be:fe:35:ba:09:42:b5'
-        certificate_secret_resource_model_json['algorithm'] = 'sha256WithRSAEncryption'
+        certificate_secret_resource_model_json['algorithm'] = 'SHA256-RSA'
         certificate_secret_resource_model_json['key_algorithm'] = 'RSA2048'
         certificate_secret_resource_model_json['issuer'] = 'GlobalSign'
         certificate_secret_resource_model_json['validity'] = certificate_validity_model
@@ -4115,6 +4092,41 @@ class TestModel_ConfigElementDefConfigLetsEncryptConfig():
         # Convert model instance back to dict and verify no loss of data
         config_element_def_config_lets_encrypt_config_model_json2 = config_element_def_config_lets_encrypt_config_model.to_dict()
         assert config_element_def_config_lets_encrypt_config_model_json2 == config_element_def_config_lets_encrypt_config_model_json
+
+
+class TestModel_CreateIAMCredentialsSecretEngineRootConfig():
+    """
+    Test Class for CreateIAMCredentialsSecretEngineRootConfig
+    """
+
+    def test_create_iam_credentials_secret_engine_root_config_serialization(self):
+        """
+        Test serialization/deserialization for CreateIAMCredentialsSecretEngineRootConfig
+        """
+
+        # Construct a json representation of a CreateIAMCredentialsSecretEngineRootConfig model
+        create_iam_credentials_secret_engine_root_config_model_json = {}
+        create_iam_credentials_secret_engine_root_config_model_json['api_key'] = 'API_KEY'
+        create_iam_credentials_secret_engine_root_config_model_json[
+            'api_key_hash'] = 'a737c3a98ebfc16a0d5ddc6b277548491440780003e06f5924dc906bc8d78e91'
+
+        # Construct a model instance of CreateIAMCredentialsSecretEngineRootConfig by calling from_dict on the json representation
+        create_iam_credentials_secret_engine_root_config_model = CreateIAMCredentialsSecretEngineRootConfig.from_dict(
+            create_iam_credentials_secret_engine_root_config_model_json)
+        assert create_iam_credentials_secret_engine_root_config_model != False
+
+        # Construct a model instance of CreateIAMCredentialsSecretEngineRootConfig by calling from_dict on the json representation
+        create_iam_credentials_secret_engine_root_config_model_dict = CreateIAMCredentialsSecretEngineRootConfig.from_dict(
+            create_iam_credentials_secret_engine_root_config_model_json).__dict__
+        create_iam_credentials_secret_engine_root_config_model2 = CreateIAMCredentialsSecretEngineRootConfig(
+            **create_iam_credentials_secret_engine_root_config_model_dict)
+
+        # Verify the model instances are equivalent
+        assert create_iam_credentials_secret_engine_root_config_model == create_iam_credentials_secret_engine_root_config_model2
+
+        # Convert model instance back to dict and verify no loss of data
+        create_iam_credentials_secret_engine_root_config_model_json2 = create_iam_credentials_secret_engine_root_config_model.to_dict()
+        assert create_iam_credentials_secret_engine_root_config_model_json2 == create_iam_credentials_secret_engine_root_config_model_json
 
 
 class TestModel_DeleteCredentialsForIAMCredentialsSecret():
@@ -4817,17 +4829,10 @@ class TestModel_SecretPolicyRotationRotationPublicCertPolicyRotation():
         Test serialization/deserialization for SecretPolicyRotationRotationPublicCertPolicyRotation
         """
 
-        # Construct dict forms of any model objects needed in order to build this model.
-
-        warning_model = {}  # Warning
-        warning_model['code'] = 'testString'
-        warning_model['message'] = 'testString'
-
         # Construct a json representation of a SecretPolicyRotationRotationPublicCertPolicyRotation model
         secret_policy_rotation_rotation_public_cert_policy_rotation_model_json = {}
         secret_policy_rotation_rotation_public_cert_policy_rotation_model_json['auto_rotate'] = False
         secret_policy_rotation_rotation_public_cert_policy_rotation_model_json['rotate_keys'] = False
-        secret_policy_rotation_rotation_public_cert_policy_rotation_model_json['warning'] = warning_model
 
         # Construct a model instance of SecretPolicyRotationRotationPublicCertPolicyRotation by calling from_dict on the json representation
         secret_policy_rotation_rotation_public_cert_policy_rotation_model = SecretPolicyRotationRotationPublicCertPolicyRotation.from_dict(
