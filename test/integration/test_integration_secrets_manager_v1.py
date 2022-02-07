@@ -57,6 +57,30 @@ class TestArbitrarySecret(unittest.TestCase):
         )
         assert response.status_code == 204
 
+    def test_create_and_delete_kv_secret(self):
+        # create kv secret
+        response = secretsManager.create_secret(
+            'kv',
+            {'collection_type': 'application/vnd.ibm.secrets-manager.secret+json', 'collection_total': 1},
+            [{'name': generate_name(), 'description': 'Integration test generated', 'labels': ['label1', 'label2'],
+              'expiration_date': generate_expiration_date(), 'payload': {"foo", "data"}}]
+        )
+        assert response.status_code == 200
+        secretId = response.result['resources'][0]['id']
+        # get kv secret
+        response = secretsManager.get_secret(
+            'kv',
+            secretId
+        )
+        assert response.status_code == 200
+        assert response.result['resources'][0]['secret_data']['payload'] == 'secret-data'
+        # delete kv secret
+        response = secretsManager.delete_secret(
+            'kv',
+            secretId
+        )
+        assert response.status_code == 204
+
     def test_create_a_secret_with_the_same_name(self):
         secretName = 'conflict_integration_test_secret'
         # create arbitrary secret
