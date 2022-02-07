@@ -63,7 +63,7 @@ class TestArbitrarySecret(unittest.TestCase):
             'kv',
             {'collection_type': 'application/vnd.ibm.secrets-manager.secret+json', 'collection_total': 1},
             [{'name': generate_name(), 'description': 'Integration test generated', 'labels': ['label1', 'label2'],
-              'expiration_date': generate_expiration_date(), 'payload': {"foo": "data"}}]
+              'payload': {"foo": "data"}}]
         )
         assert response.status_code == 200
         secretId = response.result['resources'][0]['id']
