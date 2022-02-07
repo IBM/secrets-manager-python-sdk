@@ -73,7 +73,7 @@ class TestArbitrarySecret(unittest.TestCase):
             secretId
         )
         assert response.status_code == 200
-        assert response.result['resources'][0]['secret_data']['payload'] == 'secret-data'
+        assert response.result['resources'][0]['secret_data']['payload'] == {"foo": "data"}
         # delete kv secret
         response = secretsManager.delete_secret(
             'kv',
