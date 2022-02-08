@@ -1168,7 +1168,7 @@ class SecretsManagerV1(BaseService):
         config_element: str,
         name: str,
         type: str,
-        config: object,
+        config: 'ConfigElementDefConfig',
         **kwargs
     ) -> DetailedResponse:
         """
@@ -1184,8 +1184,8 @@ class SecretsManagerV1(BaseService):
         :param str name: The human-readable name to assign to your configuration.
         :param str type: The type of configuration. Value options differ depending
                on the `config_element` property that you want to define.
-        :param object config: The configuration to define for the specified secret
-               type.
+        :param ConfigElementDefConfig config: The configuration to define for the
+               specified secret type.
         :param dict headers: A `dict` containing the request headers
         :return: A `DetailedResponse` containing the result, headers and HTTP status code.
         :rtype: DetailedResponse with `dict` result representing a `GetSingleConfigElement` object
@@ -1201,6 +1201,7 @@ class SecretsManagerV1(BaseService):
             raise ValueError('type must be provided')
         if config is None:
             raise ValueError('config must be provided')
+        config = convert_model(config)
         headers = {}
         sdk_headers = get_sdk_headers(service_name=self.DEFAULT_SERVICE_NAME,
                                       service_version='V1',
@@ -1872,21 +1873,22 @@ class ConfigElementDef():
     :attr str name: The human-readable name to assign to your configuration.
     :attr str type: The type of configuration. Value options differ depending on the
           `config_element` property that you want to define.
-    :attr object config: The configuration to define for the specified secret type.
+    :attr ConfigElementDefConfig config: The configuration to define for the
+          specified secret type.
     """
 
     def __init__(self,
                  name: str,
                  type: str,
-                 config: object) -> None:
+                 config: 'ConfigElementDefConfig') -> None:
         """
         Initialize a ConfigElementDef object.
 
         :param str name: The human-readable name to assign to your configuration.
         :param str type: The type of configuration. Value options differ depending
                on the `config_element` property that you want to define.
-        :param object config: The configuration to define for the specified secret
-               type.
+        :param ConfigElementDefConfig config: The configuration to define for the
+               specified secret type.
         """
         self.name = name
         self.type = type
@@ -1923,7 +1925,10 @@ class ConfigElementDef():
         if hasattr(self, 'type') and self.type is not None:
             _dict['type'] = self.type
         if hasattr(self, 'config') and self.config is not None:
-            _dict['config'] = self.config
+            if isinstance(self.config, dict):
+                _dict['config'] = self.config
+            else:
+                _dict['config'] = self.config.to_dict()
         return _dict
 
     def _to_dict(self):
@@ -1954,6 +1959,21 @@ class ConfigElementDef():
         CIS = 'cis'
         CLASSIC_INFRASTRUCTURE = 'classic_infrastructure'
 
+
+class ConfigElementDefConfig():
+    """
+    The configuration to define for the specified secret type.
+
+    """
+
+    def __init__(self) -> None:
+        """
+        Initialize a ConfigElementDefConfig object.
+
+        """
+        msg = "Cannot instantiate base class. Instead, instantiate one of the defined subclasses: {0}".format(
+                  ", ".join(['ConfigElementDefConfigLetsEncryptConfig', 'ConfigElementDefConfigCloudInternetServicesConfig', 'ConfigElementDefConfigClassicInfrastructureConfig']))
+        raise Exception(msg)
 
 class ConfigElementMetadata():
     """
@@ -5213,6 +5233,253 @@ class CertificateSecretVersionMetadata(SecretVersionMetadata):
         """Return `true` when self and other are not equal, false otherwise."""
         return not self == other
 
+class ConfigElementDefConfigClassicInfrastructureConfig(ConfigElementDefConfig):
+    """
+    Properties that describe an IBM Cloud classic infrastructure (SoftLayer)
+    configuration.
+
+    :attr str classic_infrastructure_username: The username that is associated with
+          your classic infrastructure account.
+          In most cases, your classic infrastructure username is your
+          `<account_id>_<email_address>`. In the console, you can find your username by
+          going to **Manage > Access (IAM) > Users > name > VPN password.** For more
+          information, see the
+          [docs](https://cloud.ibm.com/docs/secrets-manager?topic=secrets-manager-prepare-order-certificates#authorize-classic-infrastructure).
+    :attr str classic_infrastructure_password: Your classic infrastructure API key.
+          In the console, you can view or create a classic infrastructure API key by going
+          to **Manage > Access (IAM)
+          > Users > name > API keys.** For more information, see the
+          [docs](https://cloud.ibm.com/docs/secrets-manager?topic=secrets-manager-prepare-order-certificates#authorize-classic-infrastructure).
+    """
+
+    def __init__(self,
+                 classic_infrastructure_username: str,
+                 classic_infrastructure_password: str) -> None:
+        """
+        Initialize a ConfigElementDefConfigClassicInfrastructureConfig object.
+
+        :param str classic_infrastructure_username: The username that is associated
+               with your classic infrastructure account.
+               In most cases, your classic infrastructure username is your
+               `<account_id>_<email_address>`. In the console, you can find your username
+               by going to **Manage > Access (IAM) > Users > name > VPN password.** For
+               more information, see the
+               [docs](https://cloud.ibm.com/docs/secrets-manager?topic=secrets-manager-prepare-order-certificates#authorize-classic-infrastructure).
+        :param str classic_infrastructure_password: Your classic infrastructure API
+               key.
+               In the console, you can view or create a classic infrastructure API key by
+               going to **Manage > Access (IAM)
+               > Users > name > API keys.** For more information, see the
+               [docs](https://cloud.ibm.com/docs/secrets-manager?topic=secrets-manager-prepare-order-certificates#authorize-classic-infrastructure).
+        """
+        # pylint: disable=super-init-not-called
+        self.classic_infrastructure_username = classic_infrastructure_username
+        self.classic_infrastructure_password = classic_infrastructure_password
+
+    @classmethod
+    def from_dict(cls, _dict: Dict) -> 'ConfigElementDefConfigClassicInfrastructureConfig':
+        """Initialize a ConfigElementDefConfigClassicInfrastructureConfig object from a json dictionary."""
+        args = {}
+        if 'classic_infrastructure_username' in _dict:
+            args['classic_infrastructure_username'] = _dict.get('classic_infrastructure_username')
+        else:
+            raise ValueError('Required property \'classic_infrastructure_username\' not present in ConfigElementDefConfigClassicInfrastructureConfig JSON')
+        if 'classic_infrastructure_password' in _dict:
+            args['classic_infrastructure_password'] = _dict.get('classic_infrastructure_password')
+        else:
+            raise ValueError('Required property \'classic_infrastructure_password\' not present in ConfigElementDefConfigClassicInfrastructureConfig JSON')
+        return cls(**args)
+
+    @classmethod
+    def _from_dict(cls, _dict):
+        """Initialize a ConfigElementDefConfigClassicInfrastructureConfig object from a json dictionary."""
+        return cls.from_dict(_dict)
+
+    def to_dict(self) -> Dict:
+        """Return a json dictionary representing this model."""
+        _dict = {}
+        if hasattr(self, 'classic_infrastructure_username') and self.classic_infrastructure_username is not None:
+            _dict['classic_infrastructure_username'] = self.classic_infrastructure_username
+        if hasattr(self, 'classic_infrastructure_password') and self.classic_infrastructure_password is not None:
+            _dict['classic_infrastructure_password'] = self.classic_infrastructure_password
+        return _dict
+
+    def _to_dict(self):
+        """Return a json dictionary representing this model."""
+        return self.to_dict()
+
+    def __str__(self) -> str:
+        """Return a `str` version of this ConfigElementDefConfigClassicInfrastructureConfig object."""
+        return json.dumps(self.to_dict(), indent=2)
+
+    def __eq__(self, other: 'ConfigElementDefConfigClassicInfrastructureConfig') -> bool:
+        """Return `true` when self and other are equal, false otherwise."""
+        if not isinstance(other, self.__class__):
+            return False
+        return self.__dict__ == other.__dict__
+
+    def __ne__(self, other: 'ConfigElementDefConfigClassicInfrastructureConfig') -> bool:
+        """Return `true` when self and other are not equal, false otherwise."""
+        return not self == other
+
+class ConfigElementDefConfigCloudInternetServicesConfig(ConfigElementDefConfig):
+    """
+    Properties that describe an IBM Cloud Internet Services (CIS) configuration.
+
+    :attr str cis_crn: The Cloud Resource Name (CRN) that is associated with the CIS
+          instance.
+    :attr str cis_apikey: (optional) An IBM Cloud API key that can to list domains
+          in your CIS instance.
+          To grant Secrets Manager the ability to view the CIS instance and all of its
+          domains, the API key must be assigned the Reader service role on Internet
+          Services (`internet-svcs`).
+          If you need to manage specific domains, you can assign the Manager role. For
+          production environments, it is recommended that you assign the Reader access
+          role, and then use the
+          [IAM Policy Management
+          API](https://cloud.ibm.com/apidocs/iam-policy-management#create-policy) to
+          control specific domains. For more information, see the
+          [docs](https://cloud.ibm.com/docs/secrets-manager?topic=secrets-manager-prepare-order-certificates#authorize-specific-domains).
+    """
+
+    def __init__(self,
+                 cis_crn: str,
+                 *,
+                 cis_apikey: str = None) -> None:
+        """
+        Initialize a ConfigElementDefConfigCloudInternetServicesConfig object.
+
+        :param str cis_crn: The Cloud Resource Name (CRN) that is associated with
+               the CIS instance.
+        :param str cis_apikey: (optional) An IBM Cloud API key that can to list
+               domains in your CIS instance.
+               To grant Secrets Manager the ability to view the CIS instance and all of
+               its domains, the API key must be assigned the Reader service role on
+               Internet Services (`internet-svcs`).
+               If you need to manage specific domains, you can assign the Manager role.
+               For production environments, it is recommended that you assign the Reader
+               access role, and then use the
+               [IAM Policy Management
+               API](https://cloud.ibm.com/apidocs/iam-policy-management#create-policy) to
+               control specific domains. For more information, see the
+               [docs](https://cloud.ibm.com/docs/secrets-manager?topic=secrets-manager-prepare-order-certificates#authorize-specific-domains).
+        """
+        # pylint: disable=super-init-not-called
+        self.cis_crn = cis_crn
+        self.cis_apikey = cis_apikey
+
+    @classmethod
+    def from_dict(cls, _dict: Dict) -> 'ConfigElementDefConfigCloudInternetServicesConfig':
+        """Initialize a ConfigElementDefConfigCloudInternetServicesConfig object from a json dictionary."""
+        args = {}
+        if 'cis_crn' in _dict:
+            args['cis_crn'] = _dict.get('cis_crn')
+        else:
+            raise ValueError('Required property \'cis_crn\' not present in ConfigElementDefConfigCloudInternetServicesConfig JSON')
+        if 'cis_apikey' in _dict:
+            args['cis_apikey'] = _dict.get('cis_apikey')
+        return cls(**args)
+
+    @classmethod
+    def _from_dict(cls, _dict):
+        """Initialize a ConfigElementDefConfigCloudInternetServicesConfig object from a json dictionary."""
+        return cls.from_dict(_dict)
+
+    def to_dict(self) -> Dict:
+        """Return a json dictionary representing this model."""
+        _dict = {}
+        if hasattr(self, 'cis_crn') and self.cis_crn is not None:
+            _dict['cis_crn'] = self.cis_crn
+        if hasattr(self, 'cis_apikey') and self.cis_apikey is not None:
+            _dict['cis_apikey'] = self.cis_apikey
+        return _dict
+
+    def _to_dict(self):
+        """Return a json dictionary representing this model."""
+        return self.to_dict()
+
+    def __str__(self) -> str:
+        """Return a `str` version of this ConfigElementDefConfigCloudInternetServicesConfig object."""
+        return json.dumps(self.to_dict(), indent=2)
+
+    def __eq__(self, other: 'ConfigElementDefConfigCloudInternetServicesConfig') -> bool:
+        """Return `true` when self and other are equal, false otherwise."""
+        if not isinstance(other, self.__class__):
+            return False
+        return self.__dict__ == other.__dict__
+
+    def __ne__(self, other: 'ConfigElementDefConfigCloudInternetServicesConfig') -> bool:
+        """Return `true` when self and other are not equal, false otherwise."""
+        return not self == other
+
+class ConfigElementDefConfigLetsEncryptConfig(ConfigElementDefConfig):
+    """
+    Properties that describe a Let's Encrypt configuration.
+
+    :attr str private_key: The private key that is associated with your Automatic
+          Certificate Management Environment (ACME) account.
+          If you have a working ACME client or account for Let's Encrypt, you can use the
+          existing private key to enable communications with Secrets Manager. If you don't
+          have an account yet, you can create one. For more information, see the
+          [docs](https://cloud.ibm.com/docs/secrets-manager?topic=secrets-manager-prepare-order-certificates#create-acme-account).
+    """
+
+    def __init__(self,
+                 private_key: str) -> None:
+        """
+        Initialize a ConfigElementDefConfigLetsEncryptConfig object.
+
+        :param str private_key: The private key that is associated with your
+               Automatic Certificate Management Environment (ACME) account.
+               If you have a working ACME client or account for Let's Encrypt, you can use
+               the existing private key to enable communications with Secrets Manager. If
+               you don't have an account yet, you can create one. For more information,
+               see the
+               [docs](https://cloud.ibm.com/docs/secrets-manager?topic=secrets-manager-prepare-order-certificates#create-acme-account).
+        """
+        # pylint: disable=super-init-not-called
+        self.private_key = private_key
+
+    @classmethod
+    def from_dict(cls, _dict: Dict) -> 'ConfigElementDefConfigLetsEncryptConfig':
+        """Initialize a ConfigElementDefConfigLetsEncryptConfig object from a json dictionary."""
+        args = {}
+        if 'private_key' in _dict:
+            args['private_key'] = _dict.get('private_key')
+        else:
+            raise ValueError('Required property \'private_key\' not present in ConfigElementDefConfigLetsEncryptConfig JSON')
+        return cls(**args)
+
+    @classmethod
+    def _from_dict(cls, _dict):
+        """Initialize a ConfigElementDefConfigLetsEncryptConfig object from a json dictionary."""
+        return cls.from_dict(_dict)
+
+    def to_dict(self) -> Dict:
+        """Return a json dictionary representing this model."""
+        _dict = {}
+        if hasattr(self, 'private_key') and self.private_key is not None:
+            _dict['private_key'] = self.private_key
+        return _dict
+
+    def _to_dict(self):
+        """Return a json dictionary representing this model."""
+        return self.to_dict()
+
+    def __str__(self) -> str:
+        """Return a `str` version of this ConfigElementDefConfigLetsEncryptConfig object."""
+        return json.dumps(self.to_dict(), indent=2)
+
+    def __eq__(self, other: 'ConfigElementDefConfigLetsEncryptConfig') -> bool:
+        """Return `true` when self and other are equal, false otherwise."""
+        if not isinstance(other, self.__class__):
+            return False
+        return self.__dict__ == other.__dict__
+
+    def __ne__(self, other: 'ConfigElementDefConfigLetsEncryptConfig') -> bool:
+        """Return `true` when self and other are not equal, false otherwise."""
+        return not self == other
+
 class CreateIAMCredentialsSecretEngineRootConfig(EngineConfig):
     """
     Configuration for the IAM credentials engine.
@@ -6703,6 +6970,13 @@ class KvSecretResource(SecretResource):
     :attr List[dict] versions: (optional) An array that contains metadata for each
           secret version. For more information on the metadata properties, see [Get secret
           version metadata](#get-secret-version-metadata).
+    :attr datetime expiration_date: (optional) The date the secret material expires.
+          The date format follows RFC 3339.
+          You can set an expiration date on supported secret types at their creation. If
+          you create a secret without specifying an expiration date, the secret does not
+          expire. The `expiration_date` field is supported for the following secret types:
+          - `arbitrary`
+          - `username_password`.
     :attr object payload: (optional) The new secret data to assign to the secret.
     :attr object secret_data: (optional) The data that is associated with the secret
           version. The data object contains the field `payload`.
@@ -6724,6 +6998,7 @@ class KvSecretResource(SecretResource):
                  last_update_date: datetime = None,
                  versions_total: int = None,
                  versions: List[dict] = None,
+                 expiration_date: datetime = None,
                  payload: object = None,
                  secret_data: object = None) -> None:
         """
@@ -6746,6 +7021,14 @@ class KvSecretResource(SecretResource):
                bracket, comma, colon, ampersand, and vertical pipe character (|).
                To protect your privacy, do not use personal data, such as your name or
                location, as a label for your secret.
+        :param datetime expiration_date: (optional) The date the secret material
+               expires. The date format follows RFC 3339.
+               You can set an expiration date on supported secret types at their creation.
+               If you create a secret without specifying an expiration date, the secret
+               does not expire. The `expiration_date` field is supported for the following
+               secret types:
+               - `arbitrary`
+               - `username_password`.
         :param object payload: (optional) The new secret data to assign to the
                secret.
         """
@@ -6764,6 +7047,7 @@ class KvSecretResource(SecretResource):
         self.last_update_date = last_update_date
         self.versions_total = versions_total
         self.versions = versions
+        self.expiration_date = expiration_date
         self.payload = payload
         self.secret_data = secret_data
 
@@ -6801,6 +7085,8 @@ class KvSecretResource(SecretResource):
             args['versions_total'] = _dict.get('versions_total')
         if 'versions' in _dict:
             args['versions'] = _dict.get('versions')
+        if 'expiration_date' in _dict:
+            args['expiration_date'] = string_to_datetime(_dict.get('expiration_date'))
         if 'payload' in _dict:
             args['payload'] = _dict.get('payload')
         if 'secret_data' in _dict:
@@ -6843,6 +7129,8 @@ class KvSecretResource(SecretResource):
             _dict['versions_total'] = getattr(self, 'versions_total')
         if hasattr(self, 'versions') and getattr(self, 'versions') is not None:
             _dict['versions'] = getattr(self, 'versions')
+        if hasattr(self, 'expiration_date') and self.expiration_date is not None:
+            _dict['expiration_date'] = datetime_to_string(self.expiration_date)
         if hasattr(self, 'payload') and self.payload is not None:
             _dict['payload'] = self.payload
         if hasattr(self, 'secret_data') and getattr(self, 'secret_data') is not None:
@@ -7003,6 +7291,9 @@ class PublicCertificateSecretMetadata(SecretMetadata):
     :attr Rotation rotation: (optional)
     :attr IssuanceInfo issuance_info: (optional) Issuance information that is
           associated with your certificate.
+    :attr CertificateValidity validity: (optional)
+    :attr str serial_number: (optional) The unique serial number that was assigned
+          to the certificate by the issuing certificate authority.
     """
 
     def __init__(self,
@@ -7029,7 +7320,9 @@ class PublicCertificateSecretMetadata(SecretMetadata):
                  intermediate_included: bool = None,
                  private_key_included: bool = None,
                  rotation: 'Rotation' = None,
-                 issuance_info: 'IssuanceInfo' = None) -> None:
+                 issuance_info: 'IssuanceInfo' = None,
+                 validity: 'CertificateValidity' = None,
+                 serial_number: str = None) -> None:
         """
         Initialize a PublicCertificateSecretMetadata object.
 
@@ -7061,6 +7354,7 @@ class PublicCertificateSecretMetadata(SecretMetadata):
         :param Rotation rotation: (optional)
         :param IssuanceInfo issuance_info: (optional) Issuance information that is
                associated with your certificate.
+        :param CertificateValidity validity: (optional)
         """
         # pylint: disable=super-init-not-called
         self.id = id
@@ -7086,6 +7380,8 @@ class PublicCertificateSecretMetadata(SecretMetadata):
         self.private_key_included = private_key_included
         self.rotation = rotation
         self.issuance_info = issuance_info
+        self.validity = validity
+        self.serial_number = serial_number
 
     @classmethod
     def from_dict(cls, _dict: Dict) -> 'PublicCertificateSecretMetadata':
@@ -7139,6 +7435,10 @@ class PublicCertificateSecretMetadata(SecretMetadata):
             args['rotation'] = Rotation.from_dict(_dict.get('rotation'))
         if 'issuance_info' in _dict:
             args['issuance_info'] = IssuanceInfo.from_dict(_dict.get('issuance_info'))
+        if 'validity' in _dict:
+            args['validity'] = CertificateValidity.from_dict(_dict.get('validity'))
+        if 'serial_number' in _dict:
+            args['serial_number'] = _dict.get('serial_number')
         return cls(**args)
 
     @classmethod
@@ -7195,6 +7495,10 @@ class PublicCertificateSecretMetadata(SecretMetadata):
             _dict['rotation'] = self.rotation.to_dict()
         if hasattr(self, 'issuance_info') and self.issuance_info is not None:
             _dict['issuance_info'] = self.issuance_info.to_dict()
+        if hasattr(self, 'validity') and self.validity is not None:
+            _dict['validity'] = self.validity.to_dict()
+        if hasattr(self, 'serial_number') and getattr(self, 'serial_number') is not None:
+            _dict['serial_number'] = getattr(self, 'serial_number')
         return _dict
 
     def _to_dict(self):
@@ -7311,6 +7615,8 @@ class PublicCertificateSecretResource(SecretResource):
     :attr IssuanceInfo issuance_info: (optional) Issuance information that is
           associated with your certificate.
     :attr CertificateValidity validity: (optional)
+    :attr str serial_number: (optional) The unique serial number that was assigned
+          to the certificate by the issuing certificate authority.
     :attr object secret_data: (optional) The data that is associated with the
           secret. The data object contains the following fields:
           `certificate`: The contents of the certificate.
@@ -7348,6 +7654,7 @@ class PublicCertificateSecretResource(SecretResource):
                  rotation: 'Rotation' = None,
                  issuance_info: 'IssuanceInfo' = None,
                  validity: 'CertificateValidity' = None,
+                 serial_number: str = None,
                  secret_data: object = None) -> None:
         """
         Initialize a PublicCertificateSecretResource object.
@@ -7424,6 +7731,7 @@ class PublicCertificateSecretResource(SecretResource):
         self.rotation = rotation
         self.issuance_info = issuance_info
         self.validity = validity
+        self.serial_number = serial_number
         self.secret_data = secret_data
 
     @classmethod
@@ -7486,6 +7794,8 @@ class PublicCertificateSecretResource(SecretResource):
             args['issuance_info'] = IssuanceInfo.from_dict(_dict.get('issuance_info'))
         if 'validity' in _dict:
             args['validity'] = CertificateValidity.from_dict(_dict.get('validity'))
+        if 'serial_number' in _dict:
+            args['serial_number'] = _dict.get('serial_number')
         if 'secret_data' in _dict:
             args['secret_data'] = _dict.get('secret_data')
         return cls(**args)
@@ -7552,6 +7862,8 @@ class PublicCertificateSecretResource(SecretResource):
             _dict['issuance_info'] = self.issuance_info.to_dict()
         if hasattr(self, 'validity') and self.validity is not None:
             _dict['validity'] = self.validity.to_dict()
+        if hasattr(self, 'serial_number') and getattr(self, 'serial_number') is not None:
+            _dict['serial_number'] = getattr(self, 'serial_number')
         if hasattr(self, 'secret_data') and getattr(self, 'secret_data') is not None:
             _dict['secret_data'] = getattr(self, 'secret_data')
         return _dict

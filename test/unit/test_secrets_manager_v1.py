@@ -2172,19 +2172,23 @@ class TestCreateConfigElement():
         """
         # Set up mock
         url = preprocess_url('/api/v1/config/public_cert/certificate_authorities')
-        mock_response = '{"metadata": {"collection_type": "application/vnd.ibm.secrets-manager.config+json", "collection_total": 1}, "resources": [{"name": "name", "type": "letsencrypt", "config": {"anyKey": "anyValue"}}]}'
+        mock_response = '{"metadata": {"collection_type": "application/vnd.ibm.secrets-manager.config+json", "collection_total": 1}, "resources": [{"name": "name", "type": "letsencrypt", "config": {"private_key": "private_key"}}]}'
         responses.add(responses.POST,
                       url,
                       body=mock_response,
                       content_type='application/json',
                       status=201)
 
+        # Construct a dict representation of a ConfigElementDefConfigLetsEncryptConfig model
+        config_element_def_config_model = {}
+        config_element_def_config_model['private_key'] = 'testString'
+
         # Set up parameter values
         secret_type = 'public_cert'
         config_element = 'certificate_authorities'
         name = 'testString'
         type = 'letsencrypt'
-        config = { 'foo': 'bar' }
+        config = config_element_def_config_model
 
         # Invoke method
         response = _service.create_config_element(
@@ -2203,7 +2207,7 @@ class TestCreateConfigElement():
         req_body = json.loads(str(responses.calls[0].request.body, 'utf-8'))
         assert req_body['name'] == 'testString'
         assert req_body['type'] == 'letsencrypt'
-        assert req_body['config'] == { 'foo': 'bar' }
+        assert req_body['config'] == config_element_def_config_model
 
     def test_create_config_element_all_params_with_retries(self):
         # Enable retries and run test_create_config_element_all_params.
@@ -2221,19 +2225,23 @@ class TestCreateConfigElement():
         """
         # Set up mock
         url = preprocess_url('/api/v1/config/public_cert/certificate_authorities')
-        mock_response = '{"metadata": {"collection_type": "application/vnd.ibm.secrets-manager.config+json", "collection_total": 1}, "resources": [{"name": "name", "type": "letsencrypt", "config": {"anyKey": "anyValue"}}]}'
+        mock_response = '{"metadata": {"collection_type": "application/vnd.ibm.secrets-manager.config+json", "collection_total": 1}, "resources": [{"name": "name", "type": "letsencrypt", "config": {"private_key": "private_key"}}]}'
         responses.add(responses.POST,
                       url,
                       body=mock_response,
                       content_type='application/json',
                       status=201)
 
+        # Construct a dict representation of a ConfigElementDefConfigLetsEncryptConfig model
+        config_element_def_config_model = {}
+        config_element_def_config_model['private_key'] = 'testString'
+
         # Set up parameter values
         secret_type = 'public_cert'
         config_element = 'certificate_authorities'
         name = 'testString'
         type = 'letsencrypt'
-        config = { 'foo': 'bar' }
+        config = config_element_def_config_model
 
         # Pass in all but one required param and check for a ValueError
         req_param_dict = {
@@ -2351,7 +2359,7 @@ class TestGetConfigElement():
         """
         # Set up mock
         url = preprocess_url('/api/v1/config/public_cert/certificate_authorities/testString')
-        mock_response = '{"metadata": {"collection_type": "application/vnd.ibm.secrets-manager.config+json", "collection_total": 1}, "resources": [{"name": "name", "type": "letsencrypt", "config": {"anyKey": "anyValue"}}]}'
+        mock_response = '{"metadata": {"collection_type": "application/vnd.ibm.secrets-manager.config+json", "collection_total": 1}, "resources": [{"name": "name", "type": "letsencrypt", "config": {"private_key": "private_key"}}]}'
         responses.add(responses.GET,
                       url,
                       body=mock_response,
@@ -2391,7 +2399,7 @@ class TestGetConfigElement():
         """
         # Set up mock
         url = preprocess_url('/api/v1/config/public_cert/certificate_authorities/testString')
-        mock_response = '{"metadata": {"collection_type": "application/vnd.ibm.secrets-manager.config+json", "collection_total": 1}, "resources": [{"name": "name", "type": "letsencrypt", "config": {"anyKey": "anyValue"}}]}'
+        mock_response = '{"metadata": {"collection_type": "application/vnd.ibm.secrets-manager.config+json", "collection_total": 1}, "resources": [{"name": "name", "type": "letsencrypt", "config": {"private_key": "private_key"}}]}'
         responses.add(responses.GET,
                       url,
                       body=mock_response,
@@ -2436,7 +2444,7 @@ class TestUpdateConfigElement():
         """
         # Set up mock
         url = preprocess_url('/api/v1/config/public_cert/certificate_authorities/testString')
-        mock_response = '{"metadata": {"collection_type": "application/vnd.ibm.secrets-manager.config+json", "collection_total": 1}, "resources": [{"name": "name", "type": "letsencrypt", "config": {"anyKey": "anyValue"}}]}'
+        mock_response = '{"metadata": {"collection_type": "application/vnd.ibm.secrets-manager.config+json", "collection_total": 1}, "resources": [{"name": "name", "type": "letsencrypt", "config": {"private_key": "private_key"}}]}'
         responses.add(responses.PUT,
                       url,
                       body=mock_response,
@@ -2484,7 +2492,7 @@ class TestUpdateConfigElement():
         """
         # Set up mock
         url = preprocess_url('/api/v1/config/public_cert/certificate_authorities/testString')
-        mock_response = '{"metadata": {"collection_type": "application/vnd.ibm.secrets-manager.config+json", "collection_total": 1}, "resources": [{"name": "name", "type": "letsencrypt", "config": {"anyKey": "anyValue"}}]}'
+        mock_response = '{"metadata": {"collection_type": "application/vnd.ibm.secrets-manager.config+json", "collection_total": 1}, "resources": [{"name": "name", "type": "letsencrypt", "config": {"private_key": "private_key"}}]}'
         responses.add(responses.PUT,
                       url,
                       body=mock_response,
@@ -2650,11 +2658,16 @@ class TestModel_ConfigElementDef():
         Test serialization/deserialization for ConfigElementDef
         """
 
+        # Construct dict forms of any model objects needed in order to build this model.
+
+        config_element_def_config_model = {} # ConfigElementDefConfigLetsEncryptConfig
+        config_element_def_config_model['private_key'] = 'testString'
+
         # Construct a json representation of a ConfigElementDef model
         config_element_def_model_json = {}
         config_element_def_model_json['name'] = 'testString'
         config_element_def_model_json['type'] = 'letsencrypt'
-        config_element_def_model_json['config'] = { 'foo': 'bar' }
+        config_element_def_model_json['config'] = config_element_def_config_model
 
         # Construct a model instance of ConfigElementDef by calling from_dict on the json representation
         config_element_def_model = ConfigElementDef.from_dict(config_element_def_model_json)
@@ -3001,10 +3014,13 @@ class TestModel_GetSingleConfigElement():
         collection_metadata_model['collection_type'] = 'application/vnd.ibm.secrets-manager.config+json'
         collection_metadata_model['collection_total'] = 1
 
+        config_element_def_config_model = {} # ConfigElementDefConfigLetsEncryptConfig
+        config_element_def_config_model['private_key'] = 'testString'
+
         config_element_def_model = {} # ConfigElementDef
         config_element_def_model['name'] = 'testString'
         config_element_def_model['type'] = 'letsencrypt'
-        config_element_def_model['config'] = { 'foo': 'bar' }
+        config_element_def_model['config'] = config_element_def_config_model
 
         # Construct a json representation of a GetSingleConfigElement model
         get_single_config_element_model_json = {}
@@ -3862,6 +3878,95 @@ class TestModel_CertificateSecretVersionMetadata():
         certificate_secret_version_metadata_model_json2 = certificate_secret_version_metadata_model.to_dict()
         assert certificate_secret_version_metadata_model_json2 == certificate_secret_version_metadata_model_json
 
+class TestModel_ConfigElementDefConfigClassicInfrastructureConfig():
+    """
+    Test Class for ConfigElementDefConfigClassicInfrastructureConfig
+    """
+
+    def test_config_element_def_config_classic_infrastructure_config_serialization(self):
+        """
+        Test serialization/deserialization for ConfigElementDefConfigClassicInfrastructureConfig
+        """
+
+        # Construct a json representation of a ConfigElementDefConfigClassicInfrastructureConfig model
+        config_element_def_config_classic_infrastructure_config_model_json = {}
+        config_element_def_config_classic_infrastructure_config_model_json['classic_infrastructure_username'] = 'testString'
+        config_element_def_config_classic_infrastructure_config_model_json['classic_infrastructure_password'] = 'testString'
+
+        # Construct a model instance of ConfigElementDefConfigClassicInfrastructureConfig by calling from_dict on the json representation
+        config_element_def_config_classic_infrastructure_config_model = ConfigElementDefConfigClassicInfrastructureConfig.from_dict(config_element_def_config_classic_infrastructure_config_model_json)
+        assert config_element_def_config_classic_infrastructure_config_model != False
+
+        # Construct a model instance of ConfigElementDefConfigClassicInfrastructureConfig by calling from_dict on the json representation
+        config_element_def_config_classic_infrastructure_config_model_dict = ConfigElementDefConfigClassicInfrastructureConfig.from_dict(config_element_def_config_classic_infrastructure_config_model_json).__dict__
+        config_element_def_config_classic_infrastructure_config_model2 = ConfigElementDefConfigClassicInfrastructureConfig(**config_element_def_config_classic_infrastructure_config_model_dict)
+
+        # Verify the model instances are equivalent
+        assert config_element_def_config_classic_infrastructure_config_model == config_element_def_config_classic_infrastructure_config_model2
+
+        # Convert model instance back to dict and verify no loss of data
+        config_element_def_config_classic_infrastructure_config_model_json2 = config_element_def_config_classic_infrastructure_config_model.to_dict()
+        assert config_element_def_config_classic_infrastructure_config_model_json2 == config_element_def_config_classic_infrastructure_config_model_json
+
+class TestModel_ConfigElementDefConfigCloudInternetServicesConfig():
+    """
+    Test Class for ConfigElementDefConfigCloudInternetServicesConfig
+    """
+
+    def test_config_element_def_config_cloud_internet_services_config_serialization(self):
+        """
+        Test serialization/deserialization for ConfigElementDefConfigCloudInternetServicesConfig
+        """
+
+        # Construct a json representation of a ConfigElementDefConfigCloudInternetServicesConfig model
+        config_element_def_config_cloud_internet_services_config_model_json = {}
+        config_element_def_config_cloud_internet_services_config_model_json['cis_crn'] = 'crn:v1:bluemix:public:internet-svcs:global:a/<account-id>:<service-instance>::'
+        config_element_def_config_cloud_internet_services_config_model_json['cis_apikey'] = 'testString'
+
+        # Construct a model instance of ConfigElementDefConfigCloudInternetServicesConfig by calling from_dict on the json representation
+        config_element_def_config_cloud_internet_services_config_model = ConfigElementDefConfigCloudInternetServicesConfig.from_dict(config_element_def_config_cloud_internet_services_config_model_json)
+        assert config_element_def_config_cloud_internet_services_config_model != False
+
+        # Construct a model instance of ConfigElementDefConfigCloudInternetServicesConfig by calling from_dict on the json representation
+        config_element_def_config_cloud_internet_services_config_model_dict = ConfigElementDefConfigCloudInternetServicesConfig.from_dict(config_element_def_config_cloud_internet_services_config_model_json).__dict__
+        config_element_def_config_cloud_internet_services_config_model2 = ConfigElementDefConfigCloudInternetServicesConfig(**config_element_def_config_cloud_internet_services_config_model_dict)
+
+        # Verify the model instances are equivalent
+        assert config_element_def_config_cloud_internet_services_config_model == config_element_def_config_cloud_internet_services_config_model2
+
+        # Convert model instance back to dict and verify no loss of data
+        config_element_def_config_cloud_internet_services_config_model_json2 = config_element_def_config_cloud_internet_services_config_model.to_dict()
+        assert config_element_def_config_cloud_internet_services_config_model_json2 == config_element_def_config_cloud_internet_services_config_model_json
+
+class TestModel_ConfigElementDefConfigLetsEncryptConfig():
+    """
+    Test Class for ConfigElementDefConfigLetsEncryptConfig
+    """
+
+    def test_config_element_def_config_lets_encrypt_config_serialization(self):
+        """
+        Test serialization/deserialization for ConfigElementDefConfigLetsEncryptConfig
+        """
+
+        # Construct a json representation of a ConfigElementDefConfigLetsEncryptConfig model
+        config_element_def_config_lets_encrypt_config_model_json = {}
+        config_element_def_config_lets_encrypt_config_model_json['private_key'] = 'testString'
+
+        # Construct a model instance of ConfigElementDefConfigLetsEncryptConfig by calling from_dict on the json representation
+        config_element_def_config_lets_encrypt_config_model = ConfigElementDefConfigLetsEncryptConfig.from_dict(config_element_def_config_lets_encrypt_config_model_json)
+        assert config_element_def_config_lets_encrypt_config_model != False
+
+        # Construct a model instance of ConfigElementDefConfigLetsEncryptConfig by calling from_dict on the json representation
+        config_element_def_config_lets_encrypt_config_model_dict = ConfigElementDefConfigLetsEncryptConfig.from_dict(config_element_def_config_lets_encrypt_config_model_json).__dict__
+        config_element_def_config_lets_encrypt_config_model2 = ConfigElementDefConfigLetsEncryptConfig(**config_element_def_config_lets_encrypt_config_model_dict)
+
+        # Verify the model instances are equivalent
+        assert config_element_def_config_lets_encrypt_config_model == config_element_def_config_lets_encrypt_config_model2
+
+        # Convert model instance back to dict and verify no loss of data
+        config_element_def_config_lets_encrypt_config_model_json2 = config_element_def_config_lets_encrypt_config_model.to_dict()
+        assert config_element_def_config_lets_encrypt_config_model_json2 == config_element_def_config_lets_encrypt_config_model_json
+
 class TestModel_CreateIAMCredentialsSecretEngineRootConfig():
     """
     Test Class for CreateIAMCredentialsSecretEngineRootConfig
@@ -4320,6 +4425,7 @@ class TestModel_KvSecretResource():
         kv_secret_resource_model_json['last_update_date'] = "2018-04-12T23:20:50.520000Z"
         kv_secret_resource_model_json['versions_total'] = 1
         kv_secret_resource_model_json['versions'] = [{}]
+        kv_secret_resource_model_json['expiration_date'] = "2030-04-01T09:30:00Z"
         kv_secret_resource_model_json['payload'] = { 'foo': 'bar' }
         kv_secret_resource_model_json['secret_data'] = { 'foo': 'bar' }
 
@@ -4401,6 +4507,10 @@ class TestModel_PublicCertificateSecretMetadata():
         issuance_info_model['ca'] = 'testString'
         issuance_info_model['dns'] = 'testString'
 
+        certificate_validity_model = {} # CertificateValidity
+        certificate_validity_model['not_before'] = "2020-10-05T21:33:11Z"
+        certificate_validity_model['not_after'] = "2021-01-01T00:00:00Z"
+
         # Construct a json representation of a PublicCertificateSecretMetadata model
         public_certificate_secret_metadata_model_json = {}
         public_certificate_secret_metadata_model_json['id'] = 'b0283d74-0894-830b-f81d-1f115f67729f'
@@ -4426,6 +4536,8 @@ class TestModel_PublicCertificateSecretMetadata():
         public_certificate_secret_metadata_model_json['private_key_included'] = True
         public_certificate_secret_metadata_model_json['rotation'] = rotation_model
         public_certificate_secret_metadata_model_json['issuance_info'] = issuance_info_model
+        public_certificate_secret_metadata_model_json['validity'] = certificate_validity_model
+        public_certificate_secret_metadata_model_json['serial_number'] = 'd9:be:fe:35:ba:09:42:b5'
 
         # Construct a model instance of PublicCertificateSecretMetadata by calling from_dict on the json representation
         public_certificate_secret_metadata_model = PublicCertificateSecretMetadata.from_dict(public_certificate_secret_metadata_model_json)
@@ -4502,6 +4614,7 @@ class TestModel_PublicCertificateSecretResource():
         public_certificate_secret_resource_model_json['rotation'] = rotation_model
         public_certificate_secret_resource_model_json['issuance_info'] = issuance_info_model
         public_certificate_secret_resource_model_json['validity'] = certificate_validity_model
+        public_certificate_secret_resource_model_json['serial_number'] = 'd9:be:fe:35:ba:09:42:b5'
         public_certificate_secret_resource_model_json['secret_data'] = { 'foo': 'bar' }
 
         # Construct a model instance of PublicCertificateSecretResource by calling from_dict on the json representation
