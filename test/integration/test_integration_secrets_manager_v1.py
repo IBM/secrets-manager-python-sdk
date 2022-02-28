@@ -175,12 +175,12 @@ class TestPublicCertSecret(unittest.TestCase):
         assert response.status_code == 201
 
         response = secretsManager.get_config_element(
-            'public_cert', 'dns_providers', dns_config_name)
+            dns_config_name, 'public_cert', 'dns_providers')
 
         assert response.status_code == 200
 
         response = secretsManager.get_config_element(
-            'public_cert', 'certificate_authorities', ca_config_name)
+            ca_config_name, 'public_cert', 'certificate_authorities')
 
         assert response.status_code == 200
 
@@ -192,12 +192,12 @@ class TestPublicCertSecret(unittest.TestCase):
         assert response.result['resources'][0]['certificate_authorities'] is not None
 
         response = secretsManager.delete_config_element(
-            'public_cert', 'certificate_authorities', ca_config_name)
+            ca_config_name, 'public_cert', 'certificate_authorities')
 
         assert response.status_code == 204
 
         response = secretsManager.delete_config_element(
-            'public_cert', 'dns_providers', dns_config_name)
+            dns_config_name, 'public_cert', 'dns_providers')
 
         assert response.status_code == 204
 
