@@ -1156,8 +1156,14 @@ class SecretsManagerV1(BaseService):
 
         Adds a configuration element to the specified secret type.
         Use this method to define the configurations that are required to enable the
-        public certificates (`public_cert`) engine. You can add up to 10 certificate
-        authority and DNS provider configurations for your instance.
+        public certificates (`public_cert`) engine and the private certificates
+        (`private_cert`) engine.
+        You can add multiple configurations for your instance as follows:
+        - Up to 10 public certificate authority configurations
+        - Up to 10 DNS provider configurations
+        - Up to 10 private root certifiate authority configurations
+        - Up to 10 private intermediate certifiate authority configurations
+        - Up to 10 certificate templates.
 
         :param str secret_type: The secret type.
         :param str config_element: The configuration element to define or manage.
@@ -1256,9 +1262,9 @@ class SecretsManagerV1(BaseService):
         return response
 
     def get_config_element(self,
-                           config_name: str,
                            secret_type: str,
                            config_element: str,
+                           config_name: str,
                            **kwargs
                            ) -> DetailedResponse:
         """
@@ -1267,20 +1273,20 @@ class SecretsManagerV1(BaseService):
         Retrieves the details of a specific configuration that is associated with a secret
         type.
 
-        :param str config_name: The name of your configuration.
         :param str secret_type: The secret type.
         :param str config_element: The configuration element to define or manage.
+        :param str config_name: The name of your configuration.
         :param dict headers: A `dict` containing the request headers
         :return: A `DetailedResponse` containing the result, headers and HTTP status code.
         :rtype: DetailedResponse with `dict` result representing a `GetSingleConfigElement` object
         """
 
-        if config_name is None:
-            raise ValueError('config_name must be provided')
         if secret_type is None:
             raise ValueError('secret_type must be provided')
         if config_element is None:
             raise ValueError('config_element must be provided')
+        if config_name is None:
+            raise ValueError('config_name must be provided')
         headers = {}
         sdk_headers = get_sdk_headers(service_name=self.DEFAULT_SERVICE_NAME,
                                       service_version='V1',
@@ -1291,8 +1297,8 @@ class SecretsManagerV1(BaseService):
             headers.update(kwargs.get('headers'))
         headers['Accept'] = 'application/json'
 
-        path_param_keys = ['config_name', 'secret_type', 'config_element']
-        path_param_values = self.encode_path_vars(config_name, secret_type, config_element)
+        path_param_keys = ['secret_type', 'config_element', 'config_name']
+        path_param_values = self.encode_path_vars(secret_type, config_element, config_name)
         path_param_dict = dict(zip(path_param_keys, path_param_values))
         url = '/api/v1/config/{secret_type}/{config_element}/{config_name}'.format(**path_param_dict)
         request = self.prepare_request(method='GET',
@@ -1303,9 +1309,9 @@ class SecretsManagerV1(BaseService):
         return response
 
     def update_config_element(self,
-                              config_name: str,
                               secret_type: str,
                               config_element: str,
+                              config_name: str,
                               type: str,
                               config: object,
                               **kwargs
@@ -1315,9 +1321,9 @@ class SecretsManagerV1(BaseService):
 
         Updates a configuration element that is associated with the specified secret type.
 
-        :param str config_name: The name of your configuration.
         :param str secret_type: The secret type.
         :param str config_element: The configuration element to define or manage.
+        :param str config_name: The name of your configuration.
         :param str type: The type of configuration. Value options differ depending
                on the `config_element` property that you want to define.
         :param object config: Properties that describe a configuration, which
@@ -1327,12 +1333,12 @@ class SecretsManagerV1(BaseService):
         :rtype: DetailedResponse with `dict` result representing a `GetSingleConfigElement` object
         """
 
-        if config_name is None:
-            raise ValueError('config_name must be provided')
         if secret_type is None:
             raise ValueError('secret_type must be provided')
         if config_element is None:
             raise ValueError('config_element must be provided')
+        if config_name is None:
+            raise ValueError('config_name must be provided')
         if type is None:
             raise ValueError('type must be provided')
         if config is None:
@@ -1355,8 +1361,8 @@ class SecretsManagerV1(BaseService):
             headers.update(kwargs.get('headers'))
         headers['Accept'] = 'application/json'
 
-        path_param_keys = ['config_name', 'secret_type', 'config_element']
-        path_param_values = self.encode_path_vars(config_name, secret_type, config_element)
+        path_param_keys = ['secret_type', 'config_element', 'config_name']
+        path_param_values = self.encode_path_vars(secret_type, config_element, config_name)
         path_param_dict = dict(zip(path_param_keys, path_param_values))
         url = '/api/v1/config/{secret_type}/{config_element}/{config_name}'.format(**path_param_dict)
         request = self.prepare_request(method='PUT',
@@ -1368,9 +1374,9 @@ class SecretsManagerV1(BaseService):
         return response
 
     def delete_config_element(self,
-                              config_name: str,
                               secret_type: str,
                               config_element: str,
+                              config_name: str,
                               **kwargs
                               ) -> DetailedResponse:
         """
@@ -1378,20 +1384,20 @@ class SecretsManagerV1(BaseService):
 
         Deletes a configuration element from the specified secret type.
 
-        :param str config_name: The name of your configuration.
         :param str secret_type: The secret type.
         :param str config_element: The configuration element to define or manage.
+        :param str config_name: The name of your configuration.
         :param dict headers: A `dict` containing the request headers
         :return: A `DetailedResponse` containing the result, headers and HTTP status code.
         :rtype: DetailedResponse
         """
 
-        if config_name is None:
-            raise ValueError('config_name must be provided')
         if secret_type is None:
             raise ValueError('secret_type must be provided')
         if config_element is None:
             raise ValueError('config_element must be provided')
+        if config_name is None:
+            raise ValueError('config_name must be provided')
         headers = {}
         sdk_headers = get_sdk_headers(service_name=self.DEFAULT_SERVICE_NAME,
                                       service_version='V1',
@@ -1401,8 +1407,8 @@ class SecretsManagerV1(BaseService):
         if 'headers' in kwargs:
             headers.update(kwargs.get('headers'))
 
-        path_param_keys = ['config_name', 'secret_type', 'config_element']
-        path_param_values = self.encode_path_vars(config_name, secret_type, config_element)
+        path_param_keys = ['secret_type', 'config_element', 'config_name']
+        path_param_values = self.encode_path_vars(secret_type, config_element, config_name)
         path_param_dict = dict(zip(path_param_keys, path_param_values))
         url = '/api/v1/config/{secret_type}/{config_element}/{config_name}'.format(**path_param_dict)
         request = self.prepare_request(method='DELETE',

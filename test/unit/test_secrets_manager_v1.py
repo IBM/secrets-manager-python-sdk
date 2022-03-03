@@ -2370,15 +2370,15 @@ class TestGetConfigElement():
                       status=200)
 
         # Set up parameter values
-        config_name = 'testString'
         secret_type = 'public_cert'
         config_element = 'certificate_authorities'
+        config_name = 'testString'
 
         # Invoke method
         response = _service.get_config_element(
-            config_name,
             secret_type,
             config_element,
+            config_name,
             headers={}
         )
 
@@ -2410,15 +2410,15 @@ class TestGetConfigElement():
                       status=200)
 
         # Set up parameter values
-        config_name = 'testString'
         secret_type = 'public_cert'
         config_element = 'certificate_authorities'
+        config_name = 'testString'
 
         # Pass in all but one required param and check for a ValueError
         req_param_dict = {
-            "config_name": config_name,
             "secret_type": secret_type,
             "config_element": config_element,
+            "config_name": config_name,
         }
         for param in req_param_dict.keys():
             req_copy = {key: val if key is not param else None for (key, val) in req_param_dict.items()}
@@ -2455,17 +2455,17 @@ class TestUpdateConfigElement():
                       status=200)
 
         # Set up parameter values
-        config_name = 'testString'
         secret_type = 'public_cert'
         config_element = 'certificate_authorities'
+        config_name = 'testString'
         type = 'letsencrypt'
         config = {'foo': 'bar'}
 
         # Invoke method
         response = _service.update_config_element(
-            config_name,
             secret_type,
             config_element,
+            config_name,
             type,
             config,
             headers={}
@@ -2503,17 +2503,17 @@ class TestUpdateConfigElement():
                       status=200)
 
         # Set up parameter values
-        config_name = 'testString'
         secret_type = 'public_cert'
         config_element = 'certificate_authorities'
+        config_name = 'testString'
         type = 'letsencrypt'
         config = {'foo': 'bar'}
 
         # Pass in all but one required param and check for a ValueError
         req_param_dict = {
-            "config_name": config_name,
             "secret_type": secret_type,
             "config_element": config_element,
+            "config_name": config_name,
             "type": type,
             "config": config,
         }
@@ -2549,15 +2549,15 @@ class TestDeleteConfigElement():
                       status=204)
 
         # Set up parameter values
-        config_name = 'testString'
         secret_type = 'public_cert'
         config_element = 'certificate_authorities'
+        config_name = 'testString'
 
         # Invoke method
         response = _service.delete_config_element(
-            config_name,
             secret_type,
             config_element,
+            config_name,
             headers={}
         )
 
@@ -2586,15 +2586,15 @@ class TestDeleteConfigElement():
                       status=204)
 
         # Set up parameter values
-        config_name = 'testString'
         secret_type = 'public_cert'
         config_element = 'certificate_authorities'
+        config_name = 'testString'
 
         # Pass in all but one required param and check for a ValueError
         req_param_dict = {
-            "config_name": config_name,
             "secret_type": secret_type,
             "config_element": config_element,
+            "config_name": config_name,
         }
         for param in req_param_dict.keys():
             req_copy = {key: val if key is not param else None for (key, val) in req_param_dict.items()}
