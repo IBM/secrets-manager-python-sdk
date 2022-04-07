@@ -20,7 +20,6 @@ import os
 import time
 import unittest
 
-import pytest
 from ibm_cloud_sdk_core.authenticators.iam_authenticator import IAMAuthenticator
 from ibm_cloud_sdk_core.api_exception import ApiException
 from ibm_secrets_manager_sdk.secrets_manager_v1 import *
@@ -383,7 +382,6 @@ def clear_configs(secretsManager, prefix=''):
 def clear_secrets(secretsManager, prefix=''):
     response = secretsManager.list_all_secrets()
     secrets = response.result['resources']
-    # pytest.set_trace()
     for secret in secrets:
         if prefix == '' or secret["name"].startswith(prefix):
             secretsManager.delete_secret(secret['secret_type'], secret['id'])
