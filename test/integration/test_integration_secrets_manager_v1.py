@@ -24,11 +24,18 @@ from ibm_cloud_sdk_core.authenticators.iam_authenticator import IAMAuthenticator
 from ibm_cloud_sdk_core.api_exception import ApiException
 from ibm_secrets_manager_sdk.secrets_manager_v1 import *
 
+TEST_CASE_PREFIX = 'Python-SDK_'
 secretsManager = SecretsManagerV1(
     authenticator=IAMAuthenticator(apikey=os.environ.get('SECRETS_MANAGER_API_APIKEY'), url=os.environ.get('AUTH_URL'))
 )
 
 secretsManager.set_service_url(os.environ.get('SERVICE_URL'))
+
+
+def setUpModule():
+    clear_secrets(secretsManager, TEST_CASE_PREFIX)
+    clear_secret_groups(secretsManager, TEST_CASE_PREFIX)
+    clear_configs(secretsManager, TEST_CASE_PREFIX)
 
 
 class TestArbitrarySecret(unittest.TestCase):
@@ -82,7 +89,7 @@ class TestArbitrarySecret(unittest.TestCase):
         assert response.status_code == 204
 
     def test_create_a_secret_with_the_same_name(self):
-        secretName = 'conflict_integration_test_secret'
+        secretName = generate_name()
         # create arbitrary secret
         response = secretsManager.create_secret(
             'arbitrary',
@@ -153,6 +160,22 @@ class TestPublicCertSecret(unittest.TestCase):
         )
         assert response.status_code == 202
         secret_id = response.result['resources'][0]['id']
+
+        response = secretsManager.delete_secret(
+            'public_cert',
+            secret_id
+        )
+        assert response.status_code == 204
+
+        response = secretsManager.delete_config_element(
+            'public_cert', 'certificate_authorities', ca_config_name)
+
+        assert response.status_code == 204
+
+        response = secretsManager.delete_config_element(
+            'public_cert', 'dns_providers', dns_config_name)
+
+        assert response.status_code == 204
 
     def test_create_get_list_delete_configs(self):
         ca_config_name = generate_name() + '-ca'
@@ -335,10 +358,38 @@ class TestImportedCertSecret(unittest.TestCase):
 
 
 def generate_name():
-    return 'test-integration-' + str(int(time.time()))
+    return TEST_CASE_PREFIX + 'test-integration-' + str(int(time.time()))
 
 
 def generate_expiration_date():
     now = datetime.utcnow()
     expiration = now.replace(year=now.year + 10)
     return expiration.isoformat('T') + 'Z'
+
+
+def clear_configs(secretsManager, prefix=''):
+    response = secretsManager.get_config('public_cert')
+
+    for c in response.result['resources'][0]['certificate_authorities']:
+        if prefix == '' or c['name'].startswith(prefix):
+            secretsManager.delete_config_element('public_cert', 'certificate_authorities', c['name'])
+
+    for c in response.result['resources'][0]['dns_providers']:
+        if prefix == '' or c['name'].startswith(prefix):
+            secretsManager.delete_config_element('public_cert', 'dns_providers', c['name'])
+
+
+def clear_secrets(secretsManager, prefix=''):
+    response = secretsManager.list_all_secrets()
+    secrets = response.result['resources']
+    for secret in secrets:
+        if prefix == '' or secret["name"].startswith(prefix):
+            secretsManager.delete_secret(secret['secret_type'], secret['id'])
+
+
+def clear_secret_groups(secretsManager, prefix=''):
+    response = secretsManager.list_secret_groups()
+    secretGroups = response.result['resources']
+    for secretGroup in secretGroups:
+        if prefix == '' or secretGroup['name'].startswith(prefix):
+            secretsManager.delete_secret_group(secretGroup['id'])
