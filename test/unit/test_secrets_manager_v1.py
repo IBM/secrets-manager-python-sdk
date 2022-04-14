@@ -2641,7 +2641,7 @@ class TestActionOnConfigElement():
         """
         # Set up mock
         url = preprocess_url('/api/v1/config/private_cert/root_certificate_authorities/testString')
-        mock_response = '{"metadata": {"collection_type": "application/vnd.ibm.secrets-manager.config+json", "collection_total": 1}, "resources": [{"name": "name", "type": "letsencrypt", "config": {"common_name": "example.com", "alt_names": "alt_names", "ip_sans": "ip_sans", "uri_sans": "uri_sans", "other_sans": ["other_sans"], "ttl": "12h", "format": "pem", "max_path_length": 15, "exclude_cn_from_sans": false, "permitted_dns_domains": ["permitted_dns_domains"], "use_csr_values": false, "ou": ["ou"], "organization": ["organization"], "country": ["country"], "locality": ["locality"], "province": ["province"], "street_address": ["street_address"], "postal_code": ["postal_code"], "serial_number": "d9:be:fe:35:ba:09:42:b5", "data": {"certificate": "certificate", "serial_number": "d9:be:fe:35:ba:09:42:b5", "issuing_ca": "issuing_ca", "ca_chain": ["ca_chain"], "expiration": 10}, "csr": "csr"}}]}'
+        mock_response = '{"metadata": {"collection_type": "application/vnd.ibm.secrets-manager.config+json", "collection_total": 1}, "resources": [{"name": "name", "type": "letsencrypt", "config": {"common_name": "example.com", "alt_names": ["alt_names"], "ip_sans": "ip_sans", "uri_sans": "uri_sans", "other_sans": ["other_sans"], "ttl": "12h", "format": "pem", "max_path_length": 15, "exclude_cn_from_sans": false, "permitted_dns_domains": ["permitted_dns_domains"], "use_csr_values": false, "ou": ["ou"], "organization": ["organization"], "country": ["country"], "locality": ["locality"], "province": ["province"], "street_address": ["street_address"], "postal_code": ["postal_code"], "serial_number": "d9:be:fe:35:ba:09:42:b5", "data": {"certificate": "certificate", "serial_number": "d9:be:fe:35:ba:09:42:b5", "issuing_ca": "issuing_ca", "ca_chain": ["ca_chain"], "expiration": 10}, "csr": "csr"}}]}'
         responses.add(responses.POST,
                       url,
                       body=mock_response,
@@ -2651,7 +2651,7 @@ class TestActionOnConfigElement():
         # Construct a dict representation of a SignCsrAction model
         config_action_model = {}
         config_action_model['common_name'] = 'example.com'
-        config_action_model['alt_names'] = 'testString'
+        config_action_model['alt_names'] = ['testString']
         config_action_model['ip_sans'] = 'testString'
         config_action_model['uri_sans'] = 'testString'
         config_action_model['other_sans'] = ['testString']
@@ -2715,7 +2715,7 @@ class TestActionOnConfigElement():
         """
         # Set up mock
         url = preprocess_url('/api/v1/config/private_cert/root_certificate_authorities/testString')
-        mock_response = '{"metadata": {"collection_type": "application/vnd.ibm.secrets-manager.config+json", "collection_total": 1}, "resources": [{"name": "name", "type": "letsencrypt", "config": {"common_name": "example.com", "alt_names": "alt_names", "ip_sans": "ip_sans", "uri_sans": "uri_sans", "other_sans": ["other_sans"], "ttl": "12h", "format": "pem", "max_path_length": 15, "exclude_cn_from_sans": false, "permitted_dns_domains": ["permitted_dns_domains"], "use_csr_values": false, "ou": ["ou"], "organization": ["organization"], "country": ["country"], "locality": ["locality"], "province": ["province"], "street_address": ["street_address"], "postal_code": ["postal_code"], "serial_number": "d9:be:fe:35:ba:09:42:b5", "data": {"certificate": "certificate", "serial_number": "d9:be:fe:35:ba:09:42:b5", "issuing_ca": "issuing_ca", "ca_chain": ["ca_chain"], "expiration": 10}, "csr": "csr"}}]}'
+        mock_response = '{"metadata": {"collection_type": "application/vnd.ibm.secrets-manager.config+json", "collection_total": 1}, "resources": [{"name": "name", "type": "letsencrypt", "config": {"common_name": "example.com", "alt_names": ["alt_names"], "ip_sans": "ip_sans", "uri_sans": "uri_sans", "other_sans": ["other_sans"], "ttl": "12h", "format": "pem", "max_path_length": 15, "exclude_cn_from_sans": false, "permitted_dns_domains": ["permitted_dns_domains"], "use_csr_values": false, "ou": ["ou"], "organization": ["organization"], "country": ["country"], "locality": ["locality"], "province": ["province"], "street_address": ["street_address"], "postal_code": ["postal_code"], "serial_number": "d9:be:fe:35:ba:09:42:b5", "data": {"certificate": "certificate", "serial_number": "d9:be:fe:35:ba:09:42:b5", "issuing_ca": "issuing_ca", "ca_chain": ["ca_chain"], "expiration": 10}, "csr": "csr"}}]}'
         responses.add(responses.POST,
                       url,
                       body=mock_response,
@@ -2761,7 +2761,7 @@ class TestActionOnConfigElement():
         """
         # Set up mock
         url = preprocess_url('/api/v1/config/private_cert/root_certificate_authorities/testString')
-        mock_response = '{"metadata": {"collection_type": "application/vnd.ibm.secrets-manager.config+json", "collection_total": 1}, "resources": [{"name": "name", "type": "letsencrypt", "config": {"common_name": "example.com", "alt_names": "alt_names", "ip_sans": "ip_sans", "uri_sans": "uri_sans", "other_sans": ["other_sans"], "ttl": "12h", "format": "pem", "max_path_length": 15, "exclude_cn_from_sans": false, "permitted_dns_domains": ["permitted_dns_domains"], "use_csr_values": false, "ou": ["ou"], "organization": ["organization"], "country": ["country"], "locality": ["locality"], "province": ["province"], "street_address": ["street_address"], "postal_code": ["postal_code"], "serial_number": "d9:be:fe:35:ba:09:42:b5", "data": {"certificate": "certificate", "serial_number": "d9:be:fe:35:ba:09:42:b5", "issuing_ca": "issuing_ca", "ca_chain": ["ca_chain"], "expiration": 10}, "csr": "csr"}}]}'
+        mock_response = '{"metadata": {"collection_type": "application/vnd.ibm.secrets-manager.config+json", "collection_total": 1}, "resources": [{"name": "name", "type": "letsencrypt", "config": {"common_name": "example.com", "alt_names": ["alt_names"], "ip_sans": "ip_sans", "uri_sans": "uri_sans", "other_sans": ["other_sans"], "ttl": "12h", "format": "pem", "max_path_length": 15, "exclude_cn_from_sans": false, "permitted_dns_domains": ["permitted_dns_domains"], "use_csr_values": false, "ou": ["ou"], "organization": ["organization"], "country": ["country"], "locality": ["locality"], "province": ["province"], "street_address": ["street_address"], "postal_code": ["postal_code"], "serial_number": "d9:be:fe:35:ba:09:42:b5", "data": {"certificate": "certificate", "serial_number": "d9:be:fe:35:ba:09:42:b5", "issuing_ca": "issuing_ca", "ca_chain": ["ca_chain"], "expiration": 10}, "csr": "csr"}}]}'
         responses.add(responses.POST,
                       url,
                       body=mock_response,
@@ -3198,7 +3198,7 @@ class TestModel_ConfigElementActionData():
 
         config_element_action_result_config_model = {}  # SignCsrActionResult
         config_element_action_result_config_model['common_name'] = 'example.com'
-        config_element_action_result_config_model['alt_names'] = 'testString'
+        config_element_action_result_config_model['alt_names'] = ['testString']
         config_element_action_result_config_model['ip_sans'] = 'testString'
         config_element_action_result_config_model['uri_sans'] = 'testString'
         config_element_action_result_config_model['other_sans'] = ['testString']
@@ -3267,7 +3267,7 @@ class TestModel_ConfigElementActionResult():
 
         config_element_action_result_config_model = {}  # SignCsrActionResult
         config_element_action_result_config_model['common_name'] = 'example.com'
-        config_element_action_result_config_model['alt_names'] = 'testString'
+        config_element_action_result_config_model['alt_names'] = ['testString']
         config_element_action_result_config_model['ip_sans'] = 'testString'
         config_element_action_result_config_model['uri_sans'] = 'testString'
         config_element_action_result_config_model['other_sans'] = ['testString']
@@ -3789,7 +3789,7 @@ class TestModel_IntermediateCertificateAuthoritiesConfigItem():
         intermediate_certificate_authority_config_model['common_name'] = 'example.com'
         intermediate_certificate_authority_config_model['status'] = 'signing_required'
         intermediate_certificate_authority_config_model['expiration_date'] = '2030-04-01T09:30:00Z'
-        intermediate_certificate_authority_config_model['alt_names'] = 'testString'
+        intermediate_certificate_authority_config_model['alt_names'] = ['testString']
         intermediate_certificate_authority_config_model['ip_sans'] = 'testString'
         intermediate_certificate_authority_config_model['uri_sans'] = 'testString'
         intermediate_certificate_authority_config_model['other_sans'] = ['testString']
@@ -4025,7 +4025,7 @@ class TestModel_RootCertificateAuthoritiesConfigItem():
         root_certificate_authority_config_model['common_name'] = 'example.com'
         root_certificate_authority_config_model['status'] = 'signing_required'
         root_certificate_authority_config_model['expiration_date'] = '2030-04-01T09:30:00Z'
-        root_certificate_authority_config_model['alt_names'] = 'testString'
+        root_certificate_authority_config_model['alt_names'] = ['testString']
         root_certificate_authority_config_model['ip_sans'] = 'testString'
         root_certificate_authority_config_model['uri_sans'] = 'testString'
         root_certificate_authority_config_model['other_sans'] = ['testString']
@@ -5526,7 +5526,7 @@ class TestModel_IntermediateCertificateAuthoritiesConfig():
         intermediate_certificate_authority_config_model['common_name'] = 'example.com'
         intermediate_certificate_authority_config_model['status'] = 'signing_required'
         intermediate_certificate_authority_config_model['expiration_date'] = '2030-04-01T09:30:00Z'
-        intermediate_certificate_authority_config_model['alt_names'] = 'testString'
+        intermediate_certificate_authority_config_model['alt_names'] = ['testString']
         intermediate_certificate_authority_config_model['ip_sans'] = 'testString'
         intermediate_certificate_authority_config_model['uri_sans'] = 'testString'
         intermediate_certificate_authority_config_model['other_sans'] = ['testString']
@@ -5597,7 +5597,7 @@ class TestModel_IntermediateCertificateAuthorityConfig():
         intermediate_certificate_authority_config_model_json['common_name'] = 'example.com'
         intermediate_certificate_authority_config_model_json['status'] = 'signing_required'
         intermediate_certificate_authority_config_model_json['expiration_date'] = '2030-04-01T09:30:00Z'
-        intermediate_certificate_authority_config_model_json['alt_names'] = 'testString'
+        intermediate_certificate_authority_config_model_json['alt_names'] = ['testString']
         intermediate_certificate_authority_config_model_json['ip_sans'] = 'testString'
         intermediate_certificate_authority_config_model_json['uri_sans'] = 'testString'
         intermediate_certificate_authority_config_model_json['other_sans'] = ['testString']
@@ -5780,7 +5780,7 @@ class TestModel_PrivateCertSecretEngineRootConfig():
         root_certificate_authority_config_model['common_name'] = 'example.com'
         root_certificate_authority_config_model['status'] = 'signing_required'
         root_certificate_authority_config_model['expiration_date'] = '2030-04-01T09:30:00Z'
-        root_certificate_authority_config_model['alt_names'] = 'testString'
+        root_certificate_authority_config_model['alt_names'] = ['testString']
         root_certificate_authority_config_model['ip_sans'] = 'testString'
         root_certificate_authority_config_model['uri_sans'] = 'testString'
         root_certificate_authority_config_model['other_sans'] = ['testString']
@@ -5813,7 +5813,7 @@ class TestModel_PrivateCertSecretEngineRootConfig():
         intermediate_certificate_authority_config_model['common_name'] = 'example.com'
         intermediate_certificate_authority_config_model['status'] = 'signing_required'
         intermediate_certificate_authority_config_model['expiration_date'] = '2030-04-01T09:30:00Z'
-        intermediate_certificate_authority_config_model['alt_names'] = 'testString'
+        intermediate_certificate_authority_config_model['alt_names'] = ['testString']
         intermediate_certificate_authority_config_model['ip_sans'] = 'testString'
         intermediate_certificate_authority_config_model['uri_sans'] = 'testString'
         intermediate_certificate_authority_config_model['other_sans'] = ['testString']
@@ -5940,7 +5940,7 @@ class TestModel_PrivateCertificateSecretMetadata():
         private_certificate_secret_metadata_model_json['certificate_template'] = 'cert-template-1'
         private_certificate_secret_metadata_model_json['certificate_authority'] = 'testString'
         private_certificate_secret_metadata_model_json['common_name'] = 'example.com'
-        private_certificate_secret_metadata_model_json['alt_names'] = 'testString'
+        private_certificate_secret_metadata_model_json['alt_names'] = ['testString']
         private_certificate_secret_metadata_model_json['ip_sans'] = 'testString'
         private_certificate_secret_metadata_model_json['uri_sans'] = 'testString'
         private_certificate_secret_metadata_model_json['other_sans'] = ['testString']
@@ -6018,7 +6018,7 @@ class TestModel_PrivateCertificateSecretResource():
         private_certificate_secret_resource_model_json['certificate_template'] = 'cert-template-1'
         private_certificate_secret_resource_model_json['certificate_authority'] = 'testString'
         private_certificate_secret_resource_model_json['common_name'] = 'example.com'
-        private_certificate_secret_resource_model_json['alt_names'] = 'testString'
+        private_certificate_secret_resource_model_json['alt_names'] = ['testString']
         private_certificate_secret_resource_model_json['ip_sans'] = 'testString'
         private_certificate_secret_resource_model_json['uri_sans'] = 'testString'
         private_certificate_secret_resource_model_json['other_sans'] = ['testString']
@@ -6532,7 +6532,7 @@ class TestModel_RootCertificateAuthoritiesConfig():
         root_certificate_authority_config_model['common_name'] = 'example.com'
         root_certificate_authority_config_model['status'] = 'signing_required'
         root_certificate_authority_config_model['expiration_date'] = '2030-04-01T09:30:00Z'
-        root_certificate_authority_config_model['alt_names'] = 'testString'
+        root_certificate_authority_config_model['alt_names'] = ['testString']
         root_certificate_authority_config_model['ip_sans'] = 'testString'
         root_certificate_authority_config_model['uri_sans'] = 'testString'
         root_certificate_authority_config_model['other_sans'] = ['testString']
@@ -6603,7 +6603,7 @@ class TestModel_RootCertificateAuthorityConfig():
         root_certificate_authority_config_model_json['common_name'] = 'example.com'
         root_certificate_authority_config_model_json['status'] = 'signing_required'
         root_certificate_authority_config_model_json['expiration_date'] = '2030-04-01T09:30:00Z'
-        root_certificate_authority_config_model_json['alt_names'] = 'testString'
+        root_certificate_authority_config_model_json['alt_names'] = ['testString']
         root_certificate_authority_config_model_json['ip_sans'] = 'testString'
         root_certificate_authority_config_model_json['uri_sans'] = 'testString'
         root_certificate_authority_config_model_json['other_sans'] = ['testString']
@@ -6973,7 +6973,7 @@ class TestModel_SignCsrAction():
         # Construct a json representation of a SignCsrAction model
         sign_csr_action_model_json = {}
         sign_csr_action_model_json['common_name'] = 'example.com'
-        sign_csr_action_model_json['alt_names'] = 'testString'
+        sign_csr_action_model_json['alt_names'] = ['testString']
         sign_csr_action_model_json['ip_sans'] = 'testString'
         sign_csr_action_model_json['uri_sans'] = 'testString'
         sign_csr_action_model_json['other_sans'] = ['testString']
@@ -7031,7 +7031,7 @@ class TestModel_SignCsrActionResult():
         # Construct a json representation of a SignCsrActionResult model
         sign_csr_action_result_model_json = {}
         sign_csr_action_result_model_json['common_name'] = 'example.com'
-        sign_csr_action_result_model_json['alt_names'] = 'testString'
+        sign_csr_action_result_model_json['alt_names'] = ['testString']
         sign_csr_action_result_model_json['ip_sans'] = 'testString'
         sign_csr_action_result_model_json['uri_sans'] = 'testString'
         sign_csr_action_result_model_json['other_sans'] = ['testString']
@@ -7081,7 +7081,7 @@ class TestModel_SignIntermediateAction():
         # Construct a json representation of a SignIntermediateAction model
         sign_intermediate_action_model_json = {}
         sign_intermediate_action_model_json['common_name'] = 'example.com'
-        sign_intermediate_action_model_json['alt_names'] = 'testString'
+        sign_intermediate_action_model_json['alt_names'] = ['testString']
         sign_intermediate_action_model_json['ip_sans'] = 'testString'
         sign_intermediate_action_model_json['uri_sans'] = 'testString'
         sign_intermediate_action_model_json['other_sans'] = ['testString']
@@ -7140,7 +7140,7 @@ class TestModel_SignIntermediateActionResult():
         # Construct a json representation of a SignIntermediateActionResult model
         sign_intermediate_action_result_model_json = {}
         sign_intermediate_action_result_model_json['common_name'] = 'example.com'
-        sign_intermediate_action_result_model_json['alt_names'] = 'testString'
+        sign_intermediate_action_result_model_json['alt_names'] = ['testString']
         sign_intermediate_action_result_model_json['ip_sans'] = 'testString'
         sign_intermediate_action_result_model_json['uri_sans'] = 'testString'
         sign_intermediate_action_result_model_json['other_sans'] = ['testString']

@@ -6482,8 +6482,8 @@ class CertificateTemplateConfig(ConfigElementDefConfig):
           representation of a duration in hours, for example '8760h'. Note that in the API
           response the value is returned in seconds (integer).
           Minimum value is one hour (`1h`). Maximum value is 100 years (`876000h`).
-    :attr object ttl: (optional) The time-to-live (TTL) or lease duration to assign
-          to a private certificate.
+    :attr str ttl: (optional) The time-to-live (TTL) or lease duration to assign to
+          a private certificate.
           The value can be supplied as a string representation of a duration, such as
           `12h`. Hour (`h`) is the largest time suffix. The value can't exceed the
           `max_ttl` that is defined in the associated certificate template. Note that in
@@ -6545,11 +6545,12 @@ class CertificateTemplateConfig(ConfigElementDefConfig):
     :attr str key_type: (optional) The type of private key to generate for private
           certificates and the type of key that is expected for submitted certificate
           signing requests (CSRs).
-          Allowable values are: `rsa`, `ec` and `any`. A value of `any` allow keys of
-          either type and with any bit size. The bit size must be greater than 1024 bits
-          for RSA keys.
+          Allowable values are: `rsa` and `ec`.
     :attr int key_bits: (optional) The number of bits to use when generating the
           private key.
+          Allowable values for RSA keys are: 2048 and 4096. Allowable values for EC keys
+          are: 224, 256, 384 And 521. The default for RSA keys is 2048, and the default
+          for EC keys is 256.
     :attr List[str] key_usage: (optional) The allowed key usage constraint to define
           for private certificates.
           You can find valid values in the [Go x509 package
@@ -6612,7 +6613,7 @@ class CertificateTemplateConfig(ConfigElementDefConfig):
                  *,
                  allowed_secret_groups: str = None,
                  max_ttl: object = None,
-                 ttl: object = None,
+                 ttl: str = None,
                  allow_localhost: bool = None,
                  allowed_domains: List[str] = None,
                  allowed_domains_template: bool = None,
@@ -6660,7 +6661,7 @@ class CertificateTemplateConfig(ConfigElementDefConfig):
                string representation of a duration in hours, for example '8760h'. Note
                that in the API response the value is returned in seconds (integer).
                Minimum value is one hour (`1h`). Maximum value is 100 years (`876000h`).
-        :param object ttl: (optional) The time-to-live (TTL) or lease duration to
+        :param str ttl: (optional) The time-to-live (TTL) or lease duration to
                assign to a private certificate.
                The value can be supplied as a string representation of a duration, such as
                `12h`. Hour (`h`) is the largest time suffix. The value can't exceed the
@@ -6723,11 +6724,12 @@ class CertificateTemplateConfig(ConfigElementDefConfig):
         :param str key_type: (optional) The type of private key to generate for
                private certificates and the type of key that is expected for submitted
                certificate signing requests (CSRs).
-               Allowable values are: `rsa`, `ec` and `any`. A value of `any` allow keys of
-               either type and with any bit size. The bit size must be greater than 1024
-               bits for RSA keys.
+               Allowable values are: `rsa` and `ec`.
         :param int key_bits: (optional) The number of bits to use when generating
                the private key.
+               Allowable values for RSA keys are: 2048 and 4096. Allowable values for EC
+               keys are: 224, 256, 384 And 521. The default for RSA keys is 2048, and the
+               default for EC keys is 256.
         :param List[str] key_usage: (optional) The allowed key usage constraint to
                define for private certificates.
                You can find valid values in the [Go x509 package
@@ -7019,13 +7021,10 @@ class CertificateTemplateConfig(ConfigElementDefConfig):
         """
         The type of private key to generate for private certificates and the type of key
         that is expected for submitted certificate signing requests (CSRs).
-        Allowable values are: `rsa`, `ec` and `any`. A value of `any` allow keys of either
-        type and with any bit size. The bit size must be greater than 1024 bits for RSA
-        keys.
+        Allowable values are: `rsa` and `ec`.
         """
         RSA = 'rsa'
         EC = 'ec'
-        ANY = 'any'
 
 
 class ConfigElementDefConfigClassicInfrastructureConfig(ConfigElementDefConfig):
@@ -7990,8 +7989,8 @@ class IAMCredentialsSecretResource(SecretResource):
     :attr List[dict] versions: (optional) An array that contains metadata for each
           secret version. For more information on the metadata properties, see [Get secret
           version metadata](#get-secret-version-metadata).
-    :attr object ttl: (optional) The time-to-live (TTL) or lease duration to assign
-          to generated credentials.
+    :attr str ttl: (optional) The time-to-live (TTL) or lease duration to assign to
+          generated credentials.
           For `iam_credentials` secrets, the TTL defines for how long each generated API
           key remains valid. The value can be either an integer that specifies the number
           of seconds, or the string representation of a duration, such as `120m` or `24h`.
@@ -8049,7 +8048,7 @@ class IAMCredentialsSecretResource(SecretResource):
                  last_update_date: datetime = None,
                  versions_total: int = None,
                  versions: List[dict] = None,
-                 ttl: object = None,
+                 ttl: str = None,
                  access_groups: List[str] = None,
                  api_key: str = None,
                  api_key_id: str = None,
@@ -8076,7 +8075,7 @@ class IAMCredentialsSecretResource(SecretResource):
                bracket, comma, colon, ampersand, and vertical pipe character (|).
                To protect your privacy, do not use personal data, such as your name or
                location, as a label for your secret.
-        :param object ttl: (optional) The time-to-live (TTL) or lease duration to
+        :param str ttl: (optional) The time-to-live (TTL) or lease duration to
                assign to generated credentials.
                For `iam_credentials` secrets, the TTL defines for how long each generated
                API key remains valid. The value can be either an integer that specifies
@@ -8652,8 +8651,8 @@ class IntermediateCertificateAuthorityConfig(ConfigElementDefConfig):
           `expired` or `revoked`.
     :attr datetime expiration_date: (optional) The date that the certificate
           expires. The date format follows RFC 3339.
-    :attr str alt_names: (optional) The Subject Alternative Names to define for the
-          CA certificate, in a comma-delimited list.
+    :attr List[str] alt_names: (optional) The Subject Alternative Names to define
+          for the CA certificate, in a comma-delimited list.
           The alternative names can be host names or email addresses.
     :attr str ip_sans: (optional) The IP Subject Alternative Names to define for the
           CA certificate, in a comma-delimited list.
@@ -8671,6 +8670,9 @@ class IntermediateCertificateAuthorityConfig(ConfigElementDefConfig):
     :attr str key_type: (optional) The type of private key to generate.
     :attr int key_bits: (optional) The number of bits to use when generating the
           private key.
+          Allowable values for RSA keys are: 2048 and 4096. Allowable values for EC keys
+          are: 224, 256, 384 And 521. The default for RSA keys is 2048, and the default
+          for EC keys is 256.
     :attr bool exclude_cn_from_sans: (optional) Controls whether the common name is
           excluded from Subject Alternative Names (SANs).
           If set to `true`, the common name is is not included in DNS or Email SANs if
@@ -8712,7 +8714,7 @@ class IntermediateCertificateAuthorityConfig(ConfigElementDefConfig):
                  issuing_certificates_urls_encoded: bool = None,
                  status: str = None,
                  expiration_date: datetime = None,
-                 alt_names: str = None,
+                 alt_names: List[str] = None,
                  ip_sans: str = None,
                  uri_sans: str = None,
                  other_sans: List[str] = None,
@@ -8765,8 +8767,8 @@ class IntermediateCertificateAuthorityConfig(ConfigElementDefConfig):
         :param bool issuing_certificates_urls_encoded: (optional) Determines
                whether to encode the URL of the issuing certificate in the private
                certificates that are issued by a certificate authority.
-        :param str alt_names: (optional) The Subject Alternative Names to define
-               for the CA certificate, in a comma-delimited list.
+        :param List[str] alt_names: (optional) The Subject Alternative Names to
+               define for the CA certificate, in a comma-delimited list.
                The alternative names can be host names or email addresses.
         :param str ip_sans: (optional) The IP Subject Alternative Names to define
                for the CA certificate, in a comma-delimited list.
@@ -8784,6 +8786,9 @@ class IntermediateCertificateAuthorityConfig(ConfigElementDefConfig):
         :param str key_type: (optional) The type of private key to generate.
         :param int key_bits: (optional) The number of bits to use when generating
                the private key.
+               Allowable values for RSA keys are: 2048 and 4096. Allowable values for EC
+               keys are: 224, 256, 384 And 521. The default for RSA keys is 2048, and the
+               default for EC keys is 256.
         :param bool exclude_cn_from_sans: (optional) Controls whether the common
                name is excluded from Subject Alternative Names (SANs).
                If set to `true`, the common name is is not included in DNS or Email SANs
@@ -9037,7 +9042,6 @@ class IntermediateCertificateAuthorityConfig(ConfigElementDefConfig):
         The type of private key to generate.
         """
         RSA = 'rsa'
-        ED25519 = 'ed25519'
         EC = 'ec'
 
 
@@ -9675,8 +9679,8 @@ class PrivateCertificateSecretMetadata(SecretMetadata):
           authority that signed this certificate.
     :attr str common_name: The fully qualified domain name or host domain name for
           the certificate.
-    :attr str alt_names: (optional) The Subject Alternative Names to define for the
-          CA certificate, in a comma-delimited list.
+    :attr List[str] alt_names: (optional) The Subject Alternative Names to define
+          for the CA certificate, in a comma-delimited list.
           The alternative names can be host names or email addresses.
     :attr str ip_sans: (optional) The IP Subject Alternative Names to define for the
           CA certificate, in a comma-delimited list.
@@ -9735,7 +9739,7 @@ class PrivateCertificateSecretMetadata(SecretMetadata):
                  last_update_date: datetime = None,
                  versions_total: int = None,
                  certificate_authority: str = None,
-                 alt_names: str = None,
+                 alt_names: List[str] = None,
                  ip_sans: str = None,
                  uri_sans: str = None,
                  other_sans: List[str] = None,
@@ -9771,8 +9775,8 @@ class PrivateCertificateSecretMetadata(SecretMetadata):
         :param str description: (optional) An extended description of your secret.
                To protect your privacy, do not use personal data, such as your name or
                location, as a description for your secret.
-        :param str alt_names: (optional) The Subject Alternative Names to define
-               for the CA certificate, in a comma-delimited list.
+        :param List[str] alt_names: (optional) The Subject Alternative Names to
+               define for the CA certificate, in a comma-delimited list.
                The alternative names can be host names or email addresses.
         :param str ip_sans: (optional) The IP Subject Alternative Names to define
                for the CA certificate, in a comma-delimited list.
@@ -10077,8 +10081,8 @@ class PrivateCertificateSecretResource(SecretResource):
           authority that signed this certificate.
     :attr str common_name: The fully qualified domain name or host domain name for
           the certificate.
-    :attr str alt_names: (optional) The Subject Alternative Names to define for the
-          CA certificate, in a comma-delimited list.
+    :attr List[str] alt_names: (optional) The Subject Alternative Names to define
+          for the CA certificate, in a comma-delimited list.
           The alternative names can be host names or email addresses.
     :attr str ip_sans: (optional) The IP Subject Alternative Names to define for the
           CA certificate, in a comma-delimited list.
@@ -10146,7 +10150,7 @@ class PrivateCertificateSecretResource(SecretResource):
                  versions_total: int = None,
                  versions: List[dict] = None,
                  certificate_authority: str = None,
-                 alt_names: str = None,
+                 alt_names: List[str] = None,
                  ip_sans: str = None,
                  uri_sans: str = None,
                  other_sans: List[str] = None,
@@ -10186,8 +10190,8 @@ class PrivateCertificateSecretResource(SecretResource):
                bracket, comma, colon, ampersand, and vertical pipe character (|).
                To protect your privacy, do not use personal data, such as your name or
                location, as a label for your secret.
-        :param str alt_names: (optional) The Subject Alternative Names to define
-               for the CA certificate, in a comma-delimited list.
+        :param List[str] alt_names: (optional) The Subject Alternative Names to
+               define for the CA certificate, in a comma-delimited list.
                The alternative names can be host names or email addresses.
         :param str ip_sans: (optional) The IP Subject Alternative Names to define
                for the CA certificate, in a comma-delimited list.
@@ -11958,8 +11962,8 @@ class RootCertificateAuthorityConfig(ConfigElementDefConfig):
           `expired` or `revoked`.
     :attr datetime expiration_date: (optional) The date that the certificate
           expires. The date format follows RFC 3339.
-    :attr str alt_names: (optional) The Subject Alternative Names to define for the
-          CA certificate, in a comma-delimited list.
+    :attr List[str] alt_names: (optional) The Subject Alternative Names to define
+          for the CA certificate, in a comma-delimited list.
           The alternative names can be host names or email addresses.
     :attr str ip_sans: (optional) The IP Subject Alternative Names to define for the
           CA certificate, in a comma-delimited list.
@@ -11983,6 +11987,9 @@ class RootCertificateAuthorityConfig(ConfigElementDefConfig):
     :attr str key_type: (optional) The type of private key to generate.
     :attr int key_bits: (optional) The number of bits to use when generating the
           private key.
+          Allowable values for RSA keys are: 2048 and 4096. Allowable values for EC keys
+          are: 224, 256, 384 And 521. The default for RSA keys is 2048, and the default
+          for EC keys is 256.
     :attr int max_path_length: (optional) The maximum path length to encode in the
           generated certificate. `-1` means no limit.
           If the signing certificate has a maximum path length set, the path length is set
@@ -12029,7 +12036,7 @@ class RootCertificateAuthorityConfig(ConfigElementDefConfig):
                  issuing_certificates_urls_encoded: bool = None,
                  status: str = None,
                  expiration_date: datetime = None,
-                 alt_names: str = None,
+                 alt_names: List[str] = None,
                  ip_sans: str = None,
                  uri_sans: str = None,
                  other_sans: List[str] = None,
@@ -12075,8 +12082,8 @@ class RootCertificateAuthorityConfig(ConfigElementDefConfig):
         :param bool issuing_certificates_urls_encoded: (optional) Determines
                whether to encode the URL of the issuing certificate in the private
                certificates that are issued by a certificate authority.
-        :param str alt_names: (optional) The Subject Alternative Names to define
-               for the CA certificate, in a comma-delimited list.
+        :param List[str] alt_names: (optional) The Subject Alternative Names to
+               define for the CA certificate, in a comma-delimited list.
                The alternative names can be host names or email addresses.
         :param str ip_sans: (optional) The IP Subject Alternative Names to define
                for the CA certificate, in a comma-delimited list.
@@ -12100,6 +12107,9 @@ class RootCertificateAuthorityConfig(ConfigElementDefConfig):
         :param str key_type: (optional) The type of private key to generate.
         :param int key_bits: (optional) The number of bits to use when generating
                the private key.
+               Allowable values for RSA keys are: 2048 and 4096. Allowable values for EC
+               keys are: 224, 256, 384 And 521. The default for RSA keys is 2048, and the
+               default for EC keys is 256.
         :param int max_path_length: (optional) The maximum path length to encode in
                the generated certificate. `-1` means no limit.
                If the signing certificate has a maximum path length set, the path length
@@ -12351,7 +12361,6 @@ class RootCertificateAuthorityConfig(ConfigElementDefConfig):
         The type of private key to generate.
         """
         RSA = 'rsa'
-        ED25519 = 'ed25519'
         EC = 'ec'
 
 
@@ -12970,8 +12979,8 @@ class SignCsrAction(ConfigAction):
 
     :attr str common_name: (optional) The fully qualified domain name or host domain
           name for the certificate.
-    :attr str alt_names: (optional) The Subject Alternative Names to define for the
-          CA certificate, in a comma-delimited list.
+    :attr List[str] alt_names: (optional) The Subject Alternative Names to define
+          for the CA certificate, in a comma-delimited list.
           The alternative names can be host names or email addresses.
     :attr str ip_sans: (optional) The IP Subject Alternative Names to define for the
           CA certificate, in a comma-delimited list.
@@ -13036,7 +13045,7 @@ class SignCsrAction(ConfigAction):
                  csr: str,
                  *,
                  common_name: str = None,
-                 alt_names: str = None,
+                 alt_names: List[str] = None,
                  ip_sans: str = None,
                  uri_sans: str = None,
                  other_sans: List[str] = None,
@@ -13061,8 +13070,8 @@ class SignCsrAction(ConfigAction):
                field is required for the `sign_csr` action.
         :param str common_name: (optional) The fully qualified domain name or host
                domain name for the certificate.
-        :param str alt_names: (optional) The Subject Alternative Names to define
-               for the CA certificate, in a comma-delimited list.
+        :param List[str] alt_names: (optional) The Subject Alternative Names to
+               define for the CA certificate, in a comma-delimited list.
                The alternative names can be host names or email addresses.
         :param str ip_sans: (optional) The IP Subject Alternative Names to define
                for the CA certificate, in a comma-delimited list.
@@ -13275,8 +13284,8 @@ class SignCsrActionResult(ConfigElementActionResultConfig):
 
     :attr str common_name: (optional) The fully qualified domain name or host domain
           name for the certificate.
-    :attr str alt_names: (optional) The Subject Alternative Names to define for the
-          CA certificate, in a comma-delimited list.
+    :attr List[str] alt_names: (optional) The Subject Alternative Names to define
+          for the CA certificate, in a comma-delimited list.
           The alternative names can be host names or email addresses.
     :attr str ip_sans: (optional) The IP Subject Alternative Names to define for the
           CA certificate, in a comma-delimited list.
@@ -13343,7 +13352,7 @@ class SignCsrActionResult(ConfigElementActionResultConfig):
                  csr: str,
                  *,
                  common_name: str = None,
-                 alt_names: str = None,
+                 alt_names: List[str] = None,
                  ip_sans: str = None,
                  uri_sans: str = None,
                  other_sans: List[str] = None,
@@ -13369,8 +13378,8 @@ class SignCsrActionResult(ConfigElementActionResultConfig):
         :param str csr: The PEM-encoded certificate signing request (CSR).
         :param str common_name: (optional) The fully qualified domain name or host
                domain name for the certificate.
-        :param str alt_names: (optional) The Subject Alternative Names to define
-               for the CA certificate, in a comma-delimited list.
+        :param List[str] alt_names: (optional) The Subject Alternative Names to
+               define for the CA certificate, in a comma-delimited list.
                The alternative names can be host names or email addresses.
         :param str ip_sans: (optional) The IP Subject Alternative Names to define
                for the CA certificate, in a comma-delimited list.
@@ -13590,8 +13599,8 @@ class SignIntermediateAction(ConfigAction):
 
     :attr str common_name: (optional) The fully qualified domain name or host domain
           name for the certificate.
-    :attr str alt_names: (optional) The Subject Alternative Names to define for the
-          CA certificate, in a comma-delimited list.
+    :attr List[str] alt_names: (optional) The Subject Alternative Names to define
+          for the CA certificate, in a comma-delimited list.
           The alternative names can be host names or email addresses.
     :attr str ip_sans: (optional) The IP Subject Alternative Names to define for the
           CA certificate, in a comma-delimited list.
@@ -13657,7 +13666,7 @@ class SignIntermediateAction(ConfigAction):
                  intermediate_certificate_authority: str,
                  *,
                  common_name: str = None,
-                 alt_names: str = None,
+                 alt_names: List[str] = None,
                  ip_sans: str = None,
                  uri_sans: str = None,
                  other_sans: List[str] = None,
@@ -13683,8 +13692,8 @@ class SignIntermediateAction(ConfigAction):
                intermediate certificate authorities.
         :param str common_name: (optional) The fully qualified domain name or host
                domain name for the certificate.
-        :param str alt_names: (optional) The Subject Alternative Names to define
-               for the CA certificate, in a comma-delimited list.
+        :param List[str] alt_names: (optional) The Subject Alternative Names to
+               define for the CA certificate, in a comma-delimited list.
                The alternative names can be host names or email addresses.
         :param str ip_sans: (optional) The IP Subject Alternative Names to define
                for the CA certificate, in a comma-delimited list.
@@ -13898,8 +13907,8 @@ class SignIntermediateActionResult(ConfigElementActionResultConfig):
 
     :attr str common_name: (optional) The fully qualified domain name or host domain
           name for the certificate.
-    :attr str alt_names: (optional) The Subject Alternative Names to define for the
-          CA certificate, in a comma-delimited list.
+    :attr List[str] alt_names: (optional) The Subject Alternative Names to define
+          for the CA certificate, in a comma-delimited list.
           The alternative names can be host names or email addresses.
     :attr str ip_sans: (optional) The IP Subject Alternative Names to define for the
           CA certificate, in a comma-delimited list.
@@ -13967,7 +13976,7 @@ class SignIntermediateActionResult(ConfigElementActionResultConfig):
                  intermediate_certificate_authority: str,
                  *,
                  common_name: str = None,
-                 alt_names: str = None,
+                 alt_names: List[str] = None,
                  ip_sans: str = None,
                  uri_sans: str = None,
                  other_sans: List[str] = None,
@@ -13994,8 +14003,8 @@ class SignIntermediateActionResult(ConfigElementActionResultConfig):
                certificate authority.
         :param str common_name: (optional) The fully qualified domain name or host
                domain name for the certificate.
-        :param str alt_names: (optional) The Subject Alternative Names to define
-               for the CA certificate, in a comma-delimited list.
+        :param List[str] alt_names: (optional) The Subject Alternative Names to
+               define for the CA certificate, in a comma-delimited list.
                The alternative names can be host names or email addresses.
         :param str ip_sans: (optional) The IP Subject Alternative Names to define
                for the CA certificate, in a comma-delimited list.
