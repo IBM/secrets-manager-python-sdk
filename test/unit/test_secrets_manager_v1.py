@@ -34,7 +34,7 @@ _service = SecretsManagerV1(
     authenticator=NoAuthAuthenticator()
 )
 
-_base_url = 'https://secrets-manager.cloud.ibm.com'
+_base_url = 'https://fake'
 _service.set_service_url(_base_url)
 
 
@@ -556,17 +556,17 @@ class TestCreateSecret():
 
         # Construct a dict representation of a CollectionMetadata model
         collection_metadata_model = {}
-        collection_metadata_model['collection_type'] = 'application/vnd.ibm.secrets-manager.config+json'
+        collection_metadata_model['collection_type'] = 'application/vnd.ibm.secrets-manager.secret+json'
         collection_metadata_model['collection_total'] = 1
 
         # Construct a dict representation of a ArbitrarySecretResource model
         secret_resource_model = {}
-        secret_resource_model['name'] = 'testString'
-        secret_resource_model['description'] = 'testString'
-        secret_resource_model['secret_group_id'] = 'testString'
-        secret_resource_model['labels'] = ['testString']
-        secret_resource_model['expiration_date'] = '2030-04-01T09:30:00Z'
-        secret_resource_model['payload'] = 'testString'
+        secret_resource_model['name'] = 'example-arbitrary-secret'
+        secret_resource_model['description'] = 'Extended description for this secret.'
+        secret_resource_model['secret_group_id'] = 'bc656587-8fda-4d05-9ad8-b1de1ec7e712'
+        secret_resource_model['labels'] = ['dev', 'us-south']
+        secret_resource_model['expiration_date'] = '2030-01-01T00:00:00Z'
+        secret_resource_model['payload'] = 'secret-data'
 
         # Set up parameter values
         secret_type = 'arbitrary'
@@ -614,17 +614,17 @@ class TestCreateSecret():
 
         # Construct a dict representation of a CollectionMetadata model
         collection_metadata_model = {}
-        collection_metadata_model['collection_type'] = 'application/vnd.ibm.secrets-manager.config+json'
+        collection_metadata_model['collection_type'] = 'application/vnd.ibm.secrets-manager.secret+json'
         collection_metadata_model['collection_total'] = 1
 
         # Construct a dict representation of a ArbitrarySecretResource model
         secret_resource_model = {}
-        secret_resource_model['name'] = 'testString'
-        secret_resource_model['description'] = 'testString'
-        secret_resource_model['secret_group_id'] = 'testString'
-        secret_resource_model['labels'] = ['testString']
-        secret_resource_model['expiration_date'] = '2030-04-01T09:30:00Z'
-        secret_resource_model['payload'] = 'testString'
+        secret_resource_model['name'] = 'example-arbitrary-secret'
+        secret_resource_model['description'] = 'Extended description for this secret.'
+        secret_resource_model['secret_group_id'] = 'bc656587-8fda-4d05-9ad8-b1de1ec7e712'
+        secret_resource_model['labels'] = ['dev', 'us-south']
+        secret_resource_model['expiration_date'] = '2030-01-01T00:00:00Z'
+        secret_resource_model['payload'] = 'secret-data'
 
         # Set up parameter values
         secret_type = 'arbitrary'
@@ -1326,6 +1326,99 @@ class TestGetSecretVersion():
         self.test_get_secret_version_value_error()
 
 
+class TestUpdateSecretVersion():
+    """
+    Test Class for update_secret_version
+    """
+
+    @responses.activate
+    def test_update_secret_version_all_params(self):
+        """
+        update_secret_version()
+        """
+        # Set up mock
+        url = preprocess_url('/api/v1/secrets/private_cert/testString/versions/testString')
+        mock_response = '{"metadata": {"collection_type": "application/vnd.ibm.secrets-manager.config+json", "collection_total": 1}, "resources": [{"id": "id", "name": "name", "description": "description", "secret_group_id": "secret_group_id", "labels": ["labels"], "state": 0, "state_description": "Active", "secret_type": "arbitrary", "crn": "crn:v1:bluemix:public:secrets-manager:<region>:a/<account-id>:<service-instance>:secret:<secret-id>", "creation_date": "2018-04-12T23:20:50.520Z", "created_by": "created_by", "last_update_date": "2018-04-12T23:20:50.520Z", "versions_total": 1, "versions": [{"mapKey": "anyValue"}], "expiration_date": "2030-04-01T09:30:00.000Z", "payload": "payload", "secret_data": {"anyKey": "anyValue"}}]}'
+        responses.add(responses.POST,
+                      url,
+                      body=mock_response,
+                      content_type='application/json',
+                      status=200)
+
+        # Set up parameter values
+        secret_type = 'private_cert'
+        id = 'testString'
+        version_id = 'testString'
+        action = 'revoke'
+
+        # Invoke method
+        response = _service.update_secret_version(
+            secret_type,
+            id,
+            version_id,
+            action,
+            headers={}
+        )
+
+        # Check for correct operation
+        assert len(responses.calls) == 1
+        assert response.status_code == 200
+        # Validate query params
+        query_string = responses.calls[0].request.url.split('?', 1)[1]
+        query_string = urllib.parse.unquote_plus(query_string)
+        assert 'action={}'.format(action) in query_string
+
+    def test_update_secret_version_all_params_with_retries(self):
+        # Enable retries and run test_update_secret_version_all_params.
+        _service.enable_retries()
+        self.test_update_secret_version_all_params()
+
+        # Disable retries and run test_update_secret_version_all_params.
+        _service.disable_retries()
+        self.test_update_secret_version_all_params()
+
+    @responses.activate
+    def test_update_secret_version_value_error(self):
+        """
+        test_update_secret_version_value_error()
+        """
+        # Set up mock
+        url = preprocess_url('/api/v1/secrets/private_cert/testString/versions/testString')
+        mock_response = '{"metadata": {"collection_type": "application/vnd.ibm.secrets-manager.config+json", "collection_total": 1}, "resources": [{"id": "id", "name": "name", "description": "description", "secret_group_id": "secret_group_id", "labels": ["labels"], "state": 0, "state_description": "Active", "secret_type": "arbitrary", "crn": "crn:v1:bluemix:public:secrets-manager:<region>:a/<account-id>:<service-instance>:secret:<secret-id>", "creation_date": "2018-04-12T23:20:50.520Z", "created_by": "created_by", "last_update_date": "2018-04-12T23:20:50.520Z", "versions_total": 1, "versions": [{"mapKey": "anyValue"}], "expiration_date": "2030-04-01T09:30:00.000Z", "payload": "payload", "secret_data": {"anyKey": "anyValue"}}]}'
+        responses.add(responses.POST,
+                      url,
+                      body=mock_response,
+                      content_type='application/json',
+                      status=200)
+
+        # Set up parameter values
+        secret_type = 'private_cert'
+        id = 'testString'
+        version_id = 'testString'
+        action = 'revoke'
+
+        # Pass in all but one required param and check for a ValueError
+        req_param_dict = {
+            "secret_type": secret_type,
+            "id": id,
+            "version_id": version_id,
+            "action": action,
+        }
+        for param in req_param_dict.keys():
+            req_copy = {key: val if key is not param else None for (key, val) in req_param_dict.items()}
+            with pytest.raises(ValueError):
+                _service.update_secret_version(**req_copy)
+
+    def test_update_secret_version_value_error_with_retries(self):
+        # Enable retries and run test_update_secret_version_value_error.
+        _service.enable_retries()
+        self.test_update_secret_version_value_error()
+
+        # Disable retries and run test_update_secret_version_value_error.
+        _service.disable_retries()
+        self.test_update_secret_version_value_error()
+
+
 class TestGetSecretVersionMetadata():
     """
     Test Class for get_secret_version_metadata
@@ -1513,14 +1606,14 @@ class TestUpdateSecretMetadata():
 
         # Construct a dict representation of a CollectionMetadata model
         collection_metadata_model = {}
-        collection_metadata_model['collection_type'] = 'application/vnd.ibm.secrets-manager.config+json'
+        collection_metadata_model['collection_type'] = 'application/vnd.ibm.secrets-manager.secret+json'
         collection_metadata_model['collection_total'] = 1
 
         # Construct a dict representation of a ArbitrarySecretMetadata model
         secret_metadata_model = {}
         secret_metadata_model['labels'] = ['dev', 'us-south']
-        secret_metadata_model['name'] = 'example-secret'
-        secret_metadata_model['description'] = 'Extended description for this secret.'
+        secret_metadata_model['name'] = 'updated-secret-name'
+        secret_metadata_model['description'] = 'Updated description for this secret.'
         secret_metadata_model['expiration_date'] = '2030-04-01T09:30:00Z'
 
         # Set up parameter values
@@ -1571,14 +1664,14 @@ class TestUpdateSecretMetadata():
 
         # Construct a dict representation of a CollectionMetadata model
         collection_metadata_model = {}
-        collection_metadata_model['collection_type'] = 'application/vnd.ibm.secrets-manager.config+json'
+        collection_metadata_model['collection_type'] = 'application/vnd.ibm.secrets-manager.secret+json'
         collection_metadata_model['collection_total'] = 1
 
         # Construct a dict representation of a ArbitrarySecretMetadata model
         secret_metadata_model = {}
         secret_metadata_model['labels'] = ['dev', 'us-south']
-        secret_metadata_model['name'] = 'example-secret'
-        secret_metadata_model['description'] = 'Extended description for this secret.'
+        secret_metadata_model['name'] = 'updated-secret-name'
+        secret_metadata_model['description'] = 'Updated description for this secret.'
         secret_metadata_model['expiration_date'] = '2030-04-01T09:30:00Z'
 
         # Set up parameter values
@@ -2182,15 +2275,17 @@ class TestCreateConfigElement():
                       content_type='application/json',
                       status=201)
 
-        # Construct a dict representation of a ConfigElementDefConfigLetsEncryptConfig model
+        # Construct a dict representation of a ConfigElementDefConfigCloudInternetServicesConfig model
         config_element_def_config_model = {}
-        config_element_def_config_model['private_key'] = 'testString'
+        config_element_def_config_model[
+            'cis_crn'] = 'crn:v1:bluemix:public:internet-svcs:global:a/<account-id>:<service-instance>::'
+        config_element_def_config_model['cis_apikey'] = 'cis_apikey_value'
 
         # Set up parameter values
         secret_type = 'public_cert'
         config_element = 'certificate_authorities'
-        name = 'testString'
-        type = 'letsencrypt'
+        name = 'cis-example-config'
+        type = 'cis'
         config = config_element_def_config_model
 
         # Invoke method
@@ -2208,8 +2303,8 @@ class TestCreateConfigElement():
         assert response.status_code == 201
         # Validate body params
         req_body = json.loads(str(responses.calls[0].request.body, 'utf-8'))
-        assert req_body['name'] == 'testString'
-        assert req_body['type'] == 'letsencrypt'
+        assert req_body['name'] == 'cis-example-config'
+        assert req_body['type'] == 'cis'
         assert req_body['config'] == config_element_def_config_model
 
     def test_create_config_element_all_params_with_retries(self):
@@ -2235,15 +2330,17 @@ class TestCreateConfigElement():
                       content_type='application/json',
                       status=201)
 
-        # Construct a dict representation of a ConfigElementDefConfigLetsEncryptConfig model
+        # Construct a dict representation of a ConfigElementDefConfigCloudInternetServicesConfig model
         config_element_def_config_model = {}
-        config_element_def_config_model['private_key'] = 'testString'
+        config_element_def_config_model[
+            'cis_crn'] = 'crn:v1:bluemix:public:internet-svcs:global:a/<account-id>:<service-instance>::'
+        config_element_def_config_model['cis_apikey'] = 'cis_apikey_value'
 
         # Set up parameter values
         secret_type = 'public_cert'
         config_element = 'certificate_authorities'
-        name = 'testString'
-        type = 'letsencrypt'
+        name = 'cis-example-config'
+        type = 'cis'
         config = config_element_def_config_model
 
         # Pass in all but one required param and check for a ValueError
@@ -2458,7 +2555,7 @@ class TestUpdateConfigElement():
         secret_type = 'public_cert'
         config_element = 'certificate_authorities'
         config_name = 'testString'
-        type = 'letsencrypt'
+        type = 'cis'
         config = {'foo': 'bar'}
 
         # Invoke method
@@ -2476,7 +2573,7 @@ class TestUpdateConfigElement():
         assert response.status_code == 200
         # Validate body params
         req_body = json.loads(str(responses.calls[0].request.body, 'utf-8'))
-        assert req_body['type'] == 'letsencrypt'
+        assert req_body['type'] == 'cis'
         assert req_body['config'] == {'foo': 'bar'}
 
     def test_update_config_element_all_params_with_retries(self):
@@ -2506,7 +2603,7 @@ class TestUpdateConfigElement():
         secret_type = 'public_cert'
         config_element = 'certificate_authorities'
         config_name = 'testString'
-        type = 'letsencrypt'
+        type = 'cis'
         config = {'foo': 'bar'}
 
         # Pass in all but one required param and check for a ValueError
@@ -2530,6 +2627,173 @@ class TestUpdateConfigElement():
         # Disable retries and run test_update_config_element_value_error.
         _service.disable_retries()
         self.test_update_config_element_value_error()
+
+
+class TestActionOnConfigElement():
+    """
+    Test Class for action_on_config_element
+    """
+
+    @responses.activate
+    def test_action_on_config_element_all_params(self):
+        """
+        action_on_config_element()
+        """
+        # Set up mock
+        url = preprocess_url('/api/v1/config/private_cert/root_certificate_authorities/testString')
+        mock_response = '{"metadata": {"collection_type": "application/vnd.ibm.secrets-manager.config+json", "collection_total": 1}, "resources": [{"name": "name", "type": "letsencrypt", "config": {"common_name": "example.com", "alt_names": ["alt_names"], "ip_sans": "ip_sans", "uri_sans": "uri_sans", "other_sans": ["other_sans"], "ttl": "12h", "format": "pem", "max_path_length": 15, "exclude_cn_from_sans": false, "permitted_dns_domains": ["permitted_dns_domains"], "use_csr_values": false, "ou": ["ou"], "organization": ["organization"], "country": ["country"], "locality": ["locality"], "province": ["province"], "street_address": ["street_address"], "postal_code": ["postal_code"], "serial_number": "d9:be:fe:35:ba:09:42:b5", "data": {"certificate": "certificate", "serial_number": "d9:be:fe:35:ba:09:42:b5", "issuing_ca": "issuing_ca", "ca_chain": ["ca_chain"], "expiration": 10}, "csr": "csr"}}]}'
+        responses.add(responses.POST,
+                      url,
+                      body=mock_response,
+                      content_type='application/json',
+                      status=200)
+
+        # Construct a dict representation of a SignCsrAction model
+        config_action_model = {}
+        config_action_model['common_name'] = 'example.com'
+        config_action_model['alt_names'] = ['testString']
+        config_action_model['ip_sans'] = 'testString'
+        config_action_model['uri_sans'] = 'testString'
+        config_action_model['other_sans'] = ['testString']
+        config_action_model['ttl'] = '12h'
+        config_action_model['format'] = 'pem'
+        config_action_model['max_path_length'] = 38
+        config_action_model['exclude_cn_from_sans'] = False
+        config_action_model['permitted_dns_domains'] = ['testString']
+        config_action_model['use_csr_values'] = False
+        config_action_model['ou'] = ['testString']
+        config_action_model['organization'] = ['testString']
+        config_action_model['country'] = ['testString']
+        config_action_model['locality'] = ['testString']
+        config_action_model['province'] = ['testString']
+        config_action_model['street_address'] = ['testString']
+        config_action_model['postal_code'] = ['testString']
+        config_action_model['serial_number'] = 'd9:be:fe:35:ba:09:42:b5'
+        config_action_model['csr'] = 'testString'
+
+        # Set up parameter values
+        secret_type = 'private_cert'
+        config_element = 'root_certificate_authorities'
+        config_name = 'testString'
+        action = 'sign_intermediate'
+        config = config_action_model
+
+        # Invoke method
+        response = _service.action_on_config_element(
+            secret_type,
+            config_element,
+            config_name,
+            action,
+            config=config,
+            headers={}
+        )
+
+        # Check for correct operation
+        assert len(responses.calls) == 1
+        assert response.status_code == 200
+        # Validate query params
+        query_string = responses.calls[0].request.url.split('?', 1)[1]
+        query_string = urllib.parse.unquote_plus(query_string)
+        assert 'action={}'.format(action) in query_string
+        # Validate body params
+        req_body = json.loads(str(responses.calls[0].request.body, 'utf-8'))
+        assert req_body['config'] == config_action_model
+
+    def test_action_on_config_element_all_params_with_retries(self):
+        # Enable retries and run test_action_on_config_element_all_params.
+        _service.enable_retries()
+        self.test_action_on_config_element_all_params()
+
+        # Disable retries and run test_action_on_config_element_all_params.
+        _service.disable_retries()
+        self.test_action_on_config_element_all_params()
+
+    @responses.activate
+    def test_action_on_config_element_required_params(self):
+        """
+        test_action_on_config_element_required_params()
+        """
+        # Set up mock
+        url = preprocess_url('/api/v1/config/private_cert/root_certificate_authorities/testString')
+        mock_response = '{"metadata": {"collection_type": "application/vnd.ibm.secrets-manager.config+json", "collection_total": 1}, "resources": [{"name": "name", "type": "letsencrypt", "config": {"common_name": "example.com", "alt_names": ["alt_names"], "ip_sans": "ip_sans", "uri_sans": "uri_sans", "other_sans": ["other_sans"], "ttl": "12h", "format": "pem", "max_path_length": 15, "exclude_cn_from_sans": false, "permitted_dns_domains": ["permitted_dns_domains"], "use_csr_values": false, "ou": ["ou"], "organization": ["organization"], "country": ["country"], "locality": ["locality"], "province": ["province"], "street_address": ["street_address"], "postal_code": ["postal_code"], "serial_number": "d9:be:fe:35:ba:09:42:b5", "data": {"certificate": "certificate", "serial_number": "d9:be:fe:35:ba:09:42:b5", "issuing_ca": "issuing_ca", "ca_chain": ["ca_chain"], "expiration": 10}, "csr": "csr"}}]}'
+        responses.add(responses.POST,
+                      url,
+                      body=mock_response,
+                      content_type='application/json',
+                      status=200)
+
+        # Set up parameter values
+        secret_type = 'private_cert'
+        config_element = 'root_certificate_authorities'
+        config_name = 'testString'
+        action = 'sign_intermediate'
+
+        # Invoke method
+        response = _service.action_on_config_element(
+            secret_type,
+            config_element,
+            config_name,
+            action,
+            headers={}
+        )
+
+        # Check for correct operation
+        assert len(responses.calls) == 1
+        assert response.status_code == 200
+        # Validate query params
+        query_string = responses.calls[0].request.url.split('?', 1)[1]
+        query_string = urllib.parse.unquote_plus(query_string)
+        assert 'action={}'.format(action) in query_string
+
+    def test_action_on_config_element_required_params_with_retries(self):
+        # Enable retries and run test_action_on_config_element_required_params.
+        _service.enable_retries()
+        self.test_action_on_config_element_required_params()
+
+        # Disable retries and run test_action_on_config_element_required_params.
+        _service.disable_retries()
+        self.test_action_on_config_element_required_params()
+
+    @responses.activate
+    def test_action_on_config_element_value_error(self):
+        """
+        test_action_on_config_element_value_error()
+        """
+        # Set up mock
+        url = preprocess_url('/api/v1/config/private_cert/root_certificate_authorities/testString')
+        mock_response = '{"metadata": {"collection_type": "application/vnd.ibm.secrets-manager.config+json", "collection_total": 1}, "resources": [{"name": "name", "type": "letsencrypt", "config": {"common_name": "example.com", "alt_names": ["alt_names"], "ip_sans": "ip_sans", "uri_sans": "uri_sans", "other_sans": ["other_sans"], "ttl": "12h", "format": "pem", "max_path_length": 15, "exclude_cn_from_sans": false, "permitted_dns_domains": ["permitted_dns_domains"], "use_csr_values": false, "ou": ["ou"], "organization": ["organization"], "country": ["country"], "locality": ["locality"], "province": ["province"], "street_address": ["street_address"], "postal_code": ["postal_code"], "serial_number": "d9:be:fe:35:ba:09:42:b5", "data": {"certificate": "certificate", "serial_number": "d9:be:fe:35:ba:09:42:b5", "issuing_ca": "issuing_ca", "ca_chain": ["ca_chain"], "expiration": 10}, "csr": "csr"}}]}'
+        responses.add(responses.POST,
+                      url,
+                      body=mock_response,
+                      content_type='application/json',
+                      status=200)
+
+        # Set up parameter values
+        secret_type = 'private_cert'
+        config_element = 'root_certificate_authorities'
+        config_name = 'testString'
+        action = 'sign_intermediate'
+
+        # Pass in all but one required param and check for a ValueError
+        req_param_dict = {
+            "secret_type": secret_type,
+            "config_element": config_element,
+            "config_name": config_name,
+            "action": action,
+        }
+        for param in req_param_dict.keys():
+            req_copy = {key: val if key is not param else None for (key, val) in req_param_dict.items()}
+            with pytest.raises(ValueError):
+                _service.action_on_config_element(**req_copy)
+
+    def test_action_on_config_element_value_error_with_retries(self):
+        # Enable retries and run test_action_on_config_element_value_error.
+        _service.enable_retries()
+        self.test_action_on_config_element_value_error()
+
+        # Disable retries and run test_action_on_config_element_value_error.
+        _service.disable_retries()
+        self.test_action_on_config_element_value_error()
 
 
 class TestDeleteConfigElement():
@@ -2852,6 +3116,36 @@ class TestSendTestNotification():
 # Start of Model Tests
 ##############################################################################
 # region
+class TestModel_CertificateSecretData():
+    """
+    Test Class for CertificateSecretData
+    """
+
+    def test_certificate_secret_data_serialization(self):
+        """
+        Test serialization/deserialization for CertificateSecretData
+        """
+
+        # Construct a json representation of a CertificateSecretData model
+        certificate_secret_data_model_json = {}
+
+        # Construct a model instance of CertificateSecretData by calling from_dict on the json representation
+        certificate_secret_data_model = CertificateSecretData.from_dict(certificate_secret_data_model_json)
+        assert certificate_secret_data_model != False
+
+        # Construct a model instance of CertificateSecretData by calling from_dict on the json representation
+        certificate_secret_data_model_dict = CertificateSecretData.from_dict(
+            certificate_secret_data_model_json).__dict__
+        certificate_secret_data_model2 = CertificateSecretData(**certificate_secret_data_model_dict)
+
+        # Verify the model instances are equivalent
+        assert certificate_secret_data_model == certificate_secret_data_model2
+
+        # Convert model instance back to dict and verify no loss of data
+        certificate_secret_data_model_json2 = certificate_secret_data_model.to_dict()
+        assert certificate_secret_data_model_json2 == certificate_secret_data_model_json
+
+
 class TestModel_CollectionMetadata():
     """
     Test Class for CollectionMetadata
@@ -2881,6 +3175,145 @@ class TestModel_CollectionMetadata():
         # Convert model instance back to dict and verify no loss of data
         collection_metadata_model_json2 = collection_metadata_model.to_dict()
         assert collection_metadata_model_json2 == collection_metadata_model_json
+
+
+class TestModel_ConfigElementActionData():
+    """
+    Test Class for ConfigElementActionData
+    """
+
+    def test_config_element_action_data_serialization(self):
+        """
+        Test serialization/deserialization for ConfigElementActionData
+        """
+
+        # Construct dict forms of any model objects needed in order to build this model.
+
+        sign_action_result_data_model = {}  # SignActionResultData
+        sign_action_result_data_model['certificate'] = 'testString'
+        sign_action_result_data_model['serial_number'] = 'd9:be:fe:35:ba:09:42:b5'
+        sign_action_result_data_model['issuing_ca'] = 'testString'
+        sign_action_result_data_model['ca_chain'] = ['testString']
+        sign_action_result_data_model['expiration'] = 38
+
+        config_element_action_result_config_model = {}  # SignCsrActionResult
+        config_element_action_result_config_model['common_name'] = 'example.com'
+        config_element_action_result_config_model['alt_names'] = ['testString']
+        config_element_action_result_config_model['ip_sans'] = 'testString'
+        config_element_action_result_config_model['uri_sans'] = 'testString'
+        config_element_action_result_config_model['other_sans'] = ['testString']
+        config_element_action_result_config_model['ttl'] = '12h'
+        config_element_action_result_config_model['format'] = 'pem'
+        config_element_action_result_config_model['max_path_length'] = 38
+        config_element_action_result_config_model['exclude_cn_from_sans'] = False
+        config_element_action_result_config_model['permitted_dns_domains'] = ['testString']
+        config_element_action_result_config_model['use_csr_values'] = False
+        config_element_action_result_config_model['ou'] = ['testString']
+        config_element_action_result_config_model['organization'] = ['testString']
+        config_element_action_result_config_model['country'] = ['testString']
+        config_element_action_result_config_model['locality'] = ['testString']
+        config_element_action_result_config_model['province'] = ['testString']
+        config_element_action_result_config_model['street_address'] = ['testString']
+        config_element_action_result_config_model['postal_code'] = ['testString']
+        config_element_action_result_config_model['serial_number'] = 'd9:be:fe:35:ba:09:42:b5'
+        config_element_action_result_config_model['data'] = sign_action_result_data_model
+        config_element_action_result_config_model['csr'] = 'testString'
+
+        # Construct a json representation of a ConfigElementActionData model
+        config_element_action_data_model_json = {}
+        config_element_action_data_model_json['name'] = 'testString'
+        config_element_action_data_model_json['type'] = 'letsencrypt'
+        config_element_action_data_model_json['config'] = config_element_action_result_config_model
+
+        # Construct a model instance of ConfigElementActionData by calling from_dict on the json representation
+        config_element_action_data_model = ConfigElementActionData.from_dict(config_element_action_data_model_json)
+        assert config_element_action_data_model != False
+
+        # Construct a model instance of ConfigElementActionData by calling from_dict on the json representation
+        config_element_action_data_model_dict = ConfigElementActionData.from_dict(
+            config_element_action_data_model_json).__dict__
+        config_element_action_data_model2 = ConfigElementActionData(**config_element_action_data_model_dict)
+
+        # Verify the model instances are equivalent
+        assert config_element_action_data_model == config_element_action_data_model2
+
+        # Convert model instance back to dict and verify no loss of data
+        config_element_action_data_model_json2 = config_element_action_data_model.to_dict()
+        assert config_element_action_data_model_json2 == config_element_action_data_model_json
+
+
+class TestModel_ConfigElementActionResult():
+    """
+    Test Class for ConfigElementActionResult
+    """
+
+    def test_config_element_action_result_serialization(self):
+        """
+        Test serialization/deserialization for ConfigElementActionResult
+        """
+
+        # Construct dict forms of any model objects needed in order to build this model.
+
+        collection_metadata_model = {}  # CollectionMetadata
+        collection_metadata_model['collection_type'] = 'application/vnd.ibm.secrets-manager.config+json'
+        collection_metadata_model['collection_total'] = 1
+
+        sign_action_result_data_model = {}  # SignActionResultData
+        sign_action_result_data_model['certificate'] = 'testString'
+        sign_action_result_data_model['serial_number'] = 'd9:be:fe:35:ba:09:42:b5'
+        sign_action_result_data_model['issuing_ca'] = 'testString'
+        sign_action_result_data_model['ca_chain'] = ['testString']
+        sign_action_result_data_model['expiration'] = 38
+
+        config_element_action_result_config_model = {}  # SignCsrActionResult
+        config_element_action_result_config_model['common_name'] = 'example.com'
+        config_element_action_result_config_model['alt_names'] = ['testString']
+        config_element_action_result_config_model['ip_sans'] = 'testString'
+        config_element_action_result_config_model['uri_sans'] = 'testString'
+        config_element_action_result_config_model['other_sans'] = ['testString']
+        config_element_action_result_config_model['ttl'] = '12h'
+        config_element_action_result_config_model['format'] = 'pem'
+        config_element_action_result_config_model['max_path_length'] = 38
+        config_element_action_result_config_model['exclude_cn_from_sans'] = False
+        config_element_action_result_config_model['permitted_dns_domains'] = ['testString']
+        config_element_action_result_config_model['use_csr_values'] = False
+        config_element_action_result_config_model['ou'] = ['testString']
+        config_element_action_result_config_model['organization'] = ['testString']
+        config_element_action_result_config_model['country'] = ['testString']
+        config_element_action_result_config_model['locality'] = ['testString']
+        config_element_action_result_config_model['province'] = ['testString']
+        config_element_action_result_config_model['street_address'] = ['testString']
+        config_element_action_result_config_model['postal_code'] = ['testString']
+        config_element_action_result_config_model['serial_number'] = 'd9:be:fe:35:ba:09:42:b5'
+        config_element_action_result_config_model['data'] = sign_action_result_data_model
+        config_element_action_result_config_model['csr'] = 'testString'
+
+        config_element_action_data_model = {}  # ConfigElementActionData
+        config_element_action_data_model['name'] = 'testString'
+        config_element_action_data_model['type'] = 'letsencrypt'
+        config_element_action_data_model['config'] = config_element_action_result_config_model
+
+        # Construct a json representation of a ConfigElementActionResult model
+        config_element_action_result_model_json = {}
+        config_element_action_result_model_json['metadata'] = collection_metadata_model
+        config_element_action_result_model_json['resources'] = [config_element_action_data_model]
+
+        # Construct a model instance of ConfigElementActionResult by calling from_dict on the json representation
+        config_element_action_result_model = ConfigElementActionResult.from_dict(
+            config_element_action_result_model_json)
+        assert config_element_action_result_model != False
+
+        # Construct a model instance of ConfigElementActionResult by calling from_dict on the json representation
+        config_element_action_result_model_dict = ConfigElementActionResult.from_dict(
+            config_element_action_result_model_json).__dict__
+        config_element_action_result_model2 = ConfigElementActionResult(**config_element_action_result_model_dict)
+
+        # Verify the model instances are equivalent
+        assert config_element_action_result_model == config_element_action_result_model2
+
+        # Convert model instance back to dict and verify no loss of data
+        config_element_action_result_model_json2 = config_element_action_result_model.to_dict()
+        assert config_element_action_result_model_json2 == config_element_action_result_model_json
 
 
 class TestModel_ConfigElementDef():
@@ -2983,7 +3416,7 @@ class TestModel_CreateSecret():
         secret_resource_model['created_by'] = 'testString'
         secret_resource_model['last_update_date'] = '2018-04-12T23:20:50.520000Z'
         secret_resource_model['versions_total'] = 1
-        secret_resource_model['versions'] = [{}]
+        secret_resource_model['versions'] = [{'key1': 'testString'}]
         secret_resource_model['expiration_date'] = '2030-04-01T09:30:00Z'
         secret_resource_model['payload'] = 'testString'
         secret_resource_model['secret_data'] = {'foo': 'bar'}
@@ -3171,7 +3604,7 @@ class TestModel_GetSecret():
         secret_resource_model['created_by'] = 'testString'
         secret_resource_model['last_update_date'] = '2018-04-12T23:20:50.520000Z'
         secret_resource_model['versions_total'] = 1
-        secret_resource_model['versions'] = [{}]
+        secret_resource_model['versions'] = [{'key1': 'testString'}]
         secret_resource_model['expiration_date'] = '2030-04-01T09:30:00Z'
         secret_resource_model['payload'] = 'testString'
         secret_resource_model['secret_data'] = {'foo': 'bar'}
@@ -3333,6 +3766,74 @@ class TestModel_GetSingleConfigElement():
         assert get_single_config_element_model_json2 == get_single_config_element_model_json
 
 
+class TestModel_IntermediateCertificateAuthoritiesConfigItem():
+    """
+    Test Class for IntermediateCertificateAuthoritiesConfigItem
+    """
+
+    def test_intermediate_certificate_authorities_config_item_serialization(self):
+        """
+        Test serialization/deserialization for IntermediateCertificateAuthoritiesConfigItem
+        """
+
+        # Construct dict forms of any model objects needed in order to build this model.
+
+        intermediate_certificate_authority_config_model = {}  # IntermediateCertificateAuthorityConfig
+        intermediate_certificate_authority_config_model['max_ttl'] = '8760h'
+        intermediate_certificate_authority_config_model['signing_method'] = 'internal'
+        intermediate_certificate_authority_config_model['issuer'] = 'example-ca'
+        intermediate_certificate_authority_config_model['crl_expiry'] = '72h'
+        intermediate_certificate_authority_config_model['crl_disable'] = False
+        intermediate_certificate_authority_config_model['crl_distribution_points_encoded'] = False
+        intermediate_certificate_authority_config_model['issuing_certificates_urls_encoded'] = False
+        intermediate_certificate_authority_config_model['common_name'] = 'example.com'
+        intermediate_certificate_authority_config_model['status'] = 'signing_required'
+        intermediate_certificate_authority_config_model['expiration_date'] = '2030-04-01T09:30:00Z'
+        intermediate_certificate_authority_config_model['alt_names'] = ['testString']
+        intermediate_certificate_authority_config_model['ip_sans'] = 'testString'
+        intermediate_certificate_authority_config_model['uri_sans'] = 'testString'
+        intermediate_certificate_authority_config_model['other_sans'] = ['testString']
+        intermediate_certificate_authority_config_model['format'] = 'pem'
+        intermediate_certificate_authority_config_model['private_key_format'] = 'der'
+        intermediate_certificate_authority_config_model['key_type'] = 'rsa'
+        intermediate_certificate_authority_config_model['key_bits'] = 38
+        intermediate_certificate_authority_config_model['exclude_cn_from_sans'] = False
+        intermediate_certificate_authority_config_model['ou'] = ['testString']
+        intermediate_certificate_authority_config_model['organization'] = ['testString']
+        intermediate_certificate_authority_config_model['country'] = ['testString']
+        intermediate_certificate_authority_config_model['locality'] = ['testString']
+        intermediate_certificate_authority_config_model['province'] = ['testString']
+        intermediate_certificate_authority_config_model['street_address'] = ['testString']
+        intermediate_certificate_authority_config_model['postal_code'] = ['testString']
+        intermediate_certificate_authority_config_model['serial_number'] = 'd9:be:fe:35:ba:09:42:b5'
+        intermediate_certificate_authority_config_model['data'] = {'foo': 'bar'}
+
+        # Construct a json representation of a IntermediateCertificateAuthoritiesConfigItem model
+        intermediate_certificate_authorities_config_item_model_json = {}
+        intermediate_certificate_authorities_config_item_model_json['name'] = 'testString'
+        intermediate_certificate_authorities_config_item_model_json['type'] = 'letsencrypt'
+        intermediate_certificate_authorities_config_item_model_json[
+            'config'] = intermediate_certificate_authority_config_model
+
+        # Construct a model instance of IntermediateCertificateAuthoritiesConfigItem by calling from_dict on the json representation
+        intermediate_certificate_authorities_config_item_model = IntermediateCertificateAuthoritiesConfigItem.from_dict(
+            intermediate_certificate_authorities_config_item_model_json)
+        assert intermediate_certificate_authorities_config_item_model != False
+
+        # Construct a model instance of IntermediateCertificateAuthoritiesConfigItem by calling from_dict on the json representation
+        intermediate_certificate_authorities_config_item_model_dict = IntermediateCertificateAuthoritiesConfigItem.from_dict(
+            intermediate_certificate_authorities_config_item_model_json).__dict__
+        intermediate_certificate_authorities_config_item_model2 = IntermediateCertificateAuthoritiesConfigItem(
+            **intermediate_certificate_authorities_config_item_model_dict)
+
+        # Verify the model instances are equivalent
+        assert intermediate_certificate_authorities_config_item_model == intermediate_certificate_authorities_config_item_model2
+
+        # Convert model instance back to dict and verify no loss of data
+        intermediate_certificate_authorities_config_item_model_json2 = intermediate_certificate_authorities_config_item_model.to_dict()
+        assert intermediate_certificate_authorities_config_item_model_json2 == intermediate_certificate_authorities_config_item_model_json
+
+
 class TestModel_IssuanceInfo():
     """
     Test Class for IssuanceInfo
@@ -3446,7 +3947,7 @@ class TestModel_ListSecrets():
         secret_resource_model['created_by'] = 'testString'
         secret_resource_model['last_update_date'] = '2018-04-12T23:20:50.520000Z'
         secret_resource_model['versions_total'] = 1
-        secret_resource_model['versions'] = [{}]
+        secret_resource_model['versions'] = [{'key1': 'testString'}]
         secret_resource_model['expiration_date'] = '2030-04-01T09:30:00Z'
         secret_resource_model['payload'] = 'testString'
         secret_resource_model['secret_data'] = {'foo': 'bar'}
@@ -3501,6 +4002,74 @@ class TestModel_NotificationsSettings():
         # Convert model instance back to dict and verify no loss of data
         notifications_settings_model_json2 = notifications_settings_model.to_dict()
         assert notifications_settings_model_json2 == notifications_settings_model_json
+
+
+class TestModel_RootCertificateAuthoritiesConfigItem():
+    """
+    Test Class for RootCertificateAuthoritiesConfigItem
+    """
+
+    def test_root_certificate_authorities_config_item_serialization(self):
+        """
+        Test serialization/deserialization for RootCertificateAuthoritiesConfigItem
+        """
+
+        # Construct dict forms of any model objects needed in order to build this model.
+
+        root_certificate_authority_config_model = {}  # RootCertificateAuthorityConfig
+        root_certificate_authority_config_model['max_ttl'] = '8760h'
+        root_certificate_authority_config_model['crl_expiry'] = '72h'
+        root_certificate_authority_config_model['crl_disable'] = False
+        root_certificate_authority_config_model['crl_distribution_points_encoded'] = False
+        root_certificate_authority_config_model['issuing_certificates_urls_encoded'] = False
+        root_certificate_authority_config_model['common_name'] = 'example.com'
+        root_certificate_authority_config_model['status'] = 'signing_required'
+        root_certificate_authority_config_model['expiration_date'] = '2030-04-01T09:30:00Z'
+        root_certificate_authority_config_model['alt_names'] = ['testString']
+        root_certificate_authority_config_model['ip_sans'] = 'testString'
+        root_certificate_authority_config_model['uri_sans'] = 'testString'
+        root_certificate_authority_config_model['other_sans'] = ['testString']
+        root_certificate_authority_config_model['ttl'] = 'testString'
+        root_certificate_authority_config_model['format'] = 'pem'
+        root_certificate_authority_config_model['private_key_format'] = 'der'
+        root_certificate_authority_config_model['key_type'] = 'rsa'
+        root_certificate_authority_config_model['key_bits'] = 38
+        root_certificate_authority_config_model['max_path_length'] = 38
+        root_certificate_authority_config_model['exclude_cn_from_sans'] = False
+        root_certificate_authority_config_model['permitted_dns_domains'] = ['testString']
+        root_certificate_authority_config_model['ou'] = ['testString']
+        root_certificate_authority_config_model['organization'] = ['testString']
+        root_certificate_authority_config_model['country'] = ['testString']
+        root_certificate_authority_config_model['locality'] = ['testString']
+        root_certificate_authority_config_model['province'] = ['testString']
+        root_certificate_authority_config_model['street_address'] = ['testString']
+        root_certificate_authority_config_model['postal_code'] = ['testString']
+        root_certificate_authority_config_model['serial_number'] = 'd9:be:fe:35:ba:09:42:b5'
+        root_certificate_authority_config_model['data'] = {'foo': 'bar'}
+
+        # Construct a json representation of a RootCertificateAuthoritiesConfigItem model
+        root_certificate_authorities_config_item_model_json = {}
+        root_certificate_authorities_config_item_model_json['name'] = 'testString'
+        root_certificate_authorities_config_item_model_json['type'] = 'letsencrypt'
+        root_certificate_authorities_config_item_model_json['config'] = root_certificate_authority_config_model
+
+        # Construct a model instance of RootCertificateAuthoritiesConfigItem by calling from_dict on the json representation
+        root_certificate_authorities_config_item_model = RootCertificateAuthoritiesConfigItem.from_dict(
+            root_certificate_authorities_config_item_model_json)
+        assert root_certificate_authorities_config_item_model != False
+
+        # Construct a model instance of RootCertificateAuthoritiesConfigItem by calling from_dict on the json representation
+        root_certificate_authorities_config_item_model_dict = RootCertificateAuthoritiesConfigItem.from_dict(
+            root_certificate_authorities_config_item_model_json).__dict__
+        root_certificate_authorities_config_item_model2 = RootCertificateAuthoritiesConfigItem(
+            **root_certificate_authorities_config_item_model_dict)
+
+        # Verify the model instances are equivalent
+        assert root_certificate_authorities_config_item_model == root_certificate_authorities_config_item_model2
+
+        # Convert model instance back to dict and verify no loss of data
+        root_certificate_authorities_config_item_model_json2 = root_certificate_authorities_config_item_model.to_dict()
+        assert root_certificate_authorities_config_item_model_json2 == root_certificate_authorities_config_item_model_json
 
 
 class TestModel_Rotation():
@@ -3754,6 +4323,77 @@ class TestModel_SecretPolicyRotation():
         assert secret_policy_rotation_model_json2 == secret_policy_rotation_model_json
 
 
+class TestModel_SignActionResultData():
+    """
+    Test Class for SignActionResultData
+    """
+
+    def test_sign_action_result_data_serialization(self):
+        """
+        Test serialization/deserialization for SignActionResultData
+        """
+
+        # Construct a json representation of a SignActionResultData model
+        sign_action_result_data_model_json = {}
+        sign_action_result_data_model_json['certificate'] = 'testString'
+        sign_action_result_data_model_json['serial_number'] = 'd9:be:fe:35:ba:09:42:b5'
+        sign_action_result_data_model_json['issuing_ca'] = 'testString'
+        sign_action_result_data_model_json['ca_chain'] = ['testString']
+        sign_action_result_data_model_json['expiration'] = 38
+
+        # Construct a model instance of SignActionResultData by calling from_dict on the json representation
+        sign_action_result_data_model = SignActionResultData.from_dict(sign_action_result_data_model_json)
+        assert sign_action_result_data_model != False
+
+        # Construct a model instance of SignActionResultData by calling from_dict on the json representation
+        sign_action_result_data_model_dict = SignActionResultData.from_dict(sign_action_result_data_model_json).__dict__
+        sign_action_result_data_model2 = SignActionResultData(**sign_action_result_data_model_dict)
+
+        # Verify the model instances are equivalent
+        assert sign_action_result_data_model == sign_action_result_data_model2
+
+        # Convert model instance back to dict and verify no loss of data
+        sign_action_result_data_model_json2 = sign_action_result_data_model.to_dict()
+        assert sign_action_result_data_model_json2 == sign_action_result_data_model_json
+
+
+class TestModel_SignIntermediateActionResultData():
+    """
+    Test Class for SignIntermediateActionResultData
+    """
+
+    def test_sign_intermediate_action_result_data_serialization(self):
+        """
+        Test serialization/deserialization for SignIntermediateActionResultData
+        """
+
+        # Construct a json representation of a SignIntermediateActionResultData model
+        sign_intermediate_action_result_data_model_json = {}
+        sign_intermediate_action_result_data_model_json['certificate'] = 'testString'
+        sign_intermediate_action_result_data_model_json['serial_number'] = 'd9:be:fe:35:ba:09:42:b5'
+        sign_intermediate_action_result_data_model_json['issuing_ca'] = 'testString'
+        sign_intermediate_action_result_data_model_json['ca_chain'] = ['testString']
+        sign_intermediate_action_result_data_model_json['expiration'] = 38
+
+        # Construct a model instance of SignIntermediateActionResultData by calling from_dict on the json representation
+        sign_intermediate_action_result_data_model = SignIntermediateActionResultData.from_dict(
+            sign_intermediate_action_result_data_model_json)
+        assert sign_intermediate_action_result_data_model != False
+
+        # Construct a model instance of SignIntermediateActionResultData by calling from_dict on the json representation
+        sign_intermediate_action_result_data_model_dict = SignIntermediateActionResultData.from_dict(
+            sign_intermediate_action_result_data_model_json).__dict__
+        sign_intermediate_action_result_data_model2 = SignIntermediateActionResultData(
+            **sign_intermediate_action_result_data_model_dict)
+
+        # Verify the model instances are equivalent
+        assert sign_intermediate_action_result_data_model == sign_intermediate_action_result_data_model2
+
+        # Convert model instance back to dict and verify no loss of data
+        sign_intermediate_action_result_data_model_json2 = sign_intermediate_action_result_data_model.to_dict()
+        assert sign_intermediate_action_result_data_model_json2 == sign_intermediate_action_result_data_model_json
+
+
 class TestModel_CertificateValidity():
     """
     Test Class for CertificateValidity
@@ -3856,7 +4496,7 @@ class TestModel_ArbitrarySecretResource():
         arbitrary_secret_resource_model_json['created_by'] = 'testString'
         arbitrary_secret_resource_model_json['last_update_date'] = '2018-04-12T23:20:50.520000Z'
         arbitrary_secret_resource_model_json['versions_total'] = 1
-        arbitrary_secret_resource_model_json['versions'] = [{}]
+        arbitrary_secret_resource_model_json['versions'] = [{'key1': 'testString'}]
         arbitrary_secret_resource_model_json['expiration_date'] = '2030-04-01T09:30:00Z'
         arbitrary_secret_resource_model_json['payload'] = 'testString'
         arbitrary_secret_resource_model_json['secret_data'] = {'foo': 'bar'}
@@ -4079,7 +4719,7 @@ class TestModel_CertificateSecretResource():
         certificate_secret_resource_model_json['created_by'] = 'testString'
         certificate_secret_resource_model_json['last_update_date'] = '2018-04-12T23:20:50.520000Z'
         certificate_secret_resource_model_json['versions_total'] = 1
-        certificate_secret_resource_model_json['versions'] = [{}]
+        certificate_secret_resource_model_json['versions'] = [{'key1': 'testString'}]
         certificate_secret_resource_model_json['certificate'] = 'testString'
         certificate_secret_resource_model_json['private_key'] = 'testString'
         certificate_secret_resource_model_json['intermediate'] = 'testString'
@@ -4128,6 +4768,8 @@ class TestModel_CertificateSecretVersion():
         certificate_validity_model['not_before'] = '2020-10-05T21:33:11Z'
         certificate_validity_model['not_after'] = '2021-01-01T00:00:00Z'
 
+        certificate_secret_data_model = {}  # CertificateSecretData
+
         # Construct a json representation of a CertificateSecretVersion model
         certificate_secret_version_model_json = {}
         certificate_secret_version_model_json['id'] = 'testString'
@@ -4137,7 +4779,7 @@ class TestModel_CertificateSecretVersion():
         certificate_secret_version_model_json['validity'] = certificate_validity_model
         certificate_secret_version_model_json['serial_number'] = 'd9:be:fe:35:ba:09:42:b5'
         certificate_secret_version_model_json['expiration_date'] = '2030-04-01T09:30:00Z'
-        certificate_secret_version_model_json['secret_data'] = {'foo': 'bar'}
+        certificate_secret_version_model_json['secret_data'] = certificate_secret_data_model
 
         # Construct a model instance of CertificateSecretVersion by calling from_dict on the json representation
         certificate_secret_version_model = CertificateSecretVersion.from_dict(certificate_secret_version_model_json)
@@ -4247,6 +4889,74 @@ class TestModel_CertificateSecretVersionMetadata():
         # Convert model instance back to dict and verify no loss of data
         certificate_secret_version_metadata_model_json2 = certificate_secret_version_metadata_model.to_dict()
         assert certificate_secret_version_metadata_model_json2 == certificate_secret_version_metadata_model_json
+
+
+class TestModel_CertificateTemplateConfig():
+    """
+    Test Class for CertificateTemplateConfig
+    """
+
+    def test_certificate_template_config_serialization(self):
+        """
+        Test serialization/deserialization for CertificateTemplateConfig
+        """
+
+        # Construct a json representation of a CertificateTemplateConfig model
+        certificate_template_config_model_json = {}
+        certificate_template_config_model_json['certificate_authority'] = 'testString'
+        certificate_template_config_model_json['allowed_secret_groups'] = 'testString'
+        certificate_template_config_model_json['max_ttl'] = '8760h'
+        certificate_template_config_model_json['ttl'] = '12h'
+        certificate_template_config_model_json['allow_localhost'] = True
+        certificate_template_config_model_json['allowed_domains'] = ['testString']
+        certificate_template_config_model_json['allowed_domains_template'] = False
+        certificate_template_config_model_json['allow_bare_domains'] = False
+        certificate_template_config_model_json['allow_subdomains'] = False
+        certificate_template_config_model_json['allow_glob_domains'] = False
+        certificate_template_config_model_json['allow_any_name'] = False
+        certificate_template_config_model_json['enforce_hostnames'] = True
+        certificate_template_config_model_json['allow_ip_sans'] = True
+        certificate_template_config_model_json['allowed_uri_sans'] = ['testString']
+        certificate_template_config_model_json['allowed_other_sans'] = ['testString']
+        certificate_template_config_model_json['server_flag'] = True
+        certificate_template_config_model_json['client_flag'] = True
+        certificate_template_config_model_json['code_signing_flag'] = False
+        certificate_template_config_model_json['email_protection_flag'] = False
+        certificate_template_config_model_json['key_type'] = 'rsa'
+        certificate_template_config_model_json['key_bits'] = 38
+        certificate_template_config_model_json['key_usage'] = ['DigitalSignature', 'KeyAgreement', 'KeyEncipherment']
+        certificate_template_config_model_json['ext_key_usage'] = ['testString']
+        certificate_template_config_model_json['ext_key_usage_oids'] = ['testString']
+        certificate_template_config_model_json['use_csr_common_name'] = True
+        certificate_template_config_model_json['use_csr_sans'] = True
+        certificate_template_config_model_json['ou'] = ['testString']
+        certificate_template_config_model_json['organization'] = ['testString']
+        certificate_template_config_model_json['country'] = ['testString']
+        certificate_template_config_model_json['locality'] = ['testString']
+        certificate_template_config_model_json['province'] = ['testString']
+        certificate_template_config_model_json['street_address'] = ['testString']
+        certificate_template_config_model_json['postal_code'] = ['testString']
+        certificate_template_config_model_json['serial_number'] = 'd9:be:fe:35:ba:09:42:b5'
+        certificate_template_config_model_json['require_cn'] = True
+        certificate_template_config_model_json['policy_identifiers'] = ['testString']
+        certificate_template_config_model_json['basic_constraints_valid_for_non_ca'] = True
+        certificate_template_config_model_json['not_before_duration'] = '30s'
+
+        # Construct a model instance of CertificateTemplateConfig by calling from_dict on the json representation
+        certificate_template_config_model = CertificateTemplateConfig.from_dict(certificate_template_config_model_json)
+        assert certificate_template_config_model != False
+
+        # Construct a model instance of CertificateTemplateConfig by calling from_dict on the json representation
+        certificate_template_config_model_dict = CertificateTemplateConfig.from_dict(
+            certificate_template_config_model_json).__dict__
+        certificate_template_config_model2 = CertificateTemplateConfig(**certificate_template_config_model_dict)
+
+        # Verify the model instances are equivalent
+        assert certificate_template_config_model == certificate_template_config_model2
+
+        # Convert model instance back to dict and verify no loss of data
+        certificate_template_config_model_json2 = certificate_template_config_model.to_dict()
+        assert certificate_template_config_model_json2 == certificate_template_config_model_json
 
 
 class TestModel_ConfigElementDefConfigClassicInfrastructureConfig():
@@ -4653,7 +5363,7 @@ class TestModel_IAMCredentialsSecretResource():
         iam_credentials_secret_resource_model_json['created_by'] = 'testString'
         iam_credentials_secret_resource_model_json['last_update_date'] = '2018-04-12T23:20:50.520000Z'
         iam_credentials_secret_resource_model_json['versions_total'] = 1
-        iam_credentials_secret_resource_model_json['versions'] = [{}]
+        iam_credentials_secret_resource_model_json['versions'] = [{'key1': 'testString'}]
         iam_credentials_secret_resource_model_json['ttl'] = '24h'
         iam_credentials_secret_resource_model_json['access_groups'] = [
             'AccessGroupId-45884031-54be-4dd7-86ff-112511e92699', 'AccessGroupId-2c190fb5-0d9d-46c5-acf3-78ecd30e24a0']
@@ -4793,6 +5503,138 @@ class TestModel_IAMCredentialsSecretVersionMetadata():
         assert iam_credentials_secret_version_metadata_model_json2 == iam_credentials_secret_version_metadata_model_json
 
 
+class TestModel_IntermediateCertificateAuthoritiesConfig():
+    """
+    Test Class for IntermediateCertificateAuthoritiesConfig
+    """
+
+    def test_intermediate_certificate_authorities_config_serialization(self):
+        """
+        Test serialization/deserialization for IntermediateCertificateAuthoritiesConfig
+        """
+
+        # Construct dict forms of any model objects needed in order to build this model.
+
+        intermediate_certificate_authority_config_model = {}  # IntermediateCertificateAuthorityConfig
+        intermediate_certificate_authority_config_model['max_ttl'] = '8760h'
+        intermediate_certificate_authority_config_model['signing_method'] = 'internal'
+        intermediate_certificate_authority_config_model['issuer'] = 'example-ca'
+        intermediate_certificate_authority_config_model['crl_expiry'] = '72h'
+        intermediate_certificate_authority_config_model['crl_disable'] = False
+        intermediate_certificate_authority_config_model['crl_distribution_points_encoded'] = False
+        intermediate_certificate_authority_config_model['issuing_certificates_urls_encoded'] = False
+        intermediate_certificate_authority_config_model['common_name'] = 'example.com'
+        intermediate_certificate_authority_config_model['status'] = 'signing_required'
+        intermediate_certificate_authority_config_model['expiration_date'] = '2030-04-01T09:30:00Z'
+        intermediate_certificate_authority_config_model['alt_names'] = ['testString']
+        intermediate_certificate_authority_config_model['ip_sans'] = 'testString'
+        intermediate_certificate_authority_config_model['uri_sans'] = 'testString'
+        intermediate_certificate_authority_config_model['other_sans'] = ['testString']
+        intermediate_certificate_authority_config_model['format'] = 'pem'
+        intermediate_certificate_authority_config_model['private_key_format'] = 'der'
+        intermediate_certificate_authority_config_model['key_type'] = 'rsa'
+        intermediate_certificate_authority_config_model['key_bits'] = 38
+        intermediate_certificate_authority_config_model['exclude_cn_from_sans'] = False
+        intermediate_certificate_authority_config_model['ou'] = ['testString']
+        intermediate_certificate_authority_config_model['organization'] = ['testString']
+        intermediate_certificate_authority_config_model['country'] = ['testString']
+        intermediate_certificate_authority_config_model['locality'] = ['testString']
+        intermediate_certificate_authority_config_model['province'] = ['testString']
+        intermediate_certificate_authority_config_model['street_address'] = ['testString']
+        intermediate_certificate_authority_config_model['postal_code'] = ['testString']
+        intermediate_certificate_authority_config_model['serial_number'] = 'd9:be:fe:35:ba:09:42:b5'
+        intermediate_certificate_authority_config_model['data'] = {'foo': 'bar'}
+
+        intermediate_certificate_authorities_config_item_model = {}  # IntermediateCertificateAuthoritiesConfigItem
+        intermediate_certificate_authorities_config_item_model['name'] = 'testString'
+        intermediate_certificate_authorities_config_item_model['type'] = 'letsencrypt'
+        intermediate_certificate_authorities_config_item_model[
+            'config'] = intermediate_certificate_authority_config_model
+
+        # Construct a json representation of a IntermediateCertificateAuthoritiesConfig model
+        intermediate_certificate_authorities_config_model_json = {}
+        intermediate_certificate_authorities_config_model_json['intermediate_certificate_authorities'] = [
+            intermediate_certificate_authorities_config_item_model]
+
+        # Construct a model instance of IntermediateCertificateAuthoritiesConfig by calling from_dict on the json representation
+        intermediate_certificate_authorities_config_model = IntermediateCertificateAuthoritiesConfig.from_dict(
+            intermediate_certificate_authorities_config_model_json)
+        assert intermediate_certificate_authorities_config_model != False
+
+        # Construct a model instance of IntermediateCertificateAuthoritiesConfig by calling from_dict on the json representation
+        intermediate_certificate_authorities_config_model_dict = IntermediateCertificateAuthoritiesConfig.from_dict(
+            intermediate_certificate_authorities_config_model_json).__dict__
+        intermediate_certificate_authorities_config_model2 = IntermediateCertificateAuthoritiesConfig(
+            **intermediate_certificate_authorities_config_model_dict)
+
+        # Verify the model instances are equivalent
+        assert intermediate_certificate_authorities_config_model == intermediate_certificate_authorities_config_model2
+
+        # Convert model instance back to dict and verify no loss of data
+        intermediate_certificate_authorities_config_model_json2 = intermediate_certificate_authorities_config_model.to_dict()
+        assert intermediate_certificate_authorities_config_model_json2 == intermediate_certificate_authorities_config_model_json
+
+
+class TestModel_IntermediateCertificateAuthorityConfig():
+    """
+    Test Class for IntermediateCertificateAuthorityConfig
+    """
+
+    def test_intermediate_certificate_authority_config_serialization(self):
+        """
+        Test serialization/deserialization for IntermediateCertificateAuthorityConfig
+        """
+
+        # Construct a json representation of a IntermediateCertificateAuthorityConfig model
+        intermediate_certificate_authority_config_model_json = {}
+        intermediate_certificate_authority_config_model_json['max_ttl'] = '8760h'
+        intermediate_certificate_authority_config_model_json['signing_method'] = 'internal'
+        intermediate_certificate_authority_config_model_json['issuer'] = 'example-ca'
+        intermediate_certificate_authority_config_model_json['crl_expiry'] = '72h'
+        intermediate_certificate_authority_config_model_json['crl_disable'] = False
+        intermediate_certificate_authority_config_model_json['crl_distribution_points_encoded'] = False
+        intermediate_certificate_authority_config_model_json['issuing_certificates_urls_encoded'] = False
+        intermediate_certificate_authority_config_model_json['common_name'] = 'example.com'
+        intermediate_certificate_authority_config_model_json['status'] = 'signing_required'
+        intermediate_certificate_authority_config_model_json['expiration_date'] = '2030-04-01T09:30:00Z'
+        intermediate_certificate_authority_config_model_json['alt_names'] = ['testString']
+        intermediate_certificate_authority_config_model_json['ip_sans'] = 'testString'
+        intermediate_certificate_authority_config_model_json['uri_sans'] = 'testString'
+        intermediate_certificate_authority_config_model_json['other_sans'] = ['testString']
+        intermediate_certificate_authority_config_model_json['format'] = 'pem'
+        intermediate_certificate_authority_config_model_json['private_key_format'] = 'der'
+        intermediate_certificate_authority_config_model_json['key_type'] = 'rsa'
+        intermediate_certificate_authority_config_model_json['key_bits'] = 38
+        intermediate_certificate_authority_config_model_json['exclude_cn_from_sans'] = False
+        intermediate_certificate_authority_config_model_json['ou'] = ['testString']
+        intermediate_certificate_authority_config_model_json['organization'] = ['testString']
+        intermediate_certificate_authority_config_model_json['country'] = ['testString']
+        intermediate_certificate_authority_config_model_json['locality'] = ['testString']
+        intermediate_certificate_authority_config_model_json['province'] = ['testString']
+        intermediate_certificate_authority_config_model_json['street_address'] = ['testString']
+        intermediate_certificate_authority_config_model_json['postal_code'] = ['testString']
+        intermediate_certificate_authority_config_model_json['serial_number'] = 'd9:be:fe:35:ba:09:42:b5'
+        intermediate_certificate_authority_config_model_json['data'] = {'foo': 'bar'}
+
+        # Construct a model instance of IntermediateCertificateAuthorityConfig by calling from_dict on the json representation
+        intermediate_certificate_authority_config_model = IntermediateCertificateAuthorityConfig.from_dict(
+            intermediate_certificate_authority_config_model_json)
+        assert intermediate_certificate_authority_config_model != False
+
+        # Construct a model instance of IntermediateCertificateAuthorityConfig by calling from_dict on the json representation
+        intermediate_certificate_authority_config_model_dict = IntermediateCertificateAuthorityConfig.from_dict(
+            intermediate_certificate_authority_config_model_json).__dict__
+        intermediate_certificate_authority_config_model2 = IntermediateCertificateAuthorityConfig(
+            **intermediate_certificate_authority_config_model_dict)
+
+        # Verify the model instances are equivalent
+        assert intermediate_certificate_authority_config_model == intermediate_certificate_authority_config_model2
+
+        # Convert model instance back to dict and verify no loss of data
+        intermediate_certificate_authority_config_model_json2 = intermediate_certificate_authority_config_model.to_dict()
+        assert intermediate_certificate_authority_config_model_json2 == intermediate_certificate_authority_config_model_json
+
+
 class TestModel_KvSecretMetadata():
     """
     Test Class for KvSecretMetadata
@@ -4862,7 +5704,7 @@ class TestModel_KvSecretResource():
         kv_secret_resource_model_json['created_by'] = 'testString'
         kv_secret_resource_model_json['last_update_date'] = '2018-04-12T23:20:50.520000Z'
         kv_secret_resource_model_json['versions_total'] = 1
-        kv_secret_resource_model_json['versions'] = [{}]
+        kv_secret_resource_model_json['versions'] = [{'key1': 'testString'}]
         kv_secret_resource_model_json['expiration_date'] = '2030-04-01T09:30:00Z'
         kv_secret_resource_model_json['payload'] = {'foo': 'bar'}
         kv_secret_resource_model_json['secret_data'] = {'foo': 'bar'}
@@ -4883,6 +5725,180 @@ class TestModel_KvSecretResource():
         assert kv_secret_resource_model_json2 == kv_secret_resource_model_json
 
 
+class TestModel_PrivateCertPolicyRotation():
+    """
+    Test Class for PrivateCertPolicyRotation
+    """
+
+    def test_private_cert_policy_rotation_serialization(self):
+        """
+        Test serialization/deserialization for PrivateCertPolicyRotation
+        """
+
+        # Construct a json representation of a PrivateCertPolicyRotation model
+        private_cert_policy_rotation_model_json = {}
+        private_cert_policy_rotation_model_json['auto_rotate'] = False
+        private_cert_policy_rotation_model_json['interval'] = 1
+        private_cert_policy_rotation_model_json['unit'] = 'day'
+
+        # Construct a model instance of PrivateCertPolicyRotation by calling from_dict on the json representation
+        private_cert_policy_rotation_model = PrivateCertPolicyRotation.from_dict(
+            private_cert_policy_rotation_model_json)
+        assert private_cert_policy_rotation_model != False
+
+        # Construct a model instance of PrivateCertPolicyRotation by calling from_dict on the json representation
+        private_cert_policy_rotation_model_dict = PrivateCertPolicyRotation.from_dict(
+            private_cert_policy_rotation_model_json).__dict__
+        private_cert_policy_rotation_model2 = PrivateCertPolicyRotation(**private_cert_policy_rotation_model_dict)
+
+        # Verify the model instances are equivalent
+        assert private_cert_policy_rotation_model == private_cert_policy_rotation_model2
+
+        # Convert model instance back to dict and verify no loss of data
+        private_cert_policy_rotation_model_json2 = private_cert_policy_rotation_model.to_dict()
+        assert private_cert_policy_rotation_model_json2 == private_cert_policy_rotation_model_json
+
+
+class TestModel_PrivateCertSecretEngineRootConfig():
+    """
+    Test Class for PrivateCertSecretEngineRootConfig
+    """
+
+    def test_private_cert_secret_engine_root_config_serialization(self):
+        """
+        Test serialization/deserialization for PrivateCertSecretEngineRootConfig
+        """
+
+        # Construct dict forms of any model objects needed in order to build this model.
+
+        root_certificate_authority_config_model = {}  # RootCertificateAuthorityConfig
+        root_certificate_authority_config_model['max_ttl'] = '8760h'
+        root_certificate_authority_config_model['crl_expiry'] = '72h'
+        root_certificate_authority_config_model['crl_disable'] = False
+        root_certificate_authority_config_model['crl_distribution_points_encoded'] = False
+        root_certificate_authority_config_model['issuing_certificates_urls_encoded'] = False
+        root_certificate_authority_config_model['common_name'] = 'example.com'
+        root_certificate_authority_config_model['status'] = 'signing_required'
+        root_certificate_authority_config_model['expiration_date'] = '2030-04-01T09:30:00Z'
+        root_certificate_authority_config_model['alt_names'] = ['testString']
+        root_certificate_authority_config_model['ip_sans'] = 'testString'
+        root_certificate_authority_config_model['uri_sans'] = 'testString'
+        root_certificate_authority_config_model['other_sans'] = ['testString']
+        root_certificate_authority_config_model['ttl'] = 'testString'
+        root_certificate_authority_config_model['format'] = 'pem'
+        root_certificate_authority_config_model['private_key_format'] = 'der'
+        root_certificate_authority_config_model['key_type'] = 'rsa'
+        root_certificate_authority_config_model['key_bits'] = 38
+        root_certificate_authority_config_model['max_path_length'] = 38
+        root_certificate_authority_config_model['exclude_cn_from_sans'] = False
+        root_certificate_authority_config_model['permitted_dns_domains'] = ['testString']
+        root_certificate_authority_config_model['ou'] = ['testString']
+        root_certificate_authority_config_model['organization'] = ['testString']
+        root_certificate_authority_config_model['country'] = ['testString']
+        root_certificate_authority_config_model['locality'] = ['testString']
+        root_certificate_authority_config_model['province'] = ['testString']
+        root_certificate_authority_config_model['street_address'] = ['testString']
+        root_certificate_authority_config_model['postal_code'] = ['testString']
+        root_certificate_authority_config_model['serial_number'] = 'd9:be:fe:35:ba:09:42:b5'
+        root_certificate_authority_config_model['data'] = {'foo': 'bar'}
+
+        intermediate_certificate_authority_config_model = {}  # IntermediateCertificateAuthorityConfig
+        intermediate_certificate_authority_config_model['max_ttl'] = '8760h'
+        intermediate_certificate_authority_config_model['signing_method'] = 'internal'
+        intermediate_certificate_authority_config_model['issuer'] = 'example-ca'
+        intermediate_certificate_authority_config_model['crl_expiry'] = '72h'
+        intermediate_certificate_authority_config_model['crl_disable'] = False
+        intermediate_certificate_authority_config_model['crl_distribution_points_encoded'] = False
+        intermediate_certificate_authority_config_model['issuing_certificates_urls_encoded'] = False
+        intermediate_certificate_authority_config_model['common_name'] = 'example.com'
+        intermediate_certificate_authority_config_model['status'] = 'signing_required'
+        intermediate_certificate_authority_config_model['expiration_date'] = '2030-04-01T09:30:00Z'
+        intermediate_certificate_authority_config_model['alt_names'] = ['testString']
+        intermediate_certificate_authority_config_model['ip_sans'] = 'testString'
+        intermediate_certificate_authority_config_model['uri_sans'] = 'testString'
+        intermediate_certificate_authority_config_model['other_sans'] = ['testString']
+        intermediate_certificate_authority_config_model['format'] = 'pem'
+        intermediate_certificate_authority_config_model['private_key_format'] = 'der'
+        intermediate_certificate_authority_config_model['key_type'] = 'rsa'
+        intermediate_certificate_authority_config_model['key_bits'] = 38
+        intermediate_certificate_authority_config_model['exclude_cn_from_sans'] = False
+        intermediate_certificate_authority_config_model['ou'] = ['testString']
+        intermediate_certificate_authority_config_model['organization'] = ['testString']
+        intermediate_certificate_authority_config_model['country'] = ['testString']
+        intermediate_certificate_authority_config_model['locality'] = ['testString']
+        intermediate_certificate_authority_config_model['province'] = ['testString']
+        intermediate_certificate_authority_config_model['street_address'] = ['testString']
+        intermediate_certificate_authority_config_model['postal_code'] = ['testString']
+        intermediate_certificate_authority_config_model['serial_number'] = 'd9:be:fe:35:ba:09:42:b5'
+        intermediate_certificate_authority_config_model['data'] = {'foo': 'bar'}
+
+        certificate_template_config_model = {}  # CertificateTemplateConfig
+        certificate_template_config_model['certificate_authority'] = 'testString'
+        certificate_template_config_model['allowed_secret_groups'] = 'testString'
+        certificate_template_config_model['max_ttl'] = '8760h'
+        certificate_template_config_model['ttl'] = '12h'
+        certificate_template_config_model['allow_localhost'] = True
+        certificate_template_config_model['allowed_domains'] = ['testString']
+        certificate_template_config_model['allowed_domains_template'] = False
+        certificate_template_config_model['allow_bare_domains'] = False
+        certificate_template_config_model['allow_subdomains'] = False
+        certificate_template_config_model['allow_glob_domains'] = False
+        certificate_template_config_model['allow_any_name'] = False
+        certificate_template_config_model['enforce_hostnames'] = True
+        certificate_template_config_model['allow_ip_sans'] = True
+        certificate_template_config_model['allowed_uri_sans'] = ['testString']
+        certificate_template_config_model['allowed_other_sans'] = ['testString']
+        certificate_template_config_model['server_flag'] = True
+        certificate_template_config_model['client_flag'] = True
+        certificate_template_config_model['code_signing_flag'] = False
+        certificate_template_config_model['email_protection_flag'] = False
+        certificate_template_config_model['key_type'] = 'rsa'
+        certificate_template_config_model['key_bits'] = 38
+        certificate_template_config_model['key_usage'] = ['DigitalSignature', 'KeyAgreement', 'KeyEncipherment']
+        certificate_template_config_model['ext_key_usage'] = ['testString']
+        certificate_template_config_model['ext_key_usage_oids'] = ['testString']
+        certificate_template_config_model['use_csr_common_name'] = True
+        certificate_template_config_model['use_csr_sans'] = True
+        certificate_template_config_model['ou'] = ['testString']
+        certificate_template_config_model['organization'] = ['testString']
+        certificate_template_config_model['country'] = ['testString']
+        certificate_template_config_model['locality'] = ['testString']
+        certificate_template_config_model['province'] = ['testString']
+        certificate_template_config_model['street_address'] = ['testString']
+        certificate_template_config_model['postal_code'] = ['testString']
+        certificate_template_config_model['serial_number'] = 'd9:be:fe:35:ba:09:42:b5'
+        certificate_template_config_model['require_cn'] = True
+        certificate_template_config_model['policy_identifiers'] = ['testString']
+        certificate_template_config_model['basic_constraints_valid_for_non_ca'] = True
+        certificate_template_config_model['not_before_duration'] = '30s'
+
+        # Construct a json representation of a PrivateCertSecretEngineRootConfig model
+        private_cert_secret_engine_root_config_model_json = {}
+        private_cert_secret_engine_root_config_model_json['root_certificate_authorities'] = [
+            root_certificate_authority_config_model]
+        private_cert_secret_engine_root_config_model_json['intermdiate_certificate_authorities'] = [
+            intermediate_certificate_authority_config_model]
+        private_cert_secret_engine_root_config_model_json['certificate_templates'] = [certificate_template_config_model]
+
+        # Construct a model instance of PrivateCertSecretEngineRootConfig by calling from_dict on the json representation
+        private_cert_secret_engine_root_config_model = PrivateCertSecretEngineRootConfig.from_dict(
+            private_cert_secret_engine_root_config_model_json)
+        assert private_cert_secret_engine_root_config_model != False
+
+        # Construct a model instance of PrivateCertSecretEngineRootConfig by calling from_dict on the json representation
+        private_cert_secret_engine_root_config_model_dict = PrivateCertSecretEngineRootConfig.from_dict(
+            private_cert_secret_engine_root_config_model_json).__dict__
+        private_cert_secret_engine_root_config_model2 = PrivateCertSecretEngineRootConfig(
+            **private_cert_secret_engine_root_config_model_dict)
+
+        # Verify the model instances are equivalent
+        assert private_cert_secret_engine_root_config_model == private_cert_secret_engine_root_config_model2
+
+        # Convert model instance back to dict and verify no loss of data
+        private_cert_secret_engine_root_config_model_json2 = private_cert_secret_engine_root_config_model.to_dict()
+        assert private_cert_secret_engine_root_config_model_json2 == private_cert_secret_engine_root_config_model_json
+
+
 class TestModel_PrivateCertificateSecretMetadata():
     """
     Test Class for PrivateCertificateSecretMetadata
@@ -4892,6 +5908,18 @@ class TestModel_PrivateCertificateSecretMetadata():
         """
         Test serialization/deserialization for PrivateCertificateSecretMetadata
         """
+
+        # Construct dict forms of any model objects needed in order to build this model.
+
+        rotation_model = {}  # Rotation
+        rotation_model['auto_rotate'] = False
+        rotation_model['rotate_keys'] = False
+        rotation_model['interval'] = 38
+        rotation_model['unit'] = 'day'
+
+        certificate_validity_model = {}  # CertificateValidity
+        certificate_validity_model['not_before'] = '2020-10-05T21:33:11Z'
+        certificate_validity_model['not_after'] = '2021-01-01T00:00:00Z'
 
         # Construct a json representation of a PrivateCertificateSecretMetadata model
         private_certificate_secret_metadata_model_json = {}
@@ -4909,6 +5937,25 @@ class TestModel_PrivateCertificateSecretMetadata():
         private_certificate_secret_metadata_model_json['created_by'] = 'ServiceId-cb258cb9-8de3-4ac0-9aec-b2b2d27ac976'
         private_certificate_secret_metadata_model_json['last_update_date'] = '2018-04-12T23:20:50.520000Z'
         private_certificate_secret_metadata_model_json['versions_total'] = 1
+        private_certificate_secret_metadata_model_json['certificate_template'] = 'cert-template-1'
+        private_certificate_secret_metadata_model_json['certificate_authority'] = 'testString'
+        private_certificate_secret_metadata_model_json['common_name'] = 'example.com'
+        private_certificate_secret_metadata_model_json['alt_names'] = ['testString']
+        private_certificate_secret_metadata_model_json['ip_sans'] = 'testString'
+        private_certificate_secret_metadata_model_json['uri_sans'] = 'testString'
+        private_certificate_secret_metadata_model_json['other_sans'] = ['testString']
+        private_certificate_secret_metadata_model_json['ttl'] = '12h'
+        private_certificate_secret_metadata_model_json['format'] = 'pem'
+        private_certificate_secret_metadata_model_json['private_key_format'] = 'der'
+        private_certificate_secret_metadata_model_json['exclude_cn_from_sans'] = False
+        private_certificate_secret_metadata_model_json['rotation'] = rotation_model
+        private_certificate_secret_metadata_model_json['algorithm'] = 'SHA256-RSA'
+        private_certificate_secret_metadata_model_json['key_algorithm'] = 'RSA2048'
+        private_certificate_secret_metadata_model_json['issuer'] = 'example-root-ca'
+        private_certificate_secret_metadata_model_json['validity'] = certificate_validity_model
+        private_certificate_secret_metadata_model_json['serial_number'] = 'd9:be:fe:35:ba:09:42:b5'
+        private_certificate_secret_metadata_model_json['revocation_time'] = 38
+        private_certificate_secret_metadata_model_json['revocation_time_rfc3339'] = '2021-11-01T08:00:20.660000Z'
 
         # Construct a model instance of PrivateCertificateSecretMetadata by calling from_dict on the json representation
         private_certificate_secret_metadata_model = PrivateCertificateSecretMetadata.from_dict(
@@ -4927,6 +5974,242 @@ class TestModel_PrivateCertificateSecretMetadata():
         # Convert model instance back to dict and verify no loss of data
         private_certificate_secret_metadata_model_json2 = private_certificate_secret_metadata_model.to_dict()
         assert private_certificate_secret_metadata_model_json2 == private_certificate_secret_metadata_model_json
+
+
+class TestModel_PrivateCertificateSecretResource():
+    """
+    Test Class for PrivateCertificateSecretResource
+    """
+
+    def test_private_certificate_secret_resource_serialization(self):
+        """
+        Test serialization/deserialization for PrivateCertificateSecretResource
+        """
+
+        # Construct dict forms of any model objects needed in order to build this model.
+
+        rotation_model = {}  # Rotation
+        rotation_model['auto_rotate'] = False
+        rotation_model['rotate_keys'] = False
+        rotation_model['interval'] = 38
+        rotation_model['unit'] = 'day'
+
+        certificate_validity_model = {}  # CertificateValidity
+        certificate_validity_model['not_before'] = '2020-10-05T21:33:11Z'
+        certificate_validity_model['not_after'] = '2021-01-01T00:00:00Z'
+
+        # Construct a json representation of a PrivateCertificateSecretResource model
+        private_certificate_secret_resource_model_json = {}
+        private_certificate_secret_resource_model_json['id'] = 'testString'
+        private_certificate_secret_resource_model_json['name'] = 'testString'
+        private_certificate_secret_resource_model_json['description'] = 'testString'
+        private_certificate_secret_resource_model_json['secret_group_id'] = 'testString'
+        private_certificate_secret_resource_model_json['labels'] = ['testString']
+        private_certificate_secret_resource_model_json['state'] = 0
+        private_certificate_secret_resource_model_json['state_description'] = 'Active'
+        private_certificate_secret_resource_model_json['secret_type'] = 'arbitrary'
+        private_certificate_secret_resource_model_json[
+            'crn'] = 'crn:v1:bluemix:public:secrets-manager:<region>:a/<account-id>:<service-instance>:secret:<secret-id>'
+        private_certificate_secret_resource_model_json['creation_date'] = '2018-04-12T23:20:50.520000Z'
+        private_certificate_secret_resource_model_json['created_by'] = 'testString'
+        private_certificate_secret_resource_model_json['last_update_date'] = '2018-04-12T23:20:50.520000Z'
+        private_certificate_secret_resource_model_json['versions_total'] = 1
+        private_certificate_secret_resource_model_json['versions'] = [{'key1': 'testString'}]
+        private_certificate_secret_resource_model_json['certificate_template'] = 'cert-template-1'
+        private_certificate_secret_resource_model_json['certificate_authority'] = 'testString'
+        private_certificate_secret_resource_model_json['common_name'] = 'example.com'
+        private_certificate_secret_resource_model_json['alt_names'] = ['testString']
+        private_certificate_secret_resource_model_json['ip_sans'] = 'testString'
+        private_certificate_secret_resource_model_json['uri_sans'] = 'testString'
+        private_certificate_secret_resource_model_json['other_sans'] = ['testString']
+        private_certificate_secret_resource_model_json['ttl'] = '12h'
+        private_certificate_secret_resource_model_json['format'] = 'pem'
+        private_certificate_secret_resource_model_json['private_key_format'] = 'der'
+        private_certificate_secret_resource_model_json['exclude_cn_from_sans'] = False
+        private_certificate_secret_resource_model_json['rotation'] = rotation_model
+        private_certificate_secret_resource_model_json['algorithm'] = 'SHA256-RSA'
+        private_certificate_secret_resource_model_json['key_algorithm'] = 'RSA2048'
+        private_certificate_secret_resource_model_json['issuer'] = 'example-root-ca'
+        private_certificate_secret_resource_model_json['validity'] = certificate_validity_model
+        private_certificate_secret_resource_model_json['serial_number'] = 'd9:be:fe:35:ba:09:42:b5'
+        private_certificate_secret_resource_model_json['revocation_time'] = 38
+        private_certificate_secret_resource_model_json['revocation_time_rfc3339'] = '2021-11-01T08:00:20.660000Z'
+        private_certificate_secret_resource_model_json['secret_data'] = {'foo': 'bar'}
+
+        # Construct a model instance of PrivateCertificateSecretResource by calling from_dict on the json representation
+        private_certificate_secret_resource_model = PrivateCertificateSecretResource.from_dict(
+            private_certificate_secret_resource_model_json)
+        assert private_certificate_secret_resource_model != False
+
+        # Construct a model instance of PrivateCertificateSecretResource by calling from_dict on the json representation
+        private_certificate_secret_resource_model_dict = PrivateCertificateSecretResource.from_dict(
+            private_certificate_secret_resource_model_json).__dict__
+        private_certificate_secret_resource_model2 = PrivateCertificateSecretResource(
+            **private_certificate_secret_resource_model_dict)
+
+        # Verify the model instances are equivalent
+        assert private_certificate_secret_resource_model == private_certificate_secret_resource_model2
+
+        # Convert model instance back to dict and verify no loss of data
+        private_certificate_secret_resource_model_json2 = private_certificate_secret_resource_model.to_dict()
+        assert private_certificate_secret_resource_model_json2 == private_certificate_secret_resource_model_json
+
+
+class TestModel_PrivateCertificateSecretVersion():
+    """
+    Test Class for PrivateCertificateSecretVersion
+    """
+
+    def test_private_certificate_secret_version_serialization(self):
+        """
+        Test serialization/deserialization for PrivateCertificateSecretVersion
+        """
+
+        # Construct dict forms of any model objects needed in order to build this model.
+
+        certificate_validity_model = {}  # CertificateValidity
+        certificate_validity_model['not_before'] = '2020-10-05T21:33:11Z'
+        certificate_validity_model['not_after'] = '2021-01-01T00:00:00Z'
+
+        certificate_secret_data_model = {}  # CertificateSecretData
+
+        # Construct a json representation of a PrivateCertificateSecretVersion model
+        private_certificate_secret_version_model_json = {}
+        private_certificate_secret_version_model_json['id'] = 'testString'
+        private_certificate_secret_version_model_json['version_id'] = '4a0225e9-17a0-46c1-ace7-f25bcf4237d4'
+        private_certificate_secret_version_model_json['creation_date'] = '2019-01-01T12:00:00Z'
+        private_certificate_secret_version_model_json['created_by'] = 'testString'
+        private_certificate_secret_version_model_json['validity'] = certificate_validity_model
+        private_certificate_secret_version_model_json['serial_number'] = 'd9:be:fe:35:ba:09:42:b5'
+        private_certificate_secret_version_model_json['expiration_date'] = '2030-04-01T09:30:00Z'
+        private_certificate_secret_version_model_json['secret_data'] = certificate_secret_data_model
+        private_certificate_secret_version_model_json['state'] = 0
+        private_certificate_secret_version_model_json['state_description'] = 'Active'
+        private_certificate_secret_version_model_json['revocation_time'] = 38
+        private_certificate_secret_version_model_json['revocation_time_rfc3339'] = '2021-11-01T08:00:20.660000Z'
+        private_certificate_secret_version_model_json['auto_rotated'] = True
+
+        # Construct a model instance of PrivateCertificateSecretVersion by calling from_dict on the json representation
+        private_certificate_secret_version_model = PrivateCertificateSecretVersion.from_dict(
+            private_certificate_secret_version_model_json)
+        assert private_certificate_secret_version_model != False
+
+        # Construct a model instance of PrivateCertificateSecretVersion by calling from_dict on the json representation
+        private_certificate_secret_version_model_dict = PrivateCertificateSecretVersion.from_dict(
+            private_certificate_secret_version_model_json).__dict__
+        private_certificate_secret_version_model2 = PrivateCertificateSecretVersion(
+            **private_certificate_secret_version_model_dict)
+
+        # Verify the model instances are equivalent
+        assert private_certificate_secret_version_model == private_certificate_secret_version_model2
+
+        # Convert model instance back to dict and verify no loss of data
+        private_certificate_secret_version_model_json2 = private_certificate_secret_version_model.to_dict()
+        assert private_certificate_secret_version_model_json2 == private_certificate_secret_version_model_json
+
+
+class TestModel_PrivateCertificateSecretVersionInfo():
+    """
+    Test Class for PrivateCertificateSecretVersionInfo
+    """
+
+    def test_private_certificate_secret_version_info_serialization(self):
+        """
+        Test serialization/deserialization for PrivateCertificateSecretVersionInfo
+        """
+
+        # Construct dict forms of any model objects needed in order to build this model.
+
+        certificate_validity_model = {}  # CertificateValidity
+        certificate_validity_model['not_before'] = '2020-10-05T21:33:11Z'
+        certificate_validity_model['not_after'] = '2021-01-01T00:00:00Z'
+
+        # Construct a json representation of a PrivateCertificateSecretVersionInfo model
+        private_certificate_secret_version_info_model_json = {}
+        private_certificate_secret_version_info_model_json['id'] = '4a0225e9-17a0-46c1-ace7-f25bcf4237d4'
+        private_certificate_secret_version_info_model_json['creation_date'] = '2019-01-01T12:00:00Z'
+        private_certificate_secret_version_info_model_json['created_by'] = 'testString'
+        private_certificate_secret_version_info_model_json['payload_available'] = True
+        private_certificate_secret_version_info_model_json['downloaded'] = True
+        private_certificate_secret_version_info_model_json['serial_number'] = 'd9:be:fe:35:ba:09:42:b5'
+        private_certificate_secret_version_info_model_json['expiration_date'] = '2030-04-01T09:30:00Z'
+        private_certificate_secret_version_info_model_json['validity'] = certificate_validity_model
+        private_certificate_secret_version_info_model_json['state'] = 0
+        private_certificate_secret_version_info_model_json['state_description'] = 'Active'
+        private_certificate_secret_version_info_model_json['revocation_time'] = 38
+        private_certificate_secret_version_info_model_json['revocation_time_rfc3339'] = '2021-11-01T08:00:20.660000Z'
+        private_certificate_secret_version_info_model_json['auto_rotated'] = True
+
+        # Construct a model instance of PrivateCertificateSecretVersionInfo by calling from_dict on the json representation
+        private_certificate_secret_version_info_model = PrivateCertificateSecretVersionInfo.from_dict(
+            private_certificate_secret_version_info_model_json)
+        assert private_certificate_secret_version_info_model != False
+
+        # Construct a model instance of PrivateCertificateSecretVersionInfo by calling from_dict on the json representation
+        private_certificate_secret_version_info_model_dict = PrivateCertificateSecretVersionInfo.from_dict(
+            private_certificate_secret_version_info_model_json).__dict__
+        private_certificate_secret_version_info_model2 = PrivateCertificateSecretVersionInfo(
+            **private_certificate_secret_version_info_model_dict)
+
+        # Verify the model instances are equivalent
+        assert private_certificate_secret_version_info_model == private_certificate_secret_version_info_model2
+
+        # Convert model instance back to dict and verify no loss of data
+        private_certificate_secret_version_info_model_json2 = private_certificate_secret_version_info_model.to_dict()
+        assert private_certificate_secret_version_info_model_json2 == private_certificate_secret_version_info_model_json
+
+
+class TestModel_PrivateCertificateSecretVersionMetadata():
+    """
+    Test Class for PrivateCertificateSecretVersionMetadata
+    """
+
+    def test_private_certificate_secret_version_metadata_serialization(self):
+        """
+        Test serialization/deserialization for PrivateCertificateSecretVersionMetadata
+        """
+
+        # Construct dict forms of any model objects needed in order to build this model.
+
+        certificate_validity_model = {}  # CertificateValidity
+        certificate_validity_model['not_before'] = '2020-10-05T21:33:11Z'
+        certificate_validity_model['not_after'] = '2021-01-01T00:00:00Z'
+
+        # Construct a json representation of a PrivateCertificateSecretVersionMetadata model
+        private_certificate_secret_version_metadata_model_json = {}
+        private_certificate_secret_version_metadata_model_json['id'] = 'testString'
+        private_certificate_secret_version_metadata_model_json['version_id'] = '4a0225e9-17a0-46c1-ace7-f25bcf4237d4'
+        private_certificate_secret_version_metadata_model_json['creation_date'] = '2019-01-01T12:00:00Z'
+        private_certificate_secret_version_metadata_model_json['created_by'] = 'testString'
+        private_certificate_secret_version_metadata_model_json['payload_available'] = True
+        private_certificate_secret_version_metadata_model_json['downloaded'] = True
+        private_certificate_secret_version_metadata_model_json['serial_number'] = 'd9:be:fe:35:ba:09:42:b5'
+        private_certificate_secret_version_metadata_model_json['expiration_date'] = '2030-04-01T09:30:00Z'
+        private_certificate_secret_version_metadata_model_json['validity'] = certificate_validity_model
+        private_certificate_secret_version_metadata_model_json['state'] = 0
+        private_certificate_secret_version_metadata_model_json['state_description'] = 'Active'
+        private_certificate_secret_version_metadata_model_json['revocation_time'] = 38
+        private_certificate_secret_version_metadata_model_json[
+            'revocation_time_rfc3339'] = '2021-11-01T08:00:20.660000Z'
+        private_certificate_secret_version_metadata_model_json['auto_rotated'] = True
+
+        # Construct a model instance of PrivateCertificateSecretVersionMetadata by calling from_dict on the json representation
+        private_certificate_secret_version_metadata_model = PrivateCertificateSecretVersionMetadata.from_dict(
+            private_certificate_secret_version_metadata_model_json)
+        assert private_certificate_secret_version_metadata_model != False
+
+        # Construct a model instance of PrivateCertificateSecretVersionMetadata by calling from_dict on the json representation
+        private_certificate_secret_version_metadata_model_dict = PrivateCertificateSecretVersionMetadata.from_dict(
+            private_certificate_secret_version_metadata_model_json).__dict__
+        private_certificate_secret_version_metadata_model2 = PrivateCertificateSecretVersionMetadata(
+            **private_certificate_secret_version_metadata_model_dict)
+
+        # Verify the model instances are equivalent
+        assert private_certificate_secret_version_metadata_model == private_certificate_secret_version_metadata_model2
+
+        # Convert model instance back to dict and verify no loss of data
+        private_certificate_secret_version_metadata_model_json2 = private_certificate_secret_version_metadata_model.to_dict()
+        assert private_certificate_secret_version_metadata_model_json2 == private_certificate_secret_version_metadata_model_json
 
 
 class TestModel_PublicCertSecretEngineRootConfig():
@@ -5099,7 +6382,7 @@ class TestModel_PublicCertificateSecretResource():
         public_certificate_secret_resource_model_json['created_by'] = 'testString'
         public_certificate_secret_resource_model_json['last_update_date'] = '2018-04-12T23:20:50.520000Z'
         public_certificate_secret_resource_model_json['versions_total'] = 1
-        public_certificate_secret_resource_model_json['versions'] = [{}]
+        public_certificate_secret_resource_model_json['versions'] = [{'key1': 'testString'}]
         public_certificate_secret_resource_model_json['issuer'] = 'GlobalSign'
         public_certificate_secret_resource_model_json['bundle_certs'] = True
         public_certificate_secret_resource_model_json['ca'] = 'testString'
@@ -5168,6 +6451,199 @@ class TestModel_RestoreIAMCredentialsSecretBody():
         assert restore_iam_credentials_secret_body_model_json2 == restore_iam_credentials_secret_body_model_json
 
 
+class TestModel_RevokeAction():
+    """
+    Test Class for RevokeAction
+    """
+
+    def test_revoke_action_serialization(self):
+        """
+        Test serialization/deserialization for RevokeAction
+        """
+
+        # Construct a json representation of a RevokeAction model
+        revoke_action_model_json = {}
+        revoke_action_model_json['serial_number'] = 'testString'
+
+        # Construct a model instance of RevokeAction by calling from_dict on the json representation
+        revoke_action_model = RevokeAction.from_dict(revoke_action_model_json)
+        assert revoke_action_model != False
+
+        # Construct a model instance of RevokeAction by calling from_dict on the json representation
+        revoke_action_model_dict = RevokeAction.from_dict(revoke_action_model_json).__dict__
+        revoke_action_model2 = RevokeAction(**revoke_action_model_dict)
+
+        # Verify the model instances are equivalent
+        assert revoke_action_model == revoke_action_model2
+
+        # Convert model instance back to dict and verify no loss of data
+        revoke_action_model_json2 = revoke_action_model.to_dict()
+        assert revoke_action_model_json2 == revoke_action_model_json
+
+
+class TestModel_RevokeActionResult():
+    """
+    Test Class for RevokeActionResult
+    """
+
+    def test_revoke_action_result_serialization(self):
+        """
+        Test serialization/deserialization for RevokeActionResult
+        """
+
+        # Construct a json representation of a RevokeActionResult model
+        revoke_action_result_model_json = {}
+        revoke_action_result_model_json['revocation_time'] = 38
+
+        # Construct a model instance of RevokeActionResult by calling from_dict on the json representation
+        revoke_action_result_model = RevokeActionResult.from_dict(revoke_action_result_model_json)
+        assert revoke_action_result_model != False
+
+        # Construct a model instance of RevokeActionResult by calling from_dict on the json representation
+        revoke_action_result_model_dict = RevokeActionResult.from_dict(revoke_action_result_model_json).__dict__
+        revoke_action_result_model2 = RevokeActionResult(**revoke_action_result_model_dict)
+
+        # Verify the model instances are equivalent
+        assert revoke_action_result_model == revoke_action_result_model2
+
+        # Convert model instance back to dict and verify no loss of data
+        revoke_action_result_model_json2 = revoke_action_result_model.to_dict()
+        assert revoke_action_result_model_json2 == revoke_action_result_model_json
+
+
+class TestModel_RootCertificateAuthoritiesConfig():
+    """
+    Test Class for RootCertificateAuthoritiesConfig
+    """
+
+    def test_root_certificate_authorities_config_serialization(self):
+        """
+        Test serialization/deserialization for RootCertificateAuthoritiesConfig
+        """
+
+        # Construct dict forms of any model objects needed in order to build this model.
+
+        root_certificate_authority_config_model = {}  # RootCertificateAuthorityConfig
+        root_certificate_authority_config_model['max_ttl'] = '8760h'
+        root_certificate_authority_config_model['crl_expiry'] = '72h'
+        root_certificate_authority_config_model['crl_disable'] = False
+        root_certificate_authority_config_model['crl_distribution_points_encoded'] = False
+        root_certificate_authority_config_model['issuing_certificates_urls_encoded'] = False
+        root_certificate_authority_config_model['common_name'] = 'example.com'
+        root_certificate_authority_config_model['status'] = 'signing_required'
+        root_certificate_authority_config_model['expiration_date'] = '2030-04-01T09:30:00Z'
+        root_certificate_authority_config_model['alt_names'] = ['testString']
+        root_certificate_authority_config_model['ip_sans'] = 'testString'
+        root_certificate_authority_config_model['uri_sans'] = 'testString'
+        root_certificate_authority_config_model['other_sans'] = ['testString']
+        root_certificate_authority_config_model['ttl'] = 'testString'
+        root_certificate_authority_config_model['format'] = 'pem'
+        root_certificate_authority_config_model['private_key_format'] = 'der'
+        root_certificate_authority_config_model['key_type'] = 'rsa'
+        root_certificate_authority_config_model['key_bits'] = 38
+        root_certificate_authority_config_model['max_path_length'] = 38
+        root_certificate_authority_config_model['exclude_cn_from_sans'] = False
+        root_certificate_authority_config_model['permitted_dns_domains'] = ['testString']
+        root_certificate_authority_config_model['ou'] = ['testString']
+        root_certificate_authority_config_model['organization'] = ['testString']
+        root_certificate_authority_config_model['country'] = ['testString']
+        root_certificate_authority_config_model['locality'] = ['testString']
+        root_certificate_authority_config_model['province'] = ['testString']
+        root_certificate_authority_config_model['street_address'] = ['testString']
+        root_certificate_authority_config_model['postal_code'] = ['testString']
+        root_certificate_authority_config_model['serial_number'] = 'd9:be:fe:35:ba:09:42:b5'
+        root_certificate_authority_config_model['data'] = {'foo': 'bar'}
+
+        root_certificate_authorities_config_item_model = {}  # RootCertificateAuthoritiesConfigItem
+        root_certificate_authorities_config_item_model['name'] = 'testString'
+        root_certificate_authorities_config_item_model['type'] = 'letsencrypt'
+        root_certificate_authorities_config_item_model['config'] = root_certificate_authority_config_model
+
+        # Construct a json representation of a RootCertificateAuthoritiesConfig model
+        root_certificate_authorities_config_model_json = {}
+        root_certificate_authorities_config_model_json['root_certificate_authorities'] = [
+            root_certificate_authorities_config_item_model]
+
+        # Construct a model instance of RootCertificateAuthoritiesConfig by calling from_dict on the json representation
+        root_certificate_authorities_config_model = RootCertificateAuthoritiesConfig.from_dict(
+            root_certificate_authorities_config_model_json)
+        assert root_certificate_authorities_config_model != False
+
+        # Construct a model instance of RootCertificateAuthoritiesConfig by calling from_dict on the json representation
+        root_certificate_authorities_config_model_dict = RootCertificateAuthoritiesConfig.from_dict(
+            root_certificate_authorities_config_model_json).__dict__
+        root_certificate_authorities_config_model2 = RootCertificateAuthoritiesConfig(
+            **root_certificate_authorities_config_model_dict)
+
+        # Verify the model instances are equivalent
+        assert root_certificate_authorities_config_model == root_certificate_authorities_config_model2
+
+        # Convert model instance back to dict and verify no loss of data
+        root_certificate_authorities_config_model_json2 = root_certificate_authorities_config_model.to_dict()
+        assert root_certificate_authorities_config_model_json2 == root_certificate_authorities_config_model_json
+
+
+class TestModel_RootCertificateAuthorityConfig():
+    """
+    Test Class for RootCertificateAuthorityConfig
+    """
+
+    def test_root_certificate_authority_config_serialization(self):
+        """
+        Test serialization/deserialization for RootCertificateAuthorityConfig
+        """
+
+        # Construct a json representation of a RootCertificateAuthorityConfig model
+        root_certificate_authority_config_model_json = {}
+        root_certificate_authority_config_model_json['max_ttl'] = '8760h'
+        root_certificate_authority_config_model_json['crl_expiry'] = '72h'
+        root_certificate_authority_config_model_json['crl_disable'] = False
+        root_certificate_authority_config_model_json['crl_distribution_points_encoded'] = False
+        root_certificate_authority_config_model_json['issuing_certificates_urls_encoded'] = False
+        root_certificate_authority_config_model_json['common_name'] = 'example.com'
+        root_certificate_authority_config_model_json['status'] = 'signing_required'
+        root_certificate_authority_config_model_json['expiration_date'] = '2030-04-01T09:30:00Z'
+        root_certificate_authority_config_model_json['alt_names'] = ['testString']
+        root_certificate_authority_config_model_json['ip_sans'] = 'testString'
+        root_certificate_authority_config_model_json['uri_sans'] = 'testString'
+        root_certificate_authority_config_model_json['other_sans'] = ['testString']
+        root_certificate_authority_config_model_json['ttl'] = 'testString'
+        root_certificate_authority_config_model_json['format'] = 'pem'
+        root_certificate_authority_config_model_json['private_key_format'] = 'der'
+        root_certificate_authority_config_model_json['key_type'] = 'rsa'
+        root_certificate_authority_config_model_json['key_bits'] = 38
+        root_certificate_authority_config_model_json['max_path_length'] = 38
+        root_certificate_authority_config_model_json['exclude_cn_from_sans'] = False
+        root_certificate_authority_config_model_json['permitted_dns_domains'] = ['testString']
+        root_certificate_authority_config_model_json['ou'] = ['testString']
+        root_certificate_authority_config_model_json['organization'] = ['testString']
+        root_certificate_authority_config_model_json['country'] = ['testString']
+        root_certificate_authority_config_model_json['locality'] = ['testString']
+        root_certificate_authority_config_model_json['province'] = ['testString']
+        root_certificate_authority_config_model_json['street_address'] = ['testString']
+        root_certificate_authority_config_model_json['postal_code'] = ['testString']
+        root_certificate_authority_config_model_json['serial_number'] = 'd9:be:fe:35:ba:09:42:b5'
+        root_certificate_authority_config_model_json['data'] = {'foo': 'bar'}
+
+        # Construct a model instance of RootCertificateAuthorityConfig by calling from_dict on the json representation
+        root_certificate_authority_config_model = RootCertificateAuthorityConfig.from_dict(
+            root_certificate_authority_config_model_json)
+        assert root_certificate_authority_config_model != False
+
+        # Construct a model instance of RootCertificateAuthorityConfig by calling from_dict on the json representation
+        root_certificate_authority_config_model_dict = RootCertificateAuthorityConfig.from_dict(
+            root_certificate_authority_config_model_json).__dict__
+        root_certificate_authority_config_model2 = RootCertificateAuthorityConfig(
+            **root_certificate_authority_config_model_dict)
+
+        # Verify the model instances are equivalent
+        assert root_certificate_authority_config_model == root_certificate_authority_config_model2
+
+        # Convert model instance back to dict and verify no loss of data
+        root_certificate_authority_config_model_json2 = root_certificate_authority_config_model.to_dict()
+        assert root_certificate_authority_config_model_json2 == root_certificate_authority_config_model_json
+
+
 class TestModel_RotateArbitrarySecretBody():
     """
     Test Class for RotateArbitrarySecretBody
@@ -5231,6 +6707,36 @@ class TestModel_RotateCertificateBody():
         # Convert model instance back to dict and verify no loss of data
         rotate_certificate_body_model_json2 = rotate_certificate_body_model.to_dict()
         assert rotate_certificate_body_model_json2 == rotate_certificate_body_model_json
+
+
+class TestModel_RotateCrlActionResult():
+    """
+    Test Class for RotateCrlActionResult
+    """
+
+    def test_rotate_crl_action_result_serialization(self):
+        """
+        Test serialization/deserialization for RotateCrlActionResult
+        """
+
+        # Construct a json representation of a RotateCrlActionResult model
+        rotate_crl_action_result_model_json = {}
+
+        # Construct a model instance of RotateCrlActionResult by calling from_dict on the json representation
+        rotate_crl_action_result_model = RotateCrlActionResult.from_dict(rotate_crl_action_result_model_json)
+        assert rotate_crl_action_result_model != False
+
+        # Construct a model instance of RotateCrlActionResult by calling from_dict on the json representation
+        rotate_crl_action_result_model_dict = RotateCrlActionResult.from_dict(
+            rotate_crl_action_result_model_json).__dict__
+        rotate_crl_action_result_model2 = RotateCrlActionResult(**rotate_crl_action_result_model_dict)
+
+        # Verify the model instances are equivalent
+        assert rotate_crl_action_result_model == rotate_crl_action_result_model2
+
+        # Convert model instance back to dict and verify no loss of data
+        rotate_crl_action_result_model_json2 = rotate_crl_action_result_model.to_dict()
+        assert rotate_crl_action_result_model_json2 == rotate_crl_action_result_model_json
 
 
 class TestModel_RotateKvSecretBody():
@@ -5394,6 +6900,286 @@ class TestModel_SecretPolicyRotationRotationPublicCertPolicyRotation():
         assert secret_policy_rotation_rotation_public_cert_policy_rotation_model_json2 == secret_policy_rotation_rotation_public_cert_policy_rotation_model_json
 
 
+class TestModel_SetSignedAction():
+    """
+    Test Class for SetSignedAction
+    """
+
+    def test_set_signed_action_serialization(self):
+        """
+        Test serialization/deserialization for SetSignedAction
+        """
+
+        # Construct a json representation of a SetSignedAction model
+        set_signed_action_model_json = {}
+        set_signed_action_model_json['certificate'] = 'testString'
+
+        # Construct a model instance of SetSignedAction by calling from_dict on the json representation
+        set_signed_action_model = SetSignedAction.from_dict(set_signed_action_model_json)
+        assert set_signed_action_model != False
+
+        # Construct a model instance of SetSignedAction by calling from_dict on the json representation
+        set_signed_action_model_dict = SetSignedAction.from_dict(set_signed_action_model_json).__dict__
+        set_signed_action_model2 = SetSignedAction(**set_signed_action_model_dict)
+
+        # Verify the model instances are equivalent
+        assert set_signed_action_model == set_signed_action_model2
+
+        # Convert model instance back to dict and verify no loss of data
+        set_signed_action_model_json2 = set_signed_action_model.to_dict()
+        assert set_signed_action_model_json2 == set_signed_action_model_json
+
+
+class TestModel_SetSignedActionResult():
+    """
+    Test Class for SetSignedActionResult
+    """
+
+    def test_set_signed_action_result_serialization(self):
+        """
+        Test serialization/deserialization for SetSignedActionResult
+        """
+
+        # Construct a json representation of a SetSignedActionResult model
+        set_signed_action_result_model_json = {}
+
+        # Construct a model instance of SetSignedActionResult by calling from_dict on the json representation
+        set_signed_action_result_model = SetSignedActionResult.from_dict(set_signed_action_result_model_json)
+        assert set_signed_action_result_model != False
+
+        # Construct a model instance of SetSignedActionResult by calling from_dict on the json representation
+        set_signed_action_result_model_dict = SetSignedActionResult.from_dict(
+            set_signed_action_result_model_json).__dict__
+        set_signed_action_result_model2 = SetSignedActionResult(**set_signed_action_result_model_dict)
+
+        # Verify the model instances are equivalent
+        assert set_signed_action_result_model == set_signed_action_result_model2
+
+        # Convert model instance back to dict and verify no loss of data
+        set_signed_action_result_model_json2 = set_signed_action_result_model.to_dict()
+        assert set_signed_action_result_model_json2 == set_signed_action_result_model_json
+
+
+class TestModel_SignCsrAction():
+    """
+    Test Class for SignCsrAction
+    """
+
+    def test_sign_csr_action_serialization(self):
+        """
+        Test serialization/deserialization for SignCsrAction
+        """
+
+        # Construct a json representation of a SignCsrAction model
+        sign_csr_action_model_json = {}
+        sign_csr_action_model_json['common_name'] = 'example.com'
+        sign_csr_action_model_json['alt_names'] = ['testString']
+        sign_csr_action_model_json['ip_sans'] = 'testString'
+        sign_csr_action_model_json['uri_sans'] = 'testString'
+        sign_csr_action_model_json['other_sans'] = ['testString']
+        sign_csr_action_model_json['ttl'] = '12h'
+        sign_csr_action_model_json['format'] = 'pem'
+        sign_csr_action_model_json['max_path_length'] = 38
+        sign_csr_action_model_json['exclude_cn_from_sans'] = False
+        sign_csr_action_model_json['permitted_dns_domains'] = ['testString']
+        sign_csr_action_model_json['use_csr_values'] = False
+        sign_csr_action_model_json['ou'] = ['testString']
+        sign_csr_action_model_json['organization'] = ['testString']
+        sign_csr_action_model_json['country'] = ['testString']
+        sign_csr_action_model_json['locality'] = ['testString']
+        sign_csr_action_model_json['province'] = ['testString']
+        sign_csr_action_model_json['street_address'] = ['testString']
+        sign_csr_action_model_json['postal_code'] = ['testString']
+        sign_csr_action_model_json['serial_number'] = 'd9:be:fe:35:ba:09:42:b5'
+        sign_csr_action_model_json['csr'] = 'testString'
+
+        # Construct a model instance of SignCsrAction by calling from_dict on the json representation
+        sign_csr_action_model = SignCsrAction.from_dict(sign_csr_action_model_json)
+        assert sign_csr_action_model != False
+
+        # Construct a model instance of SignCsrAction by calling from_dict on the json representation
+        sign_csr_action_model_dict = SignCsrAction.from_dict(sign_csr_action_model_json).__dict__
+        sign_csr_action_model2 = SignCsrAction(**sign_csr_action_model_dict)
+
+        # Verify the model instances are equivalent
+        assert sign_csr_action_model == sign_csr_action_model2
+
+        # Convert model instance back to dict and verify no loss of data
+        sign_csr_action_model_json2 = sign_csr_action_model.to_dict()
+        assert sign_csr_action_model_json2 == sign_csr_action_model_json
+
+
+class TestModel_SignCsrActionResult():
+    """
+    Test Class for SignCsrActionResult
+    """
+
+    def test_sign_csr_action_result_serialization(self):
+        """
+        Test serialization/deserialization for SignCsrActionResult
+        """
+
+        # Construct dict forms of any model objects needed in order to build this model.
+
+        sign_action_result_data_model = {}  # SignActionResultData
+        sign_action_result_data_model['certificate'] = 'testString'
+        sign_action_result_data_model['serial_number'] = 'd9:be:fe:35:ba:09:42:b5'
+        sign_action_result_data_model['issuing_ca'] = 'testString'
+        sign_action_result_data_model['ca_chain'] = ['testString']
+        sign_action_result_data_model['expiration'] = 38
+
+        # Construct a json representation of a SignCsrActionResult model
+        sign_csr_action_result_model_json = {}
+        sign_csr_action_result_model_json['common_name'] = 'example.com'
+        sign_csr_action_result_model_json['alt_names'] = ['testString']
+        sign_csr_action_result_model_json['ip_sans'] = 'testString'
+        sign_csr_action_result_model_json['uri_sans'] = 'testString'
+        sign_csr_action_result_model_json['other_sans'] = ['testString']
+        sign_csr_action_result_model_json['ttl'] = '12h'
+        sign_csr_action_result_model_json['format'] = 'pem'
+        sign_csr_action_result_model_json['max_path_length'] = 38
+        sign_csr_action_result_model_json['exclude_cn_from_sans'] = False
+        sign_csr_action_result_model_json['permitted_dns_domains'] = ['testString']
+        sign_csr_action_result_model_json['use_csr_values'] = False
+        sign_csr_action_result_model_json['ou'] = ['testString']
+        sign_csr_action_result_model_json['organization'] = ['testString']
+        sign_csr_action_result_model_json['country'] = ['testString']
+        sign_csr_action_result_model_json['locality'] = ['testString']
+        sign_csr_action_result_model_json['province'] = ['testString']
+        sign_csr_action_result_model_json['street_address'] = ['testString']
+        sign_csr_action_result_model_json['postal_code'] = ['testString']
+        sign_csr_action_result_model_json['serial_number'] = 'd9:be:fe:35:ba:09:42:b5'
+        sign_csr_action_result_model_json['data'] = sign_action_result_data_model
+        sign_csr_action_result_model_json['csr'] = 'testString'
+
+        # Construct a model instance of SignCsrActionResult by calling from_dict on the json representation
+        sign_csr_action_result_model = SignCsrActionResult.from_dict(sign_csr_action_result_model_json)
+        assert sign_csr_action_result_model != False
+
+        # Construct a model instance of SignCsrActionResult by calling from_dict on the json representation
+        sign_csr_action_result_model_dict = SignCsrActionResult.from_dict(sign_csr_action_result_model_json).__dict__
+        sign_csr_action_result_model2 = SignCsrActionResult(**sign_csr_action_result_model_dict)
+
+        # Verify the model instances are equivalent
+        assert sign_csr_action_result_model == sign_csr_action_result_model2
+
+        # Convert model instance back to dict and verify no loss of data
+        sign_csr_action_result_model_json2 = sign_csr_action_result_model.to_dict()
+        assert sign_csr_action_result_model_json2 == sign_csr_action_result_model_json
+
+
+class TestModel_SignIntermediateAction():
+    """
+    Test Class for SignIntermediateAction
+    """
+
+    def test_sign_intermediate_action_serialization(self):
+        """
+        Test serialization/deserialization for SignIntermediateAction
+        """
+
+        # Construct a json representation of a SignIntermediateAction model
+        sign_intermediate_action_model_json = {}
+        sign_intermediate_action_model_json['common_name'] = 'example.com'
+        sign_intermediate_action_model_json['alt_names'] = ['testString']
+        sign_intermediate_action_model_json['ip_sans'] = 'testString'
+        sign_intermediate_action_model_json['uri_sans'] = 'testString'
+        sign_intermediate_action_model_json['other_sans'] = ['testString']
+        sign_intermediate_action_model_json['ttl'] = '12h'
+        sign_intermediate_action_model_json['format'] = 'pem'
+        sign_intermediate_action_model_json['max_path_length'] = 38
+        sign_intermediate_action_model_json['exclude_cn_from_sans'] = False
+        sign_intermediate_action_model_json['permitted_dns_domains'] = ['testString']
+        sign_intermediate_action_model_json['use_csr_values'] = False
+        sign_intermediate_action_model_json['ou'] = ['testString']
+        sign_intermediate_action_model_json['organization'] = ['testString']
+        sign_intermediate_action_model_json['country'] = ['testString']
+        sign_intermediate_action_model_json['locality'] = ['testString']
+        sign_intermediate_action_model_json['province'] = ['testString']
+        sign_intermediate_action_model_json['street_address'] = ['testString']
+        sign_intermediate_action_model_json['postal_code'] = ['testString']
+        sign_intermediate_action_model_json['serial_number'] = 'd9:be:fe:35:ba:09:42:b5'
+        sign_intermediate_action_model_json['intermediate_certificate_authority'] = 'testString'
+
+        # Construct a model instance of SignIntermediateAction by calling from_dict on the json representation
+        sign_intermediate_action_model = SignIntermediateAction.from_dict(sign_intermediate_action_model_json)
+        assert sign_intermediate_action_model != False
+
+        # Construct a model instance of SignIntermediateAction by calling from_dict on the json representation
+        sign_intermediate_action_model_dict = SignIntermediateAction.from_dict(
+            sign_intermediate_action_model_json).__dict__
+        sign_intermediate_action_model2 = SignIntermediateAction(**sign_intermediate_action_model_dict)
+
+        # Verify the model instances are equivalent
+        assert sign_intermediate_action_model == sign_intermediate_action_model2
+
+        # Convert model instance back to dict and verify no loss of data
+        sign_intermediate_action_model_json2 = sign_intermediate_action_model.to_dict()
+        assert sign_intermediate_action_model_json2 == sign_intermediate_action_model_json
+
+
+class TestModel_SignIntermediateActionResult():
+    """
+    Test Class for SignIntermediateActionResult
+    """
+
+    def test_sign_intermediate_action_result_serialization(self):
+        """
+        Test serialization/deserialization for SignIntermediateActionResult
+        """
+
+        # Construct dict forms of any model objects needed in order to build this model.
+
+        sign_intermediate_action_result_data_model = {}  # SignIntermediateActionResultData
+        sign_intermediate_action_result_data_model['certificate'] = 'testString'
+        sign_intermediate_action_result_data_model['serial_number'] = 'd9:be:fe:35:ba:09:42:b5'
+        sign_intermediate_action_result_data_model['issuing_ca'] = 'testString'
+        sign_intermediate_action_result_data_model['ca_chain'] = ['testString']
+        sign_intermediate_action_result_data_model['expiration'] = 38
+
+        # Construct a json representation of a SignIntermediateActionResult model
+        sign_intermediate_action_result_model_json = {}
+        sign_intermediate_action_result_model_json['common_name'] = 'example.com'
+        sign_intermediate_action_result_model_json['alt_names'] = ['testString']
+        sign_intermediate_action_result_model_json['ip_sans'] = 'testString'
+        sign_intermediate_action_result_model_json['uri_sans'] = 'testString'
+        sign_intermediate_action_result_model_json['other_sans'] = ['testString']
+        sign_intermediate_action_result_model_json['ttl'] = '12h'
+        sign_intermediate_action_result_model_json['format'] = 'pem'
+        sign_intermediate_action_result_model_json['max_path_length'] = 38
+        sign_intermediate_action_result_model_json['exclude_cn_from_sans'] = False
+        sign_intermediate_action_result_model_json['permitted_dns_domains'] = ['testString']
+        sign_intermediate_action_result_model_json['use_csr_values'] = False
+        sign_intermediate_action_result_model_json['ou'] = ['testString']
+        sign_intermediate_action_result_model_json['organization'] = ['testString']
+        sign_intermediate_action_result_model_json['country'] = ['testString']
+        sign_intermediate_action_result_model_json['locality'] = ['testString']
+        sign_intermediate_action_result_model_json['province'] = ['testString']
+        sign_intermediate_action_result_model_json['street_address'] = ['testString']
+        sign_intermediate_action_result_model_json['postal_code'] = ['testString']
+        sign_intermediate_action_result_model_json['serial_number'] = 'd9:be:fe:35:ba:09:42:b5'
+        sign_intermediate_action_result_model_json['data'] = sign_intermediate_action_result_data_model
+        sign_intermediate_action_result_model_json['intermediate_certificate_authority'] = 'testString'
+
+        # Construct a model instance of SignIntermediateActionResult by calling from_dict on the json representation
+        sign_intermediate_action_result_model = SignIntermediateActionResult.from_dict(
+            sign_intermediate_action_result_model_json)
+        assert sign_intermediate_action_result_model != False
+
+        # Construct a model instance of SignIntermediateActionResult by calling from_dict on the json representation
+        sign_intermediate_action_result_model_dict = SignIntermediateActionResult.from_dict(
+            sign_intermediate_action_result_model_json).__dict__
+        sign_intermediate_action_result_model2 = SignIntermediateActionResult(
+            **sign_intermediate_action_result_model_dict)
+
+        # Verify the model instances are equivalent
+        assert sign_intermediate_action_result_model == sign_intermediate_action_result_model2
+
+        # Convert model instance back to dict and verify no loss of data
+        sign_intermediate_action_result_model_json2 = sign_intermediate_action_result_model.to_dict()
+        assert sign_intermediate_action_result_model_json2 == sign_intermediate_action_result_model_json
+
+
 class TestModel_UsernamePasswordSecretMetadata():
     """
     Test Class for UsernamePasswordSecretMetadata
@@ -5467,7 +7253,7 @@ class TestModel_UsernamePasswordSecretResource():
         username_password_secret_resource_model_json['created_by'] = 'testString'
         username_password_secret_resource_model_json['last_update_date'] = '2018-04-12T23:20:50.520000Z'
         username_password_secret_resource_model_json['versions_total'] = 1
-        username_password_secret_resource_model_json['versions'] = [{}]
+        username_password_secret_resource_model_json['versions'] = [{'key1': 'testString'}]
         username_password_secret_resource_model_json['username'] = 'user123'
         username_password_secret_resource_model_json['password'] = 'rainy-cloudy-coffee-book'
         username_password_secret_resource_model_json['secret_data'] = {'foo': 'bar'}

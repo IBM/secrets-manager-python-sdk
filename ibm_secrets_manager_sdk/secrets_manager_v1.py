@@ -14,7 +14,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-# IBM OpenAPI SDK Code Generator Version: 3.46.0-a4e29da0-20220224-210428
+# IBM OpenAPI SDK Code Generator Version: 3.47.1-be944570-20220406-170244
 
 """
 With IBM Cloud® Secrets Manager, you can create, lease, and centrally manage secrets that
@@ -45,7 +45,7 @@ from .common import get_sdk_headers
 class SecretsManagerV1(BaseService):
     """The secrets-manager V1 service."""
 
-    DEFAULT_SERVICE_URL = 'https://secrets-manager.cloud.ibm.com'
+    DEFAULT_SERVICE_URL = None
     DEFAULT_SERVICE_NAME = 'secrets_manager'
 
     @classmethod
@@ -89,8 +89,8 @@ class SecretsManagerV1(BaseService):
         """
         Create a secret group.
 
-        Creates a secret group that you can use to organize secrets and control who on
-        your team has access to them.
+        Create a secret group that you can use to organize secrets and control who on your
+        team has access to them.
         A successful request returns the ID value of the secret group, along with other
         metadata. To learn more about secret groups, check out the
         [docs](https://cloud.ibm.com/docs/secrets-manager?topic=secrets-manager-secret-groups).
@@ -142,8 +142,7 @@ class SecretsManagerV1(BaseService):
         """
         List secret groups.
 
-        Retrieves the list of secret groups that are available in your Secrets Manager
-        instance.
+        List the secret groups that are available in your Secrets Manager instance.
 
         :param dict headers: A `dict` containing the request headers
         :return: A `DetailedResponse` containing the result, headers and HTTP status code.
@@ -175,8 +174,7 @@ class SecretsManagerV1(BaseService):
         """
         Get a secret group.
 
-        Retrieves the metadata of an existing secret group by specifying the ID of the
-        group.
+        Get the metadata of an existing secret group by specifying the ID of the group.
 
         :param str id: The v4 UUID that uniquely identifies the secret group.
         :param dict headers: A `dict` containing the request headers
@@ -216,7 +214,7 @@ class SecretsManagerV1(BaseService):
         """
         Update a secret group.
 
-        Updates the metadata of an existing secret group, such as its name or description.
+        Update the metadata of an existing secret group, such as its name or description.
 
         :param str id: The v4 UUID that uniquely identifies the secret group.
         :param CollectionMetadata metadata: The metadata that describes the
@@ -273,7 +271,7 @@ class SecretsManagerV1(BaseService):
         """
         Delete a secret group.
 
-        Deletes a secret group by specifying the ID of the secret group.
+        Delete a secret group by specifying the ID of the secret group.
         **Note:** To delete a secret group, it must be empty. If you need to remove a
         secret group that contains secrets, you must first [delete the
         secrets](#delete-secret) that are associated with the group.
@@ -387,7 +385,8 @@ class SecretsManagerV1(BaseService):
         """
         List secrets by type.
 
-        Retrieves a list of secrets based on the type that you specify.
+        List the secrets in your Secrets Manager instance based on the type that you
+        specify.
 
         :param str secret_type: The secret type.
         :param int limit: (optional) The number of secrets to retrieve. By default,
@@ -448,7 +447,7 @@ class SecretsManagerV1(BaseService):
         """
         List all secrets.
 
-        Retrieves a list of all secrets in your Secrets Manager instance.
+        List all of the secrets in your Secrets Manager instance.
 
         :param int limit: (optional) The number of secrets to retrieve. By default,
                list operations return the first 200 items. To retrieve a different set of
@@ -567,7 +566,7 @@ class SecretsManagerV1(BaseService):
         """
         Invoke an action on a secret.
 
-        Invokes an action on a specified secret. This method supports the following
+        Invoke an action on a specified secret. This method supports the following
         actions:
         - `rotate`: Replace the value of a secret.
         - `restore`: Restore a previous version of an `iam_credentials` secret.
@@ -631,7 +630,7 @@ class SecretsManagerV1(BaseService):
         """
         Delete a secret.
 
-        Deletes a secret by specifying the ID of the secret.
+        Delete a secret by specifying the ID of the secret.
 
         :param str secret_type: The secret type.
         :param str id: The v4 UUID that uniquely identifies the secret.
@@ -672,7 +671,7 @@ class SecretsManagerV1(BaseService):
         """
         List versions of a secret.
 
-        Retrieves a list of the versions of a secret.
+        List the versions of a secret.
         A successful request returns the list of the versions along with the metadata of
         each version.
 
@@ -717,7 +716,7 @@ class SecretsManagerV1(BaseService):
         """
         Get a version of a secret.
 
-        Retrieves a version of a secret by specifying the ID of the version or the alias
+        Get a version of a secret by specifying the ID of the version or the alias
         `previous`.
         A successful request returns the secret data that is associated with the specified
         version of your secret, along with other metadata.
@@ -760,6 +759,66 @@ class SecretsManagerV1(BaseService):
         response = self.send(request, **kwargs)
         return response
 
+    def update_secret_version(self,
+                              secret_type: str,
+                              id: str,
+                              version_id: str,
+                              action: str,
+                              **kwargs
+                              ) -> DetailedResponse:
+        """
+        Invoke an action on a version of a secret.
+
+        Invoke an action on a specified version of a secret. This method supports the
+        following actions:
+        - `revoke`: Revoke a version of a private certificate.
+
+        :param str secret_type: The secret type.
+        :param str id: The v4 UUID that uniquely identifies the secret.
+        :param str version_id: The v4 UUID that uniquely identifies the secret
+               version. You can also use `previous` to retrieve the previous version.
+               **Note:** To find the version ID of a secret, use the [Get secret
+               metadata](#get-secret-metadata) method and check the response details.
+        :param str action: The action to perform on the specified secret version.
+        :param dict headers: A `dict` containing the request headers
+        :return: A `DetailedResponse` containing the result, headers and HTTP status code.
+        :rtype: DetailedResponse with `dict` result representing a `GetSecret` object
+        """
+
+        if secret_type is None:
+            raise ValueError('secret_type must be provided')
+        if id is None:
+            raise ValueError('id must be provided')
+        if version_id is None:
+            raise ValueError('version_id must be provided')
+        if action is None:
+            raise ValueError('action must be provided')
+        headers = {}
+        sdk_headers = get_sdk_headers(service_name=self.DEFAULT_SERVICE_NAME,
+                                      service_version='V1',
+                                      operation_id='update_secret_version')
+        headers.update(sdk_headers)
+
+        params = {
+            'action': action
+        }
+
+        if 'headers' in kwargs:
+            headers.update(kwargs.get('headers'))
+        headers['Accept'] = 'application/json'
+
+        path_param_keys = ['secret_type', 'id', 'version_id']
+        path_param_values = self.encode_path_vars(secret_type, id, version_id)
+        path_param_dict = dict(zip(path_param_keys, path_param_values))
+        url = '/api/v1/secrets/{secret_type}/{id}/versions/{version_id}'.format(**path_param_dict)
+        request = self.prepare_request(method='POST',
+                                       url=url,
+                                       headers=headers,
+                                       params=params)
+
+        response = self.send(request, **kwargs)
+        return response
+
     def get_secret_version_metadata(self,
                                     secret_type: str,
                                     id: str,
@@ -769,8 +828,8 @@ class SecretsManagerV1(BaseService):
         """
         Get secret version metadata.
 
-        Retrieves secret version metadata by specifying the ID of the version or the alias
-        `previous`.
+        Get the metadata of a secret version by specifying the ID of the version or the
+        alias `previous`.
         A successful request returns the metadata that is associated with the specified
         version of your secret.
 
@@ -820,7 +879,7 @@ class SecretsManagerV1(BaseService):
         """
         Get secret metadata.
 
-        Retrieves the details of a secret by specifying the ID.
+        Get the details of a secret by specifying its ID.
         A successful request returns only metadata about the secret, such as its name and
         creation date. To retrieve the value of a secret, use the [Get a
         secret](#get-secret) or [Get a version of a secret](#get-secret-version) methods.
@@ -867,7 +926,7 @@ class SecretsManagerV1(BaseService):
         """
         Update secret metadata.
 
-        Updates the metadata of a secret, such as its name or description.
+        Update the metadata of a secret, such as its name or description.
         To update the actual contents of a secret, rotate the secret by using the [Invoke
         an action on a secret](#update-secret) method.
 
@@ -937,8 +996,8 @@ class SecretsManagerV1(BaseService):
         """
         Set secret policies.
 
-        Creates or updates one or more policies, such as an [automatic rotation
-        policy](http://cloud.ibm.com/docs/secrets-manager?topic=secrets-manager-rotate-secrets#auto-rotate-secret),
+        Create or update one or more policies, such as an [automatic rotation
+        policy](https://cloud.ibm.com/docs/secrets-manager?topic=secrets-manager-automatic-rotation),
         for the specified secret.
 
         :param str secret_type: The secret type.
@@ -1008,7 +1067,7 @@ class SecretsManagerV1(BaseService):
         """
         List secret policies.
 
-        Retrieves a list of policies that are associated with a specified secret.
+        List the rotation policies that are associated with a specified secret.
 
         :param str secret_type: The secret type.
         :param str id: The v4 UUID that uniquely identifies the secret.
@@ -1061,11 +1120,11 @@ class SecretsManagerV1(BaseService):
         """
         Set the configuration of a secret type.
 
-        Sets the configuration for the specified secret type.
+        Set the configuration for the specified secret type.
         Use this method to configure the IAM credentials (`iam_credentials`) engine for
-        your service instance. Looking to set up certificate ordering? To configure the
-        public certificates (`public_cert`) engine, use the [Add a
-        configuration](#create_config_element) method.
+        your service instance. Looking to order or generate certificates? To configure the
+        public certificates (`public_cert`) or  private certificates (`private_cert`)
+        engines, use the [Add a configuration](#create_config_element) method.
 
         :param str secret_type: The secret type.
         :param EngineConfig engine_config: Properties to update for a secrets
@@ -1112,7 +1171,7 @@ class SecretsManagerV1(BaseService):
         """
         Get the configuration of a secret type.
 
-        Retrieves the configuration that is associated with the specified secret type.
+        Get the configuration that is associated with the specified secret type.
 
         :param str secret_type: The secret type.
         :param dict headers: A `dict` containing the request headers
@@ -1154,15 +1213,15 @@ class SecretsManagerV1(BaseService):
         """
         Add a configuration.
 
-        Adds a configuration element to the specified secret type.
+        Add a configuration element to the specified secret type.
         Use this method to define the configurations that are required to enable the
-        public certificates (`public_cert`) engine and the private certificates
-        (`private_cert`) engine.
+        public certificates (`public_cert`) and private certificates (`private_cert`)
+        engines.
         You can add multiple configurations for your instance as follows:
         - Up to 10 public certificate authority configurations
         - Up to 10 DNS provider configurations
-        - Up to 10 private root certifiate authority configurations
-        - Up to 10 private intermediate certifiate authority configurations
+        - Up to 10 private root certificate authority configurations
+        - Up to 10 private intermediate certificate authority configurations
         - Up to 10 certificate templates.
 
         :param str secret_type: The secret type.
@@ -1227,7 +1286,7 @@ class SecretsManagerV1(BaseService):
         """
         List configurations.
 
-        Lists the configuration elements that are associated with a specified secret type.
+        List the configuration elements that are associated with a specified secret type.
 
         :param str secret_type: The secret type.
         :param str config_element: The configuration element to define or manage.
@@ -1270,8 +1329,7 @@ class SecretsManagerV1(BaseService):
         """
         Get a configuration.
 
-        Retrieves the details of a specific configuration that is associated with a secret
-        type.
+        Get the details of a specific configuration that is associated with a secret type.
 
         :param str secret_type: The secret type.
         :param str config_element: The configuration element to define or manage.
@@ -1319,7 +1377,7 @@ class SecretsManagerV1(BaseService):
         """
         Update a configuration.
 
-        Updates a configuration element that is associated with the specified secret type.
+        Update a configuration element that is associated with the specified secret type.
 
         :param str secret_type: The secret type.
         :param str config_element: The configuration element to define or manage.
@@ -1373,6 +1431,85 @@ class SecretsManagerV1(BaseService):
         response = self.send(request, **kwargs)
         return response
 
+    def action_on_config_element(self,
+                                 secret_type: str,
+                                 config_element: str,
+                                 config_name: str,
+                                 action: str,
+                                 *,
+                                 config: 'ConfigAction' = None,
+                                 **kwargs
+                                 ) -> DetailedResponse:
+        """
+        Invoke an action on a configuration.
+
+        Invoke an action on a specified configuration element. This method supports the
+        following actions:
+        - `sign_intermediate`: Sign an intermediate certificate authority.
+        - `sign_csr`: Sign a certificate signing request.
+        - `set_signed`: Set a signed intermediate certificate authority.
+        - `revoke`: Revoke an internally signed intermediate certificate authority
+        certificate.
+        - `rotate_crl`: Rotate the certificate revocation list (CRL) of an intermediate
+        certificate authority.
+
+        :param str secret_type: The secret type.
+        :param str config_element: The configuration element on which the action is
+               applied.
+        :param str config_name: The name of the certificate authority.
+        :param str action: The action to perform on the specified configuration
+               element.
+        :param ConfigAction config: (optional) Properties that describe an action
+               on a configuration element.
+        :param dict headers: A `dict` containing the request headers
+        :return: A `DetailedResponse` containing the result, headers and HTTP status code.
+        :rtype: DetailedResponse with `dict` result representing a `ConfigElementActionResult` object
+        """
+
+        if secret_type is None:
+            raise ValueError('secret_type must be provided')
+        if config_element is None:
+            raise ValueError('config_element must be provided')
+        if config_name is None:
+            raise ValueError('config_name must be provided')
+        if action is None:
+            raise ValueError('action must be provided')
+        if config is not None:
+            config = convert_model(config)
+        headers = {}
+        sdk_headers = get_sdk_headers(service_name=self.DEFAULT_SERVICE_NAME,
+                                      service_version='V1',
+                                      operation_id='action_on_config_element')
+        headers.update(sdk_headers)
+
+        params = {
+            'action': action
+        }
+
+        data = {
+            'config': config
+        }
+        data = {k: v for (k, v) in data.items() if v is not None}
+        data = json.dumps(data)
+        headers['content-type'] = 'application/json'
+
+        if 'headers' in kwargs:
+            headers.update(kwargs.get('headers'))
+        headers['Accept'] = 'application/json'
+
+        path_param_keys = ['secret_type', 'config_element', 'config_name']
+        path_param_values = self.encode_path_vars(secret_type, config_element, config_name)
+        path_param_dict = dict(zip(path_param_keys, path_param_values))
+        url = '/api/v1/config/{secret_type}/{config_element}/{config_name}'.format(**path_param_dict)
+        request = self.prepare_request(method='POST',
+                                       url=url,
+                                       headers=headers,
+                                       params=params,
+                                       data=data)
+
+        response = self.send(request, **kwargs)
+        return response
+
     def delete_config_element(self,
                               secret_type: str,
                               config_element: str,
@@ -1382,7 +1519,7 @@ class SecretsManagerV1(BaseService):
         """
         Delete a configuration.
 
-        Deletes a configuration element from the specified secret type.
+        Delete a configuration element from the specified secret type.
 
         :param str secret_type: The secret type.
         :param str config_element: The configuration element to define or manage.
@@ -1432,7 +1569,7 @@ class SecretsManagerV1(BaseService):
         """
         Register with Event Notifications.
 
-        Creates a registration between a Secrets Manager instance and [Event
+        Create a registration between a Secrets Manager instance and [Event
         Notifications](https://cloud.ibm.com/apidocs/event-notifications).
         A successful request adds Secrets Manager as a source that you can reference from
         your Event Notifications instance. For more information about enabling
@@ -1488,8 +1625,8 @@ class SecretsManagerV1(BaseService):
         """
         Get Event Notifications registration details.
 
-        Retrieves the details of an existing registration between a Secrets Manager
-        instance and Event Notifications.
+        Get the details of an existing registration between a Secrets Manager instance and
+        Event Notifications.
 
         :param dict headers: A `dict` containing the request headers
         :return: A `DetailedResponse` containing the result, headers and HTTP status code.
@@ -1520,7 +1657,7 @@ class SecretsManagerV1(BaseService):
         """
         Unregister from Event Notifications.
 
-        Deletes a registration between a Secrets Manager instance and Event Notifications.
+        Delete a registration between a Secrets Manager instance and Event Notifications.
         A successful request removes your Secrets Manager instance as a source in Event
         Notifications.
 
@@ -1550,7 +1687,7 @@ class SecretsManagerV1(BaseService):
                                **kwargs
                                ) -> DetailedResponse:
         """
-        Send test event.
+        Send a test event.
 
         Send a test event from a Secrets Manager instance to a configured [Event
         Notifications](https://cloud.ibm.com/apidocs/event-notifications) instance.
@@ -1732,6 +1869,24 @@ class GetSecretVersionEnums:
         PRIVATE_CERT = 'private_cert'
         USERNAME_PASSWORD = 'username_password'
         KV = 'kv'
+
+
+class UpdateSecretVersionEnums:
+    """
+    Enums for update_secret_version parameters.
+    """
+
+    class SecretType(str, Enum):
+        """
+        The secret type.
+        """
+        PRIVATE_CERT = 'private_cert'
+
+    class Action(str, Enum):
+        """
+        The action to perform on the specified secret version.
+        """
+        REVOKE = 'revoke'
 
 
 class GetSecretVersionMetadataEnums:
@@ -1946,6 +2101,35 @@ class UpdateConfigElementEnums:
         CERTIFICATE_TEMPLATES = 'certificate_templates'
 
 
+class ActionOnConfigElementEnums:
+    """
+    Enums for action_on_config_element parameters.
+    """
+
+    class SecretType(str, Enum):
+        """
+        The secret type.
+        """
+        PRIVATE_CERT = 'private_cert'
+
+    class ConfigElement(str, Enum):
+        """
+        The configuration element on which the action is applied.
+        """
+        ROOT_CERTIFICATE_AUTHORITIES = 'root_certificate_authorities'
+        INTERMEDIATE_CERTIFICATE_AUTHORITIES = 'intermediate_certificate_authorities'
+
+    class Action(str, Enum):
+        """
+        The action to perform on the specified configuration element.
+        """
+        SIGN_INTERMEDIATE = 'sign_intermediate'
+        SIGN_CSR = 'sign_csr'
+        SET_SIGNED = 'set_signed'
+        REVOKE = 'revoke'
+        ROTATE_CRL = 'rotate_crl'
+
+
 class DeleteConfigElementEnums:
     """
     Enums for delete_config_element parameters.
@@ -1972,6 +2156,56 @@ class DeleteConfigElementEnums:
 ##############################################################################
 # Models
 ##############################################################################
+
+
+class CertificateSecretData():
+    """
+    The data that is associated with the secret version. The data object contains the
+    following fields:
+    - `certificate`: The contents of the certificate.
+    - `private_key`: The private key that is associated with the certificate.
+    - `intermediate`: The intermediate certificate that is associated with the
+    certificate.
+
+    """
+
+    def __init__(self) -> None:
+        """
+        Initialize a CertificateSecretData object.
+
+        """
+
+    @classmethod
+    def from_dict(cls, _dict: Dict) -> 'CertificateSecretData':
+        """Initialize a CertificateSecretData object from a json dictionary."""
+        return cls(**_dict)
+
+    @classmethod
+    def _from_dict(cls, _dict):
+        """Initialize a CertificateSecretData object from a json dictionary."""
+        return cls.from_dict(_dict)
+
+    def to_dict(self) -> Dict:
+        """Return a json dictionary representing this model."""
+        return vars(self)
+
+    def _to_dict(self):
+        """Return a json dictionary representing this model."""
+        return self.to_dict()
+
+    def __str__(self) -> str:
+        """Return a `str` version of this CertificateSecretData object."""
+        return json.dumps(self.to_dict(), indent=2)
+
+    def __eq__(self, other: 'CertificateSecretData') -> bool:
+        """Return `true` when self and other are equal, false otherwise."""
+        if not isinstance(other, self.__class__):
+            return False
+        return self.__dict__ == other.__dict__
+
+    def __ne__(self, other: 'CertificateSecretData') -> bool:
+        """Return `true` when self and other are not equal, false otherwise."""
+        return not self == other
 
 
 class CollectionMetadata():
@@ -2050,6 +2284,203 @@ class CollectionMetadata():
         APPLICATION_VND_IBM_SECRETS_MANAGER_SECRET_POLICY_JSON = 'application/vnd.ibm.secrets-manager.secret.policy+json'
         APPLICATION_VND_IBM_SECRETS_MANAGER_SECRET_GROUP_JSON = 'application/vnd.ibm.secrets-manager.secret.group+json'
         APPLICATION_VND_IBM_SECRETS_MANAGER_ERROR_JSON = 'application/vnd.ibm.secrets-manager.error+json'
+
+
+class ConfigAction():
+    """
+    Properties that describe an action on a configuration element.
+
+    """
+
+    def __init__(self) -> None:
+        """
+        Initialize a ConfigAction object.
+
+        """
+        msg = "Cannot instantiate base class. Instead, instantiate one of the defined subclasses: {0}".format(
+            ", ".join(['SignCsrAction', 'SignIntermediateAction', 'SetSignedAction', 'RevokeAction']))
+        raise Exception(msg)
+
+
+class ConfigElementActionData():
+    """
+    The configuration to add or update.
+
+    :attr str name: The human-readable name to assign to your configuration.
+    :attr str type: The type of configuration. Value options differ depending on the
+          `config_element` property that you want to define.
+    :attr ConfigElementActionResultConfig config:
+    """
+
+    def __init__(self,
+                 name: str,
+                 type: str,
+                 config: 'ConfigElementActionResultConfig') -> None:
+        """
+        Initialize a ConfigElementActionData object.
+
+        :param str name: The human-readable name to assign to your configuration.
+        :param str type: The type of configuration. Value options differ depending
+               on the `config_element` property that you want to define.
+        :param ConfigElementActionResultConfig config:
+        """
+        self.name = name
+        self.type = type
+        self.config = config
+
+    @classmethod
+    def from_dict(cls, _dict: Dict) -> 'ConfigElementActionData':
+        """Initialize a ConfigElementActionData object from a json dictionary."""
+        args = {}
+        if 'name' in _dict:
+            args['name'] = _dict.get('name')
+        else:
+            raise ValueError('Required property \'name\' not present in ConfigElementActionData JSON')
+        if 'type' in _dict:
+            args['type'] = _dict.get('type')
+        else:
+            raise ValueError('Required property \'type\' not present in ConfigElementActionData JSON')
+        if 'config' in _dict:
+            args['config'] = _dict.get('config')
+        else:
+            raise ValueError('Required property \'config\' not present in ConfigElementActionData JSON')
+        return cls(**args)
+
+    @classmethod
+    def _from_dict(cls, _dict):
+        """Initialize a ConfigElementActionData object from a json dictionary."""
+        return cls.from_dict(_dict)
+
+    def to_dict(self) -> Dict:
+        """Return a json dictionary representing this model."""
+        _dict = {}
+        if hasattr(self, 'name') and self.name is not None:
+            _dict['name'] = self.name
+        if hasattr(self, 'type') and self.type is not None:
+            _dict['type'] = self.type
+        if hasattr(self, 'config') and self.config is not None:
+            if isinstance(self.config, dict):
+                _dict['config'] = self.config
+            else:
+                _dict['config'] = self.config.to_dict()
+        return _dict
+
+    def _to_dict(self):
+        """Return a json dictionary representing this model."""
+        return self.to_dict()
+
+    def __str__(self) -> str:
+        """Return a `str` version of this ConfigElementActionData object."""
+        return json.dumps(self.to_dict(), indent=2)
+
+    def __eq__(self, other: 'ConfigElementActionData') -> bool:
+        """Return `true` when self and other are equal, false otherwise."""
+        if not isinstance(other, self.__class__):
+            return False
+        return self.__dict__ == other.__dict__
+
+    def __ne__(self, other: 'ConfigElementActionData') -> bool:
+        """Return `true` when self and other are not equal, false otherwise."""
+        return not self == other
+
+    class TypeEnum(str, Enum):
+        """
+        The type of configuration. Value options differ depending on the `config_element`
+        property that you want to define.
+        """
+        LETSENCRYPT = 'letsencrypt'
+        LETSENCRYPT_STAGE = 'letsencrypt-stage'
+        CIS = 'cis'
+        CLASSIC_INFRASTRUCTURE = 'classic_infrastructure'
+        ROOT_CERTIFICATE_AUTHORITY = 'root_certificate_authority'
+        INTERMEDIATE_CERTIFICATE_AUTHORITY = 'intermediate_certificate_authority'
+        CERTIFICATE_TEMPLATE = 'certificate_template'
+
+
+class ConfigElementActionResult():
+    """
+    Properties that describe an action on a configuration element.
+
+    :attr CollectionMetadata metadata: The metadata that describes the resource
+          array.
+    :attr List[ConfigElementActionData] resources: A collection of resources.
+    """
+
+    def __init__(self,
+                 metadata: 'CollectionMetadata',
+                 resources: List['ConfigElementActionData']) -> None:
+        """
+        Initialize a ConfigElementActionResult object.
+
+        :param CollectionMetadata metadata: The metadata that describes the
+               resource array.
+        :param List[ConfigElementActionData] resources: A collection of resources.
+        """
+        self.metadata = metadata
+        self.resources = resources
+
+    @classmethod
+    def from_dict(cls, _dict: Dict) -> 'ConfigElementActionResult':
+        """Initialize a ConfigElementActionResult object from a json dictionary."""
+        args = {}
+        if 'metadata' in _dict:
+            args['metadata'] = CollectionMetadata.from_dict(_dict.get('metadata'))
+        else:
+            raise ValueError('Required property \'metadata\' not present in ConfigElementActionResult JSON')
+        if 'resources' in _dict:
+            args['resources'] = [ConfigElementActionData.from_dict(x) for x in _dict.get('resources')]
+        else:
+            raise ValueError('Required property \'resources\' not present in ConfigElementActionResult JSON')
+        return cls(**args)
+
+    @classmethod
+    def _from_dict(cls, _dict):
+        """Initialize a ConfigElementActionResult object from a json dictionary."""
+        return cls.from_dict(_dict)
+
+    def to_dict(self) -> Dict:
+        """Return a json dictionary representing this model."""
+        _dict = {}
+        if hasattr(self, 'metadata') and self.metadata is not None:
+            _dict['metadata'] = self.metadata.to_dict()
+        if hasattr(self, 'resources') and self.resources is not None:
+            _dict['resources'] = [x.to_dict() for x in self.resources]
+        return _dict
+
+    def _to_dict(self):
+        """Return a json dictionary representing this model."""
+        return self.to_dict()
+
+    def __str__(self) -> str:
+        """Return a `str` version of this ConfigElementActionResult object."""
+        return json.dumps(self.to_dict(), indent=2)
+
+    def __eq__(self, other: 'ConfigElementActionResult') -> bool:
+        """Return `true` when self and other are equal, false otherwise."""
+        if not isinstance(other, self.__class__):
+            return False
+        return self.__dict__ == other.__dict__
+
+    def __ne__(self, other: 'ConfigElementActionResult') -> bool:
+        """Return `true` when self and other are not equal, false otherwise."""
+        return not self == other
+
+
+class ConfigElementActionResultConfig():
+    """
+    ConfigElementActionResultConfig.
+
+    """
+
+    def __init__(self) -> None:
+        """
+        Initialize a ConfigElementActionResultConfig object.
+
+        """
+        msg = "Cannot instantiate base class. Instead, instantiate one of the defined subclasses: {0}".format(
+            ", ".join(['SignCsrActionResult', 'SignIntermediateActionResult', 'RotateCrlActionResult',
+                       'SetSignedActionResult', 'RevokeActionResult']))
+        raise Exception(msg)
 
 
 class ConfigElementDef():
@@ -2162,7 +2593,8 @@ class ConfigElementDefConfig():
         """
         msg = "Cannot instantiate base class. Instead, instantiate one of the defined subclasses: {0}".format(
             ", ".join(['ConfigElementDefConfigLetsEncryptConfig', 'ConfigElementDefConfigCloudInternetServicesConfig',
-                       'ConfigElementDefConfigClassicInfrastructureConfig']))
+                       'ConfigElementDefConfigClassicInfrastructureConfig', 'RootCertificateAuthorityConfig',
+                       'IntermediateCertificateAuthorityConfig', 'CertificateTemplateConfig']))
         raise Exception(msg)
 
 
@@ -2503,7 +2935,8 @@ class GetConfigElementsResourcesItem():
         """
         msg = "Cannot instantiate base class. Instead, instantiate one of the defined subclasses: {0}".format(
             ", ".join(['GetConfigElementsResourcesItemCertificateAuthoritiesConfig',
-                       'GetConfigElementsResourcesItemDnsProvidersConfig']))
+                       'GetConfigElementsResourcesItemDnsProvidersConfig', 'RootCertificateAuthoritiesConfig',
+                       'IntermediateCertificateAuthoritiesConfig']))
         raise Exception(msg)
 
 
@@ -2519,7 +2952,8 @@ class GetConfigResourcesItem():
 
         """
         msg = "Cannot instantiate base class. Instead, instantiate one of the defined subclasses: {0}".format(
-            ", ".join(['PublicCertSecretEngineRootConfig', 'IAMCredentialsSecretEngineRootConfig']))
+            ", ".join(['PublicCertSecretEngineRootConfig', 'PrivateCertSecretEngineRootConfig',
+                       'IAMCredentialsSecretEngineRootConfig']))
         raise Exception(msg)
 
 
@@ -2902,6 +3336,101 @@ class GetSingleConfigElement():
         return not self == other
 
 
+class IntermediateCertificateAuthoritiesConfigItem():
+    """
+    Intermediate certificate authorities configuration.
+
+    :attr str name: The human-readable name to assign to your configuration.
+    :attr str type: The type of configuration. Value options differ depending on the
+          `config_element` property that you want to define.
+    :attr IntermediateCertificateAuthorityConfig config: (optional) Intermediate
+          certificate authority configuration.
+    """
+
+    def __init__(self,
+                 name: str,
+                 type: str,
+                 *,
+                 config: 'IntermediateCertificateAuthorityConfig' = None) -> None:
+        """
+        Initialize a IntermediateCertificateAuthoritiesConfigItem object.
+
+        :param str name: The human-readable name to assign to your configuration.
+        :param str type: The type of configuration. Value options differ depending
+               on the `config_element` property that you want to define.
+        :param IntermediateCertificateAuthorityConfig config: (optional)
+               Intermediate certificate authority configuration.
+        """
+        self.name = name
+        self.type = type
+        self.config = config
+
+    @classmethod
+    def from_dict(cls, _dict: Dict) -> 'IntermediateCertificateAuthoritiesConfigItem':
+        """Initialize a IntermediateCertificateAuthoritiesConfigItem object from a json dictionary."""
+        args = {}
+        if 'name' in _dict:
+            args['name'] = _dict.get('name')
+        else:
+            raise ValueError(
+                'Required property \'name\' not present in IntermediateCertificateAuthoritiesConfigItem JSON')
+        if 'type' in _dict:
+            args['type'] = _dict.get('type')
+        else:
+            raise ValueError(
+                'Required property \'type\' not present in IntermediateCertificateAuthoritiesConfigItem JSON')
+        if 'config' in _dict:
+            args['config'] = IntermediateCertificateAuthorityConfig.from_dict(_dict.get('config'))
+        return cls(**args)
+
+    @classmethod
+    def _from_dict(cls, _dict):
+        """Initialize a IntermediateCertificateAuthoritiesConfigItem object from a json dictionary."""
+        return cls.from_dict(_dict)
+
+    def to_dict(self) -> Dict:
+        """Return a json dictionary representing this model."""
+        _dict = {}
+        if hasattr(self, 'name') and self.name is not None:
+            _dict['name'] = self.name
+        if hasattr(self, 'type') and self.type is not None:
+            _dict['type'] = self.type
+        if hasattr(self, 'config') and self.config is not None:
+            _dict['config'] = self.config.to_dict()
+        return _dict
+
+    def _to_dict(self):
+        """Return a json dictionary representing this model."""
+        return self.to_dict()
+
+    def __str__(self) -> str:
+        """Return a `str` version of this IntermediateCertificateAuthoritiesConfigItem object."""
+        return json.dumps(self.to_dict(), indent=2)
+
+    def __eq__(self, other: 'IntermediateCertificateAuthoritiesConfigItem') -> bool:
+        """Return `true` when self and other are equal, false otherwise."""
+        if not isinstance(other, self.__class__):
+            return False
+        return self.__dict__ == other.__dict__
+
+    def __ne__(self, other: 'IntermediateCertificateAuthoritiesConfigItem') -> bool:
+        """Return `true` when self and other are not equal, false otherwise."""
+        return not self == other
+
+    class TypeEnum(str, Enum):
+        """
+        The type of configuration. Value options differ depending on the `config_element`
+        property that you want to define.
+        """
+        LETSENCRYPT = 'letsencrypt'
+        LETSENCRYPT_STAGE = 'letsencrypt-stage'
+        CIS = 'cis'
+        CLASSIC_INFRASTRUCTURE = 'classic_infrastructure'
+        ROOT_CERTIFICATE_AUTHORITY = 'root_certificate_authority'
+        INTERMEDIATE_CERTIFICATE_AUTHORITY = 'intermediate_certificate_authority'
+        CERTIFICATE_TEMPLATE = 'certificate_template'
+
+
 class IssuanceInfo():
     """
     Issuance information that is associated with your certificate.
@@ -3235,6 +3764,99 @@ class NotificationsSettings():
         return not self == other
 
 
+class RootCertificateAuthoritiesConfigItem():
+    """
+    Root certificate authorities configuration.
+
+    :attr str name: The human-readable name to assign to your configuration.
+    :attr str type: The type of configuration. Value options differ depending on the
+          `config_element` property that you want to define.
+    :attr RootCertificateAuthorityConfig config: (optional) Root certificate
+          authority configuration.
+    """
+
+    def __init__(self,
+                 name: str,
+                 type: str,
+                 *,
+                 config: 'RootCertificateAuthorityConfig' = None) -> None:
+        """
+        Initialize a RootCertificateAuthoritiesConfigItem object.
+
+        :param str name: The human-readable name to assign to your configuration.
+        :param str type: The type of configuration. Value options differ depending
+               on the `config_element` property that you want to define.
+        :param RootCertificateAuthorityConfig config: (optional) Root certificate
+               authority configuration.
+        """
+        self.name = name
+        self.type = type
+        self.config = config
+
+    @classmethod
+    def from_dict(cls, _dict: Dict) -> 'RootCertificateAuthoritiesConfigItem':
+        """Initialize a RootCertificateAuthoritiesConfigItem object from a json dictionary."""
+        args = {}
+        if 'name' in _dict:
+            args['name'] = _dict.get('name')
+        else:
+            raise ValueError('Required property \'name\' not present in RootCertificateAuthoritiesConfigItem JSON')
+        if 'type' in _dict:
+            args['type'] = _dict.get('type')
+        else:
+            raise ValueError('Required property \'type\' not present in RootCertificateAuthoritiesConfigItem JSON')
+        if 'config' in _dict:
+            args['config'] = RootCertificateAuthorityConfig.from_dict(_dict.get('config'))
+        return cls(**args)
+
+    @classmethod
+    def _from_dict(cls, _dict):
+        """Initialize a RootCertificateAuthoritiesConfigItem object from a json dictionary."""
+        return cls.from_dict(_dict)
+
+    def to_dict(self) -> Dict:
+        """Return a json dictionary representing this model."""
+        _dict = {}
+        if hasattr(self, 'name') and self.name is not None:
+            _dict['name'] = self.name
+        if hasattr(self, 'type') and self.type is not None:
+            _dict['type'] = self.type
+        if hasattr(self, 'config') and self.config is not None:
+            _dict['config'] = self.config.to_dict()
+        return _dict
+
+    def _to_dict(self):
+        """Return a json dictionary representing this model."""
+        return self.to_dict()
+
+    def __str__(self) -> str:
+        """Return a `str` version of this RootCertificateAuthoritiesConfigItem object."""
+        return json.dumps(self.to_dict(), indent=2)
+
+    def __eq__(self, other: 'RootCertificateAuthoritiesConfigItem') -> bool:
+        """Return `true` when self and other are equal, false otherwise."""
+        if not isinstance(other, self.__class__):
+            return False
+        return self.__dict__ == other.__dict__
+
+    def __ne__(self, other: 'RootCertificateAuthoritiesConfigItem') -> bool:
+        """Return `true` when self and other are not equal, false otherwise."""
+        return not self == other
+
+    class TypeEnum(str, Enum):
+        """
+        The type of configuration. Value options differ depending on the `config_element`
+        property that you want to define.
+        """
+        LETSENCRYPT = 'letsencrypt'
+        LETSENCRYPT_STAGE = 'letsencrypt-stage'
+        CIS = 'cis'
+        CLASSIC_INFRASTRUCTURE = 'classic_infrastructure'
+        ROOT_CERTIFICATE_AUTHORITY = 'root_certificate_authority'
+        INTERMEDIATE_CERTIFICATE_AUTHORITY = 'intermediate_certificate_authority'
+        CERTIFICATE_TEMPLATE = 'certificate_template'
+
+
 class Rotation():
     """
     Rotation.
@@ -3251,15 +3873,15 @@ class Rotation():
           the private key for your certificate automatically.
           If set to `true`, the service generates and stores a new private key for your
           rotated certificate.
-          **Note:** Use this field only for public certificates. Ignored for private
+          **Note:** Use this field only for public certificates. It is ignored for private
           certificates.
     :attr int interval: (optional) Used together with the `unit` field to specify
           the rotation interval. The minimum interval is one day, and the maximum interval
           is 3 years (1095 days). Required in case `auto_rotate` is set to `true`.
-          **Note:** Use this field only for private certificates Ignored for public
+          **Note:** Use this field only for private certificates. It is ignored for public
           certificates.
     :attr str unit: (optional) The time unit of the rotation interval.
-          **Note:** Use this field only for private certificates. Ignored for public
+          **Note:** Use this field only for private certificates. It is ignored for public
           certificates.
     """
 
@@ -3284,17 +3906,17 @@ class Rotation():
                rotates the private key for your certificate automatically.
                If set to `true`, the service generates and stores a new private key for
                your rotated certificate.
-               **Note:** Use this field only for public certificates. Ignored for private
-               certificates.
+               **Note:** Use this field only for public certificates. It is ignored for
+               private certificates.
         :param int interval: (optional) Used together with the `unit` field to
                specify the rotation interval. The minimum interval is one day, and the
                maximum interval is 3 years (1095 days). Required in case `auto_rotate` is
                set to `true`.
-               **Note:** Use this field only for private certificates Ignored for public
-               certificates.
+               **Note:** Use this field only for private certificates. It is ignored for
+               public certificates.
         :param str unit: (optional) The time unit of the rotation interval.
-               **Note:** Use this field only for private certificates. Ignored for public
-               certificates.
+               **Note:** Use this field only for private certificates. It is ignored for
+               public certificates.
         """
         self.auto_rotate = auto_rotate
         self.rotate_keys = rotate_keys
@@ -3354,7 +3976,7 @@ class Rotation():
     class UnitEnum(str, Enum):
         """
         The time unit of the rotation interval.
-        **Note:** Use this field only for private certificates. Ignored for public
+        **Note:** Use this field only for private certificates. It is ignored for public
         certificates.
         """
         DAY = 'day'
@@ -3839,7 +4461,8 @@ class SecretPolicyRotationRotation():
         """
         msg = "Cannot instantiate base class. Instead, instantiate one of the defined subclasses: {0}".format(
             ", ".join(
-                ['SecretPolicyRotationRotationPolicyRotation', 'SecretPolicyRotationRotationPublicCertPolicyRotation']))
+                ['SecretPolicyRotationRotationPolicyRotation', 'SecretPolicyRotationRotationPublicCertPolicyRotation',
+                 'PrivateCertPolicyRotation']))
         raise Exception(msg)
 
 
@@ -3856,7 +4479,8 @@ class SecretResource():
         """
         msg = "Cannot instantiate base class. Instead, instantiate one of the defined subclasses: {0}".format(
             ", ".join(['ArbitrarySecretResource', 'UsernamePasswordSecretResource', 'IAMCredentialsSecretResource',
-                       'CertificateSecretResource', 'PublicCertificateSecretResource', 'KvSecretResource']))
+                       'CertificateSecretResource', 'PublicCertificateSecretResource',
+                       'PrivateCertificateSecretResource', 'KvSecretResource']))
         raise Exception(msg)
 
 
@@ -3873,7 +4497,7 @@ class SecretVersion():
         """
         msg = "Cannot instantiate base class. Instead, instantiate one of the defined subclasses: {0}".format(
             ", ".join(['ArbitrarySecretVersion', 'UsernamePasswordSecretVersion', 'IAMCredentialsSecretVersion',
-                       'CertificateSecretVersion']))
+                       'CertificateSecretVersion', 'PrivateCertificateSecretVersion']))
         raise Exception(msg)
 
 
@@ -3891,7 +4515,7 @@ class SecretVersionInfo():
         msg = "Cannot instantiate base class. Instead, instantiate one of the defined subclasses: {0}".format(
             ", ".join(
                 ['ArbitrarySecretVersionInfo', 'UsernamePasswordSecretVersionInfo', 'IAMCredentialsSecretVersionInfo',
-                 'CertificateSecretVersionInfo']))
+                 'CertificateSecretVersionInfo', 'PrivateCertificateSecretVersionInfo']))
         raise Exception(msg)
 
 
@@ -3908,18 +4532,203 @@ class SecretVersionMetadata():
         """
         msg = "Cannot instantiate base class. Instead, instantiate one of the defined subclasses: {0}".format(
             ", ".join(['ArbitrarySecretVersionMetadata', 'UsernamePasswordSecretVersionMetadata',
-                       'IAMCredentialsSecretVersionMetadata', 'CertificateSecretVersionMetadata']))
+                       'IAMCredentialsSecretVersionMetadata', 'CertificateSecretVersionMetadata',
+                       'PrivateCertificateSecretVersionMetadata']))
         raise Exception(msg)
+
+
+class SignActionResultData():
+    """
+    Properties that are returned with a successful `sign` action.
+
+    :attr str certificate: (optional) The PEM-encoded certificate.
+    :attr str serial_number: (optional) The unique serial number that was assigned
+          to the certificate by the issuing certificate authority.
+    :attr str issuing_ca: (optional) The PEM-encoded certificate of the certificate
+          authority that signed and issued this certificate.
+    :attr List[str] ca_chain: (optional) The chain of certificate authorities that
+          are associated with the certificate.
+    :attr int expiration: (optional) The time until the certificate expires.
+    """
+
+    def __init__(self,
+                 *,
+                 certificate: str = None,
+                 serial_number: str = None,
+                 issuing_ca: str = None,
+                 ca_chain: List[str] = None,
+                 expiration: int = None) -> None:
+        """
+        Initialize a SignActionResultData object.
+
+        :param str certificate: (optional) The PEM-encoded certificate.
+        :param str issuing_ca: (optional) The PEM-encoded certificate of the
+               certificate authority that signed and issued this certificate.
+        :param List[str] ca_chain: (optional) The chain of certificate authorities
+               that are associated with the certificate.
+        :param int expiration: (optional) The time until the certificate expires.
+        """
+        self.certificate = certificate
+        self.serial_number = serial_number
+        self.issuing_ca = issuing_ca
+        self.ca_chain = ca_chain
+        self.expiration = expiration
+
+    @classmethod
+    def from_dict(cls, _dict: Dict) -> 'SignActionResultData':
+        """Initialize a SignActionResultData object from a json dictionary."""
+        args = {}
+        if 'certificate' in _dict:
+            args['certificate'] = _dict.get('certificate')
+        if 'serial_number' in _dict:
+            args['serial_number'] = _dict.get('serial_number')
+        if 'issuing_ca' in _dict:
+            args['issuing_ca'] = _dict.get('issuing_ca')
+        if 'ca_chain' in _dict:
+            args['ca_chain'] = _dict.get('ca_chain')
+        if 'expiration' in _dict:
+            args['expiration'] = _dict.get('expiration')
+        return cls(**args)
+
+    @classmethod
+    def _from_dict(cls, _dict):
+        """Initialize a SignActionResultData object from a json dictionary."""
+        return cls.from_dict(_dict)
+
+    def to_dict(self) -> Dict:
+        """Return a json dictionary representing this model."""
+        _dict = {}
+        if hasattr(self, 'certificate') and self.certificate is not None:
+            _dict['certificate'] = self.certificate
+        if hasattr(self, 'serial_number') and getattr(self, 'serial_number') is not None:
+            _dict['serial_number'] = getattr(self, 'serial_number')
+        if hasattr(self, 'issuing_ca') and self.issuing_ca is not None:
+            _dict['issuing_ca'] = self.issuing_ca
+        if hasattr(self, 'ca_chain') and self.ca_chain is not None:
+            _dict['ca_chain'] = self.ca_chain
+        if hasattr(self, 'expiration') and self.expiration is not None:
+            _dict['expiration'] = self.expiration
+        return _dict
+
+    def _to_dict(self):
+        """Return a json dictionary representing this model."""
+        return self.to_dict()
+
+    def __str__(self) -> str:
+        """Return a `str` version of this SignActionResultData object."""
+        return json.dumps(self.to_dict(), indent=2)
+
+    def __eq__(self, other: 'SignActionResultData') -> bool:
+        """Return `true` when self and other are equal, false otherwise."""
+        if not isinstance(other, self.__class__):
+            return False
+        return self.__dict__ == other.__dict__
+
+    def __ne__(self, other: 'SignActionResultData') -> bool:
+        """Return `true` when self and other are not equal, false otherwise."""
+        return not self == other
+
+
+class SignIntermediateActionResultData():
+    """
+    Properties that are returned with a successful `sign` action.
+
+    :attr str certificate: (optional) The PEM-encoded certificate.
+    :attr str serial_number: (optional) The unique serial number that was assigned
+          to the certificate by the issuing certificate authority.
+    :attr str issuing_ca: (optional) The PEM-encoded certificate of the certificate
+          authority that signed and issued this certificate.
+    :attr List[str] ca_chain: (optional) The chain of certificate authorities that
+          are associated with the certificate.
+    :attr int expiration: (optional) The time until the certificate expires.
+    """
+
+    def __init__(self,
+                 *,
+                 certificate: str = None,
+                 serial_number: str = None,
+                 issuing_ca: str = None,
+                 ca_chain: List[str] = None,
+                 expiration: int = None) -> None:
+        """
+        Initialize a SignIntermediateActionResultData object.
+
+        :param str certificate: (optional) The PEM-encoded certificate.
+        :param str issuing_ca: (optional) The PEM-encoded certificate of the
+               certificate authority that signed and issued this certificate.
+        :param List[str] ca_chain: (optional) The chain of certificate authorities
+               that are associated with the certificate.
+        :param int expiration: (optional) The time until the certificate expires.
+        """
+        self.certificate = certificate
+        self.serial_number = serial_number
+        self.issuing_ca = issuing_ca
+        self.ca_chain = ca_chain
+        self.expiration = expiration
+
+    @classmethod
+    def from_dict(cls, _dict: Dict) -> 'SignIntermediateActionResultData':
+        """Initialize a SignIntermediateActionResultData object from a json dictionary."""
+        args = {}
+        if 'certificate' in _dict:
+            args['certificate'] = _dict.get('certificate')
+        if 'serial_number' in _dict:
+            args['serial_number'] = _dict.get('serial_number')
+        if 'issuing_ca' in _dict:
+            args['issuing_ca'] = _dict.get('issuing_ca')
+        if 'ca_chain' in _dict:
+            args['ca_chain'] = _dict.get('ca_chain')
+        if 'expiration' in _dict:
+            args['expiration'] = _dict.get('expiration')
+        return cls(**args)
+
+    @classmethod
+    def _from_dict(cls, _dict):
+        """Initialize a SignIntermediateActionResultData object from a json dictionary."""
+        return cls.from_dict(_dict)
+
+    def to_dict(self) -> Dict:
+        """Return a json dictionary representing this model."""
+        _dict = {}
+        if hasattr(self, 'certificate') and self.certificate is not None:
+            _dict['certificate'] = self.certificate
+        if hasattr(self, 'serial_number') and getattr(self, 'serial_number') is not None:
+            _dict['serial_number'] = getattr(self, 'serial_number')
+        if hasattr(self, 'issuing_ca') and self.issuing_ca is not None:
+            _dict['issuing_ca'] = self.issuing_ca
+        if hasattr(self, 'ca_chain') and self.ca_chain is not None:
+            _dict['ca_chain'] = self.ca_chain
+        if hasattr(self, 'expiration') and self.expiration is not None:
+            _dict['expiration'] = self.expiration
+        return _dict
+
+    def _to_dict(self):
+        """Return a json dictionary representing this model."""
+        return self.to_dict()
+
+    def __str__(self) -> str:
+        """Return a `str` version of this SignIntermediateActionResultData object."""
+        return json.dumps(self.to_dict(), indent=2)
+
+    def __eq__(self, other: 'SignIntermediateActionResultData') -> bool:
+        """Return `true` when self and other are equal, false otherwise."""
+        if not isinstance(other, self.__class__):
+            return False
+        return self.__dict__ == other.__dict__
+
+    def __ne__(self, other: 'SignIntermediateActionResultData') -> bool:
+        """Return `true` when self and other are not equal, false otherwise."""
+        return not self == other
 
 
 class CertificateValidity():
     """
     CertificateValidity.
 
-    :attr datetime not_before: (optional) The date the certificate validity period
-          begins.
-    :attr datetime not_after: (optional) The date the certificate validity period
-          ends.
+    :attr datetime not_before: (optional) The date and time that the certificate
+          validity period begins.
+    :attr datetime not_after: (optional) The date and time that the certificate
+          validity period ends.
     """
 
     def __init__(self,
@@ -3929,10 +4738,10 @@ class CertificateValidity():
         """
         Initialize a CertificateValidity object.
 
-        :param datetime not_before: (optional) The date the certificate validity
-               period begins.
-        :param datetime not_after: (optional) The date the certificate validity
-               period ends.
+        :param datetime not_before: (optional) The date and time that the
+               certificate validity period begins.
+        :param datetime not_after: (optional) The date and time that the
+               certificate validity period ends.
         """
         self.not_before = not_before
         self.not_after = not_after
@@ -4185,6 +4994,7 @@ class ArbitrarySecretMetadata(SecretMetadata):
         IAM_CREDENTIALS = 'iam_credentials'
         IMPORTED_CERT = 'imported_cert'
         PUBLIC_CERT = 'public_cert'
+        PRIVATE_CERT = 'private_cert'
         KV = 'kv'
 
 
@@ -4744,8 +5554,8 @@ class CertificateSecretMetadata(SecretMetadata):
     :attr str algorithm: (optional) The identifier for the cryptographic algorithm
           that was used by the issuing certificate authority to sign the certificate.
     :attr str key_algorithm: (optional) The identifier for the cryptographic
-          algorithm that was used to generate the public key that is associated with the
-          certificate.
+          algorithm that was used to generate the public and private keys that are
+          associated with the certificate.
     :attr str issuer: (optional) The distinguished name that identifies the entity
           that signed and issued the certificate.
     :attr CertificateValidity validity: (optional)
@@ -4967,6 +5777,7 @@ class CertificateSecretMetadata(SecretMetadata):
         IAM_CREDENTIALS = 'iam_credentials'
         IMPORTED_CERT = 'imported_cert'
         PUBLIC_CERT = 'public_cert'
+        PRIVATE_CERT = 'private_cert'
         KV = 'kv'
 
 
@@ -5021,17 +5832,17 @@ class CertificateSecretResource(SecretResource):
           embedded newline characters.
     :attr object secret_data: (optional) The data that is associated with the
           secret. The data object contains the following fields:
-          `certificate`: The contents of the certificate.
-          `private_key`: The private key that is associated with the certificate.
-          `intermediate`: The intermediate certificate that is associated with the
+          - `certificate`: The contents of the certificate.
+          - `private_key`: The private key that is associated with the certificate.
+          - `intermediate`: The intermediate certificate that is associated with the
           certificate.
     :attr str serial_number: (optional) The unique serial number that was assigned
           to the certificate by the issuing certificate authority.
     :attr str algorithm: (optional) The identifier for the cryptographic algorithm
           that was used by the issuing certificate authority to sign the certificate.
     :attr str key_algorithm: (optional) The identifier for the cryptographic
-          algorithm that was used to generate the public key that is associated with the
-          certificate.
+          algorithm that was used to generate the public and private keys that are
+          associated with the certificate.
     :attr str issuer: (optional) The distinguished name that identifies the entity
           that signed and issued the certificate.
     :attr CertificateValidity validity: (optional)
@@ -5315,11 +6126,11 @@ class CertificateSecretVersion(SecretVersion):
           to the certificate by the issuing certificate authority.
     :attr datetime expiration_date: (optional) The date that the certificate
           expires. The date format follows RFC 3339.
-    :attr object secret_data: (optional) The data that is associated with the secret
-          version. The data object contains the following fields:
-          `certificate`: The contents of the certificate.
-          `private_key`: The private key that is associated with the certificate.
-          `intermediate`: The intermediate certificate that is associated with the
+    :attr CertificateSecretData secret_data: (optional) The data that is associated
+          with the secret version. The data object contains the following fields:
+          - `certificate`: The contents of the certificate.
+          - `private_key`: The private key that is associated with the certificate.
+          - `intermediate`: The intermediate certificate that is associated with the
           certificate.
     """
 
@@ -5332,16 +6143,17 @@ class CertificateSecretVersion(SecretVersion):
                  validity: 'CertificateValidity' = None,
                  serial_number: str = None,
                  expiration_date: datetime = None,
-                 secret_data: object = None) -> None:
+                 secret_data: 'CertificateSecretData' = None) -> None:
         """
         Initialize a CertificateSecretVersion object.
 
         :param CertificateValidity validity: (optional)
-        :param object secret_data: (optional) The data that is associated with the
-               secret version. The data object contains the following fields:
-               `certificate`: The contents of the certificate.
-               `private_key`: The private key that is associated with the certificate.
-               `intermediate`: The intermediate certificate that is associated with the
+        :param CertificateSecretData secret_data: (optional) The data that is
+               associated with the secret version. The data object contains the following
+               fields:
+               - `certificate`: The contents of the certificate.
+               - `private_key`: The private key that is associated with the certificate.
+               - `intermediate`: The intermediate certificate that is associated with the
                certificate.
         """
         # pylint: disable=super-init-not-called
@@ -5373,7 +6185,7 @@ class CertificateSecretVersion(SecretVersion):
         if 'expiration_date' in _dict:
             args['expiration_date'] = string_to_datetime(_dict.get('expiration_date'))
         if 'secret_data' in _dict:
-            args['secret_data'] = _dict.get('secret_data')
+            args['secret_data'] = CertificateSecretData.from_dict(_dict.get('secret_data'))
         return cls(**args)
 
     @classmethod
@@ -5399,7 +6211,7 @@ class CertificateSecretVersion(SecretVersion):
         if hasattr(self, 'expiration_date') and getattr(self, 'expiration_date') is not None:
             _dict['expiration_date'] = datetime_to_string(getattr(self, 'expiration_date'))
         if hasattr(self, 'secret_data') and self.secret_data is not None:
-            _dict['secret_data'] = self.secret_data
+            _dict['secret_data'] = self.secret_data.to_dict()
         return _dict
 
     def _to_dict(self):
@@ -5651,6 +6463,568 @@ class CertificateSecretVersionMetadata(SecretVersionMetadata):
     def __ne__(self, other: 'CertificateSecretVersionMetadata') -> bool:
         """Return `true` when self and other are not equal, false otherwise."""
         return not self == other
+
+
+class CertificateTemplateConfig(ConfigElementDefConfig):
+    """
+    Properties that describe a certificate template. You can use a certificate template to
+    control the parameters that  are applied to your issued private certificates. For more
+    information, see the
+    [docs](https://cloud.ibm.com/docs/secrets-manager?topic=secrets-manager-certificate-templates).
+
+    :attr str certificate_authority: The name of the intermediate certificate
+          authority.
+    :attr str allowed_secret_groups: (optional) Scopes the creation of private
+          certificates to only the secret groups that you specify.
+          This field can be supplied as a comma-delimited list of secret group IDs.
+    :attr object max_ttl: (optional) The maximum time-to-live (TTL) for certificates
+          that are created by this CA. The value can be supplied as a string
+          representation of a duration in hours, for example '8760h'. Note that in the API
+          response the value is returned in seconds (integer).
+          Minimum value is one hour (`1h`). Maximum value is 100 years (`876000h`).
+    :attr str ttl: (optional) The time-to-live (TTL) or lease duration to assign to
+          a private certificate.
+          The value can be supplied as a string representation of a duration, such as
+          `12h`. Hour (`h`) is the largest time suffix. The value can't exceed the
+          `max_ttl` that is defined in the associated certificate template. Note that in
+          the API response the value is returned in seconds (integer).
+    :attr bool allow_localhost: (optional) Determines whether to allow `localhost`
+          to be included as one of the requested common names.
+    :attr List[str] allowed_domains: (optional) The domains to define for the
+          certificate template. This property is used along with the `allow_bare_domains`
+          and `allow_subdomains` options.
+    :attr bool allowed_domains_template: (optional) Determines whether to allow the
+          domains that are supplied in the `allowed_domains` field to contain access
+          control list (ACL) templates.
+    :attr bool allow_bare_domains: (optional) Determines whether to allow clients to
+          request private certificates that match the value of the actual domains on the
+          final certificate.
+          For example, if you specify `example.com` in the `allowed_domains` field, you
+          grant clients the ability to request a certificate that contains the name
+          `example.com` as one of the DNS values on the final certificate.
+          **Important:** In some scenarios, allowing bare domains can be considered a
+          security risk.
+    :attr bool allow_subdomains: (optional) Determines whether to allow clients to
+          request private certificates with common names (CN) that are subdomains of the
+          CNs that are allowed by the other certificate template options. This includes
+          wildcard subdomains.
+          For example, if `allowed_domains` has a value of `example.com` and
+          `allow_subdomains`is set to `true`, then the following subdomains are allowed:
+          `foo.example.com`, `bar.example.com`, `*.example.com`.
+          **Note:** This field is redundant if you use the `allow_any_name` option.
+    :attr bool allow_glob_domains: (optional) Determines whether to allow glob
+          patterns, for example, `ftp*.example.com`, in the names that are specified in
+          the `allowed_domains` field.
+          If set to `true`, clients are allowed to request private certificates with names
+          that match the glob patterns.
+    :attr bool allow_any_name: (optional) Determines whether to allow clients to
+          request a private certificate that matches any common name.
+    :attr bool enforce_hostnames: (optional) Determines whether to enforce only
+          valid host names for common names, DNS Subject Alternative Names, and the host
+          section of email addresses.
+    :attr bool allow_ip_sans: (optional) Determines whether to allow clients to
+          request a private certificate with IP Subject Alternative Names.
+    :attr List[str] allowed_uri_sans: (optional) The URI Subject Alternative Names
+          to allow for private certificates.
+          Values can contain glob patterns, for example `spiffe://hostname/*`.
+    :attr List[str] allowed_other_sans: (optional) The custom Object Identifier
+          (OID) or UTF8-string Subject Alternative Names (SANs) to allow for private
+          certificates.
+          The format for each element in the list is the same as OpenSSL:
+          `<oid>:<type>:<value>` where the current valid type is `UTF8`. To allow any
+          value for an OID, use `*` as its value. Alternatively, specify a single `*` to
+          allow any `other_sans` input.
+    :attr bool server_flag: (optional) Determines whether private certificates are
+          flagged for server use.
+    :attr bool client_flag: (optional) Determines whether private certificates are
+          flagged for client use.
+    :attr bool code_signing_flag: (optional) Determines whether private certificates
+          are flagged for code signing use.
+    :attr bool email_protection_flag: (optional) Determines whether private
+          certificates are flagged for email protection use.
+    :attr str key_type: (optional) The type of private key to generate for private
+          certificates and the type of key that is expected for submitted certificate
+          signing requests (CSRs).
+          Allowable values are: `rsa` and `ec`.
+    :attr int key_bits: (optional) The number of bits to use when generating the
+          private key.
+          Allowable values for RSA keys are: 2048 and 4096. Allowable values for EC keys
+          are: 224, 256, 384 And 521. The default for RSA keys is 2048, and the default
+          for EC keys is 256.
+    :attr List[str] key_usage: (optional) The allowed key usage constraint to define
+          for private certificates.
+          You can find valid values in the [Go x509 package
+          documentation](https://pkg.go.dev/crypto/x509#KeyUsage).  Omit the `KeyUsage`
+          part of the value. Values are not case-sensitive. To specify no key usage
+          constraints, set this field to an empty list.
+    :attr List[str] ext_key_usage: (optional) The allowed extended key usage
+          constraint on private certificates.
+          You can find valid values in the [Go x509 package
+          documentation](https://golang.org/pkg/crypto/x509/#ExtKeyUsage). Omit the
+          `ExtKeyUsage` part of the value. Values are not case-sensitive. To specify no
+          key usage constraints, set this field to an empty list.
+    :attr List[str] ext_key_usage_oids: (optional) A list of extended key usage
+          Object Identifiers (OIDs).
+    :attr bool use_csr_common_name: (optional) When used with the `sign_csr` action,
+          this field determines whether to use the common name (CN) from a certificate
+          signing request (CSR) instead of the CN that's included in the JSON data of the
+          certificate.
+          Does not include any requested Subject Alternative Names (SANs) in the CSR. To
+          use the alternative names, include the `use_csr_sans` property.
+    :attr bool use_csr_sans: (optional) When used with the `sign_csr` action, this
+          field determines whether to use the Subject Alternative Names
+          (SANs) from a certificate signing request (CSR) instead of the SANs that are
+          included in the JSON data of the certificate.
+          Does not include the common name in the CSR. To use the common name, include the
+          `use_csr_common_name` property.
+    :attr List[str] ou: (optional) The Organizational Unit (OU) values to define in
+          the subject field of the resulting CA certificate.
+    :attr List[str] organization: (optional) The Organization (O) values to define
+          in the subject field of the resulting CA certificate.
+    :attr List[str] country: (optional) The Country (C) values to define in the
+          subject field of the resulting CA certificate.
+    :attr List[str] locality: (optional) The Locality (L) values to define in the
+          subject field of the resulting CA certificate.
+    :attr List[str] province: (optional) The Province (ST) values to define in the
+          subject field of the resulting CA certificate.
+    :attr List[str] street_address: (optional) The Street Address values in the
+          subject field of the resulting CA certificate.
+    :attr List[str] postal_code: (optional) The Postal Code values in the subject
+          field of the resulting CA certificate.
+    :attr str serial_number: (optional) The serial number to assign to the generated
+          private certificate. To assign a random serial number, you can omit this field.
+    :attr bool require_cn: (optional) Determines whether to require a common name to
+          create a private certificate.
+          By default, a common name is required to generate a certificate. To make the
+          `common_name` field optional, set the `require_cn` option to `false`.
+    :attr List[str] policy_identifiers: (optional) A list of policy Object
+          Identifiers (OIDs).
+    :attr bool basic_constraints_valid_for_non_ca: (optional) Determines whether to
+          mark the Basic Constraints extension of an issued private certificate as valid
+          for non-CA certificates.
+    :attr object not_before_duration: (optional) The duration in seconds by which to
+          backdate the `not_before` property of an issued private certificate. The value
+          can be supplied as a string representation of a duration, such as `30s`. Note
+          that in the API response the value is returned in seconds (integer).
+    """
+
+    def __init__(self,
+                 certificate_authority: str,
+                 *,
+                 allowed_secret_groups: str = None,
+                 max_ttl: object = None,
+                 ttl: str = None,
+                 allow_localhost: bool = None,
+                 allowed_domains: List[str] = None,
+                 allowed_domains_template: bool = None,
+                 allow_bare_domains: bool = None,
+                 allow_subdomains: bool = None,
+                 allow_glob_domains: bool = None,
+                 allow_any_name: bool = None,
+                 enforce_hostnames: bool = None,
+                 allow_ip_sans: bool = None,
+                 allowed_uri_sans: List[str] = None,
+                 allowed_other_sans: List[str] = None,
+                 server_flag: bool = None,
+                 client_flag: bool = None,
+                 code_signing_flag: bool = None,
+                 email_protection_flag: bool = None,
+                 key_type: str = None,
+                 key_bits: int = None,
+                 key_usage: List[str] = None,
+                 ext_key_usage: List[str] = None,
+                 ext_key_usage_oids: List[str] = None,
+                 use_csr_common_name: bool = None,
+                 use_csr_sans: bool = None,
+                 ou: List[str] = None,
+                 organization: List[str] = None,
+                 country: List[str] = None,
+                 locality: List[str] = None,
+                 province: List[str] = None,
+                 street_address: List[str] = None,
+                 postal_code: List[str] = None,
+                 serial_number: str = None,
+                 require_cn: bool = None,
+                 policy_identifiers: List[str] = None,
+                 basic_constraints_valid_for_non_ca: bool = None,
+                 not_before_duration: object = None) -> None:
+        """
+        Initialize a CertificateTemplateConfig object.
+
+        :param str certificate_authority: The name of the intermediate certificate
+               authority.
+        :param str allowed_secret_groups: (optional) Scopes the creation of private
+               certificates to only the secret groups that you specify.
+               This field can be supplied as a comma-delimited list of secret group IDs.
+        :param object max_ttl: (optional) The maximum time-to-live (TTL) for
+               certificates that are created by this CA. The value can be supplied as a
+               string representation of a duration in hours, for example '8760h'. Note
+               that in the API response the value is returned in seconds (integer).
+               Minimum value is one hour (`1h`). Maximum value is 100 years (`876000h`).
+        :param str ttl: (optional) The time-to-live (TTL) or lease duration to
+               assign to a private certificate.
+               The value can be supplied as a string representation of a duration, such as
+               `12h`. Hour (`h`) is the largest time suffix. The value can't exceed the
+               `max_ttl` that is defined in the associated certificate template. Note that
+               in the API response the value is returned in seconds (integer).
+        :param bool allow_localhost: (optional) Determines whether to allow
+               `localhost` to be included as one of the requested common names.
+        :param List[str] allowed_domains: (optional) The domains to define for the
+               certificate template. This property is used along with the
+               `allow_bare_domains` and `allow_subdomains` options.
+        :param bool allowed_domains_template: (optional) Determines whether to
+               allow the domains that are supplied in the `allowed_domains` field to
+               contain access control list (ACL) templates.
+        :param bool allow_bare_domains: (optional) Determines whether to allow
+               clients to request private certificates that match the value of the actual
+               domains on the final certificate.
+               For example, if you specify `example.com` in the `allowed_domains` field,
+               you grant clients the ability to request a certificate that contains the
+               name `example.com` as one of the DNS values on the final certificate.
+               **Important:** In some scenarios, allowing bare domains can be considered a
+               security risk.
+        :param bool allow_subdomains: (optional) Determines whether to allow
+               clients to request private certificates with common names (CN) that are
+               subdomains of the CNs that are allowed by the other certificate template
+               options. This includes wildcard subdomains.
+               For example, if `allowed_domains` has a value of `example.com` and
+               `allow_subdomains`is set to `true`, then the following subdomains are
+               allowed: `foo.example.com`, `bar.example.com`, `*.example.com`.
+               **Note:** This field is redundant if you use the `allow_any_name` option.
+        :param bool allow_glob_domains: (optional) Determines whether to allow glob
+               patterns, for example, `ftp*.example.com`, in the names that are specified
+               in the `allowed_domains` field.
+               If set to `true`, clients are allowed to request private certificates with
+               names that match the glob patterns.
+        :param bool allow_any_name: (optional) Determines whether to allow clients
+               to request a private certificate that matches any common name.
+        :param bool enforce_hostnames: (optional) Determines whether to enforce
+               only valid host names for common names, DNS Subject Alternative Names, and
+               the host section of email addresses.
+        :param bool allow_ip_sans: (optional) Determines whether to allow clients
+               to request a private certificate with IP Subject Alternative Names.
+        :param List[str] allowed_uri_sans: (optional) The URI Subject Alternative
+               Names to allow for private certificates.
+               Values can contain glob patterns, for example `spiffe://hostname/*`.
+        :param List[str] allowed_other_sans: (optional) The custom Object
+               Identifier (OID) or UTF8-string Subject Alternative Names (SANs) to allow
+               for private certificates.
+               The format for each element in the list is the same as OpenSSL:
+               `<oid>:<type>:<value>` where the current valid type is `UTF8`. To allow any
+               value for an OID, use `*` as its value. Alternatively, specify a single `*`
+               to allow any `other_sans` input.
+        :param bool server_flag: (optional) Determines whether private certificates
+               are flagged for server use.
+        :param bool client_flag: (optional) Determines whether private certificates
+               are flagged for client use.
+        :param bool code_signing_flag: (optional) Determines whether private
+               certificates are flagged for code signing use.
+        :param bool email_protection_flag: (optional) Determines whether private
+               certificates are flagged for email protection use.
+        :param str key_type: (optional) The type of private key to generate for
+               private certificates and the type of key that is expected for submitted
+               certificate signing requests (CSRs).
+               Allowable values are: `rsa` and `ec`.
+        :param int key_bits: (optional) The number of bits to use when generating
+               the private key.
+               Allowable values for RSA keys are: 2048 and 4096. Allowable values for EC
+               keys are: 224, 256, 384 And 521. The default for RSA keys is 2048, and the
+               default for EC keys is 256.
+        :param List[str] key_usage: (optional) The allowed key usage constraint to
+               define for private certificates.
+               You can find valid values in the [Go x509 package
+               documentation](https://pkg.go.dev/crypto/x509#KeyUsage).  Omit the
+               `KeyUsage` part of the value. Values are not case-sensitive. To specify no
+               key usage constraints, set this field to an empty list.
+        :param List[str] ext_key_usage: (optional) The allowed extended key usage
+               constraint on private certificates.
+               You can find valid values in the [Go x509 package
+               documentation](https://golang.org/pkg/crypto/x509/#ExtKeyUsage). Omit the
+               `ExtKeyUsage` part of the value. Values are not case-sensitive. To specify
+               no key usage constraints, set this field to an empty list.
+        :param List[str] ext_key_usage_oids: (optional) A list of extended key
+               usage Object Identifiers (OIDs).
+        :param bool use_csr_common_name: (optional) When used with the `sign_csr`
+               action, this field determines whether to use the common name (CN) from a
+               certificate signing request (CSR) instead of the CN that's included in the
+               JSON data of the certificate.
+               Does not include any requested Subject Alternative Names (SANs) in the CSR.
+               To use the alternative names, include the `use_csr_sans` property.
+        :param bool use_csr_sans: (optional) When used with the `sign_csr` action,
+               this field determines whether to use the Subject Alternative Names
+               (SANs) from a certificate signing request (CSR) instead of the SANs that
+               are included in the JSON data of the certificate.
+               Does not include the common name in the CSR. To use the common name,
+               include the `use_csr_common_name` property.
+        :param List[str] ou: (optional) The Organizational Unit (OU) values to
+               define in the subject field of the resulting CA certificate.
+        :param List[str] organization: (optional) The Organization (O) values to
+               define in the subject field of the resulting CA certificate.
+        :param List[str] country: (optional) The Country (C) values to define in
+               the subject field of the resulting CA certificate.
+        :param List[str] locality: (optional) The Locality (L) values to define in
+               the subject field of the resulting CA certificate.
+        :param List[str] province: (optional) The Province (ST) values to define in
+               the subject field of the resulting CA certificate.
+        :param List[str] street_address: (optional) The Street Address values in
+               the subject field of the resulting CA certificate.
+        :param List[str] postal_code: (optional) The Postal Code values in the
+               subject field of the resulting CA certificate.
+        :param str serial_number: (optional) The serial number to assign to the
+               generated private certificate. To assign a random serial number, you can
+               omit this field.
+        :param bool require_cn: (optional) Determines whether to require a common
+               name to create a private certificate.
+               By default, a common name is required to generate a certificate. To make
+               the `common_name` field optional, set the `require_cn` option to `false`.
+        :param List[str] policy_identifiers: (optional) A list of policy Object
+               Identifiers (OIDs).
+        :param bool basic_constraints_valid_for_non_ca: (optional) Determines
+               whether to mark the Basic Constraints extension of an issued private
+               certificate as valid for non-CA certificates.
+        :param object not_before_duration: (optional) The duration in seconds by
+               which to backdate the `not_before` property of an issued private
+               certificate. The value can be supplied as a string representation of a
+               duration, such as `30s`. Note that in the API response the value is
+               returned in seconds (integer).
+        """
+        # pylint: disable=super-init-not-called
+        self.certificate_authority = certificate_authority
+        self.allowed_secret_groups = allowed_secret_groups
+        self.max_ttl = max_ttl
+        self.ttl = ttl
+        self.allow_localhost = allow_localhost
+        self.allowed_domains = allowed_domains
+        self.allowed_domains_template = allowed_domains_template
+        self.allow_bare_domains = allow_bare_domains
+        self.allow_subdomains = allow_subdomains
+        self.allow_glob_domains = allow_glob_domains
+        self.allow_any_name = allow_any_name
+        self.enforce_hostnames = enforce_hostnames
+        self.allow_ip_sans = allow_ip_sans
+        self.allowed_uri_sans = allowed_uri_sans
+        self.allowed_other_sans = allowed_other_sans
+        self.server_flag = server_flag
+        self.client_flag = client_flag
+        self.code_signing_flag = code_signing_flag
+        self.email_protection_flag = email_protection_flag
+        self.key_type = key_type
+        self.key_bits = key_bits
+        self.key_usage = key_usage
+        self.ext_key_usage = ext_key_usage
+        self.ext_key_usage_oids = ext_key_usage_oids
+        self.use_csr_common_name = use_csr_common_name
+        self.use_csr_sans = use_csr_sans
+        self.ou = ou
+        self.organization = organization
+        self.country = country
+        self.locality = locality
+        self.province = province
+        self.street_address = street_address
+        self.postal_code = postal_code
+        self.serial_number = serial_number
+        self.require_cn = require_cn
+        self.policy_identifiers = policy_identifiers
+        self.basic_constraints_valid_for_non_ca = basic_constraints_valid_for_non_ca
+        self.not_before_duration = not_before_duration
+
+    @classmethod
+    def from_dict(cls, _dict: Dict) -> 'CertificateTemplateConfig':
+        """Initialize a CertificateTemplateConfig object from a json dictionary."""
+        args = {}
+        if 'certificate_authority' in _dict:
+            args['certificate_authority'] = _dict.get('certificate_authority')
+        else:
+            raise ValueError(
+                'Required property \'certificate_authority\' not present in CertificateTemplateConfig JSON')
+        if 'allowed_secret_groups' in _dict:
+            args['allowed_secret_groups'] = _dict.get('allowed_secret_groups')
+        if 'max_ttl' in _dict:
+            args['max_ttl'] = _dict.get('max_ttl')
+        if 'ttl' in _dict:
+            args['ttl'] = _dict.get('ttl')
+        if 'allow_localhost' in _dict:
+            args['allow_localhost'] = _dict.get('allow_localhost')
+        if 'allowed_domains' in _dict:
+            args['allowed_domains'] = _dict.get('allowed_domains')
+        if 'allowed_domains_template' in _dict:
+            args['allowed_domains_template'] = _dict.get('allowed_domains_template')
+        if 'allow_bare_domains' in _dict:
+            args['allow_bare_domains'] = _dict.get('allow_bare_domains')
+        if 'allow_subdomains' in _dict:
+            args['allow_subdomains'] = _dict.get('allow_subdomains')
+        if 'allow_glob_domains' in _dict:
+            args['allow_glob_domains'] = _dict.get('allow_glob_domains')
+        if 'allow_any_name' in _dict:
+            args['allow_any_name'] = _dict.get('allow_any_name')
+        if 'enforce_hostnames' in _dict:
+            args['enforce_hostnames'] = _dict.get('enforce_hostnames')
+        if 'allow_ip_sans' in _dict:
+            args['allow_ip_sans'] = _dict.get('allow_ip_sans')
+        if 'allowed_uri_sans' in _dict:
+            args['allowed_uri_sans'] = _dict.get('allowed_uri_sans')
+        if 'allowed_other_sans' in _dict:
+            args['allowed_other_sans'] = _dict.get('allowed_other_sans')
+        if 'server_flag' in _dict:
+            args['server_flag'] = _dict.get('server_flag')
+        if 'client_flag' in _dict:
+            args['client_flag'] = _dict.get('client_flag')
+        if 'code_signing_flag' in _dict:
+            args['code_signing_flag'] = _dict.get('code_signing_flag')
+        if 'email_protection_flag' in _dict:
+            args['email_protection_flag'] = _dict.get('email_protection_flag')
+        if 'key_type' in _dict:
+            args['key_type'] = _dict.get('key_type')
+        if 'key_bits' in _dict:
+            args['key_bits'] = _dict.get('key_bits')
+        if 'key_usage' in _dict:
+            args['key_usage'] = _dict.get('key_usage')
+        if 'ext_key_usage' in _dict:
+            args['ext_key_usage'] = _dict.get('ext_key_usage')
+        if 'ext_key_usage_oids' in _dict:
+            args['ext_key_usage_oids'] = _dict.get('ext_key_usage_oids')
+        if 'use_csr_common_name' in _dict:
+            args['use_csr_common_name'] = _dict.get('use_csr_common_name')
+        if 'use_csr_sans' in _dict:
+            args['use_csr_sans'] = _dict.get('use_csr_sans')
+        if 'ou' in _dict:
+            args['ou'] = _dict.get('ou')
+        if 'organization' in _dict:
+            args['organization'] = _dict.get('organization')
+        if 'country' in _dict:
+            args['country'] = _dict.get('country')
+        if 'locality' in _dict:
+            args['locality'] = _dict.get('locality')
+        if 'province' in _dict:
+            args['province'] = _dict.get('province')
+        if 'street_address' in _dict:
+            args['street_address'] = _dict.get('street_address')
+        if 'postal_code' in _dict:
+            args['postal_code'] = _dict.get('postal_code')
+        if 'serial_number' in _dict:
+            args['serial_number'] = _dict.get('serial_number')
+        if 'require_cn' in _dict:
+            args['require_cn'] = _dict.get('require_cn')
+        if 'policy_identifiers' in _dict:
+            args['policy_identifiers'] = _dict.get('policy_identifiers')
+        if 'basic_constraints_valid_for_non_ca' in _dict:
+            args['basic_constraints_valid_for_non_ca'] = _dict.get('basic_constraints_valid_for_non_ca')
+        if 'not_before_duration' in _dict:
+            args['not_before_duration'] = _dict.get('not_before_duration')
+        return cls(**args)
+
+    @classmethod
+    def _from_dict(cls, _dict):
+        """Initialize a CertificateTemplateConfig object from a json dictionary."""
+        return cls.from_dict(_dict)
+
+    def to_dict(self) -> Dict:
+        """Return a json dictionary representing this model."""
+        _dict = {}
+        if hasattr(self, 'certificate_authority') and self.certificate_authority is not None:
+            _dict['certificate_authority'] = self.certificate_authority
+        if hasattr(self, 'allowed_secret_groups') and self.allowed_secret_groups is not None:
+            _dict['allowed_secret_groups'] = self.allowed_secret_groups
+        if hasattr(self, 'max_ttl') and self.max_ttl is not None:
+            _dict['max_ttl'] = self.max_ttl
+        if hasattr(self, 'ttl') and self.ttl is not None:
+            _dict['ttl'] = self.ttl
+        if hasattr(self, 'allow_localhost') and self.allow_localhost is not None:
+            _dict['allow_localhost'] = self.allow_localhost
+        if hasattr(self, 'allowed_domains') and self.allowed_domains is not None:
+            _dict['allowed_domains'] = self.allowed_domains
+        if hasattr(self, 'allowed_domains_template') and self.allowed_domains_template is not None:
+            _dict['allowed_domains_template'] = self.allowed_domains_template
+        if hasattr(self, 'allow_bare_domains') and self.allow_bare_domains is not None:
+            _dict['allow_bare_domains'] = self.allow_bare_domains
+        if hasattr(self, 'allow_subdomains') and self.allow_subdomains is not None:
+            _dict['allow_subdomains'] = self.allow_subdomains
+        if hasattr(self, 'allow_glob_domains') and self.allow_glob_domains is not None:
+            _dict['allow_glob_domains'] = self.allow_glob_domains
+        if hasattr(self, 'allow_any_name') and self.allow_any_name is not None:
+            _dict['allow_any_name'] = self.allow_any_name
+        if hasattr(self, 'enforce_hostnames') and self.enforce_hostnames is not None:
+            _dict['enforce_hostnames'] = self.enforce_hostnames
+        if hasattr(self, 'allow_ip_sans') and self.allow_ip_sans is not None:
+            _dict['allow_ip_sans'] = self.allow_ip_sans
+        if hasattr(self, 'allowed_uri_sans') and self.allowed_uri_sans is not None:
+            _dict['allowed_uri_sans'] = self.allowed_uri_sans
+        if hasattr(self, 'allowed_other_sans') and self.allowed_other_sans is not None:
+            _dict['allowed_other_sans'] = self.allowed_other_sans
+        if hasattr(self, 'server_flag') and self.server_flag is not None:
+            _dict['server_flag'] = self.server_flag
+        if hasattr(self, 'client_flag') and self.client_flag is not None:
+            _dict['client_flag'] = self.client_flag
+        if hasattr(self, 'code_signing_flag') and self.code_signing_flag is not None:
+            _dict['code_signing_flag'] = self.code_signing_flag
+        if hasattr(self, 'email_protection_flag') and self.email_protection_flag is not None:
+            _dict['email_protection_flag'] = self.email_protection_flag
+        if hasattr(self, 'key_type') and self.key_type is not None:
+            _dict['key_type'] = self.key_type
+        if hasattr(self, 'key_bits') and self.key_bits is not None:
+            _dict['key_bits'] = self.key_bits
+        if hasattr(self, 'key_usage') and self.key_usage is not None:
+            _dict['key_usage'] = self.key_usage
+        if hasattr(self, 'ext_key_usage') and self.ext_key_usage is not None:
+            _dict['ext_key_usage'] = self.ext_key_usage
+        if hasattr(self, 'ext_key_usage_oids') and self.ext_key_usage_oids is not None:
+            _dict['ext_key_usage_oids'] = self.ext_key_usage_oids
+        if hasattr(self, 'use_csr_common_name') and self.use_csr_common_name is not None:
+            _dict['use_csr_common_name'] = self.use_csr_common_name
+        if hasattr(self, 'use_csr_sans') and self.use_csr_sans is not None:
+            _dict['use_csr_sans'] = self.use_csr_sans
+        if hasattr(self, 'ou') and self.ou is not None:
+            _dict['ou'] = self.ou
+        if hasattr(self, 'organization') and self.organization is not None:
+            _dict['organization'] = self.organization
+        if hasattr(self, 'country') and self.country is not None:
+            _dict['country'] = self.country
+        if hasattr(self, 'locality') and self.locality is not None:
+            _dict['locality'] = self.locality
+        if hasattr(self, 'province') and self.province is not None:
+            _dict['province'] = self.province
+        if hasattr(self, 'street_address') and self.street_address is not None:
+            _dict['street_address'] = self.street_address
+        if hasattr(self, 'postal_code') and self.postal_code is not None:
+            _dict['postal_code'] = self.postal_code
+        if hasattr(self, 'serial_number') and self.serial_number is not None:
+            _dict['serial_number'] = self.serial_number
+        if hasattr(self, 'require_cn') and self.require_cn is not None:
+            _dict['require_cn'] = self.require_cn
+        if hasattr(self, 'policy_identifiers') and self.policy_identifiers is not None:
+            _dict['policy_identifiers'] = self.policy_identifiers
+        if hasattr(self, 'basic_constraints_valid_for_non_ca') and self.basic_constraints_valid_for_non_ca is not None:
+            _dict['basic_constraints_valid_for_non_ca'] = self.basic_constraints_valid_for_non_ca
+        if hasattr(self, 'not_before_duration') and self.not_before_duration is not None:
+            _dict['not_before_duration'] = self.not_before_duration
+        return _dict
+
+    def _to_dict(self):
+        """Return a json dictionary representing this model."""
+        return self.to_dict()
+
+    def __str__(self) -> str:
+        """Return a `str` version of this CertificateTemplateConfig object."""
+        return json.dumps(self.to_dict(), indent=2)
+
+    def __eq__(self, other: 'CertificateTemplateConfig') -> bool:
+        """Return `true` when self and other are equal, false otherwise."""
+        if not isinstance(other, self.__class__):
+            return False
+        return self.__dict__ == other.__dict__
+
+    def __ne__(self, other: 'CertificateTemplateConfig') -> bool:
+        """Return `true` when self and other are not equal, false otherwise."""
+        return not self == other
+
+    class KeyTypeEnum(str, Enum):
+        """
+        The type of private key to generate for private certificates and the type of key
+        that is expected for submitted certificate signing requests (CSRs).
+        Allowable values are: `rsa` and `ec`.
+        """
+        RSA = 'rsa'
+        EC = 'ec'
 
 
 class ConfigElementDefConfigClassicInfrastructureConfig(ConfigElementDefConfig):
@@ -6321,7 +7695,7 @@ class IAMCredentialsSecretEngineRootConfig(GetConfigResourcesItem):
 
 class IAMCredentialsSecretMetadata(SecretMetadata):
     """
-    Metadata properties that describe a iam_credentials secret.
+    Metadata properties that describe an `iam_credentials` secret.
 
     :attr str id: (optional) The unique ID of the secret.
     :attr List[str] labels: (optional) Labels that you can use to filter for secrets
@@ -6356,8 +7730,9 @@ class IAMCredentialsSecretMetadata(SecretMetadata):
     :attr datetime last_update_date: (optional) Updates when any part of the secret
           metadata is modified. The date format follows RFC 3339.
     :attr int versions_total: (optional) The number of versions the secret has.
-    :attr str ttl: (optional) Specifies the Time To Live value provided as a string
-          duration with time suffix.
+    :attr str ttl: (optional) The time-to-live (TTL) or lease duration that is
+          assigned to the secret. For `iam_credentials` secrets, the TTL defines for how
+          long each generated API key remains valid.
     :attr bool reuse_api_key: (optional) Determines whether to use the same service
           ID and API key for future read operations on an
           `iam_credentials` secret.
@@ -6415,8 +7790,9 @@ class IAMCredentialsSecretMetadata(SecretMetadata):
         :param str description: (optional) An extended description of your secret.
                To protect your privacy, do not use personal data, such as your name or
                location, as a description for your secret.
-        :param str ttl: (optional) Specifies the Time To Live value provided as a
-               string duration with time suffix.
+        :param str ttl: (optional) The time-to-live (TTL) or lease duration that is
+               assigned to the secret. For `iam_credentials` secrets, the TTL defines for
+               how long each generated API key remains valid.
         :param bool service_id_is_static: (optional) Indicates whether an
                `iam_credentials` secret was created with a static service ID.
                If the value is `true`, the service ID for the secret was provided by the
@@ -6568,6 +7944,7 @@ class IAMCredentialsSecretMetadata(SecretMetadata):
         IAM_CREDENTIALS = 'iam_credentials'
         IMPORTED_CERT = 'imported_cert'
         PUBLIC_CERT = 'public_cert'
+        PRIVATE_CERT = 'private_cert'
         KV = 'kv'
 
 
@@ -6612,8 +7989,8 @@ class IAMCredentialsSecretResource(SecretResource):
     :attr List[dict] versions: (optional) An array that contains metadata for each
           secret version. For more information on the metadata properties, see [Get secret
           version metadata](#get-secret-version-metadata).
-    :attr object ttl: (optional) The time-to-live (TTL) or lease duration to assign
-          to generated credentials.
+    :attr str ttl: (optional) The time-to-live (TTL) or lease duration to assign to
+          generated credentials.
           For `iam_credentials` secrets, the TTL defines for how long each generated API
           key remains valid. The value can be either an integer that specifies the number
           of seconds, or the string representation of a duration, such as `120m` or `24h`.
@@ -6671,7 +8048,7 @@ class IAMCredentialsSecretResource(SecretResource):
                  last_update_date: datetime = None,
                  versions_total: int = None,
                  versions: List[dict] = None,
-                 ttl: object = None,
+                 ttl: str = None,
                  access_groups: List[str] = None,
                  api_key: str = None,
                  api_key_id: str = None,
@@ -6698,7 +8075,7 @@ class IAMCredentialsSecretResource(SecretResource):
                bracket, comma, colon, ampersand, and vertical pipe character (|).
                To protect your privacy, do not use personal data, such as your name or
                location, as a label for your secret.
-        :param object ttl: (optional) The time-to-live (TTL) or lease duration to
+        :param str ttl: (optional) The time-to-live (TTL) or lease duration to
                assign to generated credentials.
                For `iam_credentials` secrets, the TTL defines for how long each generated
                API key remains valid. The value can be either an integer that specifies
@@ -6900,9 +8277,9 @@ class IAMCredentialsSecretVersion(SecretVersion):
           created the secret version.
     :attr object secret_data: (optional) The data that is associated with the secret
           version. The data object contains the following fields:
-          `api_key`: The API key that is generated for this secret.
-          `api_key_id`: The ID of the API key that is generated for this secret.
-          `service_id`: The service ID under which the API key is created.
+          - `api_key`: The API key that is generated for this secret.
+          - `api_key_id`: The ID of the API key that is generated for this secret.
+          - `service_id`: The service ID under which the API key is created.
     """
 
     def __init__(self,
@@ -6917,9 +8294,9 @@ class IAMCredentialsSecretVersion(SecretVersion):
 
         :param object secret_data: (optional) The data that is associated with the
                secret version. The data object contains the following fields:
-               `api_key`: The API key that is generated for this secret.
-               `api_key_id`: The ID of the API key that is generated for this secret.
-               `service_id`: The service ID under which the API key is created.
+               - `api_key`: The API key that is generated for this secret.
+               - `api_key_id`: The ID of the API key that is generated for this secret.
+               - `service_id`: The service ID under which the API key is created.
         """
         # pylint: disable=super-init-not-called
         self.id = id
@@ -7167,6 +8544,507 @@ class IAMCredentialsSecretVersionMetadata(SecretVersionMetadata):
         return not self == other
 
 
+class IntermediateCertificateAuthoritiesConfig(GetConfigElementsResourcesItem):
+    """
+    Intermediate certificate authorities configuration.
+
+    :attr List[IntermediateCertificateAuthoritiesConfigItem]
+          intermediate_certificate_authorities:
+    """
+
+    def __init__(self,
+                 intermediate_certificate_authorities: List['IntermediateCertificateAuthoritiesConfigItem']) -> None:
+        """
+        Initialize a IntermediateCertificateAuthoritiesConfig object.
+
+        :param List[IntermediateCertificateAuthoritiesConfigItem]
+               intermediate_certificate_authorities:
+        """
+        # pylint: disable=super-init-not-called
+        self.intermediate_certificate_authorities = intermediate_certificate_authorities
+
+    @classmethod
+    def from_dict(cls, _dict: Dict) -> 'IntermediateCertificateAuthoritiesConfig':
+        """Initialize a IntermediateCertificateAuthoritiesConfig object from a json dictionary."""
+        args = {}
+        if 'intermediate_certificate_authorities' in _dict:
+            args['intermediate_certificate_authorities'] = [IntermediateCertificateAuthoritiesConfigItem.from_dict(x)
+                                                            for x in _dict.get('intermediate_certificate_authorities')]
+        else:
+            raise ValueError(
+                'Required property \'intermediate_certificate_authorities\' not present in IntermediateCertificateAuthoritiesConfig JSON')
+        return cls(**args)
+
+    @classmethod
+    def _from_dict(cls, _dict):
+        """Initialize a IntermediateCertificateAuthoritiesConfig object from a json dictionary."""
+        return cls.from_dict(_dict)
+
+    def to_dict(self) -> Dict:
+        """Return a json dictionary representing this model."""
+        _dict = {}
+        if hasattr(self,
+                   'intermediate_certificate_authorities') and self.intermediate_certificate_authorities is not None:
+            _dict['intermediate_certificate_authorities'] = [x.to_dict() for x in
+                                                             self.intermediate_certificate_authorities]
+        return _dict
+
+    def _to_dict(self):
+        """Return a json dictionary representing this model."""
+        return self.to_dict()
+
+    def __str__(self) -> str:
+        """Return a `str` version of this IntermediateCertificateAuthoritiesConfig object."""
+        return json.dumps(self.to_dict(), indent=2)
+
+    def __eq__(self, other: 'IntermediateCertificateAuthoritiesConfig') -> bool:
+        """Return `true` when self and other are equal, false otherwise."""
+        if not isinstance(other, self.__class__):
+            return False
+        return self.__dict__ == other.__dict__
+
+    def __ne__(self, other: 'IntermediateCertificateAuthoritiesConfig') -> bool:
+        """Return `true` when self and other are not equal, false otherwise."""
+        return not self == other
+
+
+class IntermediateCertificateAuthorityConfig(ConfigElementDefConfig):
+    """
+    Intermediate certificate authority configuration.
+
+    :attr object max_ttl: The maximum time-to-live (TTL) for certificates that are
+          created by this CA. The value can be supplied as a string representation of a
+          duration in hours, for example '8760h'. Note that in the API response the value
+          is returned in seconds (integer).
+          Minimum value is one hour (`1h`). Maximum value is 100 years (`876000h`).
+    :attr str signing_method: The signing method to use with this certificate
+          authority to generate private certificates.
+          You can choose between internal or externally signed options. For more
+          information, see the
+          [docs](https://cloud.ibm.com/docs/secrets-manager?topic=secrets-manager-intermediate-certificate-authorities).
+    :attr str issuer: (optional) The certificate authority that signed and issued
+          the certificate.
+          If the certificate is signed internally, the `issuer` field is required and must
+          match the name of a certificate authority that is configured in the Secrets
+          Manager service instance.
+    :attr object crl_expiry: (optional) The time until the certificate revocation
+          list (CRL) expires. The value can be supplied as a string representation of a
+          duration in hours, such as `48h`. The default is 72 hours. Note that in the API
+          response the value is returned in seconds (integer).
+    :attr bool crl_disable: (optional) Determines whether to disable certificate
+          revocation list (CRL) building.
+          By default, each request rebuilds a CRL. To disable CRL building, set this field
+          to `true`.
+    :attr bool crl_distribution_points_encoded: (optional) Determines whether to
+          encode the certificate revocation list (CRL) distribution points in the private
+          certificates that are issued by a certificate authority.
+    :attr bool issuing_certificates_urls_encoded: (optional) Determines whether to
+          encode the URL of the issuing certificate in the private certificates that are
+          issued by a certificate authority.
+    :attr str common_name: The fully qualified domain name or host domain name for
+          the certificate.
+    :attr str status: (optional) The status of the certificate authority. The status
+          of a root certificate authority is either `configured` or `expired`. For
+          intermediate certificate authorities, possible statuses include
+          `signing_required`,
+          `signed_certificate_required`, `certificate_template_required`, `configured`,
+          `expired` or `revoked`.
+    :attr datetime expiration_date: (optional) The date that the certificate
+          expires. The date format follows RFC 3339.
+    :attr List[str] alt_names: (optional) The Subject Alternative Names to define
+          for the CA certificate, in a comma-delimited list.
+          The alternative names can be host names or email addresses.
+    :attr str ip_sans: (optional) The IP Subject Alternative Names to define for the
+          CA certificate, in a comma-delimited list.
+    :attr str uri_sans: (optional) The URI Subject Alternative Names to define for
+          the CA certificate, in a comma-delimited list.
+    :attr List[str] other_sans: (optional) The custom Object Identifier (OID) or
+          UTF8-string Subject Alternative Names to define for the CA certificate.
+          The alternative names must match the values that are specified in the
+          `allowed_other_sans` field in the associated certificate template. The format is
+          the same as OpenSSL: `<oid>:<type>:<value>` where the current valid type is
+          `UTF8`.
+    :attr str format: (optional) The format of the returned data.
+    :attr str private_key_format: (optional) The format of the generated private
+          key.
+    :attr str key_type: (optional) The type of private key to generate.
+    :attr int key_bits: (optional) The number of bits to use when generating the
+          private key.
+          Allowable values for RSA keys are: 2048 and 4096. Allowable values for EC keys
+          are: 224, 256, 384 And 521. The default for RSA keys is 2048, and the default
+          for EC keys is 256.
+    :attr bool exclude_cn_from_sans: (optional) Controls whether the common name is
+          excluded from Subject Alternative Names (SANs).
+          If set to `true`, the common name is is not included in DNS or Email SANs if
+          they apply. This field can be useful if the common name is not a hostname or an
+          email address, but is instead a human-readable identifier.
+    :attr List[str] ou: (optional) The Organizational Unit (OU) values to define in
+          the subject field of the resulting CA certificate.
+    :attr List[str] organization: (optional) The Organization (O) values to define
+          in the subject field of the resulting CA certificate.
+    :attr List[str] country: (optional) The Country (C) values to define in the
+          subject field of the resulting CA certificate.
+    :attr List[str] locality: (optional) The Locality (L) values to define in the
+          subject field of the resulting CA certificate.
+    :attr List[str] province: (optional) The Province (ST) values to define in the
+          subject field of the resulting CA certificate.
+    :attr List[str] street_address: (optional) The Street Address values in the
+          subject field of the resulting CA certificate.
+    :attr List[str] postal_code: (optional) The Postal Code values in the subject
+          field of the resulting CA certificate.
+    :attr str serial_number: (optional) The serial number to assign to the generated
+          private certificate. To assign a random serial number, you can omit this field.
+    :attr object data: (optional) The data that is associated with the intermediate
+          certificate authority. The data object contains the
+           following fields:
+          - `csr`: The PEM-encoded certificate signing request.
+          - `private_key`: The private key.
+          - `private_key_type`: The type of private key, for example `rsa`.
+    """
+
+    def __init__(self,
+                 max_ttl: object,
+                 signing_method: str,
+                 common_name: str,
+                 *,
+                 issuer: str = None,
+                 crl_expiry: object = None,
+                 crl_disable: bool = None,
+                 crl_distribution_points_encoded: bool = None,
+                 issuing_certificates_urls_encoded: bool = None,
+                 status: str = None,
+                 expiration_date: datetime = None,
+                 alt_names: List[str] = None,
+                 ip_sans: str = None,
+                 uri_sans: str = None,
+                 other_sans: List[str] = None,
+                 format: str = None,
+                 private_key_format: str = None,
+                 key_type: str = None,
+                 key_bits: int = None,
+                 exclude_cn_from_sans: bool = None,
+                 ou: List[str] = None,
+                 organization: List[str] = None,
+                 country: List[str] = None,
+                 locality: List[str] = None,
+                 province: List[str] = None,
+                 street_address: List[str] = None,
+                 postal_code: List[str] = None,
+                 serial_number: str = None,
+                 data: object = None) -> None:
+        """
+        Initialize a IntermediateCertificateAuthorityConfig object.
+
+        :param object max_ttl: The maximum time-to-live (TTL) for certificates that
+               are created by this CA. The value can be supplied as a string
+               representation of a duration in hours, for example '8760h'. Note that in
+               the API response the value is returned in seconds (integer).
+               Minimum value is one hour (`1h`). Maximum value is 100 years (`876000h`).
+        :param str signing_method: The signing method to use with this certificate
+               authority to generate private certificates.
+               You can choose between internal or externally signed options. For more
+               information, see the
+               [docs](https://cloud.ibm.com/docs/secrets-manager?topic=secrets-manager-intermediate-certificate-authorities).
+        :param str common_name: The fully qualified domain name or host domain name
+               for the certificate.
+        :param str issuer: (optional) The certificate authority that signed and
+               issued the certificate.
+               If the certificate is signed internally, the `issuer` field is required and
+               must match the name of a certificate authority that is configured in the
+               Secrets Manager service instance.
+        :param object crl_expiry: (optional) The time until the certificate
+               revocation list (CRL) expires. The value can be supplied as a string
+               representation of a duration in hours, such as `48h`. The default is 72
+               hours. Note that in the API response the value is returned in seconds
+               (integer).
+        :param bool crl_disable: (optional) Determines whether to disable
+               certificate revocation list (CRL) building.
+               By default, each request rebuilds a CRL. To disable CRL building, set this
+               field to `true`.
+        :param bool crl_distribution_points_encoded: (optional) Determines whether
+               to encode the certificate revocation list (CRL) distribution points in the
+               private certificates that are issued by a certificate authority.
+        :param bool issuing_certificates_urls_encoded: (optional) Determines
+               whether to encode the URL of the issuing certificate in the private
+               certificates that are issued by a certificate authority.
+        :param List[str] alt_names: (optional) The Subject Alternative Names to
+               define for the CA certificate, in a comma-delimited list.
+               The alternative names can be host names or email addresses.
+        :param str ip_sans: (optional) The IP Subject Alternative Names to define
+               for the CA certificate, in a comma-delimited list.
+        :param str uri_sans: (optional) The URI Subject Alternative Names to define
+               for the CA certificate, in a comma-delimited list.
+        :param List[str] other_sans: (optional) The custom Object Identifier (OID)
+               or UTF8-string Subject Alternative Names to define for the CA certificate.
+               The alternative names must match the values that are specified in the
+               `allowed_other_sans` field in the associated certificate template. The
+               format is the same as OpenSSL: `<oid>:<type>:<value>` where the current
+               valid type is `UTF8`.
+        :param str format: (optional) The format of the returned data.
+        :param str private_key_format: (optional) The format of the generated
+               private key.
+        :param str key_type: (optional) The type of private key to generate.
+        :param int key_bits: (optional) The number of bits to use when generating
+               the private key.
+               Allowable values for RSA keys are: 2048 and 4096. Allowable values for EC
+               keys are: 224, 256, 384 And 521. The default for RSA keys is 2048, and the
+               default for EC keys is 256.
+        :param bool exclude_cn_from_sans: (optional) Controls whether the common
+               name is excluded from Subject Alternative Names (SANs).
+               If set to `true`, the common name is is not included in DNS or Email SANs
+               if they apply. This field can be useful if the common name is not a
+               hostname or an email address, but is instead a human-readable identifier.
+        :param List[str] ou: (optional) The Organizational Unit (OU) values to
+               define in the subject field of the resulting CA certificate.
+        :param List[str] organization: (optional) The Organization (O) values to
+               define in the subject field of the resulting CA certificate.
+        :param List[str] country: (optional) The Country (C) values to define in
+               the subject field of the resulting CA certificate.
+        :param List[str] locality: (optional) The Locality (L) values to define in
+               the subject field of the resulting CA certificate.
+        :param List[str] province: (optional) The Province (ST) values to define in
+               the subject field of the resulting CA certificate.
+        :param List[str] street_address: (optional) The Street Address values in
+               the subject field of the resulting CA certificate.
+        :param List[str] postal_code: (optional) The Postal Code values in the
+               subject field of the resulting CA certificate.
+        :param str serial_number: (optional) The serial number to assign to the
+               generated private certificate. To assign a random serial number, you can
+               omit this field.
+        """
+        # pylint: disable=super-init-not-called
+        self.max_ttl = max_ttl
+        self.signing_method = signing_method
+        self.issuer = issuer
+        self.crl_expiry = crl_expiry
+        self.crl_disable = crl_disable
+        self.crl_distribution_points_encoded = crl_distribution_points_encoded
+        self.issuing_certificates_urls_encoded = issuing_certificates_urls_encoded
+        self.common_name = common_name
+        self.status = status
+        self.expiration_date = expiration_date
+        self.alt_names = alt_names
+        self.ip_sans = ip_sans
+        self.uri_sans = uri_sans
+        self.other_sans = other_sans
+        self.format = format
+        self.private_key_format = private_key_format
+        self.key_type = key_type
+        self.key_bits = key_bits
+        self.exclude_cn_from_sans = exclude_cn_from_sans
+        self.ou = ou
+        self.organization = organization
+        self.country = country
+        self.locality = locality
+        self.province = province
+        self.street_address = street_address
+        self.postal_code = postal_code
+        self.serial_number = serial_number
+        self.data = data
+
+    @classmethod
+    def from_dict(cls, _dict: Dict) -> 'IntermediateCertificateAuthorityConfig':
+        """Initialize a IntermediateCertificateAuthorityConfig object from a json dictionary."""
+        args = {}
+        if 'max_ttl' in _dict:
+            args['max_ttl'] = _dict.get('max_ttl')
+        else:
+            raise ValueError('Required property \'max_ttl\' not present in IntermediateCertificateAuthorityConfig JSON')
+        if 'signing_method' in _dict:
+            args['signing_method'] = _dict.get('signing_method')
+        else:
+            raise ValueError(
+                'Required property \'signing_method\' not present in IntermediateCertificateAuthorityConfig JSON')
+        if 'issuer' in _dict:
+            args['issuer'] = _dict.get('issuer')
+        if 'crl_expiry' in _dict:
+            args['crl_expiry'] = _dict.get('crl_expiry')
+        if 'crl_disable' in _dict:
+            args['crl_disable'] = _dict.get('crl_disable')
+        if 'crl_distribution_points_encoded' in _dict:
+            args['crl_distribution_points_encoded'] = _dict.get('crl_distribution_points_encoded')
+        if 'issuing_certificates_urls_encoded' in _dict:
+            args['issuing_certificates_urls_encoded'] = _dict.get('issuing_certificates_urls_encoded')
+        if 'common_name' in _dict:
+            args['common_name'] = _dict.get('common_name')
+        else:
+            raise ValueError(
+                'Required property \'common_name\' not present in IntermediateCertificateAuthorityConfig JSON')
+        if 'status' in _dict:
+            args['status'] = _dict.get('status')
+        if 'expiration_date' in _dict:
+            args['expiration_date'] = string_to_datetime(_dict.get('expiration_date'))
+        if 'alt_names' in _dict:
+            args['alt_names'] = _dict.get('alt_names')
+        if 'ip_sans' in _dict:
+            args['ip_sans'] = _dict.get('ip_sans')
+        if 'uri_sans' in _dict:
+            args['uri_sans'] = _dict.get('uri_sans')
+        if 'other_sans' in _dict:
+            args['other_sans'] = _dict.get('other_sans')
+        if 'format' in _dict:
+            args['format'] = _dict.get('format')
+        if 'private_key_format' in _dict:
+            args['private_key_format'] = _dict.get('private_key_format')
+        if 'key_type' in _dict:
+            args['key_type'] = _dict.get('key_type')
+        if 'key_bits' in _dict:
+            args['key_bits'] = _dict.get('key_bits')
+        if 'exclude_cn_from_sans' in _dict:
+            args['exclude_cn_from_sans'] = _dict.get('exclude_cn_from_sans')
+        if 'ou' in _dict:
+            args['ou'] = _dict.get('ou')
+        if 'organization' in _dict:
+            args['organization'] = _dict.get('organization')
+        if 'country' in _dict:
+            args['country'] = _dict.get('country')
+        if 'locality' in _dict:
+            args['locality'] = _dict.get('locality')
+        if 'province' in _dict:
+            args['province'] = _dict.get('province')
+        if 'street_address' in _dict:
+            args['street_address'] = _dict.get('street_address')
+        if 'postal_code' in _dict:
+            args['postal_code'] = _dict.get('postal_code')
+        if 'serial_number' in _dict:
+            args['serial_number'] = _dict.get('serial_number')
+        if 'data' in _dict:
+            args['data'] = _dict.get('data')
+        return cls(**args)
+
+    @classmethod
+    def _from_dict(cls, _dict):
+        """Initialize a IntermediateCertificateAuthorityConfig object from a json dictionary."""
+        return cls.from_dict(_dict)
+
+    def to_dict(self) -> Dict:
+        """Return a json dictionary representing this model."""
+        _dict = {}
+        if hasattr(self, 'max_ttl') and self.max_ttl is not None:
+            _dict['max_ttl'] = self.max_ttl
+        if hasattr(self, 'signing_method') and self.signing_method is not None:
+            _dict['signing_method'] = self.signing_method
+        if hasattr(self, 'issuer') and self.issuer is not None:
+            _dict['issuer'] = self.issuer
+        if hasattr(self, 'crl_expiry') and self.crl_expiry is not None:
+            _dict['crl_expiry'] = self.crl_expiry
+        if hasattr(self, 'crl_disable') and self.crl_disable is not None:
+            _dict['crl_disable'] = self.crl_disable
+        if hasattr(self, 'crl_distribution_points_encoded') and self.crl_distribution_points_encoded is not None:
+            _dict['crl_distribution_points_encoded'] = self.crl_distribution_points_encoded
+        if hasattr(self, 'issuing_certificates_urls_encoded') and self.issuing_certificates_urls_encoded is not None:
+            _dict['issuing_certificates_urls_encoded'] = self.issuing_certificates_urls_encoded
+        if hasattr(self, 'common_name') and self.common_name is not None:
+            _dict['common_name'] = self.common_name
+        if hasattr(self, 'status') and getattr(self, 'status') is not None:
+            _dict['status'] = getattr(self, 'status')
+        if hasattr(self, 'expiration_date') and getattr(self, 'expiration_date') is not None:
+            _dict['expiration_date'] = datetime_to_string(getattr(self, 'expiration_date'))
+        if hasattr(self, 'alt_names') and self.alt_names is not None:
+            _dict['alt_names'] = self.alt_names
+        if hasattr(self, 'ip_sans') and self.ip_sans is not None:
+            _dict['ip_sans'] = self.ip_sans
+        if hasattr(self, 'uri_sans') and self.uri_sans is not None:
+            _dict['uri_sans'] = self.uri_sans
+        if hasattr(self, 'other_sans') and self.other_sans is not None:
+            _dict['other_sans'] = self.other_sans
+        if hasattr(self, 'format') and self.format is not None:
+            _dict['format'] = self.format
+        if hasattr(self, 'private_key_format') and self.private_key_format is not None:
+            _dict['private_key_format'] = self.private_key_format
+        if hasattr(self, 'key_type') and self.key_type is not None:
+            _dict['key_type'] = self.key_type
+        if hasattr(self, 'key_bits') and self.key_bits is not None:
+            _dict['key_bits'] = self.key_bits
+        if hasattr(self, 'exclude_cn_from_sans') and self.exclude_cn_from_sans is not None:
+            _dict['exclude_cn_from_sans'] = self.exclude_cn_from_sans
+        if hasattr(self, 'ou') and self.ou is not None:
+            _dict['ou'] = self.ou
+        if hasattr(self, 'organization') and self.organization is not None:
+            _dict['organization'] = self.organization
+        if hasattr(self, 'country') and self.country is not None:
+            _dict['country'] = self.country
+        if hasattr(self, 'locality') and self.locality is not None:
+            _dict['locality'] = self.locality
+        if hasattr(self, 'province') and self.province is not None:
+            _dict['province'] = self.province
+        if hasattr(self, 'street_address') and self.street_address is not None:
+            _dict['street_address'] = self.street_address
+        if hasattr(self, 'postal_code') and self.postal_code is not None:
+            _dict['postal_code'] = self.postal_code
+        if hasattr(self, 'serial_number') and self.serial_number is not None:
+            _dict['serial_number'] = self.serial_number
+        if hasattr(self, 'data') and getattr(self, 'data') is not None:
+            _dict['data'] = getattr(self, 'data')
+        return _dict
+
+    def _to_dict(self):
+        """Return a json dictionary representing this model."""
+        return self.to_dict()
+
+    def __str__(self) -> str:
+        """Return a `str` version of this IntermediateCertificateAuthorityConfig object."""
+        return json.dumps(self.to_dict(), indent=2)
+
+    def __eq__(self, other: 'IntermediateCertificateAuthorityConfig') -> bool:
+        """Return `true` when self and other are equal, false otherwise."""
+        if not isinstance(other, self.__class__):
+            return False
+        return self.__dict__ == other.__dict__
+
+    def __ne__(self, other: 'IntermediateCertificateAuthorityConfig') -> bool:
+        """Return `true` when self and other are not equal, false otherwise."""
+        return not self == other
+
+    class SigningMethodEnum(str, Enum):
+        """
+        The signing method to use with this certificate authority to generate private
+        certificates.
+        You can choose between internal or externally signed options. For more
+        information, see the
+        [docs](https://cloud.ibm.com/docs/secrets-manager?topic=secrets-manager-intermediate-certificate-authorities).
+        """
+        INTERNAL = 'internal'
+        EXTERNAL = 'external'
+
+    class StatusEnum(str, Enum):
+        """
+        The status of the certificate authority. The status of a root certificate
+        authority is either `configured` or `expired`. For intermediate certificate
+        authorities, possible statuses include `signing_required`,
+        `signed_certificate_required`, `certificate_template_required`, `configured`,
+        `expired` or `revoked`.
+        """
+        SIGNING_REQUIRED = 'signing_required'
+        SIGNED_CERTIFICATE_REQUIRED = 'signed_certificate_required'
+        CERTIFICATE_TEMPLATE_REQUIRED = 'certificate_template_required'
+        CONFIGURED = 'configured'
+        EXPIRED = 'expired'
+        REVOKED = 'revoked'
+
+    class FormatEnum(str, Enum):
+        """
+        The format of the returned data.
+        """
+        PEM = 'pem'
+        DER = 'der'
+        PEM_BUNDLE = 'pem_bundle'
+
+    class PrivateKeyFormatEnum(str, Enum):
+        """
+        The format of the generated private key.
+        """
+        DER = 'der'
+        PKCS8 = 'pkcs8'
+
+    class KeyTypeEnum(str, Enum):
+        """
+        The type of private key to generate.
+        """
+        RSA = 'rsa'
+        EC = 'ec'
+
+
 class KvSecretMetadata(SecretMetadata):
     """
     Metadata properties that describe a key-value secret.
@@ -7351,6 +9229,7 @@ class KvSecretMetadata(SecretMetadata):
         IAM_CREDENTIALS = 'iam_credentials'
         IMPORTED_CERT = 'imported_cert'
         PUBLIC_CERT = 'public_cert'
+        PRIVATE_CERT = 'private_cert'
         KV = 'kv'
 
 
@@ -7594,6 +9473,170 @@ class KvSecretResource(SecretResource):
         KV = 'kv'
 
 
+class PrivateCertPolicyRotation(SecretPolicyRotationRotation):
+    """
+    The `private_cert` secret rotation policy.
+
+    :attr bool auto_rotate:
+    :attr int interval: (optional) The length of the secret rotation time interval.
+    :attr str unit: (optional) The units for the secret rotation time interval.
+    """
+
+    def __init__(self,
+                 auto_rotate: bool,
+                 *,
+                 interval: int = None,
+                 unit: str = None) -> None:
+        """
+        Initialize a PrivateCertPolicyRotation object.
+
+        :param bool auto_rotate:
+        :param int interval: (optional) The length of the secret rotation time
+               interval.
+        :param str unit: (optional) The units for the secret rotation time
+               interval.
+        """
+        # pylint: disable=super-init-not-called
+        self.auto_rotate = auto_rotate
+        self.interval = interval
+        self.unit = unit
+
+    @classmethod
+    def from_dict(cls, _dict: Dict) -> 'PrivateCertPolicyRotation':
+        """Initialize a PrivateCertPolicyRotation object from a json dictionary."""
+        args = {}
+        if 'auto_rotate' in _dict:
+            args['auto_rotate'] = _dict.get('auto_rotate')
+        else:
+            raise ValueError('Required property \'auto_rotate\' not present in PrivateCertPolicyRotation JSON')
+        if 'interval' in _dict:
+            args['interval'] = _dict.get('interval')
+        if 'unit' in _dict:
+            args['unit'] = _dict.get('unit')
+        return cls(**args)
+
+    @classmethod
+    def _from_dict(cls, _dict):
+        """Initialize a PrivateCertPolicyRotation object from a json dictionary."""
+        return cls.from_dict(_dict)
+
+    def to_dict(self) -> Dict:
+        """Return a json dictionary representing this model."""
+        _dict = {}
+        if hasattr(self, 'auto_rotate') and self.auto_rotate is not None:
+            _dict['auto_rotate'] = self.auto_rotate
+        if hasattr(self, 'interval') and self.interval is not None:
+            _dict['interval'] = self.interval
+        if hasattr(self, 'unit') and self.unit is not None:
+            _dict['unit'] = self.unit
+        return _dict
+
+    def _to_dict(self):
+        """Return a json dictionary representing this model."""
+        return self.to_dict()
+
+    def __str__(self) -> str:
+        """Return a `str` version of this PrivateCertPolicyRotation object."""
+        return json.dumps(self.to_dict(), indent=2)
+
+    def __eq__(self, other: 'PrivateCertPolicyRotation') -> bool:
+        """Return `true` when self and other are equal, false otherwise."""
+        if not isinstance(other, self.__class__):
+            return False
+        return self.__dict__ == other.__dict__
+
+    def __ne__(self, other: 'PrivateCertPolicyRotation') -> bool:
+        """Return `true` when self and other are not equal, false otherwise."""
+        return not self == other
+
+    class UnitEnum(str, Enum):
+        """
+        The units for the secret rotation time interval.
+        """
+        DAY = 'day'
+        MONTH = 'month'
+
+
+class PrivateCertSecretEngineRootConfig(GetConfigResourcesItem):
+    """
+    Configuration for the private certificates engine.
+
+    :attr List[RootCertificateAuthorityConfig] root_certificate_authorities:
+          (optional) The root certificate authority configurations that are associated
+          with your instance.
+    :attr List[IntermediateCertificateAuthorityConfig]
+          intermdiate_certificate_authorities: (optional) The intermediate certificate
+          authority configurations that are associated with your instance.
+    :attr List[CertificateTemplateConfig] certificate_templates: (optional) The
+          certificate templates that are associated with your instance.
+    """
+
+    def __init__(self,
+                 *,
+                 root_certificate_authorities: List['RootCertificateAuthorityConfig'] = None,
+                 intermdiate_certificate_authorities: List['IntermediateCertificateAuthorityConfig'] = None,
+                 certificate_templates: List['CertificateTemplateConfig'] = None) -> None:
+        """
+        Initialize a PrivateCertSecretEngineRootConfig object.
+
+        """
+        # pylint: disable=super-init-not-called
+        self.root_certificate_authorities = root_certificate_authorities
+        self.intermdiate_certificate_authorities = intermdiate_certificate_authorities
+        self.certificate_templates = certificate_templates
+
+    @classmethod
+    def from_dict(cls, _dict: Dict) -> 'PrivateCertSecretEngineRootConfig':
+        """Initialize a PrivateCertSecretEngineRootConfig object from a json dictionary."""
+        args = {}
+        if 'root_certificate_authorities' in _dict:
+            args['root_certificate_authorities'] = [RootCertificateAuthorityConfig.from_dict(x) for x in
+                                                    _dict.get('root_certificate_authorities')]
+        if 'intermdiate_certificate_authorities' in _dict:
+            args['intermdiate_certificate_authorities'] = [IntermediateCertificateAuthorityConfig.from_dict(x) for x in
+                                                           _dict.get('intermdiate_certificate_authorities')]
+        if 'certificate_templates' in _dict:
+            args['certificate_templates'] = [CertificateTemplateConfig.from_dict(x) for x in
+                                             _dict.get('certificate_templates')]
+        return cls(**args)
+
+    @classmethod
+    def _from_dict(cls, _dict):
+        """Initialize a PrivateCertSecretEngineRootConfig object from a json dictionary."""
+        return cls.from_dict(_dict)
+
+    def to_dict(self) -> Dict:
+        """Return a json dictionary representing this model."""
+        _dict = {}
+        if hasattr(self, 'root_certificate_authorities') and getattr(self, 'root_certificate_authorities') is not None:
+            _dict['root_certificate_authorities'] = [x.to_dict() for x in getattr(self, 'root_certificate_authorities')]
+        if hasattr(self, 'intermdiate_certificate_authorities') and getattr(self,
+                                                                            'intermdiate_certificate_authorities') is not None:
+            _dict['intermdiate_certificate_authorities'] = [x.to_dict() for x in
+                                                            getattr(self, 'intermdiate_certificate_authorities')]
+        if hasattr(self, 'certificate_templates') and getattr(self, 'certificate_templates') is not None:
+            _dict['certificate_templates'] = [x.to_dict() for x in getattr(self, 'certificate_templates')]
+        return _dict
+
+    def _to_dict(self):
+        """Return a json dictionary representing this model."""
+        return self.to_dict()
+
+    def __str__(self) -> str:
+        """Return a `str` version of this PrivateCertSecretEngineRootConfig object."""
+        return json.dumps(self.to_dict(), indent=2)
+
+    def __eq__(self, other: 'PrivateCertSecretEngineRootConfig') -> bool:
+        """Return `true` when self and other are equal, false otherwise."""
+        if not isinstance(other, self.__class__):
+            return False
+        return self.__dict__ == other.__dict__
+
+    def __ne__(self, other: 'PrivateCertSecretEngineRootConfig') -> bool:
+        """Return `true` when self and other are not equal, false otherwise."""
+        return not self == other
+
+
 class PrivateCertificateSecretMetadata(SecretMetadata):
     """
     Metadata properties that describe a private certificate secret.
@@ -7631,10 +9674,57 @@ class PrivateCertificateSecretMetadata(SecretMetadata):
     :attr datetime last_update_date: (optional) Updates when any part of the secret
           metadata is modified. The date format follows RFC 3339.
     :attr int versions_total: (optional) The number of versions the secret has.
+    :attr str certificate_template: The name of the certificate template.
+    :attr str certificate_authority: (optional) The intermediate certificate
+          authority that signed this certificate.
+    :attr str common_name: The fully qualified domain name or host domain name for
+          the certificate.
+    :attr List[str] alt_names: (optional) The Subject Alternative Names to define
+          for the CA certificate, in a comma-delimited list.
+          The alternative names can be host names or email addresses.
+    :attr str ip_sans: (optional) The IP Subject Alternative Names to define for the
+          CA certificate, in a comma-delimited list.
+    :attr str uri_sans: (optional) The URI Subject Alternative Names to define for
+          the CA certificate, in a comma-delimited list.
+    :attr List[str] other_sans: (optional) The custom Object Identifier (OID) or
+          UTF8-string Subject Alternative Names to define for the CA certificate.
+          The alternative names must match the values that are specified in the
+          `allowed_other_sans` field in the associated certificate template. The format is
+          the same as OpenSSL: `<oid>:<type>:<value>` where the current valid type is
+          `UTF8`.
+    :attr str ttl: (optional) The time-to-live (TTL) or lease duration to assign to
+          a private certificate. The value can be supplied as a string representation of a
+          duration in hours, for example '12h'. The value can't exceed the `max_ttl` that
+          is defined in the associated certificate template.
+    :attr str format: (optional) The format of the returned data.
+    :attr str private_key_format: (optional) The format of the generated private
+          key.
+    :attr bool exclude_cn_from_sans: (optional) Controls whether the common name is
+          excluded from Subject Alternative Names (SANs).
+          If set to `true`, the common name is is not included in DNS or Email SANs if
+          they apply. This field can be useful if the common name is not a hostname or an
+          email address, but is instead a human-readable identifier.
+    :attr Rotation rotation: (optional)
+    :attr str algorithm: (optional) The identifier for the cryptographic algorithm
+          that was used by the issuing certificate authority to sign the certificate.
+    :attr str key_algorithm: (optional) The identifier for the cryptographic
+          algorithm that was used to generate the public and private keys that are
+          associated with the certificate.
+    :attr str issuer: (optional) The certificate authority that signed and issued
+          the certificate.
+    :attr CertificateValidity validity: (optional)
+    :attr str serial_number: (optional) The unique serial number that was assigned
+          to the certificate by the issuing certificate authority.
+    :attr int revocation_time: (optional) The timestamp of the certificate
+          revocation.
+    :attr datetime revocation_time_rfc3339: (optional) The date and time that the
+          certificate was revoked. The date format follows RFC 3339.
     """
 
     def __init__(self,
                  name: str,
+                 certificate_template: str,
+                 common_name: str,
                  *,
                  id: str = None,
                  labels: List[str] = None,
@@ -7647,13 +9737,33 @@ class PrivateCertificateSecretMetadata(SecretMetadata):
                  creation_date: datetime = None,
                  created_by: str = None,
                  last_update_date: datetime = None,
-                 versions_total: int = None) -> None:
+                 versions_total: int = None,
+                 certificate_authority: str = None,
+                 alt_names: List[str] = None,
+                 ip_sans: str = None,
+                 uri_sans: str = None,
+                 other_sans: List[str] = None,
+                 ttl: str = None,
+                 format: str = None,
+                 private_key_format: str = None,
+                 exclude_cn_from_sans: bool = None,
+                 rotation: 'Rotation' = None,
+                 algorithm: str = None,
+                 key_algorithm: str = None,
+                 issuer: str = None,
+                 validity: 'CertificateValidity' = None,
+                 serial_number: str = None,
+                 revocation_time: int = None,
+                 revocation_time_rfc3339: datetime = None) -> None:
         """
         Initialize a PrivateCertificateSecretMetadata object.
 
         :param str name: A human-readable alias to assign to your secret.
                To protect your privacy, do not use personal data, such as your name or
                location, as an alias for your secret.
+        :param str certificate_template: The name of the certificate template.
+        :param str common_name: The fully qualified domain name or host domain name
+               for the certificate.
         :param List[str] labels: (optional) Labels that you can use to filter for
                secrets in your instance.
                Up to 30 labels can be created. Labels can be in the range 2 - 30
@@ -7665,6 +9775,34 @@ class PrivateCertificateSecretMetadata(SecretMetadata):
         :param str description: (optional) An extended description of your secret.
                To protect your privacy, do not use personal data, such as your name or
                location, as a description for your secret.
+        :param List[str] alt_names: (optional) The Subject Alternative Names to
+               define for the CA certificate, in a comma-delimited list.
+               The alternative names can be host names or email addresses.
+        :param str ip_sans: (optional) The IP Subject Alternative Names to define
+               for the CA certificate, in a comma-delimited list.
+        :param str uri_sans: (optional) The URI Subject Alternative Names to define
+               for the CA certificate, in a comma-delimited list.
+        :param List[str] other_sans: (optional) The custom Object Identifier (OID)
+               or UTF8-string Subject Alternative Names to define for the CA certificate.
+               The alternative names must match the values that are specified in the
+               `allowed_other_sans` field in the associated certificate template. The
+               format is the same as OpenSSL: `<oid>:<type>:<value>` where the current
+               valid type is `UTF8`.
+        :param str ttl: (optional) The time-to-live (TTL) or lease duration to
+               assign to a private certificate. The value can be supplied as a string
+               representation of a duration in hours, for example '12h'. The value can't
+               exceed the `max_ttl` that is defined in the associated certificate
+               template.
+        :param str format: (optional) The format of the returned data.
+        :param str private_key_format: (optional) The format of the generated
+               private key.
+        :param bool exclude_cn_from_sans: (optional) Controls whether the common
+               name is excluded from Subject Alternative Names (SANs).
+               If set to `true`, the common name is is not included in DNS or Email SANs
+               if they apply. This field can be useful if the common name is not a
+               hostname or an email address, but is instead a human-readable identifier.
+        :param Rotation rotation: (optional)
+        :param CertificateValidity validity: (optional)
         """
         # pylint: disable=super-init-not-called
         self.id = id
@@ -7680,6 +9818,25 @@ class PrivateCertificateSecretMetadata(SecretMetadata):
         self.created_by = created_by
         self.last_update_date = last_update_date
         self.versions_total = versions_total
+        self.certificate_template = certificate_template
+        self.certificate_authority = certificate_authority
+        self.common_name = common_name
+        self.alt_names = alt_names
+        self.ip_sans = ip_sans
+        self.uri_sans = uri_sans
+        self.other_sans = other_sans
+        self.ttl = ttl
+        self.format = format
+        self.private_key_format = private_key_format
+        self.exclude_cn_from_sans = exclude_cn_from_sans
+        self.rotation = rotation
+        self.algorithm = algorithm
+        self.key_algorithm = key_algorithm
+        self.issuer = issuer
+        self.validity = validity
+        self.serial_number = serial_number
+        self.revocation_time = revocation_time
+        self.revocation_time_rfc3339 = revocation_time_rfc3339
 
     @classmethod
     def from_dict(cls, _dict: Dict) -> 'PrivateCertificateSecretMetadata':
@@ -7713,6 +9870,49 @@ class PrivateCertificateSecretMetadata(SecretMetadata):
             args['last_update_date'] = string_to_datetime(_dict.get('last_update_date'))
         if 'versions_total' in _dict:
             args['versions_total'] = _dict.get('versions_total')
+        if 'certificate_template' in _dict:
+            args['certificate_template'] = _dict.get('certificate_template')
+        else:
+            raise ValueError(
+                'Required property \'certificate_template\' not present in PrivateCertificateSecretMetadata JSON')
+        if 'certificate_authority' in _dict:
+            args['certificate_authority'] = _dict.get('certificate_authority')
+        if 'common_name' in _dict:
+            args['common_name'] = _dict.get('common_name')
+        else:
+            raise ValueError('Required property \'common_name\' not present in PrivateCertificateSecretMetadata JSON')
+        if 'alt_names' in _dict:
+            args['alt_names'] = _dict.get('alt_names')
+        if 'ip_sans' in _dict:
+            args['ip_sans'] = _dict.get('ip_sans')
+        if 'uri_sans' in _dict:
+            args['uri_sans'] = _dict.get('uri_sans')
+        if 'other_sans' in _dict:
+            args['other_sans'] = _dict.get('other_sans')
+        if 'ttl' in _dict:
+            args['ttl'] = _dict.get('ttl')
+        if 'format' in _dict:
+            args['format'] = _dict.get('format')
+        if 'private_key_format' in _dict:
+            args['private_key_format'] = _dict.get('private_key_format')
+        if 'exclude_cn_from_sans' in _dict:
+            args['exclude_cn_from_sans'] = _dict.get('exclude_cn_from_sans')
+        if 'rotation' in _dict:
+            args['rotation'] = Rotation.from_dict(_dict.get('rotation'))
+        if 'algorithm' in _dict:
+            args['algorithm'] = _dict.get('algorithm')
+        if 'key_algorithm' in _dict:
+            args['key_algorithm'] = _dict.get('key_algorithm')
+        if 'issuer' in _dict:
+            args['issuer'] = _dict.get('issuer')
+        if 'validity' in _dict:
+            args['validity'] = CertificateValidity.from_dict(_dict.get('validity'))
+        if 'serial_number' in _dict:
+            args['serial_number'] = _dict.get('serial_number')
+        if 'revocation_time' in _dict:
+            args['revocation_time'] = _dict.get('revocation_time')
+        if 'revocation_time_rfc3339' in _dict:
+            args['revocation_time_rfc3339'] = string_to_datetime(_dict.get('revocation_time_rfc3339'))
         return cls(**args)
 
     @classmethod
@@ -7749,6 +9949,44 @@ class PrivateCertificateSecretMetadata(SecretMetadata):
             _dict['last_update_date'] = datetime_to_string(getattr(self, 'last_update_date'))
         if hasattr(self, 'versions_total') and getattr(self, 'versions_total') is not None:
             _dict['versions_total'] = getattr(self, 'versions_total')
+        if hasattr(self, 'certificate_template') and self.certificate_template is not None:
+            _dict['certificate_template'] = self.certificate_template
+        if hasattr(self, 'certificate_authority') and getattr(self, 'certificate_authority') is not None:
+            _dict['certificate_authority'] = getattr(self, 'certificate_authority')
+        if hasattr(self, 'common_name') and self.common_name is not None:
+            _dict['common_name'] = self.common_name
+        if hasattr(self, 'alt_names') and self.alt_names is not None:
+            _dict['alt_names'] = self.alt_names
+        if hasattr(self, 'ip_sans') and self.ip_sans is not None:
+            _dict['ip_sans'] = self.ip_sans
+        if hasattr(self, 'uri_sans') and self.uri_sans is not None:
+            _dict['uri_sans'] = self.uri_sans
+        if hasattr(self, 'other_sans') and self.other_sans is not None:
+            _dict['other_sans'] = self.other_sans
+        if hasattr(self, 'ttl') and self.ttl is not None:
+            _dict['ttl'] = self.ttl
+        if hasattr(self, 'format') and self.format is not None:
+            _dict['format'] = self.format
+        if hasattr(self, 'private_key_format') and self.private_key_format is not None:
+            _dict['private_key_format'] = self.private_key_format
+        if hasattr(self, 'exclude_cn_from_sans') and self.exclude_cn_from_sans is not None:
+            _dict['exclude_cn_from_sans'] = self.exclude_cn_from_sans
+        if hasattr(self, 'rotation') and self.rotation is not None:
+            _dict['rotation'] = self.rotation.to_dict()
+        if hasattr(self, 'algorithm') and getattr(self, 'algorithm') is not None:
+            _dict['algorithm'] = getattr(self, 'algorithm')
+        if hasattr(self, 'key_algorithm') and getattr(self, 'key_algorithm') is not None:
+            _dict['key_algorithm'] = getattr(self, 'key_algorithm')
+        if hasattr(self, 'issuer') and getattr(self, 'issuer') is not None:
+            _dict['issuer'] = getattr(self, 'issuer')
+        if hasattr(self, 'validity') and self.validity is not None:
+            _dict['validity'] = self.validity.to_dict()
+        if hasattr(self, 'serial_number') and getattr(self, 'serial_number') is not None:
+            _dict['serial_number'] = getattr(self, 'serial_number')
+        if hasattr(self, 'revocation_time') and getattr(self, 'revocation_time') is not None:
+            _dict['revocation_time'] = getattr(self, 'revocation_time')
+        if hasattr(self, 'revocation_time_rfc3339') and getattr(self, 'revocation_time_rfc3339') is not None:
+            _dict['revocation_time_rfc3339'] = datetime_to_string(getattr(self, 'revocation_time_rfc3339'))
         return _dict
 
     def _to_dict(self):
@@ -7778,7 +10016,931 @@ class PrivateCertificateSecretMetadata(SecretMetadata):
         IAM_CREDENTIALS = 'iam_credentials'
         IMPORTED_CERT = 'imported_cert'
         PUBLIC_CERT = 'public_cert'
+        PRIVATE_CERT = 'private_cert'
         KV = 'kv'
+
+    class FormatEnum(str, Enum):
+        """
+        The format of the returned data.
+        """
+        PEM = 'pem'
+        DER = 'der'
+        PEM_BUNDLE = 'pem_bundle'
+
+    class PrivateKeyFormatEnum(str, Enum):
+        """
+        The format of the generated private key.
+        """
+        DER = 'der'
+        PKCS8 = 'pkcs8'
+
+
+class PrivateCertificateSecretResource(SecretResource):
+    """
+    Properties that describe a secret.
+
+    :attr str id: (optional) The v4 UUID that uniquely identifies the secret.
+    :attr str name: A human-readable alias to assign to your secret.
+          To protect your privacy, do not use personal data, such as your name or
+          location, as an alias for your secret.
+    :attr str description: (optional) An extended description of your secret.
+          To protect your privacy, do not use personal data, such as your name or
+          location, as a description for your secret.
+    :attr str secret_group_id: (optional) The v4 UUID that uniquely identifies the
+          secret group to assign to this secret.
+          If you omit this parameter, your secret is assigned to the `default` secret
+          group.
+    :attr List[str] labels: (optional) Labels that you can use to filter for secrets
+          in your instance.
+          Up to 30 labels can be created. Labels can be 2 - 30 characters, including
+          spaces. Special characters that are not permitted include the angled bracket,
+          comma, colon, ampersand, and vertical pipe character (|).
+          To protect your privacy, do not use personal data, such as your name or
+          location, as a label for your secret.
+    :attr int state: (optional) The secret state based on NIST SP 800-57. States are
+          integers and correspond to the Pre-activation = 0, Active = 1,  Suspended = 2,
+          Deactivated = 3, and Destroyed = 5 values.
+    :attr str state_description: (optional) A text representation of the secret
+          state.
+    :attr str secret_type: (optional) The secret type.
+    :attr str crn: (optional) The Cloud Resource Name (CRN) that uniquely identifies
+          your Secrets Manager resource.
+    :attr datetime creation_date: (optional) The date the secret was created. The
+          date format follows RFC 3339.
+    :attr str created_by: (optional) The unique identifier for the entity that
+          created the secret.
+    :attr datetime last_update_date: (optional) Updates when the actual secret is
+          modified. The date format follows RFC 3339.
+    :attr int versions_total: (optional) The number of versions that are associated
+          with a secret.
+    :attr List[dict] versions: (optional) An array that contains metadata for each
+          secret version. For more information on the metadata properties, see [Get secret
+          version metadata](#get-secret-version-metadata).
+    :attr str certificate_template: The name of the certificate template.
+    :attr str certificate_authority: (optional) The intermediate certificate
+          authority that signed this certificate.
+    :attr str common_name: The fully qualified domain name or host domain name for
+          the certificate.
+    :attr List[str] alt_names: (optional) The Subject Alternative Names to define
+          for the CA certificate, in a comma-delimited list.
+          The alternative names can be host names or email addresses.
+    :attr str ip_sans: (optional) The IP Subject Alternative Names to define for the
+          CA certificate, in a comma-delimited list.
+    :attr str uri_sans: (optional) The URI Subject Alternative Names to define for
+          the CA certificate, in a comma-delimited list.
+    :attr List[str] other_sans: (optional) The custom Object Identifier (OID) or
+          UTF8-string Subject Alternative Names to define for the CA certificate.
+          The alternative names must match the values that are specified in the
+          `allowed_other_sans` field in the associated certificate template. The format is
+          the same as OpenSSL: `<oid>:<type>:<value>` where the current valid type is
+          `UTF8`.
+    :attr str ttl: (optional) The time-to-live (TTL) or lease duration to assign to
+          a private certificate. The value can be supplied as a string representation of a
+          duration in hours, for example '12h'. The value can't exceed the `max_ttl` that
+          is defined in the associated certificate template.
+    :attr str format: (optional) The format of the returned data.
+    :attr str private_key_format: (optional) The format of the generated private
+          key.
+    :attr bool exclude_cn_from_sans: (optional) Controls whether the common name is
+          excluded from Subject Alternative Names (SANs).
+          If set to `true`, the common name is is not included in DNS or Email SANs if
+          they apply. This field can be useful if the common name is not a hostname or an
+          email address, but is instead a human-readable identifier.
+    :attr Rotation rotation: (optional)
+    :attr str algorithm: (optional) The identifier for the cryptographic algorithm
+          that was used by the issuing certificate authority to sign the certificate.
+    :attr str key_algorithm: (optional) The identifier for the cryptographic
+          algorithm that was used to generate the public and private keys that are
+          associated with the certificate.
+    :attr str issuer: (optional) The certificate authority that signed and issued
+          the certificate.
+    :attr CertificateValidity validity: (optional)
+    :attr str serial_number: (optional) The unique serial number that was assigned
+          to the certificate by the issuing certificate authority.
+    :attr int revocation_time: (optional) The timestamp of the certificate
+          revocation.
+    :attr datetime revocation_time_rfc3339: (optional) The date and time that the
+          certificate was revoked. The date format follows RFC 3339.
+    :attr object secret_data: (optional) The data that is associated with the
+          secret. The data object contains the following fields:
+          - `certificate`: The contents of the certificate.
+          - `private_key`: The private key that is associated with the certificate.
+          - `issuing_ca`: The certificate of the certificate authority that signed and
+          issued this certificate.
+          - `ca_chain`: The chain of certificate authorities that are associated with the
+          certificate.
+    """
+
+    def __init__(self,
+                 name: str,
+                 certificate_template: str,
+                 common_name: str,
+                 *,
+                 id: str = None,
+                 description: str = None,
+                 secret_group_id: str = None,
+                 labels: List[str] = None,
+                 state: int = None,
+                 state_description: str = None,
+                 secret_type: str = None,
+                 crn: str = None,
+                 creation_date: datetime = None,
+                 created_by: str = None,
+                 last_update_date: datetime = None,
+                 versions_total: int = None,
+                 versions: List[dict] = None,
+                 certificate_authority: str = None,
+                 alt_names: List[str] = None,
+                 ip_sans: str = None,
+                 uri_sans: str = None,
+                 other_sans: List[str] = None,
+                 ttl: str = None,
+                 format: str = None,
+                 private_key_format: str = None,
+                 exclude_cn_from_sans: bool = None,
+                 rotation: 'Rotation' = None,
+                 algorithm: str = None,
+                 key_algorithm: str = None,
+                 issuer: str = None,
+                 validity: 'CertificateValidity' = None,
+                 serial_number: str = None,
+                 revocation_time: int = None,
+                 revocation_time_rfc3339: datetime = None,
+                 secret_data: object = None) -> None:
+        """
+        Initialize a PrivateCertificateSecretResource object.
+
+        :param str name: A human-readable alias to assign to your secret.
+               To protect your privacy, do not use personal data, such as your name or
+               location, as an alias for your secret.
+        :param str certificate_template: The name of the certificate template.
+        :param str common_name: The fully qualified domain name or host domain name
+               for the certificate.
+        :param str description: (optional) An extended description of your secret.
+               To protect your privacy, do not use personal data, such as your name or
+               location, as a description for your secret.
+        :param str secret_group_id: (optional) The v4 UUID that uniquely identifies
+               the secret group to assign to this secret.
+               If you omit this parameter, your secret is assigned to the `default` secret
+               group.
+        :param List[str] labels: (optional) Labels that you can use to filter for
+               secrets in your instance.
+               Up to 30 labels can be created. Labels can be 2 - 30 characters, including
+               spaces. Special characters that are not permitted include the angled
+               bracket, comma, colon, ampersand, and vertical pipe character (|).
+               To protect your privacy, do not use personal data, such as your name or
+               location, as a label for your secret.
+        :param List[str] alt_names: (optional) The Subject Alternative Names to
+               define for the CA certificate, in a comma-delimited list.
+               The alternative names can be host names or email addresses.
+        :param str ip_sans: (optional) The IP Subject Alternative Names to define
+               for the CA certificate, in a comma-delimited list.
+        :param str uri_sans: (optional) The URI Subject Alternative Names to define
+               for the CA certificate, in a comma-delimited list.
+        :param List[str] other_sans: (optional) The custom Object Identifier (OID)
+               or UTF8-string Subject Alternative Names to define for the CA certificate.
+               The alternative names must match the values that are specified in the
+               `allowed_other_sans` field in the associated certificate template. The
+               format is the same as OpenSSL: `<oid>:<type>:<value>` where the current
+               valid type is `UTF8`.
+        :param str ttl: (optional) The time-to-live (TTL) or lease duration to
+               assign to a private certificate. The value can be supplied as a string
+               representation of a duration in hours, for example '12h'. The value can't
+               exceed the `max_ttl` that is defined in the associated certificate
+               template.
+        :param str format: (optional) The format of the returned data.
+        :param str private_key_format: (optional) The format of the generated
+               private key.
+        :param bool exclude_cn_from_sans: (optional) Controls whether the common
+               name is excluded from Subject Alternative Names (SANs).
+               If set to `true`, the common name is is not included in DNS or Email SANs
+               if they apply. This field can be useful if the common name is not a
+               hostname or an email address, but is instead a human-readable identifier.
+        :param Rotation rotation: (optional)
+        :param CertificateValidity validity: (optional)
+        """
+        # pylint: disable=super-init-not-called
+        self.id = id
+        self.name = name
+        self.description = description
+        self.secret_group_id = secret_group_id
+        self.labels = labels
+        self.state = state
+        self.state_description = state_description
+        self.secret_type = secret_type
+        self.crn = crn
+        self.creation_date = creation_date
+        self.created_by = created_by
+        self.last_update_date = last_update_date
+        self.versions_total = versions_total
+        self.versions = versions
+        self.certificate_template = certificate_template
+        self.certificate_authority = certificate_authority
+        self.common_name = common_name
+        self.alt_names = alt_names
+        self.ip_sans = ip_sans
+        self.uri_sans = uri_sans
+        self.other_sans = other_sans
+        self.ttl = ttl
+        self.format = format
+        self.private_key_format = private_key_format
+        self.exclude_cn_from_sans = exclude_cn_from_sans
+        self.rotation = rotation
+        self.algorithm = algorithm
+        self.key_algorithm = key_algorithm
+        self.issuer = issuer
+        self.validity = validity
+        self.serial_number = serial_number
+        self.revocation_time = revocation_time
+        self.revocation_time_rfc3339 = revocation_time_rfc3339
+        self.secret_data = secret_data
+
+    @classmethod
+    def from_dict(cls, _dict: Dict) -> 'PrivateCertificateSecretResource':
+        """Initialize a PrivateCertificateSecretResource object from a json dictionary."""
+        args = {}
+        if 'id' in _dict:
+            args['id'] = _dict.get('id')
+        if 'name' in _dict:
+            args['name'] = _dict.get('name')
+        else:
+            raise ValueError('Required property \'name\' not present in PrivateCertificateSecretResource JSON')
+        if 'description' in _dict:
+            args['description'] = _dict.get('description')
+        if 'secret_group_id' in _dict:
+            args['secret_group_id'] = _dict.get('secret_group_id')
+        if 'labels' in _dict:
+            args['labels'] = _dict.get('labels')
+        if 'state' in _dict:
+            args['state'] = _dict.get('state')
+        if 'state_description' in _dict:
+            args['state_description'] = _dict.get('state_description')
+        if 'secret_type' in _dict:
+            args['secret_type'] = _dict.get('secret_type')
+        if 'crn' in _dict:
+            args['crn'] = _dict.get('crn')
+        if 'creation_date' in _dict:
+            args['creation_date'] = string_to_datetime(_dict.get('creation_date'))
+        if 'created_by' in _dict:
+            args['created_by'] = _dict.get('created_by')
+        if 'last_update_date' in _dict:
+            args['last_update_date'] = string_to_datetime(_dict.get('last_update_date'))
+        if 'versions_total' in _dict:
+            args['versions_total'] = _dict.get('versions_total')
+        if 'versions' in _dict:
+            args['versions'] = _dict.get('versions')
+        if 'certificate_template' in _dict:
+            args['certificate_template'] = _dict.get('certificate_template')
+        else:
+            raise ValueError(
+                'Required property \'certificate_template\' not present in PrivateCertificateSecretResource JSON')
+        if 'certificate_authority' in _dict:
+            args['certificate_authority'] = _dict.get('certificate_authority')
+        if 'common_name' in _dict:
+            args['common_name'] = _dict.get('common_name')
+        else:
+            raise ValueError('Required property \'common_name\' not present in PrivateCertificateSecretResource JSON')
+        if 'alt_names' in _dict:
+            args['alt_names'] = _dict.get('alt_names')
+        if 'ip_sans' in _dict:
+            args['ip_sans'] = _dict.get('ip_sans')
+        if 'uri_sans' in _dict:
+            args['uri_sans'] = _dict.get('uri_sans')
+        if 'other_sans' in _dict:
+            args['other_sans'] = _dict.get('other_sans')
+        if 'ttl' in _dict:
+            args['ttl'] = _dict.get('ttl')
+        if 'format' in _dict:
+            args['format'] = _dict.get('format')
+        if 'private_key_format' in _dict:
+            args['private_key_format'] = _dict.get('private_key_format')
+        if 'exclude_cn_from_sans' in _dict:
+            args['exclude_cn_from_sans'] = _dict.get('exclude_cn_from_sans')
+        if 'rotation' in _dict:
+            args['rotation'] = Rotation.from_dict(_dict.get('rotation'))
+        if 'algorithm' in _dict:
+            args['algorithm'] = _dict.get('algorithm')
+        if 'key_algorithm' in _dict:
+            args['key_algorithm'] = _dict.get('key_algorithm')
+        if 'issuer' in _dict:
+            args['issuer'] = _dict.get('issuer')
+        if 'validity' in _dict:
+            args['validity'] = CertificateValidity.from_dict(_dict.get('validity'))
+        if 'serial_number' in _dict:
+            args['serial_number'] = _dict.get('serial_number')
+        if 'revocation_time' in _dict:
+            args['revocation_time'] = _dict.get('revocation_time')
+        if 'revocation_time_rfc3339' in _dict:
+            args['revocation_time_rfc3339'] = string_to_datetime(_dict.get('revocation_time_rfc3339'))
+        if 'secret_data' in _dict:
+            args['secret_data'] = _dict.get('secret_data')
+        return cls(**args)
+
+    @classmethod
+    def _from_dict(cls, _dict):
+        """Initialize a PrivateCertificateSecretResource object from a json dictionary."""
+        return cls.from_dict(_dict)
+
+    def to_dict(self) -> Dict:
+        """Return a json dictionary representing this model."""
+        _dict = {}
+        if hasattr(self, 'id') and getattr(self, 'id') is not None:
+            _dict['id'] = getattr(self, 'id')
+        if hasattr(self, 'name') and self.name is not None:
+            _dict['name'] = self.name
+        if hasattr(self, 'description') and self.description is not None:
+            _dict['description'] = self.description
+        if hasattr(self, 'secret_group_id') and self.secret_group_id is not None:
+            _dict['secret_group_id'] = self.secret_group_id
+        if hasattr(self, 'labels') and self.labels is not None:
+            _dict['labels'] = self.labels
+        if hasattr(self, 'state') and getattr(self, 'state') is not None:
+            _dict['state'] = getattr(self, 'state')
+        if hasattr(self, 'state_description') and getattr(self, 'state_description') is not None:
+            _dict['state_description'] = getattr(self, 'state_description')
+        if hasattr(self, 'secret_type') and getattr(self, 'secret_type') is not None:
+            _dict['secret_type'] = getattr(self, 'secret_type')
+        if hasattr(self, 'crn') and getattr(self, 'crn') is not None:
+            _dict['crn'] = getattr(self, 'crn')
+        if hasattr(self, 'creation_date') and getattr(self, 'creation_date') is not None:
+            _dict['creation_date'] = datetime_to_string(getattr(self, 'creation_date'))
+        if hasattr(self, 'created_by') and getattr(self, 'created_by') is not None:
+            _dict['created_by'] = getattr(self, 'created_by')
+        if hasattr(self, 'last_update_date') and getattr(self, 'last_update_date') is not None:
+            _dict['last_update_date'] = datetime_to_string(getattr(self, 'last_update_date'))
+        if hasattr(self, 'versions_total') and getattr(self, 'versions_total') is not None:
+            _dict['versions_total'] = getattr(self, 'versions_total')
+        if hasattr(self, 'versions') and getattr(self, 'versions') is not None:
+            _dict['versions'] = getattr(self, 'versions')
+        if hasattr(self, 'certificate_template') and self.certificate_template is not None:
+            _dict['certificate_template'] = self.certificate_template
+        if hasattr(self, 'certificate_authority') and getattr(self, 'certificate_authority') is not None:
+            _dict['certificate_authority'] = getattr(self, 'certificate_authority')
+        if hasattr(self, 'common_name') and self.common_name is not None:
+            _dict['common_name'] = self.common_name
+        if hasattr(self, 'alt_names') and self.alt_names is not None:
+            _dict['alt_names'] = self.alt_names
+        if hasattr(self, 'ip_sans') and self.ip_sans is not None:
+            _dict['ip_sans'] = self.ip_sans
+        if hasattr(self, 'uri_sans') and self.uri_sans is not None:
+            _dict['uri_sans'] = self.uri_sans
+        if hasattr(self, 'other_sans') and self.other_sans is not None:
+            _dict['other_sans'] = self.other_sans
+        if hasattr(self, 'ttl') and self.ttl is not None:
+            _dict['ttl'] = self.ttl
+        if hasattr(self, 'format') and self.format is not None:
+            _dict['format'] = self.format
+        if hasattr(self, 'private_key_format') and self.private_key_format is not None:
+            _dict['private_key_format'] = self.private_key_format
+        if hasattr(self, 'exclude_cn_from_sans') and self.exclude_cn_from_sans is not None:
+            _dict['exclude_cn_from_sans'] = self.exclude_cn_from_sans
+        if hasattr(self, 'rotation') and self.rotation is not None:
+            _dict['rotation'] = self.rotation.to_dict()
+        if hasattr(self, 'algorithm') and getattr(self, 'algorithm') is not None:
+            _dict['algorithm'] = getattr(self, 'algorithm')
+        if hasattr(self, 'key_algorithm') and getattr(self, 'key_algorithm') is not None:
+            _dict['key_algorithm'] = getattr(self, 'key_algorithm')
+        if hasattr(self, 'issuer') and getattr(self, 'issuer') is not None:
+            _dict['issuer'] = getattr(self, 'issuer')
+        if hasattr(self, 'validity') and self.validity is not None:
+            _dict['validity'] = self.validity.to_dict()
+        if hasattr(self, 'serial_number') and getattr(self, 'serial_number') is not None:
+            _dict['serial_number'] = getattr(self, 'serial_number')
+        if hasattr(self, 'revocation_time') and getattr(self, 'revocation_time') is not None:
+            _dict['revocation_time'] = getattr(self, 'revocation_time')
+        if hasattr(self, 'revocation_time_rfc3339') and getattr(self, 'revocation_time_rfc3339') is not None:
+            _dict['revocation_time_rfc3339'] = datetime_to_string(getattr(self, 'revocation_time_rfc3339'))
+        if hasattr(self, 'secret_data') and getattr(self, 'secret_data') is not None:
+            _dict['secret_data'] = getattr(self, 'secret_data')
+        return _dict
+
+    def _to_dict(self):
+        """Return a json dictionary representing this model."""
+        return self.to_dict()
+
+    def __str__(self) -> str:
+        """Return a `str` version of this PrivateCertificateSecretResource object."""
+        return json.dumps(self.to_dict(), indent=2)
+
+    def __eq__(self, other: 'PrivateCertificateSecretResource') -> bool:
+        """Return `true` when self and other are equal, false otherwise."""
+        if not isinstance(other, self.__class__):
+            return False
+        return self.__dict__ == other.__dict__
+
+    def __ne__(self, other: 'PrivateCertificateSecretResource') -> bool:
+        """Return `true` when self and other are not equal, false otherwise."""
+        return not self == other
+
+    class SecretTypeEnum(str, Enum):
+        """
+        The secret type.
+        """
+        ARBITRARY = 'arbitrary'
+        USERNAME_PASSWORD = 'username_password'
+        IAM_CREDENTIALS = 'iam_credentials'
+        IMPORTED_CERT = 'imported_cert'
+        PUBLIC_CERT = 'public_cert'
+        PRIVATE_CERT = 'private_cert'
+        KV = 'kv'
+
+    class FormatEnum(str, Enum):
+        """
+        The format of the returned data.
+        """
+        PEM = 'pem'
+        DER = 'der'
+        PEM_BUNDLE = 'pem_bundle'
+
+    class PrivateKeyFormatEnum(str, Enum):
+        """
+        The format of the generated private key.
+        """
+        DER = 'der'
+        PKCS8 = 'pkcs8'
+
+
+class PrivateCertificateSecretVersion(SecretVersion):
+    """
+    PrivateCertificateSecretVersion.
+
+    :attr str id: (optional) The v4 UUID that uniquely identifies the secret.
+    :attr str version_id: (optional) The ID of the secret version.
+    :attr datetime creation_date: (optional) The date that the version of the secret
+          was created.
+    :attr str created_by: (optional) The unique identifier for the entity that
+          created the secret version.
+    :attr CertificateValidity validity: (optional)
+    :attr str serial_number: (optional) The unique serial number that was assigned
+          to the certificate by the issuing certificate authority.
+    :attr datetime expiration_date: (optional) The date that the certificate
+          expires. The date format follows RFC 3339.
+    :attr CertificateSecretData secret_data: (optional) The data that is associated
+          with the secret version. The data object contains the following fields:
+          - `certificate`: The contents of the certificate.
+          - `private_key`: The private key that is associated with the certificate.
+          - `intermediate`: The intermediate certificate that is associated with the
+          certificate.
+    :attr int state: (optional) The secret state based on NIST SP 800-57. States are
+          integers and correspond to the Pre-activation = 0, Active = 1,  Suspended = 2,
+          Deactivated = 3, and Destroyed = 5 values.
+    :attr str state_description: (optional) A text representation of the secret
+          state.
+    :attr int revocation_time: (optional) The timestamp of the certificate
+          revocation.
+    :attr datetime revocation_time_rfc3339: (optional) The date and time that the
+          certificate was revoked. The date format follows RFC 3339.
+    :attr bool auto_rotated: (optional) Indicates whether the version of the secret
+          was created by automatic rotation.
+    """
+
+    def __init__(self,
+                 *,
+                 id: str = None,
+                 version_id: str = None,
+                 creation_date: datetime = None,
+                 created_by: str = None,
+                 validity: 'CertificateValidity' = None,
+                 serial_number: str = None,
+                 expiration_date: datetime = None,
+                 secret_data: 'CertificateSecretData' = None,
+                 state: int = None,
+                 state_description: str = None,
+                 revocation_time: int = None,
+                 revocation_time_rfc3339: datetime = None,
+                 auto_rotated: bool = None) -> None:
+        """
+        Initialize a PrivateCertificateSecretVersion object.
+
+        :param CertificateValidity validity: (optional)
+        :param CertificateSecretData secret_data: (optional) The data that is
+               associated with the secret version. The data object contains the following
+               fields:
+               - `certificate`: The contents of the certificate.
+               - `private_key`: The private key that is associated with the certificate.
+               - `intermediate`: The intermediate certificate that is associated with the
+               certificate.
+        :param bool auto_rotated: (optional) Indicates whether the version of the
+               secret was created by automatic rotation.
+        """
+        # pylint: disable=super-init-not-called
+        self.id = id
+        self.version_id = version_id
+        self.creation_date = creation_date
+        self.created_by = created_by
+        self.validity = validity
+        self.serial_number = serial_number
+        self.expiration_date = expiration_date
+        self.secret_data = secret_data
+        self.state = state
+        self.state_description = state_description
+        self.revocation_time = revocation_time
+        self.revocation_time_rfc3339 = revocation_time_rfc3339
+        self.auto_rotated = auto_rotated
+
+    @classmethod
+    def from_dict(cls, _dict: Dict) -> 'PrivateCertificateSecretVersion':
+        """Initialize a PrivateCertificateSecretVersion object from a json dictionary."""
+        args = {}
+        if 'id' in _dict:
+            args['id'] = _dict.get('id')
+        if 'version_id' in _dict:
+            args['version_id'] = _dict.get('version_id')
+        if 'creation_date' in _dict:
+            args['creation_date'] = string_to_datetime(_dict.get('creation_date'))
+        if 'created_by' in _dict:
+            args['created_by'] = _dict.get('created_by')
+        if 'validity' in _dict:
+            args['validity'] = CertificateValidity.from_dict(_dict.get('validity'))
+        if 'serial_number' in _dict:
+            args['serial_number'] = _dict.get('serial_number')
+        if 'expiration_date' in _dict:
+            args['expiration_date'] = string_to_datetime(_dict.get('expiration_date'))
+        if 'secret_data' in _dict:
+            args['secret_data'] = CertificateSecretData.from_dict(_dict.get('secret_data'))
+        if 'state' in _dict:
+            args['state'] = _dict.get('state')
+        if 'state_description' in _dict:
+            args['state_description'] = _dict.get('state_description')
+        if 'revocation_time' in _dict:
+            args['revocation_time'] = _dict.get('revocation_time')
+        if 'revocation_time_rfc3339' in _dict:
+            args['revocation_time_rfc3339'] = string_to_datetime(_dict.get('revocation_time_rfc3339'))
+        if 'auto_rotated' in _dict:
+            args['auto_rotated'] = _dict.get('auto_rotated')
+        return cls(**args)
+
+    @classmethod
+    def _from_dict(cls, _dict):
+        """Initialize a PrivateCertificateSecretVersion object from a json dictionary."""
+        return cls.from_dict(_dict)
+
+    def to_dict(self) -> Dict:
+        """Return a json dictionary representing this model."""
+        _dict = {}
+        if hasattr(self, 'id') and getattr(self, 'id') is not None:
+            _dict['id'] = getattr(self, 'id')
+        if hasattr(self, 'version_id') and getattr(self, 'version_id') is not None:
+            _dict['version_id'] = getattr(self, 'version_id')
+        if hasattr(self, 'creation_date') and getattr(self, 'creation_date') is not None:
+            _dict['creation_date'] = datetime_to_string(getattr(self, 'creation_date'))
+        if hasattr(self, 'created_by') and getattr(self, 'created_by') is not None:
+            _dict['created_by'] = getattr(self, 'created_by')
+        if hasattr(self, 'validity') and self.validity is not None:
+            _dict['validity'] = self.validity.to_dict()
+        if hasattr(self, 'serial_number') and getattr(self, 'serial_number') is not None:
+            _dict['serial_number'] = getattr(self, 'serial_number')
+        if hasattr(self, 'expiration_date') and getattr(self, 'expiration_date') is not None:
+            _dict['expiration_date'] = datetime_to_string(getattr(self, 'expiration_date'))
+        if hasattr(self, 'secret_data') and self.secret_data is not None:
+            _dict['secret_data'] = self.secret_data.to_dict()
+        if hasattr(self, 'state') and getattr(self, 'state') is not None:
+            _dict['state'] = getattr(self, 'state')
+        if hasattr(self, 'state_description') and getattr(self, 'state_description') is not None:
+            _dict['state_description'] = getattr(self, 'state_description')
+        if hasattr(self, 'revocation_time') and getattr(self, 'revocation_time') is not None:
+            _dict['revocation_time'] = getattr(self, 'revocation_time')
+        if hasattr(self, 'revocation_time_rfc3339') and getattr(self, 'revocation_time_rfc3339') is not None:
+            _dict['revocation_time_rfc3339'] = datetime_to_string(getattr(self, 'revocation_time_rfc3339'))
+        if hasattr(self, 'auto_rotated') and self.auto_rotated is not None:
+            _dict['auto_rotated'] = self.auto_rotated
+        return _dict
+
+    def _to_dict(self):
+        """Return a json dictionary representing this model."""
+        return self.to_dict()
+
+    def __str__(self) -> str:
+        """Return a `str` version of this PrivateCertificateSecretVersion object."""
+        return json.dumps(self.to_dict(), indent=2)
+
+    def __eq__(self, other: 'PrivateCertificateSecretVersion') -> bool:
+        """Return `true` when self and other are equal, false otherwise."""
+        if not isinstance(other, self.__class__):
+            return False
+        return self.__dict__ == other.__dict__
+
+    def __ne__(self, other: 'PrivateCertificateSecretVersion') -> bool:
+        """Return `true` when self and other are not equal, false otherwise."""
+        return not self == other
+
+
+class PrivateCertificateSecretVersionInfo(SecretVersionInfo):
+    """
+    PrivateCertificateSecretVersionInfo.
+
+    :attr str id: (optional) The ID of the secret version.
+    :attr datetime creation_date: (optional) The date that the version of the secret
+          was created.
+    :attr str created_by: (optional) The unique identifier for the entity that
+          created the secret version.
+    :attr bool payload_available: (optional) Indicates whether the payload for the
+          secret version is stored and available.
+    :attr bool downloaded: (optional) Indicates whether the secret data that is
+          associated with a secret version was retrieved in a call to the service API.
+    :attr str serial_number: (optional) The unique serial number that was assigned
+          to the certificate by the issuing certificate authority.
+    :attr datetime expiration_date: (optional) The date that the certificate
+          expires. The date format follows RFC 3339.
+    :attr CertificateValidity validity: (optional)
+    :attr int state: (optional) The secret state based on NIST SP 800-57. States are
+          integers and correspond to the Pre-activation = 0, Active = 1,  Suspended = 2,
+          Deactivated = 3, and Destroyed = 5 values.
+    :attr str state_description: (optional) A text representation of the secret
+          state.
+    :attr int revocation_time: (optional) The timestamp of the certificate
+          revocation.
+    :attr datetime revocation_time_rfc3339: (optional) The date and time that the
+          certificate was revoked. The date format follows RFC 3339.
+    :attr bool auto_rotated: (optional) Indicates whether the version of the secret
+          was created by automatic rotation.
+    """
+
+    def __init__(self,
+                 *,
+                 id: str = None,
+                 creation_date: datetime = None,
+                 created_by: str = None,
+                 payload_available: bool = None,
+                 downloaded: bool = None,
+                 serial_number: str = None,
+                 expiration_date: datetime = None,
+                 validity: 'CertificateValidity' = None,
+                 state: int = None,
+                 state_description: str = None,
+                 revocation_time: int = None,
+                 revocation_time_rfc3339: datetime = None,
+                 auto_rotated: bool = None) -> None:
+        """
+        Initialize a PrivateCertificateSecretVersionInfo object.
+
+        :param CertificateValidity validity: (optional)
+        :param bool auto_rotated: (optional) Indicates whether the version of the
+               secret was created by automatic rotation.
+        """
+        # pylint: disable=super-init-not-called
+        self.id = id
+        self.creation_date = creation_date
+        self.created_by = created_by
+        self.payload_available = payload_available
+        self.downloaded = downloaded
+        self.serial_number = serial_number
+        self.expiration_date = expiration_date
+        self.validity = validity
+        self.state = state
+        self.state_description = state_description
+        self.revocation_time = revocation_time
+        self.revocation_time_rfc3339 = revocation_time_rfc3339
+        self.auto_rotated = auto_rotated
+
+    @classmethod
+    def from_dict(cls, _dict: Dict) -> 'PrivateCertificateSecretVersionInfo':
+        """Initialize a PrivateCertificateSecretVersionInfo object from a json dictionary."""
+        args = {}
+        if 'id' in _dict:
+            args['id'] = _dict.get('id')
+        if 'creation_date' in _dict:
+            args['creation_date'] = string_to_datetime(_dict.get('creation_date'))
+        if 'created_by' in _dict:
+            args['created_by'] = _dict.get('created_by')
+        if 'payload_available' in _dict:
+            args['payload_available'] = _dict.get('payload_available')
+        if 'downloaded' in _dict:
+            args['downloaded'] = _dict.get('downloaded')
+        if 'serial_number' in _dict:
+            args['serial_number'] = _dict.get('serial_number')
+        if 'expiration_date' in _dict:
+            args['expiration_date'] = string_to_datetime(_dict.get('expiration_date'))
+        if 'validity' in _dict:
+            args['validity'] = CertificateValidity.from_dict(_dict.get('validity'))
+        if 'state' in _dict:
+            args['state'] = _dict.get('state')
+        if 'state_description' in _dict:
+            args['state_description'] = _dict.get('state_description')
+        if 'revocation_time' in _dict:
+            args['revocation_time'] = _dict.get('revocation_time')
+        if 'revocation_time_rfc3339' in _dict:
+            args['revocation_time_rfc3339'] = string_to_datetime(_dict.get('revocation_time_rfc3339'))
+        if 'auto_rotated' in _dict:
+            args['auto_rotated'] = _dict.get('auto_rotated')
+        return cls(**args)
+
+    @classmethod
+    def _from_dict(cls, _dict):
+        """Initialize a PrivateCertificateSecretVersionInfo object from a json dictionary."""
+        return cls.from_dict(_dict)
+
+    def to_dict(self) -> Dict:
+        """Return a json dictionary representing this model."""
+        _dict = {}
+        if hasattr(self, 'id') and getattr(self, 'id') is not None:
+            _dict['id'] = getattr(self, 'id')
+        if hasattr(self, 'creation_date') and getattr(self, 'creation_date') is not None:
+            _dict['creation_date'] = datetime_to_string(getattr(self, 'creation_date'))
+        if hasattr(self, 'created_by') and getattr(self, 'created_by') is not None:
+            _dict['created_by'] = getattr(self, 'created_by')
+        if hasattr(self, 'payload_available') and getattr(self, 'payload_available') is not None:
+            _dict['payload_available'] = getattr(self, 'payload_available')
+        if hasattr(self, 'downloaded') and getattr(self, 'downloaded') is not None:
+            _dict['downloaded'] = getattr(self, 'downloaded')
+        if hasattr(self, 'serial_number') and getattr(self, 'serial_number') is not None:
+            _dict['serial_number'] = getattr(self, 'serial_number')
+        if hasattr(self, 'expiration_date') and getattr(self, 'expiration_date') is not None:
+            _dict['expiration_date'] = datetime_to_string(getattr(self, 'expiration_date'))
+        if hasattr(self, 'validity') and self.validity is not None:
+            _dict['validity'] = self.validity.to_dict()
+        if hasattr(self, 'state') and getattr(self, 'state') is not None:
+            _dict['state'] = getattr(self, 'state')
+        if hasattr(self, 'state_description') and getattr(self, 'state_description') is not None:
+            _dict['state_description'] = getattr(self, 'state_description')
+        if hasattr(self, 'revocation_time') and getattr(self, 'revocation_time') is not None:
+            _dict['revocation_time'] = getattr(self, 'revocation_time')
+        if hasattr(self, 'revocation_time_rfc3339') and getattr(self, 'revocation_time_rfc3339') is not None:
+            _dict['revocation_time_rfc3339'] = datetime_to_string(getattr(self, 'revocation_time_rfc3339'))
+        if hasattr(self, 'auto_rotated') and self.auto_rotated is not None:
+            _dict['auto_rotated'] = self.auto_rotated
+        return _dict
+
+    def _to_dict(self):
+        """Return a json dictionary representing this model."""
+        return self.to_dict()
+
+    def __str__(self) -> str:
+        """Return a `str` version of this PrivateCertificateSecretVersionInfo object."""
+        return json.dumps(self.to_dict(), indent=2)
+
+    def __eq__(self, other: 'PrivateCertificateSecretVersionInfo') -> bool:
+        """Return `true` when self and other are equal, false otherwise."""
+        if not isinstance(other, self.__class__):
+            return False
+        return self.__dict__ == other.__dict__
+
+    def __ne__(self, other: 'PrivateCertificateSecretVersionInfo') -> bool:
+        """Return `true` when self and other are not equal, false otherwise."""
+        return not self == other
+
+
+class PrivateCertificateSecretVersionMetadata(SecretVersionMetadata):
+    """
+    Properties that describe a secret version.
+
+    :attr str id: (optional) The v4 UUID that uniquely identifies the secret.
+    :attr str version_id: (optional) The ID of the secret version.
+    :attr datetime creation_date: (optional) The date that the version of the secret
+          was created.
+    :attr str created_by: (optional) The unique identifier for the entity that
+          created the secret version.
+    :attr bool payload_available: (optional) Indicates whether the payload for the
+          secret version is stored and available.
+    :attr bool downloaded: (optional) Indicates whether the secret data that is
+          associated with a secret version was retrieved in a call to the service API.
+    :attr str serial_number: (optional) The unique serial number that was assigned
+          to the certificate by the issuing certificate authority.
+    :attr datetime expiration_date: (optional) The date that the certificate
+          expires. The date format follows RFC 3339.
+    :attr CertificateValidity validity: (optional)
+    :attr int state: (optional) The secret state based on NIST SP 800-57. States are
+          integers and correspond to the Pre-activation = 0, Active = 1,  Suspended = 2,
+          Deactivated = 3, and Destroyed = 5 values.
+    :attr str state_description: (optional) A text representation of the secret
+          state.
+    :attr int revocation_time: (optional) The timestamp of the certificate
+          revocation.
+    :attr datetime revocation_time_rfc3339: (optional) The date and time that the
+          certificate was revoked. The date format follows RFC 3339.
+    :attr bool auto_rotated: (optional) Indicates whether the version of the secret
+          was created by automatic rotation.
+    """
+
+    def __init__(self,
+                 *,
+                 id: str = None,
+                 version_id: str = None,
+                 creation_date: datetime = None,
+                 created_by: str = None,
+                 payload_available: bool = None,
+                 downloaded: bool = None,
+                 serial_number: str = None,
+                 expiration_date: datetime = None,
+                 validity: 'CertificateValidity' = None,
+                 state: int = None,
+                 state_description: str = None,
+                 revocation_time: int = None,
+                 revocation_time_rfc3339: datetime = None,
+                 auto_rotated: bool = None) -> None:
+        """
+        Initialize a PrivateCertificateSecretVersionMetadata object.
+
+        :param str id: (optional) The v4 UUID that uniquely identifies the secret.
+        :param CertificateValidity validity: (optional)
+        :param bool auto_rotated: (optional) Indicates whether the version of the
+               secret was created by automatic rotation.
+        """
+        # pylint: disable=super-init-not-called
+        self.id = id
+        self.version_id = version_id
+        self.creation_date = creation_date
+        self.created_by = created_by
+        self.payload_available = payload_available
+        self.downloaded = downloaded
+        self.serial_number = serial_number
+        self.expiration_date = expiration_date
+        self.validity = validity
+        self.state = state
+        self.state_description = state_description
+        self.revocation_time = revocation_time
+        self.revocation_time_rfc3339 = revocation_time_rfc3339
+        self.auto_rotated = auto_rotated
+
+    @classmethod
+    def from_dict(cls, _dict: Dict) -> 'PrivateCertificateSecretVersionMetadata':
+        """Initialize a PrivateCertificateSecretVersionMetadata object from a json dictionary."""
+        args = {}
+        if 'id' in _dict:
+            args['id'] = _dict.get('id')
+        if 'version_id' in _dict:
+            args['version_id'] = _dict.get('version_id')
+        if 'creation_date' in _dict:
+            args['creation_date'] = string_to_datetime(_dict.get('creation_date'))
+        if 'created_by' in _dict:
+            args['created_by'] = _dict.get('created_by')
+        if 'payload_available' in _dict:
+            args['payload_available'] = _dict.get('payload_available')
+        if 'downloaded' in _dict:
+            args['downloaded'] = _dict.get('downloaded')
+        if 'serial_number' in _dict:
+            args['serial_number'] = _dict.get('serial_number')
+        if 'expiration_date' in _dict:
+            args['expiration_date'] = string_to_datetime(_dict.get('expiration_date'))
+        if 'validity' in _dict:
+            args['validity'] = CertificateValidity.from_dict(_dict.get('validity'))
+        if 'state' in _dict:
+            args['state'] = _dict.get('state')
+        if 'state_description' in _dict:
+            args['state_description'] = _dict.get('state_description')
+        if 'revocation_time' in _dict:
+            args['revocation_time'] = _dict.get('revocation_time')
+        if 'revocation_time_rfc3339' in _dict:
+            args['revocation_time_rfc3339'] = string_to_datetime(_dict.get('revocation_time_rfc3339'))
+        if 'auto_rotated' in _dict:
+            args['auto_rotated'] = _dict.get('auto_rotated')
+        return cls(**args)
+
+    @classmethod
+    def _from_dict(cls, _dict):
+        """Initialize a PrivateCertificateSecretVersionMetadata object from a json dictionary."""
+        return cls.from_dict(_dict)
+
+    def to_dict(self) -> Dict:
+        """Return a json dictionary representing this model."""
+        _dict = {}
+        if hasattr(self, 'id') and self.id is not None:
+            _dict['id'] = self.id
+        if hasattr(self, 'version_id') and getattr(self, 'version_id') is not None:
+            _dict['version_id'] = getattr(self, 'version_id')
+        if hasattr(self, 'creation_date') and getattr(self, 'creation_date') is not None:
+            _dict['creation_date'] = datetime_to_string(getattr(self, 'creation_date'))
+        if hasattr(self, 'created_by') and getattr(self, 'created_by') is not None:
+            _dict['created_by'] = getattr(self, 'created_by')
+        if hasattr(self, 'payload_available') and getattr(self, 'payload_available') is not None:
+            _dict['payload_available'] = getattr(self, 'payload_available')
+        if hasattr(self, 'downloaded') and getattr(self, 'downloaded') is not None:
+            _dict['downloaded'] = getattr(self, 'downloaded')
+        if hasattr(self, 'serial_number') and getattr(self, 'serial_number') is not None:
+            _dict['serial_number'] = getattr(self, 'serial_number')
+        if hasattr(self, 'expiration_date') and getattr(self, 'expiration_date') is not None:
+            _dict['expiration_date'] = datetime_to_string(getattr(self, 'expiration_date'))
+        if hasattr(self, 'validity') and self.validity is not None:
+            _dict['validity'] = self.validity.to_dict()
+        if hasattr(self, 'state') and getattr(self, 'state') is not None:
+            _dict['state'] = getattr(self, 'state')
+        if hasattr(self, 'state_description') and getattr(self, 'state_description') is not None:
+            _dict['state_description'] = getattr(self, 'state_description')
+        if hasattr(self, 'revocation_time') and getattr(self, 'revocation_time') is not None:
+            _dict['revocation_time'] = getattr(self, 'revocation_time')
+        if hasattr(self, 'revocation_time_rfc3339') and getattr(self, 'revocation_time_rfc3339') is not None:
+            _dict['revocation_time_rfc3339'] = datetime_to_string(getattr(self, 'revocation_time_rfc3339'))
+        if hasattr(self, 'auto_rotated') and self.auto_rotated is not None:
+            _dict['auto_rotated'] = self.auto_rotated
+        return _dict
+
+    def _to_dict(self):
+        """Return a json dictionary representing this model."""
+        return self.to_dict()
+
+    def __str__(self) -> str:
+        """Return a `str` version of this PrivateCertificateSecretVersionMetadata object."""
+        return json.dumps(self.to_dict(), indent=2)
+
+    def __eq__(self, other: 'PrivateCertificateSecretVersionMetadata') -> bool:
+        """Return `true` when self and other are equal, false otherwise."""
+        if not isinstance(other, self.__class__):
+            return False
+        return self.__dict__ == other.__dict__
+
+    def __ne__(self, other: 'PrivateCertificateSecretVersionMetadata') -> bool:
+        """Return `true` when self and other are not equal, false otherwise."""
+        return not self == other
 
 
 class PublicCertSecretEngineRootConfig(GetConfigResourcesItem):
@@ -8144,6 +11306,7 @@ class PublicCertificateSecretMetadata(SecretMetadata):
         IAM_CREDENTIALS = 'iam_credentials'
         IMPORTED_CERT = 'imported_cert'
         PUBLIC_CERT = 'public_cert'
+        PRIVATE_CERT = 'private_cert'
         KV = 'kv'
 
     class KeyAlgorithmEnum(str, Enum):
@@ -8234,9 +11397,9 @@ class PublicCertificateSecretResource(SecretResource):
           to the certificate by the issuing certificate authority.
     :attr object secret_data: (optional) The data that is associated with the
           secret. The data object contains the following fields:
-          `certificate`: The contents of the certificate.
-          `private_key`: The private key that is associated with the certificate.
-          `intermediate`: The intermediate certificate that is associated with the
+          - `certificate`: The contents of the certificate.
+          - `private_key`: The private key that is associated with the certificate.
+          - `intermediate`: The intermediate certificate that is associated with the
           certificate.
     """
 
@@ -8587,6 +11750,620 @@ class RestoreIAMCredentialsSecretBody(SecretAction):
         return not self == other
 
 
+class RevokeAction(ConfigAction):
+    """
+    A request to revoke the certificate of an internally signed intermediate certificate
+    authority.
+
+    :attr str serial_number: The serial number of the certificate.
+    """
+
+    def __init__(self,
+                 serial_number: str) -> None:
+        """
+        Initialize a RevokeAction object.
+
+        :param str serial_number: The serial number of the certificate.
+        """
+        # pylint: disable=super-init-not-called
+        self.serial_number = serial_number
+
+    @classmethod
+    def from_dict(cls, _dict: Dict) -> 'RevokeAction':
+        """Initialize a RevokeAction object from a json dictionary."""
+        args = {}
+        if 'serial_number' in _dict:
+            args['serial_number'] = _dict.get('serial_number')
+        else:
+            raise ValueError('Required property \'serial_number\' not present in RevokeAction JSON')
+        return cls(**args)
+
+    @classmethod
+    def _from_dict(cls, _dict):
+        """Initialize a RevokeAction object from a json dictionary."""
+        return cls.from_dict(_dict)
+
+    def to_dict(self) -> Dict:
+        """Return a json dictionary representing this model."""
+        _dict = {}
+        if hasattr(self, 'serial_number') and self.serial_number is not None:
+            _dict['serial_number'] = self.serial_number
+        return _dict
+
+    def _to_dict(self):
+        """Return a json dictionary representing this model."""
+        return self.to_dict()
+
+    def __str__(self) -> str:
+        """Return a `str` version of this RevokeAction object."""
+        return json.dumps(self.to_dict(), indent=2)
+
+    def __eq__(self, other: 'RevokeAction') -> bool:
+        """Return `true` when self and other are equal, false otherwise."""
+        if not isinstance(other, self.__class__):
+            return False
+        return self.__dict__ == other.__dict__
+
+    def __ne__(self, other: 'RevokeAction') -> bool:
+        """Return `true` when self and other are not equal, false otherwise."""
+        return not self == other
+
+
+class RevokeActionResult(ConfigElementActionResultConfig):
+    """
+    Properties that are returned with a successful `revoke` action.
+
+    :attr int revocation_time: (optional) The time until the certificate authority
+          is revoked.
+    """
+
+    def __init__(self,
+                 *,
+                 revocation_time: int = None) -> None:
+        """
+        Initialize a RevokeActionResult object.
+
+        :param int revocation_time: (optional) The time until the certificate
+               authority is revoked.
+        """
+        # pylint: disable=super-init-not-called
+        self.revocation_time = revocation_time
+
+    @classmethod
+    def from_dict(cls, _dict: Dict) -> 'RevokeActionResult':
+        """Initialize a RevokeActionResult object from a json dictionary."""
+        args = {}
+        if 'revocation_time' in _dict:
+            args['revocation_time'] = _dict.get('revocation_time')
+        return cls(**args)
+
+    @classmethod
+    def _from_dict(cls, _dict):
+        """Initialize a RevokeActionResult object from a json dictionary."""
+        return cls.from_dict(_dict)
+
+    def to_dict(self) -> Dict:
+        """Return a json dictionary representing this model."""
+        _dict = {}
+        if hasattr(self, 'revocation_time') and self.revocation_time is not None:
+            _dict['revocation_time'] = self.revocation_time
+        return _dict
+
+    def _to_dict(self):
+        """Return a json dictionary representing this model."""
+        return self.to_dict()
+
+    def __str__(self) -> str:
+        """Return a `str` version of this RevokeActionResult object."""
+        return json.dumps(self.to_dict(), indent=2)
+
+    def __eq__(self, other: 'RevokeActionResult') -> bool:
+        """Return `true` when self and other are equal, false otherwise."""
+        if not isinstance(other, self.__class__):
+            return False
+        return self.__dict__ == other.__dict__
+
+    def __ne__(self, other: 'RevokeActionResult') -> bool:
+        """Return `true` when self and other are not equal, false otherwise."""
+        return not self == other
+
+
+class RootCertificateAuthoritiesConfig(GetConfigElementsResourcesItem):
+    """
+    Root certificate authorities configuration.
+
+    :attr List[RootCertificateAuthoritiesConfigItem] root_certificate_authorities:
+    """
+
+    def __init__(self,
+                 root_certificate_authorities: List['RootCertificateAuthoritiesConfigItem']) -> None:
+        """
+        Initialize a RootCertificateAuthoritiesConfig object.
+
+        :param List[RootCertificateAuthoritiesConfigItem]
+               root_certificate_authorities:
+        """
+        # pylint: disable=super-init-not-called
+        self.root_certificate_authorities = root_certificate_authorities
+
+    @classmethod
+    def from_dict(cls, _dict: Dict) -> 'RootCertificateAuthoritiesConfig':
+        """Initialize a RootCertificateAuthoritiesConfig object from a json dictionary."""
+        args = {}
+        if 'root_certificate_authorities' in _dict:
+            args['root_certificate_authorities'] = [RootCertificateAuthoritiesConfigItem.from_dict(x) for x in
+                                                    _dict.get('root_certificate_authorities')]
+        else:
+            raise ValueError(
+                'Required property \'root_certificate_authorities\' not present in RootCertificateAuthoritiesConfig JSON')
+        return cls(**args)
+
+    @classmethod
+    def _from_dict(cls, _dict):
+        """Initialize a RootCertificateAuthoritiesConfig object from a json dictionary."""
+        return cls.from_dict(_dict)
+
+    def to_dict(self) -> Dict:
+        """Return a json dictionary representing this model."""
+        _dict = {}
+        if hasattr(self, 'root_certificate_authorities') and self.root_certificate_authorities is not None:
+            _dict['root_certificate_authorities'] = [x.to_dict() for x in self.root_certificate_authorities]
+        return _dict
+
+    def _to_dict(self):
+        """Return a json dictionary representing this model."""
+        return self.to_dict()
+
+    def __str__(self) -> str:
+        """Return a `str` version of this RootCertificateAuthoritiesConfig object."""
+        return json.dumps(self.to_dict(), indent=2)
+
+    def __eq__(self, other: 'RootCertificateAuthoritiesConfig') -> bool:
+        """Return `true` when self and other are equal, false otherwise."""
+        if not isinstance(other, self.__class__):
+            return False
+        return self.__dict__ == other.__dict__
+
+    def __ne__(self, other: 'RootCertificateAuthoritiesConfig') -> bool:
+        """Return `true` when self and other are not equal, false otherwise."""
+        return not self == other
+
+
+class RootCertificateAuthorityConfig(ConfigElementDefConfig):
+    """
+    Root certificate authority configuration.
+
+    :attr object max_ttl: The maximum time-to-live (TTL) for certificates that are
+          created by this CA. The value can be supplied as a string representation of a
+          duration in hours, for example '8760h'. Note that in the API response the value
+          is returned in seconds (integer).
+          Minimum value is one hour (`1h`). Maximum value is 100 years (`876000h`).
+    :attr object crl_expiry: (optional) The time until the certificate revocation
+          list (CRL) expires. The value can be supplied as a string representation of a
+          duration in hours, such as `48h`. The default is 72 hours. Note that in the API
+          response the value is returned in seconds (integer).
+    :attr bool crl_disable: (optional) Determines whether to disable certificate
+          revocation list (CRL) building.
+          By default, each request rebuilds a CRL. To disable CRL building, set this field
+          to `true`.
+    :attr bool crl_distribution_points_encoded: (optional) Determines whether to
+          encode the certificate revocation list (CRL) distribution points in the private
+          certificates that are issued by a certificate authority.
+    :attr bool issuing_certificates_urls_encoded: (optional) Determines whether to
+          encode the URL of the issuing certificate in the private certificates that are
+          issued by a certificate authority.
+    :attr str common_name: The fully qualified domain name or host domain name for
+          the certificate.
+    :attr str status: (optional) The status of the certificate authority. The status
+          of a root certificate authority is either `configured` or `expired`. For
+          intermediate certificate authorities, possible statuses include
+          `signing_required`,
+          `signed_certificate_required`, `certificate_template_required`, `configured`,
+          `expired` or `revoked`.
+    :attr datetime expiration_date: (optional) The date that the certificate
+          expires. The date format follows RFC 3339.
+    :attr List[str] alt_names: (optional) The Subject Alternative Names to define
+          for the CA certificate, in a comma-delimited list.
+          The alternative names can be host names or email addresses.
+    :attr str ip_sans: (optional) The IP Subject Alternative Names to define for the
+          CA certificate, in a comma-delimited list.
+    :attr str uri_sans: (optional) The URI Subject Alternative Names to define for
+          the CA certificate, in a comma-delimited list.
+    :attr List[str] other_sans: (optional) The custom Object Identifier (OID) or
+          UTF8-string Subject Alternative Names to define for the CA certificate.
+          The alternative names must match the values that are specified in the
+          `allowed_other_sans` field in the associated certificate template. The format is
+          the same as OpenSSL: `<oid>:<type>:<value>` where the current valid type is
+          `UTF8`.
+    :attr str ttl: (optional) The time-to-live (TTL) or lease duration to assign to
+          a private certificate.
+          The value can be supplied as a string representation of a duration, such as
+          `12h`. The value can't exceed the `max_ttl` that is defined in the associated
+          certificate template. Note that in the API response the value is returned in
+          seconds (integer).
+    :attr str format: (optional) The format of the returned data.
+    :attr str private_key_format: (optional) The format of the generated private
+          key.
+    :attr str key_type: (optional) The type of private key to generate.
+    :attr int key_bits: (optional) The number of bits to use when generating the
+          private key.
+          Allowable values for RSA keys are: 2048 and 4096. Allowable values for EC keys
+          are: 224, 256, 384 And 521. The default for RSA keys is 2048, and the default
+          for EC keys is 256.
+    :attr int max_path_length: (optional) The maximum path length to encode in the
+          generated certificate. `-1` means no limit.
+          If the signing certificate has a maximum path length set, the path length is set
+          to one less than that of the signing certificate. A limit of `0` means a literal
+          path length of zero.
+    :attr bool exclude_cn_from_sans: (optional) Controls whether the common name is
+          excluded from Subject Alternative Names (SANs).
+          If set to `true`, the common name is is not included in DNS or Email SANs if
+          they apply. This field can be useful if the common name is not a hostname or an
+          email address, but is instead a human-readable identifier.
+    :attr List[str] permitted_dns_domains: (optional) The allowed DNS domains or
+          subdomains for the certificates to be signed and issued by this CA certificate.
+    :attr List[str] ou: (optional) The Organizational Unit (OU) values to define in
+          the subject field of the resulting CA certificate.
+    :attr List[str] organization: (optional) The Organization (O) values to define
+          in the subject field of the resulting CA certificate.
+    :attr List[str] country: (optional) The Country (C) values to define in the
+          subject field of the resulting CA certificate.
+    :attr List[str] locality: (optional) The Locality (L) values to define in the
+          subject field of the resulting CA certificate.
+    :attr List[str] province: (optional) The Province (ST) values to define in the
+          subject field of the resulting CA certificate.
+    :attr List[str] street_address: (optional) The Street Address values in the
+          subject field of the resulting CA certificate.
+    :attr List[str] postal_code: (optional) The Postal Code values in the subject
+          field of the resulting CA certificate.
+    :attr str serial_number: (optional) The serial number to assign to the generated
+          private certificate. To assign a random serial number, you can omit this field.
+    :attr object data: (optional) The data that is associated with the root
+          certificate authority. The data object contains the following fields:
+          - `certificate`: The root certificate content.
+          - `issuing_ca`: The certificate of the certificate authority that signed and
+          issued this certificate.
+          - `serial_number`: The unique serial number of the root certificate.
+    """
+
+    def __init__(self,
+                 max_ttl: object,
+                 common_name: str,
+                 *,
+                 crl_expiry: object = None,
+                 crl_disable: bool = None,
+                 crl_distribution_points_encoded: bool = None,
+                 issuing_certificates_urls_encoded: bool = None,
+                 status: str = None,
+                 expiration_date: datetime = None,
+                 alt_names: List[str] = None,
+                 ip_sans: str = None,
+                 uri_sans: str = None,
+                 other_sans: List[str] = None,
+                 ttl: str = None,
+                 format: str = None,
+                 private_key_format: str = None,
+                 key_type: str = None,
+                 key_bits: int = None,
+                 max_path_length: int = None,
+                 exclude_cn_from_sans: bool = None,
+                 permitted_dns_domains: List[str] = None,
+                 ou: List[str] = None,
+                 organization: List[str] = None,
+                 country: List[str] = None,
+                 locality: List[str] = None,
+                 province: List[str] = None,
+                 street_address: List[str] = None,
+                 postal_code: List[str] = None,
+                 serial_number: str = None,
+                 data: object = None) -> None:
+        """
+        Initialize a RootCertificateAuthorityConfig object.
+
+        :param object max_ttl: The maximum time-to-live (TTL) for certificates that
+               are created by this CA. The value can be supplied as a string
+               representation of a duration in hours, for example '8760h'. Note that in
+               the API response the value is returned in seconds (integer).
+               Minimum value is one hour (`1h`). Maximum value is 100 years (`876000h`).
+        :param str common_name: The fully qualified domain name or host domain name
+               for the certificate.
+        :param object crl_expiry: (optional) The time until the certificate
+               revocation list (CRL) expires. The value can be supplied as a string
+               representation of a duration in hours, such as `48h`. The default is 72
+               hours. Note that in the API response the value is returned in seconds
+               (integer).
+        :param bool crl_disable: (optional) Determines whether to disable
+               certificate revocation list (CRL) building.
+               By default, each request rebuilds a CRL. To disable CRL building, set this
+               field to `true`.
+        :param bool crl_distribution_points_encoded: (optional) Determines whether
+               to encode the certificate revocation list (CRL) distribution points in the
+               private certificates that are issued by a certificate authority.
+        :param bool issuing_certificates_urls_encoded: (optional) Determines
+               whether to encode the URL of the issuing certificate in the private
+               certificates that are issued by a certificate authority.
+        :param List[str] alt_names: (optional) The Subject Alternative Names to
+               define for the CA certificate, in a comma-delimited list.
+               The alternative names can be host names or email addresses.
+        :param str ip_sans: (optional) The IP Subject Alternative Names to define
+               for the CA certificate, in a comma-delimited list.
+        :param str uri_sans: (optional) The URI Subject Alternative Names to define
+               for the CA certificate, in a comma-delimited list.
+        :param List[str] other_sans: (optional) The custom Object Identifier (OID)
+               or UTF8-string Subject Alternative Names to define for the CA certificate.
+               The alternative names must match the values that are specified in the
+               `allowed_other_sans` field in the associated certificate template. The
+               format is the same as OpenSSL: `<oid>:<type>:<value>` where the current
+               valid type is `UTF8`.
+        :param str ttl: (optional) The time-to-live (TTL) or lease duration to
+               assign to a private certificate.
+               The value can be supplied as a string representation of a duration, such as
+               `12h`. The value can't exceed the `max_ttl` that is defined in the
+               associated certificate template. Note that in the API response the value is
+               returned in seconds (integer).
+        :param str format: (optional) The format of the returned data.
+        :param str private_key_format: (optional) The format of the generated
+               private key.
+        :param str key_type: (optional) The type of private key to generate.
+        :param int key_bits: (optional) The number of bits to use when generating
+               the private key.
+               Allowable values for RSA keys are: 2048 and 4096. Allowable values for EC
+               keys are: 224, 256, 384 And 521. The default for RSA keys is 2048, and the
+               default for EC keys is 256.
+        :param int max_path_length: (optional) The maximum path length to encode in
+               the generated certificate. `-1` means no limit.
+               If the signing certificate has a maximum path length set, the path length
+               is set to one less than that of the signing certificate. A limit of `0`
+               means a literal path length of zero.
+        :param bool exclude_cn_from_sans: (optional) Controls whether the common
+               name is excluded from Subject Alternative Names (SANs).
+               If set to `true`, the common name is is not included in DNS or Email SANs
+               if they apply. This field can be useful if the common name is not a
+               hostname or an email address, but is instead a human-readable identifier.
+        :param List[str] permitted_dns_domains: (optional) The allowed DNS domains
+               or subdomains for the certificates to be signed and issued by this CA
+               certificate.
+        :param List[str] ou: (optional) The Organizational Unit (OU) values to
+               define in the subject field of the resulting CA certificate.
+        :param List[str] organization: (optional) The Organization (O) values to
+               define in the subject field of the resulting CA certificate.
+        :param List[str] country: (optional) The Country (C) values to define in
+               the subject field of the resulting CA certificate.
+        :param List[str] locality: (optional) The Locality (L) values to define in
+               the subject field of the resulting CA certificate.
+        :param List[str] province: (optional) The Province (ST) values to define in
+               the subject field of the resulting CA certificate.
+        :param List[str] street_address: (optional) The Street Address values in
+               the subject field of the resulting CA certificate.
+        :param List[str] postal_code: (optional) The Postal Code values in the
+               subject field of the resulting CA certificate.
+        :param str serial_number: (optional) The serial number to assign to the
+               generated private certificate. To assign a random serial number, you can
+               omit this field.
+        """
+        # pylint: disable=super-init-not-called
+        self.max_ttl = max_ttl
+        self.crl_expiry = crl_expiry
+        self.crl_disable = crl_disable
+        self.crl_distribution_points_encoded = crl_distribution_points_encoded
+        self.issuing_certificates_urls_encoded = issuing_certificates_urls_encoded
+        self.common_name = common_name
+        self.status = status
+        self.expiration_date = expiration_date
+        self.alt_names = alt_names
+        self.ip_sans = ip_sans
+        self.uri_sans = uri_sans
+        self.other_sans = other_sans
+        self.ttl = ttl
+        self.format = format
+        self.private_key_format = private_key_format
+        self.key_type = key_type
+        self.key_bits = key_bits
+        self.max_path_length = max_path_length
+        self.exclude_cn_from_sans = exclude_cn_from_sans
+        self.permitted_dns_domains = permitted_dns_domains
+        self.ou = ou
+        self.organization = organization
+        self.country = country
+        self.locality = locality
+        self.province = province
+        self.street_address = street_address
+        self.postal_code = postal_code
+        self.serial_number = serial_number
+        self.data = data
+
+    @classmethod
+    def from_dict(cls, _dict: Dict) -> 'RootCertificateAuthorityConfig':
+        """Initialize a RootCertificateAuthorityConfig object from a json dictionary."""
+        args = {}
+        if 'max_ttl' in _dict:
+            args['max_ttl'] = _dict.get('max_ttl')
+        else:
+            raise ValueError('Required property \'max_ttl\' not present in RootCertificateAuthorityConfig JSON')
+        if 'crl_expiry' in _dict:
+            args['crl_expiry'] = _dict.get('crl_expiry')
+        if 'crl_disable' in _dict:
+            args['crl_disable'] = _dict.get('crl_disable')
+        if 'crl_distribution_points_encoded' in _dict:
+            args['crl_distribution_points_encoded'] = _dict.get('crl_distribution_points_encoded')
+        if 'issuing_certificates_urls_encoded' in _dict:
+            args['issuing_certificates_urls_encoded'] = _dict.get('issuing_certificates_urls_encoded')
+        if 'common_name' in _dict:
+            args['common_name'] = _dict.get('common_name')
+        else:
+            raise ValueError('Required property \'common_name\' not present in RootCertificateAuthorityConfig JSON')
+        if 'status' in _dict:
+            args['status'] = _dict.get('status')
+        if 'expiration_date' in _dict:
+            args['expiration_date'] = string_to_datetime(_dict.get('expiration_date'))
+        if 'alt_names' in _dict:
+            args['alt_names'] = _dict.get('alt_names')
+        if 'ip_sans' in _dict:
+            args['ip_sans'] = _dict.get('ip_sans')
+        if 'uri_sans' in _dict:
+            args['uri_sans'] = _dict.get('uri_sans')
+        if 'other_sans' in _dict:
+            args['other_sans'] = _dict.get('other_sans')
+        if 'ttl' in _dict:
+            args['ttl'] = _dict.get('ttl')
+        if 'format' in _dict:
+            args['format'] = _dict.get('format')
+        if 'private_key_format' in _dict:
+            args['private_key_format'] = _dict.get('private_key_format')
+        if 'key_type' in _dict:
+            args['key_type'] = _dict.get('key_type')
+        if 'key_bits' in _dict:
+            args['key_bits'] = _dict.get('key_bits')
+        if 'max_path_length' in _dict:
+            args['max_path_length'] = _dict.get('max_path_length')
+        if 'exclude_cn_from_sans' in _dict:
+            args['exclude_cn_from_sans'] = _dict.get('exclude_cn_from_sans')
+        if 'permitted_dns_domains' in _dict:
+            args['permitted_dns_domains'] = _dict.get('permitted_dns_domains')
+        if 'ou' in _dict:
+            args['ou'] = _dict.get('ou')
+        if 'organization' in _dict:
+            args['organization'] = _dict.get('organization')
+        if 'country' in _dict:
+            args['country'] = _dict.get('country')
+        if 'locality' in _dict:
+            args['locality'] = _dict.get('locality')
+        if 'province' in _dict:
+            args['province'] = _dict.get('province')
+        if 'street_address' in _dict:
+            args['street_address'] = _dict.get('street_address')
+        if 'postal_code' in _dict:
+            args['postal_code'] = _dict.get('postal_code')
+        if 'serial_number' in _dict:
+            args['serial_number'] = _dict.get('serial_number')
+        if 'data' in _dict:
+            args['data'] = _dict.get('data')
+        return cls(**args)
+
+    @classmethod
+    def _from_dict(cls, _dict):
+        """Initialize a RootCertificateAuthorityConfig object from a json dictionary."""
+        return cls.from_dict(_dict)
+
+    def to_dict(self) -> Dict:
+        """Return a json dictionary representing this model."""
+        _dict = {}
+        if hasattr(self, 'max_ttl') and self.max_ttl is not None:
+            _dict['max_ttl'] = self.max_ttl
+        if hasattr(self, 'crl_expiry') and self.crl_expiry is not None:
+            _dict['crl_expiry'] = self.crl_expiry
+        if hasattr(self, 'crl_disable') and self.crl_disable is not None:
+            _dict['crl_disable'] = self.crl_disable
+        if hasattr(self, 'crl_distribution_points_encoded') and self.crl_distribution_points_encoded is not None:
+            _dict['crl_distribution_points_encoded'] = self.crl_distribution_points_encoded
+        if hasattr(self, 'issuing_certificates_urls_encoded') and self.issuing_certificates_urls_encoded is not None:
+            _dict['issuing_certificates_urls_encoded'] = self.issuing_certificates_urls_encoded
+        if hasattr(self, 'common_name') and self.common_name is not None:
+            _dict['common_name'] = self.common_name
+        if hasattr(self, 'status') and getattr(self, 'status') is not None:
+            _dict['status'] = getattr(self, 'status')
+        if hasattr(self, 'expiration_date') and getattr(self, 'expiration_date') is not None:
+            _dict['expiration_date'] = datetime_to_string(getattr(self, 'expiration_date'))
+        if hasattr(self, 'alt_names') and self.alt_names is not None:
+            _dict['alt_names'] = self.alt_names
+        if hasattr(self, 'ip_sans') and self.ip_sans is not None:
+            _dict['ip_sans'] = self.ip_sans
+        if hasattr(self, 'uri_sans') and self.uri_sans is not None:
+            _dict['uri_sans'] = self.uri_sans
+        if hasattr(self, 'other_sans') and self.other_sans is not None:
+            _dict['other_sans'] = self.other_sans
+        if hasattr(self, 'ttl') and self.ttl is not None:
+            _dict['ttl'] = self.ttl
+        if hasattr(self, 'format') and self.format is not None:
+            _dict['format'] = self.format
+        if hasattr(self, 'private_key_format') and self.private_key_format is not None:
+            _dict['private_key_format'] = self.private_key_format
+        if hasattr(self, 'key_type') and self.key_type is not None:
+            _dict['key_type'] = self.key_type
+        if hasattr(self, 'key_bits') and self.key_bits is not None:
+            _dict['key_bits'] = self.key_bits
+        if hasattr(self, 'max_path_length') and self.max_path_length is not None:
+            _dict['max_path_length'] = self.max_path_length
+        if hasattr(self, 'exclude_cn_from_sans') and self.exclude_cn_from_sans is not None:
+            _dict['exclude_cn_from_sans'] = self.exclude_cn_from_sans
+        if hasattr(self, 'permitted_dns_domains') and self.permitted_dns_domains is not None:
+            _dict['permitted_dns_domains'] = self.permitted_dns_domains
+        if hasattr(self, 'ou') and self.ou is not None:
+            _dict['ou'] = self.ou
+        if hasattr(self, 'organization') and self.organization is not None:
+            _dict['organization'] = self.organization
+        if hasattr(self, 'country') and self.country is not None:
+            _dict['country'] = self.country
+        if hasattr(self, 'locality') and self.locality is not None:
+            _dict['locality'] = self.locality
+        if hasattr(self, 'province') and self.province is not None:
+            _dict['province'] = self.province
+        if hasattr(self, 'street_address') and self.street_address is not None:
+            _dict['street_address'] = self.street_address
+        if hasattr(self, 'postal_code') and self.postal_code is not None:
+            _dict['postal_code'] = self.postal_code
+        if hasattr(self, 'serial_number') and self.serial_number is not None:
+            _dict['serial_number'] = self.serial_number
+        if hasattr(self, 'data') and getattr(self, 'data') is not None:
+            _dict['data'] = getattr(self, 'data')
+        return _dict
+
+    def _to_dict(self):
+        """Return a json dictionary representing this model."""
+        return self.to_dict()
+
+    def __str__(self) -> str:
+        """Return a `str` version of this RootCertificateAuthorityConfig object."""
+        return json.dumps(self.to_dict(), indent=2)
+
+    def __eq__(self, other: 'RootCertificateAuthorityConfig') -> bool:
+        """Return `true` when self and other are equal, false otherwise."""
+        if not isinstance(other, self.__class__):
+            return False
+        return self.__dict__ == other.__dict__
+
+    def __ne__(self, other: 'RootCertificateAuthorityConfig') -> bool:
+        """Return `true` when self and other are not equal, false otherwise."""
+        return not self == other
+
+    class StatusEnum(str, Enum):
+        """
+        The status of the certificate authority. The status of a root certificate
+        authority is either `configured` or `expired`. For intermediate certificate
+        authorities, possible statuses include `signing_required`,
+        `signed_certificate_required`, `certificate_template_required`, `configured`,
+        `expired` or `revoked`.
+        """
+        SIGNING_REQUIRED = 'signing_required'
+        SIGNED_CERTIFICATE_REQUIRED = 'signed_certificate_required'
+        CERTIFICATE_TEMPLATE_REQUIRED = 'certificate_template_required'
+        CONFIGURED = 'configured'
+        EXPIRED = 'expired'
+        REVOKED = 'revoked'
+
+    class FormatEnum(str, Enum):
+        """
+        The format of the returned data.
+        """
+        PEM = 'pem'
+        DER = 'der'
+        PEM_BUNDLE = 'pem_bundle'
+
+    class PrivateKeyFormatEnum(str, Enum):
+        """
+        The format of the generated private key.
+        """
+        DER = 'der'
+        PKCS8 = 'pkcs8'
+
+    class KeyTypeEnum(str, Enum):
+        """
+        The type of private key to generate.
+        """
+        RSA = 'rsa'
+        EC = 'ec'
+
+
 class RotateArbitrarySecretBody(SecretAction):
     """
     The request body of a `rotate` action.
@@ -8720,6 +12497,52 @@ class RotateCertificateBody(SecretAction):
         return self.__dict__ == other.__dict__
 
     def __ne__(self, other: 'RotateCertificateBody') -> bool:
+        """Return `true` when self and other are not equal, false otherwise."""
+        return not self == other
+
+
+class RotateCrlActionResult(ConfigElementActionResultConfig):
+    """
+    Properties that are returned with a successful `rotate_crl` action.
+
+    """
+
+    def __init__(self) -> None:
+        """
+        Initialize a RotateCrlActionResult object.
+
+        """
+        # pylint: disable=super-init-not-called
+
+    @classmethod
+    def from_dict(cls, _dict: Dict) -> 'RotateCrlActionResult':
+        """Initialize a RotateCrlActionResult object from a json dictionary."""
+        return cls(**_dict)
+
+    @classmethod
+    def _from_dict(cls, _dict):
+        """Initialize a RotateCrlActionResult object from a json dictionary."""
+        return cls.from_dict(_dict)
+
+    def to_dict(self) -> Dict:
+        """Return a json dictionary representing this model."""
+        return vars(self)
+
+    def _to_dict(self):
+        """Return a json dictionary representing this model."""
+        return self.to_dict()
+
+    def __str__(self) -> str:
+        """Return a `str` version of this RotateCrlActionResult object."""
+        return json.dumps(self.to_dict(), indent=2)
+
+    def __eq__(self, other: 'RotateCrlActionResult') -> bool:
+        """Return `true` when self and other are equal, false otherwise."""
+        if not isinstance(other, self.__class__):
+            return False
+        return self.__dict__ == other.__dict__
+
+    def __ne__(self, other: 'RotateCrlActionResult') -> bool:
         """Return `true` when self and other are not equal, false otherwise."""
         return not self == other
 
@@ -8903,8 +12726,8 @@ class SecretPolicyRotationRotationPolicyRotation(SecretPolicyRotationRotation):
     """
     The secret rotation time interval.
 
-    :attr int interval: Specifies the length of the secret rotation time interval.
-    :attr str unit: Specifies the units for the secret rotation time interval.
+    :attr int interval: The length of the secret rotation time interval.
+    :attr str unit: The units for the secret rotation time interval.
     """
 
     def __init__(self,
@@ -8913,9 +12736,8 @@ class SecretPolicyRotationRotationPolicyRotation(SecretPolicyRotationRotation):
         """
         Initialize a SecretPolicyRotationRotationPolicyRotation object.
 
-        :param int interval: Specifies the length of the secret rotation time
-               interval.
-        :param str unit: Specifies the units for the secret rotation time interval.
+        :param int interval: The length of the secret rotation time interval.
+        :param str unit: The units for the secret rotation time interval.
         """
         # pylint: disable=super-init-not-called
         self.interval = interval
@@ -8971,7 +12793,7 @@ class SecretPolicyRotationRotationPolicyRotation(SecretPolicyRotationRotation):
 
     class UnitEnum(str, Enum):
         """
-        Specifies the units for the secret rotation time interval.
+        The units for the secret rotation time interval.
         """
         DAY = 'day'
         MONTH = 'month'
@@ -9045,6 +12867,1356 @@ class SecretPolicyRotationRotationPublicCertPolicyRotation(SecretPolicyRotationR
     def __ne__(self, other: 'SecretPolicyRotationRotationPublicCertPolicyRotation') -> bool:
         """Return `true` when self and other are not equal, false otherwise."""
         return not self == other
+
+
+class SetSignedAction(ConfigAction):
+    """
+    A request to set a signed certificate in an intermediate certificate authority.
+
+    :attr str certificate: The PEM-encoded certificate.
+    """
+
+    def __init__(self,
+                 certificate: str) -> None:
+        """
+        Initialize a SetSignedAction object.
+
+        :param str certificate: The PEM-encoded certificate.
+        """
+        # pylint: disable=super-init-not-called
+        self.certificate = certificate
+
+    @classmethod
+    def from_dict(cls, _dict: Dict) -> 'SetSignedAction':
+        """Initialize a SetSignedAction object from a json dictionary."""
+        args = {}
+        if 'certificate' in _dict:
+            args['certificate'] = _dict.get('certificate')
+        else:
+            raise ValueError('Required property \'certificate\' not present in SetSignedAction JSON')
+        return cls(**args)
+
+    @classmethod
+    def _from_dict(cls, _dict):
+        """Initialize a SetSignedAction object from a json dictionary."""
+        return cls.from_dict(_dict)
+
+    def to_dict(self) -> Dict:
+        """Return a json dictionary representing this model."""
+        _dict = {}
+        if hasattr(self, 'certificate') and self.certificate is not None:
+            _dict['certificate'] = self.certificate
+        return _dict
+
+    def _to_dict(self):
+        """Return a json dictionary representing this model."""
+        return self.to_dict()
+
+    def __str__(self) -> str:
+        """Return a `str` version of this SetSignedAction object."""
+        return json.dumps(self.to_dict(), indent=2)
+
+    def __eq__(self, other: 'SetSignedAction') -> bool:
+        """Return `true` when self and other are equal, false otherwise."""
+        if not isinstance(other, self.__class__):
+            return False
+        return self.__dict__ == other.__dict__
+
+    def __ne__(self, other: 'SetSignedAction') -> bool:
+        """Return `true` when self and other are not equal, false otherwise."""
+        return not self == other
+
+
+class SetSignedActionResult(ConfigElementActionResultConfig):
+    """
+    Properties that are returned with a successful `set_signed` action.
+
+    """
+
+    def __init__(self) -> None:
+        """
+        Initialize a SetSignedActionResult object.
+
+        """
+        # pylint: disable=super-init-not-called
+
+    @classmethod
+    def from_dict(cls, _dict: Dict) -> 'SetSignedActionResult':
+        """Initialize a SetSignedActionResult object from a json dictionary."""
+        return cls(**_dict)
+
+    @classmethod
+    def _from_dict(cls, _dict):
+        """Initialize a SetSignedActionResult object from a json dictionary."""
+        return cls.from_dict(_dict)
+
+    def to_dict(self) -> Dict:
+        """Return a json dictionary representing this model."""
+        return vars(self)
+
+    def _to_dict(self):
+        """Return a json dictionary representing this model."""
+        return self.to_dict()
+
+    def __str__(self) -> str:
+        """Return a `str` version of this SetSignedActionResult object."""
+        return json.dumps(self.to_dict(), indent=2)
+
+    def __eq__(self, other: 'SetSignedActionResult') -> bool:
+        """Return `true` when self and other are equal, false otherwise."""
+        if not isinstance(other, self.__class__):
+            return False
+        return self.__dict__ == other.__dict__
+
+    def __ne__(self, other: 'SetSignedActionResult') -> bool:
+        """Return `true` when self and other are not equal, false otherwise."""
+        return not self == other
+
+
+class SignCsrAction(ConfigAction):
+    """
+    A request to sign a certificate signing request (CSR).
+
+    :attr str common_name: (optional) The fully qualified domain name or host domain
+          name for the certificate.
+    :attr List[str] alt_names: (optional) The Subject Alternative Names to define
+          for the CA certificate, in a comma-delimited list.
+          The alternative names can be host names or email addresses.
+    :attr str ip_sans: (optional) The IP Subject Alternative Names to define for the
+          CA certificate, in a comma-delimited list.
+    :attr str uri_sans: (optional) The URI Subject Alternative Names to define for
+          the CA certificate, in a comma-delimited list.
+    :attr List[str] other_sans: (optional) The custom Object Identifier (OID) or
+          UTF8-string Subject Alternative Names to define for the CA certificate.
+          The alternative names must match the values that are specified in the
+          `allowed_other_sans` field in the associated certificate template. The format is
+          the same as OpenSSL: `<oid>:<type>:<value>` where the current valid type is
+          `UTF8`.
+    :attr str ttl: (optional) The time-to-live (TTL) or lease duration to assign to
+          a private certificate.
+          The value can be supplied as a string representation of a duration in hours,
+          such as `12h`. The value can't exceed the `max_ttl` that is defined in the
+          associated certificate template.
+    :attr str format: (optional) The format of the returned data.
+    :attr int max_path_length: (optional) The maximum path length to encode in the
+          generated certificate. `-1` means no limit.
+          If the signing certificate has a maximum path length set, the path length is set
+          to one less than that of the signing certificate. A limit of `0` means a literal
+          path length of zero.
+    :attr bool exclude_cn_from_sans: (optional) Controls whether the common name is
+          excluded from Subject Alternative Names (SANs).
+          If set to `true`, the common name is is not included in DNS or Email SANs if
+          they apply. This field can be useful if the common name is not a hostname or an
+          email address, but is instead a human-readable identifier.
+    :attr List[str] permitted_dns_domains: (optional) The allowed DNS domains or
+          subdomains for the certificates to be signed and issued by this CA certificate.
+    :attr bool use_csr_values: (optional) Determines whether to use values from a
+          certificate signing request (CSR) to complete a `sign_csr` action. If set to
+          `true`, then:
+          1) Subject information, including names and alternate names, are preserved from
+          the CSR rather than using the values provided in the other parameters to this
+          operation.
+          2) Any key usages (for example, non-repudiation) that are requested in the CSR
+          are added to the basic set of key usages used for CA certs signed by this
+          intermediate authority.
+          3) Extensions that are requested in the CSR are copied into the issued private
+          certificate.
+    :attr List[str] ou: (optional) The Organizational Unit (OU) values to define in
+          the subject field of the resulting CA certificate.
+    :attr List[str] organization: (optional) The Organization (O) values to define
+          in the subject field of the resulting CA certificate.
+    :attr List[str] country: (optional) The Country (C) values to define in the
+          subject field of the resulting CA certificate.
+    :attr List[str] locality: (optional) The Locality (L) values to define in the
+          subject field of the resulting CA certificate.
+    :attr List[str] province: (optional) The Province (ST) values to define in the
+          subject field of the resulting CA certificate.
+    :attr List[str] street_address: (optional) The Street Address values in the
+          subject field of the resulting CA certificate.
+    :attr List[str] postal_code: (optional) The Postal Code values in the subject
+          field of the resulting CA certificate.
+    :attr str serial_number: (optional) The serial number to assign to the generated
+          private certificate. To assign a random serial number, you can omit this field.
+    :attr str csr: The PEM-encoded certificate signing request (CSR). This field is
+          required for the `sign_csr` action.
+    """
+
+    def __init__(self,
+                 csr: str,
+                 *,
+                 common_name: str = None,
+                 alt_names: List[str] = None,
+                 ip_sans: str = None,
+                 uri_sans: str = None,
+                 other_sans: List[str] = None,
+                 ttl: str = None,
+                 format: str = None,
+                 max_path_length: int = None,
+                 exclude_cn_from_sans: bool = None,
+                 permitted_dns_domains: List[str] = None,
+                 use_csr_values: bool = None,
+                 ou: List[str] = None,
+                 organization: List[str] = None,
+                 country: List[str] = None,
+                 locality: List[str] = None,
+                 province: List[str] = None,
+                 street_address: List[str] = None,
+                 postal_code: List[str] = None,
+                 serial_number: str = None) -> None:
+        """
+        Initialize a SignCsrAction object.
+
+        :param str csr: The PEM-encoded certificate signing request (CSR). This
+               field is required for the `sign_csr` action.
+        :param str common_name: (optional) The fully qualified domain name or host
+               domain name for the certificate.
+        :param List[str] alt_names: (optional) The Subject Alternative Names to
+               define for the CA certificate, in a comma-delimited list.
+               The alternative names can be host names or email addresses.
+        :param str ip_sans: (optional) The IP Subject Alternative Names to define
+               for the CA certificate, in a comma-delimited list.
+        :param str uri_sans: (optional) The URI Subject Alternative Names to define
+               for the CA certificate, in a comma-delimited list.
+        :param List[str] other_sans: (optional) The custom Object Identifier (OID)
+               or UTF8-string Subject Alternative Names to define for the CA certificate.
+               The alternative names must match the values that are specified in the
+               `allowed_other_sans` field in the associated certificate template. The
+               format is the same as OpenSSL: `<oid>:<type>:<value>` where the current
+               valid type is `UTF8`.
+        :param str ttl: (optional) The time-to-live (TTL) or lease duration to
+               assign to a private certificate.
+               The value can be supplied as a string representation of a duration in
+               hours, such as `12h`. The value can't exceed the `max_ttl` that is defined
+               in the associated certificate template.
+        :param str format: (optional) The format of the returned data.
+        :param int max_path_length: (optional) The maximum path length to encode in
+               the generated certificate. `-1` means no limit.
+               If the signing certificate has a maximum path length set, the path length
+               is set to one less than that of the signing certificate. A limit of `0`
+               means a literal path length of zero.
+        :param bool exclude_cn_from_sans: (optional) Controls whether the common
+               name is excluded from Subject Alternative Names (SANs).
+               If set to `true`, the common name is is not included in DNS or Email SANs
+               if they apply. This field can be useful if the common name is not a
+               hostname or an email address, but is instead a human-readable identifier.
+        :param List[str] permitted_dns_domains: (optional) The allowed DNS domains
+               or subdomains for the certificates to be signed and issued by this CA
+               certificate.
+        :param bool use_csr_values: (optional) Determines whether to use values
+               from a certificate signing request (CSR) to complete a `sign_csr` action.
+               If set to `true`, then:
+               1) Subject information, including names and alternate names, are preserved
+               from the CSR rather than using the values provided in the other parameters
+               to this operation.
+               2) Any key usages (for example, non-repudiation) that are requested in the
+               CSR are added to the basic set of key usages used for CA certs signed by
+               this intermediate authority.
+               3) Extensions that are requested in the CSR are copied into the issued
+               private certificate.
+        :param List[str] ou: (optional) The Organizational Unit (OU) values to
+               define in the subject field of the resulting CA certificate.
+        :param List[str] organization: (optional) The Organization (O) values to
+               define in the subject field of the resulting CA certificate.
+        :param List[str] country: (optional) The Country (C) values to define in
+               the subject field of the resulting CA certificate.
+        :param List[str] locality: (optional) The Locality (L) values to define in
+               the subject field of the resulting CA certificate.
+        :param List[str] province: (optional) The Province (ST) values to define in
+               the subject field of the resulting CA certificate.
+        :param List[str] street_address: (optional) The Street Address values in
+               the subject field of the resulting CA certificate.
+        :param List[str] postal_code: (optional) The Postal Code values in the
+               subject field of the resulting CA certificate.
+        :param str serial_number: (optional) The serial number to assign to the
+               generated private certificate. To assign a random serial number, you can
+               omit this field.
+        """
+        # pylint: disable=super-init-not-called
+        self.common_name = common_name
+        self.alt_names = alt_names
+        self.ip_sans = ip_sans
+        self.uri_sans = uri_sans
+        self.other_sans = other_sans
+        self.ttl = ttl
+        self.format = format
+        self.max_path_length = max_path_length
+        self.exclude_cn_from_sans = exclude_cn_from_sans
+        self.permitted_dns_domains = permitted_dns_domains
+        self.use_csr_values = use_csr_values
+        self.ou = ou
+        self.organization = organization
+        self.country = country
+        self.locality = locality
+        self.province = province
+        self.street_address = street_address
+        self.postal_code = postal_code
+        self.serial_number = serial_number
+        self.csr = csr
+
+    @classmethod
+    def from_dict(cls, _dict: Dict) -> 'SignCsrAction':
+        """Initialize a SignCsrAction object from a json dictionary."""
+        args = {}
+        if 'common_name' in _dict:
+            args['common_name'] = _dict.get('common_name')
+        if 'alt_names' in _dict:
+            args['alt_names'] = _dict.get('alt_names')
+        if 'ip_sans' in _dict:
+            args['ip_sans'] = _dict.get('ip_sans')
+        if 'uri_sans' in _dict:
+            args['uri_sans'] = _dict.get('uri_sans')
+        if 'other_sans' in _dict:
+            args['other_sans'] = _dict.get('other_sans')
+        if 'ttl' in _dict:
+            args['ttl'] = _dict.get('ttl')
+        if 'format' in _dict:
+            args['format'] = _dict.get('format')
+        if 'max_path_length' in _dict:
+            args['max_path_length'] = _dict.get('max_path_length')
+        if 'exclude_cn_from_sans' in _dict:
+            args['exclude_cn_from_sans'] = _dict.get('exclude_cn_from_sans')
+        if 'permitted_dns_domains' in _dict:
+            args['permitted_dns_domains'] = _dict.get('permitted_dns_domains')
+        if 'use_csr_values' in _dict:
+            args['use_csr_values'] = _dict.get('use_csr_values')
+        if 'ou' in _dict:
+            args['ou'] = _dict.get('ou')
+        if 'organization' in _dict:
+            args['organization'] = _dict.get('organization')
+        if 'country' in _dict:
+            args['country'] = _dict.get('country')
+        if 'locality' in _dict:
+            args['locality'] = _dict.get('locality')
+        if 'province' in _dict:
+            args['province'] = _dict.get('province')
+        if 'street_address' in _dict:
+            args['street_address'] = _dict.get('street_address')
+        if 'postal_code' in _dict:
+            args['postal_code'] = _dict.get('postal_code')
+        if 'serial_number' in _dict:
+            args['serial_number'] = _dict.get('serial_number')
+        if 'csr' in _dict:
+            args['csr'] = _dict.get('csr')
+        else:
+            raise ValueError('Required property \'csr\' not present in SignCsrAction JSON')
+        return cls(**args)
+
+    @classmethod
+    def _from_dict(cls, _dict):
+        """Initialize a SignCsrAction object from a json dictionary."""
+        return cls.from_dict(_dict)
+
+    def to_dict(self) -> Dict:
+        """Return a json dictionary representing this model."""
+        _dict = {}
+        if hasattr(self, 'common_name') and self.common_name is not None:
+            _dict['common_name'] = self.common_name
+        if hasattr(self, 'alt_names') and self.alt_names is not None:
+            _dict['alt_names'] = self.alt_names
+        if hasattr(self, 'ip_sans') and self.ip_sans is not None:
+            _dict['ip_sans'] = self.ip_sans
+        if hasattr(self, 'uri_sans') and self.uri_sans is not None:
+            _dict['uri_sans'] = self.uri_sans
+        if hasattr(self, 'other_sans') and self.other_sans is not None:
+            _dict['other_sans'] = self.other_sans
+        if hasattr(self, 'ttl') and self.ttl is not None:
+            _dict['ttl'] = self.ttl
+        if hasattr(self, 'format') and self.format is not None:
+            _dict['format'] = self.format
+        if hasattr(self, 'max_path_length') and self.max_path_length is not None:
+            _dict['max_path_length'] = self.max_path_length
+        if hasattr(self, 'exclude_cn_from_sans') and self.exclude_cn_from_sans is not None:
+            _dict['exclude_cn_from_sans'] = self.exclude_cn_from_sans
+        if hasattr(self, 'permitted_dns_domains') and self.permitted_dns_domains is not None:
+            _dict['permitted_dns_domains'] = self.permitted_dns_domains
+        if hasattr(self, 'use_csr_values') and self.use_csr_values is not None:
+            _dict['use_csr_values'] = self.use_csr_values
+        if hasattr(self, 'ou') and self.ou is not None:
+            _dict['ou'] = self.ou
+        if hasattr(self, 'organization') and self.organization is not None:
+            _dict['organization'] = self.organization
+        if hasattr(self, 'country') and self.country is not None:
+            _dict['country'] = self.country
+        if hasattr(self, 'locality') and self.locality is not None:
+            _dict['locality'] = self.locality
+        if hasattr(self, 'province') and self.province is not None:
+            _dict['province'] = self.province
+        if hasattr(self, 'street_address') and self.street_address is not None:
+            _dict['street_address'] = self.street_address
+        if hasattr(self, 'postal_code') and self.postal_code is not None:
+            _dict['postal_code'] = self.postal_code
+        if hasattr(self, 'serial_number') and self.serial_number is not None:
+            _dict['serial_number'] = self.serial_number
+        if hasattr(self, 'csr') and self.csr is not None:
+            _dict['csr'] = self.csr
+        return _dict
+
+    def _to_dict(self):
+        """Return a json dictionary representing this model."""
+        return self.to_dict()
+
+    def __str__(self) -> str:
+        """Return a `str` version of this SignCsrAction object."""
+        return json.dumps(self.to_dict(), indent=2)
+
+    def __eq__(self, other: 'SignCsrAction') -> bool:
+        """Return `true` when self and other are equal, false otherwise."""
+        if not isinstance(other, self.__class__):
+            return False
+        return self.__dict__ == other.__dict__
+
+    def __ne__(self, other: 'SignCsrAction') -> bool:
+        """Return `true` when self and other are not equal, false otherwise."""
+        return not self == other
+
+    class FormatEnum(str, Enum):
+        """
+        The format of the returned data.
+        """
+        PEM = 'pem'
+        DER = 'der'
+        PEM_BUNDLE = 'pem_bundle'
+
+
+class SignCsrActionResult(ConfigElementActionResultConfig):
+    """
+    Properties that are returned with a successful `sign_csr` action.
+
+    :attr str common_name: (optional) The fully qualified domain name or host domain
+          name for the certificate.
+    :attr List[str] alt_names: (optional) The Subject Alternative Names to define
+          for the CA certificate, in a comma-delimited list.
+          The alternative names can be host names or email addresses.
+    :attr str ip_sans: (optional) The IP Subject Alternative Names to define for the
+          CA certificate, in a comma-delimited list.
+    :attr str uri_sans: (optional) The URI Subject Alternative Names to define for
+          the CA certificate, in a comma-delimited list.
+    :attr List[str] other_sans: (optional) The custom Object Identifier (OID) or
+          UTF8-string Subject Alternative Names to define for the CA certificate.
+          The alternative names must match the values that are specified in the
+          `allowed_other_sans` field in the associated certificate template. The format is
+          the same as OpenSSL: `<oid>:<type>:<value>` where the current valid type is
+          `UTF8`.
+    :attr str ttl: (optional) The time-to-live (TTL) or lease duration to assign to
+          a private certificate.
+          The value can be supplied as a string representation of a duration in hours,
+          such as `12h`. The value can't exceed the `max_ttl` that is defined in the
+          associated certificate template.
+    :attr str format: (optional) The format of the returned data.
+    :attr int max_path_length: (optional) The maximum path length to encode in the
+          generated certificate. `-1` means no limit.
+          If the signing certificate has a maximum path length set, the path length is set
+          to one less than that of the signing certificate. A limit of `0` means a literal
+          path length of zero.
+    :attr bool exclude_cn_from_sans: (optional) Controls whether the common name is
+          excluded from Subject Alternative Names (SANs).
+          If set to `true`, the common name is is not included in DNS or Email SANs if
+          they apply. This field can be useful if the common name is not a hostname or an
+          email address, but is instead a human-readable identifier.
+    :attr List[str] permitted_dns_domains: (optional) The allowed DNS domains or
+          subdomains for the certificates to be signed and issued by this CA certificate.
+    :attr bool use_csr_values: (optional) Determines whether to use values from a
+          certificate signing request (CSR) to complete a `sign_csr` action. If set to
+          `true`, then:
+          1) Subject information, including names and alternate names, are preserved from
+          the CSR rather than using the values provided in the other parameters to this
+          operation.
+          2) Any key usages (for example, non-repudiation) that are requested in the CSR
+          are added to the basic set of key usages used for CA certs signed by this
+          intermediate authority.
+          3) Extensions that are requested in the CSR are copied into the issued private
+          certificate.
+    :attr List[str] ou: (optional) The Organizational Unit (OU) values to define in
+          the subject field of the resulting CA certificate.
+    :attr List[str] organization: (optional) The Organization (O) values to define
+          in the subject field of the resulting CA certificate.
+    :attr List[str] country: (optional) The Country (C) values to define in the
+          subject field of the resulting CA certificate.
+    :attr List[str] locality: (optional) The Locality (L) values to define in the
+          subject field of the resulting CA certificate.
+    :attr List[str] province: (optional) The Province (ST) values to define in the
+          subject field of the resulting CA certificate.
+    :attr List[str] street_address: (optional) The Street Address values in the
+          subject field of the resulting CA certificate.
+    :attr List[str] postal_code: (optional) The Postal Code values in the subject
+          field of the resulting CA certificate.
+    :attr str serial_number: (optional) The serial number to assign to the generated
+          private certificate. To assign a random serial number, you can omit this field.
+    :attr SignActionResultData data: Properties that are returned with a successful
+          `sign` action.
+    :attr str csr: The PEM-encoded certificate signing request (CSR).
+    """
+
+    def __init__(self,
+                 data: 'SignActionResultData',
+                 csr: str,
+                 *,
+                 common_name: str = None,
+                 alt_names: List[str] = None,
+                 ip_sans: str = None,
+                 uri_sans: str = None,
+                 other_sans: List[str] = None,
+                 ttl: str = None,
+                 format: str = None,
+                 max_path_length: int = None,
+                 exclude_cn_from_sans: bool = None,
+                 permitted_dns_domains: List[str] = None,
+                 use_csr_values: bool = None,
+                 ou: List[str] = None,
+                 organization: List[str] = None,
+                 country: List[str] = None,
+                 locality: List[str] = None,
+                 province: List[str] = None,
+                 street_address: List[str] = None,
+                 postal_code: List[str] = None,
+                 serial_number: str = None) -> None:
+        """
+        Initialize a SignCsrActionResult object.
+
+        :param SignActionResultData data: Properties that are returned with a
+               successful `sign` action.
+        :param str csr: The PEM-encoded certificate signing request (CSR).
+        :param str common_name: (optional) The fully qualified domain name or host
+               domain name for the certificate.
+        :param List[str] alt_names: (optional) The Subject Alternative Names to
+               define for the CA certificate, in a comma-delimited list.
+               The alternative names can be host names or email addresses.
+        :param str ip_sans: (optional) The IP Subject Alternative Names to define
+               for the CA certificate, in a comma-delimited list.
+        :param str uri_sans: (optional) The URI Subject Alternative Names to define
+               for the CA certificate, in a comma-delimited list.
+        :param List[str] other_sans: (optional) The custom Object Identifier (OID)
+               or UTF8-string Subject Alternative Names to define for the CA certificate.
+               The alternative names must match the values that are specified in the
+               `allowed_other_sans` field in the associated certificate template. The
+               format is the same as OpenSSL: `<oid>:<type>:<value>` where the current
+               valid type is `UTF8`.
+        :param str ttl: (optional) The time-to-live (TTL) or lease duration to
+               assign to a private certificate.
+               The value can be supplied as a string representation of a duration in
+               hours, such as `12h`. The value can't exceed the `max_ttl` that is defined
+               in the associated certificate template.
+        :param str format: (optional) The format of the returned data.
+        :param int max_path_length: (optional) The maximum path length to encode in
+               the generated certificate. `-1` means no limit.
+               If the signing certificate has a maximum path length set, the path length
+               is set to one less than that of the signing certificate. A limit of `0`
+               means a literal path length of zero.
+        :param bool exclude_cn_from_sans: (optional) Controls whether the common
+               name is excluded from Subject Alternative Names (SANs).
+               If set to `true`, the common name is is not included in DNS or Email SANs
+               if they apply. This field can be useful if the common name is not a
+               hostname or an email address, but is instead a human-readable identifier.
+        :param List[str] permitted_dns_domains: (optional) The allowed DNS domains
+               or subdomains for the certificates to be signed and issued by this CA
+               certificate.
+        :param bool use_csr_values: (optional) Determines whether to use values
+               from a certificate signing request (CSR) to complete a `sign_csr` action.
+               If set to `true`, then:
+               1) Subject information, including names and alternate names, are preserved
+               from the CSR rather than using the values provided in the other parameters
+               to this operation.
+               2) Any key usages (for example, non-repudiation) that are requested in the
+               CSR are added to the basic set of key usages used for CA certs signed by
+               this intermediate authority.
+               3) Extensions that are requested in the CSR are copied into the issued
+               private certificate.
+        :param List[str] ou: (optional) The Organizational Unit (OU) values to
+               define in the subject field of the resulting CA certificate.
+        :param List[str] organization: (optional) The Organization (O) values to
+               define in the subject field of the resulting CA certificate.
+        :param List[str] country: (optional) The Country (C) values to define in
+               the subject field of the resulting CA certificate.
+        :param List[str] locality: (optional) The Locality (L) values to define in
+               the subject field of the resulting CA certificate.
+        :param List[str] province: (optional) The Province (ST) values to define in
+               the subject field of the resulting CA certificate.
+        :param List[str] street_address: (optional) The Street Address values in
+               the subject field of the resulting CA certificate.
+        :param List[str] postal_code: (optional) The Postal Code values in the
+               subject field of the resulting CA certificate.
+        :param str serial_number: (optional) The serial number to assign to the
+               generated private certificate. To assign a random serial number, you can
+               omit this field.
+        """
+        # pylint: disable=super-init-not-called
+        self.common_name = common_name
+        self.alt_names = alt_names
+        self.ip_sans = ip_sans
+        self.uri_sans = uri_sans
+        self.other_sans = other_sans
+        self.ttl = ttl
+        self.format = format
+        self.max_path_length = max_path_length
+        self.exclude_cn_from_sans = exclude_cn_from_sans
+        self.permitted_dns_domains = permitted_dns_domains
+        self.use_csr_values = use_csr_values
+        self.ou = ou
+        self.organization = organization
+        self.country = country
+        self.locality = locality
+        self.province = province
+        self.street_address = street_address
+        self.postal_code = postal_code
+        self.serial_number = serial_number
+        self.data = data
+        self.csr = csr
+
+    @classmethod
+    def from_dict(cls, _dict: Dict) -> 'SignCsrActionResult':
+        """Initialize a SignCsrActionResult object from a json dictionary."""
+        args = {}
+        if 'common_name' in _dict:
+            args['common_name'] = _dict.get('common_name')
+        if 'alt_names' in _dict:
+            args['alt_names'] = _dict.get('alt_names')
+        if 'ip_sans' in _dict:
+            args['ip_sans'] = _dict.get('ip_sans')
+        if 'uri_sans' in _dict:
+            args['uri_sans'] = _dict.get('uri_sans')
+        if 'other_sans' in _dict:
+            args['other_sans'] = _dict.get('other_sans')
+        if 'ttl' in _dict:
+            args['ttl'] = _dict.get('ttl')
+        if 'format' in _dict:
+            args['format'] = _dict.get('format')
+        if 'max_path_length' in _dict:
+            args['max_path_length'] = _dict.get('max_path_length')
+        if 'exclude_cn_from_sans' in _dict:
+            args['exclude_cn_from_sans'] = _dict.get('exclude_cn_from_sans')
+        if 'permitted_dns_domains' in _dict:
+            args['permitted_dns_domains'] = _dict.get('permitted_dns_domains')
+        if 'use_csr_values' in _dict:
+            args['use_csr_values'] = _dict.get('use_csr_values')
+        if 'ou' in _dict:
+            args['ou'] = _dict.get('ou')
+        if 'organization' in _dict:
+            args['organization'] = _dict.get('organization')
+        if 'country' in _dict:
+            args['country'] = _dict.get('country')
+        if 'locality' in _dict:
+            args['locality'] = _dict.get('locality')
+        if 'province' in _dict:
+            args['province'] = _dict.get('province')
+        if 'street_address' in _dict:
+            args['street_address'] = _dict.get('street_address')
+        if 'postal_code' in _dict:
+            args['postal_code'] = _dict.get('postal_code')
+        if 'serial_number' in _dict:
+            args['serial_number'] = _dict.get('serial_number')
+        if 'data' in _dict:
+            args['data'] = SignActionResultData.from_dict(_dict.get('data'))
+        else:
+            raise ValueError('Required property \'data\' not present in SignCsrActionResult JSON')
+        if 'csr' in _dict:
+            args['csr'] = _dict.get('csr')
+        else:
+            raise ValueError('Required property \'csr\' not present in SignCsrActionResult JSON')
+        return cls(**args)
+
+    @classmethod
+    def _from_dict(cls, _dict):
+        """Initialize a SignCsrActionResult object from a json dictionary."""
+        return cls.from_dict(_dict)
+
+    def to_dict(self) -> Dict:
+        """Return a json dictionary representing this model."""
+        _dict = {}
+        if hasattr(self, 'common_name') and self.common_name is not None:
+            _dict['common_name'] = self.common_name
+        if hasattr(self, 'alt_names') and self.alt_names is not None:
+            _dict['alt_names'] = self.alt_names
+        if hasattr(self, 'ip_sans') and self.ip_sans is not None:
+            _dict['ip_sans'] = self.ip_sans
+        if hasattr(self, 'uri_sans') and self.uri_sans is not None:
+            _dict['uri_sans'] = self.uri_sans
+        if hasattr(self, 'other_sans') and self.other_sans is not None:
+            _dict['other_sans'] = self.other_sans
+        if hasattr(self, 'ttl') and self.ttl is not None:
+            _dict['ttl'] = self.ttl
+        if hasattr(self, 'format') and self.format is not None:
+            _dict['format'] = self.format
+        if hasattr(self, 'max_path_length') and self.max_path_length is not None:
+            _dict['max_path_length'] = self.max_path_length
+        if hasattr(self, 'exclude_cn_from_sans') and self.exclude_cn_from_sans is not None:
+            _dict['exclude_cn_from_sans'] = self.exclude_cn_from_sans
+        if hasattr(self, 'permitted_dns_domains') and self.permitted_dns_domains is not None:
+            _dict['permitted_dns_domains'] = self.permitted_dns_domains
+        if hasattr(self, 'use_csr_values') and self.use_csr_values is not None:
+            _dict['use_csr_values'] = self.use_csr_values
+        if hasattr(self, 'ou') and self.ou is not None:
+            _dict['ou'] = self.ou
+        if hasattr(self, 'organization') and self.organization is not None:
+            _dict['organization'] = self.organization
+        if hasattr(self, 'country') and self.country is not None:
+            _dict['country'] = self.country
+        if hasattr(self, 'locality') and self.locality is not None:
+            _dict['locality'] = self.locality
+        if hasattr(self, 'province') and self.province is not None:
+            _dict['province'] = self.province
+        if hasattr(self, 'street_address') and self.street_address is not None:
+            _dict['street_address'] = self.street_address
+        if hasattr(self, 'postal_code') and self.postal_code is not None:
+            _dict['postal_code'] = self.postal_code
+        if hasattr(self, 'serial_number') and self.serial_number is not None:
+            _dict['serial_number'] = self.serial_number
+        if hasattr(self, 'data') and self.data is not None:
+            _dict['data'] = self.data.to_dict()
+        if hasattr(self, 'csr') and self.csr is not None:
+            _dict['csr'] = self.csr
+        return _dict
+
+    def _to_dict(self):
+        """Return a json dictionary representing this model."""
+        return self.to_dict()
+
+    def __str__(self) -> str:
+        """Return a `str` version of this SignCsrActionResult object."""
+        return json.dumps(self.to_dict(), indent=2)
+
+    def __eq__(self, other: 'SignCsrActionResult') -> bool:
+        """Return `true` when self and other are equal, false otherwise."""
+        if not isinstance(other, self.__class__):
+            return False
+        return self.__dict__ == other.__dict__
+
+    def __ne__(self, other: 'SignCsrActionResult') -> bool:
+        """Return `true` when self and other are not equal, false otherwise."""
+        return not self == other
+
+    class FormatEnum(str, Enum):
+        """
+        The format of the returned data.
+        """
+        PEM = 'pem'
+        DER = 'der'
+        PEM_BUNDLE = 'pem_bundle'
+
+
+class SignIntermediateAction(ConfigAction):
+    """
+    A request to sign an intermediate certificate authority.
+
+    :attr str common_name: (optional) The fully qualified domain name or host domain
+          name for the certificate.
+    :attr List[str] alt_names: (optional) The Subject Alternative Names to define
+          for the CA certificate, in a comma-delimited list.
+          The alternative names can be host names or email addresses.
+    :attr str ip_sans: (optional) The IP Subject Alternative Names to define for the
+          CA certificate, in a comma-delimited list.
+    :attr str uri_sans: (optional) The URI Subject Alternative Names to define for
+          the CA certificate, in a comma-delimited list.
+    :attr List[str] other_sans: (optional) The custom Object Identifier (OID) or
+          UTF8-string Subject Alternative Names to define for the CA certificate.
+          The alternative names must match the values that are specified in the
+          `allowed_other_sans` field in the associated certificate template. The format is
+          the same as OpenSSL: `<oid>:<type>:<value>` where the current valid type is
+          `UTF8`.
+    :attr str ttl: (optional) The time-to-live (TTL) or lease duration to assign to
+          a private certificate.
+          The value can be supplied as a string representation of a duration in hours,
+          such as `12h`. The value can't exceed the `max_ttl` that is defined in the
+          associated certificate template.
+    :attr str format: (optional) The format of the returned data.
+    :attr int max_path_length: (optional) The maximum path length to encode in the
+          generated certificate. `-1` means no limit.
+          If the signing certificate has a maximum path length set, the path length is set
+          to one less than that of the signing certificate. A limit of `0` means a literal
+          path length of zero.
+    :attr bool exclude_cn_from_sans: (optional) Controls whether the common name is
+          excluded from Subject Alternative Names (SANs).
+          If set to `true`, the common name is is not included in DNS or Email SANs if
+          they apply. This field can be useful if the common name is not a hostname or an
+          email address, but is instead a human-readable identifier.
+    :attr List[str] permitted_dns_domains: (optional) The allowed DNS domains or
+          subdomains for the certificates to be signed and issued by this CA certificate.
+    :attr bool use_csr_values: (optional) Determines whether to use values from a
+          certificate signing request (CSR) to complete a `sign_csr` action. If set to
+          `true`, then:
+          1) Subject information, including names and alternate names, are preserved from
+          the CSR rather than using the values provided in the other parameters to this
+          operation.
+          2) Any key usages (for example, non-repudiation) that are requested in the CSR
+          are added to the basic set of key usages used for CA certs signed by this
+          intermediate authority.
+          3) Extensions that are requested in the CSR are copied into the issued private
+          certificate.
+    :attr List[str] ou: (optional) The Organizational Unit (OU) values to define in
+          the subject field of the resulting CA certificate.
+    :attr List[str] organization: (optional) The Organization (O) values to define
+          in the subject field of the resulting CA certificate.
+    :attr List[str] country: (optional) The Country (C) values to define in the
+          subject field of the resulting CA certificate.
+    :attr List[str] locality: (optional) The Locality (L) values to define in the
+          subject field of the resulting CA certificate.
+    :attr List[str] province: (optional) The Province (ST) values to define in the
+          subject field of the resulting CA certificate.
+    :attr List[str] street_address: (optional) The Street Address values in the
+          subject field of the resulting CA certificate.
+    :attr List[str] postal_code: (optional) The Postal Code values in the subject
+          field of the resulting CA certificate.
+    :attr str serial_number: (optional) The serial number to assign to the generated
+          private certificate. To assign a random serial number, you can omit this field.
+    :attr str intermediate_certificate_authority: The intermediate certificate
+          authority to be signed. The name must match one of the pre-configured
+          intermediate certificate authorities.
+    """
+
+    def __init__(self,
+                 intermediate_certificate_authority: str,
+                 *,
+                 common_name: str = None,
+                 alt_names: List[str] = None,
+                 ip_sans: str = None,
+                 uri_sans: str = None,
+                 other_sans: List[str] = None,
+                 ttl: str = None,
+                 format: str = None,
+                 max_path_length: int = None,
+                 exclude_cn_from_sans: bool = None,
+                 permitted_dns_domains: List[str] = None,
+                 use_csr_values: bool = None,
+                 ou: List[str] = None,
+                 organization: List[str] = None,
+                 country: List[str] = None,
+                 locality: List[str] = None,
+                 province: List[str] = None,
+                 street_address: List[str] = None,
+                 postal_code: List[str] = None,
+                 serial_number: str = None) -> None:
+        """
+        Initialize a SignIntermediateAction object.
+
+        :param str intermediate_certificate_authority: The intermediate certificate
+               authority to be signed. The name must match one of the pre-configured
+               intermediate certificate authorities.
+        :param str common_name: (optional) The fully qualified domain name or host
+               domain name for the certificate.
+        :param List[str] alt_names: (optional) The Subject Alternative Names to
+               define for the CA certificate, in a comma-delimited list.
+               The alternative names can be host names or email addresses.
+        :param str ip_sans: (optional) The IP Subject Alternative Names to define
+               for the CA certificate, in a comma-delimited list.
+        :param str uri_sans: (optional) The URI Subject Alternative Names to define
+               for the CA certificate, in a comma-delimited list.
+        :param List[str] other_sans: (optional) The custom Object Identifier (OID)
+               or UTF8-string Subject Alternative Names to define for the CA certificate.
+               The alternative names must match the values that are specified in the
+               `allowed_other_sans` field in the associated certificate template. The
+               format is the same as OpenSSL: `<oid>:<type>:<value>` where the current
+               valid type is `UTF8`.
+        :param str ttl: (optional) The time-to-live (TTL) or lease duration to
+               assign to a private certificate.
+               The value can be supplied as a string representation of a duration in
+               hours, such as `12h`. The value can't exceed the `max_ttl` that is defined
+               in the associated certificate template.
+        :param str format: (optional) The format of the returned data.
+        :param int max_path_length: (optional) The maximum path length to encode in
+               the generated certificate. `-1` means no limit.
+               If the signing certificate has a maximum path length set, the path length
+               is set to one less than that of the signing certificate. A limit of `0`
+               means a literal path length of zero.
+        :param bool exclude_cn_from_sans: (optional) Controls whether the common
+               name is excluded from Subject Alternative Names (SANs).
+               If set to `true`, the common name is is not included in DNS or Email SANs
+               if they apply. This field can be useful if the common name is not a
+               hostname or an email address, but is instead a human-readable identifier.
+        :param List[str] permitted_dns_domains: (optional) The allowed DNS domains
+               or subdomains for the certificates to be signed and issued by this CA
+               certificate.
+        :param bool use_csr_values: (optional) Determines whether to use values
+               from a certificate signing request (CSR) to complete a `sign_csr` action.
+               If set to `true`, then:
+               1) Subject information, including names and alternate names, are preserved
+               from the CSR rather than using the values provided in the other parameters
+               to this operation.
+               2) Any key usages (for example, non-repudiation) that are requested in the
+               CSR are added to the basic set of key usages used for CA certs signed by
+               this intermediate authority.
+               3) Extensions that are requested in the CSR are copied into the issued
+               private certificate.
+        :param List[str] ou: (optional) The Organizational Unit (OU) values to
+               define in the subject field of the resulting CA certificate.
+        :param List[str] organization: (optional) The Organization (O) values to
+               define in the subject field of the resulting CA certificate.
+        :param List[str] country: (optional) The Country (C) values to define in
+               the subject field of the resulting CA certificate.
+        :param List[str] locality: (optional) The Locality (L) values to define in
+               the subject field of the resulting CA certificate.
+        :param List[str] province: (optional) The Province (ST) values to define in
+               the subject field of the resulting CA certificate.
+        :param List[str] street_address: (optional) The Street Address values in
+               the subject field of the resulting CA certificate.
+        :param List[str] postal_code: (optional) The Postal Code values in the
+               subject field of the resulting CA certificate.
+        :param str serial_number: (optional) The serial number to assign to the
+               generated private certificate. To assign a random serial number, you can
+               omit this field.
+        """
+        # pylint: disable=super-init-not-called
+        self.common_name = common_name
+        self.alt_names = alt_names
+        self.ip_sans = ip_sans
+        self.uri_sans = uri_sans
+        self.other_sans = other_sans
+        self.ttl = ttl
+        self.format = format
+        self.max_path_length = max_path_length
+        self.exclude_cn_from_sans = exclude_cn_from_sans
+        self.permitted_dns_domains = permitted_dns_domains
+        self.use_csr_values = use_csr_values
+        self.ou = ou
+        self.organization = organization
+        self.country = country
+        self.locality = locality
+        self.province = province
+        self.street_address = street_address
+        self.postal_code = postal_code
+        self.serial_number = serial_number
+        self.intermediate_certificate_authority = intermediate_certificate_authority
+
+    @classmethod
+    def from_dict(cls, _dict: Dict) -> 'SignIntermediateAction':
+        """Initialize a SignIntermediateAction object from a json dictionary."""
+        args = {}
+        if 'common_name' in _dict:
+            args['common_name'] = _dict.get('common_name')
+        if 'alt_names' in _dict:
+            args['alt_names'] = _dict.get('alt_names')
+        if 'ip_sans' in _dict:
+            args['ip_sans'] = _dict.get('ip_sans')
+        if 'uri_sans' in _dict:
+            args['uri_sans'] = _dict.get('uri_sans')
+        if 'other_sans' in _dict:
+            args['other_sans'] = _dict.get('other_sans')
+        if 'ttl' in _dict:
+            args['ttl'] = _dict.get('ttl')
+        if 'format' in _dict:
+            args['format'] = _dict.get('format')
+        if 'max_path_length' in _dict:
+            args['max_path_length'] = _dict.get('max_path_length')
+        if 'exclude_cn_from_sans' in _dict:
+            args['exclude_cn_from_sans'] = _dict.get('exclude_cn_from_sans')
+        if 'permitted_dns_domains' in _dict:
+            args['permitted_dns_domains'] = _dict.get('permitted_dns_domains')
+        if 'use_csr_values' in _dict:
+            args['use_csr_values'] = _dict.get('use_csr_values')
+        if 'ou' in _dict:
+            args['ou'] = _dict.get('ou')
+        if 'organization' in _dict:
+            args['organization'] = _dict.get('organization')
+        if 'country' in _dict:
+            args['country'] = _dict.get('country')
+        if 'locality' in _dict:
+            args['locality'] = _dict.get('locality')
+        if 'province' in _dict:
+            args['province'] = _dict.get('province')
+        if 'street_address' in _dict:
+            args['street_address'] = _dict.get('street_address')
+        if 'postal_code' in _dict:
+            args['postal_code'] = _dict.get('postal_code')
+        if 'serial_number' in _dict:
+            args['serial_number'] = _dict.get('serial_number')
+        if 'intermediate_certificate_authority' in _dict:
+            args['intermediate_certificate_authority'] = _dict.get('intermediate_certificate_authority')
+        else:
+            raise ValueError(
+                'Required property \'intermediate_certificate_authority\' not present in SignIntermediateAction JSON')
+        return cls(**args)
+
+    @classmethod
+    def _from_dict(cls, _dict):
+        """Initialize a SignIntermediateAction object from a json dictionary."""
+        return cls.from_dict(_dict)
+
+    def to_dict(self) -> Dict:
+        """Return a json dictionary representing this model."""
+        _dict = {}
+        if hasattr(self, 'common_name') and self.common_name is not None:
+            _dict['common_name'] = self.common_name
+        if hasattr(self, 'alt_names') and self.alt_names is not None:
+            _dict['alt_names'] = self.alt_names
+        if hasattr(self, 'ip_sans') and self.ip_sans is not None:
+            _dict['ip_sans'] = self.ip_sans
+        if hasattr(self, 'uri_sans') and self.uri_sans is not None:
+            _dict['uri_sans'] = self.uri_sans
+        if hasattr(self, 'other_sans') and self.other_sans is not None:
+            _dict['other_sans'] = self.other_sans
+        if hasattr(self, 'ttl') and self.ttl is not None:
+            _dict['ttl'] = self.ttl
+        if hasattr(self, 'format') and self.format is not None:
+            _dict['format'] = self.format
+        if hasattr(self, 'max_path_length') and self.max_path_length is not None:
+            _dict['max_path_length'] = self.max_path_length
+        if hasattr(self, 'exclude_cn_from_sans') and self.exclude_cn_from_sans is not None:
+            _dict['exclude_cn_from_sans'] = self.exclude_cn_from_sans
+        if hasattr(self, 'permitted_dns_domains') and self.permitted_dns_domains is not None:
+            _dict['permitted_dns_domains'] = self.permitted_dns_domains
+        if hasattr(self, 'use_csr_values') and self.use_csr_values is not None:
+            _dict['use_csr_values'] = self.use_csr_values
+        if hasattr(self, 'ou') and self.ou is not None:
+            _dict['ou'] = self.ou
+        if hasattr(self, 'organization') and self.organization is not None:
+            _dict['organization'] = self.organization
+        if hasattr(self, 'country') and self.country is not None:
+            _dict['country'] = self.country
+        if hasattr(self, 'locality') and self.locality is not None:
+            _dict['locality'] = self.locality
+        if hasattr(self, 'province') and self.province is not None:
+            _dict['province'] = self.province
+        if hasattr(self, 'street_address') and self.street_address is not None:
+            _dict['street_address'] = self.street_address
+        if hasattr(self, 'postal_code') and self.postal_code is not None:
+            _dict['postal_code'] = self.postal_code
+        if hasattr(self, 'serial_number') and self.serial_number is not None:
+            _dict['serial_number'] = self.serial_number
+        if hasattr(self, 'intermediate_certificate_authority') and self.intermediate_certificate_authority is not None:
+            _dict['intermediate_certificate_authority'] = self.intermediate_certificate_authority
+        return _dict
+
+    def _to_dict(self):
+        """Return a json dictionary representing this model."""
+        return self.to_dict()
+
+    def __str__(self) -> str:
+        """Return a `str` version of this SignIntermediateAction object."""
+        return json.dumps(self.to_dict(), indent=2)
+
+    def __eq__(self, other: 'SignIntermediateAction') -> bool:
+        """Return `true` when self and other are equal, false otherwise."""
+        if not isinstance(other, self.__class__):
+            return False
+        return self.__dict__ == other.__dict__
+
+    def __ne__(self, other: 'SignIntermediateAction') -> bool:
+        """Return `true` when self and other are not equal, false otherwise."""
+        return not self == other
+
+    class FormatEnum(str, Enum):
+        """
+        The format of the returned data.
+        """
+        PEM = 'pem'
+        DER = 'der'
+        PEM_BUNDLE = 'pem_bundle'
+
+
+class SignIntermediateActionResult(ConfigElementActionResultConfig):
+    """
+    Properties that are returned with a successful `sign_intermediate` action.
+
+    :attr str common_name: (optional) The fully qualified domain name or host domain
+          name for the certificate.
+    :attr List[str] alt_names: (optional) The Subject Alternative Names to define
+          for the CA certificate, in a comma-delimited list.
+          The alternative names can be host names or email addresses.
+    :attr str ip_sans: (optional) The IP Subject Alternative Names to define for the
+          CA certificate, in a comma-delimited list.
+    :attr str uri_sans: (optional) The URI Subject Alternative Names to define for
+          the CA certificate, in a comma-delimited list.
+    :attr List[str] other_sans: (optional) The custom Object Identifier (OID) or
+          UTF8-string Subject Alternative Names to define for the CA certificate.
+          The alternative names must match the values that are specified in the
+          `allowed_other_sans` field in the associated certificate template. The format is
+          the same as OpenSSL: `<oid>:<type>:<value>` where the current valid type is
+          `UTF8`.
+    :attr str ttl: (optional) The time-to-live (TTL) or lease duration to assign to
+          a private certificate.
+          The value can be supplied as a string representation of a duration in hours,
+          such as `12h`. The value can't exceed the `max_ttl` that is defined in the
+          associated certificate template.
+    :attr str format: (optional) The format of the returned data.
+    :attr int max_path_length: (optional) The maximum path length to encode in the
+          generated certificate. `-1` means no limit.
+          If the signing certificate has a maximum path length set, the path length is set
+          to one less than that of the signing certificate. A limit of `0` means a literal
+          path length of zero.
+    :attr bool exclude_cn_from_sans: (optional) Controls whether the common name is
+          excluded from Subject Alternative Names (SANs).
+          If set to `true`, the common name is is not included in DNS or Email SANs if
+          they apply. This field can be useful if the common name is not a hostname or an
+          email address, but is instead a human-readable identifier.
+    :attr List[str] permitted_dns_domains: (optional) The allowed DNS domains or
+          subdomains for the certificates to be signed and issued by this CA certificate.
+    :attr bool use_csr_values: (optional) Determines whether to use values from a
+          certificate signing request (CSR) to complete a `sign_csr` action. If set to
+          `true`, then:
+          1) Subject information, including names and alternate names, are preserved from
+          the CSR rather than using the values provided in the other parameters to this
+          operation.
+          2) Any key usages (for example, non-repudiation) that are requested in the CSR
+          are added to the basic set of key usages used for CA certs signed by this
+          intermediate authority.
+          3) Extensions that are requested in the CSR are copied into the issued private
+          certificate.
+    :attr List[str] ou: (optional) The Organizational Unit (OU) values to define in
+          the subject field of the resulting CA certificate.
+    :attr List[str] organization: (optional) The Organization (O) values to define
+          in the subject field of the resulting CA certificate.
+    :attr List[str] country: (optional) The Country (C) values to define in the
+          subject field of the resulting CA certificate.
+    :attr List[str] locality: (optional) The Locality (L) values to define in the
+          subject field of the resulting CA certificate.
+    :attr List[str] province: (optional) The Province (ST) values to define in the
+          subject field of the resulting CA certificate.
+    :attr List[str] street_address: (optional) The Street Address values in the
+          subject field of the resulting CA certificate.
+    :attr List[str] postal_code: (optional) The Postal Code values in the subject
+          field of the resulting CA certificate.
+    :attr str serial_number: (optional) The serial number to assign to the generated
+          private certificate. To assign a random serial number, you can omit this field.
+    :attr SignIntermediateActionResultData data: Properties that are returned with a
+          successful `sign` action.
+    :attr str intermediate_certificate_authority: The signed intermediate
+          certificate authority.
+    """
+
+    def __init__(self,
+                 data: 'SignIntermediateActionResultData',
+                 intermediate_certificate_authority: str,
+                 *,
+                 common_name: str = None,
+                 alt_names: List[str] = None,
+                 ip_sans: str = None,
+                 uri_sans: str = None,
+                 other_sans: List[str] = None,
+                 ttl: str = None,
+                 format: str = None,
+                 max_path_length: int = None,
+                 exclude_cn_from_sans: bool = None,
+                 permitted_dns_domains: List[str] = None,
+                 use_csr_values: bool = None,
+                 ou: List[str] = None,
+                 organization: List[str] = None,
+                 country: List[str] = None,
+                 locality: List[str] = None,
+                 province: List[str] = None,
+                 street_address: List[str] = None,
+                 postal_code: List[str] = None,
+                 serial_number: str = None) -> None:
+        """
+        Initialize a SignIntermediateActionResult object.
+
+        :param SignIntermediateActionResultData data: Properties that are returned
+               with a successful `sign` action.
+        :param str intermediate_certificate_authority: The signed intermediate
+               certificate authority.
+        :param str common_name: (optional) The fully qualified domain name or host
+               domain name for the certificate.
+        :param List[str] alt_names: (optional) The Subject Alternative Names to
+               define for the CA certificate, in a comma-delimited list.
+               The alternative names can be host names or email addresses.
+        :param str ip_sans: (optional) The IP Subject Alternative Names to define
+               for the CA certificate, in a comma-delimited list.
+        :param str uri_sans: (optional) The URI Subject Alternative Names to define
+               for the CA certificate, in a comma-delimited list.
+        :param List[str] other_sans: (optional) The custom Object Identifier (OID)
+               or UTF8-string Subject Alternative Names to define for the CA certificate.
+               The alternative names must match the values that are specified in the
+               `allowed_other_sans` field in the associated certificate template. The
+               format is the same as OpenSSL: `<oid>:<type>:<value>` where the current
+               valid type is `UTF8`.
+        :param str ttl: (optional) The time-to-live (TTL) or lease duration to
+               assign to a private certificate.
+               The value can be supplied as a string representation of a duration in
+               hours, such as `12h`. The value can't exceed the `max_ttl` that is defined
+               in the associated certificate template.
+        :param str format: (optional) The format of the returned data.
+        :param int max_path_length: (optional) The maximum path length to encode in
+               the generated certificate. `-1` means no limit.
+               If the signing certificate has a maximum path length set, the path length
+               is set to one less than that of the signing certificate. A limit of `0`
+               means a literal path length of zero.
+        :param bool exclude_cn_from_sans: (optional) Controls whether the common
+               name is excluded from Subject Alternative Names (SANs).
+               If set to `true`, the common name is is not included in DNS or Email SANs
+               if they apply. This field can be useful if the common name is not a
+               hostname or an email address, but is instead a human-readable identifier.
+        :param List[str] permitted_dns_domains: (optional) The allowed DNS domains
+               or subdomains for the certificates to be signed and issued by this CA
+               certificate.
+        :param bool use_csr_values: (optional) Determines whether to use values
+               from a certificate signing request (CSR) to complete a `sign_csr` action.
+               If set to `true`, then:
+               1) Subject information, including names and alternate names, are preserved
+               from the CSR rather than using the values provided in the other parameters
+               to this operation.
+               2) Any key usages (for example, non-repudiation) that are requested in the
+               CSR are added to the basic set of key usages used for CA certs signed by
+               this intermediate authority.
+               3) Extensions that are requested in the CSR are copied into the issued
+               private certificate.
+        :param List[str] ou: (optional) The Organizational Unit (OU) values to
+               define in the subject field of the resulting CA certificate.
+        :param List[str] organization: (optional) The Organization (O) values to
+               define in the subject field of the resulting CA certificate.
+        :param List[str] country: (optional) The Country (C) values to define in
+               the subject field of the resulting CA certificate.
+        :param List[str] locality: (optional) The Locality (L) values to define in
+               the subject field of the resulting CA certificate.
+        :param List[str] province: (optional) The Province (ST) values to define in
+               the subject field of the resulting CA certificate.
+        :param List[str] street_address: (optional) The Street Address values in
+               the subject field of the resulting CA certificate.
+        :param List[str] postal_code: (optional) The Postal Code values in the
+               subject field of the resulting CA certificate.
+        :param str serial_number: (optional) The serial number to assign to the
+               generated private certificate. To assign a random serial number, you can
+               omit this field.
+        """
+        # pylint: disable=super-init-not-called
+        self.common_name = common_name
+        self.alt_names = alt_names
+        self.ip_sans = ip_sans
+        self.uri_sans = uri_sans
+        self.other_sans = other_sans
+        self.ttl = ttl
+        self.format = format
+        self.max_path_length = max_path_length
+        self.exclude_cn_from_sans = exclude_cn_from_sans
+        self.permitted_dns_domains = permitted_dns_domains
+        self.use_csr_values = use_csr_values
+        self.ou = ou
+        self.organization = organization
+        self.country = country
+        self.locality = locality
+        self.province = province
+        self.street_address = street_address
+        self.postal_code = postal_code
+        self.serial_number = serial_number
+        self.data = data
+        self.intermediate_certificate_authority = intermediate_certificate_authority
+
+    @classmethod
+    def from_dict(cls, _dict: Dict) -> 'SignIntermediateActionResult':
+        """Initialize a SignIntermediateActionResult object from a json dictionary."""
+        args = {}
+        if 'common_name' in _dict:
+            args['common_name'] = _dict.get('common_name')
+        if 'alt_names' in _dict:
+            args['alt_names'] = _dict.get('alt_names')
+        if 'ip_sans' in _dict:
+            args['ip_sans'] = _dict.get('ip_sans')
+        if 'uri_sans' in _dict:
+            args['uri_sans'] = _dict.get('uri_sans')
+        if 'other_sans' in _dict:
+            args['other_sans'] = _dict.get('other_sans')
+        if 'ttl' in _dict:
+            args['ttl'] = _dict.get('ttl')
+        if 'format' in _dict:
+            args['format'] = _dict.get('format')
+        if 'max_path_length' in _dict:
+            args['max_path_length'] = _dict.get('max_path_length')
+        if 'exclude_cn_from_sans' in _dict:
+            args['exclude_cn_from_sans'] = _dict.get('exclude_cn_from_sans')
+        if 'permitted_dns_domains' in _dict:
+            args['permitted_dns_domains'] = _dict.get('permitted_dns_domains')
+        if 'use_csr_values' in _dict:
+            args['use_csr_values'] = _dict.get('use_csr_values')
+        if 'ou' in _dict:
+            args['ou'] = _dict.get('ou')
+        if 'organization' in _dict:
+            args['organization'] = _dict.get('organization')
+        if 'country' in _dict:
+            args['country'] = _dict.get('country')
+        if 'locality' in _dict:
+            args['locality'] = _dict.get('locality')
+        if 'province' in _dict:
+            args['province'] = _dict.get('province')
+        if 'street_address' in _dict:
+            args['street_address'] = _dict.get('street_address')
+        if 'postal_code' in _dict:
+            args['postal_code'] = _dict.get('postal_code')
+        if 'serial_number' in _dict:
+            args['serial_number'] = _dict.get('serial_number')
+        if 'data' in _dict:
+            args['data'] = SignIntermediateActionResultData.from_dict(_dict.get('data'))
+        else:
+            raise ValueError('Required property \'data\' not present in SignIntermediateActionResult JSON')
+        if 'intermediate_certificate_authority' in _dict:
+            args['intermediate_certificate_authority'] = _dict.get('intermediate_certificate_authority')
+        else:
+            raise ValueError(
+                'Required property \'intermediate_certificate_authority\' not present in SignIntermediateActionResult JSON')
+        return cls(**args)
+
+    @classmethod
+    def _from_dict(cls, _dict):
+        """Initialize a SignIntermediateActionResult object from a json dictionary."""
+        return cls.from_dict(_dict)
+
+    def to_dict(self) -> Dict:
+        """Return a json dictionary representing this model."""
+        _dict = {}
+        if hasattr(self, 'common_name') and self.common_name is not None:
+            _dict['common_name'] = self.common_name
+        if hasattr(self, 'alt_names') and self.alt_names is not None:
+            _dict['alt_names'] = self.alt_names
+        if hasattr(self, 'ip_sans') and self.ip_sans is not None:
+            _dict['ip_sans'] = self.ip_sans
+        if hasattr(self, 'uri_sans') and self.uri_sans is not None:
+            _dict['uri_sans'] = self.uri_sans
+        if hasattr(self, 'other_sans') and self.other_sans is not None:
+            _dict['other_sans'] = self.other_sans
+        if hasattr(self, 'ttl') and self.ttl is not None:
+            _dict['ttl'] = self.ttl
+        if hasattr(self, 'format') and self.format is not None:
+            _dict['format'] = self.format
+        if hasattr(self, 'max_path_length') and self.max_path_length is not None:
+            _dict['max_path_length'] = self.max_path_length
+        if hasattr(self, 'exclude_cn_from_sans') and self.exclude_cn_from_sans is not None:
+            _dict['exclude_cn_from_sans'] = self.exclude_cn_from_sans
+        if hasattr(self, 'permitted_dns_domains') and self.permitted_dns_domains is not None:
+            _dict['permitted_dns_domains'] = self.permitted_dns_domains
+        if hasattr(self, 'use_csr_values') and self.use_csr_values is not None:
+            _dict['use_csr_values'] = self.use_csr_values
+        if hasattr(self, 'ou') and self.ou is not None:
+            _dict['ou'] = self.ou
+        if hasattr(self, 'organization') and self.organization is not None:
+            _dict['organization'] = self.organization
+        if hasattr(self, 'country') and self.country is not None:
+            _dict['country'] = self.country
+        if hasattr(self, 'locality') and self.locality is not None:
+            _dict['locality'] = self.locality
+        if hasattr(self, 'province') and self.province is not None:
+            _dict['province'] = self.province
+        if hasattr(self, 'street_address') and self.street_address is not None:
+            _dict['street_address'] = self.street_address
+        if hasattr(self, 'postal_code') and self.postal_code is not None:
+            _dict['postal_code'] = self.postal_code
+        if hasattr(self, 'serial_number') and self.serial_number is not None:
+            _dict['serial_number'] = self.serial_number
+        if hasattr(self, 'data') and self.data is not None:
+            _dict['data'] = self.data.to_dict()
+        if hasattr(self, 'intermediate_certificate_authority') and self.intermediate_certificate_authority is not None:
+            _dict['intermediate_certificate_authority'] = self.intermediate_certificate_authority
+        return _dict
+
+    def _to_dict(self):
+        """Return a json dictionary representing this model."""
+        return self.to_dict()
+
+    def __str__(self) -> str:
+        """Return a `str` version of this SignIntermediateActionResult object."""
+        return json.dumps(self.to_dict(), indent=2)
+
+    def __eq__(self, other: 'SignIntermediateActionResult') -> bool:
+        """Return `true` when self and other are equal, false otherwise."""
+        if not isinstance(other, self.__class__):
+            return False
+        return self.__dict__ == other.__dict__
+
+    def __ne__(self, other: 'SignIntermediateActionResult') -> bool:
+        """Return `true` when self and other are not equal, false otherwise."""
+        return not self == other
+
+    class FormatEnum(str, Enum):
+        """
+        The format of the returned data.
+        """
+        PEM = 'pem'
+        DER = 'der'
+        PEM_BUNDLE = 'pem_bundle'
 
 
 class UsernamePasswordSecretMetadata(SecretMetadata):
@@ -9252,6 +14424,7 @@ class UsernamePasswordSecretMetadata(SecretMetadata):
         IAM_CREDENTIALS = 'iam_credentials'
         IMPORTED_CERT = 'imported_cert'
         PUBLIC_CERT = 'public_cert'
+        PRIVATE_CERT = 'private_cert'
         KV = 'kv'
 
 
@@ -9300,8 +14473,8 @@ class UsernamePasswordSecretResource(SecretResource):
     :attr str password: (optional) The password to assign to this secret.
     :attr object secret_data: (optional) The data that is associated with the secret
           version. The data object contains the following fields:
-          `username`: The username that is associated with the secret version.
-          `password`: The password that is associated with the secret version.
+          - `username`: The username that is associated with the secret version.
+          - `password`: The password that is associated with the secret version.
     :attr datetime expiration_date: (optional) The date the secret material expires.
           The date format follows RFC 3339.
           You can set an expiration date on supported secret types at their creation. If
@@ -9528,8 +14701,8 @@ class UsernamePasswordSecretVersion(SecretVersion):
           was created by automatic rotation.
     :attr object secret_data: (optional) The data that is associated with the secret
           version. The data object contains the following fields:
-          `username`: The username that is associated with the secret version.
-          `password`: The password that is associated with the secret version.
+          - `username`: The username that is associated with the secret version.
+          - `password`: The password that is associated with the secret version.
     """
 
     def __init__(self,
@@ -9547,8 +14720,8 @@ class UsernamePasswordSecretVersion(SecretVersion):
                secret was created by automatic rotation.
         :param object secret_data: (optional) The data that is associated with the
                secret version. The data object contains the following fields:
-               `username`: The username that is associated with the secret version.
-               `password`: The password that is associated with the secret version.
+               - `username`: The username that is associated with the secret version.
+               - `password`: The password that is associated with the secret version.
         """
         # pylint: disable=super-init-not-called
         self.id = id
