@@ -14,7 +14,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-# IBM OpenAPI SDK Code Generator Version: 3.47.1-be944570-20220406-170244
+# IBM OpenAPI SDK Code Generator Version: 3.48.0-e80b60a1-20220414-145125
 
 """
 With IBM Cloud® Secrets Manager, you can create, lease, and centrally manage secrets that
@@ -2208,6 +2208,106 @@ class CertificateSecretData():
         return not self == other
 
 
+class CertificateTemplatesConfigItem():
+    """
+    Certificate templates configuration.
+
+    :attr str name: The human-readable name to assign to your configuration.
+    :attr str type: The type of configuration. Value options differ depending on the
+          `config_element` property that you want to define.
+    :attr CertificateTemplateConfig config: (optional) Properties that describe a
+          certificate template. You can use a certificate template to control the
+          parameters that
+          are applied to your issued private certificates. For more information, see the
+          [docs](https://cloud.ibm.com/docs/secrets-manager?topic=secrets-manager-certificate-templates).
+    """
+
+    def __init__(self,
+                 name: str,
+                 type: str,
+                 *,
+                 config: 'CertificateTemplateConfig' = None) -> None:
+        """
+        Initialize a CertificateTemplatesConfigItem object.
+
+        :param str name: The human-readable name to assign to your configuration.
+        :param str type: The type of configuration. Value options differ depending
+               on the `config_element` property that you want to define.
+        :param CertificateTemplateConfig config: (optional) Properties that
+               describe a certificate template. You can use a certificate template to
+               control the parameters that
+               are applied to your issued private certificates. For more information, see
+               the
+               [docs](https://cloud.ibm.com/docs/secrets-manager?topic=secrets-manager-certificate-templates).
+        """
+        self.name = name
+        self.type = type
+        self.config = config
+
+    @classmethod
+    def from_dict(cls, _dict: Dict) -> 'CertificateTemplatesConfigItem':
+        """Initialize a CertificateTemplatesConfigItem object from a json dictionary."""
+        args = {}
+        if 'name' in _dict:
+            args['name'] = _dict.get('name')
+        else:
+            raise ValueError('Required property \'name\' not present in CertificateTemplatesConfigItem JSON')
+        if 'type' in _dict:
+            args['type'] = _dict.get('type')
+        else:
+            raise ValueError('Required property \'type\' not present in CertificateTemplatesConfigItem JSON')
+        if 'config' in _dict:
+            args['config'] = CertificateTemplateConfig.from_dict(_dict.get('config'))
+        return cls(**args)
+
+    @classmethod
+    def _from_dict(cls, _dict):
+        """Initialize a CertificateTemplatesConfigItem object from a json dictionary."""
+        return cls.from_dict(_dict)
+
+    def to_dict(self) -> Dict:
+        """Return a json dictionary representing this model."""
+        _dict = {}
+        if hasattr(self, 'name') and self.name is not None:
+            _dict['name'] = self.name
+        if hasattr(self, 'type') and self.type is not None:
+            _dict['type'] = self.type
+        if hasattr(self, 'config') and self.config is not None:
+            _dict['config'] = self.config.to_dict()
+        return _dict
+
+    def _to_dict(self):
+        """Return a json dictionary representing this model."""
+        return self.to_dict()
+
+    def __str__(self) -> str:
+        """Return a `str` version of this CertificateTemplatesConfigItem object."""
+        return json.dumps(self.to_dict(), indent=2)
+
+    def __eq__(self, other: 'CertificateTemplatesConfigItem') -> bool:
+        """Return `true` when self and other are equal, false otherwise."""
+        if not isinstance(other, self.__class__):
+            return False
+        return self.__dict__ == other.__dict__
+
+    def __ne__(self, other: 'CertificateTemplatesConfigItem') -> bool:
+        """Return `true` when self and other are not equal, false otherwise."""
+        return not self == other
+
+    class TypeEnum(str, Enum):
+        """
+        The type of configuration. Value options differ depending on the `config_element`
+        property that you want to define.
+        """
+        LETSENCRYPT = 'letsencrypt'
+        LETSENCRYPT_STAGE = 'letsencrypt-stage'
+        CIS = 'cis'
+        CLASSIC_INFRASTRUCTURE = 'classic_infrastructure'
+        ROOT_CERTIFICATE_AUTHORITY = 'root_certificate_authority'
+        INTERMEDIATE_CERTIFICATE_AUTHORITY = 'intermediate_certificate_authority'
+        CERTIFICATE_TEMPLATE = 'certificate_template'
+
+
 class CollectionMetadata():
     """
     The metadata that describes the resource array.
@@ -2936,7 +3036,7 @@ class GetConfigElementsResourcesItem():
         msg = "Cannot instantiate base class. Instead, instantiate one of the defined subclasses: {0}".format(
             ", ".join(['GetConfigElementsResourcesItemCertificateAuthoritiesConfig',
                        'GetConfigElementsResourcesItemDnsProvidersConfig', 'RootCertificateAuthoritiesConfig',
-                       'IntermediateCertificateAuthoritiesConfig']))
+                       'IntermediateCertificateAuthoritiesConfig', 'CertificateTemplatesConfig']))
         raise Exception(msg)
 
 
@@ -5852,8 +5952,12 @@ class CertificateSecretResource(SecretResource):
           was imported with an associated intermediate certificate.
     :attr bool private_key_included: (optional) Indicates whether the certificate
           was imported with an associated private key.
-    :attr List[str] alt_names: (optional) The alternative names that are defined for
+    :attr object alt_names: (optional) The alternative names that are defined for
           the certificate.
+          For public certificates, this value is provided as an array of strings. For
+          private certificates, this value is provided as a comma-delimited list (string).
+          In the API response, this value is returned as an array of strings for all the
+          types of certificate secrets.
     :attr datetime expiration_date: (optional) The date that the certificate
           expires. The date format follows RFC 3339.
     """
@@ -5886,7 +5990,7 @@ class CertificateSecretResource(SecretResource):
                  common_name: str = None,
                  intermediate_included: bool = None,
                  private_key_included: bool = None,
-                 alt_names: List[str] = None,
+                 alt_names: object = None,
                  expiration_date: datetime = None) -> None:
         """
         Initialize a CertificateSecretResource object.
@@ -5917,8 +6021,12 @@ class CertificateSecretResource(SecretResource):
                associate with the root certificate. The data must be formatted on a single
                line with embedded newline characters.
         :param CertificateValidity validity: (optional)
-        :param List[str] alt_names: (optional) The alternative names that are
-               defined for the certificate.
+        :param object alt_names: (optional) The alternative names that are defined
+               for the certificate.
+               For public certificates, this value is provided as an array of strings. For
+               private certificates, this value is provided as a comma-delimited list
+               (string). In the API response, this value is returned as an array of
+               strings for all the types of certificate secrets.
         """
         # pylint: disable=super-init-not-called
         self.id = id
@@ -6478,16 +6586,17 @@ class CertificateTemplateConfig(ConfigElementDefConfig):
           certificates to only the secret groups that you specify.
           This field can be supplied as a comma-delimited list of secret group IDs.
     :attr object max_ttl: (optional) The maximum time-to-live (TTL) for certificates
-          that are created by this CA. The value can be supplied as a string
-          representation of a duration in hours, for example '8760h'. Note that in the API
-          response the value is returned in seconds (integer).
+          that are created by this CA.
+          The value can be supplied as a string representation of a duration in hours, for
+          example '8760h'. In the API response, this value is returned in seconds
+          (integer).
           Minimum value is one hour (`1h`). Maximum value is 100 years (`876000h`).
-    :attr str ttl: (optional) The time-to-live (TTL) or lease duration to assign to
-          a private certificate.
+    :attr object ttl: (optional) The time-to-live (TTL) to assign to a private
+          certificate.
           The value can be supplied as a string representation of a duration, such as
           `12h`. Hour (`h`) is the largest time suffix. The value can't exceed the
-          `max_ttl` that is defined in the associated certificate template. Note that in
-          the API response the value is returned in seconds (integer).
+          `max_ttl` that is defined in the associated certificate template. In the API
+          response, this value is returned in seconds (integer).
     :attr bool allow_localhost: (optional) Determines whether to allow `localhost`
           to be included as one of the requested common names.
     :attr List[str] allowed_domains: (optional) The domains to define for the
@@ -6548,9 +6657,9 @@ class CertificateTemplateConfig(ConfigElementDefConfig):
           Allowable values are: `rsa` and `ec`.
     :attr int key_bits: (optional) The number of bits to use when generating the
           private key.
-          Allowable values for RSA keys are: 2048 and 4096. Allowable values for EC keys
-          are: 224, 256, 384 And 521. The default for RSA keys is 2048, and the default
-          for EC keys is 256.
+          Allowable values for RSA keys are: `2048` and `4096`. Allowable values for EC
+          keys are: `224`, `256`, `384`, and `521`. The default for RSA keys is `2048`.
+          The default for EC keys is `256`.
     :attr List[str] key_usage: (optional) The allowed key usage constraint to define
           for private certificates.
           You can find valid values in the [Go x509 package
@@ -6578,21 +6687,21 @@ class CertificateTemplateConfig(ConfigElementDefConfig):
           Does not include the common name in the CSR. To use the common name, include the
           `use_csr_common_name` property.
     :attr List[str] ou: (optional) The Organizational Unit (OU) values to define in
-          the subject field of the resulting CA certificate.
+          the subject field of the resulting certificate.
     :attr List[str] organization: (optional) The Organization (O) values to define
-          in the subject field of the resulting CA certificate.
+          in the subject field of the resulting certificate.
     :attr List[str] country: (optional) The Country (C) values to define in the
-          subject field of the resulting CA certificate.
+          subject field of the resulting certificate.
     :attr List[str] locality: (optional) The Locality (L) values to define in the
-          subject field of the resulting CA certificate.
+          subject field of the resulting certificate.
     :attr List[str] province: (optional) The Province (ST) values to define in the
-          subject field of the resulting CA certificate.
+          subject field of the resulting certificate.
     :attr List[str] street_address: (optional) The Street Address values in the
-          subject field of the resulting CA certificate.
+          subject field of the resulting certificate.
     :attr List[str] postal_code: (optional) The Postal Code values in the subject
-          field of the resulting CA certificate.
+          field of the resulting certificate.
     :attr str serial_number: (optional) The serial number to assign to the generated
-          private certificate. To assign a random serial number, you can omit this field.
+          certificate. To assign a random serial number, you can omit this field.
     :attr bool require_cn: (optional) Determines whether to require a common name to
           create a private certificate.
           By default, a common name is required to generate a certificate. To make the
@@ -6603,9 +6712,9 @@ class CertificateTemplateConfig(ConfigElementDefConfig):
           mark the Basic Constraints extension of an issued private certificate as valid
           for non-CA certificates.
     :attr object not_before_duration: (optional) The duration in seconds by which to
-          backdate the `not_before` property of an issued private certificate. The value
-          can be supplied as a string representation of a duration, such as `30s`. Note
-          that in the API response the value is returned in seconds (integer).
+          backdate the `not_before` property of an issued private certificate.
+          The value can be supplied as a string representation of a duration, such as
+          `30s`. In the API response, this value is returned in seconds (integer).
     """
 
     def __init__(self,
@@ -6613,7 +6722,7 @@ class CertificateTemplateConfig(ConfigElementDefConfig):
                  *,
                  allowed_secret_groups: str = None,
                  max_ttl: object = None,
-                 ttl: str = None,
+                 ttl: object = None,
                  allow_localhost: bool = None,
                  allowed_domains: List[str] = None,
                  allowed_domains_template: bool = None,
@@ -6657,16 +6766,17 @@ class CertificateTemplateConfig(ConfigElementDefConfig):
                certificates to only the secret groups that you specify.
                This field can be supplied as a comma-delimited list of secret group IDs.
         :param object max_ttl: (optional) The maximum time-to-live (TTL) for
-               certificates that are created by this CA. The value can be supplied as a
-               string representation of a duration in hours, for example '8760h'. Note
-               that in the API response the value is returned in seconds (integer).
+               certificates that are created by this CA.
+               The value can be supplied as a string representation of a duration in
+               hours, for example '8760h'. In the API response, this value is returned in
+               seconds (integer).
                Minimum value is one hour (`1h`). Maximum value is 100 years (`876000h`).
-        :param str ttl: (optional) The time-to-live (TTL) or lease duration to
-               assign to a private certificate.
+        :param object ttl: (optional) The time-to-live (TTL) to assign to a private
+               certificate.
                The value can be supplied as a string representation of a duration, such as
                `12h`. Hour (`h`) is the largest time suffix. The value can't exceed the
-               `max_ttl` that is defined in the associated certificate template. Note that
-               in the API response the value is returned in seconds (integer).
+               `max_ttl` that is defined in the associated certificate template. In the
+               API response, this value is returned in seconds (integer).
         :param bool allow_localhost: (optional) Determines whether to allow
                `localhost` to be included as one of the requested common names.
         :param List[str] allowed_domains: (optional) The domains to define for the
@@ -6727,9 +6837,9 @@ class CertificateTemplateConfig(ConfigElementDefConfig):
                Allowable values are: `rsa` and `ec`.
         :param int key_bits: (optional) The number of bits to use when generating
                the private key.
-               Allowable values for RSA keys are: 2048 and 4096. Allowable values for EC
-               keys are: 224, 256, 384 And 521. The default for RSA keys is 2048, and the
-               default for EC keys is 256.
+               Allowable values for RSA keys are: `2048` and `4096`. Allowable values for
+               EC keys are: `224`, `256`, `384`, and `521`. The default for RSA keys is
+               `2048`. The default for EC keys is `256`.
         :param List[str] key_usage: (optional) The allowed key usage constraint to
                define for private certificates.
                You can find valid values in the [Go x509 package
@@ -6757,22 +6867,22 @@ class CertificateTemplateConfig(ConfigElementDefConfig):
                Does not include the common name in the CSR. To use the common name,
                include the `use_csr_common_name` property.
         :param List[str] ou: (optional) The Organizational Unit (OU) values to
-               define in the subject field of the resulting CA certificate.
+               define in the subject field of the resulting certificate.
         :param List[str] organization: (optional) The Organization (O) values to
-               define in the subject field of the resulting CA certificate.
+               define in the subject field of the resulting certificate.
         :param List[str] country: (optional) The Country (C) values to define in
-               the subject field of the resulting CA certificate.
+               the subject field of the resulting certificate.
         :param List[str] locality: (optional) The Locality (L) values to define in
-               the subject field of the resulting CA certificate.
+               the subject field of the resulting certificate.
         :param List[str] province: (optional) The Province (ST) values to define in
-               the subject field of the resulting CA certificate.
+               the subject field of the resulting certificate.
         :param List[str] street_address: (optional) The Street Address values in
-               the subject field of the resulting CA certificate.
+               the subject field of the resulting certificate.
         :param List[str] postal_code: (optional) The Postal Code values in the
-               subject field of the resulting CA certificate.
+               subject field of the resulting certificate.
         :param str serial_number: (optional) The serial number to assign to the
-               generated private certificate. To assign a random serial number, you can
-               omit this field.
+               generated certificate. To assign a random serial number, you can omit this
+               field.
         :param bool require_cn: (optional) Determines whether to require a common
                name to create a private certificate.
                By default, a common name is required to generate a certificate. To make
@@ -6784,9 +6894,9 @@ class CertificateTemplateConfig(ConfigElementDefConfig):
                certificate as valid for non-CA certificates.
         :param object not_before_duration: (optional) The duration in seconds by
                which to backdate the `not_before` property of an issued private
-               certificate. The value can be supplied as a string representation of a
-               duration, such as `30s`. Note that in the API response the value is
-               returned in seconds (integer).
+               certificate.
+               The value can be supplied as a string representation of a duration, such as
+               `30s`. In the API response, this value is returned in seconds (integer).
         """
         # pylint: disable=super-init-not-called
         self.certificate_authority = certificate_authority
@@ -7025,6 +7135,66 @@ class CertificateTemplateConfig(ConfigElementDefConfig):
         """
         RSA = 'rsa'
         EC = 'ec'
+
+
+class CertificateTemplatesConfig(GetConfigElementsResourcesItem):
+    """
+    Certificate templates configuration.
+
+    :attr List[CertificateTemplatesConfigItem] certificate_templates:
+    """
+
+    def __init__(self,
+                 certificate_templates: List['CertificateTemplatesConfigItem']) -> None:
+        """
+        Initialize a CertificateTemplatesConfig object.
+
+        :param List[CertificateTemplatesConfigItem] certificate_templates:
+        """
+        # pylint: disable=super-init-not-called
+        self.certificate_templates = certificate_templates
+
+    @classmethod
+    def from_dict(cls, _dict: Dict) -> 'CertificateTemplatesConfig':
+        """Initialize a CertificateTemplatesConfig object from a json dictionary."""
+        args = {}
+        if 'certificate_templates' in _dict:
+            args['certificate_templates'] = [CertificateTemplatesConfigItem.from_dict(x) for x in
+                                             _dict.get('certificate_templates')]
+        else:
+            raise ValueError(
+                'Required property \'certificate_templates\' not present in CertificateTemplatesConfig JSON')
+        return cls(**args)
+
+    @classmethod
+    def _from_dict(cls, _dict):
+        """Initialize a CertificateTemplatesConfig object from a json dictionary."""
+        return cls.from_dict(_dict)
+
+    def to_dict(self) -> Dict:
+        """Return a json dictionary representing this model."""
+        _dict = {}
+        if hasattr(self, 'certificate_templates') and self.certificate_templates is not None:
+            _dict['certificate_templates'] = [x.to_dict() for x in self.certificate_templates]
+        return _dict
+
+    def _to_dict(self):
+        """Return a json dictionary representing this model."""
+        return self.to_dict()
+
+    def __str__(self) -> str:
+        """Return a `str` version of this CertificateTemplatesConfig object."""
+        return json.dumps(self.to_dict(), indent=2)
+
+    def __eq__(self, other: 'CertificateTemplatesConfig') -> bool:
+        """Return `true` when self and other are equal, false otherwise."""
+        if not isinstance(other, self.__class__):
+            return False
+        return self.__dict__ == other.__dict__
+
+    def __ne__(self, other: 'CertificateTemplatesConfig') -> bool:
+        """Return `true` when self and other are not equal, false otherwise."""
+        return not self == other
 
 
 class ConfigElementDefConfigClassicInfrastructureConfig(ConfigElementDefConfig):
@@ -7989,8 +8159,8 @@ class IAMCredentialsSecretResource(SecretResource):
     :attr List[dict] versions: (optional) An array that contains metadata for each
           secret version. For more information on the metadata properties, see [Get secret
           version metadata](#get-secret-version-metadata).
-    :attr str ttl: (optional) The time-to-live (TTL) or lease duration to assign to
-          generated credentials.
+    :attr object ttl: (optional) The time-to-live (TTL) or lease duration to assign
+          to generated credentials.
           For `iam_credentials` secrets, the TTL defines for how long each generated API
           key remains valid. The value can be either an integer that specifies the number
           of seconds, or the string representation of a duration, such as `120m` or `24h`.
@@ -8048,7 +8218,7 @@ class IAMCredentialsSecretResource(SecretResource):
                  last_update_date: datetime = None,
                  versions_total: int = None,
                  versions: List[dict] = None,
-                 ttl: str = None,
+                 ttl: object = None,
                  access_groups: List[str] = None,
                  api_key: str = None,
                  api_key_id: str = None,
@@ -8075,7 +8245,7 @@ class IAMCredentialsSecretResource(SecretResource):
                bracket, comma, colon, ampersand, and vertical pipe character (|).
                To protect your privacy, do not use personal data, such as your name or
                location, as a label for your secret.
-        :param str ttl: (optional) The time-to-live (TTL) or lease duration to
+        :param object ttl: (optional) The time-to-live (TTL) or lease duration to
                assign to generated credentials.
                For `iam_credentials` secrets, the TTL defines for how long each generated
                API key remains valid. The value can be either an integer that specifies
@@ -8613,9 +8783,10 @@ class IntermediateCertificateAuthorityConfig(ConfigElementDefConfig):
     Intermediate certificate authority configuration.
 
     :attr object max_ttl: The maximum time-to-live (TTL) for certificates that are
-          created by this CA. The value can be supplied as a string representation of a
-          duration in hours, for example '8760h'. Note that in the API response the value
-          is returned in seconds (integer).
+          created by this CA.
+          The value can be supplied as a string representation of a duration in hours, for
+          example '8760h'. In the API response, this value is returned in seconds
+          (integer).
           Minimum value is one hour (`1h`). Maximum value is 100 years (`876000h`).
     :attr str signing_method: The signing method to use with this certificate
           authority to generate private certificates.
@@ -8628,19 +8799,21 @@ class IntermediateCertificateAuthorityConfig(ConfigElementDefConfig):
           match the name of a certificate authority that is configured in the Secrets
           Manager service instance.
     :attr object crl_expiry: (optional) The time until the certificate revocation
-          list (CRL) expires. The value can be supplied as a string representation of a
-          duration in hours, such as `48h`. The default is 72 hours. Note that in the API
-          response the value is returned in seconds (integer).
-    :attr bool crl_disable: (optional) Determines whether to disable certificate
-          revocation list (CRL) building.
-          By default, each request rebuilds a CRL. To disable CRL building, set this field
-          to `true`.
+          list (CRL) expires.
+          The value can be supplied as a string representation of a duration in hours,
+          such as `48h`. The default is 72 hours. In the API response, this value is
+          returned in seconds (integer).
+          **Note:** The CRL is rotated automatically before it expires.
+    :attr bool crl_disable: (optional) Disables or enables certificate revocation
+          list (CRL) building.
+          If CRL building is disabled, a signed but zero-length CRL is returned when
+          downloading the CRL. If CRL building is enabled,  it will rebuild the CRL.
     :attr bool crl_distribution_points_encoded: (optional) Determines whether to
-          encode the certificate revocation list (CRL) distribution points in the private
-          certificates that are issued by a certificate authority.
+          encode the certificate revocation list (CRL) distribution points in the
+          certificates that are issued by this certificate authority.
     :attr bool issuing_certificates_urls_encoded: (optional) Determines whether to
-          encode the URL of the issuing certificate in the private certificates that are
-          issued by a certificate authority.
+          encode the URL of the issuing certificate in the certificates that are issued by
+          this certificate authority.
     :attr str common_name: The fully qualified domain name or host domain name for
           the certificate.
     :attr str status: (optional) The status of the certificate authority. The status
@@ -8651,8 +8824,8 @@ class IntermediateCertificateAuthorityConfig(ConfigElementDefConfig):
           `expired` or `revoked`.
     :attr datetime expiration_date: (optional) The date that the certificate
           expires. The date format follows RFC 3339.
-    :attr List[str] alt_names: (optional) The Subject Alternative Names to define
-          for the CA certificate, in a comma-delimited list.
+    :attr str alt_names: (optional) The Subject Alternative Names to define for the
+          CA certificate, in a comma-delimited list.
           The alternative names can be host names or email addresses.
     :attr str ip_sans: (optional) The IP Subject Alternative Names to define for the
           CA certificate, in a comma-delimited list.
@@ -8670,30 +8843,30 @@ class IntermediateCertificateAuthorityConfig(ConfigElementDefConfig):
     :attr str key_type: (optional) The type of private key to generate.
     :attr int key_bits: (optional) The number of bits to use when generating the
           private key.
-          Allowable values for RSA keys are: 2048 and 4096. Allowable values for EC keys
-          are: 224, 256, 384 And 521. The default for RSA keys is 2048, and the default
-          for EC keys is 256.
+          Allowable values for RSA keys are: `2048` and `4096`. Allowable values for EC
+          keys are: `224`, `256`, `384`, and `521`. The default for RSA keys is `2048`.
+          The default for EC keys is `256`.
     :attr bool exclude_cn_from_sans: (optional) Controls whether the common name is
           excluded from Subject Alternative Names (SANs).
           If set to `true`, the common name is is not included in DNS or Email SANs if
           they apply. This field can be useful if the common name is not a hostname or an
           email address, but is instead a human-readable identifier.
     :attr List[str] ou: (optional) The Organizational Unit (OU) values to define in
-          the subject field of the resulting CA certificate.
+          the subject field of the resulting certificate.
     :attr List[str] organization: (optional) The Organization (O) values to define
-          in the subject field of the resulting CA certificate.
+          in the subject field of the resulting certificate.
     :attr List[str] country: (optional) The Country (C) values to define in the
-          subject field of the resulting CA certificate.
+          subject field of the resulting certificate.
     :attr List[str] locality: (optional) The Locality (L) values to define in the
-          subject field of the resulting CA certificate.
+          subject field of the resulting certificate.
     :attr List[str] province: (optional) The Province (ST) values to define in the
-          subject field of the resulting CA certificate.
+          subject field of the resulting certificate.
     :attr List[str] street_address: (optional) The Street Address values in the
-          subject field of the resulting CA certificate.
+          subject field of the resulting certificate.
     :attr List[str] postal_code: (optional) The Postal Code values in the subject
-          field of the resulting CA certificate.
+          field of the resulting certificate.
     :attr str serial_number: (optional) The serial number to assign to the generated
-          private certificate. To assign a random serial number, you can omit this field.
+          certificate. To assign a random serial number, you can omit this field.
     :attr object data: (optional) The data that is associated with the intermediate
           certificate authority. The data object contains the
            following fields:
@@ -8714,7 +8887,7 @@ class IntermediateCertificateAuthorityConfig(ConfigElementDefConfig):
                  issuing_certificates_urls_encoded: bool = None,
                  status: str = None,
                  expiration_date: datetime = None,
-                 alt_names: List[str] = None,
+                 alt_names: str = None,
                  ip_sans: str = None,
                  uri_sans: str = None,
                  other_sans: List[str] = None,
@@ -8736,9 +8909,10 @@ class IntermediateCertificateAuthorityConfig(ConfigElementDefConfig):
         Initialize a IntermediateCertificateAuthorityConfig object.
 
         :param object max_ttl: The maximum time-to-live (TTL) for certificates that
-               are created by this CA. The value can be supplied as a string
-               representation of a duration in hours, for example '8760h'. Note that in
-               the API response the value is returned in seconds (integer).
+               are created by this CA.
+               The value can be supplied as a string representation of a duration in
+               hours, for example '8760h'. In the API response, this value is returned in
+               seconds (integer).
                Minimum value is one hour (`1h`). Maximum value is 100 years (`876000h`).
         :param str signing_method: The signing method to use with this certificate
                authority to generate private certificates.
@@ -8753,22 +8927,23 @@ class IntermediateCertificateAuthorityConfig(ConfigElementDefConfig):
                must match the name of a certificate authority that is configured in the
                Secrets Manager service instance.
         :param object crl_expiry: (optional) The time until the certificate
-               revocation list (CRL) expires. The value can be supplied as a string
-               representation of a duration in hours, such as `48h`. The default is 72
-               hours. Note that in the API response the value is returned in seconds
-               (integer).
-        :param bool crl_disable: (optional) Determines whether to disable
-               certificate revocation list (CRL) building.
-               By default, each request rebuilds a CRL. To disable CRL building, set this
-               field to `true`.
+               revocation list (CRL) expires.
+               The value can be supplied as a string representation of a duration in
+               hours, such as `48h`. The default is 72 hours. In the API response, this
+               value is returned in seconds (integer).
+               **Note:** The CRL is rotated automatically before it expires.
+        :param bool crl_disable: (optional) Disables or enables certificate
+               revocation list (CRL) building.
+               If CRL building is disabled, a signed but zero-length CRL is returned when
+               downloading the CRL. If CRL building is enabled,  it will rebuild the CRL.
         :param bool crl_distribution_points_encoded: (optional) Determines whether
                to encode the certificate revocation list (CRL) distribution points in the
-               private certificates that are issued by a certificate authority.
+               certificates that are issued by this certificate authority.
         :param bool issuing_certificates_urls_encoded: (optional) Determines
-               whether to encode the URL of the issuing certificate in the private
-               certificates that are issued by a certificate authority.
-        :param List[str] alt_names: (optional) The Subject Alternative Names to
-               define for the CA certificate, in a comma-delimited list.
+               whether to encode the URL of the issuing certificate in the certificates
+               that are issued by this certificate authority.
+        :param str alt_names: (optional) The Subject Alternative Names to define
+               for the CA certificate, in a comma-delimited list.
                The alternative names can be host names or email addresses.
         :param str ip_sans: (optional) The IP Subject Alternative Names to define
                for the CA certificate, in a comma-delimited list.
@@ -8786,31 +8961,31 @@ class IntermediateCertificateAuthorityConfig(ConfigElementDefConfig):
         :param str key_type: (optional) The type of private key to generate.
         :param int key_bits: (optional) The number of bits to use when generating
                the private key.
-               Allowable values for RSA keys are: 2048 and 4096. Allowable values for EC
-               keys are: 224, 256, 384 And 521. The default for RSA keys is 2048, and the
-               default for EC keys is 256.
+               Allowable values for RSA keys are: `2048` and `4096`. Allowable values for
+               EC keys are: `224`, `256`, `384`, and `521`. The default for RSA keys is
+               `2048`. The default for EC keys is `256`.
         :param bool exclude_cn_from_sans: (optional) Controls whether the common
                name is excluded from Subject Alternative Names (SANs).
                If set to `true`, the common name is is not included in DNS or Email SANs
                if they apply. This field can be useful if the common name is not a
                hostname or an email address, but is instead a human-readable identifier.
         :param List[str] ou: (optional) The Organizational Unit (OU) values to
-               define in the subject field of the resulting CA certificate.
+               define in the subject field of the resulting certificate.
         :param List[str] organization: (optional) The Organization (O) values to
-               define in the subject field of the resulting CA certificate.
+               define in the subject field of the resulting certificate.
         :param List[str] country: (optional) The Country (C) values to define in
-               the subject field of the resulting CA certificate.
+               the subject field of the resulting certificate.
         :param List[str] locality: (optional) The Locality (L) values to define in
-               the subject field of the resulting CA certificate.
+               the subject field of the resulting certificate.
         :param List[str] province: (optional) The Province (ST) values to define in
-               the subject field of the resulting CA certificate.
+               the subject field of the resulting certificate.
         :param List[str] street_address: (optional) The Street Address values in
-               the subject field of the resulting CA certificate.
+               the subject field of the resulting certificate.
         :param List[str] postal_code: (optional) The Postal Code values in the
-               subject field of the resulting CA certificate.
+               subject field of the resulting certificate.
         :param str serial_number: (optional) The serial number to assign to the
-               generated private certificate. To assign a random serial number, you can
-               omit this field.
+               generated certificate. To assign a random serial number, you can omit this
+               field.
         """
         # pylint: disable=super-init-not-called
         self.max_ttl = max_ttl
@@ -9027,7 +9202,6 @@ class IntermediateCertificateAuthorityConfig(ConfigElementDefConfig):
         The format of the returned data.
         """
         PEM = 'pem'
-        DER = 'der'
         PEM_BUNDLE = 'pem_bundle'
 
     class PrivateKeyFormatEnum(str, Enum):
@@ -9561,28 +9735,28 @@ class PrivateCertSecretEngineRootConfig(GetConfigResourcesItem):
     """
     Configuration for the private certificates engine.
 
-    :attr List[RootCertificateAuthorityConfig] root_certificate_authorities:
+    :attr List[RootCertificateAuthoritiesConfigItem] root_certificate_authorities:
           (optional) The root certificate authority configurations that are associated
           with your instance.
-    :attr List[IntermediateCertificateAuthorityConfig]
-          intermdiate_certificate_authorities: (optional) The intermediate certificate
+    :attr List[IntermediateCertificateAuthoritiesConfigItem]
+          intermediate_certificate_authorities: (optional) The intermediate certificate
           authority configurations that are associated with your instance.
-    :attr List[CertificateTemplateConfig] certificate_templates: (optional) The
+    :attr List[CertificateTemplatesConfigItem] certificate_templates: (optional) The
           certificate templates that are associated with your instance.
     """
 
     def __init__(self,
                  *,
-                 root_certificate_authorities: List['RootCertificateAuthorityConfig'] = None,
-                 intermdiate_certificate_authorities: List['IntermediateCertificateAuthorityConfig'] = None,
-                 certificate_templates: List['CertificateTemplateConfig'] = None) -> None:
+                 root_certificate_authorities: List['RootCertificateAuthoritiesConfigItem'] = None,
+                 intermediate_certificate_authorities: List['IntermediateCertificateAuthoritiesConfigItem'] = None,
+                 certificate_templates: List['CertificateTemplatesConfigItem'] = None) -> None:
         """
         Initialize a PrivateCertSecretEngineRootConfig object.
 
         """
         # pylint: disable=super-init-not-called
         self.root_certificate_authorities = root_certificate_authorities
-        self.intermdiate_certificate_authorities = intermdiate_certificate_authorities
+        self.intermediate_certificate_authorities = intermediate_certificate_authorities
         self.certificate_templates = certificate_templates
 
     @classmethod
@@ -9590,13 +9764,13 @@ class PrivateCertSecretEngineRootConfig(GetConfigResourcesItem):
         """Initialize a PrivateCertSecretEngineRootConfig object from a json dictionary."""
         args = {}
         if 'root_certificate_authorities' in _dict:
-            args['root_certificate_authorities'] = [RootCertificateAuthorityConfig.from_dict(x) for x in
+            args['root_certificate_authorities'] = [RootCertificateAuthoritiesConfigItem.from_dict(x) for x in
                                                     _dict.get('root_certificate_authorities')]
-        if 'intermdiate_certificate_authorities' in _dict:
-            args['intermdiate_certificate_authorities'] = [IntermediateCertificateAuthorityConfig.from_dict(x) for x in
-                                                           _dict.get('intermdiate_certificate_authorities')]
+        if 'intermediate_certificate_authorities' in _dict:
+            args['intermediate_certificate_authorities'] = [IntermediateCertificateAuthoritiesConfigItem.from_dict(x)
+                                                            for x in _dict.get('intermediate_certificate_authorities')]
         if 'certificate_templates' in _dict:
-            args['certificate_templates'] = [CertificateTemplateConfig.from_dict(x) for x in
+            args['certificate_templates'] = [CertificateTemplatesConfigItem.from_dict(x) for x in
                                              _dict.get('certificate_templates')]
         return cls(**args)
 
@@ -9610,10 +9784,10 @@ class PrivateCertSecretEngineRootConfig(GetConfigResourcesItem):
         _dict = {}
         if hasattr(self, 'root_certificate_authorities') and getattr(self, 'root_certificate_authorities') is not None:
             _dict['root_certificate_authorities'] = [x.to_dict() for x in getattr(self, 'root_certificate_authorities')]
-        if hasattr(self, 'intermdiate_certificate_authorities') and getattr(self,
-                                                                            'intermdiate_certificate_authorities') is not None:
-            _dict['intermdiate_certificate_authorities'] = [x.to_dict() for x in
-                                                            getattr(self, 'intermdiate_certificate_authorities')]
+        if hasattr(self, 'intermediate_certificate_authorities') and getattr(self,
+                                                                             'intermediate_certificate_authorities') is not None:
+            _dict['intermediate_certificate_authorities'] = [x.to_dict() for x in
+                                                             getattr(self, 'intermediate_certificate_authorities')]
         if hasattr(self, 'certificate_templates') and getattr(self, 'certificate_templates') is not None:
             _dict['certificate_templates'] = [x.to_dict() for x in getattr(self, 'certificate_templates')]
         return _dict
@@ -9674,36 +9848,13 @@ class PrivateCertificateSecretMetadata(SecretMetadata):
     :attr datetime last_update_date: (optional) Updates when any part of the secret
           metadata is modified. The date format follows RFC 3339.
     :attr int versions_total: (optional) The number of versions the secret has.
-    :attr str certificate_template: The name of the certificate template.
+    :attr str certificate_template: (optional) The name of the certificate template.
     :attr str certificate_authority: (optional) The intermediate certificate
           authority that signed this certificate.
-    :attr str common_name: The fully qualified domain name or host domain name for
+    :attr str common_name: (optional) The fully qualified domain name or host domain
+          name for the certificate.
+    :attr List[str] alt_names: (optional) The alternative names that are defined for
           the certificate.
-    :attr List[str] alt_names: (optional) The Subject Alternative Names to define
-          for the CA certificate, in a comma-delimited list.
-          The alternative names can be host names or email addresses.
-    :attr str ip_sans: (optional) The IP Subject Alternative Names to define for the
-          CA certificate, in a comma-delimited list.
-    :attr str uri_sans: (optional) The URI Subject Alternative Names to define for
-          the CA certificate, in a comma-delimited list.
-    :attr List[str] other_sans: (optional) The custom Object Identifier (OID) or
-          UTF8-string Subject Alternative Names to define for the CA certificate.
-          The alternative names must match the values that are specified in the
-          `allowed_other_sans` field in the associated certificate template. The format is
-          the same as OpenSSL: `<oid>:<type>:<value>` where the current valid type is
-          `UTF8`.
-    :attr str ttl: (optional) The time-to-live (TTL) or lease duration to assign to
-          a private certificate. The value can be supplied as a string representation of a
-          duration in hours, for example '12h'. The value can't exceed the `max_ttl` that
-          is defined in the associated certificate template.
-    :attr str format: (optional) The format of the returned data.
-    :attr str private_key_format: (optional) The format of the generated private
-          key.
-    :attr bool exclude_cn_from_sans: (optional) Controls whether the common name is
-          excluded from Subject Alternative Names (SANs).
-          If set to `true`, the common name is is not included in DNS or Email SANs if
-          they apply. This field can be useful if the common name is not a hostname or an
-          email address, but is instead a human-readable identifier.
     :attr Rotation rotation: (optional)
     :attr str algorithm: (optional) The identifier for the cryptographic algorithm
           that was used by the issuing certificate authority to sign the certificate.
@@ -9723,8 +9874,6 @@ class PrivateCertificateSecretMetadata(SecretMetadata):
 
     def __init__(self,
                  name: str,
-                 certificate_template: str,
-                 common_name: str,
                  *,
                  id: str = None,
                  labels: List[str] = None,
@@ -9738,15 +9887,10 @@ class PrivateCertificateSecretMetadata(SecretMetadata):
                  created_by: str = None,
                  last_update_date: datetime = None,
                  versions_total: int = None,
+                 certificate_template: str = None,
                  certificate_authority: str = None,
+                 common_name: str = None,
                  alt_names: List[str] = None,
-                 ip_sans: str = None,
-                 uri_sans: str = None,
-                 other_sans: List[str] = None,
-                 ttl: str = None,
-                 format: str = None,
-                 private_key_format: str = None,
-                 exclude_cn_from_sans: bool = None,
                  rotation: 'Rotation' = None,
                  algorithm: str = None,
                  key_algorithm: str = None,
@@ -9761,9 +9905,6 @@ class PrivateCertificateSecretMetadata(SecretMetadata):
         :param str name: A human-readable alias to assign to your secret.
                To protect your privacy, do not use personal data, such as your name or
                location, as an alias for your secret.
-        :param str certificate_template: The name of the certificate template.
-        :param str common_name: The fully qualified domain name or host domain name
-               for the certificate.
         :param List[str] labels: (optional) Labels that you can use to filter for
                secrets in your instance.
                Up to 30 labels can be created. Labels can be in the range 2 - 30
@@ -9775,32 +9916,6 @@ class PrivateCertificateSecretMetadata(SecretMetadata):
         :param str description: (optional) An extended description of your secret.
                To protect your privacy, do not use personal data, such as your name or
                location, as a description for your secret.
-        :param List[str] alt_names: (optional) The Subject Alternative Names to
-               define for the CA certificate, in a comma-delimited list.
-               The alternative names can be host names or email addresses.
-        :param str ip_sans: (optional) The IP Subject Alternative Names to define
-               for the CA certificate, in a comma-delimited list.
-        :param str uri_sans: (optional) The URI Subject Alternative Names to define
-               for the CA certificate, in a comma-delimited list.
-        :param List[str] other_sans: (optional) The custom Object Identifier (OID)
-               or UTF8-string Subject Alternative Names to define for the CA certificate.
-               The alternative names must match the values that are specified in the
-               `allowed_other_sans` field in the associated certificate template. The
-               format is the same as OpenSSL: `<oid>:<type>:<value>` where the current
-               valid type is `UTF8`.
-        :param str ttl: (optional) The time-to-live (TTL) or lease duration to
-               assign to a private certificate. The value can be supplied as a string
-               representation of a duration in hours, for example '12h'. The value can't
-               exceed the `max_ttl` that is defined in the associated certificate
-               template.
-        :param str format: (optional) The format of the returned data.
-        :param str private_key_format: (optional) The format of the generated
-               private key.
-        :param bool exclude_cn_from_sans: (optional) Controls whether the common
-               name is excluded from Subject Alternative Names (SANs).
-               If set to `true`, the common name is is not included in DNS or Email SANs
-               if they apply. This field can be useful if the common name is not a
-               hostname or an email address, but is instead a human-readable identifier.
         :param Rotation rotation: (optional)
         :param CertificateValidity validity: (optional)
         """
@@ -9822,13 +9937,6 @@ class PrivateCertificateSecretMetadata(SecretMetadata):
         self.certificate_authority = certificate_authority
         self.common_name = common_name
         self.alt_names = alt_names
-        self.ip_sans = ip_sans
-        self.uri_sans = uri_sans
-        self.other_sans = other_sans
-        self.ttl = ttl
-        self.format = format
-        self.private_key_format = private_key_format
-        self.exclude_cn_from_sans = exclude_cn_from_sans
         self.rotation = rotation
         self.algorithm = algorithm
         self.key_algorithm = key_algorithm
@@ -9872,31 +9980,12 @@ class PrivateCertificateSecretMetadata(SecretMetadata):
             args['versions_total'] = _dict.get('versions_total')
         if 'certificate_template' in _dict:
             args['certificate_template'] = _dict.get('certificate_template')
-        else:
-            raise ValueError(
-                'Required property \'certificate_template\' not present in PrivateCertificateSecretMetadata JSON')
         if 'certificate_authority' in _dict:
             args['certificate_authority'] = _dict.get('certificate_authority')
         if 'common_name' in _dict:
             args['common_name'] = _dict.get('common_name')
-        else:
-            raise ValueError('Required property \'common_name\' not present in PrivateCertificateSecretMetadata JSON')
         if 'alt_names' in _dict:
             args['alt_names'] = _dict.get('alt_names')
-        if 'ip_sans' in _dict:
-            args['ip_sans'] = _dict.get('ip_sans')
-        if 'uri_sans' in _dict:
-            args['uri_sans'] = _dict.get('uri_sans')
-        if 'other_sans' in _dict:
-            args['other_sans'] = _dict.get('other_sans')
-        if 'ttl' in _dict:
-            args['ttl'] = _dict.get('ttl')
-        if 'format' in _dict:
-            args['format'] = _dict.get('format')
-        if 'private_key_format' in _dict:
-            args['private_key_format'] = _dict.get('private_key_format')
-        if 'exclude_cn_from_sans' in _dict:
-            args['exclude_cn_from_sans'] = _dict.get('exclude_cn_from_sans')
         if 'rotation' in _dict:
             args['rotation'] = Rotation.from_dict(_dict.get('rotation'))
         if 'algorithm' in _dict:
@@ -9949,28 +10038,14 @@ class PrivateCertificateSecretMetadata(SecretMetadata):
             _dict['last_update_date'] = datetime_to_string(getattr(self, 'last_update_date'))
         if hasattr(self, 'versions_total') and getattr(self, 'versions_total') is not None:
             _dict['versions_total'] = getattr(self, 'versions_total')
-        if hasattr(self, 'certificate_template') and self.certificate_template is not None:
-            _dict['certificate_template'] = self.certificate_template
+        if hasattr(self, 'certificate_template') and getattr(self, 'certificate_template') is not None:
+            _dict['certificate_template'] = getattr(self, 'certificate_template')
         if hasattr(self, 'certificate_authority') and getattr(self, 'certificate_authority') is not None:
             _dict['certificate_authority'] = getattr(self, 'certificate_authority')
-        if hasattr(self, 'common_name') and self.common_name is not None:
-            _dict['common_name'] = self.common_name
-        if hasattr(self, 'alt_names') and self.alt_names is not None:
-            _dict['alt_names'] = self.alt_names
-        if hasattr(self, 'ip_sans') and self.ip_sans is not None:
-            _dict['ip_sans'] = self.ip_sans
-        if hasattr(self, 'uri_sans') and self.uri_sans is not None:
-            _dict['uri_sans'] = self.uri_sans
-        if hasattr(self, 'other_sans') and self.other_sans is not None:
-            _dict['other_sans'] = self.other_sans
-        if hasattr(self, 'ttl') and self.ttl is not None:
-            _dict['ttl'] = self.ttl
-        if hasattr(self, 'format') and self.format is not None:
-            _dict['format'] = self.format
-        if hasattr(self, 'private_key_format') and self.private_key_format is not None:
-            _dict['private_key_format'] = self.private_key_format
-        if hasattr(self, 'exclude_cn_from_sans') and self.exclude_cn_from_sans is not None:
-            _dict['exclude_cn_from_sans'] = self.exclude_cn_from_sans
+        if hasattr(self, 'common_name') and getattr(self, 'common_name') is not None:
+            _dict['common_name'] = getattr(self, 'common_name')
+        if hasattr(self, 'alt_names') and getattr(self, 'alt_names') is not None:
+            _dict['alt_names'] = getattr(self, 'alt_names')
         if hasattr(self, 'rotation') and self.rotation is not None:
             _dict['rotation'] = self.rotation.to_dict()
         if hasattr(self, 'algorithm') and getattr(self, 'algorithm') is not None:
@@ -10019,21 +10094,6 @@ class PrivateCertificateSecretMetadata(SecretMetadata):
         PRIVATE_CERT = 'private_cert'
         KV = 'kv'
 
-    class FormatEnum(str, Enum):
-        """
-        The format of the returned data.
-        """
-        PEM = 'pem'
-        DER = 'der'
-        PEM_BUNDLE = 'pem_bundle'
-
-    class PrivateKeyFormatEnum(str, Enum):
-        """
-        The format of the generated private key.
-        """
-        DER = 'der'
-        PKCS8 = 'pkcs8'
-
 
 class PrivateCertificateSecretResource(SecretResource):
     """
@@ -10081,9 +10141,12 @@ class PrivateCertificateSecretResource(SecretResource):
           authority that signed this certificate.
     :attr str common_name: The fully qualified domain name or host domain name for
           the certificate.
-    :attr List[str] alt_names: (optional) The Subject Alternative Names to define
-          for the CA certificate, in a comma-delimited list.
-          The alternative names can be host names or email addresses.
+    :attr object alt_names: (optional) The alternative names that are defined for
+          the certificate.
+          For public certificates, this value is provided as an array of strings. For
+          private certificates, this value is provided as a comma-delimited list (string).
+          In the API response, this value is returned as an array of strings for all the
+          types of certificate secrets.
     :attr str ip_sans: (optional) The IP Subject Alternative Names to define for the
           CA certificate, in a comma-delimited list.
     :attr str uri_sans: (optional) The URI Subject Alternative Names to define for
@@ -10094,10 +10157,11 @@ class PrivateCertificateSecretResource(SecretResource):
           `allowed_other_sans` field in the associated certificate template. The format is
           the same as OpenSSL: `<oid>:<type>:<value>` where the current valid type is
           `UTF8`.
-    :attr str ttl: (optional) The time-to-live (TTL) or lease duration to assign to
-          a private certificate. The value can be supplied as a string representation of a
-          duration in hours, for example '12h'. The value can't exceed the `max_ttl` that
-          is defined in the associated certificate template.
+    :attr object ttl: (optional) The time-to-live (TTL) to assign to a private
+          certificate.
+          The value can be supplied as a string representation of a duration in hours, for
+          example '12h'. The value can't exceed the `max_ttl` that is defined in the
+          associated certificate template.
     :attr str format: (optional) The format of the returned data.
     :attr str private_key_format: (optional) The format of the generated private
           key.
@@ -10150,11 +10214,11 @@ class PrivateCertificateSecretResource(SecretResource):
                  versions_total: int = None,
                  versions: List[dict] = None,
                  certificate_authority: str = None,
-                 alt_names: List[str] = None,
+                 alt_names: object = None,
                  ip_sans: str = None,
                  uri_sans: str = None,
                  other_sans: List[str] = None,
-                 ttl: str = None,
+                 ttl: object = None,
                  format: str = None,
                  private_key_format: str = None,
                  exclude_cn_from_sans: bool = None,
@@ -10190,9 +10254,12 @@ class PrivateCertificateSecretResource(SecretResource):
                bracket, comma, colon, ampersand, and vertical pipe character (|).
                To protect your privacy, do not use personal data, such as your name or
                location, as a label for your secret.
-        :param List[str] alt_names: (optional) The Subject Alternative Names to
-               define for the CA certificate, in a comma-delimited list.
-               The alternative names can be host names or email addresses.
+        :param object alt_names: (optional) The alternative names that are defined
+               for the certificate.
+               For public certificates, this value is provided as an array of strings. For
+               private certificates, this value is provided as a comma-delimited list
+               (string). In the API response, this value is returned as an array of
+               strings for all the types of certificate secrets.
         :param str ip_sans: (optional) The IP Subject Alternative Names to define
                for the CA certificate, in a comma-delimited list.
         :param str uri_sans: (optional) The URI Subject Alternative Names to define
@@ -10203,11 +10270,11 @@ class PrivateCertificateSecretResource(SecretResource):
                `allowed_other_sans` field in the associated certificate template. The
                format is the same as OpenSSL: `<oid>:<type>:<value>` where the current
                valid type is `UTF8`.
-        :param str ttl: (optional) The time-to-live (TTL) or lease duration to
-               assign to a private certificate. The value can be supplied as a string
-               representation of a duration in hours, for example '12h'. The value can't
-               exceed the `max_ttl` that is defined in the associated certificate
-               template.
+        :param object ttl: (optional) The time-to-live (TTL) to assign to a private
+               certificate.
+               The value can be supplied as a string representation of a duration in
+               hours, for example '12h'. The value can't exceed the `max_ttl` that is
+               defined in the associated certificate template.
         :param str format: (optional) The format of the returned data.
         :param str private_key_format: (optional) The format of the generated
                private key.
@@ -10449,7 +10516,6 @@ class PrivateCertificateSecretResource(SecretResource):
         The format of the returned data.
         """
         PEM = 'pem'
-        DER = 'der'
         PEM_BUNDLE = 'pem_bundle'
 
     class PrivateKeyFormatEnum(str, Enum):
@@ -11381,8 +11447,12 @@ class PublicCertificateSecretResource(SecretResource):
           `ECDSA`) and key size to be used to generate keys and sign certificates. For
           longer living certificates, it is recommended to use longer keys to provide more
           encryption protection.
-    :attr List[str] alt_names: (optional) The alternative names that are defined for
+    :attr object alt_names: (optional) The alternative names that are defined for
           the certificate.
+          For public certificates, this value is provided as an array of strings. For
+          private certificates, this value is provided as a comma-delimited list (string).
+          In the API response, this value is returned as an array of strings for all the
+          types of certificate secrets.
     :attr str common_name: (optional) The fully qualified domain name or host domain
           name for the certificate.
     :attr bool private_key_included: (optional) Indicates whether the issued
@@ -11425,7 +11495,7 @@ class PublicCertificateSecretResource(SecretResource):
                  dns: str = None,
                  algorithm: str = None,
                  key_algorithm: str = None,
-                 alt_names: List[str] = None,
+                 alt_names: object = None,
                  common_name: str = None,
                  private_key_included: bool = None,
                  intermediate_included: bool = None,
@@ -11472,8 +11542,12 @@ class PublicCertificateSecretResource(SecretResource):
                `ECDSA`) and key size to be used to generate keys and sign certificates.
                For longer living certificates, it is recommended to use longer keys to
                provide more encryption protection.
-        :param List[str] alt_names: (optional) The alternative names that are
-               defined for the certificate.
+        :param object alt_names: (optional) The alternative names that are defined
+               for the certificate.
+               For public certificates, this value is provided as an array of strings. For
+               private certificates, this value is provided as a comma-delimited list
+               (string). In the API response, this value is returned as an array of
+               strings for all the types of certificate secrets.
         :param str common_name: (optional) The fully qualified domain name or host
                domain name for the certificate.
         :param Rotation rotation: (optional)
@@ -11934,24 +12008,27 @@ class RootCertificateAuthorityConfig(ConfigElementDefConfig):
     Root certificate authority configuration.
 
     :attr object max_ttl: The maximum time-to-live (TTL) for certificates that are
-          created by this CA. The value can be supplied as a string representation of a
-          duration in hours, for example '8760h'. Note that in the API response the value
-          is returned in seconds (integer).
+          created by this CA.
+          The value can be supplied as a string representation of a duration in hours, for
+          example '8760h'. In the API response, this value is returned in seconds
+          (integer).
           Minimum value is one hour (`1h`). Maximum value is 100 years (`876000h`).
     :attr object crl_expiry: (optional) The time until the certificate revocation
-          list (CRL) expires. The value can be supplied as a string representation of a
-          duration in hours, such as `48h`. The default is 72 hours. Note that in the API
-          response the value is returned in seconds (integer).
-    :attr bool crl_disable: (optional) Determines whether to disable certificate
-          revocation list (CRL) building.
-          By default, each request rebuilds a CRL. To disable CRL building, set this field
-          to `true`.
+          list (CRL) expires.
+          The value can be supplied as a string representation of a duration in hours,
+          such as `48h`. The default is 72 hours. In the API response, this value is
+          returned in seconds (integer).
+          **Note:** The CRL is rotated automatically before it expires.
+    :attr bool crl_disable: (optional) Disables or enables certificate revocation
+          list (CRL) building.
+          If CRL building is disabled, a signed but zero-length CRL is returned when
+          downloading the CRL. If CRL building is enabled,  it will rebuild the CRL.
     :attr bool crl_distribution_points_encoded: (optional) Determines whether to
-          encode the certificate revocation list (CRL) distribution points in the private
-          certificates that are issued by a certificate authority.
+          encode the certificate revocation list (CRL) distribution points in the
+          certificates that are issued by this certificate authority.
     :attr bool issuing_certificates_urls_encoded: (optional) Determines whether to
-          encode the URL of the issuing certificate in the private certificates that are
-          issued by a certificate authority.
+          encode the URL of the issuing certificate in the certificates that are issued by
+          this certificate authority.
     :attr str common_name: The fully qualified domain name or host domain name for
           the certificate.
     :attr str status: (optional) The status of the certificate authority. The status
@@ -11962,8 +12039,8 @@ class RootCertificateAuthorityConfig(ConfigElementDefConfig):
           `expired` or `revoked`.
     :attr datetime expiration_date: (optional) The date that the certificate
           expires. The date format follows RFC 3339.
-    :attr List[str] alt_names: (optional) The Subject Alternative Names to define
-          for the CA certificate, in a comma-delimited list.
+    :attr str alt_names: (optional) The Subject Alternative Names to define for the
+          CA certificate, in a comma-delimited list.
           The alternative names can be host names or email addresses.
     :attr str ip_sans: (optional) The IP Subject Alternative Names to define for the
           CA certificate, in a comma-delimited list.
@@ -11975,21 +12052,21 @@ class RootCertificateAuthorityConfig(ConfigElementDefConfig):
           `allowed_other_sans` field in the associated certificate template. The format is
           the same as OpenSSL: `<oid>:<type>:<value>` where the current valid type is
           `UTF8`.
-    :attr str ttl: (optional) The time-to-live (TTL) or lease duration to assign to
-          a private certificate.
+    :attr object ttl: (optional) The time-to-live (TTL) to assign to this CA
+          certificate.
           The value can be supplied as a string representation of a duration, such as
           `12h`. The value can't exceed the `max_ttl` that is defined in the associated
-          certificate template. Note that in the API response the value is returned in
-          seconds (integer).
+          certificate template. In the API response, this value is returned in seconds
+          (integer).
     :attr str format: (optional) The format of the returned data.
     :attr str private_key_format: (optional) The format of the generated private
           key.
     :attr str key_type: (optional) The type of private key to generate.
     :attr int key_bits: (optional) The number of bits to use when generating the
           private key.
-          Allowable values for RSA keys are: 2048 and 4096. Allowable values for EC keys
-          are: 224, 256, 384 And 521. The default for RSA keys is 2048, and the default
-          for EC keys is 256.
+          Allowable values for RSA keys are: `2048` and `4096`. Allowable values for EC
+          keys are: `224`, `256`, `384`, and `521`. The default for RSA keys is `2048`.
+          The default for EC keys is `256`.
     :attr int max_path_length: (optional) The maximum path length to encode in the
           generated certificate. `-1` means no limit.
           If the signing certificate has a maximum path length set, the path length is set
@@ -12003,21 +12080,21 @@ class RootCertificateAuthorityConfig(ConfigElementDefConfig):
     :attr List[str] permitted_dns_domains: (optional) The allowed DNS domains or
           subdomains for the certificates to be signed and issued by this CA certificate.
     :attr List[str] ou: (optional) The Organizational Unit (OU) values to define in
-          the subject field of the resulting CA certificate.
+          the subject field of the resulting certificate.
     :attr List[str] organization: (optional) The Organization (O) values to define
-          in the subject field of the resulting CA certificate.
+          in the subject field of the resulting certificate.
     :attr List[str] country: (optional) The Country (C) values to define in the
-          subject field of the resulting CA certificate.
+          subject field of the resulting certificate.
     :attr List[str] locality: (optional) The Locality (L) values to define in the
-          subject field of the resulting CA certificate.
+          subject field of the resulting certificate.
     :attr List[str] province: (optional) The Province (ST) values to define in the
-          subject field of the resulting CA certificate.
+          subject field of the resulting certificate.
     :attr List[str] street_address: (optional) The Street Address values in the
-          subject field of the resulting CA certificate.
+          subject field of the resulting certificate.
     :attr List[str] postal_code: (optional) The Postal Code values in the subject
-          field of the resulting CA certificate.
+          field of the resulting certificate.
     :attr str serial_number: (optional) The serial number to assign to the generated
-          private certificate. To assign a random serial number, you can omit this field.
+          certificate. To assign a random serial number, you can omit this field.
     :attr object data: (optional) The data that is associated with the root
           certificate authority. The data object contains the following fields:
           - `certificate`: The root certificate content.
@@ -12036,11 +12113,11 @@ class RootCertificateAuthorityConfig(ConfigElementDefConfig):
                  issuing_certificates_urls_encoded: bool = None,
                  status: str = None,
                  expiration_date: datetime = None,
-                 alt_names: List[str] = None,
+                 alt_names: str = None,
                  ip_sans: str = None,
                  uri_sans: str = None,
                  other_sans: List[str] = None,
-                 ttl: str = None,
+                 ttl: object = None,
                  format: str = None,
                  private_key_format: str = None,
                  key_type: str = None,
@@ -12061,29 +12138,31 @@ class RootCertificateAuthorityConfig(ConfigElementDefConfig):
         Initialize a RootCertificateAuthorityConfig object.
 
         :param object max_ttl: The maximum time-to-live (TTL) for certificates that
-               are created by this CA. The value can be supplied as a string
-               representation of a duration in hours, for example '8760h'. Note that in
-               the API response the value is returned in seconds (integer).
+               are created by this CA.
+               The value can be supplied as a string representation of a duration in
+               hours, for example '8760h'. In the API response, this value is returned in
+               seconds (integer).
                Minimum value is one hour (`1h`). Maximum value is 100 years (`876000h`).
         :param str common_name: The fully qualified domain name or host domain name
                for the certificate.
         :param object crl_expiry: (optional) The time until the certificate
-               revocation list (CRL) expires. The value can be supplied as a string
-               representation of a duration in hours, such as `48h`. The default is 72
-               hours. Note that in the API response the value is returned in seconds
-               (integer).
-        :param bool crl_disable: (optional) Determines whether to disable
-               certificate revocation list (CRL) building.
-               By default, each request rebuilds a CRL. To disable CRL building, set this
-               field to `true`.
+               revocation list (CRL) expires.
+               The value can be supplied as a string representation of a duration in
+               hours, such as `48h`. The default is 72 hours. In the API response, this
+               value is returned in seconds (integer).
+               **Note:** The CRL is rotated automatically before it expires.
+        :param bool crl_disable: (optional) Disables or enables certificate
+               revocation list (CRL) building.
+               If CRL building is disabled, a signed but zero-length CRL is returned when
+               downloading the CRL. If CRL building is enabled,  it will rebuild the CRL.
         :param bool crl_distribution_points_encoded: (optional) Determines whether
                to encode the certificate revocation list (CRL) distribution points in the
-               private certificates that are issued by a certificate authority.
+               certificates that are issued by this certificate authority.
         :param bool issuing_certificates_urls_encoded: (optional) Determines
-               whether to encode the URL of the issuing certificate in the private
-               certificates that are issued by a certificate authority.
-        :param List[str] alt_names: (optional) The Subject Alternative Names to
-               define for the CA certificate, in a comma-delimited list.
+               whether to encode the URL of the issuing certificate in the certificates
+               that are issued by this certificate authority.
+        :param str alt_names: (optional) The Subject Alternative Names to define
+               for the CA certificate, in a comma-delimited list.
                The alternative names can be host names or email addresses.
         :param str ip_sans: (optional) The IP Subject Alternative Names to define
                for the CA certificate, in a comma-delimited list.
@@ -12095,11 +12174,11 @@ class RootCertificateAuthorityConfig(ConfigElementDefConfig):
                `allowed_other_sans` field in the associated certificate template. The
                format is the same as OpenSSL: `<oid>:<type>:<value>` where the current
                valid type is `UTF8`.
-        :param str ttl: (optional) The time-to-live (TTL) or lease duration to
-               assign to a private certificate.
+        :param object ttl: (optional) The time-to-live (TTL) to assign to this CA
+               certificate.
                The value can be supplied as a string representation of a duration, such as
                `12h`. The value can't exceed the `max_ttl` that is defined in the
-               associated certificate template. Note that in the API response the value is
+               associated certificate template. In the API response, this value is
                returned in seconds (integer).
         :param str format: (optional) The format of the returned data.
         :param str private_key_format: (optional) The format of the generated
@@ -12107,9 +12186,9 @@ class RootCertificateAuthorityConfig(ConfigElementDefConfig):
         :param str key_type: (optional) The type of private key to generate.
         :param int key_bits: (optional) The number of bits to use when generating
                the private key.
-               Allowable values for RSA keys are: 2048 and 4096. Allowable values for EC
-               keys are: 224, 256, 384 And 521. The default for RSA keys is 2048, and the
-               default for EC keys is 256.
+               Allowable values for RSA keys are: `2048` and `4096`. Allowable values for
+               EC keys are: `224`, `256`, `384`, and `521`. The default for RSA keys is
+               `2048`. The default for EC keys is `256`.
         :param int max_path_length: (optional) The maximum path length to encode in
                the generated certificate. `-1` means no limit.
                If the signing certificate has a maximum path length set, the path length
@@ -12124,22 +12203,22 @@ class RootCertificateAuthorityConfig(ConfigElementDefConfig):
                or subdomains for the certificates to be signed and issued by this CA
                certificate.
         :param List[str] ou: (optional) The Organizational Unit (OU) values to
-               define in the subject field of the resulting CA certificate.
+               define in the subject field of the resulting certificate.
         :param List[str] organization: (optional) The Organization (O) values to
-               define in the subject field of the resulting CA certificate.
+               define in the subject field of the resulting certificate.
         :param List[str] country: (optional) The Country (C) values to define in
-               the subject field of the resulting CA certificate.
+               the subject field of the resulting certificate.
         :param List[str] locality: (optional) The Locality (L) values to define in
-               the subject field of the resulting CA certificate.
+               the subject field of the resulting certificate.
         :param List[str] province: (optional) The Province (ST) values to define in
-               the subject field of the resulting CA certificate.
+               the subject field of the resulting certificate.
         :param List[str] street_address: (optional) The Street Address values in
-               the subject field of the resulting CA certificate.
+               the subject field of the resulting certificate.
         :param List[str] postal_code: (optional) The Postal Code values in the
-               subject field of the resulting CA certificate.
+               subject field of the resulting certificate.
         :param str serial_number: (optional) The serial number to assign to the
-               generated private certificate. To assign a random serial number, you can
-               omit this field.
+               generated certificate. To assign a random serial number, you can omit this
+               field.
         """
         # pylint: disable=super-init-not-called
         self.max_ttl = max_ttl
@@ -12346,7 +12425,6 @@ class RootCertificateAuthorityConfig(ConfigElementDefConfig):
         The format of the returned data.
         """
         PEM = 'pem'
-        DER = 'der'
         PEM_BUNDLE = 'pem_bundle'
 
     class PrivateKeyFormatEnum(str, Enum):
@@ -12979,8 +13057,8 @@ class SignCsrAction(ConfigAction):
 
     :attr str common_name: (optional) The fully qualified domain name or host domain
           name for the certificate.
-    :attr List[str] alt_names: (optional) The Subject Alternative Names to define
-          for the CA certificate, in a comma-delimited list.
+    :attr str alt_names: (optional) The Subject Alternative Names to define for the
+          CA certificate, in a comma-delimited list.
           The alternative names can be host names or email addresses.
     :attr str ip_sans: (optional) The IP Subject Alternative Names to define for the
           CA certificate, in a comma-delimited list.
@@ -12992,8 +13070,8 @@ class SignCsrAction(ConfigAction):
           `allowed_other_sans` field in the associated certificate template. The format is
           the same as OpenSSL: `<oid>:<type>:<value>` where the current valid type is
           `UTF8`.
-    :attr str ttl: (optional) The time-to-live (TTL) or lease duration to assign to
-          a private certificate.
+    :attr object ttl: (optional) The time-to-live (TTL) to assign to a private
+          certificate.
           The value can be supplied as a string representation of a duration in hours,
           such as `12h`. The value can't exceed the `max_ttl` that is defined in the
           associated certificate template.
@@ -13022,21 +13100,21 @@ class SignCsrAction(ConfigAction):
           3) Extensions that are requested in the CSR are copied into the issued private
           certificate.
     :attr List[str] ou: (optional) The Organizational Unit (OU) values to define in
-          the subject field of the resulting CA certificate.
+          the subject field of the resulting certificate.
     :attr List[str] organization: (optional) The Organization (O) values to define
-          in the subject field of the resulting CA certificate.
+          in the subject field of the resulting certificate.
     :attr List[str] country: (optional) The Country (C) values to define in the
-          subject field of the resulting CA certificate.
+          subject field of the resulting certificate.
     :attr List[str] locality: (optional) The Locality (L) values to define in the
-          subject field of the resulting CA certificate.
+          subject field of the resulting certificate.
     :attr List[str] province: (optional) The Province (ST) values to define in the
-          subject field of the resulting CA certificate.
+          subject field of the resulting certificate.
     :attr List[str] street_address: (optional) The Street Address values in the
-          subject field of the resulting CA certificate.
+          subject field of the resulting certificate.
     :attr List[str] postal_code: (optional) The Postal Code values in the subject
-          field of the resulting CA certificate.
+          field of the resulting certificate.
     :attr str serial_number: (optional) The serial number to assign to the generated
-          private certificate. To assign a random serial number, you can omit this field.
+          certificate. To assign a random serial number, you can omit this field.
     :attr str csr: The PEM-encoded certificate signing request (CSR). This field is
           required for the `sign_csr` action.
     """
@@ -13045,11 +13123,11 @@ class SignCsrAction(ConfigAction):
                  csr: str,
                  *,
                  common_name: str = None,
-                 alt_names: List[str] = None,
+                 alt_names: str = None,
                  ip_sans: str = None,
                  uri_sans: str = None,
                  other_sans: List[str] = None,
-                 ttl: str = None,
+                 ttl: object = None,
                  format: str = None,
                  max_path_length: int = None,
                  exclude_cn_from_sans: bool = None,
@@ -13070,8 +13148,8 @@ class SignCsrAction(ConfigAction):
                field is required for the `sign_csr` action.
         :param str common_name: (optional) The fully qualified domain name or host
                domain name for the certificate.
-        :param List[str] alt_names: (optional) The Subject Alternative Names to
-               define for the CA certificate, in a comma-delimited list.
+        :param str alt_names: (optional) The Subject Alternative Names to define
+               for the CA certificate, in a comma-delimited list.
                The alternative names can be host names or email addresses.
         :param str ip_sans: (optional) The IP Subject Alternative Names to define
                for the CA certificate, in a comma-delimited list.
@@ -13083,8 +13161,8 @@ class SignCsrAction(ConfigAction):
                `allowed_other_sans` field in the associated certificate template. The
                format is the same as OpenSSL: `<oid>:<type>:<value>` where the current
                valid type is `UTF8`.
-        :param str ttl: (optional) The time-to-live (TTL) or lease duration to
-               assign to a private certificate.
+        :param object ttl: (optional) The time-to-live (TTL) to assign to a private
+               certificate.
                The value can be supplied as a string representation of a duration in
                hours, such as `12h`. The value can't exceed the `max_ttl` that is defined
                in the associated certificate template.
@@ -13114,22 +13192,22 @@ class SignCsrAction(ConfigAction):
                3) Extensions that are requested in the CSR are copied into the issued
                private certificate.
         :param List[str] ou: (optional) The Organizational Unit (OU) values to
-               define in the subject field of the resulting CA certificate.
+               define in the subject field of the resulting certificate.
         :param List[str] organization: (optional) The Organization (O) values to
-               define in the subject field of the resulting CA certificate.
+               define in the subject field of the resulting certificate.
         :param List[str] country: (optional) The Country (C) values to define in
-               the subject field of the resulting CA certificate.
+               the subject field of the resulting certificate.
         :param List[str] locality: (optional) The Locality (L) values to define in
-               the subject field of the resulting CA certificate.
+               the subject field of the resulting certificate.
         :param List[str] province: (optional) The Province (ST) values to define in
-               the subject field of the resulting CA certificate.
+               the subject field of the resulting certificate.
         :param List[str] street_address: (optional) The Street Address values in
-               the subject field of the resulting CA certificate.
+               the subject field of the resulting certificate.
         :param List[str] postal_code: (optional) The Postal Code values in the
-               subject field of the resulting CA certificate.
+               subject field of the resulting certificate.
         :param str serial_number: (optional) The serial number to assign to the
-               generated private certificate. To assign a random serial number, you can
-               omit this field.
+               generated certificate. To assign a random serial number, you can omit this
+               field.
         """
         # pylint: disable=super-init-not-called
         self.common_name = common_name
@@ -13274,7 +13352,6 @@ class SignCsrAction(ConfigAction):
         The format of the returned data.
         """
         PEM = 'pem'
-        DER = 'der'
         PEM_BUNDLE = 'pem_bundle'
 
 
@@ -13284,8 +13361,8 @@ class SignCsrActionResult(ConfigElementActionResultConfig):
 
     :attr str common_name: (optional) The fully qualified domain name or host domain
           name for the certificate.
-    :attr List[str] alt_names: (optional) The Subject Alternative Names to define
-          for the CA certificate, in a comma-delimited list.
+    :attr str alt_names: (optional) The Subject Alternative Names to define for the
+          CA certificate, in a comma-delimited list.
           The alternative names can be host names or email addresses.
     :attr str ip_sans: (optional) The IP Subject Alternative Names to define for the
           CA certificate, in a comma-delimited list.
@@ -13297,8 +13374,8 @@ class SignCsrActionResult(ConfigElementActionResultConfig):
           `allowed_other_sans` field in the associated certificate template. The format is
           the same as OpenSSL: `<oid>:<type>:<value>` where the current valid type is
           `UTF8`.
-    :attr str ttl: (optional) The time-to-live (TTL) or lease duration to assign to
-          a private certificate.
+    :attr object ttl: (optional) The time-to-live (TTL) to assign to a private
+          certificate.
           The value can be supplied as a string representation of a duration in hours,
           such as `12h`. The value can't exceed the `max_ttl` that is defined in the
           associated certificate template.
@@ -13327,21 +13404,21 @@ class SignCsrActionResult(ConfigElementActionResultConfig):
           3) Extensions that are requested in the CSR are copied into the issued private
           certificate.
     :attr List[str] ou: (optional) The Organizational Unit (OU) values to define in
-          the subject field of the resulting CA certificate.
+          the subject field of the resulting certificate.
     :attr List[str] organization: (optional) The Organization (O) values to define
-          in the subject field of the resulting CA certificate.
+          in the subject field of the resulting certificate.
     :attr List[str] country: (optional) The Country (C) values to define in the
-          subject field of the resulting CA certificate.
+          subject field of the resulting certificate.
     :attr List[str] locality: (optional) The Locality (L) values to define in the
-          subject field of the resulting CA certificate.
+          subject field of the resulting certificate.
     :attr List[str] province: (optional) The Province (ST) values to define in the
-          subject field of the resulting CA certificate.
+          subject field of the resulting certificate.
     :attr List[str] street_address: (optional) The Street Address values in the
-          subject field of the resulting CA certificate.
+          subject field of the resulting certificate.
     :attr List[str] postal_code: (optional) The Postal Code values in the subject
-          field of the resulting CA certificate.
+          field of the resulting certificate.
     :attr str serial_number: (optional) The serial number to assign to the generated
-          private certificate. To assign a random serial number, you can omit this field.
+          certificate. To assign a random serial number, you can omit this field.
     :attr SignActionResultData data: Properties that are returned with a successful
           `sign` action.
     :attr str csr: The PEM-encoded certificate signing request (CSR).
@@ -13352,11 +13429,11 @@ class SignCsrActionResult(ConfigElementActionResultConfig):
                  csr: str,
                  *,
                  common_name: str = None,
-                 alt_names: List[str] = None,
+                 alt_names: str = None,
                  ip_sans: str = None,
                  uri_sans: str = None,
                  other_sans: List[str] = None,
-                 ttl: str = None,
+                 ttl: object = None,
                  format: str = None,
                  max_path_length: int = None,
                  exclude_cn_from_sans: bool = None,
@@ -13378,8 +13455,8 @@ class SignCsrActionResult(ConfigElementActionResultConfig):
         :param str csr: The PEM-encoded certificate signing request (CSR).
         :param str common_name: (optional) The fully qualified domain name or host
                domain name for the certificate.
-        :param List[str] alt_names: (optional) The Subject Alternative Names to
-               define for the CA certificate, in a comma-delimited list.
+        :param str alt_names: (optional) The Subject Alternative Names to define
+               for the CA certificate, in a comma-delimited list.
                The alternative names can be host names or email addresses.
         :param str ip_sans: (optional) The IP Subject Alternative Names to define
                for the CA certificate, in a comma-delimited list.
@@ -13391,8 +13468,8 @@ class SignCsrActionResult(ConfigElementActionResultConfig):
                `allowed_other_sans` field in the associated certificate template. The
                format is the same as OpenSSL: `<oid>:<type>:<value>` where the current
                valid type is `UTF8`.
-        :param str ttl: (optional) The time-to-live (TTL) or lease duration to
-               assign to a private certificate.
+        :param object ttl: (optional) The time-to-live (TTL) to assign to a private
+               certificate.
                The value can be supplied as a string representation of a duration in
                hours, such as `12h`. The value can't exceed the `max_ttl` that is defined
                in the associated certificate template.
@@ -13422,22 +13499,22 @@ class SignCsrActionResult(ConfigElementActionResultConfig):
                3) Extensions that are requested in the CSR are copied into the issued
                private certificate.
         :param List[str] ou: (optional) The Organizational Unit (OU) values to
-               define in the subject field of the resulting CA certificate.
+               define in the subject field of the resulting certificate.
         :param List[str] organization: (optional) The Organization (O) values to
-               define in the subject field of the resulting CA certificate.
+               define in the subject field of the resulting certificate.
         :param List[str] country: (optional) The Country (C) values to define in
-               the subject field of the resulting CA certificate.
+               the subject field of the resulting certificate.
         :param List[str] locality: (optional) The Locality (L) values to define in
-               the subject field of the resulting CA certificate.
+               the subject field of the resulting certificate.
         :param List[str] province: (optional) The Province (ST) values to define in
-               the subject field of the resulting CA certificate.
+               the subject field of the resulting certificate.
         :param List[str] street_address: (optional) The Street Address values in
-               the subject field of the resulting CA certificate.
+               the subject field of the resulting certificate.
         :param List[str] postal_code: (optional) The Postal Code values in the
-               subject field of the resulting CA certificate.
+               subject field of the resulting certificate.
         :param str serial_number: (optional) The serial number to assign to the
-               generated private certificate. To assign a random serial number, you can
-               omit this field.
+               generated certificate. To assign a random serial number, you can omit this
+               field.
         """
         # pylint: disable=super-init-not-called
         self.common_name = common_name
@@ -13589,7 +13666,6 @@ class SignCsrActionResult(ConfigElementActionResultConfig):
         The format of the returned data.
         """
         PEM = 'pem'
-        DER = 'der'
         PEM_BUNDLE = 'pem_bundle'
 
 
@@ -13599,8 +13675,8 @@ class SignIntermediateAction(ConfigAction):
 
     :attr str common_name: (optional) The fully qualified domain name or host domain
           name for the certificate.
-    :attr List[str] alt_names: (optional) The Subject Alternative Names to define
-          for the CA certificate, in a comma-delimited list.
+    :attr str alt_names: (optional) The Subject Alternative Names to define for the
+          CA certificate, in a comma-delimited list.
           The alternative names can be host names or email addresses.
     :attr str ip_sans: (optional) The IP Subject Alternative Names to define for the
           CA certificate, in a comma-delimited list.
@@ -13612,8 +13688,8 @@ class SignIntermediateAction(ConfigAction):
           `allowed_other_sans` field in the associated certificate template. The format is
           the same as OpenSSL: `<oid>:<type>:<value>` where the current valid type is
           `UTF8`.
-    :attr str ttl: (optional) The time-to-live (TTL) or lease duration to assign to
-          a private certificate.
+    :attr object ttl: (optional) The time-to-live (TTL) to assign to a private
+          certificate.
           The value can be supplied as a string representation of a duration in hours,
           such as `12h`. The value can't exceed the `max_ttl` that is defined in the
           associated certificate template.
@@ -13642,21 +13718,21 @@ class SignIntermediateAction(ConfigAction):
           3) Extensions that are requested in the CSR are copied into the issued private
           certificate.
     :attr List[str] ou: (optional) The Organizational Unit (OU) values to define in
-          the subject field of the resulting CA certificate.
+          the subject field of the resulting certificate.
     :attr List[str] organization: (optional) The Organization (O) values to define
-          in the subject field of the resulting CA certificate.
+          in the subject field of the resulting certificate.
     :attr List[str] country: (optional) The Country (C) values to define in the
-          subject field of the resulting CA certificate.
+          subject field of the resulting certificate.
     :attr List[str] locality: (optional) The Locality (L) values to define in the
-          subject field of the resulting CA certificate.
+          subject field of the resulting certificate.
     :attr List[str] province: (optional) The Province (ST) values to define in the
-          subject field of the resulting CA certificate.
+          subject field of the resulting certificate.
     :attr List[str] street_address: (optional) The Street Address values in the
-          subject field of the resulting CA certificate.
+          subject field of the resulting certificate.
     :attr List[str] postal_code: (optional) The Postal Code values in the subject
-          field of the resulting CA certificate.
+          field of the resulting certificate.
     :attr str serial_number: (optional) The serial number to assign to the generated
-          private certificate. To assign a random serial number, you can omit this field.
+          certificate. To assign a random serial number, you can omit this field.
     :attr str intermediate_certificate_authority: The intermediate certificate
           authority to be signed. The name must match one of the pre-configured
           intermediate certificate authorities.
@@ -13666,11 +13742,11 @@ class SignIntermediateAction(ConfigAction):
                  intermediate_certificate_authority: str,
                  *,
                  common_name: str = None,
-                 alt_names: List[str] = None,
+                 alt_names: str = None,
                  ip_sans: str = None,
                  uri_sans: str = None,
                  other_sans: List[str] = None,
-                 ttl: str = None,
+                 ttl: object = None,
                  format: str = None,
                  max_path_length: int = None,
                  exclude_cn_from_sans: bool = None,
@@ -13692,8 +13768,8 @@ class SignIntermediateAction(ConfigAction):
                intermediate certificate authorities.
         :param str common_name: (optional) The fully qualified domain name or host
                domain name for the certificate.
-        :param List[str] alt_names: (optional) The Subject Alternative Names to
-               define for the CA certificate, in a comma-delimited list.
+        :param str alt_names: (optional) The Subject Alternative Names to define
+               for the CA certificate, in a comma-delimited list.
                The alternative names can be host names or email addresses.
         :param str ip_sans: (optional) The IP Subject Alternative Names to define
                for the CA certificate, in a comma-delimited list.
@@ -13705,8 +13781,8 @@ class SignIntermediateAction(ConfigAction):
                `allowed_other_sans` field in the associated certificate template. The
                format is the same as OpenSSL: `<oid>:<type>:<value>` where the current
                valid type is `UTF8`.
-        :param str ttl: (optional) The time-to-live (TTL) or lease duration to
-               assign to a private certificate.
+        :param object ttl: (optional) The time-to-live (TTL) to assign to a private
+               certificate.
                The value can be supplied as a string representation of a duration in
                hours, such as `12h`. The value can't exceed the `max_ttl` that is defined
                in the associated certificate template.
@@ -13736,22 +13812,22 @@ class SignIntermediateAction(ConfigAction):
                3) Extensions that are requested in the CSR are copied into the issued
                private certificate.
         :param List[str] ou: (optional) The Organizational Unit (OU) values to
-               define in the subject field of the resulting CA certificate.
+               define in the subject field of the resulting certificate.
         :param List[str] organization: (optional) The Organization (O) values to
-               define in the subject field of the resulting CA certificate.
+               define in the subject field of the resulting certificate.
         :param List[str] country: (optional) The Country (C) values to define in
-               the subject field of the resulting CA certificate.
+               the subject field of the resulting certificate.
         :param List[str] locality: (optional) The Locality (L) values to define in
-               the subject field of the resulting CA certificate.
+               the subject field of the resulting certificate.
         :param List[str] province: (optional) The Province (ST) values to define in
-               the subject field of the resulting CA certificate.
+               the subject field of the resulting certificate.
         :param List[str] street_address: (optional) The Street Address values in
-               the subject field of the resulting CA certificate.
+               the subject field of the resulting certificate.
         :param List[str] postal_code: (optional) The Postal Code values in the
-               subject field of the resulting CA certificate.
+               subject field of the resulting certificate.
         :param str serial_number: (optional) The serial number to assign to the
-               generated private certificate. To assign a random serial number, you can
-               omit this field.
+               generated certificate. To assign a random serial number, you can omit this
+               field.
         """
         # pylint: disable=super-init-not-called
         self.common_name = common_name
@@ -13897,7 +13973,6 @@ class SignIntermediateAction(ConfigAction):
         The format of the returned data.
         """
         PEM = 'pem'
-        DER = 'der'
         PEM_BUNDLE = 'pem_bundle'
 
 
@@ -13907,8 +13982,8 @@ class SignIntermediateActionResult(ConfigElementActionResultConfig):
 
     :attr str common_name: (optional) The fully qualified domain name or host domain
           name for the certificate.
-    :attr List[str] alt_names: (optional) The Subject Alternative Names to define
-          for the CA certificate, in a comma-delimited list.
+    :attr str alt_names: (optional) The Subject Alternative Names to define for the
+          CA certificate, in a comma-delimited list.
           The alternative names can be host names or email addresses.
     :attr str ip_sans: (optional) The IP Subject Alternative Names to define for the
           CA certificate, in a comma-delimited list.
@@ -13920,8 +13995,8 @@ class SignIntermediateActionResult(ConfigElementActionResultConfig):
           `allowed_other_sans` field in the associated certificate template. The format is
           the same as OpenSSL: `<oid>:<type>:<value>` where the current valid type is
           `UTF8`.
-    :attr str ttl: (optional) The time-to-live (TTL) or lease duration to assign to
-          a private certificate.
+    :attr object ttl: (optional) The time-to-live (TTL) to assign to a private
+          certificate.
           The value can be supplied as a string representation of a duration in hours,
           such as `12h`. The value can't exceed the `max_ttl` that is defined in the
           associated certificate template.
@@ -13950,21 +14025,21 @@ class SignIntermediateActionResult(ConfigElementActionResultConfig):
           3) Extensions that are requested in the CSR are copied into the issued private
           certificate.
     :attr List[str] ou: (optional) The Organizational Unit (OU) values to define in
-          the subject field of the resulting CA certificate.
+          the subject field of the resulting certificate.
     :attr List[str] organization: (optional) The Organization (O) values to define
-          in the subject field of the resulting CA certificate.
+          in the subject field of the resulting certificate.
     :attr List[str] country: (optional) The Country (C) values to define in the
-          subject field of the resulting CA certificate.
+          subject field of the resulting certificate.
     :attr List[str] locality: (optional) The Locality (L) values to define in the
-          subject field of the resulting CA certificate.
+          subject field of the resulting certificate.
     :attr List[str] province: (optional) The Province (ST) values to define in the
-          subject field of the resulting CA certificate.
+          subject field of the resulting certificate.
     :attr List[str] street_address: (optional) The Street Address values in the
-          subject field of the resulting CA certificate.
+          subject field of the resulting certificate.
     :attr List[str] postal_code: (optional) The Postal Code values in the subject
-          field of the resulting CA certificate.
+          field of the resulting certificate.
     :attr str serial_number: (optional) The serial number to assign to the generated
-          private certificate. To assign a random serial number, you can omit this field.
+          certificate. To assign a random serial number, you can omit this field.
     :attr SignIntermediateActionResultData data: Properties that are returned with a
           successful `sign` action.
     :attr str intermediate_certificate_authority: The signed intermediate
@@ -13976,11 +14051,11 @@ class SignIntermediateActionResult(ConfigElementActionResultConfig):
                  intermediate_certificate_authority: str,
                  *,
                  common_name: str = None,
-                 alt_names: List[str] = None,
+                 alt_names: str = None,
                  ip_sans: str = None,
                  uri_sans: str = None,
                  other_sans: List[str] = None,
-                 ttl: str = None,
+                 ttl: object = None,
                  format: str = None,
                  max_path_length: int = None,
                  exclude_cn_from_sans: bool = None,
@@ -14003,8 +14078,8 @@ class SignIntermediateActionResult(ConfigElementActionResultConfig):
                certificate authority.
         :param str common_name: (optional) The fully qualified domain name or host
                domain name for the certificate.
-        :param List[str] alt_names: (optional) The Subject Alternative Names to
-               define for the CA certificate, in a comma-delimited list.
+        :param str alt_names: (optional) The Subject Alternative Names to define
+               for the CA certificate, in a comma-delimited list.
                The alternative names can be host names or email addresses.
         :param str ip_sans: (optional) The IP Subject Alternative Names to define
                for the CA certificate, in a comma-delimited list.
@@ -14016,8 +14091,8 @@ class SignIntermediateActionResult(ConfigElementActionResultConfig):
                `allowed_other_sans` field in the associated certificate template. The
                format is the same as OpenSSL: `<oid>:<type>:<value>` where the current
                valid type is `UTF8`.
-        :param str ttl: (optional) The time-to-live (TTL) or lease duration to
-               assign to a private certificate.
+        :param object ttl: (optional) The time-to-live (TTL) to assign to a private
+               certificate.
                The value can be supplied as a string representation of a duration in
                hours, such as `12h`. The value can't exceed the `max_ttl` that is defined
                in the associated certificate template.
@@ -14047,22 +14122,22 @@ class SignIntermediateActionResult(ConfigElementActionResultConfig):
                3) Extensions that are requested in the CSR are copied into the issued
                private certificate.
         :param List[str] ou: (optional) The Organizational Unit (OU) values to
-               define in the subject field of the resulting CA certificate.
+               define in the subject field of the resulting certificate.
         :param List[str] organization: (optional) The Organization (O) values to
-               define in the subject field of the resulting CA certificate.
+               define in the subject field of the resulting certificate.
         :param List[str] country: (optional) The Country (C) values to define in
-               the subject field of the resulting CA certificate.
+               the subject field of the resulting certificate.
         :param List[str] locality: (optional) The Locality (L) values to define in
-               the subject field of the resulting CA certificate.
+               the subject field of the resulting certificate.
         :param List[str] province: (optional) The Province (ST) values to define in
-               the subject field of the resulting CA certificate.
+               the subject field of the resulting certificate.
         :param List[str] street_address: (optional) The Street Address values in
-               the subject field of the resulting CA certificate.
+               the subject field of the resulting certificate.
         :param List[str] postal_code: (optional) The Postal Code values in the
-               subject field of the resulting CA certificate.
+               subject field of the resulting certificate.
         :param str serial_number: (optional) The serial number to assign to the
-               generated private certificate. To assign a random serial number, you can
-               omit this field.
+               generated certificate. To assign a random serial number, you can omit this
+               field.
         """
         # pylint: disable=super-init-not-called
         self.common_name = common_name
@@ -14215,7 +14290,6 @@ class SignIntermediateActionResult(ConfigElementActionResultConfig):
         The format of the returned data.
         """
         PEM = 'pem'
-        DER = 'der'
         PEM_BUNDLE = 'pem_bundle'
 
 
