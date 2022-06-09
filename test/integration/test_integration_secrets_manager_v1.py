@@ -357,6 +357,52 @@ class TestImportedCertSecret(unittest.TestCase):
         assert response.status_code == 204
 
 
+class TestLockSecret(unittest.TestCase):
+
+    def test_lock_unlock_and_delete_secret(self):
+        # create arbitrary secret
+        response = secretsManager.create_secret(
+            'arbitrary',
+            {'collection_type': 'application/vnd.ibm.secrets-manager.secret+json', 'collection_total': 1},
+            [{'name': generate_name(), 'expiration_date': generate_expiration_date(), 'payload': 'secret-data'}]
+        )
+        assert response.status_code == 200
+        secretId = response.result['resources'][0]['id']
+
+        # Lock secret
+        locks = [LockSecretBodyLocksItem('test-lock', 'exclusive', {"Key": "Value"})]
+        response = secretsManager.lock_secret(
+            'arbitrary',
+            secretId,
+            locks=locks,
+            mode='exclusive'
+        )
+        assert response.status_code == 200
+
+        # fail to delete locked secret
+        try:
+            response = secretsManager.delete_secret(
+                'arbitrary',
+                secretId
+            )
+        except ApiException as err:
+            assert err.code == 412
+
+        # Unlock secret
+        response = secretsManager.unlock_secret(
+            'arbitrary',
+            secretId,
+            locks=['test-lock']
+        )
+        assert response.status_code == 200
+        # delete arbitrary secret
+        response = secretsManager.delete_secret(
+            'arbitrary',
+            secretId
+        )
+        assert response.status_code == 204
+
+
 def generate_name():
     return TEST_CASE_PREFIX + 'test-integration-' + str(int(time.time()))
 
