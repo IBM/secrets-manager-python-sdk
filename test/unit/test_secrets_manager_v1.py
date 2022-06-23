@@ -547,7 +547,7 @@ class TestCreateSecret():
         """
         # Set up mock
         url = preprocess_url('/api/v1/secrets/arbitrary')
-        mock_response = '{"metadata": {"collection_type": "application/vnd.ibm.secrets-manager.config+json", "collection_total": 1}, "resources": [{"id": "id", "name": "name", "description": "description", "secret_group_id": "secret_group_id", "labels": ["labels"], "state": 0, "state_description": "Active", "secret_type": "arbitrary", "crn": "crn:v1:bluemix:public:secrets-manager:<region>:a/<account-id>:<service-instance>:secret:<secret-id>", "creation_date": "2018-04-12T23:20:50.520Z", "created_by": "created_by", "last_update_date": "2018-04-12T23:20:50.520Z", "versions_total": 1, "versions": [{"mapKey": "anyValue"}], "expiration_date": "2030-04-01T09:30:00.000Z", "payload": "payload", "secret_data": {"anyKey": "anyValue"}}]}'
+        mock_response = '{"metadata": {"collection_type": "application/vnd.ibm.secrets-manager.config+json", "collection_total": 1}, "resources": [{"id": "id", "name": "name", "description": "description", "secret_group_id": "secret_group_id", "labels": ["labels"], "state": 0, "state_description": "Active", "secret_type": "arbitrary", "crn": "crn:v1:bluemix:public:secrets-manager:<region>:a/<account-id>:<service-instance>:secret:<secret-id>", "creation_date": "2018-04-12T23:20:50.520Z", "created_by": "created_by", "last_update_date": "2018-04-12T23:20:50.520Z", "versions_total": 1, "versions": [{"mapKey": "anyValue"}], "locks_total": 1, "expiration_date": "2030-04-01T09:30:00.000Z", "payload": "payload", "secret_data": {"anyKey": "anyValue"}}]}'
         responses.add(responses.POST,
                       url,
                       body=mock_response,
@@ -605,7 +605,7 @@ class TestCreateSecret():
         """
         # Set up mock
         url = preprocess_url('/api/v1/secrets/arbitrary')
-        mock_response = '{"metadata": {"collection_type": "application/vnd.ibm.secrets-manager.config+json", "collection_total": 1}, "resources": [{"id": "id", "name": "name", "description": "description", "secret_group_id": "secret_group_id", "labels": ["labels"], "state": 0, "state_description": "Active", "secret_type": "arbitrary", "crn": "crn:v1:bluemix:public:secrets-manager:<region>:a/<account-id>:<service-instance>:secret:<secret-id>", "creation_date": "2018-04-12T23:20:50.520Z", "created_by": "created_by", "last_update_date": "2018-04-12T23:20:50.520Z", "versions_total": 1, "versions": [{"mapKey": "anyValue"}], "expiration_date": "2030-04-01T09:30:00.000Z", "payload": "payload", "secret_data": {"anyKey": "anyValue"}}]}'
+        mock_response = '{"metadata": {"collection_type": "application/vnd.ibm.secrets-manager.config+json", "collection_total": 1}, "resources": [{"id": "id", "name": "name", "description": "description", "secret_group_id": "secret_group_id", "labels": ["labels"], "state": 0, "state_description": "Active", "secret_type": "arbitrary", "crn": "crn:v1:bluemix:public:secrets-manager:<region>:a/<account-id>:<service-instance>:secret:<secret-id>", "creation_date": "2018-04-12T23:20:50.520Z", "created_by": "created_by", "last_update_date": "2018-04-12T23:20:50.520Z", "versions_total": 1, "versions": [{"mapKey": "anyValue"}], "locks_total": 1, "expiration_date": "2030-04-01T09:30:00.000Z", "payload": "payload", "secret_data": {"anyKey": "anyValue"}}]}'
         responses.add(responses.POST,
                       url,
                       body=mock_response,
@@ -664,7 +664,7 @@ class TestListSecrets():
         """
         # Set up mock
         url = preprocess_url('/api/v1/secrets/arbitrary')
-        mock_response = '{"metadata": {"collection_type": "application/vnd.ibm.secrets-manager.config+json", "collection_total": 1}, "resources": [{"id": "id", "name": "name", "description": "description", "secret_group_id": "secret_group_id", "labels": ["labels"], "state": 0, "state_description": "Active", "secret_type": "arbitrary", "crn": "crn:v1:bluemix:public:secrets-manager:<region>:a/<account-id>:<service-instance>:secret:<secret-id>", "creation_date": "2018-04-12T23:20:50.520Z", "created_by": "created_by", "last_update_date": "2018-04-12T23:20:50.520Z", "versions_total": 1, "versions": [{"mapKey": "anyValue"}], "expiration_date": "2030-04-01T09:30:00.000Z", "payload": "payload", "secret_data": {"anyKey": "anyValue"}}]}'
+        mock_response = '{"metadata": {"collection_type": "application/vnd.ibm.secrets-manager.config+json", "collection_total": 1}, "resources": [{"id": "id", "name": "name", "description": "description", "secret_group_id": "secret_group_id", "labels": ["labels"], "state": 0, "state_description": "Active", "secret_type": "arbitrary", "crn": "crn:v1:bluemix:public:secrets-manager:<region>:a/<account-id>:<service-instance>:secret:<secret-id>", "creation_date": "2018-04-12T23:20:50.520Z", "created_by": "created_by", "last_update_date": "2018-04-12T23:20:50.520Z", "versions_total": 1, "versions": [{"mapKey": "anyValue"}], "locks_total": 1, "expiration_date": "2030-04-01T09:30:00.000Z", "payload": "payload", "secret_data": {"anyKey": "anyValue"}}]}'
         responses.add(responses.GET,
                       url,
                       body=mock_response,
@@ -709,7 +709,7 @@ class TestListSecrets():
         """
         # Set up mock
         url = preprocess_url('/api/v1/secrets/arbitrary')
-        mock_response = '{"metadata": {"collection_type": "application/vnd.ibm.secrets-manager.config+json", "collection_total": 1}, "resources": [{"id": "id", "name": "name", "description": "description", "secret_group_id": "secret_group_id", "labels": ["labels"], "state": 0, "state_description": "Active", "secret_type": "arbitrary", "crn": "crn:v1:bluemix:public:secrets-manager:<region>:a/<account-id>:<service-instance>:secret:<secret-id>", "creation_date": "2018-04-12T23:20:50.520Z", "created_by": "created_by", "last_update_date": "2018-04-12T23:20:50.520Z", "versions_total": 1, "versions": [{"mapKey": "anyValue"}], "expiration_date": "2030-04-01T09:30:00.000Z", "payload": "payload", "secret_data": {"anyKey": "anyValue"}}]}'
+        mock_response = '{"metadata": {"collection_type": "application/vnd.ibm.secrets-manager.config+json", "collection_total": 1}, "resources": [{"id": "id", "name": "name", "description": "description", "secret_group_id": "secret_group_id", "labels": ["labels"], "state": 0, "state_description": "Active", "secret_type": "arbitrary", "crn": "crn:v1:bluemix:public:secrets-manager:<region>:a/<account-id>:<service-instance>:secret:<secret-id>", "creation_date": "2018-04-12T23:20:50.520Z", "created_by": "created_by", "last_update_date": "2018-04-12T23:20:50.520Z", "versions_total": 1, "versions": [{"mapKey": "anyValue"}], "locks_total": 1, "expiration_date": "2030-04-01T09:30:00.000Z", "payload": "payload", "secret_data": {"anyKey": "anyValue"}}]}'
         responses.add(responses.GET,
                       url,
                       body=mock_response,
@@ -745,7 +745,7 @@ class TestListSecrets():
         """
         # Set up mock
         url = preprocess_url('/api/v1/secrets/arbitrary')
-        mock_response = '{"metadata": {"collection_type": "application/vnd.ibm.secrets-manager.config+json", "collection_total": 1}, "resources": [{"id": "id", "name": "name", "description": "description", "secret_group_id": "secret_group_id", "labels": ["labels"], "state": 0, "state_description": "Active", "secret_type": "arbitrary", "crn": "crn:v1:bluemix:public:secrets-manager:<region>:a/<account-id>:<service-instance>:secret:<secret-id>", "creation_date": "2018-04-12T23:20:50.520Z", "created_by": "created_by", "last_update_date": "2018-04-12T23:20:50.520Z", "versions_total": 1, "versions": [{"mapKey": "anyValue"}], "expiration_date": "2030-04-01T09:30:00.000Z", "payload": "payload", "secret_data": {"anyKey": "anyValue"}}]}'
+        mock_response = '{"metadata": {"collection_type": "application/vnd.ibm.secrets-manager.config+json", "collection_total": 1}, "resources": [{"id": "id", "name": "name", "description": "description", "secret_group_id": "secret_group_id", "labels": ["labels"], "state": 0, "state_description": "Active", "secret_type": "arbitrary", "crn": "crn:v1:bluemix:public:secrets-manager:<region>:a/<account-id>:<service-instance>:secret:<secret-id>", "creation_date": "2018-04-12T23:20:50.520Z", "created_by": "created_by", "last_update_date": "2018-04-12T23:20:50.520Z", "versions_total": 1, "versions": [{"mapKey": "anyValue"}], "locks_total": 1, "expiration_date": "2030-04-01T09:30:00.000Z", "payload": "payload", "secret_data": {"anyKey": "anyValue"}}]}'
         responses.add(responses.GET,
                       url,
                       body=mock_response,
@@ -786,7 +786,7 @@ class TestListAllSecrets():
         """
         # Set up mock
         url = preprocess_url('/api/v1/secrets')
-        mock_response = '{"metadata": {"collection_type": "application/vnd.ibm.secrets-manager.config+json", "collection_total": 1}, "resources": [{"id": "id", "name": "name", "description": "description", "secret_group_id": "secret_group_id", "labels": ["labels"], "state": 0, "state_description": "Active", "secret_type": "arbitrary", "crn": "crn:v1:bluemix:public:secrets-manager:<region>:a/<account-id>:<service-instance>:secret:<secret-id>", "creation_date": "2018-04-12T23:20:50.520Z", "created_by": "created_by", "last_update_date": "2018-04-12T23:20:50.520Z", "versions_total": 1, "versions": [{"mapKey": "anyValue"}], "expiration_date": "2030-04-01T09:30:00.000Z", "payload": "payload", "secret_data": {"anyKey": "anyValue"}}]}'
+        mock_response = '{"metadata": {"collection_type": "application/vnd.ibm.secrets-manager.config+json", "collection_total": 1}, "resources": [{"id": "id", "name": "name", "description": "description", "secret_group_id": "secret_group_id", "labels": ["labels"], "state": 0, "state_description": "Active", "secret_type": "arbitrary", "crn": "crn:v1:bluemix:public:secrets-manager:<region>:a/<account-id>:<service-instance>:secret:<secret-id>", "creation_date": "2018-04-12T23:20:50.520Z", "created_by": "created_by", "last_update_date": "2018-04-12T23:20:50.520Z", "versions_total": 1, "versions": [{"mapKey": "anyValue"}], "locks_total": 1, "expiration_date": "2030-04-01T09:30:00.000Z", "payload": "payload", "secret_data": {"anyKey": "anyValue"}}]}'
         responses.add(responses.GET,
                       url,
                       body=mock_response,
@@ -838,7 +838,7 @@ class TestListAllSecrets():
         """
         # Set up mock
         url = preprocess_url('/api/v1/secrets')
-        mock_response = '{"metadata": {"collection_type": "application/vnd.ibm.secrets-manager.config+json", "collection_total": 1}, "resources": [{"id": "id", "name": "name", "description": "description", "secret_group_id": "secret_group_id", "labels": ["labels"], "state": 0, "state_description": "Active", "secret_type": "arbitrary", "crn": "crn:v1:bluemix:public:secrets-manager:<region>:a/<account-id>:<service-instance>:secret:<secret-id>", "creation_date": "2018-04-12T23:20:50.520Z", "created_by": "created_by", "last_update_date": "2018-04-12T23:20:50.520Z", "versions_total": 1, "versions": [{"mapKey": "anyValue"}], "expiration_date": "2030-04-01T09:30:00.000Z", "payload": "payload", "secret_data": {"anyKey": "anyValue"}}]}'
+        mock_response = '{"metadata": {"collection_type": "application/vnd.ibm.secrets-manager.config+json", "collection_total": 1}, "resources": [{"id": "id", "name": "name", "description": "description", "secret_group_id": "secret_group_id", "labels": ["labels"], "state": 0, "state_description": "Active", "secret_type": "arbitrary", "crn": "crn:v1:bluemix:public:secrets-manager:<region>:a/<account-id>:<service-instance>:secret:<secret-id>", "creation_date": "2018-04-12T23:20:50.520Z", "created_by": "created_by", "last_update_date": "2018-04-12T23:20:50.520Z", "versions_total": 1, "versions": [{"mapKey": "anyValue"}], "locks_total": 1, "expiration_date": "2030-04-01T09:30:00.000Z", "payload": "payload", "secret_data": {"anyKey": "anyValue"}}]}'
         responses.add(responses.GET,
                       url,
                       body=mock_response,
@@ -874,7 +874,7 @@ class TestGetSecret():
         """
         # Set up mock
         url = preprocess_url('/api/v1/secrets/arbitrary/testString')
-        mock_response = '{"metadata": {"collection_type": "application/vnd.ibm.secrets-manager.config+json", "collection_total": 1}, "resources": [{"id": "id", "name": "name", "description": "description", "secret_group_id": "secret_group_id", "labels": ["labels"], "state": 0, "state_description": "Active", "secret_type": "arbitrary", "crn": "crn:v1:bluemix:public:secrets-manager:<region>:a/<account-id>:<service-instance>:secret:<secret-id>", "creation_date": "2018-04-12T23:20:50.520Z", "created_by": "created_by", "last_update_date": "2018-04-12T23:20:50.520Z", "versions_total": 1, "versions": [{"mapKey": "anyValue"}], "expiration_date": "2030-04-01T09:30:00.000Z", "payload": "payload", "secret_data": {"anyKey": "anyValue"}}]}'
+        mock_response = '{"metadata": {"collection_type": "application/vnd.ibm.secrets-manager.config+json", "collection_total": 1}, "resources": [{"id": "id", "name": "name", "description": "description", "secret_group_id": "secret_group_id", "labels": ["labels"], "state": 0, "state_description": "Active", "secret_type": "arbitrary", "crn": "crn:v1:bluemix:public:secrets-manager:<region>:a/<account-id>:<service-instance>:secret:<secret-id>", "creation_date": "2018-04-12T23:20:50.520Z", "created_by": "created_by", "last_update_date": "2018-04-12T23:20:50.520Z", "versions_total": 1, "versions": [{"mapKey": "anyValue"}], "locks_total": 1, "expiration_date": "2030-04-01T09:30:00.000Z", "payload": "payload", "secret_data": {"anyKey": "anyValue"}}]}'
         responses.add(responses.GET,
                       url,
                       body=mock_response,
@@ -912,7 +912,7 @@ class TestGetSecret():
         """
         # Set up mock
         url = preprocess_url('/api/v1/secrets/arbitrary/testString')
-        mock_response = '{"metadata": {"collection_type": "application/vnd.ibm.secrets-manager.config+json", "collection_total": 1}, "resources": [{"id": "id", "name": "name", "description": "description", "secret_group_id": "secret_group_id", "labels": ["labels"], "state": 0, "state_description": "Active", "secret_type": "arbitrary", "crn": "crn:v1:bluemix:public:secrets-manager:<region>:a/<account-id>:<service-instance>:secret:<secret-id>", "creation_date": "2018-04-12T23:20:50.520Z", "created_by": "created_by", "last_update_date": "2018-04-12T23:20:50.520Z", "versions_total": 1, "versions": [{"mapKey": "anyValue"}], "expiration_date": "2030-04-01T09:30:00.000Z", "payload": "payload", "secret_data": {"anyKey": "anyValue"}}]}'
+        mock_response = '{"metadata": {"collection_type": "application/vnd.ibm.secrets-manager.config+json", "collection_total": 1}, "resources": [{"id": "id", "name": "name", "description": "description", "secret_group_id": "secret_group_id", "labels": ["labels"], "state": 0, "state_description": "Active", "secret_type": "arbitrary", "crn": "crn:v1:bluemix:public:secrets-manager:<region>:a/<account-id>:<service-instance>:secret:<secret-id>", "creation_date": "2018-04-12T23:20:50.520Z", "created_by": "created_by", "last_update_date": "2018-04-12T23:20:50.520Z", "versions_total": 1, "versions": [{"mapKey": "anyValue"}], "locks_total": 1, "expiration_date": "2030-04-01T09:30:00.000Z", "payload": "payload", "secret_data": {"anyKey": "anyValue"}}]}'
         responses.add(responses.GET,
                       url,
                       body=mock_response,
@@ -955,7 +955,7 @@ class TestUpdateSecret():
         """
         # Set up mock
         url = preprocess_url('/api/v1/secrets/arbitrary/testString')
-        mock_response = '{"metadata": {"collection_type": "application/vnd.ibm.secrets-manager.config+json", "collection_total": 1}, "resources": [{"id": "id", "name": "name", "description": "description", "secret_group_id": "secret_group_id", "labels": ["labels"], "state": 0, "state_description": "Active", "secret_type": "arbitrary", "crn": "crn:v1:bluemix:public:secrets-manager:<region>:a/<account-id>:<service-instance>:secret:<secret-id>", "creation_date": "2018-04-12T23:20:50.520Z", "created_by": "created_by", "last_update_date": "2018-04-12T23:20:50.520Z", "versions_total": 1, "versions": [{"mapKey": "anyValue"}], "expiration_date": "2030-04-01T09:30:00.000Z", "payload": "payload", "secret_data": {"anyKey": "anyValue"}}]}'
+        mock_response = '{"metadata": {"collection_type": "application/vnd.ibm.secrets-manager.config+json", "collection_total": 1}, "resources": [{"id": "id", "name": "name", "description": "description", "secret_group_id": "secret_group_id", "labels": ["labels"], "state": 0, "state_description": "Active", "secret_type": "arbitrary", "crn": "crn:v1:bluemix:public:secrets-manager:<region>:a/<account-id>:<service-instance>:secret:<secret-id>", "creation_date": "2018-04-12T23:20:50.520Z", "created_by": "created_by", "last_update_date": "2018-04-12T23:20:50.520Z", "versions_total": 1, "versions": [{"mapKey": "anyValue"}], "locks_total": 1, "expiration_date": "2030-04-01T09:30:00.000Z", "payload": "payload", "secret_data": {"anyKey": "anyValue"}}]}'
         responses.add(responses.POST,
                       url,
                       body=mock_response,
@@ -1008,7 +1008,7 @@ class TestUpdateSecret():
         """
         # Set up mock
         url = preprocess_url('/api/v1/secrets/arbitrary/testString')
-        mock_response = '{"metadata": {"collection_type": "application/vnd.ibm.secrets-manager.config+json", "collection_total": 1}, "resources": [{"id": "id", "name": "name", "description": "description", "secret_group_id": "secret_group_id", "labels": ["labels"], "state": 0, "state_description": "Active", "secret_type": "arbitrary", "crn": "crn:v1:bluemix:public:secrets-manager:<region>:a/<account-id>:<service-instance>:secret:<secret-id>", "creation_date": "2018-04-12T23:20:50.520Z", "created_by": "created_by", "last_update_date": "2018-04-12T23:20:50.520Z", "versions_total": 1, "versions": [{"mapKey": "anyValue"}], "expiration_date": "2030-04-01T09:30:00.000Z", "payload": "payload", "secret_data": {"anyKey": "anyValue"}}]}'
+        mock_response = '{"metadata": {"collection_type": "application/vnd.ibm.secrets-manager.config+json", "collection_total": 1}, "resources": [{"id": "id", "name": "name", "description": "description", "secret_group_id": "secret_group_id", "labels": ["labels"], "state": 0, "state_description": "Active", "secret_type": "arbitrary", "crn": "crn:v1:bluemix:public:secrets-manager:<region>:a/<account-id>:<service-instance>:secret:<secret-id>", "creation_date": "2018-04-12T23:20:50.520Z", "created_by": "created_by", "last_update_date": "2018-04-12T23:20:50.520Z", "versions_total": 1, "versions": [{"mapKey": "anyValue"}], "locks_total": 1, "expiration_date": "2030-04-01T09:30:00.000Z", "payload": "payload", "secret_data": {"anyKey": "anyValue"}}]}'
         responses.add(responses.POST,
                       url,
                       body=mock_response,
@@ -1052,7 +1052,7 @@ class TestUpdateSecret():
         """
         # Set up mock
         url = preprocess_url('/api/v1/secrets/arbitrary/testString')
-        mock_response = '{"metadata": {"collection_type": "application/vnd.ibm.secrets-manager.config+json", "collection_total": 1}, "resources": [{"id": "id", "name": "name", "description": "description", "secret_group_id": "secret_group_id", "labels": ["labels"], "state": 0, "state_description": "Active", "secret_type": "arbitrary", "crn": "crn:v1:bluemix:public:secrets-manager:<region>:a/<account-id>:<service-instance>:secret:<secret-id>", "creation_date": "2018-04-12T23:20:50.520Z", "created_by": "created_by", "last_update_date": "2018-04-12T23:20:50.520Z", "versions_total": 1, "versions": [{"mapKey": "anyValue"}], "expiration_date": "2030-04-01T09:30:00.000Z", "payload": "payload", "secret_data": {"anyKey": "anyValue"}}]}'
+        mock_response = '{"metadata": {"collection_type": "application/vnd.ibm.secrets-manager.config+json", "collection_total": 1}, "resources": [{"id": "id", "name": "name", "description": "description", "secret_group_id": "secret_group_id", "labels": ["labels"], "state": 0, "state_description": "Active", "secret_type": "arbitrary", "crn": "crn:v1:bluemix:public:secrets-manager:<region>:a/<account-id>:<service-instance>:secret:<secret-id>", "creation_date": "2018-04-12T23:20:50.520Z", "created_by": "created_by", "last_update_date": "2018-04-12T23:20:50.520Z", "versions_total": 1, "versions": [{"mapKey": "anyValue"}], "locks_total": 1, "expiration_date": "2030-04-01T09:30:00.000Z", "payload": "payload", "secret_data": {"anyKey": "anyValue"}}]}'
         responses.add(responses.POST,
                       url,
                       body=mock_response,
@@ -1253,7 +1253,7 @@ class TestGetSecretVersion():
         """
         # Set up mock
         url = preprocess_url('/api/v1/secrets/arbitrary/testString/versions/testString')
-        mock_response = '{"metadata": {"collection_type": "application/vnd.ibm.secrets-manager.config+json", "collection_total": 1}, "resources": [{"id": "id", "version_id": "4a0225e9-17a0-46c1-ace7-f25bcf4237d4", "creation_date": "2019-01-01T12:00:00.000Z", "created_by": "created_by", "secret_data": {"anyKey": "anyValue"}}]}'
+        mock_response = '{"metadata": {"collection_type": "application/vnd.ibm.secrets-manager.config+json", "collection_total": 1}, "resources": [{"id": "id", "version_id": "4a0225e9-17a0-46c1-ace7-f25bcf4237d4", "creation_date": "2019-01-01T12:00:00.000Z", "created_by": "created_by", "locks_total": 1, "secret_data": {"anyKey": "anyValue"}}]}'
         responses.add(responses.GET,
                       url,
                       body=mock_response,
@@ -1293,7 +1293,7 @@ class TestGetSecretVersion():
         """
         # Set up mock
         url = preprocess_url('/api/v1/secrets/arbitrary/testString/versions/testString')
-        mock_response = '{"metadata": {"collection_type": "application/vnd.ibm.secrets-manager.config+json", "collection_total": 1}, "resources": [{"id": "id", "version_id": "4a0225e9-17a0-46c1-ace7-f25bcf4237d4", "creation_date": "2019-01-01T12:00:00.000Z", "created_by": "created_by", "secret_data": {"anyKey": "anyValue"}}]}'
+        mock_response = '{"metadata": {"collection_type": "application/vnd.ibm.secrets-manager.config+json", "collection_total": 1}, "resources": [{"id": "id", "version_id": "4a0225e9-17a0-46c1-ace7-f25bcf4237d4", "creation_date": "2019-01-01T12:00:00.000Z", "created_by": "created_by", "locks_total": 1, "secret_data": {"anyKey": "anyValue"}}]}'
         responses.add(responses.GET,
                       url,
                       body=mock_response,
@@ -1338,7 +1338,7 @@ class TestUpdateSecretVersion():
         """
         # Set up mock
         url = preprocess_url('/api/v1/secrets/private_cert/testString/versions/testString')
-        mock_response = '{"metadata": {"collection_type": "application/vnd.ibm.secrets-manager.config+json", "collection_total": 1}, "resources": [{"id": "id", "name": "name", "description": "description", "secret_group_id": "secret_group_id", "labels": ["labels"], "state": 0, "state_description": "Active", "secret_type": "arbitrary", "crn": "crn:v1:bluemix:public:secrets-manager:<region>:a/<account-id>:<service-instance>:secret:<secret-id>", "creation_date": "2018-04-12T23:20:50.520Z", "created_by": "created_by", "last_update_date": "2018-04-12T23:20:50.520Z", "versions_total": 1, "versions": [{"mapKey": "anyValue"}], "expiration_date": "2030-04-01T09:30:00.000Z", "payload": "payload", "secret_data": {"anyKey": "anyValue"}}]}'
+        mock_response = '{"metadata": {"collection_type": "application/vnd.ibm.secrets-manager.config+json", "collection_total": 1}, "resources": [{"id": "id", "name": "name", "description": "description", "secret_group_id": "secret_group_id", "labels": ["labels"], "state": 0, "state_description": "Active", "secret_type": "arbitrary", "crn": "crn:v1:bluemix:public:secrets-manager:<region>:a/<account-id>:<service-instance>:secret:<secret-id>", "creation_date": "2018-04-12T23:20:50.520Z", "created_by": "created_by", "last_update_date": "2018-04-12T23:20:50.520Z", "versions_total": 1, "versions": [{"mapKey": "anyValue"}], "locks_total": 1, "expiration_date": "2030-04-01T09:30:00.000Z", "payload": "payload", "secret_data": {"anyKey": "anyValue"}}]}'
         responses.add(responses.POST,
                       url,
                       body=mock_response,
@@ -1384,7 +1384,7 @@ class TestUpdateSecretVersion():
         """
         # Set up mock
         url = preprocess_url('/api/v1/secrets/private_cert/testString/versions/testString')
-        mock_response = '{"metadata": {"collection_type": "application/vnd.ibm.secrets-manager.config+json", "collection_total": 1}, "resources": [{"id": "id", "name": "name", "description": "description", "secret_group_id": "secret_group_id", "labels": ["labels"], "state": 0, "state_description": "Active", "secret_type": "arbitrary", "crn": "crn:v1:bluemix:public:secrets-manager:<region>:a/<account-id>:<service-instance>:secret:<secret-id>", "creation_date": "2018-04-12T23:20:50.520Z", "created_by": "created_by", "last_update_date": "2018-04-12T23:20:50.520Z", "versions_total": 1, "versions": [{"mapKey": "anyValue"}], "expiration_date": "2030-04-01T09:30:00.000Z", "payload": "payload", "secret_data": {"anyKey": "anyValue"}}]}'
+        mock_response = '{"metadata": {"collection_type": "application/vnd.ibm.secrets-manager.config+json", "collection_total": 1}, "resources": [{"id": "id", "name": "name", "description": "description", "secret_group_id": "secret_group_id", "labels": ["labels"], "state": 0, "state_description": "Active", "secret_type": "arbitrary", "crn": "crn:v1:bluemix:public:secrets-manager:<region>:a/<account-id>:<service-instance>:secret:<secret-id>", "creation_date": "2018-04-12T23:20:50.520Z", "created_by": "created_by", "last_update_date": "2018-04-12T23:20:50.520Z", "versions_total": 1, "versions": [{"mapKey": "anyValue"}], "locks_total": 1, "expiration_date": "2030-04-01T09:30:00.000Z", "payload": "payload", "secret_data": {"anyKey": "anyValue"}}]}'
         responses.add(responses.POST,
                       url,
                       body=mock_response,
@@ -1431,7 +1431,7 @@ class TestGetSecretVersionMetadata():
         """
         # Set up mock
         url = preprocess_url('/api/v1/secrets/arbitrary/testString/versions/testString/metadata')
-        mock_response = '{"metadata": {"collection_type": "application/vnd.ibm.secrets-manager.config+json", "collection_total": 1}, "resources": [{"id": "id", "version_id": "4a0225e9-17a0-46c1-ace7-f25bcf4237d4", "creation_date": "2019-01-01T12:00:00.000Z", "created_by": "created_by", "payload_available": false, "downloaded": true}]}'
+        mock_response = '{"metadata": {"collection_type": "application/vnd.ibm.secrets-manager.config+json", "collection_total": 1}, "resources": [{"id": "id", "version_id": "4a0225e9-17a0-46c1-ace7-f25bcf4237d4", "creation_date": "2019-01-01T12:00:00.000Z", "created_by": "created_by", "payload_available": false, "downloaded": true, "locks_total": 1}]}'
         responses.add(responses.GET,
                       url,
                       body=mock_response,
@@ -1471,7 +1471,7 @@ class TestGetSecretVersionMetadata():
         """
         # Set up mock
         url = preprocess_url('/api/v1/secrets/arbitrary/testString/versions/testString/metadata')
-        mock_response = '{"metadata": {"collection_type": "application/vnd.ibm.secrets-manager.config+json", "collection_total": 1}, "resources": [{"id": "id", "version_id": "4a0225e9-17a0-46c1-ace7-f25bcf4237d4", "creation_date": "2019-01-01T12:00:00.000Z", "created_by": "created_by", "payload_available": false, "downloaded": true}]}'
+        mock_response = '{"metadata": {"collection_type": "application/vnd.ibm.secrets-manager.config+json", "collection_total": 1}, "resources": [{"id": "id", "version_id": "4a0225e9-17a0-46c1-ace7-f25bcf4237d4", "creation_date": "2019-01-01T12:00:00.000Z", "created_by": "created_by", "payload_available": false, "downloaded": true, "locks_total": 1}]}'
         responses.add(responses.GET,
                       url,
                       body=mock_response,
@@ -1516,7 +1516,7 @@ class TestGetSecretMetadata():
         """
         # Set up mock
         url = preprocess_url('/api/v1/secrets/arbitrary/testString/metadata')
-        mock_response = '{"metadata": {"collection_type": "application/vnd.ibm.secrets-manager.config+json", "collection_total": 1}, "resources": [{"id": "b0283d74-0894-830b-f81d-1f115f67729f", "labels": ["labels"], "name": "example-secret", "description": "Extended description for this secret.", "secret_group_id": "f5283d74-9024-230a-b72c-1f115f61290f", "state": 0, "state_description": "Active", "secret_type": "arbitrary", "crn": "crn:v1:bluemix:public:secrets-manager:<region>:a/<account-id>:<service-instance>:secret:<secret-id>", "creation_date": "2018-04-12T23:20:50.520Z", "created_by": "ServiceId-cb258cb9-8de3-4ac0-9aec-b2b2d27ac976", "last_update_date": "2018-04-12T23:20:50.520Z", "versions_total": 1, "expiration_date": "2030-04-01T09:30:00.000Z"}]}'
+        mock_response = '{"metadata": {"collection_type": "application/vnd.ibm.secrets-manager.config+json", "collection_total": 1}, "resources": [{"id": "b0283d74-0894-830b-f81d-1f115f67729f", "labels": ["labels"], "name": "example-secret", "description": "Extended description for this secret.", "secret_group_id": "f5283d74-9024-230a-b72c-1f115f61290f", "state": 0, "state_description": "Active", "secret_type": "arbitrary", "crn": "crn:v1:bluemix:public:secrets-manager:<region>:a/<account-id>:<service-instance>:secret:<secret-id>", "creation_date": "2018-04-12T23:20:50.520Z", "created_by": "ServiceId-cb258cb9-8de3-4ac0-9aec-b2b2d27ac976", "last_update_date": "2018-04-12T23:20:50.520Z", "versions_total": 1, "locks_total": 1, "expiration_date": "2030-04-01T09:30:00.000Z"}]}'
         responses.add(responses.GET,
                       url,
                       body=mock_response,
@@ -1554,7 +1554,7 @@ class TestGetSecretMetadata():
         """
         # Set up mock
         url = preprocess_url('/api/v1/secrets/arbitrary/testString/metadata')
-        mock_response = '{"metadata": {"collection_type": "application/vnd.ibm.secrets-manager.config+json", "collection_total": 1}, "resources": [{"id": "b0283d74-0894-830b-f81d-1f115f67729f", "labels": ["labels"], "name": "example-secret", "description": "Extended description for this secret.", "secret_group_id": "f5283d74-9024-230a-b72c-1f115f61290f", "state": 0, "state_description": "Active", "secret_type": "arbitrary", "crn": "crn:v1:bluemix:public:secrets-manager:<region>:a/<account-id>:<service-instance>:secret:<secret-id>", "creation_date": "2018-04-12T23:20:50.520Z", "created_by": "ServiceId-cb258cb9-8de3-4ac0-9aec-b2b2d27ac976", "last_update_date": "2018-04-12T23:20:50.520Z", "versions_total": 1, "expiration_date": "2030-04-01T09:30:00.000Z"}]}'
+        mock_response = '{"metadata": {"collection_type": "application/vnd.ibm.secrets-manager.config+json", "collection_total": 1}, "resources": [{"id": "b0283d74-0894-830b-f81d-1f115f67729f", "labels": ["labels"], "name": "example-secret", "description": "Extended description for this secret.", "secret_group_id": "f5283d74-9024-230a-b72c-1f115f61290f", "state": 0, "state_description": "Active", "secret_type": "arbitrary", "crn": "crn:v1:bluemix:public:secrets-manager:<region>:a/<account-id>:<service-instance>:secret:<secret-id>", "creation_date": "2018-04-12T23:20:50.520Z", "created_by": "ServiceId-cb258cb9-8de3-4ac0-9aec-b2b2d27ac976", "last_update_date": "2018-04-12T23:20:50.520Z", "versions_total": 1, "locks_total": 1, "expiration_date": "2030-04-01T09:30:00.000Z"}]}'
         responses.add(responses.GET,
                       url,
                       body=mock_response,
@@ -1597,7 +1597,7 @@ class TestUpdateSecretMetadata():
         """
         # Set up mock
         url = preprocess_url('/api/v1/secrets/arbitrary/testString/metadata')
-        mock_response = '{"metadata": {"collection_type": "application/vnd.ibm.secrets-manager.config+json", "collection_total": 1}, "resources": [{"id": "b0283d74-0894-830b-f81d-1f115f67729f", "labels": ["labels"], "name": "example-secret", "description": "Extended description for this secret.", "secret_group_id": "f5283d74-9024-230a-b72c-1f115f61290f", "state": 0, "state_description": "Active", "secret_type": "arbitrary", "crn": "crn:v1:bluemix:public:secrets-manager:<region>:a/<account-id>:<service-instance>:secret:<secret-id>", "creation_date": "2018-04-12T23:20:50.520Z", "created_by": "ServiceId-cb258cb9-8de3-4ac0-9aec-b2b2d27ac976", "last_update_date": "2018-04-12T23:20:50.520Z", "versions_total": 1, "expiration_date": "2030-04-01T09:30:00.000Z"}]}'
+        mock_response = '{"metadata": {"collection_type": "application/vnd.ibm.secrets-manager.config+json", "collection_total": 1}, "resources": [{"id": "b0283d74-0894-830b-f81d-1f115f67729f", "labels": ["labels"], "name": "example-secret", "description": "Extended description for this secret.", "secret_group_id": "f5283d74-9024-230a-b72c-1f115f61290f", "state": 0, "state_description": "Active", "secret_type": "arbitrary", "crn": "crn:v1:bluemix:public:secrets-manager:<region>:a/<account-id>:<service-instance>:secret:<secret-id>", "creation_date": "2018-04-12T23:20:50.520Z", "created_by": "ServiceId-cb258cb9-8de3-4ac0-9aec-b2b2d27ac976", "last_update_date": "2018-04-12T23:20:50.520Z", "versions_total": 1, "locks_total": 1, "expiration_date": "2030-04-01T09:30:00.000Z"}]}'
         responses.add(responses.PUT,
                       url,
                       body=mock_response,
@@ -1655,7 +1655,7 @@ class TestUpdateSecretMetadata():
         """
         # Set up mock
         url = preprocess_url('/api/v1/secrets/arbitrary/testString/metadata')
-        mock_response = '{"metadata": {"collection_type": "application/vnd.ibm.secrets-manager.config+json", "collection_total": 1}, "resources": [{"id": "b0283d74-0894-830b-f81d-1f115f67729f", "labels": ["labels"], "name": "example-secret", "description": "Extended description for this secret.", "secret_group_id": "f5283d74-9024-230a-b72c-1f115f61290f", "state": 0, "state_description": "Active", "secret_type": "arbitrary", "crn": "crn:v1:bluemix:public:secrets-manager:<region>:a/<account-id>:<service-instance>:secret:<secret-id>", "creation_date": "2018-04-12T23:20:50.520Z", "created_by": "ServiceId-cb258cb9-8de3-4ac0-9aec-b2b2d27ac976", "last_update_date": "2018-04-12T23:20:50.520Z", "versions_total": 1, "expiration_date": "2030-04-01T09:30:00.000Z"}]}'
+        mock_response = '{"metadata": {"collection_type": "application/vnd.ibm.secrets-manager.config+json", "collection_total": 1}, "resources": [{"id": "b0283d74-0894-830b-f81d-1f115f67729f", "labels": ["labels"], "name": "example-secret", "description": "Extended description for this secret.", "secret_group_id": "f5283d74-9024-230a-b72c-1f115f61290f", "state": 0, "state_description": "Active", "secret_type": "arbitrary", "crn": "crn:v1:bluemix:public:secrets-manager:<region>:a/<account-id>:<service-instance>:secret:<secret-id>", "creation_date": "2018-04-12T23:20:50.520Z", "created_by": "ServiceId-cb258cb9-8de3-4ac0-9aec-b2b2d27ac976", "last_update_date": "2018-04-12T23:20:50.520Z", "versions_total": 1, "locks_total": 1, "expiration_date": "2030-04-01T09:30:00.000Z"}]}'
         responses.add(responses.PUT,
                       url,
                       body=mock_response,
@@ -1705,6 +1705,929 @@ class TestUpdateSecretMetadata():
 # endregion
 ##############################################################################
 # End of Service: Secrets
+##############################################################################
+
+##############################################################################
+# Start of Service: Locks
+##############################################################################
+# region
+
+class TestNewInstance():
+    """
+    Test Class for new_instance
+    """
+
+    def test_new_instance(self):
+        """
+        new_instance()
+        """
+        os.environ['TEST_SERVICE_AUTH_TYPE'] = 'noAuth'
+
+        service = SecretsManagerV1.new_instance(
+            service_name='TEST_SERVICE',
+        )
+
+        assert service is not None
+        assert isinstance(service, SecretsManagerV1)
+
+    def test_new_instance_without_authenticator(self):
+        """
+        new_instance_without_authenticator()
+        """
+        with pytest.raises(ValueError, match='authenticator must be provided'):
+            service = SecretsManagerV1.new_instance(
+                service_name='TEST_SERVICE_NOT_FOUND',
+            )
+
+
+class TestGetLocks():
+    """
+    Test Class for get_locks
+    """
+
+    @responses.activate
+    def test_get_locks_all_params(self):
+        """
+        get_locks()
+        """
+        # Set up mock
+        url = preprocess_url('/api/v1/locks/arbitrary/testString')
+        mock_response = '{"metadata": {"collection_type": "application/vnd.ibm.secrets-manager.config+json", "collection_total": 1}, "resources": [{"name": "name", "description": "description", "creation_date": "2018-04-12T23:20:50.520Z", "created_by": "created_by", "attributes": {"anyKey": "anyValue"}, "secret_version_id": "b0283d74-0894-830b-f81d-1f115f67729f", "secret_id": "secret_id", "secret_group_id": "f5283d74-9024-230a-b72c-1f115f61290f", "last_update_date": "2018-04-12T23:20:50.520Z", "secret_version_alias": "current"}]}'
+        responses.add(responses.GET,
+                      url,
+                      body=mock_response,
+                      content_type='application/json',
+                      status=200)
+
+        # Set up parameter values
+        secret_type = 'arbitrary'
+        id = 'testString'
+        limit = 1
+        offset = 0
+        search = 'testString'
+
+        # Invoke method
+        response = _service.get_locks(
+            secret_type,
+            id,
+            limit=limit,
+            offset=offset,
+            search=search,
+            headers={}
+        )
+
+        # Check for correct operation
+        assert len(responses.calls) == 1
+        assert response.status_code == 200
+        # Validate query params
+        query_string = responses.calls[0].request.url.split('?', 1)[1]
+        query_string = urllib.parse.unquote_plus(query_string)
+        assert 'limit={}'.format(limit) in query_string
+        assert 'offset={}'.format(offset) in query_string
+        assert 'search={}'.format(search) in query_string
+
+    def test_get_locks_all_params_with_retries(self):
+        # Enable retries and run test_get_locks_all_params.
+        _service.enable_retries()
+        self.test_get_locks_all_params()
+
+        # Disable retries and run test_get_locks_all_params.
+        _service.disable_retries()
+        self.test_get_locks_all_params()
+
+    @responses.activate
+    def test_get_locks_required_params(self):
+        """
+        test_get_locks_required_params()
+        """
+        # Set up mock
+        url = preprocess_url('/api/v1/locks/arbitrary/testString')
+        mock_response = '{"metadata": {"collection_type": "application/vnd.ibm.secrets-manager.config+json", "collection_total": 1}, "resources": [{"name": "name", "description": "description", "creation_date": "2018-04-12T23:20:50.520Z", "created_by": "created_by", "attributes": {"anyKey": "anyValue"}, "secret_version_id": "b0283d74-0894-830b-f81d-1f115f67729f", "secret_id": "secret_id", "secret_group_id": "f5283d74-9024-230a-b72c-1f115f61290f", "last_update_date": "2018-04-12T23:20:50.520Z", "secret_version_alias": "current"}]}'
+        responses.add(responses.GET,
+                      url,
+                      body=mock_response,
+                      content_type='application/json',
+                      status=200)
+
+        # Set up parameter values
+        secret_type = 'arbitrary'
+        id = 'testString'
+
+        # Invoke method
+        response = _service.get_locks(
+            secret_type,
+            id,
+            headers={}
+        )
+
+        # Check for correct operation
+        assert len(responses.calls) == 1
+        assert response.status_code == 200
+
+    def test_get_locks_required_params_with_retries(self):
+        # Enable retries and run test_get_locks_required_params.
+        _service.enable_retries()
+        self.test_get_locks_required_params()
+
+        # Disable retries and run test_get_locks_required_params.
+        _service.disable_retries()
+        self.test_get_locks_required_params()
+
+    @responses.activate
+    def test_get_locks_value_error(self):
+        """
+        test_get_locks_value_error()
+        """
+        # Set up mock
+        url = preprocess_url('/api/v1/locks/arbitrary/testString')
+        mock_response = '{"metadata": {"collection_type": "application/vnd.ibm.secrets-manager.config+json", "collection_total": 1}, "resources": [{"name": "name", "description": "description", "creation_date": "2018-04-12T23:20:50.520Z", "created_by": "created_by", "attributes": {"anyKey": "anyValue"}, "secret_version_id": "b0283d74-0894-830b-f81d-1f115f67729f", "secret_id": "secret_id", "secret_group_id": "f5283d74-9024-230a-b72c-1f115f61290f", "last_update_date": "2018-04-12T23:20:50.520Z", "secret_version_alias": "current"}]}'
+        responses.add(responses.GET,
+                      url,
+                      body=mock_response,
+                      content_type='application/json',
+                      status=200)
+
+        # Set up parameter values
+        secret_type = 'arbitrary'
+        id = 'testString'
+
+        # Pass in all but one required param and check for a ValueError
+        req_param_dict = {
+            "secret_type": secret_type,
+            "id": id,
+        }
+        for param in req_param_dict.keys():
+            req_copy = {key: val if key is not param else None for (key, val) in req_param_dict.items()}
+            with pytest.raises(ValueError):
+                _service.get_locks(**req_copy)
+
+    def test_get_locks_value_error_with_retries(self):
+        # Enable retries and run test_get_locks_value_error.
+        _service.enable_retries()
+        self.test_get_locks_value_error()
+
+        # Disable retries and run test_get_locks_value_error.
+        _service.disable_retries()
+        self.test_get_locks_value_error()
+
+
+class TestLockSecret():
+    """
+    Test Class for lock_secret
+    """
+
+    @responses.activate
+    def test_lock_secret_all_params(self):
+        """
+        lock_secret()
+        """
+        # Set up mock
+        url = preprocess_url('/api/v1/locks/arbitrary/testString/lock')
+        mock_response = '{"metadata": {"collection_type": "application/vnd.ibm.secrets-manager.config+json", "collection_total": 1}, "resources": [{"secret_id": "b0283d74-0894-830b-f81d-1f115f67729f", "secret_group_id": "f5283d74-9024-230a-b72c-1f115f61290f", "versions": [{"id": "bc656587-8fda-4d05-9ad8-b1de1ec7e712", "alias": "current", "locks": ["locks"], "payload_available": false}]}]}'
+        responses.add(responses.POST,
+                      url,
+                      body=mock_response,
+                      content_type='application/json',
+                      status=200)
+
+        # Construct a dict representation of a LockSecretBodyLocksItem model
+        lock_secret_body_locks_item_model = {}
+        lock_secret_body_locks_item_model['name'] = 'lock-1'
+        lock_secret_body_locks_item_model['description'] = 'lock for consumer-1'
+        lock_secret_body_locks_item_model['attributes'] = {'foo': 'bar'}
+
+        # Set up parameter values
+        secret_type = 'arbitrary'
+        id = 'testString'
+        locks = [lock_secret_body_locks_item_model]
+        mode = 'exclusive'
+
+        # Invoke method
+        response = _service.lock_secret(
+            secret_type,
+            id,
+            locks=locks,
+            mode=mode,
+            headers={}
+        )
+
+        # Check for correct operation
+        assert len(responses.calls) == 1
+        assert response.status_code == 200
+        # Validate query params
+        query_string = responses.calls[0].request.url.split('?', 1)[1]
+        query_string = urllib.parse.unquote_plus(query_string)
+        assert 'mode={}'.format(mode) in query_string
+        # Validate body params
+        req_body = json.loads(str(responses.calls[0].request.body, 'utf-8'))
+        assert req_body['locks'] == [lock_secret_body_locks_item_model]
+
+    def test_lock_secret_all_params_with_retries(self):
+        # Enable retries and run test_lock_secret_all_params.
+        _service.enable_retries()
+        self.test_lock_secret_all_params()
+
+        # Disable retries and run test_lock_secret_all_params.
+        _service.disable_retries()
+        self.test_lock_secret_all_params()
+
+    @responses.activate
+    def test_lock_secret_required_params(self):
+        """
+        test_lock_secret_required_params()
+        """
+        # Set up mock
+        url = preprocess_url('/api/v1/locks/arbitrary/testString/lock')
+        mock_response = '{"metadata": {"collection_type": "application/vnd.ibm.secrets-manager.config+json", "collection_total": 1}, "resources": [{"secret_id": "b0283d74-0894-830b-f81d-1f115f67729f", "secret_group_id": "f5283d74-9024-230a-b72c-1f115f61290f", "versions": [{"id": "bc656587-8fda-4d05-9ad8-b1de1ec7e712", "alias": "current", "locks": ["locks"], "payload_available": false}]}]}'
+        responses.add(responses.POST,
+                      url,
+                      body=mock_response,
+                      content_type='application/json',
+                      status=200)
+
+        # Set up parameter values
+        secret_type = 'arbitrary'
+        id = 'testString'
+
+        # Invoke method
+        response = _service.lock_secret(
+            secret_type,
+            id,
+            headers={}
+        )
+
+        # Check for correct operation
+        assert len(responses.calls) == 1
+        assert response.status_code == 200
+
+    def test_lock_secret_required_params_with_retries(self):
+        # Enable retries and run test_lock_secret_required_params.
+        _service.enable_retries()
+        self.test_lock_secret_required_params()
+
+        # Disable retries and run test_lock_secret_required_params.
+        _service.disable_retries()
+        self.test_lock_secret_required_params()
+
+    @responses.activate
+    def test_lock_secret_value_error(self):
+        """
+        test_lock_secret_value_error()
+        """
+        # Set up mock
+        url = preprocess_url('/api/v1/locks/arbitrary/testString/lock')
+        mock_response = '{"metadata": {"collection_type": "application/vnd.ibm.secrets-manager.config+json", "collection_total": 1}, "resources": [{"secret_id": "b0283d74-0894-830b-f81d-1f115f67729f", "secret_group_id": "f5283d74-9024-230a-b72c-1f115f61290f", "versions": [{"id": "bc656587-8fda-4d05-9ad8-b1de1ec7e712", "alias": "current", "locks": ["locks"], "payload_available": false}]}]}'
+        responses.add(responses.POST,
+                      url,
+                      body=mock_response,
+                      content_type='application/json',
+                      status=200)
+
+        # Set up parameter values
+        secret_type = 'arbitrary'
+        id = 'testString'
+
+        # Pass in all but one required param and check for a ValueError
+        req_param_dict = {
+            "secret_type": secret_type,
+            "id": id,
+        }
+        for param in req_param_dict.keys():
+            req_copy = {key: val if key is not param else None for (key, val) in req_param_dict.items()}
+            with pytest.raises(ValueError):
+                _service.lock_secret(**req_copy)
+
+    def test_lock_secret_value_error_with_retries(self):
+        # Enable retries and run test_lock_secret_value_error.
+        _service.enable_retries()
+        self.test_lock_secret_value_error()
+
+        # Disable retries and run test_lock_secret_value_error.
+        _service.disable_retries()
+        self.test_lock_secret_value_error()
+
+
+class TestUnlockSecret():
+    """
+    Test Class for unlock_secret
+    """
+
+    @responses.activate
+    def test_unlock_secret_all_params(self):
+        """
+        unlock_secret()
+        """
+        # Set up mock
+        url = preprocess_url('/api/v1/locks/arbitrary/testString/unlock')
+        mock_response = '{"metadata": {"collection_type": "application/vnd.ibm.secrets-manager.config+json", "collection_total": 1}, "resources": [{"secret_id": "b0283d74-0894-830b-f81d-1f115f67729f", "secret_group_id": "f5283d74-9024-230a-b72c-1f115f61290f", "versions": [{"id": "bc656587-8fda-4d05-9ad8-b1de1ec7e712", "alias": "current", "locks": ["locks"], "payload_available": false}]}]}'
+        responses.add(responses.POST,
+                      url,
+                      body=mock_response,
+                      content_type='application/json',
+                      status=200)
+
+        # Set up parameter values
+        secret_type = 'arbitrary'
+        id = 'testString'
+        locks = ['testString']
+
+        # Invoke method
+        response = _service.unlock_secret(
+            secret_type,
+            id,
+            locks=locks,
+            headers={}
+        )
+
+        # Check for correct operation
+        assert len(responses.calls) == 1
+        assert response.status_code == 200
+        # Validate body params
+        req_body = json.loads(str(responses.calls[0].request.body, 'utf-8'))
+        assert req_body['locks'] == ['testString']
+
+    def test_unlock_secret_all_params_with_retries(self):
+        # Enable retries and run test_unlock_secret_all_params.
+        _service.enable_retries()
+        self.test_unlock_secret_all_params()
+
+        # Disable retries and run test_unlock_secret_all_params.
+        _service.disable_retries()
+        self.test_unlock_secret_all_params()
+
+    @responses.activate
+    def test_unlock_secret_required_params(self):
+        """
+        test_unlock_secret_required_params()
+        """
+        # Set up mock
+        url = preprocess_url('/api/v1/locks/arbitrary/testString/unlock')
+        mock_response = '{"metadata": {"collection_type": "application/vnd.ibm.secrets-manager.config+json", "collection_total": 1}, "resources": [{"secret_id": "b0283d74-0894-830b-f81d-1f115f67729f", "secret_group_id": "f5283d74-9024-230a-b72c-1f115f61290f", "versions": [{"id": "bc656587-8fda-4d05-9ad8-b1de1ec7e712", "alias": "current", "locks": ["locks"], "payload_available": false}]}]}'
+        responses.add(responses.POST,
+                      url,
+                      body=mock_response,
+                      content_type='application/json',
+                      status=200)
+
+        # Set up parameter values
+        secret_type = 'arbitrary'
+        id = 'testString'
+
+        # Invoke method
+        response = _service.unlock_secret(
+            secret_type,
+            id,
+            headers={}
+        )
+
+        # Check for correct operation
+        assert len(responses.calls) == 1
+        assert response.status_code == 200
+
+    def test_unlock_secret_required_params_with_retries(self):
+        # Enable retries and run test_unlock_secret_required_params.
+        _service.enable_retries()
+        self.test_unlock_secret_required_params()
+
+        # Disable retries and run test_unlock_secret_required_params.
+        _service.disable_retries()
+        self.test_unlock_secret_required_params()
+
+    @responses.activate
+    def test_unlock_secret_value_error(self):
+        """
+        test_unlock_secret_value_error()
+        """
+        # Set up mock
+        url = preprocess_url('/api/v1/locks/arbitrary/testString/unlock')
+        mock_response = '{"metadata": {"collection_type": "application/vnd.ibm.secrets-manager.config+json", "collection_total": 1}, "resources": [{"secret_id": "b0283d74-0894-830b-f81d-1f115f67729f", "secret_group_id": "f5283d74-9024-230a-b72c-1f115f61290f", "versions": [{"id": "bc656587-8fda-4d05-9ad8-b1de1ec7e712", "alias": "current", "locks": ["locks"], "payload_available": false}]}]}'
+        responses.add(responses.POST,
+                      url,
+                      body=mock_response,
+                      content_type='application/json',
+                      status=200)
+
+        # Set up parameter values
+        secret_type = 'arbitrary'
+        id = 'testString'
+
+        # Pass in all but one required param and check for a ValueError
+        req_param_dict = {
+            "secret_type": secret_type,
+            "id": id,
+        }
+        for param in req_param_dict.keys():
+            req_copy = {key: val if key is not param else None for (key, val) in req_param_dict.items()}
+            with pytest.raises(ValueError):
+                _service.unlock_secret(**req_copy)
+
+    def test_unlock_secret_value_error_with_retries(self):
+        # Enable retries and run test_unlock_secret_value_error.
+        _service.enable_retries()
+        self.test_unlock_secret_value_error()
+
+        # Disable retries and run test_unlock_secret_value_error.
+        _service.disable_retries()
+        self.test_unlock_secret_value_error()
+
+
+class TestGetSecretVersionLocks():
+    """
+    Test Class for get_secret_version_locks
+    """
+
+    @responses.activate
+    def test_get_secret_version_locks_all_params(self):
+        """
+        get_secret_version_locks()
+        """
+        # Set up mock
+        url = preprocess_url('/api/v1/locks/arbitrary/testString/versions/testString')
+        mock_response = '{"metadata": {"collection_type": "application/vnd.ibm.secrets-manager.config+json", "collection_total": 1}, "resources": [{"name": "name", "description": "description", "creation_date": "2018-04-12T23:20:50.520Z", "created_by": "created_by", "attributes": {"anyKey": "anyValue"}, "secret_version_id": "b0283d74-0894-830b-f81d-1f115f67729f", "secret_id": "secret_id", "secret_group_id": "f5283d74-9024-230a-b72c-1f115f61290f", "last_update_date": "2018-04-12T23:20:50.520Z", "secret_version_alias": "current"}]}'
+        responses.add(responses.GET,
+                      url,
+                      body=mock_response,
+                      content_type='application/json',
+                      status=200)
+
+        # Set up parameter values
+        secret_type = 'arbitrary'
+        id = 'testString'
+        version_id = 'testString'
+        limit = 1
+        offset = 0
+        search = 'testString'
+
+        # Invoke method
+        response = _service.get_secret_version_locks(
+            secret_type,
+            id,
+            version_id,
+            limit=limit,
+            offset=offset,
+            search=search,
+            headers={}
+        )
+
+        # Check for correct operation
+        assert len(responses.calls) == 1
+        assert response.status_code == 200
+        # Validate query params
+        query_string = responses.calls[0].request.url.split('?', 1)[1]
+        query_string = urllib.parse.unquote_plus(query_string)
+        assert 'limit={}'.format(limit) in query_string
+        assert 'offset={}'.format(offset) in query_string
+        assert 'search={}'.format(search) in query_string
+
+    def test_get_secret_version_locks_all_params_with_retries(self):
+        # Enable retries and run test_get_secret_version_locks_all_params.
+        _service.enable_retries()
+        self.test_get_secret_version_locks_all_params()
+
+        # Disable retries and run test_get_secret_version_locks_all_params.
+        _service.disable_retries()
+        self.test_get_secret_version_locks_all_params()
+
+    @responses.activate
+    def test_get_secret_version_locks_required_params(self):
+        """
+        test_get_secret_version_locks_required_params()
+        """
+        # Set up mock
+        url = preprocess_url('/api/v1/locks/arbitrary/testString/versions/testString')
+        mock_response = '{"metadata": {"collection_type": "application/vnd.ibm.secrets-manager.config+json", "collection_total": 1}, "resources": [{"name": "name", "description": "description", "creation_date": "2018-04-12T23:20:50.520Z", "created_by": "created_by", "attributes": {"anyKey": "anyValue"}, "secret_version_id": "b0283d74-0894-830b-f81d-1f115f67729f", "secret_id": "secret_id", "secret_group_id": "f5283d74-9024-230a-b72c-1f115f61290f", "last_update_date": "2018-04-12T23:20:50.520Z", "secret_version_alias": "current"}]}'
+        responses.add(responses.GET,
+                      url,
+                      body=mock_response,
+                      content_type='application/json',
+                      status=200)
+
+        # Set up parameter values
+        secret_type = 'arbitrary'
+        id = 'testString'
+        version_id = 'testString'
+
+        # Invoke method
+        response = _service.get_secret_version_locks(
+            secret_type,
+            id,
+            version_id,
+            headers={}
+        )
+
+        # Check for correct operation
+        assert len(responses.calls) == 1
+        assert response.status_code == 200
+
+    def test_get_secret_version_locks_required_params_with_retries(self):
+        # Enable retries and run test_get_secret_version_locks_required_params.
+        _service.enable_retries()
+        self.test_get_secret_version_locks_required_params()
+
+        # Disable retries and run test_get_secret_version_locks_required_params.
+        _service.disable_retries()
+        self.test_get_secret_version_locks_required_params()
+
+    @responses.activate
+    def test_get_secret_version_locks_value_error(self):
+        """
+        test_get_secret_version_locks_value_error()
+        """
+        # Set up mock
+        url = preprocess_url('/api/v1/locks/arbitrary/testString/versions/testString')
+        mock_response = '{"metadata": {"collection_type": "application/vnd.ibm.secrets-manager.config+json", "collection_total": 1}, "resources": [{"name": "name", "description": "description", "creation_date": "2018-04-12T23:20:50.520Z", "created_by": "created_by", "attributes": {"anyKey": "anyValue"}, "secret_version_id": "b0283d74-0894-830b-f81d-1f115f67729f", "secret_id": "secret_id", "secret_group_id": "f5283d74-9024-230a-b72c-1f115f61290f", "last_update_date": "2018-04-12T23:20:50.520Z", "secret_version_alias": "current"}]}'
+        responses.add(responses.GET,
+                      url,
+                      body=mock_response,
+                      content_type='application/json',
+                      status=200)
+
+        # Set up parameter values
+        secret_type = 'arbitrary'
+        id = 'testString'
+        version_id = 'testString'
+
+        # Pass in all but one required param and check for a ValueError
+        req_param_dict = {
+            "secret_type": secret_type,
+            "id": id,
+            "version_id": version_id,
+        }
+        for param in req_param_dict.keys():
+            req_copy = {key: val if key is not param else None for (key, val) in req_param_dict.items()}
+            with pytest.raises(ValueError):
+                _service.get_secret_version_locks(**req_copy)
+
+    def test_get_secret_version_locks_value_error_with_retries(self):
+        # Enable retries and run test_get_secret_version_locks_value_error.
+        _service.enable_retries()
+        self.test_get_secret_version_locks_value_error()
+
+        # Disable retries and run test_get_secret_version_locks_value_error.
+        _service.disable_retries()
+        self.test_get_secret_version_locks_value_error()
+
+
+class TestLockSecretVersion():
+    """
+    Test Class for lock_secret_version
+    """
+
+    @responses.activate
+    def test_lock_secret_version_all_params(self):
+        """
+        lock_secret_version()
+        """
+        # Set up mock
+        url = preprocess_url('/api/v1/locks/arbitrary/testString/versions/testString/lock')
+        mock_response = '{"metadata": {"collection_type": "application/vnd.ibm.secrets-manager.config+json", "collection_total": 1}, "resources": [{"secret_id": "b0283d74-0894-830b-f81d-1f115f67729f", "secret_group_id": "f5283d74-9024-230a-b72c-1f115f61290f", "versions": [{"id": "bc656587-8fda-4d05-9ad8-b1de1ec7e712", "alias": "current", "locks": ["locks"], "payload_available": false}]}]}'
+        responses.add(responses.POST,
+                      url,
+                      body=mock_response,
+                      content_type='application/json',
+                      status=200)
+
+        # Construct a dict representation of a LockSecretBodyLocksItem model
+        lock_secret_body_locks_item_model = {}
+        lock_secret_body_locks_item_model['name'] = 'lock-1'
+        lock_secret_body_locks_item_model['description'] = 'lock for consumer-1'
+        lock_secret_body_locks_item_model['attributes'] = {'foo': 'bar'}
+
+        # Set up parameter values
+        secret_type = 'arbitrary'
+        id = 'testString'
+        version_id = 'testString'
+        locks = [lock_secret_body_locks_item_model]
+        mode = 'exclusive'
+
+        # Invoke method
+        response = _service.lock_secret_version(
+            secret_type,
+            id,
+            version_id,
+            locks=locks,
+            mode=mode,
+            headers={}
+        )
+
+        # Check for correct operation
+        assert len(responses.calls) == 1
+        assert response.status_code == 200
+        # Validate query params
+        query_string = responses.calls[0].request.url.split('?', 1)[1]
+        query_string = urllib.parse.unquote_plus(query_string)
+        assert 'mode={}'.format(mode) in query_string
+        # Validate body params
+        req_body = json.loads(str(responses.calls[0].request.body, 'utf-8'))
+        assert req_body['locks'] == [lock_secret_body_locks_item_model]
+
+    def test_lock_secret_version_all_params_with_retries(self):
+        # Enable retries and run test_lock_secret_version_all_params.
+        _service.enable_retries()
+        self.test_lock_secret_version_all_params()
+
+        # Disable retries and run test_lock_secret_version_all_params.
+        _service.disable_retries()
+        self.test_lock_secret_version_all_params()
+
+    @responses.activate
+    def test_lock_secret_version_required_params(self):
+        """
+        test_lock_secret_version_required_params()
+        """
+        # Set up mock
+        url = preprocess_url('/api/v1/locks/arbitrary/testString/versions/testString/lock')
+        mock_response = '{"metadata": {"collection_type": "application/vnd.ibm.secrets-manager.config+json", "collection_total": 1}, "resources": [{"secret_id": "b0283d74-0894-830b-f81d-1f115f67729f", "secret_group_id": "f5283d74-9024-230a-b72c-1f115f61290f", "versions": [{"id": "bc656587-8fda-4d05-9ad8-b1de1ec7e712", "alias": "current", "locks": ["locks"], "payload_available": false}]}]}'
+        responses.add(responses.POST,
+                      url,
+                      body=mock_response,
+                      content_type='application/json',
+                      status=200)
+
+        # Set up parameter values
+        secret_type = 'arbitrary'
+        id = 'testString'
+        version_id = 'testString'
+
+        # Invoke method
+        response = _service.lock_secret_version(
+            secret_type,
+            id,
+            version_id,
+            headers={}
+        )
+
+        # Check for correct operation
+        assert len(responses.calls) == 1
+        assert response.status_code == 200
+
+    def test_lock_secret_version_required_params_with_retries(self):
+        # Enable retries and run test_lock_secret_version_required_params.
+        _service.enable_retries()
+        self.test_lock_secret_version_required_params()
+
+        # Disable retries and run test_lock_secret_version_required_params.
+        _service.disable_retries()
+        self.test_lock_secret_version_required_params()
+
+    @responses.activate
+    def test_lock_secret_version_value_error(self):
+        """
+        test_lock_secret_version_value_error()
+        """
+        # Set up mock
+        url = preprocess_url('/api/v1/locks/arbitrary/testString/versions/testString/lock')
+        mock_response = '{"metadata": {"collection_type": "application/vnd.ibm.secrets-manager.config+json", "collection_total": 1}, "resources": [{"secret_id": "b0283d74-0894-830b-f81d-1f115f67729f", "secret_group_id": "f5283d74-9024-230a-b72c-1f115f61290f", "versions": [{"id": "bc656587-8fda-4d05-9ad8-b1de1ec7e712", "alias": "current", "locks": ["locks"], "payload_available": false}]}]}'
+        responses.add(responses.POST,
+                      url,
+                      body=mock_response,
+                      content_type='application/json',
+                      status=200)
+
+        # Set up parameter values
+        secret_type = 'arbitrary'
+        id = 'testString'
+        version_id = 'testString'
+
+        # Pass in all but one required param and check for a ValueError
+        req_param_dict = {
+            "secret_type": secret_type,
+            "id": id,
+            "version_id": version_id,
+        }
+        for param in req_param_dict.keys():
+            req_copy = {key: val if key is not param else None for (key, val) in req_param_dict.items()}
+            with pytest.raises(ValueError):
+                _service.lock_secret_version(**req_copy)
+
+    def test_lock_secret_version_value_error_with_retries(self):
+        # Enable retries and run test_lock_secret_version_value_error.
+        _service.enable_retries()
+        self.test_lock_secret_version_value_error()
+
+        # Disable retries and run test_lock_secret_version_value_error.
+        _service.disable_retries()
+        self.test_lock_secret_version_value_error()
+
+
+class TestUnlockSecretVersion():
+    """
+    Test Class for unlock_secret_version
+    """
+
+    @responses.activate
+    def test_unlock_secret_version_all_params(self):
+        """
+        unlock_secret_version()
+        """
+        # Set up mock
+        url = preprocess_url('/api/v1/locks/arbitrary/testString/versions/testString/unlock')
+        mock_response = '{"metadata": {"collection_type": "application/vnd.ibm.secrets-manager.config+json", "collection_total": 1}, "resources": [{"secret_id": "b0283d74-0894-830b-f81d-1f115f67729f", "secret_group_id": "f5283d74-9024-230a-b72c-1f115f61290f", "versions": [{"id": "bc656587-8fda-4d05-9ad8-b1de1ec7e712", "alias": "current", "locks": ["locks"], "payload_available": false}]}]}'
+        responses.add(responses.POST,
+                      url,
+                      body=mock_response,
+                      content_type='application/json',
+                      status=200)
+
+        # Set up parameter values
+        secret_type = 'arbitrary'
+        id = 'testString'
+        version_id = 'testString'
+        locks = ['testString']
+
+        # Invoke method
+        response = _service.unlock_secret_version(
+            secret_type,
+            id,
+            version_id,
+            locks=locks,
+            headers={}
+        )
+
+        # Check for correct operation
+        assert len(responses.calls) == 1
+        assert response.status_code == 200
+        # Validate body params
+        req_body = json.loads(str(responses.calls[0].request.body, 'utf-8'))
+        assert req_body['locks'] == ['testString']
+
+    def test_unlock_secret_version_all_params_with_retries(self):
+        # Enable retries and run test_unlock_secret_version_all_params.
+        _service.enable_retries()
+        self.test_unlock_secret_version_all_params()
+
+        # Disable retries and run test_unlock_secret_version_all_params.
+        _service.disable_retries()
+        self.test_unlock_secret_version_all_params()
+
+    @responses.activate
+    def test_unlock_secret_version_required_params(self):
+        """
+        test_unlock_secret_version_required_params()
+        """
+        # Set up mock
+        url = preprocess_url('/api/v1/locks/arbitrary/testString/versions/testString/unlock')
+        mock_response = '{"metadata": {"collection_type": "application/vnd.ibm.secrets-manager.config+json", "collection_total": 1}, "resources": [{"secret_id": "b0283d74-0894-830b-f81d-1f115f67729f", "secret_group_id": "f5283d74-9024-230a-b72c-1f115f61290f", "versions": [{"id": "bc656587-8fda-4d05-9ad8-b1de1ec7e712", "alias": "current", "locks": ["locks"], "payload_available": false}]}]}'
+        responses.add(responses.POST,
+                      url,
+                      body=mock_response,
+                      content_type='application/json',
+                      status=200)
+
+        # Set up parameter values
+        secret_type = 'arbitrary'
+        id = 'testString'
+        version_id = 'testString'
+
+        # Invoke method
+        response = _service.unlock_secret_version(
+            secret_type,
+            id,
+            version_id,
+            headers={}
+        )
+
+        # Check for correct operation
+        assert len(responses.calls) == 1
+        assert response.status_code == 200
+
+    def test_unlock_secret_version_required_params_with_retries(self):
+        # Enable retries and run test_unlock_secret_version_required_params.
+        _service.enable_retries()
+        self.test_unlock_secret_version_required_params()
+
+        # Disable retries and run test_unlock_secret_version_required_params.
+        _service.disable_retries()
+        self.test_unlock_secret_version_required_params()
+
+    @responses.activate
+    def test_unlock_secret_version_value_error(self):
+        """
+        test_unlock_secret_version_value_error()
+        """
+        # Set up mock
+        url = preprocess_url('/api/v1/locks/arbitrary/testString/versions/testString/unlock')
+        mock_response = '{"metadata": {"collection_type": "application/vnd.ibm.secrets-manager.config+json", "collection_total": 1}, "resources": [{"secret_id": "b0283d74-0894-830b-f81d-1f115f67729f", "secret_group_id": "f5283d74-9024-230a-b72c-1f115f61290f", "versions": [{"id": "bc656587-8fda-4d05-9ad8-b1de1ec7e712", "alias": "current", "locks": ["locks"], "payload_available": false}]}]}'
+        responses.add(responses.POST,
+                      url,
+                      body=mock_response,
+                      content_type='application/json',
+                      status=200)
+
+        # Set up parameter values
+        secret_type = 'arbitrary'
+        id = 'testString'
+        version_id = 'testString'
+
+        # Pass in all but one required param and check for a ValueError
+        req_param_dict = {
+            "secret_type": secret_type,
+            "id": id,
+            "version_id": version_id,
+        }
+        for param in req_param_dict.keys():
+            req_copy = {key: val if key is not param else None for (key, val) in req_param_dict.items()}
+            with pytest.raises(ValueError):
+                _service.unlock_secret_version(**req_copy)
+
+    def test_unlock_secret_version_value_error_with_retries(self):
+        # Enable retries and run test_unlock_secret_version_value_error.
+        _service.enable_retries()
+        self.test_unlock_secret_version_value_error()
+
+        # Disable retries and run test_unlock_secret_version_value_error.
+        _service.disable_retries()
+        self.test_unlock_secret_version_value_error()
+
+
+class TestListInstanceSecretsLocks():
+    """
+    Test Class for list_instance_secrets_locks
+    """
+
+    @responses.activate
+    def test_list_instance_secrets_locks_all_params(self):
+        """
+        list_instance_secrets_locks()
+        """
+        # Set up mock
+        url = preprocess_url('/api/v1/locks')
+        mock_response = '{"metadata": {"collection_type": "application/vnd.ibm.secrets-manager.config+json", "collection_total": 1}, "resources": [{"secret_id": "b0283d74-0894-830b-f81d-1f115f67729f", "secret_group_id": "f5283d74-9024-230a-b72c-1f115f61290f", "secret_type": "arbitrary", "versions": [{"id": "bc656587-8fda-4d05-9ad8-b1de1ec7e712", "alias": "current", "locks": ["locks"], "payload_available": false}]}]}'
+        responses.add(responses.GET,
+                      url,
+                      body=mock_response,
+                      content_type='application/json',
+                      status=200)
+
+        # Set up parameter values
+        limit = 1
+        offset = 0
+        search = 'testString'
+        groups = ['testString']
+
+        # Invoke method
+        response = _service.list_instance_secrets_locks(
+            limit=limit,
+            offset=offset,
+            search=search,
+            groups=groups,
+            headers={}
+        )
+
+        # Check for correct operation
+        assert len(responses.calls) == 1
+        assert response.status_code == 200
+        # Validate query params
+        query_string = responses.calls[0].request.url.split('?', 1)[1]
+        query_string = urllib.parse.unquote_plus(query_string)
+        assert 'limit={}'.format(limit) in query_string
+        assert 'offset={}'.format(offset) in query_string
+        assert 'search={}'.format(search) in query_string
+        assert 'groups={}'.format(','.join(groups)) in query_string
+
+    def test_list_instance_secrets_locks_all_params_with_retries(self):
+        # Enable retries and run test_list_instance_secrets_locks_all_params.
+        _service.enable_retries()
+        self.test_list_instance_secrets_locks_all_params()
+
+        # Disable retries and run test_list_instance_secrets_locks_all_params.
+        _service.disable_retries()
+        self.test_list_instance_secrets_locks_all_params()
+
+    @responses.activate
+    def test_list_instance_secrets_locks_required_params(self):
+        """
+        test_list_instance_secrets_locks_required_params()
+        """
+        # Set up mock
+        url = preprocess_url('/api/v1/locks')
+        mock_response = '{"metadata": {"collection_type": "application/vnd.ibm.secrets-manager.config+json", "collection_total": 1}, "resources": [{"secret_id": "b0283d74-0894-830b-f81d-1f115f67729f", "secret_group_id": "f5283d74-9024-230a-b72c-1f115f61290f", "secret_type": "arbitrary", "versions": [{"id": "bc656587-8fda-4d05-9ad8-b1de1ec7e712", "alias": "current", "locks": ["locks"], "payload_available": false}]}]}'
+        responses.add(responses.GET,
+                      url,
+                      body=mock_response,
+                      content_type='application/json',
+                      status=200)
+
+        # Invoke method
+        response = _service.list_instance_secrets_locks()
+
+        # Check for correct operation
+        assert len(responses.calls) == 1
+        assert response.status_code == 200
+
+    def test_list_instance_secrets_locks_required_params_with_retries(self):
+        # Enable retries and run test_list_instance_secrets_locks_required_params.
+        _service.enable_retries()
+        self.test_list_instance_secrets_locks_required_params()
+
+        # Disable retries and run test_list_instance_secrets_locks_required_params.
+        _service.disable_retries()
+        self.test_list_instance_secrets_locks_required_params()
+
+
+# endregion
+##############################################################################
+# End of Service: Locks
 ##############################################################################
 
 ##############################################################################
@@ -3494,6 +4417,7 @@ class TestModel_CreateSecret():
         secret_resource_model['last_update_date'] = '2018-04-12T23:20:50.520000Z'
         secret_resource_model['versions_total'] = 1
         secret_resource_model['versions'] = [{'key1': 'testString'}]
+        secret_resource_model['locks_total'] = 1
         secret_resource_model['expiration_date'] = '2030-04-01T09:30:00Z'
         secret_resource_model['payload'] = 'testString'
         secret_resource_model['secret_data'] = {'foo': 'bar'}
@@ -3608,6 +4532,57 @@ class TestModel_GetConfigElements():
         assert get_config_elements_model_json2 == get_config_elements_model_json
 
 
+class TestModel_GetInstanceLocks():
+    """
+    Test Class for GetInstanceLocks
+    """
+
+    def test_get_instance_locks_serialization(self):
+        """
+        Test serialization/deserialization for GetInstanceLocks
+        """
+
+        # Construct dict forms of any model objects needed in order to build this model.
+
+        collection_metadata_model = {}  # CollectionMetadata
+        collection_metadata_model['collection_type'] = 'application/vnd.ibm.secrets-manager.config+json'
+        collection_metadata_model['collection_total'] = 1
+
+        secret_lock_version_model = {}  # SecretLockVersion
+        secret_lock_version_model['id'] = 'bc656587-8fda-4d05-9ad8-b1de1ec7e712'
+        secret_lock_version_model['alias'] = 'current'
+        secret_lock_version_model['locks'] = ['lock-1', 'lock-2']
+        secret_lock_version_model['payload_available'] = True
+        secret_lock_version_model['foo'] = 'testString'
+
+        instance_secrets_locks_model = {}  # InstanceSecretsLocks
+        instance_secrets_locks_model['secret_id'] = 'b0283d74-0894-830b-f81d-1f115f67729f'
+        instance_secrets_locks_model['secret_group_id'] = 'f5283d74-9024-230a-b72c-1f115f61290f'
+        instance_secrets_locks_model['secret_type'] = 'arbitrary'
+        instance_secrets_locks_model['versions'] = [secret_lock_version_model]
+        instance_secrets_locks_model['foo'] = 'testString'
+
+        # Construct a json representation of a GetInstanceLocks model
+        get_instance_locks_model_json = {}
+        get_instance_locks_model_json['metadata'] = collection_metadata_model
+        get_instance_locks_model_json['resources'] = [instance_secrets_locks_model]
+
+        # Construct a model instance of GetInstanceLocks by calling from_dict on the json representation
+        get_instance_locks_model = GetInstanceLocks.from_dict(get_instance_locks_model_json)
+        assert get_instance_locks_model != False
+
+        # Construct a model instance of GetInstanceLocks by calling from_dict on the json representation
+        get_instance_locks_model_dict = GetInstanceLocks.from_dict(get_instance_locks_model_json).__dict__
+        get_instance_locks_model2 = GetInstanceLocks(**get_instance_locks_model_dict)
+
+        # Verify the model instances are equivalent
+        assert get_instance_locks_model == get_instance_locks_model2
+
+        # Convert model instance back to dict and verify no loss of data
+        get_instance_locks_model_json2 = get_instance_locks_model.to_dict()
+        assert get_instance_locks_model_json2 == get_instance_locks_model_json
+
+
 class TestModel_GetNotificationsSettings():
     """
     Test Class for GetNotificationsSettings
@@ -3682,6 +4657,7 @@ class TestModel_GetSecret():
         secret_resource_model['last_update_date'] = '2018-04-12T23:20:50.520000Z'
         secret_resource_model['versions_total'] = 1
         secret_resource_model['versions'] = [{'key1': 'testString'}]
+        secret_resource_model['locks_total'] = 1
         secret_resource_model['expiration_date'] = '2030-04-01T09:30:00Z'
         secret_resource_model['payload'] = 'testString'
         secret_resource_model['secret_data'] = {'foo': 'bar'}
@@ -3707,6 +4683,56 @@ class TestModel_GetSecret():
         assert get_secret_model_json2 == get_secret_model_json
 
 
+class TestModel_GetSecretLocks():
+    """
+    Test Class for GetSecretLocks
+    """
+
+    def test_get_secret_locks_serialization(self):
+        """
+        Test serialization/deserialization for GetSecretLocks
+        """
+
+        # Construct dict forms of any model objects needed in order to build this model.
+
+        collection_metadata_model = {}  # CollectionMetadata
+        collection_metadata_model['collection_type'] = 'application/vnd.ibm.secrets-manager.config+json'
+        collection_metadata_model['collection_total'] = 1
+
+        secret_lock_version_model = {}  # SecretLockVersion
+        secret_lock_version_model['id'] = 'bc656587-8fda-4d05-9ad8-b1de1ec7e712'
+        secret_lock_version_model['alias'] = 'current'
+        secret_lock_version_model['locks'] = ['lock-1', 'lock-2']
+        secret_lock_version_model['payload_available'] = True
+        secret_lock_version_model['foo'] = 'testString'
+
+        secrets_locks_model = {}  # SecretsLocks
+        secrets_locks_model['secret_id'] = 'b0283d74-0894-830b-f81d-1f115f67729f'
+        secrets_locks_model['secret_group_id'] = 'f5283d74-9024-230a-b72c-1f115f61290f'
+        secrets_locks_model['versions'] = [secret_lock_version_model]
+        secrets_locks_model['foo'] = 'testString'
+
+        # Construct a json representation of a GetSecretLocks model
+        get_secret_locks_model_json = {}
+        get_secret_locks_model_json['metadata'] = collection_metadata_model
+        get_secret_locks_model_json['resources'] = [secrets_locks_model]
+
+        # Construct a model instance of GetSecretLocks by calling from_dict on the json representation
+        get_secret_locks_model = GetSecretLocks.from_dict(get_secret_locks_model_json)
+        assert get_secret_locks_model != False
+
+        # Construct a model instance of GetSecretLocks by calling from_dict on the json representation
+        get_secret_locks_model_dict = GetSecretLocks.from_dict(get_secret_locks_model_json).__dict__
+        get_secret_locks_model2 = GetSecretLocks(**get_secret_locks_model_dict)
+
+        # Verify the model instances are equivalent
+        assert get_secret_locks_model == get_secret_locks_model2
+
+        # Convert model instance back to dict and verify no loss of data
+        get_secret_locks_model_json2 = get_secret_locks_model.to_dict()
+        assert get_secret_locks_model_json2 == get_secret_locks_model_json
+
+
 class TestModel_GetSecretVersion():
     """
     Test Class for GetSecretVersion
@@ -3728,6 +4754,7 @@ class TestModel_GetSecretVersion():
         secret_version_model['version_id'] = '4a0225e9-17a0-46c1-ace7-f25bcf4237d4'
         secret_version_model['creation_date'] = '2019-01-01T12:00:00Z'
         secret_version_model['created_by'] = 'testString'
+        secret_version_model['locks_total'] = 1
         secret_version_model['secret_data'] = {'foo': 'bar'}
 
         # Construct a json representation of a GetSecretVersion model
@@ -3774,6 +4801,7 @@ class TestModel_GetSecretVersionMetadata():
         secret_version_metadata_model['created_by'] = 'testString'
         secret_version_metadata_model['payload_available'] = True
         secret_version_metadata_model['downloaded'] = True
+        secret_version_metadata_model['locks_total'] = 1
 
         # Construct a json representation of a GetSecretVersionMetadata model
         get_secret_version_metadata_model_json = {}
@@ -3841,6 +4869,59 @@ class TestModel_GetSingleConfigElement():
         # Convert model instance back to dict and verify no loss of data
         get_single_config_element_model_json2 = get_single_config_element_model.to_dict()
         assert get_single_config_element_model_json2 == get_single_config_element_model_json
+
+
+class TestModel_InstanceSecretsLocks():
+    """
+    Test Class for InstanceSecretsLocks
+    """
+
+    def test_instance_secrets_locks_serialization(self):
+        """
+        Test serialization/deserialization for InstanceSecretsLocks
+        """
+
+        # Construct dict forms of any model objects needed in order to build this model.
+
+        secret_lock_version_model = {}  # SecretLockVersion
+        secret_lock_version_model['id'] = 'bc656587-8fda-4d05-9ad8-b1de1ec7e712'
+        secret_lock_version_model['alias'] = 'current'
+        secret_lock_version_model['locks'] = ['lock-1', 'lock-2']
+        secret_lock_version_model['payload_available'] = True
+        secret_lock_version_model['foo'] = 'testString'
+
+        # Construct a json representation of a InstanceSecretsLocks model
+        instance_secrets_locks_model_json = {}
+        instance_secrets_locks_model_json['secret_id'] = 'b0283d74-0894-830b-f81d-1f115f67729f'
+        instance_secrets_locks_model_json['secret_group_id'] = 'f5283d74-9024-230a-b72c-1f115f61290f'
+        instance_secrets_locks_model_json['secret_type'] = 'arbitrary'
+        instance_secrets_locks_model_json['versions'] = [secret_lock_version_model]
+        instance_secrets_locks_model_json['foo'] = 'testString'
+
+        # Construct a model instance of InstanceSecretsLocks by calling from_dict on the json representation
+        instance_secrets_locks_model = InstanceSecretsLocks.from_dict(instance_secrets_locks_model_json)
+        assert instance_secrets_locks_model != False
+
+        # Construct a model instance of InstanceSecretsLocks by calling from_dict on the json representation
+        instance_secrets_locks_model_dict = InstanceSecretsLocks.from_dict(instance_secrets_locks_model_json).__dict__
+        instance_secrets_locks_model2 = InstanceSecretsLocks(**instance_secrets_locks_model_dict)
+
+        # Verify the model instances are equivalent
+        assert instance_secrets_locks_model == instance_secrets_locks_model2
+
+        # Convert model instance back to dict and verify no loss of data
+        instance_secrets_locks_model_json2 = instance_secrets_locks_model.to_dict()
+        assert instance_secrets_locks_model_json2 == instance_secrets_locks_model_json
+
+        # Test get_properties and set_properties methods.
+        instance_secrets_locks_model.set_properties({})
+        actual_dict = instance_secrets_locks_model.get_properties()
+        assert actual_dict == {}
+
+        expected_dict = {'foo': 'testString'}
+        instance_secrets_locks_model.set_properties(expected_dict)
+        actual_dict = instance_secrets_locks_model.get_properties()
+        assert actual_dict == expected_dict
 
 
 class TestModel_IntermediateCertificateAuthoritiesConfigItem():
@@ -3949,6 +5030,55 @@ class TestModel_IssuanceInfo():
         assert issuance_info_model_json2 == issuance_info_model_json
 
 
+class TestModel_ListSecretLocks():
+    """
+    Test Class for ListSecretLocks
+    """
+
+    def test_list_secret_locks_serialization(self):
+        """
+        Test serialization/deserialization for ListSecretLocks
+        """
+
+        # Construct dict forms of any model objects needed in order to build this model.
+
+        collection_metadata_model = {}  # CollectionMetadata
+        collection_metadata_model['collection_type'] = 'application/vnd.ibm.secrets-manager.config+json'
+        collection_metadata_model['collection_total'] = 1
+
+        secret_lock_data_model = {}  # SecretLockData
+        secret_lock_data_model['name'] = 'testString'
+        secret_lock_data_model['description'] = 'testString'
+        secret_lock_data_model['creation_date'] = '2018-04-12T23:20:50.520000Z'
+        secret_lock_data_model['created_by'] = 'testString'
+        secret_lock_data_model['attributes'] = {'foo': 'bar'}
+        secret_lock_data_model['secret_version_id'] = 'b0283d74-0894-830b-f81d-1f115f67729f'
+        secret_lock_data_model['secret_id'] = 'testString'
+        secret_lock_data_model['secret_group_id'] = 'f5283d74-9024-230a-b72c-1f115f61290f'
+        secret_lock_data_model['last_update_date'] = '2018-04-12T23:20:50.520000Z'
+        secret_lock_data_model['secret_version_alias'] = 'current'
+
+        # Construct a json representation of a ListSecretLocks model
+        list_secret_locks_model_json = {}
+        list_secret_locks_model_json['metadata'] = collection_metadata_model
+        list_secret_locks_model_json['resources'] = [secret_lock_data_model]
+
+        # Construct a model instance of ListSecretLocks by calling from_dict on the json representation
+        list_secret_locks_model = ListSecretLocks.from_dict(list_secret_locks_model_json)
+        assert list_secret_locks_model != False
+
+        # Construct a model instance of ListSecretLocks by calling from_dict on the json representation
+        list_secret_locks_model_dict = ListSecretLocks.from_dict(list_secret_locks_model_json).__dict__
+        list_secret_locks_model2 = ListSecretLocks(**list_secret_locks_model_dict)
+
+        # Verify the model instances are equivalent
+        assert list_secret_locks_model == list_secret_locks_model2
+
+        # Convert model instance back to dict and verify no loss of data
+        list_secret_locks_model_json2 = list_secret_locks_model.to_dict()
+        assert list_secret_locks_model_json2 == list_secret_locks_model_json
+
+
 class TestModel_ListSecretVersions():
     """
     Test Class for ListSecretVersions
@@ -4025,6 +5155,7 @@ class TestModel_ListSecrets():
         secret_resource_model['last_update_date'] = '2018-04-12T23:20:50.520000Z'
         secret_resource_model['versions_total'] = 1
         secret_resource_model['versions'] = [{'key1': 'testString'}]
+        secret_resource_model['locks_total'] = 1
         secret_resource_model['expiration_date'] = '2030-04-01T09:30:00Z'
         secret_resource_model['payload'] = 'testString'
         secret_resource_model['secret_data'] = {'foo': 'bar'}
@@ -4048,6 +5179,39 @@ class TestModel_ListSecrets():
         # Convert model instance back to dict and verify no loss of data
         list_secrets_model_json2 = list_secrets_model.to_dict()
         assert list_secrets_model_json2 == list_secrets_model_json
+
+
+class TestModel_LockSecretBodyLocksItem():
+    """
+    Test Class for LockSecretBodyLocksItem
+    """
+
+    def test_lock_secret_body_locks_item_serialization(self):
+        """
+        Test serialization/deserialization for LockSecretBodyLocksItem
+        """
+
+        # Construct a json representation of a LockSecretBodyLocksItem model
+        lock_secret_body_locks_item_model_json = {}
+        lock_secret_body_locks_item_model_json['name'] = 'testString'
+        lock_secret_body_locks_item_model_json['description'] = 'testString'
+        lock_secret_body_locks_item_model_json['attributes'] = {'foo': 'bar'}
+
+        # Construct a model instance of LockSecretBodyLocksItem by calling from_dict on the json representation
+        lock_secret_body_locks_item_model = LockSecretBodyLocksItem.from_dict(lock_secret_body_locks_item_model_json)
+        assert lock_secret_body_locks_item_model != False
+
+        # Construct a model instance of LockSecretBodyLocksItem by calling from_dict on the json representation
+        lock_secret_body_locks_item_model_dict = LockSecretBodyLocksItem.from_dict(
+            lock_secret_body_locks_item_model_json).__dict__
+        lock_secret_body_locks_item_model2 = LockSecretBodyLocksItem(**lock_secret_body_locks_item_model_dict)
+
+        # Verify the model instances are equivalent
+        assert lock_secret_body_locks_item_model == lock_secret_body_locks_item_model2
+
+        # Convert model instance back to dict and verify no loss of data
+        lock_secret_body_locks_item_model_json2 = lock_secret_body_locks_item_model.to_dict()
+        assert lock_secret_body_locks_item_model_json2 == lock_secret_body_locks_item_model_json
 
 
 class TestModel_NotificationsSettings():
@@ -4308,6 +5472,89 @@ class TestModel_SecretGroupResource():
         assert actual_dict == expected_dict
 
 
+class TestModel_SecretLockData():
+    """
+    Test Class for SecretLockData
+    """
+
+    def test_secret_lock_data_serialization(self):
+        """
+        Test serialization/deserialization for SecretLockData
+        """
+
+        # Construct a json representation of a SecretLockData model
+        secret_lock_data_model_json = {}
+        secret_lock_data_model_json['name'] = 'testString'
+        secret_lock_data_model_json['description'] = 'testString'
+        secret_lock_data_model_json['creation_date'] = '2018-04-12T23:20:50.520000Z'
+        secret_lock_data_model_json['created_by'] = 'testString'
+        secret_lock_data_model_json['attributes'] = {'foo': 'bar'}
+        secret_lock_data_model_json['secret_version_id'] = 'b0283d74-0894-830b-f81d-1f115f67729f'
+        secret_lock_data_model_json['secret_id'] = 'testString'
+        secret_lock_data_model_json['secret_group_id'] = 'f5283d74-9024-230a-b72c-1f115f61290f'
+        secret_lock_data_model_json['last_update_date'] = '2018-04-12T23:20:50.520000Z'
+        secret_lock_data_model_json['secret_version_alias'] = 'current'
+
+        # Construct a model instance of SecretLockData by calling from_dict on the json representation
+        secret_lock_data_model = SecretLockData.from_dict(secret_lock_data_model_json)
+        assert secret_lock_data_model != False
+
+        # Construct a model instance of SecretLockData by calling from_dict on the json representation
+        secret_lock_data_model_dict = SecretLockData.from_dict(secret_lock_data_model_json).__dict__
+        secret_lock_data_model2 = SecretLockData(**secret_lock_data_model_dict)
+
+        # Verify the model instances are equivalent
+        assert secret_lock_data_model == secret_lock_data_model2
+
+        # Convert model instance back to dict and verify no loss of data
+        secret_lock_data_model_json2 = secret_lock_data_model.to_dict()
+        assert secret_lock_data_model_json2 == secret_lock_data_model_json
+
+
+class TestModel_SecretLockVersion():
+    """
+    Test Class for SecretLockVersion
+    """
+
+    def test_secret_lock_version_serialization(self):
+        """
+        Test serialization/deserialization for SecretLockVersion
+        """
+
+        # Construct a json representation of a SecretLockVersion model
+        secret_lock_version_model_json = {}
+        secret_lock_version_model_json['id'] = 'bc656587-8fda-4d05-9ad8-b1de1ec7e712'
+        secret_lock_version_model_json['alias'] = 'current'
+        secret_lock_version_model_json['locks'] = ['lock-1', 'lock-2']
+        secret_lock_version_model_json['payload_available'] = True
+        secret_lock_version_model_json['foo'] = 'testString'
+
+        # Construct a model instance of SecretLockVersion by calling from_dict on the json representation
+        secret_lock_version_model = SecretLockVersion.from_dict(secret_lock_version_model_json)
+        assert secret_lock_version_model != False
+
+        # Construct a model instance of SecretLockVersion by calling from_dict on the json representation
+        secret_lock_version_model_dict = SecretLockVersion.from_dict(secret_lock_version_model_json).__dict__
+        secret_lock_version_model2 = SecretLockVersion(**secret_lock_version_model_dict)
+
+        # Verify the model instances are equivalent
+        assert secret_lock_version_model == secret_lock_version_model2
+
+        # Convert model instance back to dict and verify no loss of data
+        secret_lock_version_model_json2 = secret_lock_version_model.to_dict()
+        assert secret_lock_version_model_json2 == secret_lock_version_model_json
+
+        # Test get_properties and set_properties methods.
+        secret_lock_version_model.set_properties({})
+        actual_dict = secret_lock_version_model.get_properties()
+        assert actual_dict == {}
+
+        expected_dict = {'foo': 'testString'}
+        secret_lock_version_model.set_properties(expected_dict)
+        actual_dict = secret_lock_version_model.get_properties()
+        assert actual_dict == expected_dict
+
+
 class TestModel_SecretMetadataRequest():
     """
     Test Class for SecretMetadataRequest
@@ -4339,6 +5586,7 @@ class TestModel_SecretMetadataRequest():
         secret_metadata_model['created_by'] = 'ServiceId-cb258cb9-8de3-4ac0-9aec-b2b2d27ac976'
         secret_metadata_model['last_update_date'] = '2018-04-12T23:20:50.520000Z'
         secret_metadata_model['versions_total'] = 1
+        secret_metadata_model['locks_total'] = 1
         secret_metadata_model['expiration_date'] = '2030-04-01T09:30:00Z'
 
         # Construct a json representation of a SecretMetadataRequest model
@@ -4398,6 +5646,58 @@ class TestModel_SecretPolicyRotation():
         # Convert model instance back to dict and verify no loss of data
         secret_policy_rotation_model_json2 = secret_policy_rotation_model.to_dict()
         assert secret_policy_rotation_model_json2 == secret_policy_rotation_model_json
+
+
+class TestModel_SecretsLocks():
+    """
+    Test Class for SecretsLocks
+    """
+
+    def test_secrets_locks_serialization(self):
+        """
+        Test serialization/deserialization for SecretsLocks
+        """
+
+        # Construct dict forms of any model objects needed in order to build this model.
+
+        secret_lock_version_model = {}  # SecretLockVersion
+        secret_lock_version_model['id'] = 'bc656587-8fda-4d05-9ad8-b1de1ec7e712'
+        secret_lock_version_model['alias'] = 'current'
+        secret_lock_version_model['locks'] = ['lock-1', 'lock-2']
+        secret_lock_version_model['payload_available'] = True
+        secret_lock_version_model['foo'] = 'testString'
+
+        # Construct a json representation of a SecretsLocks model
+        secrets_locks_model_json = {}
+        secrets_locks_model_json['secret_id'] = 'b0283d74-0894-830b-f81d-1f115f67729f'
+        secrets_locks_model_json['secret_group_id'] = 'f5283d74-9024-230a-b72c-1f115f61290f'
+        secrets_locks_model_json['versions'] = [secret_lock_version_model]
+        secrets_locks_model_json['foo'] = 'testString'
+
+        # Construct a model instance of SecretsLocks by calling from_dict on the json representation
+        secrets_locks_model = SecretsLocks.from_dict(secrets_locks_model_json)
+        assert secrets_locks_model != False
+
+        # Construct a model instance of SecretsLocks by calling from_dict on the json representation
+        secrets_locks_model_dict = SecretsLocks.from_dict(secrets_locks_model_json).__dict__
+        secrets_locks_model2 = SecretsLocks(**secrets_locks_model_dict)
+
+        # Verify the model instances are equivalent
+        assert secrets_locks_model == secrets_locks_model2
+
+        # Convert model instance back to dict and verify no loss of data
+        secrets_locks_model_json2 = secrets_locks_model.to_dict()
+        assert secrets_locks_model_json2 == secrets_locks_model_json
+
+        # Test get_properties and set_properties methods.
+        secrets_locks_model.set_properties({})
+        actual_dict = secrets_locks_model.get_properties()
+        assert actual_dict == {}
+
+        expected_dict = {'foo': 'testString'}
+        secrets_locks_model.set_properties(expected_dict)
+        actual_dict = secrets_locks_model.get_properties()
+        assert actual_dict == expected_dict
 
 
 class TestModel_SignActionResultData():
@@ -4528,6 +5828,7 @@ class TestModel_ArbitrarySecretMetadata():
         arbitrary_secret_metadata_model_json['created_by'] = 'ServiceId-cb258cb9-8de3-4ac0-9aec-b2b2d27ac976'
         arbitrary_secret_metadata_model_json['last_update_date'] = '2018-04-12T23:20:50.520000Z'
         arbitrary_secret_metadata_model_json['versions_total'] = 1
+        arbitrary_secret_metadata_model_json['locks_total'] = 1
         arbitrary_secret_metadata_model_json['expiration_date'] = '2030-04-01T09:30:00Z'
 
         # Construct a model instance of ArbitrarySecretMetadata by calling from_dict on the json representation
@@ -4574,6 +5875,7 @@ class TestModel_ArbitrarySecretResource():
         arbitrary_secret_resource_model_json['last_update_date'] = '2018-04-12T23:20:50.520000Z'
         arbitrary_secret_resource_model_json['versions_total'] = 1
         arbitrary_secret_resource_model_json['versions'] = [{'key1': 'testString'}]
+        arbitrary_secret_resource_model_json['locks_total'] = 1
         arbitrary_secret_resource_model_json['expiration_date'] = '2030-04-01T09:30:00Z'
         arbitrary_secret_resource_model_json['payload'] = 'testString'
         arbitrary_secret_resource_model_json['secret_data'] = {'foo': 'bar'}
@@ -4611,6 +5913,7 @@ class TestModel_ArbitrarySecretVersion():
         arbitrary_secret_version_model_json['version_id'] = '4a0225e9-17a0-46c1-ace7-f25bcf4237d4'
         arbitrary_secret_version_model_json['creation_date'] = '2019-01-01T12:00:00Z'
         arbitrary_secret_version_model_json['created_by'] = 'testString'
+        arbitrary_secret_version_model_json['locks_total'] = 1
         arbitrary_secret_version_model_json['secret_data'] = {'foo': 'bar'}
 
         # Construct a model instance of ArbitrarySecretVersion by calling from_dict on the json representation
@@ -4684,6 +5987,7 @@ class TestModel_ArbitrarySecretVersionMetadata():
         arbitrary_secret_version_metadata_model_json['created_by'] = 'testString'
         arbitrary_secret_version_metadata_model_json['payload_available'] = True
         arbitrary_secret_version_metadata_model_json['downloaded'] = True
+        arbitrary_secret_version_metadata_model_json['locks_total'] = 1
 
         # Construct a model instance of ArbitrarySecretVersionMetadata by calling from_dict on the json representation
         arbitrary_secret_version_metadata_model = ArbitrarySecretVersionMetadata.from_dict(
@@ -4736,6 +6040,7 @@ class TestModel_CertificateSecretMetadata():
         certificate_secret_metadata_model_json['created_by'] = 'ServiceId-cb258cb9-8de3-4ac0-9aec-b2b2d27ac976'
         certificate_secret_metadata_model_json['last_update_date'] = '2018-04-12T23:20:50.520000Z'
         certificate_secret_metadata_model_json['versions_total'] = 1
+        certificate_secret_metadata_model_json['locks_total'] = 1
         certificate_secret_metadata_model_json['serial_number'] = 'd9:be:fe:35:ba:09:42:b5'
         certificate_secret_metadata_model_json['algorithm'] = 'SHA256-RSA'
         certificate_secret_metadata_model_json['key_algorithm'] = 'RSA2048'
@@ -4797,6 +6102,7 @@ class TestModel_CertificateSecretResource():
         certificate_secret_resource_model_json['last_update_date'] = '2018-04-12T23:20:50.520000Z'
         certificate_secret_resource_model_json['versions_total'] = 1
         certificate_secret_resource_model_json['versions'] = [{'key1': 'testString'}]
+        certificate_secret_resource_model_json['locks_total'] = 1
         certificate_secret_resource_model_json['certificate'] = 'testString'
         certificate_secret_resource_model_json['private_key'] = 'testString'
         certificate_secret_resource_model_json['intermediate'] = 'testString'
@@ -4853,6 +6159,7 @@ class TestModel_CertificateSecretVersion():
         certificate_secret_version_model_json['version_id'] = '4a0225e9-17a0-46c1-ace7-f25bcf4237d4'
         certificate_secret_version_model_json['creation_date'] = '2019-01-01T12:00:00Z'
         certificate_secret_version_model_json['created_by'] = 'testString'
+        certificate_secret_version_model_json['locks_total'] = 1
         certificate_secret_version_model_json['validity'] = certificate_validity_model
         certificate_secret_version_model_json['serial_number'] = 'd9:be:fe:35:ba:09:42:b5'
         certificate_secret_version_model_json['expiration_date'] = '2030-04-01T09:30:00Z'
@@ -4945,6 +6252,7 @@ class TestModel_CertificateSecretVersionMetadata():
         certificate_secret_version_metadata_model_json['created_by'] = 'testString'
         certificate_secret_version_metadata_model_json['payload_available'] = True
         certificate_secret_version_metadata_model_json['downloaded'] = True
+        certificate_secret_version_metadata_model_json['locks_total'] = 1
         certificate_secret_version_metadata_model_json['serial_number'] = 'd9:be:fe:35:ba:09:42:b5'
         certificate_secret_version_metadata_model_json['expiration_date'] = '2030-04-01T09:30:00Z'
         certificate_secret_version_metadata_model_json['validity'] = certificate_validity_model
@@ -5467,6 +6775,7 @@ class TestModel_IAMCredentialsSecretMetadata():
         iam_credentials_secret_metadata_model_json['created_by'] = 'ServiceId-cb258cb9-8de3-4ac0-9aec-b2b2d27ac976'
         iam_credentials_secret_metadata_model_json['last_update_date'] = '2018-04-12T23:20:50.520000Z'
         iam_credentials_secret_metadata_model_json['versions_total'] = 1
+        iam_credentials_secret_metadata_model_json['locks_total'] = 1
         iam_credentials_secret_metadata_model_json['ttl'] = '12h'
         iam_credentials_secret_metadata_model_json['reuse_api_key'] = True
         iam_credentials_secret_metadata_model_json['service_id_is_static'] = True
@@ -5520,6 +6829,7 @@ class TestModel_IAMCredentialsSecretResource():
         iam_credentials_secret_resource_model_json['last_update_date'] = '2018-04-12T23:20:50.520000Z'
         iam_credentials_secret_resource_model_json['versions_total'] = 1
         iam_credentials_secret_resource_model_json['versions'] = [{'key1': 'testString'}]
+        iam_credentials_secret_resource_model_json['locks_total'] = 1
         iam_credentials_secret_resource_model_json['ttl'] = '24h'
         iam_credentials_secret_resource_model_json['access_groups'] = [
             'AccessGroupId-45884031-54be-4dd7-86ff-112511e92699', 'AccessGroupId-2c190fb5-0d9d-46c5-acf3-78ecd30e24a0']
@@ -5564,6 +6874,7 @@ class TestModel_IAMCredentialsSecretVersion():
         iam_credentials_secret_version_model_json['version_id'] = '4a0225e9-17a0-46c1-ace7-f25bcf4237d4'
         iam_credentials_secret_version_model_json['creation_date'] = '2019-01-01T12:00:00Z'
         iam_credentials_secret_version_model_json['created_by'] = 'testString'
+        iam_credentials_secret_version_model_json['locks_total'] = 1
         iam_credentials_secret_version_model_json['secret_data'] = {'foo': 'bar'}
 
         # Construct a model instance of IAMCredentialsSecretVersion by calling from_dict on the json representation
@@ -5639,6 +6950,7 @@ class TestModel_IAMCredentialsSecretVersionMetadata():
         iam_credentials_secret_version_metadata_model_json['created_by'] = 'testString'
         iam_credentials_secret_version_metadata_model_json['payload_available'] = True
         iam_credentials_secret_version_metadata_model_json['downloaded'] = True
+        iam_credentials_secret_version_metadata_model_json['locks_total'] = 1
 
         # Construct a model instance of IAMCredentialsSecretVersionMetadata by calling from_dict on the json representation
         iam_credentials_secret_version_metadata_model = IAMCredentialsSecretVersionMetadata.from_dict(
@@ -5817,6 +7129,7 @@ class TestModel_KvSecretMetadata():
         kv_secret_metadata_model_json['created_by'] = 'ServiceId-cb258cb9-8de3-4ac0-9aec-b2b2d27ac976'
         kv_secret_metadata_model_json['last_update_date'] = '2018-04-12T23:20:50.520000Z'
         kv_secret_metadata_model_json['versions_total'] = 1
+        kv_secret_metadata_model_json['locks_total'] = 1
 
         # Construct a model instance of KvSecretMetadata by calling from_dict on the json representation
         kv_secret_metadata_model = KvSecretMetadata.from_dict(kv_secret_metadata_model_json)
@@ -5861,6 +7174,7 @@ class TestModel_KvSecretResource():
         kv_secret_resource_model_json['last_update_date'] = '2018-04-12T23:20:50.520000Z'
         kv_secret_resource_model_json['versions_total'] = 1
         kv_secret_resource_model_json['versions'] = [{'key1': 'testString'}]
+        kv_secret_resource_model_json['locks_total'] = 1
         kv_secret_resource_model_json['expiration_date'] = '2030-04-01T09:30:00Z'
         kv_secret_resource_model_json['payload'] = {'foo': 'bar'}
         kv_secret_resource_model_json['secret_data'] = {'foo': 'bar'}
@@ -6110,6 +7424,7 @@ class TestModel_PrivateCertificateSecretMetadata():
         private_certificate_secret_metadata_model_json['created_by'] = 'ServiceId-cb258cb9-8de3-4ac0-9aec-b2b2d27ac976'
         private_certificate_secret_metadata_model_json['last_update_date'] = '2018-04-12T23:20:50.520000Z'
         private_certificate_secret_metadata_model_json['versions_total'] = 1
+        private_certificate_secret_metadata_model_json['locks_total'] = 1
         private_certificate_secret_metadata_model_json['certificate_template'] = 'cert-template-1'
         private_certificate_secret_metadata_model_json['certificate_authority'] = 'testString'
         private_certificate_secret_metadata_model_json['common_name'] = 'example.com'
@@ -6181,6 +7496,7 @@ class TestModel_PrivateCertificateSecretResource():
         private_certificate_secret_resource_model_json['last_update_date'] = '2018-04-12T23:20:50.520000Z'
         private_certificate_secret_resource_model_json['versions_total'] = 1
         private_certificate_secret_resource_model_json['versions'] = [{'key1': 'testString'}]
+        private_certificate_secret_resource_model_json['locks_total'] = 1
         private_certificate_secret_resource_model_json['certificate_template'] = 'cert-template-1'
         private_certificate_secret_resource_model_json['certificate_authority'] = 'testString'
         private_certificate_secret_resource_model_json['common_name'] = 'example.com'
@@ -6245,6 +7561,7 @@ class TestModel_PrivateCertificateSecretVersion():
         private_certificate_secret_version_model_json['version_id'] = '4a0225e9-17a0-46c1-ace7-f25bcf4237d4'
         private_certificate_secret_version_model_json['creation_date'] = '2019-01-01T12:00:00Z'
         private_certificate_secret_version_model_json['created_by'] = 'testString'
+        private_certificate_secret_version_model_json['locks_total'] = 1
         private_certificate_secret_version_model_json['validity'] = certificate_validity_model
         private_certificate_secret_version_model_json['serial_number'] = 'd9:be:fe:35:ba:09:42:b5'
         private_certificate_secret_version_model_json['expiration_date'] = '2030-04-01T09:30:00Z'
@@ -6349,6 +7666,7 @@ class TestModel_PrivateCertificateSecretVersionMetadata():
         private_certificate_secret_version_metadata_model_json['created_by'] = 'testString'
         private_certificate_secret_version_metadata_model_json['payload_available'] = True
         private_certificate_secret_version_metadata_model_json['downloaded'] = True
+        private_certificate_secret_version_metadata_model_json['locks_total'] = 1
         private_certificate_secret_version_metadata_model_json['serial_number'] = 'd9:be:fe:35:ba:09:42:b5'
         private_certificate_secret_version_metadata_model_json['expiration_date'] = '2030-04-01T09:30:00Z'
         private_certificate_secret_version_metadata_model_json['validity'] = certificate_validity_model
@@ -6467,6 +7785,7 @@ class TestModel_PublicCertificateSecretMetadata():
         public_certificate_secret_metadata_model_json['created_by'] = 'ServiceId-cb258cb9-8de3-4ac0-9aec-b2b2d27ac976'
         public_certificate_secret_metadata_model_json['last_update_date'] = '2018-04-12T23:20:50.520000Z'
         public_certificate_secret_metadata_model_json['versions_total'] = 1
+        public_certificate_secret_metadata_model_json['locks_total'] = 1
         public_certificate_secret_metadata_model_json['issuer'] = 'GlobalSign'
         public_certificate_secret_metadata_model_json['bundle_certs'] = True
         public_certificate_secret_metadata_model_json['algorithm'] = 'SHA256-RSA'
@@ -6549,6 +7868,7 @@ class TestModel_PublicCertificateSecretResource():
         public_certificate_secret_resource_model_json['last_update_date'] = '2018-04-12T23:20:50.520000Z'
         public_certificate_secret_resource_model_json['versions_total'] = 1
         public_certificate_secret_resource_model_json['versions'] = [{'key1': 'testString'}]
+        public_certificate_secret_resource_model_json['locks_total'] = 1
         public_certificate_secret_resource_model_json['issuer'] = 'GlobalSign'
         public_certificate_secret_resource_model_json['bundle_certs'] = True
         public_certificate_secret_resource_model_json['ca'] = 'testString'
@@ -7372,6 +8692,7 @@ class TestModel_UsernamePasswordSecretMetadata():
         username_password_secret_metadata_model_json['created_by'] = 'ServiceId-cb258cb9-8de3-4ac0-9aec-b2b2d27ac976'
         username_password_secret_metadata_model_json['last_update_date'] = '2018-04-12T23:20:50.520000Z'
         username_password_secret_metadata_model_json['versions_total'] = 1
+        username_password_secret_metadata_model_json['locks_total'] = 1
         username_password_secret_metadata_model_json['expiration_date'] = '2030-04-01T09:30:00Z'
 
         # Construct a model instance of UsernamePasswordSecretMetadata by calling from_dict on the json representation
@@ -7420,6 +8741,7 @@ class TestModel_UsernamePasswordSecretResource():
         username_password_secret_resource_model_json['last_update_date'] = '2018-04-12T23:20:50.520000Z'
         username_password_secret_resource_model_json['versions_total'] = 1
         username_password_secret_resource_model_json['versions'] = [{'key1': 'testString'}]
+        username_password_secret_resource_model_json['locks_total'] = 1
         username_password_secret_resource_model_json['username'] = 'user123'
         username_password_secret_resource_model_json['password'] = 'rainy-cloudy-coffee-book'
         username_password_secret_resource_model_json['secret_data'] = {'foo': 'bar'}
@@ -7461,6 +8783,7 @@ class TestModel_UsernamePasswordSecretVersion():
         username_password_secret_version_model_json['version_id'] = '4a0225e9-17a0-46c1-ace7-f25bcf4237d4'
         username_password_secret_version_model_json['creation_date'] = '2019-01-01T12:00:00Z'
         username_password_secret_version_model_json['created_by'] = 'testString'
+        username_password_secret_version_model_json['locks_total'] = 1
         username_password_secret_version_model_json['auto_rotated'] = True
         username_password_secret_version_model_json['secret_data'] = {'foo': 'bar'}
 
@@ -7539,6 +8862,7 @@ class TestModel_UsernamePasswordSecretVersionMetadata():
         username_password_secret_version_metadata_model_json['created_by'] = 'testString'
         username_password_secret_version_metadata_model_json['payload_available'] = True
         username_password_secret_version_metadata_model_json['downloaded'] = True
+        username_password_secret_version_metadata_model_json['locks_total'] = 1
         username_password_secret_version_metadata_model_json['auto_rotated'] = True
 
         # Construct a model instance of UsernamePasswordSecretVersionMetadata by calling from_dict on the json representation

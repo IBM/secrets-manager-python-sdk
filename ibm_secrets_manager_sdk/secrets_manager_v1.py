@@ -14,7 +14,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-# IBM OpenAPI SDK Code Generator Version: 3.48.0-e80b60a1-20220414-145125
+# IBM OpenAPI SDK Code Generator Version: 3.51.0-5b8b699d-20220613-200818
 
 """
 With IBM Cloud® Secrets Manager, you can create, lease, and centrally manage secrets that
@@ -125,6 +125,7 @@ class SecretsManagerV1(BaseService):
 
         if 'headers' in kwargs:
             headers.update(kwargs.get('headers'))
+            del kwargs['headers']
         headers['Accept'] = 'application/json'
 
         url = '/api/v1/secret_groups'
@@ -157,6 +158,7 @@ class SecretsManagerV1(BaseService):
 
         if 'headers' in kwargs:
             headers.update(kwargs.get('headers'))
+            del kwargs['headers']
         headers['Accept'] = 'application/json'
 
         url = '/api/v1/secret_groups'
@@ -192,6 +194,7 @@ class SecretsManagerV1(BaseService):
 
         if 'headers' in kwargs:
             headers.update(kwargs.get('headers'))
+            del kwargs['headers']
         headers['Accept'] = 'application/json'
 
         path_param_keys = ['id']
@@ -250,6 +253,7 @@ class SecretsManagerV1(BaseService):
 
         if 'headers' in kwargs:
             headers.update(kwargs.get('headers'))
+            del kwargs['headers']
         headers['Accept'] = 'application/json'
 
         path_param_keys = ['id']
@@ -292,6 +296,7 @@ class SecretsManagerV1(BaseService):
 
         if 'headers' in kwargs:
             headers.update(kwargs.get('headers'))
+            del kwargs['headers']
 
         path_param_keys = ['id']
         path_param_values = self.encode_path_vars(id)
@@ -361,6 +366,7 @@ class SecretsManagerV1(BaseService):
 
         if 'headers' in kwargs:
             headers.update(kwargs.get('headers'))
+            del kwargs['headers']
         headers['Accept'] = 'application/json'
 
         path_param_keys = ['secret_type']
@@ -394,13 +400,13 @@ class SecretsManagerV1(BaseService):
                items, use `limit` with `offset` to page through your available resources.
                **Usage:** If you have 20 secrets in your instance, and you want to
                retrieve only the first 5 secrets, use
-               `../secrets/{secret-type}?limit=5`.
+               `../secrets/{secret_type}?limit=5`.
         :param int offset: (optional) The number of secrets to skip. By specifying
                `offset`, you retrieve a subset of items that starts with the `offset`
                value. Use `offset` with `limit` to page through your available resources.
                **Usage:** If you have 100 secrets in your instance, and you want to
                retrieve secrets 26 through 50, use
-               `../secrets/{secret-type}?offset=25&limit=25`.
+               `..?offset=25&limit=25`.
         :param dict headers: A `dict` containing the request headers
         :return: A `DetailedResponse` containing the result, headers and HTTP status code.
         :rtype: DetailedResponse with `dict` result representing a `ListSecrets` object
@@ -421,6 +427,7 @@ class SecretsManagerV1(BaseService):
 
         if 'headers' in kwargs:
             headers.update(kwargs.get('headers'))
+            del kwargs['headers']
         headers['Accept'] = 'application/json'
 
         path_param_keys = ['secret_type']
@@ -454,30 +461,30 @@ class SecretsManagerV1(BaseService):
                items, use `limit` with `offset` to page through your available resources.
                **Usage:** If you have 20 secrets in your instance, and you want to
                retrieve only the first 5 secrets, use
-               `../secrets/{secret-type}?limit=5`.
+               `../secrets/{secret_type}?limit=5`.
         :param int offset: (optional) The number of secrets to skip. By specifying
                `offset`, you retrieve a subset of items that starts with the `offset`
                value. Use `offset` with `limit` to page through your available resources.
                **Usage:** If you have 100 secrets in your instance, and you want to
                retrieve secrets 26 through 50, use
-               `../secrets/{secret-type}?offset=25&limit=25`.
+               `..?offset=25&limit=25`.
         :param str search: (optional) Filter secrets that contain the specified
                string. The fields that are searched include: id, name, description,
                labels, secret_type.
                **Usage:** If you want to list only the secrets that contain the string
                "text", use
-               `../secrets/{secret-type}?search=text`.
+               `../secrets/{secret_type}?search=text`.
         :param str sort_by: (optional) Sort a list of secrets by the specified
                field.
                **Usage:** To sort a list of secrets by their creation date, use
-               `../secrets/{secret-type}?sort_by=creation_date`.
+               `../secrets/{secret_type}?sort_by=creation_date`.
         :param List[str] groups: (optional) Filter secrets by groups.
                You can apply multiple filters by using a comma-separated list of secret
                group IDs. If you need to filter secrets that are in the default secret
                group, use the `default` keyword.
                **Usage:** To retrieve a list of secrets that are associated with an
                existing secret group or the default group, use
-               `../secrets?groups={secret_group_ID},default`.
+               `..?groups={secret_group_ID},default`.
         :param dict headers: A `dict` containing the request headers
         :return: A `DetailedResponse` containing the result, headers and HTTP status code.
         :rtype: DetailedResponse with `dict` result representing a `ListSecrets` object
@@ -499,6 +506,7 @@ class SecretsManagerV1(BaseService):
 
         if 'headers' in kwargs:
             headers.update(kwargs.get('headers'))
+            del kwargs['headers']
         headers['Accept'] = 'application/json'
 
         url = '/api/v1/secrets'
@@ -542,6 +550,7 @@ class SecretsManagerV1(BaseService):
 
         if 'headers' in kwargs:
             headers.update(kwargs.get('headers'))
+            del kwargs['headers']
         headers['Accept'] = 'application/json'
 
         path_param_keys = ['secret_type', 'id']
@@ -607,6 +616,7 @@ class SecretsManagerV1(BaseService):
 
         if 'headers' in kwargs:
             headers.update(kwargs.get('headers'))
+            del kwargs['headers']
         headers['Accept'] = 'application/json'
 
         path_param_keys = ['secret_type', 'id']
@@ -651,6 +661,7 @@ class SecretsManagerV1(BaseService):
 
         if 'headers' in kwargs:
             headers.update(kwargs.get('headers'))
+            del kwargs['headers']
 
         path_param_keys = ['secret_type', 'id']
         path_param_values = self.encode_path_vars(secret_type, id)
@@ -694,6 +705,7 @@ class SecretsManagerV1(BaseService):
 
         if 'headers' in kwargs:
             headers.update(kwargs.get('headers'))
+            del kwargs['headers']
         headers['Accept'] = 'application/json'
 
         path_param_keys = ['secret_type', 'id']
@@ -746,6 +758,7 @@ class SecretsManagerV1(BaseService):
 
         if 'headers' in kwargs:
             headers.update(kwargs.get('headers'))
+            del kwargs['headers']
         headers['Accept'] = 'application/json'
 
         path_param_keys = ['secret_type', 'id', 'version_id']
@@ -805,6 +818,7 @@ class SecretsManagerV1(BaseService):
 
         if 'headers' in kwargs:
             headers.update(kwargs.get('headers'))
+            del kwargs['headers']
         headers['Accept'] = 'application/json'
 
         path_param_keys = ['secret_type', 'id', 'version_id']
@@ -858,6 +872,7 @@ class SecretsManagerV1(BaseService):
 
         if 'headers' in kwargs:
             headers.update(kwargs.get('headers'))
+            del kwargs['headers']
         headers['Accept'] = 'application/json'
 
         path_param_keys = ['secret_type', 'id', 'version_id']
@@ -903,6 +918,7 @@ class SecretsManagerV1(BaseService):
 
         if 'headers' in kwargs:
             headers.update(kwargs.get('headers'))
+            del kwargs['headers']
         headers['Accept'] = 'application/json'
 
         path_param_keys = ['secret_type', 'id']
@@ -966,6 +982,7 @@ class SecretsManagerV1(BaseService):
 
         if 'headers' in kwargs:
             headers.update(kwargs.get('headers'))
+            del kwargs['headers']
         headers['Accept'] = 'application/json'
 
         path_param_keys = ['secret_type', 'id']
@@ -976,6 +993,534 @@ class SecretsManagerV1(BaseService):
                                        url=url,
                                        headers=headers,
                                        data=data)
+
+        response = self.send(request, **kwargs)
+        return response
+
+    #########################
+    # Locks
+    #########################
+
+    def get_locks(self,
+                  secret_type: str,
+                  id: str,
+                  *,
+                  limit: int = None,
+                  offset: int = None,
+                  search: str = None,
+                  **kwargs
+                  ) -> DetailedResponse:
+        """
+        List secret locks.
+
+        List the locks that are associated with a specified secret.
+
+        :param str secret_type: The secret type.
+        :param str id: The v4 UUID that uniquely identifies the secret.
+        :param int limit: (optional) The number of secrets with locks to retrieve.
+               By default, list operations return the first 25 items. To retrieve a
+               different set of items, use `limit` with `offset` to page through your
+               available resources.
+               **Usage:** If you have 20 secrets in your instance, and you want to
+               retrieve only the first 5 with locks, use
+               `..?limit=5`.
+        :param int offset: (optional) The number of secrets to skip. By specifying
+               `offset`, you retrieve a subset of items that starts with the `offset`
+               value. Use `offset` with `limit` to page through your available resources.
+               **Usage:** If you have 100 secrets in your instance, and you want to
+               retrieve secrets 26 through 50, use
+               `..?offset=25&limit=25`.
+        :param str search: (optional) Filter locks that contain the specified
+               string in the field "name".
+               **Usage:** If you want to list only the locks that contain the string
+               "text" in the field "name", use
+               `..?search=text`.
+        :param dict headers: A `dict` containing the request headers
+        :return: A `DetailedResponse` containing the result, headers and HTTP status code.
+        :rtype: DetailedResponse with `dict` result representing a `ListSecretLocks` object
+        """
+
+        if secret_type is None:
+            raise ValueError('secret_type must be provided')
+        if id is None:
+            raise ValueError('id must be provided')
+        headers = {}
+        sdk_headers = get_sdk_headers(service_name=self.DEFAULT_SERVICE_NAME,
+                                      service_version='V1',
+                                      operation_id='get_locks')
+        headers.update(sdk_headers)
+
+        params = {
+            'limit': limit,
+            'offset': offset,
+            'search': search
+        }
+
+        if 'headers' in kwargs:
+            headers.update(kwargs.get('headers'))
+            del kwargs['headers']
+        headers['Accept'] = 'application/json'
+
+        path_param_keys = ['secret_type', 'id']
+        path_param_values = self.encode_path_vars(secret_type, id)
+        path_param_dict = dict(zip(path_param_keys, path_param_values))
+        url = '/api/v1/locks/{secret_type}/{id}'.format(**path_param_dict)
+        request = self.prepare_request(method='GET',
+                                       url=url,
+                                       headers=headers,
+                                       params=params)
+
+        response = self.send(request, **kwargs)
+        return response
+
+    def lock_secret(self,
+                    secret_type: str,
+                    id: str,
+                    *,
+                    locks: List['LockSecretBodyLocksItem'] = None,
+                    mode: str = None,
+                    **kwargs
+                    ) -> DetailedResponse:
+        """
+        Lock a secret.
+
+        Create a lock on the current version of a secret.
+        A lock can be used to prevent a secret from being deleted or modified while it's
+        in use by your applications. A successful request attaches a new lock to your
+        secret, or replaces a lock of the same name if it already exists. Additionally,
+        you can use this method to clear any matching locks on a secret by using one of
+        the following optional lock modes:
+        - `exclusive`: Removes any other locks with matching names if they are found in
+        the previous version of the secret.
+        - `exclusive_delete`: Same as `exclusive`, but also permanently deletes the data
+        of the previous secret version if it doesn't have any locks.
+        For more information about locking secrets, check out the
+        [docs](https://cloud.ibm.com/docs/secrets-manager?topic=secrets-manager-secret-locks).
+
+        :param str secret_type: The secret type.
+        :param str id: The v4 UUID that uniquely identifies the secret.
+        :param List[LockSecretBodyLocksItem] locks: (optional) The lock data to be
+               attached to a secret version.
+        :param str mode: (optional) An optional lock mode. At lock creation, you
+               can set one of the following modes to clear any matching locks on a secret
+               version.
+               - `exclusive`: Removes any other locks with matching names if they are
+               found in the previous version of the secret.
+               - `exclusive_delete`: Same as `exclusive`, but also permanently deletes the
+               data of the previous secret version if it doesn't have any locks.
+        :param dict headers: A `dict` containing the request headers
+        :return: A `DetailedResponse` containing the result, headers and HTTP status code.
+        :rtype: DetailedResponse with `dict` result representing a `GetSecretLocks` object
+        """
+
+        if secret_type is None:
+            raise ValueError('secret_type must be provided')
+        if id is None:
+            raise ValueError('id must be provided')
+        if locks is not None:
+            locks = [convert_model(x) for x in locks]
+        headers = {}
+        sdk_headers = get_sdk_headers(service_name=self.DEFAULT_SERVICE_NAME,
+                                      service_version='V1',
+                                      operation_id='lock_secret')
+        headers.update(sdk_headers)
+
+        params = {
+            'mode': mode
+        }
+
+        data = {
+            'locks': locks
+        }
+        data = {k: v for (k, v) in data.items() if v is not None}
+        data = json.dumps(data)
+        headers['content-type'] = 'application/json'
+
+        if 'headers' in kwargs:
+            headers.update(kwargs.get('headers'))
+            del kwargs['headers']
+        headers['Accept'] = 'application/json'
+
+        path_param_keys = ['secret_type', 'id']
+        path_param_values = self.encode_path_vars(secret_type, id)
+        path_param_dict = dict(zip(path_param_keys, path_param_values))
+        url = '/api/v1/locks/{secret_type}/{id}/lock'.format(**path_param_dict)
+        request = self.prepare_request(method='POST',
+                                       url=url,
+                                       headers=headers,
+                                       params=params,
+                                       data=data)
+
+        response = self.send(request, **kwargs)
+        return response
+
+    def unlock_secret(self,
+                      secret_type: str,
+                      id: str,
+                      *,
+                      locks: List[str] = None,
+                      **kwargs
+                      ) -> DetailedResponse:
+        """
+        Unlock a secret.
+
+        Delete one or more locks that are associated with the current version of a secret.
+        A successful request deletes the locks that you specify. To remove all locks, you
+        can pass `{"locks": ["*"]}` in in the request body. Otherwise, specify the names
+        of the locks that you want to delete. For example, `{"locks":
+        ["lock1", "lock2"]}`.
+        **Note:** A secret is considered unlocked and able to be revoked or deleted only
+        after all of its locks are removed. To understand whether a secret contains locks,
+        check the `locks_total` field that is returned as part of the metadata of your
+        secret.
+
+        :param str secret_type: The secret type.
+        :param str id: The v4 UUID that uniquely identifies the secret.
+        :param List[str] locks: (optional) A comma-separated list of locks to
+               delete.
+        :param dict headers: A `dict` containing the request headers
+        :return: A `DetailedResponse` containing the result, headers and HTTP status code.
+        :rtype: DetailedResponse with `dict` result representing a `GetSecretLocks` object
+        """
+
+        if secret_type is None:
+            raise ValueError('secret_type must be provided')
+        if id is None:
+            raise ValueError('id must be provided')
+        headers = {}
+        sdk_headers = get_sdk_headers(service_name=self.DEFAULT_SERVICE_NAME,
+                                      service_version='V1',
+                                      operation_id='unlock_secret')
+        headers.update(sdk_headers)
+
+        data = {
+            'locks': locks
+        }
+        data = {k: v for (k, v) in data.items() if v is not None}
+        data = json.dumps(data)
+        headers['content-type'] = 'application/json'
+
+        if 'headers' in kwargs:
+            headers.update(kwargs.get('headers'))
+            del kwargs['headers']
+        headers['Accept'] = 'application/json'
+
+        path_param_keys = ['secret_type', 'id']
+        path_param_values = self.encode_path_vars(secret_type, id)
+        path_param_dict = dict(zip(path_param_keys, path_param_values))
+        url = '/api/v1/locks/{secret_type}/{id}/unlock'.format(**path_param_dict)
+        request = self.prepare_request(method='POST',
+                                       url=url,
+                                       headers=headers,
+                                       data=data)
+
+        response = self.send(request, **kwargs)
+        return response
+
+    def get_secret_version_locks(self,
+                                 secret_type: str,
+                                 id: str,
+                                 version_id: str,
+                                 *,
+                                 limit: int = None,
+                                 offset: int = None,
+                                 search: str = None,
+                                 **kwargs
+                                 ) -> DetailedResponse:
+        """
+        List secret version locks.
+
+        List the locks that are associated with a specified secret version.
+
+        :param str secret_type: The secret type.
+        :param str id: The v4 UUID that uniquely identifies the secret.
+        :param str version_id: The v4 UUID that uniquely identifies the secret
+               version. You can also use `previous` to retrieve the previous version.
+               **Note:** To find the version ID of a secret, use the [Get secret
+               metadata](#get-secret-metadata) method and check the response details.
+        :param int limit: (optional) The number of secrets with locks to retrieve.
+               By default, list operations return the first 25 items. To retrieve a
+               different set of items, use `limit` with `offset` to page through your
+               available resources.
+               **Usage:** If you have 20 secrets in your instance, and you want to
+               retrieve only the first 5 with locks, use
+               `..?limit=5`.
+        :param int offset: (optional) The number of secrets to skip. By specifying
+               `offset`, you retrieve a subset of items that starts with the `offset`
+               value. Use `offset` with `limit` to page through your available resources.
+               **Usage:** If you have 100 secrets in your instance, and you want to
+               retrieve secrets 26 through 50, use
+               `..?offset=25&limit=25`.
+        :param str search: (optional) Filter locks that contain the specified
+               string in the field "name".
+               **Usage:** If you want to list only the locks that contain the string
+               "text" in the field "name", use
+               `..?search=text`.
+        :param dict headers: A `dict` containing the request headers
+        :return: A `DetailedResponse` containing the result, headers and HTTP status code.
+        :rtype: DetailedResponse with `dict` result representing a `ListSecretLocks` object
+        """
+
+        if secret_type is None:
+            raise ValueError('secret_type must be provided')
+        if id is None:
+            raise ValueError('id must be provided')
+        if version_id is None:
+            raise ValueError('version_id must be provided')
+        headers = {}
+        sdk_headers = get_sdk_headers(service_name=self.DEFAULT_SERVICE_NAME,
+                                      service_version='V1',
+                                      operation_id='get_secret_version_locks')
+        headers.update(sdk_headers)
+
+        params = {
+            'limit': limit,
+            'offset': offset,
+            'search': search
+        }
+
+        if 'headers' in kwargs:
+            headers.update(kwargs.get('headers'))
+            del kwargs['headers']
+        headers['Accept'] = 'application/json'
+
+        path_param_keys = ['secret_type', 'id', 'version_id']
+        path_param_values = self.encode_path_vars(secret_type, id, version_id)
+        path_param_dict = dict(zip(path_param_keys, path_param_values))
+        url = '/api/v1/locks/{secret_type}/{id}/versions/{version_id}'.format(**path_param_dict)
+        request = self.prepare_request(method='GET',
+                                       url=url,
+                                       headers=headers,
+                                       params=params)
+
+        response = self.send(request, **kwargs)
+        return response
+
+    def lock_secret_version(self,
+                            secret_type: str,
+                            id: str,
+                            version_id: str,
+                            *,
+                            locks: List['LockSecretBodyLocksItem'] = None,
+                            mode: str = None,
+                            **kwargs
+                            ) -> DetailedResponse:
+        """
+        Lock a secret version.
+
+        Create a lock on the specified version of a secret.
+        A lock can be used to prevent a secret from being deleted or modified while it's
+        in use by your applications. A successful request attaches a new lock to the
+        specified version, or replaces a lock of the same name if it already exists.
+        Additionally, you can use this method to clear any matching locks on a secret
+        version by using one of the following optional lock modes:
+        - `exclusive`: Removes any other locks with matching names if they are found in
+        the previous version of the secret.
+        - `exclusive_delete`: Same as `exclusive`, but also permanently deletes the data
+        of the previous secret version if it doesn't have any locks.
+        For more information about locking secrets, check out the
+        [docs](https://cloud.ibm.com/docs/secrets-manager?topic=secrets-manager-secret-locks).
+
+        :param str secret_type: The secret type.
+        :param str id: The v4 UUID that uniquely identifies the secret.
+        :param str version_id: The v4 UUID that uniquely identifies the secret
+               version. You can also use `previous` to retrieve the previous version.
+               **Note:** To find the version ID of a secret, use the [Get secret
+               metadata](#get-secret-metadata) method and check the response details.
+        :param List[LockSecretBodyLocksItem] locks: (optional) The lock data to be
+               attached to a secret version.
+        :param str mode: (optional) An optional lock mode. At lock creation, you
+               can set one of the following modes to clear any matching locks on a secret
+               version.
+               - `exclusive`: Removes any other locks with matching names if they are
+               found in the previous version of the secret.
+               - `exclusive_delete`: Same as `exclusive`, but also permanently deletes the
+               data of the previous secret version if it doesn't have any locks.
+        :param dict headers: A `dict` containing the request headers
+        :return: A `DetailedResponse` containing the result, headers and HTTP status code.
+        :rtype: DetailedResponse with `dict` result representing a `GetSecretLocks` object
+        """
+
+        if secret_type is None:
+            raise ValueError('secret_type must be provided')
+        if id is None:
+            raise ValueError('id must be provided')
+        if version_id is None:
+            raise ValueError('version_id must be provided')
+        if locks is not None:
+            locks = [convert_model(x) for x in locks]
+        headers = {}
+        sdk_headers = get_sdk_headers(service_name=self.DEFAULT_SERVICE_NAME,
+                                      service_version='V1',
+                                      operation_id='lock_secret_version')
+        headers.update(sdk_headers)
+
+        params = {
+            'mode': mode
+        }
+
+        data = {
+            'locks': locks
+        }
+        data = {k: v for (k, v) in data.items() if v is not None}
+        data = json.dumps(data)
+        headers['content-type'] = 'application/json'
+
+        if 'headers' in kwargs:
+            headers.update(kwargs.get('headers'))
+            del kwargs['headers']
+        headers['Accept'] = 'application/json'
+
+        path_param_keys = ['secret_type', 'id', 'version_id']
+        path_param_values = self.encode_path_vars(secret_type, id, version_id)
+        path_param_dict = dict(zip(path_param_keys, path_param_values))
+        url = '/api/v1/locks/{secret_type}/{id}/versions/{version_id}/lock'.format(**path_param_dict)
+        request = self.prepare_request(method='POST',
+                                       url=url,
+                                       headers=headers,
+                                       params=params,
+                                       data=data)
+
+        response = self.send(request, **kwargs)
+        return response
+
+    def unlock_secret_version(self,
+                              secret_type: str,
+                              id: str,
+                              version_id: str,
+                              *,
+                              locks: List[str] = None,
+                              **kwargs
+                              ) -> DetailedResponse:
+        """
+        Unlock a secret version.
+
+        Delete one or more locks that are associated with the specified secret version.
+        A successful request deletes the locks that you specify. To remove all locks, you
+        can pass `{"locks": ["*"]}` in in the request body. Otherwise, specify the names
+        of the locks that you want to delete. For example, `{"locks":
+        ["lock-1", "lock-2"]}`.
+        **Note:** A secret is considered unlocked and able to be revoked or deleted only
+        after all of its locks are removed. To understand whether a secret contains locks,
+        check the `locks_total` field that is returned as part of the metadata of your
+        secret.
+
+        :param str secret_type: The secret type.
+        :param str id: The v4 UUID that uniquely identifies the secret.
+        :param str version_id: The v4 UUID that uniquely identifies the secret
+               version. You can also use `previous` to retrieve the previous version.
+               **Note:** To find the version ID of a secret, use the [Get secret
+               metadata](#get-secret-metadata) method and check the response details.
+        :param List[str] locks: (optional) A comma-separated list of locks to
+               delete.
+        :param dict headers: A `dict` containing the request headers
+        :return: A `DetailedResponse` containing the result, headers and HTTP status code.
+        :rtype: DetailedResponse with `dict` result representing a `GetSecretLocks` object
+        """
+
+        if secret_type is None:
+            raise ValueError('secret_type must be provided')
+        if id is None:
+            raise ValueError('id must be provided')
+        if version_id is None:
+            raise ValueError('version_id must be provided')
+        headers = {}
+        sdk_headers = get_sdk_headers(service_name=self.DEFAULT_SERVICE_NAME,
+                                      service_version='V1',
+                                      operation_id='unlock_secret_version')
+        headers.update(sdk_headers)
+
+        data = {
+            'locks': locks
+        }
+        data = {k: v for (k, v) in data.items() if v is not None}
+        data = json.dumps(data)
+        headers['content-type'] = 'application/json'
+
+        if 'headers' in kwargs:
+            headers.update(kwargs.get('headers'))
+            del kwargs['headers']
+        headers['Accept'] = 'application/json'
+
+        path_param_keys = ['secret_type', 'id', 'version_id']
+        path_param_values = self.encode_path_vars(secret_type, id, version_id)
+        path_param_dict = dict(zip(path_param_keys, path_param_values))
+        url = '/api/v1/locks/{secret_type}/{id}/versions/{version_id}/unlock'.format(**path_param_dict)
+        request = self.prepare_request(method='POST',
+                                       url=url,
+                                       headers=headers,
+                                       data=data)
+
+        response = self.send(request, **kwargs)
+        return response
+
+    def list_instance_secrets_locks(self,
+                                    *,
+                                    limit: int = None,
+                                    offset: int = None,
+                                    search: str = None,
+                                    groups: List[str] = None,
+                                    **kwargs
+                                    ) -> DetailedResponse:
+        """
+        List all secrets and locks.
+
+        List the lock details that are associated with all secrets in your Secrets Manager
+        instance.
+
+        :param int limit: (optional) The number of secrets with locks to retrieve.
+               By default, list operations return the first 25 items. To retrieve a
+               different set of items, use `limit` with `offset` to page through your
+               available resources.
+               **Usage:** If you have 20 secrets in your instance, and you want to
+               retrieve only the first 5 with locks, use
+               `..?limit=5`.
+        :param int offset: (optional) The number of secrets to skip. By specifying
+               `offset`, you retrieve a subset of items that starts with the `offset`
+               value. Use `offset` with `limit` to page through your available resources.
+               **Usage:** If you have 100 secrets in your instance, and you want to
+               retrieve secrets 26 through 50, use
+               `..?offset=25&limit=25`.
+        :param str search: (optional) Filter locks that contain the specified
+               string in the field "name".
+               **Usage:** If you want to list only the locks that contain the string
+               "text" in the field "name", use
+               `..?search=text`.
+        :param List[str] groups: (optional) Filter secrets by groups.
+               You can apply multiple filters by using a comma-separated list of secret
+               group IDs. If you need to filter secrets that are in the default secret
+               group, use the `default` keyword.
+               **Usage:** To retrieve a list of secrets that are associated with an
+               existing secret group or the default group, use
+               `..?groups={secret_group_ID},default`.
+        :param dict headers: A `dict` containing the request headers
+        :return: A `DetailedResponse` containing the result, headers and HTTP status code.
+        :rtype: DetailedResponse with `dict` result representing a `GetInstanceLocks` object
+        """
+
+        headers = {}
+        sdk_headers = get_sdk_headers(service_name=self.DEFAULT_SERVICE_NAME,
+                                      service_version='V1',
+                                      operation_id='list_instance_secrets_locks')
+        headers.update(sdk_headers)
+
+        params = {
+            'limit': limit,
+            'offset': offset,
+            'search': search,
+            'groups': convert_list(groups)
+        }
+
+        if 'headers' in kwargs:
+            headers.update(kwargs.get('headers'))
+            del kwargs['headers']
+        headers['Accept'] = 'application/json'
+
+        url = '/api/v1/locks'
+        request = self.prepare_request(method='GET',
+                                       url=url,
+                                       headers=headers,
+                                       params=params)
 
         response = self.send(request, **kwargs)
         return response
@@ -1042,6 +1587,7 @@ class SecretsManagerV1(BaseService):
 
         if 'headers' in kwargs:
             headers.update(kwargs.get('headers'))
+            del kwargs['headers']
         headers['Accept'] = 'application/json'
 
         path_param_keys = ['secret_type', 'id']
@@ -1094,6 +1640,7 @@ class SecretsManagerV1(BaseService):
 
         if 'headers' in kwargs:
             headers.update(kwargs.get('headers'))
+            del kwargs['headers']
         headers['Accept'] = 'application/json'
 
         path_param_keys = ['secret_type', 'id']
@@ -1151,6 +1698,7 @@ class SecretsManagerV1(BaseService):
 
         if 'headers' in kwargs:
             headers.update(kwargs.get('headers'))
+            del kwargs['headers']
 
         path_param_keys = ['secret_type']
         path_param_values = self.encode_path_vars(secret_type)
@@ -1189,6 +1737,7 @@ class SecretsManagerV1(BaseService):
 
         if 'headers' in kwargs:
             headers.update(kwargs.get('headers'))
+            del kwargs['headers']
         headers['Accept'] = 'application/json'
 
         path_param_keys = ['secret_type']
@@ -1264,6 +1813,7 @@ class SecretsManagerV1(BaseService):
 
         if 'headers' in kwargs:
             headers.update(kwargs.get('headers'))
+            del kwargs['headers']
         headers['Accept'] = 'application/json'
 
         path_param_keys = ['secret_type', 'config_element']
@@ -1307,6 +1857,7 @@ class SecretsManagerV1(BaseService):
 
         if 'headers' in kwargs:
             headers.update(kwargs.get('headers'))
+            del kwargs['headers']
         headers['Accept'] = 'application/json'
 
         path_param_keys = ['secret_type', 'config_element']
@@ -1353,6 +1904,7 @@ class SecretsManagerV1(BaseService):
 
         if 'headers' in kwargs:
             headers.update(kwargs.get('headers'))
+            del kwargs['headers']
         headers['Accept'] = 'application/json'
 
         path_param_keys = ['secret_type', 'config_element', 'config_name']
@@ -1417,6 +1969,7 @@ class SecretsManagerV1(BaseService):
 
         if 'headers' in kwargs:
             headers.update(kwargs.get('headers'))
+            del kwargs['headers']
         headers['Accept'] = 'application/json'
 
         path_param_keys = ['secret_type', 'config_element', 'config_name']
@@ -1495,6 +2048,7 @@ class SecretsManagerV1(BaseService):
 
         if 'headers' in kwargs:
             headers.update(kwargs.get('headers'))
+            del kwargs['headers']
         headers['Accept'] = 'application/json'
 
         path_param_keys = ['secret_type', 'config_element', 'config_name']
@@ -1543,6 +2097,7 @@ class SecretsManagerV1(BaseService):
 
         if 'headers' in kwargs:
             headers.update(kwargs.get('headers'))
+            del kwargs['headers']
 
         path_param_keys = ['secret_type', 'config_element', 'config_name']
         path_param_values = self.encode_path_vars(secret_type, config_element, config_name)
@@ -1608,6 +2163,7 @@ class SecretsManagerV1(BaseService):
 
         if 'headers' in kwargs:
             headers.update(kwargs.get('headers'))
+            del kwargs['headers']
         headers['Accept'] = 'application/json'
 
         url = '/api/v1/notifications/registration'
@@ -1641,6 +2197,7 @@ class SecretsManagerV1(BaseService):
 
         if 'headers' in kwargs:
             headers.update(kwargs.get('headers'))
+            del kwargs['headers']
         headers['Accept'] = 'application/json'
 
         url = '/api/v1/notifications/registration'
@@ -1674,6 +2231,7 @@ class SecretsManagerV1(BaseService):
 
         if 'headers' in kwargs:
             headers.update(kwargs.get('headers'))
+            del kwargs['headers']
 
         url = '/api/v1/notifications/registration'
         request = self.prepare_request(method='DELETE',
@@ -1708,6 +2266,7 @@ class SecretsManagerV1(BaseService):
 
         if 'headers' in kwargs:
             headers.update(kwargs.get('headers'))
+            del kwargs['headers']
 
         url = '/api/v1/notifications/test'
         request = self.prepare_request(method='GET',
@@ -1763,7 +2322,7 @@ class ListAllSecretsEnums:
         """
         Sort a list of secrets by the specified field.
         **Usage:** To sort a list of secrets by their creation date, use
-        `../secrets/{secret-type}?sort_by=creation_date`.
+        `../secrets/{secret_type}?sort_by=creation_date`.
         """
         ID = 'id'
         CREATION_DATE = 'creation_date'
@@ -1928,6 +2487,138 @@ class GetSecretMetadataEnums:
 class UpdateSecretMetadataEnums:
     """
     Enums for update_secret_metadata parameters.
+    """
+
+    class SecretType(str, Enum):
+        """
+        The secret type.
+        """
+        ARBITRARY = 'arbitrary'
+        IAM_CREDENTIALS = 'iam_credentials'
+        IMPORTED_CERT = 'imported_cert'
+        PUBLIC_CERT = 'public_cert'
+        PRIVATE_CERT = 'private_cert'
+        USERNAME_PASSWORD = 'username_password'
+        KV = 'kv'
+
+
+class GetLocksEnums:
+    """
+    Enums for get_locks parameters.
+    """
+
+    class SecretType(str, Enum):
+        """
+        The secret type.
+        """
+        ARBITRARY = 'arbitrary'
+        IAM_CREDENTIALS = 'iam_credentials'
+        IMPORTED_CERT = 'imported_cert'
+        PUBLIC_CERT = 'public_cert'
+        PRIVATE_CERT = 'private_cert'
+        USERNAME_PASSWORD = 'username_password'
+        KV = 'kv'
+
+
+class LockSecretEnums:
+    """
+    Enums for lock_secret parameters.
+    """
+
+    class SecretType(str, Enum):
+        """
+        The secret type.
+        """
+        ARBITRARY = 'arbitrary'
+        IAM_CREDENTIALS = 'iam_credentials'
+        IMPORTED_CERT = 'imported_cert'
+        PUBLIC_CERT = 'public_cert'
+        PRIVATE_CERT = 'private_cert'
+        USERNAME_PASSWORD = 'username_password'
+        KV = 'kv'
+
+    class Mode(str, Enum):
+        """
+        An optional lock mode. At lock creation, you can set one of the following modes to
+        clear any matching locks on a secret version.
+        - `exclusive`: Removes any other locks with matching names if they are found in
+        the previous version of the secret.
+        - `exclusive_delete`: Same as `exclusive`, but also permanently deletes the data
+        of the previous secret version if it doesn't have any locks.
+        """
+        EXCLUSIVE = 'exclusive'
+        EXCLUSIVE_DELETE = 'exclusive_delete'
+
+
+class UnlockSecretEnums:
+    """
+    Enums for unlock_secret parameters.
+    """
+
+    class SecretType(str, Enum):
+        """
+        The secret type.
+        """
+        ARBITRARY = 'arbitrary'
+        IAM_CREDENTIALS = 'iam_credentials'
+        IMPORTED_CERT = 'imported_cert'
+        PUBLIC_CERT = 'public_cert'
+        PRIVATE_CERT = 'private_cert'
+        USERNAME_PASSWORD = 'username_password'
+        KV = 'kv'
+
+
+class GetSecretVersionLocksEnums:
+    """
+    Enums for get_secret_version_locks parameters.
+    """
+
+    class SecretType(str, Enum):
+        """
+        The secret type.
+        """
+        ARBITRARY = 'arbitrary'
+        IAM_CREDENTIALS = 'iam_credentials'
+        IMPORTED_CERT = 'imported_cert'
+        PUBLIC_CERT = 'public_cert'
+        PRIVATE_CERT = 'private_cert'
+        USERNAME_PASSWORD = 'username_password'
+        KV = 'kv'
+
+
+class LockSecretVersionEnums:
+    """
+    Enums for lock_secret_version parameters.
+    """
+
+    class SecretType(str, Enum):
+        """
+        The secret type.
+        """
+        ARBITRARY = 'arbitrary'
+        IAM_CREDENTIALS = 'iam_credentials'
+        IMPORTED_CERT = 'imported_cert'
+        PUBLIC_CERT = 'public_cert'
+        PRIVATE_CERT = 'private_cert'
+        USERNAME_PASSWORD = 'username_password'
+        KV = 'kv'
+
+    class Mode(str, Enum):
+        """
+        An optional lock mode. At lock creation, you can set one of the following modes to
+        clear any matching locks on a secret version.
+        - `exclusive`: Removes any other locks with matching names if they are found in
+        the previous version of the secret.
+        - `exclusive_delete`: Same as `exclusive`, but also permanently deletes the data
+        of the previous secret version if it doesn't have any locks.
+        """
+        EXCLUSIVE = 'exclusive'
+        EXCLUSIVE_DELETE = 'exclusive_delete'
+
+
+class UnlockSecretVersionEnums:
+    """
+    Enums for unlock_secret_version parameters.
     """
 
     class SecretType(str, Enum):
@@ -2383,6 +3074,7 @@ class CollectionMetadata():
         APPLICATION_VND_IBM_SECRETS_MANAGER_SECRET_VERSION_JSON = 'application/vnd.ibm.secrets-manager.secret.version+json'
         APPLICATION_VND_IBM_SECRETS_MANAGER_SECRET_POLICY_JSON = 'application/vnd.ibm.secrets-manager.secret.policy+json'
         APPLICATION_VND_IBM_SECRETS_MANAGER_SECRET_GROUP_JSON = 'application/vnd.ibm.secrets-manager.secret.group+json'
+        APPLICATION_VND_IBM_SECRETS_MANAGER_SECRET_LOCK_JSON = 'application/vnd.ibm.secrets-manager.secret.lock+json'
         APPLICATION_VND_IBM_SECRETS_MANAGER_ERROR_JSON = 'application/vnd.ibm.secrets-manager.error+json'
 
 
@@ -3057,6 +3749,75 @@ class GetConfigResourcesItem():
         raise Exception(msg)
 
 
+class GetInstanceLocks():
+    """
+    Properties that describe the locks that are associated with an instance.
+
+    :attr CollectionMetadata metadata: The metadata that describes the resource
+          array.
+    :attr List[InstanceSecretsLocks] resources: A collection of resources.
+    """
+
+    def __init__(self,
+                 metadata: 'CollectionMetadata',
+                 resources: List['InstanceSecretsLocks']) -> None:
+        """
+        Initialize a GetInstanceLocks object.
+
+        :param CollectionMetadata metadata: The metadata that describes the
+               resource array.
+        :param List[InstanceSecretsLocks] resources: A collection of resources.
+        """
+        self.metadata = metadata
+        self.resources = resources
+
+    @classmethod
+    def from_dict(cls, _dict: Dict) -> 'GetInstanceLocks':
+        """Initialize a GetInstanceLocks object from a json dictionary."""
+        args = {}
+        if 'metadata' in _dict:
+            args['metadata'] = CollectionMetadata.from_dict(_dict.get('metadata'))
+        else:
+            raise ValueError('Required property \'metadata\' not present in GetInstanceLocks JSON')
+        if 'resources' in _dict:
+            args['resources'] = [InstanceSecretsLocks.from_dict(x) for x in _dict.get('resources')]
+        else:
+            raise ValueError('Required property \'resources\' not present in GetInstanceLocks JSON')
+        return cls(**args)
+
+    @classmethod
+    def _from_dict(cls, _dict):
+        """Initialize a GetInstanceLocks object from a json dictionary."""
+        return cls.from_dict(_dict)
+
+    def to_dict(self) -> Dict:
+        """Return a json dictionary representing this model."""
+        _dict = {}
+        if hasattr(self, 'metadata') and self.metadata is not None:
+            _dict['metadata'] = self.metadata.to_dict()
+        if hasattr(self, 'resources') and self.resources is not None:
+            _dict['resources'] = [x.to_dict() for x in self.resources]
+        return _dict
+
+    def _to_dict(self):
+        """Return a json dictionary representing this model."""
+        return self.to_dict()
+
+    def __str__(self) -> str:
+        """Return a `str` version of this GetInstanceLocks object."""
+        return json.dumps(self.to_dict(), indent=2)
+
+    def __eq__(self, other: 'GetInstanceLocks') -> bool:
+        """Return `true` when self and other are equal, false otherwise."""
+        if not isinstance(other, self.__class__):
+            return False
+        return self.__dict__ == other.__dict__
+
+    def __ne__(self, other: 'GetInstanceLocks') -> bool:
+        """Return `true` when self and other are not equal, false otherwise."""
+        return not self == other
+
+
 class GetNotificationsSettings():
     """
     Properties that describe an existing registration with Event Notifications.
@@ -3197,6 +3958,75 @@ class GetSecret():
         return self.__dict__ == other.__dict__
 
     def __ne__(self, other: 'GetSecret') -> bool:
+        """Return `true` when self and other are not equal, false otherwise."""
+        return not self == other
+
+
+class GetSecretLocks():
+    """
+    Properties that describe the lock of a secret or a secret version.
+
+    :attr CollectionMetadata metadata: The metadata that describes the resource
+          array.
+    :attr List[SecretsLocks] resources: A collection of resources.
+    """
+
+    def __init__(self,
+                 metadata: 'CollectionMetadata',
+                 resources: List['SecretsLocks']) -> None:
+        """
+        Initialize a GetSecretLocks object.
+
+        :param CollectionMetadata metadata: The metadata that describes the
+               resource array.
+        :param List[SecretsLocks] resources: A collection of resources.
+        """
+        self.metadata = metadata
+        self.resources = resources
+
+    @classmethod
+    def from_dict(cls, _dict: Dict) -> 'GetSecretLocks':
+        """Initialize a GetSecretLocks object from a json dictionary."""
+        args = {}
+        if 'metadata' in _dict:
+            args['metadata'] = CollectionMetadata.from_dict(_dict.get('metadata'))
+        else:
+            raise ValueError('Required property \'metadata\' not present in GetSecretLocks JSON')
+        if 'resources' in _dict:
+            args['resources'] = [SecretsLocks.from_dict(x) for x in _dict.get('resources')]
+        else:
+            raise ValueError('Required property \'resources\' not present in GetSecretLocks JSON')
+        return cls(**args)
+
+    @classmethod
+    def _from_dict(cls, _dict):
+        """Initialize a GetSecretLocks object from a json dictionary."""
+        return cls.from_dict(_dict)
+
+    def to_dict(self) -> Dict:
+        """Return a json dictionary representing this model."""
+        _dict = {}
+        if hasattr(self, 'metadata') and self.metadata is not None:
+            _dict['metadata'] = self.metadata.to_dict()
+        if hasattr(self, 'resources') and self.resources is not None:
+            _dict['resources'] = [x.to_dict() for x in self.resources]
+        return _dict
+
+    def _to_dict(self):
+        """Return a json dictionary representing this model."""
+        return self.to_dict()
+
+    def __str__(self) -> str:
+        """Return a `str` version of this GetSecretLocks object."""
+        return json.dumps(self.to_dict(), indent=2)
+
+    def __eq__(self, other: 'GetSecretLocks') -> bool:
+        """Return `true` when self and other are equal, false otherwise."""
+        if not isinstance(other, self.__class__):
+            return False
+        return self.__dict__ == other.__dict__
+
+    def __ne__(self, other: 'GetSecretLocks') -> bool:
         """Return `true` when self and other are not equal, false otherwise."""
         return not self == other
 
@@ -3436,6 +4266,128 @@ class GetSingleConfigElement():
         return not self == other
 
 
+class InstanceSecretsLocks():
+    """
+    Properties that describe the locks that are associated with an instance.
+
+    :attr str secret_id: (optional) The unique ID of the secret.
+    :attr str secret_group_id: (optional) The v4 UUID that uniquely identifies the
+          secret group to assign to this secret.
+          If you omit this parameter, your secret is assigned to the `default` secret
+          group.
+    :attr str secret_type: (optional) The secret type.
+    :attr List[SecretLockVersion] versions: (optional) A collection of locks that
+          are attached to a secret version.
+    """
+
+    # The set of defined properties for the class
+    _properties = frozenset(['secret_id', 'secret_group_id', 'secret_type', 'versions'])
+
+    def __init__(self,
+                 *,
+                 secret_id: str = None,
+                 secret_group_id: str = None,
+                 secret_type: str = None,
+                 versions: List['SecretLockVersion'] = None,
+                 **kwargs) -> None:
+        """
+        Initialize a InstanceSecretsLocks object.
+
+        :param List[SecretLockVersion] versions: (optional) A collection of locks
+               that are attached to a secret version.
+        :param **kwargs: (optional) Any additional properties.
+        """
+        self.secret_id = secret_id
+        self.secret_group_id = secret_group_id
+        self.secret_type = secret_type
+        self.versions = versions
+        for _key, _value in kwargs.items():
+            setattr(self, _key, _value)
+
+    @classmethod
+    def from_dict(cls, _dict: Dict) -> 'InstanceSecretsLocks':
+        """Initialize a InstanceSecretsLocks object from a json dictionary."""
+        args = {}
+        if 'secret_id' in _dict:
+            args['secret_id'] = _dict.get('secret_id')
+        if 'secret_group_id' in _dict:
+            args['secret_group_id'] = _dict.get('secret_group_id')
+        if 'secret_type' in _dict:
+            args['secret_type'] = _dict.get('secret_type')
+        if 'versions' in _dict:
+            args['versions'] = [SecretLockVersion.from_dict(x) for x in _dict.get('versions')]
+        args.update({k: v for (k, v) in _dict.items() if k not in cls._properties})
+        return cls(**args)
+
+    @classmethod
+    def _from_dict(cls, _dict):
+        """Initialize a InstanceSecretsLocks object from a json dictionary."""
+        return cls.from_dict(_dict)
+
+    def to_dict(self) -> Dict:
+        """Return a json dictionary representing this model."""
+        _dict = {}
+        if hasattr(self, 'secret_id') and getattr(self, 'secret_id') is not None:
+            _dict['secret_id'] = getattr(self, 'secret_id')
+        if hasattr(self, 'secret_group_id') and getattr(self, 'secret_group_id') is not None:
+            _dict['secret_group_id'] = getattr(self, 'secret_group_id')
+        if hasattr(self, 'secret_type') and getattr(self, 'secret_type') is not None:
+            _dict['secret_type'] = getattr(self, 'secret_type')
+        if hasattr(self, 'versions') and self.versions is not None:
+            _dict['versions'] = [x.to_dict() for x in self.versions]
+        for _key in [k for k in vars(self).keys() if k not in InstanceSecretsLocks._properties]:
+            if getattr(self, _key, None) is not None:
+                _dict[_key] = getattr(self, _key)
+        return _dict
+
+    def _to_dict(self):
+        """Return a json dictionary representing this model."""
+        return self.to_dict()
+
+    def get_properties(self) -> Dict:
+        """Return a dictionary of arbitrary properties from this instance of InstanceSecretsLocks"""
+        _dict = {}
+
+        for _key in [k for k in vars(self).keys() if k not in InstanceSecretsLocks._properties]:
+            _dict[_key] = getattr(self, _key)
+        return _dict
+
+    def set_properties(self, _dict: dict):
+        """Set a dictionary of arbitrary properties to this instance of InstanceSecretsLocks"""
+        for _key in [k for k in vars(self).keys() if k not in InstanceSecretsLocks._properties]:
+            delattr(self, _key)
+
+        for _key, _value in _dict.items():
+            if _key not in InstanceSecretsLocks._properties:
+                setattr(self, _key, _value)
+
+    def __str__(self) -> str:
+        """Return a `str` version of this InstanceSecretsLocks object."""
+        return json.dumps(self.to_dict(), indent=2)
+
+    def __eq__(self, other: 'InstanceSecretsLocks') -> bool:
+        """Return `true` when self and other are equal, false otherwise."""
+        if not isinstance(other, self.__class__):
+            return False
+        return self.__dict__ == other.__dict__
+
+    def __ne__(self, other: 'InstanceSecretsLocks') -> bool:
+        """Return `true` when self and other are not equal, false otherwise."""
+        return not self == other
+
+    class SecretTypeEnum(str, Enum):
+        """
+        The secret type.
+        """
+        ARBITRARY = 'arbitrary'
+        USERNAME_PASSWORD = 'username_password'
+        IAM_CREDENTIALS = 'iam_credentials'
+        IMPORTED_CERT = 'imported_cert'
+        PUBLIC_CERT = 'public_cert'
+        PRIVATE_CERT = 'private_cert'
+        KV = 'kv'
+
+
 class IntermediateCertificateAuthoritiesConfigItem():
     """
     Intermediate certificate authorities configuration.
@@ -3654,6 +4606,75 @@ class IssuanceInfo():
         return not self == other
 
 
+class ListSecretLocks():
+    """
+    Properties that describe the locks of a secret or a secret version.
+
+    :attr CollectionMetadata metadata: The metadata that describes the resource
+          array.
+    :attr List[SecretLockData] resources: A collection of resources.
+    """
+
+    def __init__(self,
+                 metadata: 'CollectionMetadata',
+                 resources: List['SecretLockData']) -> None:
+        """
+        Initialize a ListSecretLocks object.
+
+        :param CollectionMetadata metadata: The metadata that describes the
+               resource array.
+        :param List[SecretLockData] resources: A collection of resources.
+        """
+        self.metadata = metadata
+        self.resources = resources
+
+    @classmethod
+    def from_dict(cls, _dict: Dict) -> 'ListSecretLocks':
+        """Initialize a ListSecretLocks object from a json dictionary."""
+        args = {}
+        if 'metadata' in _dict:
+            args['metadata'] = CollectionMetadata.from_dict(_dict.get('metadata'))
+        else:
+            raise ValueError('Required property \'metadata\' not present in ListSecretLocks JSON')
+        if 'resources' in _dict:
+            args['resources'] = [SecretLockData.from_dict(x) for x in _dict.get('resources')]
+        else:
+            raise ValueError('Required property \'resources\' not present in ListSecretLocks JSON')
+        return cls(**args)
+
+    @classmethod
+    def _from_dict(cls, _dict):
+        """Initialize a ListSecretLocks object from a json dictionary."""
+        return cls.from_dict(_dict)
+
+    def to_dict(self) -> Dict:
+        """Return a json dictionary representing this model."""
+        _dict = {}
+        if hasattr(self, 'metadata') and self.metadata is not None:
+            _dict['metadata'] = self.metadata.to_dict()
+        if hasattr(self, 'resources') and self.resources is not None:
+            _dict['resources'] = [x.to_dict() for x in self.resources]
+        return _dict
+
+    def _to_dict(self):
+        """Return a json dictionary representing this model."""
+        return self.to_dict()
+
+    def __str__(self) -> str:
+        """Return a `str` version of this ListSecretLocks object."""
+        return json.dumps(self.to_dict(), indent=2)
+
+    def __eq__(self, other: 'ListSecretLocks') -> bool:
+        """Return `true` when self and other are equal, false otherwise."""
+        if not isinstance(other, self.__class__):
+            return False
+        return self.__dict__ == other.__dict__
+
+    def __ne__(self, other: 'ListSecretLocks') -> bool:
+        """Return `true` when self and other are not equal, false otherwise."""
+        return not self == other
+
+
 class ListSecretVersions():
     """
     Properties that describe a list of versions of a secret.
@@ -3800,6 +4821,95 @@ class ListSecrets():
         return self.__dict__ == other.__dict__
 
     def __ne__(self, other: 'ListSecrets') -> bool:
+        """Return `true` when self and other are not equal, false otherwise."""
+        return not self == other
+
+
+class LockSecretBodyLocksItem():
+    """
+    LockSecretBodyLocksItem.
+
+    :attr str name: A human-readable name to assign to the lock. The lock name must
+          be unique per secret version.
+          To protect your privacy, do not use personal data, such as your name or
+          location, as a name for your secret lock.
+    :attr str description: An extended description of the lock.
+          To protect your privacy, do not use personal data, such as your name or
+          location, as a description for your secret lock.
+    :attr object attributes: Optional information to associate with a lock, such as
+          resources CRNs to be used by automation.
+    """
+
+    def __init__(self,
+                 name: str,
+                 description: str,
+                 attributes: object) -> None:
+        """
+        Initialize a LockSecretBodyLocksItem object.
+
+        :param str name: A human-readable name to assign to the lock. The lock name
+               must be unique per secret version.
+               To protect your privacy, do not use personal data, such as your name or
+               location, as a name for your secret lock.
+        :param str description: An extended description of the lock.
+               To protect your privacy, do not use personal data, such as your name or
+               location, as a description for your secret lock.
+        :param object attributes: Optional information to associate with a lock,
+               such as resources CRNs to be used by automation.
+        """
+        self.name = name
+        self.description = description
+        self.attributes = attributes
+
+    @classmethod
+    def from_dict(cls, _dict: Dict) -> 'LockSecretBodyLocksItem':
+        """Initialize a LockSecretBodyLocksItem object from a json dictionary."""
+        args = {}
+        if 'name' in _dict:
+            args['name'] = _dict.get('name')
+        else:
+            raise ValueError('Required property \'name\' not present in LockSecretBodyLocksItem JSON')
+        if 'description' in _dict:
+            args['description'] = _dict.get('description')
+        else:
+            raise ValueError('Required property \'description\' not present in LockSecretBodyLocksItem JSON')
+        if 'attributes' in _dict:
+            args['attributes'] = _dict.get('attributes')
+        else:
+            raise ValueError('Required property \'attributes\' not present in LockSecretBodyLocksItem JSON')
+        return cls(**args)
+
+    @classmethod
+    def _from_dict(cls, _dict):
+        """Initialize a LockSecretBodyLocksItem object from a json dictionary."""
+        return cls.from_dict(_dict)
+
+    def to_dict(self) -> Dict:
+        """Return a json dictionary representing this model."""
+        _dict = {}
+        if hasattr(self, 'name') and self.name is not None:
+            _dict['name'] = self.name
+        if hasattr(self, 'description') and self.description is not None:
+            _dict['description'] = self.description
+        if hasattr(self, 'attributes') and self.attributes is not None:
+            _dict['attributes'] = self.attributes
+        return _dict
+
+    def _to_dict(self):
+        """Return a json dictionary representing this model."""
+        return self.to_dict()
+
+    def __str__(self) -> str:
+        """Return a `str` version of this LockSecretBodyLocksItem object."""
+        return json.dumps(self.to_dict(), indent=2)
+
+    def __eq__(self, other: 'LockSecretBodyLocksItem') -> bool:
+        """Return `true` when self and other are equal, false otherwise."""
+        if not isinstance(other, self.__class__):
+            return False
+        return self.__dict__ == other.__dict__
+
+    def __ne__(self, other: 'LockSecretBodyLocksItem') -> bool:
         """Return `true` when self and other are not equal, false otherwise."""
         return not self == other
 
@@ -4376,6 +5486,269 @@ class SecretGroupResource():
         return not self == other
 
 
+class SecretLockData():
+    """
+    Properties that describe a lock.
+
+    :attr str name: (optional) A human-readable name to assign to the secret lock.
+          To protect your privacy, do not use personal data, such as your name or
+          location, as a name for the secret lock.
+    :attr str description: (optional) An extended description of the secret lock.
+          To protect your privacy, do not use personal data, such as your name or
+          location, as a description for the secret lock.
+    :attr datetime creation_date: (optional) The date the secret lock was created.
+          The date format follows RFC 3339.
+    :attr str created_by: (optional) The unique identifier for the entity that
+          created the secret lock.
+    :attr object attributes: (optional) The information that is associated with a
+          lock, such as resources CRNs to be used by automation.
+    :attr str secret_version_id: (optional) The v4 UUID that uniquely identifies the
+          secret version.
+    :attr str secret_id: (optional) The v4 UUID that uniquely identifies the secret.
+    :attr str secret_group_id: (optional) The v4 UUID that uniquely identifies the
+          secret group to assign to this secret.
+          If you omit this parameter, your secret is assigned to the `default` secret
+          group.
+    :attr datetime last_update_date: (optional) Updates when the actual secret is
+          modified. The date format follows RFC 3339.
+    :attr str secret_version_alias: (optional) A representation for the 2 last
+          secret versions. Could be "current" for version (n) or "previous" for version
+          (n-1).
+    """
+
+    def __init__(self,
+                 *,
+                 name: str = None,
+                 description: str = None,
+                 creation_date: datetime = None,
+                 created_by: str = None,
+                 attributes: object = None,
+                 secret_version_id: str = None,
+                 secret_id: str = None,
+                 secret_group_id: str = None,
+                 last_update_date: datetime = None,
+                 secret_version_alias: str = None) -> None:
+        """
+        Initialize a SecretLockData object.
+
+        :param str name: (optional) A human-readable name to assign to the secret
+               lock.
+               To protect your privacy, do not use personal data, such as your name or
+               location, as a name for the secret lock.
+        :param str description: (optional) An extended description of the secret
+               lock.
+               To protect your privacy, do not use personal data, such as your name or
+               location, as a description for the secret lock.
+        :param object attributes: (optional) The information that is associated
+               with a lock, such as resources CRNs to be used by automation.
+        """
+        self.name = name
+        self.description = description
+        self.creation_date = creation_date
+        self.created_by = created_by
+        self.attributes = attributes
+        self.secret_version_id = secret_version_id
+        self.secret_id = secret_id
+        self.secret_group_id = secret_group_id
+        self.last_update_date = last_update_date
+        self.secret_version_alias = secret_version_alias
+
+    @classmethod
+    def from_dict(cls, _dict: Dict) -> 'SecretLockData':
+        """Initialize a SecretLockData object from a json dictionary."""
+        args = {}
+        if 'name' in _dict:
+            args['name'] = _dict.get('name')
+        if 'description' in _dict:
+            args['description'] = _dict.get('description')
+        if 'creation_date' in _dict:
+            args['creation_date'] = string_to_datetime(_dict.get('creation_date'))
+        if 'created_by' in _dict:
+            args['created_by'] = _dict.get('created_by')
+        if 'attributes' in _dict:
+            args['attributes'] = _dict.get('attributes')
+        if 'secret_version_id' in _dict:
+            args['secret_version_id'] = _dict.get('secret_version_id')
+        if 'secret_id' in _dict:
+            args['secret_id'] = _dict.get('secret_id')
+        if 'secret_group_id' in _dict:
+            args['secret_group_id'] = _dict.get('secret_group_id')
+        if 'last_update_date' in _dict:
+            args['last_update_date'] = string_to_datetime(_dict.get('last_update_date'))
+        if 'secret_version_alias' in _dict:
+            args['secret_version_alias'] = _dict.get('secret_version_alias')
+        return cls(**args)
+
+    @classmethod
+    def _from_dict(cls, _dict):
+        """Initialize a SecretLockData object from a json dictionary."""
+        return cls.from_dict(_dict)
+
+    def to_dict(self) -> Dict:
+        """Return a json dictionary representing this model."""
+        _dict = {}
+        if hasattr(self, 'name') and self.name is not None:
+            _dict['name'] = self.name
+        if hasattr(self, 'description') and self.description is not None:
+            _dict['description'] = self.description
+        if hasattr(self, 'creation_date') and getattr(self, 'creation_date') is not None:
+            _dict['creation_date'] = datetime_to_string(getattr(self, 'creation_date'))
+        if hasattr(self, 'created_by') and getattr(self, 'created_by') is not None:
+            _dict['created_by'] = getattr(self, 'created_by')
+        if hasattr(self, 'attributes') and self.attributes is not None:
+            _dict['attributes'] = self.attributes
+        if hasattr(self, 'secret_version_id') and getattr(self, 'secret_version_id') is not None:
+            _dict['secret_version_id'] = getattr(self, 'secret_version_id')
+        if hasattr(self, 'secret_id') and getattr(self, 'secret_id') is not None:
+            _dict['secret_id'] = getattr(self, 'secret_id')
+        if hasattr(self, 'secret_group_id') and getattr(self, 'secret_group_id') is not None:
+            _dict['secret_group_id'] = getattr(self, 'secret_group_id')
+        if hasattr(self, 'last_update_date') and getattr(self, 'last_update_date') is not None:
+            _dict['last_update_date'] = datetime_to_string(getattr(self, 'last_update_date'))
+        if hasattr(self, 'secret_version_alias') and getattr(self, 'secret_version_alias') is not None:
+            _dict['secret_version_alias'] = getattr(self, 'secret_version_alias')
+        return _dict
+
+    def _to_dict(self):
+        """Return a json dictionary representing this model."""
+        return self.to_dict()
+
+    def __str__(self) -> str:
+        """Return a `str` version of this SecretLockData object."""
+        return json.dumps(self.to_dict(), indent=2)
+
+    def __eq__(self, other: 'SecretLockData') -> bool:
+        """Return `true` when self and other are equal, false otherwise."""
+        if not isinstance(other, self.__class__):
+            return False
+        return self.__dict__ == other.__dict__
+
+    def __ne__(self, other: 'SecretLockData') -> bool:
+        """Return `true` when self and other are not equal, false otherwise."""
+        return not self == other
+
+
+class SecretLockVersion():
+    """
+    Properties that describe the secret locks.
+
+    :attr str id: (optional) The v4 UUID that uniquely identifies the lock.
+    :attr str alias: (optional) A human-readable alias that describes the secret
+          version. 'Current' is used for version `n` and 'previous' is used for version
+          `n-1`.
+    :attr List[str] locks: (optional) The names of all locks that are associated
+          with this secret.
+    :attr bool payload_available: (optional) Indicates whether the payload for the
+          secret version is stored and available.
+    """
+
+    # The set of defined properties for the class
+    _properties = frozenset(['id', 'alias', 'locks', 'payload_available'])
+
+    def __init__(self,
+                 *,
+                 id: str = None,
+                 alias: str = None,
+                 locks: List[str] = None,
+                 payload_available: bool = None,
+                 **kwargs) -> None:
+        """
+        Initialize a SecretLockVersion object.
+
+        :param str alias: (optional) A human-readable alias that describes the
+               secret version. 'Current' is used for version `n` and 'previous' is used
+               for version `n-1`.
+        :param List[str] locks: (optional) The names of all locks that are
+               associated with this secret.
+        :param **kwargs: (optional) Any additional properties.
+        """
+        self.id = id
+        self.alias = alias
+        self.locks = locks
+        self.payload_available = payload_available
+        for _key, _value in kwargs.items():
+            setattr(self, _key, _value)
+
+    @classmethod
+    def from_dict(cls, _dict: Dict) -> 'SecretLockVersion':
+        """Initialize a SecretLockVersion object from a json dictionary."""
+        args = {}
+        if 'id' in _dict:
+            args['id'] = _dict.get('id')
+        if 'alias' in _dict:
+            args['alias'] = _dict.get('alias')
+        if 'locks' in _dict:
+            args['locks'] = _dict.get('locks')
+        if 'payload_available' in _dict:
+            args['payload_available'] = _dict.get('payload_available')
+        args.update({k: v for (k, v) in _dict.items() if k not in cls._properties})
+        return cls(**args)
+
+    @classmethod
+    def _from_dict(cls, _dict):
+        """Initialize a SecretLockVersion object from a json dictionary."""
+        return cls.from_dict(_dict)
+
+    def to_dict(self) -> Dict:
+        """Return a json dictionary representing this model."""
+        _dict = {}
+        if hasattr(self, 'id') and getattr(self, 'id') is not None:
+            _dict['id'] = getattr(self, 'id')
+        if hasattr(self, 'alias') and self.alias is not None:
+            _dict['alias'] = self.alias
+        if hasattr(self, 'locks') and self.locks is not None:
+            _dict['locks'] = self.locks
+        if hasattr(self, 'payload_available') and getattr(self, 'payload_available') is not None:
+            _dict['payload_available'] = getattr(self, 'payload_available')
+        for _key in [k for k in vars(self).keys() if k not in SecretLockVersion._properties]:
+            if getattr(self, _key, None) is not None:
+                _dict[_key] = getattr(self, _key)
+        return _dict
+
+    def _to_dict(self):
+        """Return a json dictionary representing this model."""
+        return self.to_dict()
+
+    def get_properties(self) -> Dict:
+        """Return a dictionary of arbitrary properties from this instance of SecretLockVersion"""
+        _dict = {}
+
+        for _key in [k for k in vars(self).keys() if k not in SecretLockVersion._properties]:
+            _dict[_key] = getattr(self, _key)
+        return _dict
+
+    def set_properties(self, _dict: dict):
+        """Set a dictionary of arbitrary properties to this instance of SecretLockVersion"""
+        for _key in [k for k in vars(self).keys() if k not in SecretLockVersion._properties]:
+            delattr(self, _key)
+
+        for _key, _value in _dict.items():
+            if _key not in SecretLockVersion._properties:
+                setattr(self, _key, _value)
+
+    def __str__(self) -> str:
+        """Return a `str` version of this SecretLockVersion object."""
+        return json.dumps(self.to_dict(), indent=2)
+
+    def __eq__(self, other: 'SecretLockVersion') -> bool:
+        """Return `true` when self and other are equal, false otherwise."""
+        if not isinstance(other, self.__class__):
+            return False
+        return self.__dict__ == other.__dict__
+
+    def __ne__(self, other: 'SecretLockVersion') -> bool:
+        """Return `true` when self and other are not equal, false otherwise."""
+        return not self == other
+
+    class AliasEnum(str, Enum):
+        """
+        A human-readable alias that describes the secret version. 'Current' is used for
+        version `n` and 'previous' is used for version `n-1`.
+        """
+        CURRENT = 'current'
+        PREVIOUS = 'previous'
+
+
 class SecretMetadata():
     """
     SecretMetadata.
@@ -4635,6 +6008,109 @@ class SecretVersionMetadata():
                        'IAMCredentialsSecretVersionMetadata', 'CertificateSecretVersionMetadata',
                        'PrivateCertificateSecretVersionMetadata']))
         raise Exception(msg)
+
+
+class SecretsLocks():
+    """
+    Properties that describe the secret locks.
+
+    :attr str secret_id: (optional) The unique ID of the secret.
+    :attr str secret_group_id: (optional) The v4 UUID that uniquely identifies the
+          secret group to assign to this secret.
+          If you omit this parameter, your secret is assigned to the `default` secret
+          group.
+    :attr List[SecretLockVersion] versions: (optional) A collection of locks that
+          are attached to a secret version.
+    """
+
+    # The set of defined properties for the class
+    _properties = frozenset(['secret_id', 'secret_group_id', 'versions'])
+
+    def __init__(self,
+                 *,
+                 secret_id: str = None,
+                 secret_group_id: str = None,
+                 versions: List['SecretLockVersion'] = None,
+                 **kwargs) -> None:
+        """
+        Initialize a SecretsLocks object.
+
+        :param List[SecretLockVersion] versions: (optional) A collection of locks
+               that are attached to a secret version.
+        :param **kwargs: (optional) Any additional properties.
+        """
+        self.secret_id = secret_id
+        self.secret_group_id = secret_group_id
+        self.versions = versions
+        for _key, _value in kwargs.items():
+            setattr(self, _key, _value)
+
+    @classmethod
+    def from_dict(cls, _dict: Dict) -> 'SecretsLocks':
+        """Initialize a SecretsLocks object from a json dictionary."""
+        args = {}
+        if 'secret_id' in _dict:
+            args['secret_id'] = _dict.get('secret_id')
+        if 'secret_group_id' in _dict:
+            args['secret_group_id'] = _dict.get('secret_group_id')
+        if 'versions' in _dict:
+            args['versions'] = [SecretLockVersion.from_dict(x) for x in _dict.get('versions')]
+        args.update({k: v for (k, v) in _dict.items() if k not in cls._properties})
+        return cls(**args)
+
+    @classmethod
+    def _from_dict(cls, _dict):
+        """Initialize a SecretsLocks object from a json dictionary."""
+        return cls.from_dict(_dict)
+
+    def to_dict(self) -> Dict:
+        """Return a json dictionary representing this model."""
+        _dict = {}
+        if hasattr(self, 'secret_id') and getattr(self, 'secret_id') is not None:
+            _dict['secret_id'] = getattr(self, 'secret_id')
+        if hasattr(self, 'secret_group_id') and getattr(self, 'secret_group_id') is not None:
+            _dict['secret_group_id'] = getattr(self, 'secret_group_id')
+        if hasattr(self, 'versions') and self.versions is not None:
+            _dict['versions'] = [x.to_dict() for x in self.versions]
+        for _key in [k for k in vars(self).keys() if k not in SecretsLocks._properties]:
+            if getattr(self, _key, None) is not None:
+                _dict[_key] = getattr(self, _key)
+        return _dict
+
+    def _to_dict(self):
+        """Return a json dictionary representing this model."""
+        return self.to_dict()
+
+    def get_properties(self) -> Dict:
+        """Return a dictionary of arbitrary properties from this instance of SecretsLocks"""
+        _dict = {}
+
+        for _key in [k for k in vars(self).keys() if k not in SecretsLocks._properties]:
+            _dict[_key] = getattr(self, _key)
+        return _dict
+
+    def set_properties(self, _dict: dict):
+        """Set a dictionary of arbitrary properties to this instance of SecretsLocks"""
+        for _key in [k for k in vars(self).keys() if k not in SecretsLocks._properties]:
+            delattr(self, _key)
+
+        for _key, _value in _dict.items():
+            if _key not in SecretsLocks._properties:
+                setattr(self, _key, _value)
+
+    def __str__(self) -> str:
+        """Return a `str` version of this SecretsLocks object."""
+        return json.dumps(self.to_dict(), indent=2)
+
+    def __eq__(self, other: 'SecretsLocks') -> bool:
+        """Return `true` when self and other are equal, false otherwise."""
+        if not isinstance(other, self.__class__):
+            return False
+        return self.__dict__ == other.__dict__
+
+    def __ne__(self, other: 'SecretsLocks') -> bool:
+        """Return `true` when self and other are not equal, false otherwise."""
+        return not self == other
 
 
 class SignActionResultData():
@@ -4925,7 +6401,10 @@ class ArbitrarySecretMetadata(SecretMetadata):
           created the secret.
     :attr datetime last_update_date: (optional) Updates when any part of the secret
           metadata is modified. The date format follows RFC 3339.
-    :attr int versions_total: (optional) The number of versions the secret has.
+    :attr int versions_total: (optional) The number of versions that are associated
+          with a secret.
+    :attr int locks_total: (optional) The number of locks that are associated with a
+          secret.
     :attr datetime expiration_date: (optional) The date the secret material expires.
           The date format follows RFC 3339.
           You can set an expiration date on supported secret types at their creation. If
@@ -4950,6 +6429,7 @@ class ArbitrarySecretMetadata(SecretMetadata):
                  created_by: str = None,
                  last_update_date: datetime = None,
                  versions_total: int = None,
+                 locks_total: int = None,
                  expiration_date: datetime = None) -> None:
         """
         Initialize a ArbitrarySecretMetadata object.
@@ -4991,6 +6471,7 @@ class ArbitrarySecretMetadata(SecretMetadata):
         self.created_by = created_by
         self.last_update_date = last_update_date
         self.versions_total = versions_total
+        self.locks_total = locks_total
         self.expiration_date = expiration_date
 
     @classmethod
@@ -5025,6 +6506,8 @@ class ArbitrarySecretMetadata(SecretMetadata):
             args['last_update_date'] = string_to_datetime(_dict.get('last_update_date'))
         if 'versions_total' in _dict:
             args['versions_total'] = _dict.get('versions_total')
+        if 'locks_total' in _dict:
+            args['locks_total'] = _dict.get('locks_total')
         if 'expiration_date' in _dict:
             args['expiration_date'] = string_to_datetime(_dict.get('expiration_date'))
         return cls(**args)
@@ -5063,6 +6546,8 @@ class ArbitrarySecretMetadata(SecretMetadata):
             _dict['last_update_date'] = datetime_to_string(getattr(self, 'last_update_date'))
         if hasattr(self, 'versions_total') and getattr(self, 'versions_total') is not None:
             _dict['versions_total'] = getattr(self, 'versions_total')
+        if hasattr(self, 'locks_total') and getattr(self, 'locks_total') is not None:
+            _dict['locks_total'] = getattr(self, 'locks_total')
         if hasattr(self, 'expiration_date') and self.expiration_date is not None:
             _dict['expiration_date'] = datetime_to_string(self.expiration_date)
         return _dict
@@ -5139,6 +6624,8 @@ class ArbitrarySecretResource(SecretResource):
     :attr List[dict] versions: (optional) An array that contains metadata for each
           secret version. For more information on the metadata properties, see [Get secret
           version metadata](#get-secret-version-metadata).
+    :attr int locks_total: (optional) The number of locks that are associated with a
+          secret.
     :attr datetime expiration_date: (optional) The date the secret material expires.
           The date format follows RFC 3339.
           You can set an expiration date on supported secret types at their creation. If
@@ -5168,6 +6655,7 @@ class ArbitrarySecretResource(SecretResource):
                  last_update_date: datetime = None,
                  versions_total: int = None,
                  versions: List[dict] = None,
+                 locks_total: int = None,
                  expiration_date: datetime = None,
                  payload: str = None,
                  secret_data: object = None) -> None:
@@ -5216,6 +6704,7 @@ class ArbitrarySecretResource(SecretResource):
         self.last_update_date = last_update_date
         self.versions_total = versions_total
         self.versions = versions
+        self.locks_total = locks_total
         self.expiration_date = expiration_date
         self.payload = payload
         self.secret_data = secret_data
@@ -5254,6 +6743,8 @@ class ArbitrarySecretResource(SecretResource):
             args['versions_total'] = _dict.get('versions_total')
         if 'versions' in _dict:
             args['versions'] = _dict.get('versions')
+        if 'locks_total' in _dict:
+            args['locks_total'] = _dict.get('locks_total')
         if 'expiration_date' in _dict:
             args['expiration_date'] = string_to_datetime(_dict.get('expiration_date'))
         if 'payload' in _dict:
@@ -5298,6 +6789,8 @@ class ArbitrarySecretResource(SecretResource):
             _dict['versions_total'] = getattr(self, 'versions_total')
         if hasattr(self, 'versions') and getattr(self, 'versions') is not None:
             _dict['versions'] = getattr(self, 'versions')
+        if hasattr(self, 'locks_total') and getattr(self, 'locks_total') is not None:
+            _dict['locks_total'] = getattr(self, 'locks_total')
         if hasattr(self, 'expiration_date') and self.expiration_date is not None:
             _dict['expiration_date'] = datetime_to_string(self.expiration_date)
         if hasattr(self, 'payload') and self.payload is not None:
@@ -5347,6 +6840,8 @@ class ArbitrarySecretVersion(SecretVersion):
           was created.
     :attr str created_by: (optional) The unique identifier for the entity that
           created the secret version.
+    :attr int locks_total: (optional) The number of locks that are associated with a
+          secret version.
     :attr object secret_data: (optional) The data that is associated with the secret
           version.
           The data object contains the field `payload`.
@@ -5358,6 +6853,7 @@ class ArbitrarySecretVersion(SecretVersion):
                  version_id: str = None,
                  creation_date: datetime = None,
                  created_by: str = None,
+                 locks_total: int = None,
                  secret_data: object = None) -> None:
         """
         Initialize a ArbitrarySecretVersion object.
@@ -5371,6 +6867,7 @@ class ArbitrarySecretVersion(SecretVersion):
         self.version_id = version_id
         self.creation_date = creation_date
         self.created_by = created_by
+        self.locks_total = locks_total
         self.secret_data = secret_data
 
     @classmethod
@@ -5385,6 +6882,8 @@ class ArbitrarySecretVersion(SecretVersion):
             args['creation_date'] = string_to_datetime(_dict.get('creation_date'))
         if 'created_by' in _dict:
             args['created_by'] = _dict.get('created_by')
+        if 'locks_total' in _dict:
+            args['locks_total'] = _dict.get('locks_total')
         if 'secret_data' in _dict:
             args['secret_data'] = _dict.get('secret_data')
         return cls(**args)
@@ -5405,6 +6904,8 @@ class ArbitrarySecretVersion(SecretVersion):
             _dict['creation_date'] = datetime_to_string(getattr(self, 'creation_date'))
         if hasattr(self, 'created_by') and getattr(self, 'created_by') is not None:
             _dict['created_by'] = getattr(self, 'created_by')
+        if hasattr(self, 'locks_total') and getattr(self, 'locks_total') is not None:
+            _dict['locks_total'] = getattr(self, 'locks_total')
         if hasattr(self, 'secret_data') and self.secret_data is not None:
             _dict['secret_data'] = self.secret_data
         return _dict
@@ -5530,6 +7031,8 @@ class ArbitrarySecretVersionMetadata(SecretVersionMetadata):
           secret version is stored and available.
     :attr bool downloaded: (optional) Indicates whether the secret data that is
           associated with a secret version was retrieved in a call to the service API.
+    :attr int locks_total: (optional) The number of locks that are associated with a
+          secret version.
     """
 
     def __init__(self,
@@ -5539,7 +7042,8 @@ class ArbitrarySecretVersionMetadata(SecretVersionMetadata):
                  creation_date: datetime = None,
                  created_by: str = None,
                  payload_available: bool = None,
-                 downloaded: bool = None) -> None:
+                 downloaded: bool = None,
+                 locks_total: int = None) -> None:
         """
         Initialize a ArbitrarySecretVersionMetadata object.
 
@@ -5552,6 +7056,7 @@ class ArbitrarySecretVersionMetadata(SecretVersionMetadata):
         self.created_by = created_by
         self.payload_available = payload_available
         self.downloaded = downloaded
+        self.locks_total = locks_total
 
     @classmethod
     def from_dict(cls, _dict: Dict) -> 'ArbitrarySecretVersionMetadata':
@@ -5569,6 +7074,8 @@ class ArbitrarySecretVersionMetadata(SecretVersionMetadata):
             args['payload_available'] = _dict.get('payload_available')
         if 'downloaded' in _dict:
             args['downloaded'] = _dict.get('downloaded')
+        if 'locks_total' in _dict:
+            args['locks_total'] = _dict.get('locks_total')
         return cls(**args)
 
     @classmethod
@@ -5591,6 +7098,8 @@ class ArbitrarySecretVersionMetadata(SecretVersionMetadata):
             _dict['payload_available'] = getattr(self, 'payload_available')
         if hasattr(self, 'downloaded') and getattr(self, 'downloaded') is not None:
             _dict['downloaded'] = getattr(self, 'downloaded')
+        if hasattr(self, 'locks_total') and getattr(self, 'locks_total') is not None:
+            _dict['locks_total'] = getattr(self, 'locks_total')
         return _dict
 
     def _to_dict(self):
@@ -5648,7 +7157,10 @@ class CertificateSecretMetadata(SecretMetadata):
           created the secret.
     :attr datetime last_update_date: (optional) Updates when any part of the secret
           metadata is modified. The date format follows RFC 3339.
-    :attr int versions_total: (optional) The number of versions the secret has.
+    :attr int versions_total: (optional) The number of versions that are associated
+          with a secret.
+    :attr int locks_total: (optional) The number of locks that are associated with a
+          secret.
     :attr str serial_number: (optional) The unique serial number that was assigned
           to the certificate by the issuing certificate authority.
     :attr str algorithm: (optional) The identifier for the cryptographic algorithm
@@ -5686,6 +7198,7 @@ class CertificateSecretMetadata(SecretMetadata):
                  created_by: str = None,
                  last_update_date: datetime = None,
                  versions_total: int = None,
+                 locks_total: int = None,
                  serial_number: str = None,
                  algorithm: str = None,
                  key_algorithm: str = None,
@@ -5729,6 +7242,7 @@ class CertificateSecretMetadata(SecretMetadata):
         self.created_by = created_by
         self.last_update_date = last_update_date
         self.versions_total = versions_total
+        self.locks_total = locks_total
         self.serial_number = serial_number
         self.algorithm = algorithm
         self.key_algorithm = key_algorithm
@@ -5772,6 +7286,8 @@ class CertificateSecretMetadata(SecretMetadata):
             args['last_update_date'] = string_to_datetime(_dict.get('last_update_date'))
         if 'versions_total' in _dict:
             args['versions_total'] = _dict.get('versions_total')
+        if 'locks_total' in _dict:
+            args['locks_total'] = _dict.get('locks_total')
         if 'serial_number' in _dict:
             args['serial_number'] = _dict.get('serial_number')
         if 'algorithm' in _dict:
@@ -5828,6 +7344,8 @@ class CertificateSecretMetadata(SecretMetadata):
             _dict['last_update_date'] = datetime_to_string(getattr(self, 'last_update_date'))
         if hasattr(self, 'versions_total') and getattr(self, 'versions_total') is not None:
             _dict['versions_total'] = getattr(self, 'versions_total')
+        if hasattr(self, 'locks_total') and getattr(self, 'locks_total') is not None:
+            _dict['locks_total'] = getattr(self, 'locks_total')
         if hasattr(self, 'serial_number') and getattr(self, 'serial_number') is not None:
             _dict['serial_number'] = getattr(self, 'serial_number')
         if hasattr(self, 'algorithm') and getattr(self, 'algorithm') is not None:
@@ -5922,6 +7440,8 @@ class CertificateSecretResource(SecretResource):
     :attr List[dict] versions: (optional) An array that contains metadata for each
           secret version. For more information on the metadata properties, see [Get secret
           version metadata](#get-secret-version-metadata).
+    :attr int locks_total: (optional) The number of locks that are associated with a
+          secret.
     :attr str certificate: (optional) The contents of your certificate. The data
           must be formatted on a single line with embedded newline characters.
     :attr str private_key: (optional) The private key to associate with the
@@ -5978,6 +7498,7 @@ class CertificateSecretResource(SecretResource):
                  last_update_date: datetime = None,
                  versions_total: int = None,
                  versions: List[dict] = None,
+                 locks_total: int = None,
                  certificate: str = None,
                  private_key: str = None,
                  intermediate: str = None,
@@ -6043,6 +7564,7 @@ class CertificateSecretResource(SecretResource):
         self.last_update_date = last_update_date
         self.versions_total = versions_total
         self.versions = versions
+        self.locks_total = locks_total
         self.certificate = certificate
         self.private_key = private_key
         self.intermediate = intermediate
@@ -6092,6 +7614,8 @@ class CertificateSecretResource(SecretResource):
             args['versions_total'] = _dict.get('versions_total')
         if 'versions' in _dict:
             args['versions'] = _dict.get('versions')
+        if 'locks_total' in _dict:
+            args['locks_total'] = _dict.get('locks_total')
         if 'certificate' in _dict:
             args['certificate'] = _dict.get('certificate')
         if 'private_key' in _dict:
@@ -6158,6 +7682,8 @@ class CertificateSecretResource(SecretResource):
             _dict['versions_total'] = getattr(self, 'versions_total')
         if hasattr(self, 'versions') and getattr(self, 'versions') is not None:
             _dict['versions'] = getattr(self, 'versions')
+        if hasattr(self, 'locks_total') and getattr(self, 'locks_total') is not None:
+            _dict['locks_total'] = getattr(self, 'locks_total')
         if hasattr(self, 'certificate') and self.certificate is not None:
             _dict['certificate'] = self.certificate
         if hasattr(self, 'private_key') and self.private_key is not None:
@@ -6229,6 +7755,8 @@ class CertificateSecretVersion(SecretVersion):
           was created.
     :attr str created_by: (optional) The unique identifier for the entity that
           created the secret version.
+    :attr int locks_total: (optional) The number of locks that are associated with a
+          secret version.
     :attr CertificateValidity validity: (optional)
     :attr str serial_number: (optional) The unique serial number that was assigned
           to the certificate by the issuing certificate authority.
@@ -6248,6 +7776,7 @@ class CertificateSecretVersion(SecretVersion):
                  version_id: str = None,
                  creation_date: datetime = None,
                  created_by: str = None,
+                 locks_total: int = None,
                  validity: 'CertificateValidity' = None,
                  serial_number: str = None,
                  expiration_date: datetime = None,
@@ -6269,6 +7798,7 @@ class CertificateSecretVersion(SecretVersion):
         self.version_id = version_id
         self.creation_date = creation_date
         self.created_by = created_by
+        self.locks_total = locks_total
         self.validity = validity
         self.serial_number = serial_number
         self.expiration_date = expiration_date
@@ -6286,6 +7816,8 @@ class CertificateSecretVersion(SecretVersion):
             args['creation_date'] = string_to_datetime(_dict.get('creation_date'))
         if 'created_by' in _dict:
             args['created_by'] = _dict.get('created_by')
+        if 'locks_total' in _dict:
+            args['locks_total'] = _dict.get('locks_total')
         if 'validity' in _dict:
             args['validity'] = CertificateValidity.from_dict(_dict.get('validity'))
         if 'serial_number' in _dict:
@@ -6312,6 +7844,8 @@ class CertificateSecretVersion(SecretVersion):
             _dict['creation_date'] = datetime_to_string(getattr(self, 'creation_date'))
         if hasattr(self, 'created_by') and getattr(self, 'created_by') is not None:
             _dict['created_by'] = getattr(self, 'created_by')
+        if hasattr(self, 'locks_total') and getattr(self, 'locks_total') is not None:
+            _dict['locks_total'] = getattr(self, 'locks_total')
         if hasattr(self, 'validity') and self.validity is not None:
             _dict['validity'] = self.validity.to_dict()
         if hasattr(self, 'serial_number') and getattr(self, 'serial_number') is not None:
@@ -6467,6 +8001,8 @@ class CertificateSecretVersionMetadata(SecretVersionMetadata):
           secret version is stored and available.
     :attr bool downloaded: (optional) Indicates whether the secret data that is
           associated with a secret version was retrieved in a call to the service API.
+    :attr int locks_total: (optional) The number of locks that are associated with a
+          secret version.
     :attr str serial_number: (optional) The unique serial number that was assigned
           to the certificate by the issuing certificate authority.
     :attr datetime expiration_date: (optional) The date that the certificate
@@ -6482,6 +8018,7 @@ class CertificateSecretVersionMetadata(SecretVersionMetadata):
                  created_by: str = None,
                  payload_available: bool = None,
                  downloaded: bool = None,
+                 locks_total: int = None,
                  serial_number: str = None,
                  expiration_date: datetime = None,
                  validity: 'CertificateValidity' = None) -> None:
@@ -6498,6 +8035,7 @@ class CertificateSecretVersionMetadata(SecretVersionMetadata):
         self.created_by = created_by
         self.payload_available = payload_available
         self.downloaded = downloaded
+        self.locks_total = locks_total
         self.serial_number = serial_number
         self.expiration_date = expiration_date
         self.validity = validity
@@ -6518,6 +8056,8 @@ class CertificateSecretVersionMetadata(SecretVersionMetadata):
             args['payload_available'] = _dict.get('payload_available')
         if 'downloaded' in _dict:
             args['downloaded'] = _dict.get('downloaded')
+        if 'locks_total' in _dict:
+            args['locks_total'] = _dict.get('locks_total')
         if 'serial_number' in _dict:
             args['serial_number'] = _dict.get('serial_number')
         if 'expiration_date' in _dict:
@@ -6546,6 +8086,8 @@ class CertificateSecretVersionMetadata(SecretVersionMetadata):
             _dict['payload_available'] = getattr(self, 'payload_available')
         if hasattr(self, 'downloaded') and getattr(self, 'downloaded') is not None:
             _dict['downloaded'] = getattr(self, 'downloaded')
+        if hasattr(self, 'locks_total') and getattr(self, 'locks_total') is not None:
+            _dict['locks_total'] = getattr(self, 'locks_total')
         if hasattr(self, 'serial_number') and getattr(self, 'serial_number') is not None:
             _dict['serial_number'] = getattr(self, 'serial_number')
         if hasattr(self, 'expiration_date') and getattr(self, 'expiration_date') is not None:
@@ -7899,7 +9441,10 @@ class IAMCredentialsSecretMetadata(SecretMetadata):
           created the secret.
     :attr datetime last_update_date: (optional) Updates when any part of the secret
           metadata is modified. The date format follows RFC 3339.
-    :attr int versions_total: (optional) The number of versions the secret has.
+    :attr int versions_total: (optional) The number of versions that are associated
+          with a secret.
+    :attr int locks_total: (optional) The number of locks that are associated with a
+          secret.
     :attr str ttl: (optional) The time-to-live (TTL) or lease duration that is
           assigned to the secret. For `iam_credentials` secrets, the TTL defines for how
           long each generated API key remains valid.
@@ -7938,6 +9483,7 @@ class IAMCredentialsSecretMetadata(SecretMetadata):
                  created_by: str = None,
                  last_update_date: datetime = None,
                  versions_total: int = None,
+                 locks_total: int = None,
                  ttl: str = None,
                  reuse_api_key: bool = None,
                  service_id_is_static: bool = None,
@@ -7991,6 +9537,7 @@ class IAMCredentialsSecretMetadata(SecretMetadata):
         self.created_by = created_by
         self.last_update_date = last_update_date
         self.versions_total = versions_total
+        self.locks_total = locks_total
         self.ttl = ttl
         self.reuse_api_key = reuse_api_key
         self.service_id_is_static = service_id_is_static
@@ -8029,6 +9576,8 @@ class IAMCredentialsSecretMetadata(SecretMetadata):
             args['last_update_date'] = string_to_datetime(_dict.get('last_update_date'))
         if 'versions_total' in _dict:
             args['versions_total'] = _dict.get('versions_total')
+        if 'locks_total' in _dict:
+            args['locks_total'] = _dict.get('locks_total')
         if 'ttl' in _dict:
             args['ttl'] = _dict.get('ttl')
         if 'reuse_api_key' in _dict:
@@ -8075,6 +9624,8 @@ class IAMCredentialsSecretMetadata(SecretMetadata):
             _dict['last_update_date'] = datetime_to_string(getattr(self, 'last_update_date'))
         if hasattr(self, 'versions_total') and getattr(self, 'versions_total') is not None:
             _dict['versions_total'] = getattr(self, 'versions_total')
+        if hasattr(self, 'locks_total') and getattr(self, 'locks_total') is not None:
+            _dict['locks_total'] = getattr(self, 'locks_total')
         if hasattr(self, 'ttl') and self.ttl is not None:
             _dict['ttl'] = self.ttl
         if hasattr(self, 'reuse_api_key') and getattr(self, 'reuse_api_key') is not None:
@@ -8159,6 +9710,8 @@ class IAMCredentialsSecretResource(SecretResource):
     :attr List[dict] versions: (optional) An array that contains metadata for each
           secret version. For more information on the metadata properties, see [Get secret
           version metadata](#get-secret-version-metadata).
+    :attr int locks_total: (optional) The number of locks that are associated with a
+          secret.
     :attr object ttl: (optional) The time-to-live (TTL) or lease duration to assign
           to generated credentials.
           For `iam_credentials` secrets, the TTL defines for how long each generated API
@@ -8218,6 +9771,7 @@ class IAMCredentialsSecretResource(SecretResource):
                  last_update_date: datetime = None,
                  versions_total: int = None,
                  versions: List[dict] = None,
+                 locks_total: int = None,
                  ttl: object = None,
                  access_groups: List[str] = None,
                  api_key: str = None,
@@ -8294,6 +9848,7 @@ class IAMCredentialsSecretResource(SecretResource):
         self.last_update_date = last_update_date
         self.versions_total = versions_total
         self.versions = versions
+        self.locks_total = locks_total
         self.ttl = ttl
         self.access_groups = access_groups
         self.api_key = api_key
@@ -8336,6 +9891,8 @@ class IAMCredentialsSecretResource(SecretResource):
             args['versions_total'] = _dict.get('versions_total')
         if 'versions' in _dict:
             args['versions'] = _dict.get('versions')
+        if 'locks_total' in _dict:
+            args['locks_total'] = _dict.get('locks_total')
         if 'ttl' in _dict:
             args['ttl'] = _dict.get('ttl')
         if 'access_groups' in _dict:
@@ -8388,6 +9945,8 @@ class IAMCredentialsSecretResource(SecretResource):
             _dict['versions_total'] = getattr(self, 'versions_total')
         if hasattr(self, 'versions') and getattr(self, 'versions') is not None:
             _dict['versions'] = getattr(self, 'versions')
+        if hasattr(self, 'locks_total') and getattr(self, 'locks_total') is not None:
+            _dict['locks_total'] = getattr(self, 'locks_total')
         if hasattr(self, 'ttl') and self.ttl is not None:
             _dict['ttl'] = self.ttl
         if hasattr(self, 'access_groups') and self.access_groups is not None:
@@ -8445,6 +10004,8 @@ class IAMCredentialsSecretVersion(SecretVersion):
           was created.
     :attr str created_by: (optional) The unique identifier for the entity that
           created the secret version.
+    :attr int locks_total: (optional) The number of locks that are associated with a
+          secret version.
     :attr object secret_data: (optional) The data that is associated with the secret
           version. The data object contains the following fields:
           - `api_key`: The API key that is generated for this secret.
@@ -8458,6 +10019,7 @@ class IAMCredentialsSecretVersion(SecretVersion):
                  version_id: str = None,
                  creation_date: datetime = None,
                  created_by: str = None,
+                 locks_total: int = None,
                  secret_data: object = None) -> None:
         """
         Initialize a IAMCredentialsSecretVersion object.
@@ -8473,6 +10035,7 @@ class IAMCredentialsSecretVersion(SecretVersion):
         self.version_id = version_id
         self.creation_date = creation_date
         self.created_by = created_by
+        self.locks_total = locks_total
         self.secret_data = secret_data
 
     @classmethod
@@ -8487,6 +10050,8 @@ class IAMCredentialsSecretVersion(SecretVersion):
             args['creation_date'] = string_to_datetime(_dict.get('creation_date'))
         if 'created_by' in _dict:
             args['created_by'] = _dict.get('created_by')
+        if 'locks_total' in _dict:
+            args['locks_total'] = _dict.get('locks_total')
         if 'secret_data' in _dict:
             args['secret_data'] = _dict.get('secret_data')
         return cls(**args)
@@ -8507,6 +10072,8 @@ class IAMCredentialsSecretVersion(SecretVersion):
             _dict['creation_date'] = datetime_to_string(getattr(self, 'creation_date'))
         if hasattr(self, 'created_by') and getattr(self, 'created_by') is not None:
             _dict['created_by'] = getattr(self, 'created_by')
+        if hasattr(self, 'locks_total') and getattr(self, 'locks_total') is not None:
+            _dict['locks_total'] = getattr(self, 'locks_total')
         if hasattr(self, 'secret_data') and self.secret_data is not None:
             _dict['secret_data'] = self.secret_data
         return _dict
@@ -8632,6 +10199,8 @@ class IAMCredentialsSecretVersionMetadata(SecretVersionMetadata):
           secret version is stored and available.
     :attr bool downloaded: (optional) Indicates whether the secret data that is
           associated with a secret version was retrieved in a call to the service API.
+    :attr int locks_total: (optional) The number of locks that are associated with a
+          secret version.
     """
 
     def __init__(self,
@@ -8641,7 +10210,8 @@ class IAMCredentialsSecretVersionMetadata(SecretVersionMetadata):
                  creation_date: datetime = None,
                  created_by: str = None,
                  payload_available: bool = None,
-                 downloaded: bool = None) -> None:
+                 downloaded: bool = None,
+                 locks_total: int = None) -> None:
         """
         Initialize a IAMCredentialsSecretVersionMetadata object.
 
@@ -8654,6 +10224,7 @@ class IAMCredentialsSecretVersionMetadata(SecretVersionMetadata):
         self.created_by = created_by
         self.payload_available = payload_available
         self.downloaded = downloaded
+        self.locks_total = locks_total
 
     @classmethod
     def from_dict(cls, _dict: Dict) -> 'IAMCredentialsSecretVersionMetadata':
@@ -8671,6 +10242,8 @@ class IAMCredentialsSecretVersionMetadata(SecretVersionMetadata):
             args['payload_available'] = _dict.get('payload_available')
         if 'downloaded' in _dict:
             args['downloaded'] = _dict.get('downloaded')
+        if 'locks_total' in _dict:
+            args['locks_total'] = _dict.get('locks_total')
         return cls(**args)
 
     @classmethod
@@ -8693,6 +10266,8 @@ class IAMCredentialsSecretVersionMetadata(SecretVersionMetadata):
             _dict['payload_available'] = getattr(self, 'payload_available')
         if hasattr(self, 'downloaded') and getattr(self, 'downloaded') is not None:
             _dict['downloaded'] = getattr(self, 'downloaded')
+        if hasattr(self, 'locks_total') and getattr(self, 'locks_total') is not None:
+            _dict['locks_total'] = getattr(self, 'locks_total')
         return _dict
 
     def _to_dict(self):
@@ -9255,7 +10830,10 @@ class KvSecretMetadata(SecretMetadata):
           created the secret.
     :attr datetime last_update_date: (optional) Updates when any part of the secret
           metadata is modified. The date format follows RFC 3339.
-    :attr int versions_total: (optional) The number of versions the secret has.
+    :attr int versions_total: (optional) The number of versions that are associated
+          with a secret.
+    :attr int locks_total: (optional) The number of locks that are associated with a
+          secret.
     """
 
     def __init__(self,
@@ -9272,7 +10850,8 @@ class KvSecretMetadata(SecretMetadata):
                  creation_date: datetime = None,
                  created_by: str = None,
                  last_update_date: datetime = None,
-                 versions_total: int = None) -> None:
+                 versions_total: int = None,
+                 locks_total: int = None) -> None:
         """
         Initialize a KvSecretMetadata object.
 
@@ -9305,6 +10884,7 @@ class KvSecretMetadata(SecretMetadata):
         self.created_by = created_by
         self.last_update_date = last_update_date
         self.versions_total = versions_total
+        self.locks_total = locks_total
 
     @classmethod
     def from_dict(cls, _dict: Dict) -> 'KvSecretMetadata':
@@ -9338,6 +10918,8 @@ class KvSecretMetadata(SecretMetadata):
             args['last_update_date'] = string_to_datetime(_dict.get('last_update_date'))
         if 'versions_total' in _dict:
             args['versions_total'] = _dict.get('versions_total')
+        if 'locks_total' in _dict:
+            args['locks_total'] = _dict.get('locks_total')
         return cls(**args)
 
     @classmethod
@@ -9374,6 +10956,8 @@ class KvSecretMetadata(SecretMetadata):
             _dict['last_update_date'] = datetime_to_string(getattr(self, 'last_update_date'))
         if hasattr(self, 'versions_total') and getattr(self, 'versions_total') is not None:
             _dict['versions_total'] = getattr(self, 'versions_total')
+        if hasattr(self, 'locks_total') and getattr(self, 'locks_total') is not None:
+            _dict['locks_total'] = getattr(self, 'locks_total')
         return _dict
 
     def _to_dict(self):
@@ -9448,6 +11032,8 @@ class KvSecretResource(SecretResource):
     :attr List[dict] versions: (optional) An array that contains metadata for each
           secret version. For more information on the metadata properties, see [Get secret
           version metadata](#get-secret-version-metadata).
+    :attr int locks_total: (optional) The number of locks that are associated with a
+          secret.
     :attr datetime expiration_date: (optional) The date the secret material expires.
           The date format follows RFC 3339.
           You can set an expiration date on supported secret types at their creation. If
@@ -9477,6 +11063,7 @@ class KvSecretResource(SecretResource):
                  last_update_date: datetime = None,
                  versions_total: int = None,
                  versions: List[dict] = None,
+                 locks_total: int = None,
                  expiration_date: datetime = None,
                  payload: object = None,
                  secret_data: object = None) -> None:
@@ -9526,6 +11113,7 @@ class KvSecretResource(SecretResource):
         self.last_update_date = last_update_date
         self.versions_total = versions_total
         self.versions = versions
+        self.locks_total = locks_total
         self.expiration_date = expiration_date
         self.payload = payload
         self.secret_data = secret_data
@@ -9564,6 +11152,8 @@ class KvSecretResource(SecretResource):
             args['versions_total'] = _dict.get('versions_total')
         if 'versions' in _dict:
             args['versions'] = _dict.get('versions')
+        if 'locks_total' in _dict:
+            args['locks_total'] = _dict.get('locks_total')
         if 'expiration_date' in _dict:
             args['expiration_date'] = string_to_datetime(_dict.get('expiration_date'))
         if 'payload' in _dict:
@@ -9608,6 +11198,8 @@ class KvSecretResource(SecretResource):
             _dict['versions_total'] = getattr(self, 'versions_total')
         if hasattr(self, 'versions') and getattr(self, 'versions') is not None:
             _dict['versions'] = getattr(self, 'versions')
+        if hasattr(self, 'locks_total') and getattr(self, 'locks_total') is not None:
+            _dict['locks_total'] = getattr(self, 'locks_total')
         if hasattr(self, 'expiration_date') and self.expiration_date is not None:
             _dict['expiration_date'] = datetime_to_string(self.expiration_date)
         if hasattr(self, 'payload') and self.payload is not None:
@@ -9847,7 +11439,10 @@ class PrivateCertificateSecretMetadata(SecretMetadata):
           created the secret.
     :attr datetime last_update_date: (optional) Updates when any part of the secret
           metadata is modified. The date format follows RFC 3339.
-    :attr int versions_total: (optional) The number of versions the secret has.
+    :attr int versions_total: (optional) The number of versions that are associated
+          with a secret.
+    :attr int locks_total: (optional) The number of locks that are associated with a
+          secret.
     :attr str certificate_template: (optional) The name of the certificate template.
     :attr str certificate_authority: (optional) The intermediate certificate
           authority that signed this certificate.
@@ -9887,6 +11482,7 @@ class PrivateCertificateSecretMetadata(SecretMetadata):
                  created_by: str = None,
                  last_update_date: datetime = None,
                  versions_total: int = None,
+                 locks_total: int = None,
                  certificate_template: str = None,
                  certificate_authority: str = None,
                  common_name: str = None,
@@ -9933,6 +11529,7 @@ class PrivateCertificateSecretMetadata(SecretMetadata):
         self.created_by = created_by
         self.last_update_date = last_update_date
         self.versions_total = versions_total
+        self.locks_total = locks_total
         self.certificate_template = certificate_template
         self.certificate_authority = certificate_authority
         self.common_name = common_name
@@ -9978,6 +11575,8 @@ class PrivateCertificateSecretMetadata(SecretMetadata):
             args['last_update_date'] = string_to_datetime(_dict.get('last_update_date'))
         if 'versions_total' in _dict:
             args['versions_total'] = _dict.get('versions_total')
+        if 'locks_total' in _dict:
+            args['locks_total'] = _dict.get('locks_total')
         if 'certificate_template' in _dict:
             args['certificate_template'] = _dict.get('certificate_template')
         if 'certificate_authority' in _dict:
@@ -10038,6 +11637,8 @@ class PrivateCertificateSecretMetadata(SecretMetadata):
             _dict['last_update_date'] = datetime_to_string(getattr(self, 'last_update_date'))
         if hasattr(self, 'versions_total') and getattr(self, 'versions_total') is not None:
             _dict['versions_total'] = getattr(self, 'versions_total')
+        if hasattr(self, 'locks_total') and getattr(self, 'locks_total') is not None:
+            _dict['locks_total'] = getattr(self, 'locks_total')
         if hasattr(self, 'certificate_template') and getattr(self, 'certificate_template') is not None:
             _dict['certificate_template'] = getattr(self, 'certificate_template')
         if hasattr(self, 'certificate_authority') and getattr(self, 'certificate_authority') is not None:
@@ -10136,6 +11737,8 @@ class PrivateCertificateSecretResource(SecretResource):
     :attr List[dict] versions: (optional) An array that contains metadata for each
           secret version. For more information on the metadata properties, see [Get secret
           version metadata](#get-secret-version-metadata).
+    :attr int locks_total: (optional) The number of locks that are associated with a
+          secret.
     :attr str certificate_template: The name of the certificate template.
     :attr str certificate_authority: (optional) The intermediate certificate
           authority that signed this certificate.
@@ -10213,6 +11816,7 @@ class PrivateCertificateSecretResource(SecretResource):
                  last_update_date: datetime = None,
                  versions_total: int = None,
                  versions: List[dict] = None,
+                 locks_total: int = None,
                  certificate_authority: str = None,
                  alt_names: object = None,
                  ip_sans: str = None,
@@ -10301,6 +11905,7 @@ class PrivateCertificateSecretResource(SecretResource):
         self.last_update_date = last_update_date
         self.versions_total = versions_total
         self.versions = versions
+        self.locks_total = locks_total
         self.certificate_template = certificate_template
         self.certificate_authority = certificate_authority
         self.common_name = common_name
@@ -10356,6 +11961,8 @@ class PrivateCertificateSecretResource(SecretResource):
             args['versions_total'] = _dict.get('versions_total')
         if 'versions' in _dict:
             args['versions'] = _dict.get('versions')
+        if 'locks_total' in _dict:
+            args['locks_total'] = _dict.get('locks_total')
         if 'certificate_template' in _dict:
             args['certificate_template'] = _dict.get('certificate_template')
         else:
@@ -10439,6 +12046,8 @@ class PrivateCertificateSecretResource(SecretResource):
             _dict['versions_total'] = getattr(self, 'versions_total')
         if hasattr(self, 'versions') and getattr(self, 'versions') is not None:
             _dict['versions'] = getattr(self, 'versions')
+        if hasattr(self, 'locks_total') and getattr(self, 'locks_total') is not None:
+            _dict['locks_total'] = getattr(self, 'locks_total')
         if hasattr(self, 'certificate_template') and self.certificate_template is not None:
             _dict['certificate_template'] = self.certificate_template
         if hasattr(self, 'certificate_authority') and getattr(self, 'certificate_authority') is not None:
@@ -10536,6 +12145,8 @@ class PrivateCertificateSecretVersion(SecretVersion):
           was created.
     :attr str created_by: (optional) The unique identifier for the entity that
           created the secret version.
+    :attr int locks_total: (optional) The number of locks that are associated with a
+          secret version.
     :attr CertificateValidity validity: (optional)
     :attr str serial_number: (optional) The unique serial number that was assigned
           to the certificate by the issuing certificate authority.
@@ -10566,6 +12177,7 @@ class PrivateCertificateSecretVersion(SecretVersion):
                  version_id: str = None,
                  creation_date: datetime = None,
                  created_by: str = None,
+                 locks_total: int = None,
                  validity: 'CertificateValidity' = None,
                  serial_number: str = None,
                  expiration_date: datetime = None,
@@ -10594,6 +12206,7 @@ class PrivateCertificateSecretVersion(SecretVersion):
         self.version_id = version_id
         self.creation_date = creation_date
         self.created_by = created_by
+        self.locks_total = locks_total
         self.validity = validity
         self.serial_number = serial_number
         self.expiration_date = expiration_date
@@ -10616,6 +12229,8 @@ class PrivateCertificateSecretVersion(SecretVersion):
             args['creation_date'] = string_to_datetime(_dict.get('creation_date'))
         if 'created_by' in _dict:
             args['created_by'] = _dict.get('created_by')
+        if 'locks_total' in _dict:
+            args['locks_total'] = _dict.get('locks_total')
         if 'validity' in _dict:
             args['validity'] = CertificateValidity.from_dict(_dict.get('validity'))
         if 'serial_number' in _dict:
@@ -10652,6 +12267,8 @@ class PrivateCertificateSecretVersion(SecretVersion):
             _dict['creation_date'] = datetime_to_string(getattr(self, 'creation_date'))
         if hasattr(self, 'created_by') and getattr(self, 'created_by') is not None:
             _dict['created_by'] = getattr(self, 'created_by')
+        if hasattr(self, 'locks_total') and getattr(self, 'locks_total') is not None:
+            _dict['locks_total'] = getattr(self, 'locks_total')
         if hasattr(self, 'validity') and self.validity is not None:
             _dict['validity'] = self.validity.to_dict()
         if hasattr(self, 'serial_number') and getattr(self, 'serial_number') is not None:
@@ -10860,6 +12477,8 @@ class PrivateCertificateSecretVersionMetadata(SecretVersionMetadata):
           secret version is stored and available.
     :attr bool downloaded: (optional) Indicates whether the secret data that is
           associated with a secret version was retrieved in a call to the service API.
+    :attr int locks_total: (optional) The number of locks that are associated with a
+          secret version.
     :attr str serial_number: (optional) The unique serial number that was assigned
           to the certificate by the issuing certificate authority.
     :attr datetime expiration_date: (optional) The date that the certificate
@@ -10886,6 +12505,7 @@ class PrivateCertificateSecretVersionMetadata(SecretVersionMetadata):
                  created_by: str = None,
                  payload_available: bool = None,
                  downloaded: bool = None,
+                 locks_total: int = None,
                  serial_number: str = None,
                  expiration_date: datetime = None,
                  validity: 'CertificateValidity' = None,
@@ -10909,6 +12529,7 @@ class PrivateCertificateSecretVersionMetadata(SecretVersionMetadata):
         self.created_by = created_by
         self.payload_available = payload_available
         self.downloaded = downloaded
+        self.locks_total = locks_total
         self.serial_number = serial_number
         self.expiration_date = expiration_date
         self.validity = validity
@@ -10934,6 +12555,8 @@ class PrivateCertificateSecretVersionMetadata(SecretVersionMetadata):
             args['payload_available'] = _dict.get('payload_available')
         if 'downloaded' in _dict:
             args['downloaded'] = _dict.get('downloaded')
+        if 'locks_total' in _dict:
+            args['locks_total'] = _dict.get('locks_total')
         if 'serial_number' in _dict:
             args['serial_number'] = _dict.get('serial_number')
         if 'expiration_date' in _dict:
@@ -10972,6 +12595,8 @@ class PrivateCertificateSecretVersionMetadata(SecretVersionMetadata):
             _dict['payload_available'] = getattr(self, 'payload_available')
         if hasattr(self, 'downloaded') and getattr(self, 'downloaded') is not None:
             _dict['downloaded'] = getattr(self, 'downloaded')
+        if hasattr(self, 'locks_total') and getattr(self, 'locks_total') is not None:
+            _dict['locks_total'] = getattr(self, 'locks_total')
         if hasattr(self, 'serial_number') and getattr(self, 'serial_number') is not None:
             _dict['serial_number'] = getattr(self, 'serial_number')
         if hasattr(self, 'expiration_date') and getattr(self, 'expiration_date') is not None:
@@ -11113,7 +12738,10 @@ class PublicCertificateSecretMetadata(SecretMetadata):
           created the secret.
     :attr datetime last_update_date: (optional) Updates when any part of the secret
           metadata is modified. The date format follows RFC 3339.
-    :attr int versions_total: (optional) The number of versions the secret has.
+    :attr int versions_total: (optional) The number of versions that are associated
+          with a secret.
+    :attr int locks_total: (optional) The number of locks that are associated with a
+          secret.
     :attr str issuer: (optional) The distinguished name that identifies the entity
           that signed and issued the certificate.
     :attr bool bundle_certs: (optional) Determines whether your issued certificate
@@ -11155,6 +12783,7 @@ class PublicCertificateSecretMetadata(SecretMetadata):
                  created_by: str = None,
                  last_update_date: datetime = None,
                  versions_total: int = None,
+                 locks_total: int = None,
                  issuer: str = None,
                  bundle_certs: bool = None,
                  algorithm: str = None,
@@ -11214,6 +12843,7 @@ class PublicCertificateSecretMetadata(SecretMetadata):
         self.created_by = created_by
         self.last_update_date = last_update_date
         self.versions_total = versions_total
+        self.locks_total = locks_total
         self.issuer = issuer
         self.bundle_certs = bundle_certs
         self.algorithm = algorithm
@@ -11259,6 +12889,8 @@ class PublicCertificateSecretMetadata(SecretMetadata):
             args['last_update_date'] = string_to_datetime(_dict.get('last_update_date'))
         if 'versions_total' in _dict:
             args['versions_total'] = _dict.get('versions_total')
+        if 'locks_total' in _dict:
+            args['locks_total'] = _dict.get('locks_total')
         if 'issuer' in _dict:
             args['issuer'] = _dict.get('issuer')
         if 'bundle_certs' in _dict:
@@ -11319,6 +12951,8 @@ class PublicCertificateSecretMetadata(SecretMetadata):
             _dict['last_update_date'] = datetime_to_string(getattr(self, 'last_update_date'))
         if hasattr(self, 'versions_total') and getattr(self, 'versions_total') is not None:
             _dict['versions_total'] = getattr(self, 'versions_total')
+        if hasattr(self, 'locks_total') and getattr(self, 'locks_total') is not None:
+            _dict['locks_total'] = getattr(self, 'locks_total')
         if hasattr(self, 'issuer') and getattr(self, 'issuer') is not None:
             _dict['issuer'] = getattr(self, 'issuer')
         if hasattr(self, 'bundle_certs') and self.bundle_certs is not None:
@@ -11427,6 +13061,8 @@ class PublicCertificateSecretResource(SecretResource):
     :attr List[dict] versions: (optional) An array that contains metadata for each
           secret version. For more information on the metadata properties, see [Get secret
           version metadata](#get-secret-version-metadata).
+    :attr int locks_total: (optional) The number of locks that are associated with a
+          secret.
     :attr str issuer: (optional) The distinguished name that identifies the entity
           that signed and issued the certificate.
     :attr bool bundle_certs: (optional) Determines whether your issued certificate
@@ -11489,6 +13125,7 @@ class PublicCertificateSecretResource(SecretResource):
                  last_update_date: datetime = None,
                  versions_total: int = None,
                  versions: List[dict] = None,
+                 locks_total: int = None,
                  issuer: str = None,
                  bundle_certs: bool = None,
                  ca: str = None,
@@ -11570,6 +13207,7 @@ class PublicCertificateSecretResource(SecretResource):
         self.last_update_date = last_update_date
         self.versions_total = versions_total
         self.versions = versions
+        self.locks_total = locks_total
         self.issuer = issuer
         self.bundle_certs = bundle_certs
         self.ca = ca
@@ -11620,6 +13258,8 @@ class PublicCertificateSecretResource(SecretResource):
             args['versions_total'] = _dict.get('versions_total')
         if 'versions' in _dict:
             args['versions'] = _dict.get('versions')
+        if 'locks_total' in _dict:
+            args['locks_total'] = _dict.get('locks_total')
         if 'issuer' in _dict:
             args['issuer'] = _dict.get('issuer')
         if 'bundle_certs' in _dict:
@@ -11688,6 +13328,8 @@ class PublicCertificateSecretResource(SecretResource):
             _dict['versions_total'] = getattr(self, 'versions_total')
         if hasattr(self, 'versions') and getattr(self, 'versions') is not None:
             _dict['versions'] = getattr(self, 'versions')
+        if hasattr(self, 'locks_total') and getattr(self, 'locks_total') is not None:
+            _dict['locks_total'] = getattr(self, 'locks_total')
         if hasattr(self, 'issuer') and getattr(self, 'issuer') is not None:
             _dict['issuer'] = getattr(self, 'issuer')
         if hasattr(self, 'bundle_certs') and self.bundle_certs is not None:
@@ -14329,7 +15971,10 @@ class UsernamePasswordSecretMetadata(SecretMetadata):
           created the secret.
     :attr datetime last_update_date: (optional) Updates when any part of the secret
           metadata is modified. The date format follows RFC 3339.
-    :attr int versions_total: (optional) The number of versions the secret has.
+    :attr int versions_total: (optional) The number of versions that are associated
+          with a secret.
+    :attr int locks_total: (optional) The number of locks that are associated with a
+          secret.
     :attr datetime expiration_date: (optional) The date the secret material expires.
           The date format follows RFC 3339.
           You can set an expiration date on supported secret types at their creation. If
@@ -14354,6 +15999,7 @@ class UsernamePasswordSecretMetadata(SecretMetadata):
                  created_by: str = None,
                  last_update_date: datetime = None,
                  versions_total: int = None,
+                 locks_total: int = None,
                  expiration_date: datetime = None) -> None:
         """
         Initialize a UsernamePasswordSecretMetadata object.
@@ -14395,6 +16041,7 @@ class UsernamePasswordSecretMetadata(SecretMetadata):
         self.created_by = created_by
         self.last_update_date = last_update_date
         self.versions_total = versions_total
+        self.locks_total = locks_total
         self.expiration_date = expiration_date
 
     @classmethod
@@ -14429,6 +16076,8 @@ class UsernamePasswordSecretMetadata(SecretMetadata):
             args['last_update_date'] = string_to_datetime(_dict.get('last_update_date'))
         if 'versions_total' in _dict:
             args['versions_total'] = _dict.get('versions_total')
+        if 'locks_total' in _dict:
+            args['locks_total'] = _dict.get('locks_total')
         if 'expiration_date' in _dict:
             args['expiration_date'] = string_to_datetime(_dict.get('expiration_date'))
         return cls(**args)
@@ -14467,6 +16116,8 @@ class UsernamePasswordSecretMetadata(SecretMetadata):
             _dict['last_update_date'] = datetime_to_string(getattr(self, 'last_update_date'))
         if hasattr(self, 'versions_total') and getattr(self, 'versions_total') is not None:
             _dict['versions_total'] = getattr(self, 'versions_total')
+        if hasattr(self, 'locks_total') and getattr(self, 'locks_total') is not None:
+            _dict['locks_total'] = getattr(self, 'locks_total')
         if hasattr(self, 'expiration_date') and self.expiration_date is not None:
             _dict['expiration_date'] = datetime_to_string(self.expiration_date)
         return _dict
@@ -14543,6 +16194,8 @@ class UsernamePasswordSecretResource(SecretResource):
     :attr List[dict] versions: (optional) An array that contains metadata for each
           secret version. For more information on the metadata properties, see [Get secret
           version metadata](#get-secret-version-metadata).
+    :attr int locks_total: (optional) The number of locks that are associated with a
+          secret.
     :attr str username: (optional) The username to assign to this secret.
     :attr str password: (optional) The password to assign to this secret.
     :attr object secret_data: (optional) The data that is associated with the secret
@@ -14579,6 +16232,7 @@ class UsernamePasswordSecretResource(SecretResource):
                  last_update_date: datetime = None,
                  versions_total: int = None,
                  versions: List[dict] = None,
+                 locks_total: int = None,
                  username: str = None,
                  password: str = None,
                  secret_data: object = None,
@@ -14630,6 +16284,7 @@ class UsernamePasswordSecretResource(SecretResource):
         self.last_update_date = last_update_date
         self.versions_total = versions_total
         self.versions = versions
+        self.locks_total = locks_total
         self.username = username
         self.password = password
         self.secret_data = secret_data
@@ -14670,6 +16325,8 @@ class UsernamePasswordSecretResource(SecretResource):
             args['versions_total'] = _dict.get('versions_total')
         if 'versions' in _dict:
             args['versions'] = _dict.get('versions')
+        if 'locks_total' in _dict:
+            args['locks_total'] = _dict.get('locks_total')
         if 'username' in _dict:
             args['username'] = _dict.get('username')
         if 'password' in _dict:
@@ -14718,6 +16375,8 @@ class UsernamePasswordSecretResource(SecretResource):
             _dict['versions_total'] = getattr(self, 'versions_total')
         if hasattr(self, 'versions') and getattr(self, 'versions') is not None:
             _dict['versions'] = getattr(self, 'versions')
+        if hasattr(self, 'locks_total') and getattr(self, 'locks_total') is not None:
+            _dict['locks_total'] = getattr(self, 'locks_total')
         if hasattr(self, 'username') and self.username is not None:
             _dict['username'] = self.username
         if hasattr(self, 'password') and self.password is not None:
@@ -14771,6 +16430,8 @@ class UsernamePasswordSecretVersion(SecretVersion):
           was created.
     :attr str created_by: (optional) The unique identifier for the entity that
           created the secret version.
+    :attr int locks_total: (optional) The number of locks that are associated with a
+          secret version.
     :attr bool auto_rotated: (optional) Indicates whether the version of the secret
           was created by automatic rotation.
     :attr object secret_data: (optional) The data that is associated with the secret
@@ -14785,6 +16446,7 @@ class UsernamePasswordSecretVersion(SecretVersion):
                  version_id: str = None,
                  creation_date: datetime = None,
                  created_by: str = None,
+                 locks_total: int = None,
                  auto_rotated: bool = None,
                  secret_data: object = None) -> None:
         """
@@ -14802,6 +16464,7 @@ class UsernamePasswordSecretVersion(SecretVersion):
         self.version_id = version_id
         self.creation_date = creation_date
         self.created_by = created_by
+        self.locks_total = locks_total
         self.auto_rotated = auto_rotated
         self.secret_data = secret_data
 
@@ -14817,6 +16480,8 @@ class UsernamePasswordSecretVersion(SecretVersion):
             args['creation_date'] = string_to_datetime(_dict.get('creation_date'))
         if 'created_by' in _dict:
             args['created_by'] = _dict.get('created_by')
+        if 'locks_total' in _dict:
+            args['locks_total'] = _dict.get('locks_total')
         if 'auto_rotated' in _dict:
             args['auto_rotated'] = _dict.get('auto_rotated')
         if 'secret_data' in _dict:
@@ -14839,6 +16504,8 @@ class UsernamePasswordSecretVersion(SecretVersion):
             _dict['creation_date'] = datetime_to_string(getattr(self, 'creation_date'))
         if hasattr(self, 'created_by') and getattr(self, 'created_by') is not None:
             _dict['created_by'] = getattr(self, 'created_by')
+        if hasattr(self, 'locks_total') and getattr(self, 'locks_total') is not None:
+            _dict['locks_total'] = getattr(self, 'locks_total')
         if hasattr(self, 'auto_rotated') and self.auto_rotated is not None:
             _dict['auto_rotated'] = self.auto_rotated
         if hasattr(self, 'secret_data') and self.secret_data is not None:
@@ -14976,6 +16643,8 @@ class UsernamePasswordSecretVersionMetadata(SecretVersionMetadata):
           secret version is stored and available.
     :attr bool downloaded: (optional) Indicates whether the secret data that is
           associated with a secret version was retrieved in a call to the service API.
+    :attr int locks_total: (optional) The number of locks that are associated with a
+          secret version.
     :attr bool auto_rotated: (optional) Indicates whether the version of the secret
           was created by automatic rotation.
     """
@@ -14988,6 +16657,7 @@ class UsernamePasswordSecretVersionMetadata(SecretVersionMetadata):
                  created_by: str = None,
                  payload_available: bool = None,
                  downloaded: bool = None,
+                 locks_total: int = None,
                  auto_rotated: bool = None) -> None:
         """
         Initialize a UsernamePasswordSecretVersionMetadata object.
@@ -15003,6 +16673,7 @@ class UsernamePasswordSecretVersionMetadata(SecretVersionMetadata):
         self.created_by = created_by
         self.payload_available = payload_available
         self.downloaded = downloaded
+        self.locks_total = locks_total
         self.auto_rotated = auto_rotated
 
     @classmethod
@@ -15021,6 +16692,8 @@ class UsernamePasswordSecretVersionMetadata(SecretVersionMetadata):
             args['payload_available'] = _dict.get('payload_available')
         if 'downloaded' in _dict:
             args['downloaded'] = _dict.get('downloaded')
+        if 'locks_total' in _dict:
+            args['locks_total'] = _dict.get('locks_total')
         if 'auto_rotated' in _dict:
             args['auto_rotated'] = _dict.get('auto_rotated')
         return cls(**args)
@@ -15045,6 +16718,8 @@ class UsernamePasswordSecretVersionMetadata(SecretVersionMetadata):
             _dict['payload_available'] = getattr(self, 'payload_available')
         if hasattr(self, 'downloaded') and getattr(self, 'downloaded') is not None:
             _dict['downloaded'] = getattr(self, 'downloaded')
+        if hasattr(self, 'locks_total') and getattr(self, 'locks_total') is not None:
+            _dict['locks_total'] = getattr(self, 'locks_total')
         if hasattr(self, 'auto_rotated') and self.auto_rotated is not None:
             _dict['auto_rotated'] = self.auto_rotated
         return _dict
