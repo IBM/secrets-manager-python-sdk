@@ -14,7 +14,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-# IBM OpenAPI SDK Code Generator Version: 3.50.0-af9e48c4-20220523-163800
+# IBM OpenAPI SDK Code Generator Version: 3.51.0-5b8b699d-20220613-200818
 
 """
 With IBM Cloud® Secrets Manager, you can create, lease, and centrally manage secrets that
@@ -125,6 +125,7 @@ class SecretsManagerV1(BaseService):
 
         if 'headers' in kwargs:
             headers.update(kwargs.get('headers'))
+            del kwargs['headers']
         headers['Accept'] = 'application/json'
 
         url = '/api/v1/secret_groups'
@@ -157,6 +158,7 @@ class SecretsManagerV1(BaseService):
 
         if 'headers' in kwargs:
             headers.update(kwargs.get('headers'))
+            del kwargs['headers']
         headers['Accept'] = 'application/json'
 
         url = '/api/v1/secret_groups'
@@ -192,6 +194,7 @@ class SecretsManagerV1(BaseService):
 
         if 'headers' in kwargs:
             headers.update(kwargs.get('headers'))
+            del kwargs['headers']
         headers['Accept'] = 'application/json'
 
         path_param_keys = ['id']
@@ -250,6 +253,7 @@ class SecretsManagerV1(BaseService):
 
         if 'headers' in kwargs:
             headers.update(kwargs.get('headers'))
+            del kwargs['headers']
         headers['Accept'] = 'application/json'
 
         path_param_keys = ['id']
@@ -292,6 +296,7 @@ class SecretsManagerV1(BaseService):
 
         if 'headers' in kwargs:
             headers.update(kwargs.get('headers'))
+            del kwargs['headers']
 
         path_param_keys = ['id']
         path_param_values = self.encode_path_vars(id)
@@ -361,6 +366,7 @@ class SecretsManagerV1(BaseService):
 
         if 'headers' in kwargs:
             headers.update(kwargs.get('headers'))
+            del kwargs['headers']
         headers['Accept'] = 'application/json'
 
         path_param_keys = ['secret_type']
@@ -421,6 +427,7 @@ class SecretsManagerV1(BaseService):
 
         if 'headers' in kwargs:
             headers.update(kwargs.get('headers'))
+            del kwargs['headers']
         headers['Accept'] = 'application/json'
 
         path_param_keys = ['secret_type']
@@ -499,6 +506,7 @@ class SecretsManagerV1(BaseService):
 
         if 'headers' in kwargs:
             headers.update(kwargs.get('headers'))
+            del kwargs['headers']
         headers['Accept'] = 'application/json'
 
         url = '/api/v1/secrets'
@@ -542,6 +550,7 @@ class SecretsManagerV1(BaseService):
 
         if 'headers' in kwargs:
             headers.update(kwargs.get('headers'))
+            del kwargs['headers']
         headers['Accept'] = 'application/json'
 
         path_param_keys = ['secret_type', 'id']
@@ -607,6 +616,7 @@ class SecretsManagerV1(BaseService):
 
         if 'headers' in kwargs:
             headers.update(kwargs.get('headers'))
+            del kwargs['headers']
         headers['Accept'] = 'application/json'
 
         path_param_keys = ['secret_type', 'id']
@@ -651,6 +661,7 @@ class SecretsManagerV1(BaseService):
 
         if 'headers' in kwargs:
             headers.update(kwargs.get('headers'))
+            del kwargs['headers']
 
         path_param_keys = ['secret_type', 'id']
         path_param_values = self.encode_path_vars(secret_type, id)
@@ -694,6 +705,7 @@ class SecretsManagerV1(BaseService):
 
         if 'headers' in kwargs:
             headers.update(kwargs.get('headers'))
+            del kwargs['headers']
         headers['Accept'] = 'application/json'
 
         path_param_keys = ['secret_type', 'id']
@@ -746,6 +758,7 @@ class SecretsManagerV1(BaseService):
 
         if 'headers' in kwargs:
             headers.update(kwargs.get('headers'))
+            del kwargs['headers']
         headers['Accept'] = 'application/json'
 
         path_param_keys = ['secret_type', 'id', 'version_id']
@@ -805,6 +818,7 @@ class SecretsManagerV1(BaseService):
 
         if 'headers' in kwargs:
             headers.update(kwargs.get('headers'))
+            del kwargs['headers']
         headers['Accept'] = 'application/json'
 
         path_param_keys = ['secret_type', 'id', 'version_id']
@@ -858,6 +872,7 @@ class SecretsManagerV1(BaseService):
 
         if 'headers' in kwargs:
             headers.update(kwargs.get('headers'))
+            del kwargs['headers']
         headers['Accept'] = 'application/json'
 
         path_param_keys = ['secret_type', 'id', 'version_id']
@@ -903,6 +918,7 @@ class SecretsManagerV1(BaseService):
 
         if 'headers' in kwargs:
             headers.update(kwargs.get('headers'))
+            del kwargs['headers']
         headers['Accept'] = 'application/json'
 
         path_param_keys = ['secret_type', 'id']
@@ -966,6 +982,7 @@ class SecretsManagerV1(BaseService):
 
         if 'headers' in kwargs:
             headers.update(kwargs.get('headers'))
+            del kwargs['headers']
         headers['Accept'] = 'application/json'
 
         path_param_keys = ['secret_type', 'id']
@@ -1041,6 +1058,7 @@ class SecretsManagerV1(BaseService):
 
         if 'headers' in kwargs:
             headers.update(kwargs.get('headers'))
+            del kwargs['headers']
         headers['Accept'] = 'application/json'
 
         path_param_keys = ['secret_type', 'id']
@@ -1120,6 +1138,7 @@ class SecretsManagerV1(BaseService):
 
         if 'headers' in kwargs:
             headers.update(kwargs.get('headers'))
+            del kwargs['headers']
         headers['Accept'] = 'application/json'
 
         path_param_keys = ['secret_type', 'id']
@@ -1145,14 +1164,14 @@ class SecretsManagerV1(BaseService):
         """
         Unlock a secret.
 
-        Delete one or more locks that are associated with a secret.
+        Delete one or more locks that are associated with the current version of a secret.
         A successful request deletes the locks that you specify. To remove all locks, you
         can pass `{"locks": ["*"]}` in in the request body. Otherwise, specify the names
         of the locks that you want to delete. For example, `{"locks":
         ["lock1", "lock2"]}`.
-        **Note:** A secret is considered unlocked and able to be rotated or deleted only
+        **Note:** A secret is considered unlocked and able to be revoked or deleted only
         after all of its locks are removed. To understand whether a secret contains locks,
-        check the `total_locks` field that is returned as part of the metadata of your
+        check the `locks_total` field that is returned as part of the metadata of your
         secret.
 
         :param str secret_type: The secret type.
@@ -1183,6 +1202,7 @@ class SecretsManagerV1(BaseService):
 
         if 'headers' in kwargs:
             headers.update(kwargs.get('headers'))
+            del kwargs['headers']
         headers['Accept'] = 'application/json'
 
         path_param_keys = ['secret_type', 'id']
@@ -1261,6 +1281,7 @@ class SecretsManagerV1(BaseService):
 
         if 'headers' in kwargs:
             headers.update(kwargs.get('headers'))
+            del kwargs['headers']
         headers['Accept'] = 'application/json'
 
         path_param_keys = ['secret_type', 'id', 'version_id']
@@ -1347,6 +1368,7 @@ class SecretsManagerV1(BaseService):
 
         if 'headers' in kwargs:
             headers.update(kwargs.get('headers'))
+            del kwargs['headers']
         headers['Accept'] = 'application/json'
 
         path_param_keys = ['secret_type', 'id', 'version_id']
@@ -1378,9 +1400,9 @@ class SecretsManagerV1(BaseService):
         can pass `{"locks": ["*"]}` in in the request body. Otherwise, specify the names
         of the locks that you want to delete. For example, `{"locks":
         ["lock-1", "lock-2"]}`.
-        **Note:** A secret is considered unlocked and able to be rotated or deleted only
+        **Note:** A secret is considered unlocked and able to be revoked or deleted only
         after all of its locks are removed. To understand whether a secret contains locks,
-        check the `total_locks` field that is returned as part of the metadata of your
+        check the `locks_total` field that is returned as part of the metadata of your
         secret.
 
         :param str secret_type: The secret type.
@@ -1417,6 +1439,7 @@ class SecretsManagerV1(BaseService):
 
         if 'headers' in kwargs:
             headers.update(kwargs.get('headers'))
+            del kwargs['headers']
         headers['Accept'] = 'application/json'
 
         path_param_keys = ['secret_type', 'id', 'version_id']
@@ -1440,9 +1463,9 @@ class SecretsManagerV1(BaseService):
                                     **kwargs
                                     ) -> DetailedResponse:
         """
-        List all locks.
+        List all secrets and locks.
 
-        List all of the locks that are associated with the secrets in your Secrets Manager
+        List the lock details that are associated with all secrets in your Secrets Manager
         instance.
 
         :param int limit: (optional) The number of secrets with locks to retrieve.
@@ -1490,6 +1513,7 @@ class SecretsManagerV1(BaseService):
 
         if 'headers' in kwargs:
             headers.update(kwargs.get('headers'))
+            del kwargs['headers']
         headers['Accept'] = 'application/json'
 
         url = '/api/v1/locks'
@@ -1563,6 +1587,7 @@ class SecretsManagerV1(BaseService):
 
         if 'headers' in kwargs:
             headers.update(kwargs.get('headers'))
+            del kwargs['headers']
         headers['Accept'] = 'application/json'
 
         path_param_keys = ['secret_type', 'id']
@@ -1615,6 +1640,7 @@ class SecretsManagerV1(BaseService):
 
         if 'headers' in kwargs:
             headers.update(kwargs.get('headers'))
+            del kwargs['headers']
         headers['Accept'] = 'application/json'
 
         path_param_keys = ['secret_type', 'id']
@@ -1672,6 +1698,7 @@ class SecretsManagerV1(BaseService):
 
         if 'headers' in kwargs:
             headers.update(kwargs.get('headers'))
+            del kwargs['headers']
 
         path_param_keys = ['secret_type']
         path_param_values = self.encode_path_vars(secret_type)
@@ -1710,6 +1737,7 @@ class SecretsManagerV1(BaseService):
 
         if 'headers' in kwargs:
             headers.update(kwargs.get('headers'))
+            del kwargs['headers']
         headers['Accept'] = 'application/json'
 
         path_param_keys = ['secret_type']
@@ -1785,6 +1813,7 @@ class SecretsManagerV1(BaseService):
 
         if 'headers' in kwargs:
             headers.update(kwargs.get('headers'))
+            del kwargs['headers']
         headers['Accept'] = 'application/json'
 
         path_param_keys = ['secret_type', 'config_element']
@@ -1828,6 +1857,7 @@ class SecretsManagerV1(BaseService):
 
         if 'headers' in kwargs:
             headers.update(kwargs.get('headers'))
+            del kwargs['headers']
         headers['Accept'] = 'application/json'
 
         path_param_keys = ['secret_type', 'config_element']
@@ -1874,6 +1904,7 @@ class SecretsManagerV1(BaseService):
 
         if 'headers' in kwargs:
             headers.update(kwargs.get('headers'))
+            del kwargs['headers']
         headers['Accept'] = 'application/json'
 
         path_param_keys = ['secret_type', 'config_element', 'config_name']
@@ -1938,6 +1969,7 @@ class SecretsManagerV1(BaseService):
 
         if 'headers' in kwargs:
             headers.update(kwargs.get('headers'))
+            del kwargs['headers']
         headers['Accept'] = 'application/json'
 
         path_param_keys = ['secret_type', 'config_element', 'config_name']
@@ -2016,6 +2048,7 @@ class SecretsManagerV1(BaseService):
 
         if 'headers' in kwargs:
             headers.update(kwargs.get('headers'))
+            del kwargs['headers']
         headers['Accept'] = 'application/json'
 
         path_param_keys = ['secret_type', 'config_element', 'config_name']
@@ -2064,6 +2097,7 @@ class SecretsManagerV1(BaseService):
 
         if 'headers' in kwargs:
             headers.update(kwargs.get('headers'))
+            del kwargs['headers']
 
         path_param_keys = ['secret_type', 'config_element', 'config_name']
         path_param_values = self.encode_path_vars(secret_type, config_element, config_name)
@@ -2129,6 +2163,7 @@ class SecretsManagerV1(BaseService):
 
         if 'headers' in kwargs:
             headers.update(kwargs.get('headers'))
+            del kwargs['headers']
         headers['Accept'] = 'application/json'
 
         url = '/api/v1/notifications/registration'
@@ -2162,6 +2197,7 @@ class SecretsManagerV1(BaseService):
 
         if 'headers' in kwargs:
             headers.update(kwargs.get('headers'))
+            del kwargs['headers']
         headers['Accept'] = 'application/json'
 
         url = '/api/v1/notifications/registration'
@@ -2195,6 +2231,7 @@ class SecretsManagerV1(BaseService):
 
         if 'headers' in kwargs:
             headers.update(kwargs.get('headers'))
+            del kwargs['headers']
 
         url = '/api/v1/notifications/registration'
         request = self.prepare_request(method='DELETE',
@@ -2229,6 +2266,7 @@ class SecretsManagerV1(BaseService):
 
         if 'headers' in kwargs:
             headers.update(kwargs.get('headers'))
+            del kwargs['headers']
 
         url = '/api/v1/notifications/test'
         request = self.prepare_request(method='GET',
@@ -4791,10 +4829,11 @@ class LockSecretBodyLocksItem():
     """
     LockSecretBodyLocksItem.
 
-    :attr str name: A human-readable name to assign to your secret lock.
+    :attr str name: A human-readable name to assign to the lock. The lock name must
+          be unique per secret version.
           To protect your privacy, do not use personal data, such as your name or
           location, as a name for your secret lock.
-    :attr str description: An extended description of your secret lock.
+    :attr str description: An extended description of the lock.
           To protect your privacy, do not use personal data, such as your name or
           location, as a description for your secret lock.
     :attr object attributes: Optional information to associate with a lock, such as
@@ -4808,10 +4847,11 @@ class LockSecretBodyLocksItem():
         """
         Initialize a LockSecretBodyLocksItem object.
 
-        :param str name: A human-readable name to assign to your secret lock.
+        :param str name: A human-readable name to assign to the lock. The lock name
+               must be unique per secret version.
                To protect your privacy, do not use personal data, such as your name or
                location, as a name for your secret lock.
-        :param str description: An extended description of your secret lock.
+        :param str description: An extended description of the lock.
                To protect your privacy, do not use personal data, such as your name or
                location, as a description for your secret lock.
         :param object attributes: Optional information to associate with a lock,
