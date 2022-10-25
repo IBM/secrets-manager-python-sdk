@@ -37,10 +37,10 @@ from ibm_cloud_sdk_core.utils import convert_list, convert_model, datetime_to_st
 
 from .common import get_sdk_headers
 
+
 ##############################################################################
 # Service
 ##############################################################################
-
 
 class SecretsManagerV1(BaseService):
     """The secrets-manager V1 service."""
@@ -713,8 +713,7 @@ class SecretsManagerV1(BaseService):
         path_param_keys = ['secret_type', 'id']
         path_param_values = self.encode_path_vars(secret_type, id)
         path_param_dict = dict(zip(path_param_keys, path_param_values))
-        url = '/api/v1/secrets/{secret_type}/{id}/versions'.format(
-            **path_param_dict)
+        url = '/api/v1/secrets/{secret_type}/{id}/versions'.format(**path_param_dict)
         request = self.prepare_request(method='GET',
                                        url=url,
                                        headers=headers)
@@ -767,8 +766,7 @@ class SecretsManagerV1(BaseService):
         path_param_keys = ['secret_type', 'id', 'version_id']
         path_param_values = self.encode_path_vars(secret_type, id, version_id)
         path_param_dict = dict(zip(path_param_keys, path_param_values))
-        url = '/api/v1/secrets/{secret_type}/{id}/versions/{version_id}'.format(
-            **path_param_dict)
+        url = '/api/v1/secrets/{secret_type}/{id}/versions/{version_id}'.format(**path_param_dict)
         request = self.prepare_request(method='GET',
                                        url=url,
                                        headers=headers)
@@ -828,8 +826,7 @@ class SecretsManagerV1(BaseService):
         path_param_keys = ['secret_type', 'id', 'version_id']
         path_param_values = self.encode_path_vars(secret_type, id, version_id)
         path_param_dict = dict(zip(path_param_keys, path_param_values))
-        url = '/api/v1/secrets/{secret_type}/{id}/versions/{version_id}'.format(
-            **path_param_dict)
+        url = '/api/v1/secrets/{secret_type}/{id}/versions/{version_id}'.format(**path_param_dict)
         request = self.prepare_request(method='POST',
                                        url=url,
                                        headers=headers,
@@ -883,8 +880,7 @@ class SecretsManagerV1(BaseService):
         path_param_keys = ['secret_type', 'id', 'version_id']
         path_param_values = self.encode_path_vars(secret_type, id, version_id)
         path_param_dict = dict(zip(path_param_keys, path_param_values))
-        url = '/api/v1/secrets/{secret_type}/{id}/versions/{version_id}/metadata'.format(
-            **path_param_dict)
+        url = '/api/v1/secrets/{secret_type}/{id}/versions/{version_id}/metadata'.format(**path_param_dict)
         request = self.prepare_request(method='GET',
                                        url=url,
                                        headers=headers)
@@ -954,8 +950,7 @@ class SecretsManagerV1(BaseService):
         path_param_keys = ['secret_type', 'id', 'version_id']
         path_param_values = self.encode_path_vars(secret_type, id, version_id)
         path_param_dict = dict(zip(path_param_keys, path_param_values))
-        url = '/api/v1/secrets/{secret_type}/{id}/versions/{version_id}/metadata'.format(
-            **path_param_dict)
+        url = '/api/v1/secrets/{secret_type}/{id}/versions/{version_id}/metadata'.format(**path_param_dict)
         request = self.prepare_request(method='PUT',
                                        url=url,
                                        headers=headers,
@@ -1002,8 +997,7 @@ class SecretsManagerV1(BaseService):
         path_param_keys = ['secret_type', 'id']
         path_param_values = self.encode_path_vars(secret_type, id)
         path_param_dict = dict(zip(path_param_keys, path_param_values))
-        url = '/api/v1/secrets/{secret_type}/{id}/metadata'.format(
-            **path_param_dict)
+        url = '/api/v1/secrets/{secret_type}/{id}/metadata'.format(**path_param_dict)
         request = self.prepare_request(method='GET',
                                        url=url,
                                        headers=headers)
@@ -1067,8 +1061,7 @@ class SecretsManagerV1(BaseService):
         path_param_keys = ['secret_type', 'id']
         path_param_values = self.encode_path_vars(secret_type, id)
         path_param_dict = dict(zip(path_param_keys, path_param_values))
-        url = '/api/v1/secrets/{secret_type}/{id}/metadata'.format(
-            **path_param_dict)
+        url = '/api/v1/secrets/{secret_type}/{id}/metadata'.format(**path_param_dict)
         request = self.prepare_request(method='PUT',
                                        url=url,
                                        headers=headers,
@@ -1288,8 +1281,7 @@ class SecretsManagerV1(BaseService):
         path_param_keys = ['secret_type', 'id']
         path_param_values = self.encode_path_vars(secret_type, id)
         path_param_dict = dict(zip(path_param_keys, path_param_values))
-        url = '/api/v1/locks/{secret_type}/{id}/unlock'.format(
-            **path_param_dict)
+        url = '/api/v1/locks/{secret_type}/{id}/unlock'.format(**path_param_dict)
         request = self.prepare_request(method='POST',
                                        url=url,
                                        headers=headers,
@@ -1367,8 +1359,7 @@ class SecretsManagerV1(BaseService):
         path_param_keys = ['secret_type', 'id', 'version_id']
         path_param_values = self.encode_path_vars(secret_type, id, version_id)
         path_param_dict = dict(zip(path_param_keys, path_param_values))
-        url = '/api/v1/locks/{secret_type}/{id}/versions/{version_id}'.format(
-            **path_param_dict)
+        url = '/api/v1/locks/{secret_type}/{id}/versions/{version_id}'.format(**path_param_dict)
         request = self.prepare_request(method='GET',
                                        url=url,
                                        headers=headers,
@@ -1456,8 +1447,7 @@ class SecretsManagerV1(BaseService):
         path_param_keys = ['secret_type', 'id', 'version_id']
         path_param_values = self.encode_path_vars(secret_type, id, version_id)
         path_param_dict = dict(zip(path_param_keys, path_param_values))
-        url = '/api/v1/locks/{secret_type}/{id}/versions/{version_id}/lock'.format(
-            **path_param_dict)
+        url = '/api/v1/locks/{secret_type}/{id}/versions/{version_id}/lock'.format(**path_param_dict)
         request = self.prepare_request(method='POST',
                                        url=url,
                                        headers=headers,
@@ -1528,8 +1518,7 @@ class SecretsManagerV1(BaseService):
         path_param_keys = ['secret_type', 'id', 'version_id']
         path_param_values = self.encode_path_vars(secret_type, id, version_id)
         path_param_dict = dict(zip(path_param_keys, path_param_values))
-        url = '/api/v1/locks/{secret_type}/{id}/versions/{version_id}/unlock'.format(
-            **path_param_dict)
+        url = '/api/v1/locks/{secret_type}/{id}/versions/{version_id}/unlock'.format(**path_param_dict)
         request = self.prepare_request(method='POST',
                                        url=url,
                                        headers=headers,
@@ -1677,8 +1666,7 @@ class SecretsManagerV1(BaseService):
         path_param_keys = ['secret_type', 'id']
         path_param_values = self.encode_path_vars(secret_type, id)
         path_param_dict = dict(zip(path_param_keys, path_param_values))
-        url = '/api/v1/secrets/{secret_type}/{id}/policies'.format(
-            **path_param_dict)
+        url = '/api/v1/secrets/{secret_type}/{id}/policies'.format(**path_param_dict)
         request = self.prepare_request(method='PUT',
                                        url=url,
                                        headers=headers,
@@ -1731,8 +1719,7 @@ class SecretsManagerV1(BaseService):
         path_param_keys = ['secret_type', 'id']
         path_param_values = self.encode_path_vars(secret_type, id)
         path_param_dict = dict(zip(path_param_keys, path_param_values))
-        url = '/api/v1/secrets/{secret_type}/{id}/policies'.format(
-            **path_param_dict)
+        url = '/api/v1/secrets/{secret_type}/{id}/policies'.format(**path_param_dict)
         request = self.prepare_request(method='GET',
                                        url=url,
                                        headers=headers,
@@ -1905,8 +1892,7 @@ class SecretsManagerV1(BaseService):
         path_param_keys = ['secret_type', 'config_element']
         path_param_values = self.encode_path_vars(secret_type, config_element)
         path_param_dict = dict(zip(path_param_keys, path_param_values))
-        url = '/api/v1/config/{secret_type}/{config_element}'.format(
-            **path_param_dict)
+        url = '/api/v1/config/{secret_type}/{config_element}'.format(**path_param_dict)
         request = self.prepare_request(method='POST',
                                        url=url,
                                        headers=headers,
@@ -1950,8 +1936,7 @@ class SecretsManagerV1(BaseService):
         path_param_keys = ['secret_type', 'config_element']
         path_param_values = self.encode_path_vars(secret_type, config_element)
         path_param_dict = dict(zip(path_param_keys, path_param_values))
-        url = '/api/v1/config/{secret_type}/{config_element}'.format(
-            **path_param_dict)
+        url = '/api/v1/config/{secret_type}/{config_element}'.format(**path_param_dict)
         request = self.prepare_request(method='GET',
                                        url=url,
                                        headers=headers)
@@ -1996,11 +1981,9 @@ class SecretsManagerV1(BaseService):
         headers['Accept'] = 'application/json'
 
         path_param_keys = ['secret_type', 'config_element', 'config_name']
-        path_param_values = self.encode_path_vars(
-            secret_type, config_element, config_name)
+        path_param_values = self.encode_path_vars(secret_type, config_element, config_name)
         path_param_dict = dict(zip(path_param_keys, path_param_values))
-        url = '/api/v1/config/{secret_type}/{config_element}/{config_name}'.format(
-            **path_param_dict)
+        url = '/api/v1/config/{secret_type}/{config_element}/{config_name}'.format(**path_param_dict)
         request = self.prepare_request(method='GET',
                                        url=url,
                                        headers=headers)
@@ -2063,11 +2046,9 @@ class SecretsManagerV1(BaseService):
         headers['Accept'] = 'application/json'
 
         path_param_keys = ['secret_type', 'config_element', 'config_name']
-        path_param_values = self.encode_path_vars(
-            secret_type, config_element, config_name)
+        path_param_values = self.encode_path_vars(secret_type, config_element, config_name)
         path_param_dict = dict(zip(path_param_keys, path_param_values))
-        url = '/api/v1/config/{secret_type}/{config_element}/{config_name}'.format(
-            **path_param_dict)
+        url = '/api/v1/config/{secret_type}/{config_element}/{config_name}'.format(**path_param_dict)
         request = self.prepare_request(method='PUT',
                                        url=url,
                                        headers=headers,
@@ -2144,11 +2125,9 @@ class SecretsManagerV1(BaseService):
         headers['Accept'] = 'application/json'
 
         path_param_keys = ['secret_type', 'config_element', 'config_name']
-        path_param_values = self.encode_path_vars(
-            secret_type, config_element, config_name)
+        path_param_values = self.encode_path_vars(secret_type, config_element, config_name)
         path_param_dict = dict(zip(path_param_keys, path_param_values))
-        url = '/api/v1/config/{secret_type}/{config_element}/{config_name}'.format(
-            **path_param_dict)
+        url = '/api/v1/config/{secret_type}/{config_element}/{config_name}'.format(**path_param_dict)
         request = self.prepare_request(method='POST',
                                        url=url,
                                        headers=headers,
@@ -2194,11 +2173,9 @@ class SecretsManagerV1(BaseService):
             del kwargs['headers']
 
         path_param_keys = ['secret_type', 'config_element', 'config_name']
-        path_param_values = self.encode_path_vars(
-            secret_type, config_element, config_name)
+        path_param_values = self.encode_path_vars(secret_type, config_element, config_name)
         path_param_dict = dict(zip(path_param_keys, path_param_values))
-        url = '/api/v1/config/{secret_type}/{config_element}/{config_name}'.format(
-            **path_param_dict)
+        url = '/api/v1/config/{secret_type}/{config_element}/{config_name}'.format(**path_param_dict)
         request = self.prepare_request(method='DELETE',
                                        url=url,
                                        headers=headers)
@@ -2239,11 +2216,9 @@ class SecretsManagerV1(BaseService):
         """
 
         if event_notifications_instance_crn is None:
-            raise ValueError(
-                'event_notifications_instance_crn must be provided')
+            raise ValueError('event_notifications_instance_crn must be provided')
         if event_notifications_source_name is None:
-            raise ValueError(
-                'event_notifications_source_name must be provided')
+            raise ValueError('event_notifications_source_name must be provided')
         headers = {}
         sdk_headers = get_sdk_headers(service_name=self.DEFAULT_SERVICE_NAME,
                                       service_version='V1',
@@ -3083,16 +3058,13 @@ class CertificateTemplatesConfigItem():
         if 'name' in _dict:
             args['name'] = _dict.get('name')
         else:
-            raise ValueError(
-                'Required property \'name\' not present in CertificateTemplatesConfigItem JSON')
+            raise ValueError('Required property \'name\' not present in CertificateTemplatesConfigItem JSON')
         if 'type' in _dict:
             args['type'] = _dict.get('type')
         else:
-            raise ValueError(
-                'Required property \'type\' not present in CertificateTemplatesConfigItem JSON')
+            raise ValueError('Required property \'type\' not present in CertificateTemplatesConfigItem JSON')
         if 'config' in _dict:
-            args['config'] = CertificateTemplateConfig.from_dict(
-                _dict.get('config'))
+            args['config'] = CertificateTemplateConfig.from_dict(_dict.get('config'))
         return cls(**args)
 
     @classmethod
@@ -3199,8 +3171,7 @@ class ChallengeResource():
         if hasattr(self, 'domain') and getattr(self, 'domain') is not None:
             _dict['domain'] = getattr(self, 'domain')
         if hasattr(self, 'expiration') and getattr(self, 'expiration') is not None:
-            _dict['expiration'] = datetime_to_string(
-                getattr(self, 'expiration'))
+            _dict['expiration'] = datetime_to_string(getattr(self, 'expiration'))
         if hasattr(self, 'status') and getattr(self, 'status') is not None:
             _dict['status'] = getattr(self, 'status')
         if hasattr(self, 'txt_record_name') and getattr(self, 'txt_record_name') is not None:
@@ -3255,13 +3226,11 @@ class CollectionMetadata():
         if 'collection_type' in _dict:
             args['collection_type'] = _dict.get('collection_type')
         else:
-            raise ValueError(
-                'Required property \'collection_type\' not present in CollectionMetadata JSON')
+            raise ValueError('Required property \'collection_type\' not present in CollectionMetadata JSON')
         if 'collection_total' in _dict:
             args['collection_total'] = _dict.get('collection_total')
         else:
-            raise ValueError(
-                'Required property \'collection_total\' not present in CollectionMetadata JSON')
+            raise ValueError('Required property \'collection_total\' not present in CollectionMetadata JSON')
         return cls(**args)
 
     @classmethod
@@ -3358,18 +3327,15 @@ class ConfigElementActionData():
         if 'name' in _dict:
             args['name'] = _dict.get('name')
         else:
-            raise ValueError(
-                'Required property \'name\' not present in ConfigElementActionData JSON')
+            raise ValueError('Required property \'name\' not present in ConfigElementActionData JSON')
         if 'type' in _dict:
             args['type'] = _dict.get('type')
         else:
-            raise ValueError(
-                'Required property \'type\' not present in ConfigElementActionData JSON')
+            raise ValueError('Required property \'type\' not present in ConfigElementActionData JSON')
         if 'config' in _dict:
             args['config'] = _dict.get('config')
         else:
-            raise ValueError(
-                'Required property \'config\' not present in ConfigElementActionData JSON')
+            raise ValueError('Required property \'config\' not present in ConfigElementActionData JSON')
         return cls(**args)
 
     @classmethod
@@ -3450,17 +3416,13 @@ class ConfigElementActionResult():
         """Initialize a ConfigElementActionResult object from a json dictionary."""
         args = {}
         if 'metadata' in _dict:
-            args['metadata'] = CollectionMetadata.from_dict(
-                _dict.get('metadata'))
+            args['metadata'] = CollectionMetadata.from_dict(_dict.get('metadata'))
         else:
-            raise ValueError(
-                'Required property \'metadata\' not present in ConfigElementActionResult JSON')
+            raise ValueError('Required property \'metadata\' not present in ConfigElementActionResult JSON')
         if 'resources' in _dict:
-            args['resources'] = [ConfigElementActionData.from_dict(
-                x) for x in _dict.get('resources')]
+            args['resources'] = [ConfigElementActionData.from_dict(x) for x in _dict.get('resources')]
         else:
-            raise ValueError(
-                'Required property \'resources\' not present in ConfigElementActionResult JSON')
+            raise ValueError('Required property \'resources\' not present in ConfigElementActionResult JSON')
         return cls(**args)
 
     @classmethod
@@ -3508,7 +3470,8 @@ class ConfigElementActionResultConfig():
 
         """
         msg = "Cannot instantiate base class. Instead, instantiate one of the defined subclasses: {0}".format(
-            ", ".join(['SignCsrActionResult', 'SignIntermediateActionResult', 'RotateCrlActionResult', 'SetSignedActionResult', 'RevokeActionResult']))
+            ", ".join(['SignCsrActionResult', 'SignIntermediateActionResult', 'RotateCrlActionResult',
+                       'SetSignedActionResult', 'RevokeActionResult']))
         raise Exception(msg)
 
 
@@ -3547,18 +3510,15 @@ class ConfigElementDef():
         if 'name' in _dict:
             args['name'] = _dict.get('name')
         else:
-            raise ValueError(
-                'Required property \'name\' not present in ConfigElementDef JSON')
+            raise ValueError('Required property \'name\' not present in ConfigElementDef JSON')
         if 'type' in _dict:
             args['type'] = _dict.get('type')
         else:
-            raise ValueError(
-                'Required property \'type\' not present in ConfigElementDef JSON')
+            raise ValueError('Required property \'type\' not present in ConfigElementDef JSON')
         if 'config' in _dict:
             args['config'] = _dict.get('config')
         else:
-            raise ValueError(
-                'Required property \'config\' not present in ConfigElementDef JSON')
+            raise ValueError('Required property \'config\' not present in ConfigElementDef JSON')
         return cls(**args)
 
     @classmethod
@@ -3624,7 +3584,9 @@ class ConfigElementDefConfig():
 
         """
         msg = "Cannot instantiate base class. Instead, instantiate one of the defined subclasses: {0}".format(
-            ", ".join(['ConfigElementDefConfigLetsEncryptConfig', 'ConfigElementDefConfigCloudInternetServicesConfig', 'ConfigElementDefConfigClassicInfrastructureConfig', 'RootCertificateAuthorityConfig', 'IntermediateCertificateAuthorityConfig', 'CertificateTemplateConfig']))
+            ", ".join(['ConfigElementDefConfigLetsEncryptConfig', 'ConfigElementDefConfigCloudInternetServicesConfig',
+                       'ConfigElementDefConfigClassicInfrastructureConfig', 'RootCertificateAuthorityConfig',
+                       'IntermediateCertificateAuthorityConfig', 'CertificateTemplateConfig']))
         raise Exception(msg)
 
 
@@ -3657,13 +3619,11 @@ class ConfigElementMetadata():
         if 'name' in _dict:
             args['name'] = _dict.get('name')
         else:
-            raise ValueError(
-                'Required property \'name\' not present in ConfigElementMetadata JSON')
+            raise ValueError('Required property \'name\' not present in ConfigElementMetadata JSON')
         if 'type' in _dict:
             args['type'] = _dict.get('type')
         else:
-            raise ValueError(
-                'Required property \'type\' not present in ConfigElementMetadata JSON')
+            raise ValueError('Required property \'type\' not present in ConfigElementMetadata JSON')
         return cls(**args)
 
     @classmethod
@@ -3739,16 +3699,13 @@ class CreateSecret():
         """Initialize a CreateSecret object from a json dictionary."""
         args = {}
         if 'metadata' in _dict:
-            args['metadata'] = CollectionMetadata.from_dict(
-                _dict.get('metadata'))
+            args['metadata'] = CollectionMetadata.from_dict(_dict.get('metadata'))
         else:
-            raise ValueError(
-                'Required property \'metadata\' not present in CreateSecret JSON')
+            raise ValueError('Required property \'metadata\' not present in CreateSecret JSON')
         if 'resources' in _dict:
             args['resources'] = _dict.get('resources')
         else:
-            raise ValueError(
-                'Required property \'resources\' not present in CreateSecret JSON')
+            raise ValueError('Required property \'resources\' not present in CreateSecret JSON')
         return cls(**args)
 
     @classmethod
@@ -3833,16 +3790,13 @@ class GetConfig():
         """Initialize a GetConfig object from a json dictionary."""
         args = {}
         if 'metadata' in _dict:
-            args['metadata'] = CollectionMetadata.from_dict(
-                _dict.get('metadata'))
+            args['metadata'] = CollectionMetadata.from_dict(_dict.get('metadata'))
         else:
-            raise ValueError(
-                'Required property \'metadata\' not present in GetConfig JSON')
+            raise ValueError('Required property \'metadata\' not present in GetConfig JSON')
         if 'resources' in _dict:
             args['resources'] = _dict.get('resources')
         else:
-            raise ValueError(
-                'Required property \'resources\' not present in GetConfig JSON')
+            raise ValueError('Required property \'resources\' not present in GetConfig JSON')
         return cls(**args)
 
     @classmethod
@@ -3912,16 +3866,13 @@ class GetConfigElements():
         """Initialize a GetConfigElements object from a json dictionary."""
         args = {}
         if 'metadata' in _dict:
-            args['metadata'] = CollectionMetadata.from_dict(
-                _dict.get('metadata'))
+            args['metadata'] = CollectionMetadata.from_dict(_dict.get('metadata'))
         else:
-            raise ValueError(
-                'Required property \'metadata\' not present in GetConfigElements JSON')
+            raise ValueError('Required property \'metadata\' not present in GetConfigElements JSON')
         if 'resources' in _dict:
             args['resources'] = _dict.get('resources')
         else:
-            raise ValueError(
-                'Required property \'resources\' not present in GetConfigElements JSON')
+            raise ValueError('Required property \'resources\' not present in GetConfigElements JSON')
         return cls(**args)
 
     @classmethod
@@ -3975,7 +3926,9 @@ class GetConfigElementsResourcesItem():
 
         """
         msg = "Cannot instantiate base class. Instead, instantiate one of the defined subclasses: {0}".format(
-            ", ".join(['GetConfigElementsResourcesItemCertificateAuthoritiesConfig', 'GetConfigElementsResourcesItemDnsProvidersConfig', 'RootCertificateAuthoritiesConfig', 'IntermediateCertificateAuthoritiesConfig', 'CertificateTemplatesConfig']))
+            ", ".join(['GetConfigElementsResourcesItemCertificateAuthoritiesConfig',
+                       'GetConfigElementsResourcesItemDnsProvidersConfig', 'RootCertificateAuthoritiesConfig',
+                       'IntermediateCertificateAuthoritiesConfig', 'CertificateTemplatesConfig']))
         raise Exception(msg)
 
 
@@ -3991,7 +3944,8 @@ class GetConfigResourcesItem():
 
         """
         msg = "Cannot instantiate base class. Instead, instantiate one of the defined subclasses: {0}".format(
-            ", ".join(['PublicCertSecretEngineRootConfig', 'PrivateCertSecretEngineRootConfig', 'IAMCredentialsSecretEngineRootConfig']))
+            ", ".join(['PublicCertSecretEngineRootConfig', 'PrivateCertSecretEngineRootConfig',
+                       'IAMCredentialsSecretEngineRootConfig']))
         raise Exception(msg)
 
 
@@ -4022,17 +3976,13 @@ class GetInstanceLocks():
         """Initialize a GetInstanceLocks object from a json dictionary."""
         args = {}
         if 'metadata' in _dict:
-            args['metadata'] = CollectionMetadata.from_dict(
-                _dict.get('metadata'))
+            args['metadata'] = CollectionMetadata.from_dict(_dict.get('metadata'))
         else:
-            raise ValueError(
-                'Required property \'metadata\' not present in GetInstanceLocks JSON')
+            raise ValueError('Required property \'metadata\' not present in GetInstanceLocks JSON')
         if 'resources' in _dict:
-            args['resources'] = [InstanceSecretsLocks.from_dict(
-                x) for x in _dict.get('resources')]
+            args['resources'] = [InstanceSecretsLocks.from_dict(x) for x in _dict.get('resources')]
         else:
-            raise ValueError(
-                'Required property \'resources\' not present in GetInstanceLocks JSON')
+            raise ValueError('Required property \'resources\' not present in GetInstanceLocks JSON')
         return cls(**args)
 
     @classmethod
@@ -4095,17 +4045,13 @@ class GetNotificationsSettings():
         """Initialize a GetNotificationsSettings object from a json dictionary."""
         args = {}
         if 'metadata' in _dict:
-            args['metadata'] = CollectionMetadata.from_dict(
-                _dict.get('metadata'))
+            args['metadata'] = CollectionMetadata.from_dict(_dict.get('metadata'))
         else:
-            raise ValueError(
-                'Required property \'metadata\' not present in GetNotificationsSettings JSON')
+            raise ValueError('Required property \'metadata\' not present in GetNotificationsSettings JSON')
         if 'resources' in _dict:
-            args['resources'] = [NotificationsSettings.from_dict(
-                x) for x in _dict.get('resources')]
+            args['resources'] = [NotificationsSettings.from_dict(x) for x in _dict.get('resources')]
         else:
-            raise ValueError(
-                'Required property \'resources\' not present in GetNotificationsSettings JSON')
+            raise ValueError('Required property \'resources\' not present in GetNotificationsSettings JSON')
         return cls(**args)
 
     @classmethod
@@ -4168,16 +4114,13 @@ class GetSecret():
         """Initialize a GetSecret object from a json dictionary."""
         args = {}
         if 'metadata' in _dict:
-            args['metadata'] = CollectionMetadata.from_dict(
-                _dict.get('metadata'))
+            args['metadata'] = CollectionMetadata.from_dict(_dict.get('metadata'))
         else:
-            raise ValueError(
-                'Required property \'metadata\' not present in GetSecret JSON')
+            raise ValueError('Required property \'metadata\' not present in GetSecret JSON')
         if 'resources' in _dict:
             args['resources'] = _dict.get('resources')
         else:
-            raise ValueError(
-                'Required property \'resources\' not present in GetSecret JSON')
+            raise ValueError('Required property \'resources\' not present in GetSecret JSON')
         return cls(**args)
 
     @classmethod
@@ -4246,17 +4189,13 @@ class GetSecretLocks():
         """Initialize a GetSecretLocks object from a json dictionary."""
         args = {}
         if 'metadata' in _dict:
-            args['metadata'] = CollectionMetadata.from_dict(
-                _dict.get('metadata'))
+            args['metadata'] = CollectionMetadata.from_dict(_dict.get('metadata'))
         else:
-            raise ValueError(
-                'Required property \'metadata\' not present in GetSecretLocks JSON')
+            raise ValueError('Required property \'metadata\' not present in GetSecretLocks JSON')
         if 'resources' in _dict:
-            args['resources'] = [SecretsLocks.from_dict(
-                x) for x in _dict.get('resources')]
+            args['resources'] = [SecretsLocks.from_dict(x) for x in _dict.get('resources')]
         else:
-            raise ValueError(
-                'Required property \'resources\' not present in GetSecretLocks JSON')
+            raise ValueError('Required property \'resources\' not present in GetSecretLocks JSON')
         return cls(**args)
 
     @classmethod
@@ -4335,16 +4274,13 @@ class GetSecretVersion():
         """Initialize a GetSecretVersion object from a json dictionary."""
         args = {}
         if 'metadata' in _dict:
-            args['metadata'] = CollectionMetadata.from_dict(
-                _dict.get('metadata'))
+            args['metadata'] = CollectionMetadata.from_dict(_dict.get('metadata'))
         else:
-            raise ValueError(
-                'Required property \'metadata\' not present in GetSecretVersion JSON')
+            raise ValueError('Required property \'metadata\' not present in GetSecretVersion JSON')
         if 'resources' in _dict:
             args['resources'] = _dict.get('resources')
         else:
-            raise ValueError(
-                'Required property \'resources\' not present in GetSecretVersion JSON')
+            raise ValueError('Required property \'resources\' not present in GetSecretVersion JSON')
         return cls(**args)
 
     @classmethod
@@ -4413,16 +4349,13 @@ class GetSecretVersionMetadata():
         """Initialize a GetSecretVersionMetadata object from a json dictionary."""
         args = {}
         if 'metadata' in _dict:
-            args['metadata'] = CollectionMetadata.from_dict(
-                _dict.get('metadata'))
+            args['metadata'] = CollectionMetadata.from_dict(_dict.get('metadata'))
         else:
-            raise ValueError(
-                'Required property \'metadata\' not present in GetSecretVersionMetadata JSON')
+            raise ValueError('Required property \'metadata\' not present in GetSecretVersionMetadata JSON')
         if 'resources' in _dict:
             args['resources'] = _dict.get('resources')
         else:
-            raise ValueError(
-                'Required property \'resources\' not present in GetSecretVersionMetadata JSON')
+            raise ValueError('Required property \'resources\' not present in GetSecretVersionMetadata JSON')
         return cls(**args)
 
     @classmethod
@@ -4491,17 +4424,13 @@ class GetSingleConfigElement():
         """Initialize a GetSingleConfigElement object from a json dictionary."""
         args = {}
         if 'metadata' in _dict:
-            args['metadata'] = CollectionMetadata.from_dict(
-                _dict.get('metadata'))
+            args['metadata'] = CollectionMetadata.from_dict(_dict.get('metadata'))
         else:
-            raise ValueError(
-                'Required property \'metadata\' not present in GetSingleConfigElement JSON')
+            raise ValueError('Required property \'metadata\' not present in GetSingleConfigElement JSON')
         if 'resources' in _dict:
-            args['resources'] = [ConfigElementDef.from_dict(
-                x) for x in _dict.get('resources')]
+            args['resources'] = [ConfigElementDef.from_dict(x) for x in _dict.get('resources')]
         else:
-            raise ValueError(
-                'Required property \'resources\' not present in GetSingleConfigElement JSON')
+            raise ValueError('Required property \'resources\' not present in GetSingleConfigElement JSON')
         return cls(**args)
 
     @classmethod
@@ -4552,8 +4481,7 @@ class InstanceSecretsLocks():
     """
 
     # The set of defined properties for the class
-    _properties = frozenset(
-        ['secret_id', 'secret_group_id', 'secret_type', 'versions'])
+    _properties = frozenset(['secret_id', 'secret_group_id', 'secret_type', 'versions'])
 
     def __init__(self,
                  *,
@@ -4587,10 +4515,8 @@ class InstanceSecretsLocks():
         if 'secret_type' in _dict:
             args['secret_type'] = _dict.get('secret_type')
         if 'versions' in _dict:
-            args['versions'] = [SecretLockVersion.from_dict(
-                x) for x in _dict.get('versions')]
-        args.update({k: v for (k, v) in _dict.items()
-                    if k not in cls._properties})
+            args['versions'] = [SecretLockVersion.from_dict(x) for x in _dict.get('versions')]
+        args.update({k: v for (k, v) in _dict.items() if k not in cls._properties})
         return cls(**args)
 
     @classmethod
@@ -4705,8 +4631,7 @@ class IntermediateCertificateAuthoritiesConfigItem():
             raise ValueError(
                 'Required property \'type\' not present in IntermediateCertificateAuthoritiesConfigItem JSON')
         if 'config' in _dict:
-            args['config'] = IntermediateCertificateAuthorityConfig.from_dict(
-                _dict.get('config'))
+            args['config'] = IntermediateCertificateAuthorityConfig.from_dict(_dict.get('config'))
         return cls(**args)
 
     @classmethod
@@ -4842,11 +4767,9 @@ class IssuanceInfo():
         if 'dns' in _dict:
             args['dns'] = _dict.get('dns')
         if 'challenges' in _dict:
-            args['challenges'] = [ChallengeResource.from_dict(
-                x) for x in _dict.get('challenges')]
+            args['challenges'] = [ChallengeResource.from_dict(x) for x in _dict.get('challenges')]
         if 'dns_challenge_validation_time' in _dict:
-            args['dns_challenge_validation_time'] = string_to_datetime(
-                _dict.get('dns_challenge_validation_time'))
+            args['dns_challenge_validation_time'] = string_to_datetime(_dict.get('dns_challenge_validation_time'))
         return cls(**args)
 
     @classmethod
@@ -4858,8 +4781,7 @@ class IssuanceInfo():
         """Return a json dictionary representing this model."""
         _dict = {}
         if hasattr(self, 'ordered_on') and getattr(self, 'ordered_on') is not None:
-            _dict['ordered_on'] = datetime_to_string(
-                getattr(self, 'ordered_on'))
+            _dict['ordered_on'] = datetime_to_string(getattr(self, 'ordered_on'))
         if hasattr(self, 'error_code') and getattr(self, 'error_code') is not None:
             _dict['error_code'] = getattr(self, 'error_code')
         if hasattr(self, 'error_message') and getattr(self, 'error_message') is not None:
@@ -4877,11 +4799,10 @@ class IssuanceInfo():
         if hasattr(self, 'dns') and getattr(self, 'dns') is not None:
             _dict['dns'] = getattr(self, 'dns')
         if hasattr(self, 'challenges') and getattr(self, 'challenges') is not None:
-            _dict['challenges'] = [x.to_dict()
-                                   for x in getattr(self, 'challenges')]
-        if hasattr(self, 'dns_challenge_validation_time') and getattr(self, 'dns_challenge_validation_time') is not None:
-            _dict['dns_challenge_validation_time'] = datetime_to_string(
-                getattr(self, 'dns_challenge_validation_time'))
+            _dict['challenges'] = [x.to_dict() for x in getattr(self, 'challenges')]
+        if hasattr(self, 'dns_challenge_validation_time') and getattr(self,
+                                                                      'dns_challenge_validation_time') is not None:
+            _dict['dns_challenge_validation_time'] = datetime_to_string(getattr(self, 'dns_challenge_validation_time'))
         return _dict
 
     def _to_dict(self):
@@ -4930,17 +4851,13 @@ class ListSecretLocks():
         """Initialize a ListSecretLocks object from a json dictionary."""
         args = {}
         if 'metadata' in _dict:
-            args['metadata'] = CollectionMetadata.from_dict(
-                _dict.get('metadata'))
+            args['metadata'] = CollectionMetadata.from_dict(_dict.get('metadata'))
         else:
-            raise ValueError(
-                'Required property \'metadata\' not present in ListSecretLocks JSON')
+            raise ValueError('Required property \'metadata\' not present in ListSecretLocks JSON')
         if 'resources' in _dict:
-            args['resources'] = [SecretLockData.from_dict(
-                x) for x in _dict.get('resources')]
+            args['resources'] = [SecretLockData.from_dict(x) for x in _dict.get('resources')]
         else:
-            raise ValueError(
-                'Required property \'resources\' not present in ListSecretLocks JSON')
+            raise ValueError('Required property \'resources\' not present in ListSecretLocks JSON')
         return cls(**args)
 
     @classmethod
@@ -5005,11 +4922,9 @@ class ListSecretVersions():
         """Initialize a ListSecretVersions object from a json dictionary."""
         args = {}
         if 'metadata' in _dict:
-            args['metadata'] = CollectionMetadata.from_dict(
-                _dict.get('metadata'))
+            args['metadata'] = CollectionMetadata.from_dict(_dict.get('metadata'))
         else:
-            raise ValueError(
-                'Required property \'metadata\' not present in ListSecretVersions JSON')
+            raise ValueError('Required property \'metadata\' not present in ListSecretVersions JSON')
         if 'resources' in _dict:
             args['resources'] = _dict.get('resources')
         return cls(**args)
@@ -5082,11 +4997,9 @@ class ListSecrets():
         """Initialize a ListSecrets object from a json dictionary."""
         args = {}
         if 'metadata' in _dict:
-            args['metadata'] = CollectionMetadata.from_dict(
-                _dict.get('metadata'))
+            args['metadata'] = CollectionMetadata.from_dict(_dict.get('metadata'))
         else:
-            raise ValueError(
-                'Required property \'metadata\' not present in ListSecrets JSON')
+            raise ValueError('Required property \'metadata\' not present in ListSecrets JSON')
         if 'resources' in _dict:
             args['resources'] = _dict.get('resources')
         return cls(**args)
@@ -5174,8 +5087,7 @@ class LockSecretBodyLocksItem():
         if 'name' in _dict:
             args['name'] = _dict.get('name')
         else:
-            raise ValueError(
-                'Required property \'name\' not present in LockSecretBodyLocksItem JSON')
+            raise ValueError('Required property \'name\' not present in LockSecretBodyLocksItem JSON')
         if 'description' in _dict:
             args['description'] = _dict.get('description')
         if 'attributes' in _dict:
@@ -5240,8 +5152,7 @@ class NotificationsSettings():
         """Initialize a NotificationsSettings object from a json dictionary."""
         args = {}
         if 'event_notifications_instance_crn' in _dict:
-            args['event_notifications_instance_crn'] = _dict.get(
-                'event_notifications_instance_crn')
+            args['event_notifications_instance_crn'] = _dict.get('event_notifications_instance_crn')
         else:
             raise ValueError(
                 'Required property \'event_notifications_instance_crn\' not present in NotificationsSettings JSON')
@@ -5314,16 +5225,13 @@ class RootCertificateAuthoritiesConfigItem():
         if 'name' in _dict:
             args['name'] = _dict.get('name')
         else:
-            raise ValueError(
-                'Required property \'name\' not present in RootCertificateAuthoritiesConfigItem JSON')
+            raise ValueError('Required property \'name\' not present in RootCertificateAuthoritiesConfigItem JSON')
         if 'type' in _dict:
             args['type'] = _dict.get('type')
         else:
-            raise ValueError(
-                'Required property \'type\' not present in RootCertificateAuthoritiesConfigItem JSON')
+            raise ValueError('Required property \'type\' not present in RootCertificateAuthoritiesConfigItem JSON')
         if 'config' in _dict:
-            args['config'] = RootCertificateAuthorityConfig.from_dict(
-                _dict.get('config'))
+            args['config'] = RootCertificateAuthorityConfig.from_dict(_dict.get('config'))
         return cls(**args)
 
     @classmethod
@@ -5512,7 +5420,10 @@ class SecretAction():
 
         """
         msg = "Cannot instantiate base class. Instead, instantiate one of the defined subclasses: {0}".format(
-            ", ".join(['RotateArbitrarySecretBody', 'RotatePublicCertBody', 'RotateUsernamePasswordSecretBody', 'RotateCertificateBody', 'RotatePrivateCertBody', 'RotatePrivateCertBodyWithVersionCustomMetadata', 'RestoreIAMCredentialsSecretBody', 'DeleteCredentialsForIAMCredentialsSecret', 'RotateKvSecretBody']))
+            ", ".join(['RotateArbitrarySecretBody', 'RotatePublicCertBody', 'RotateUsernamePasswordSecretBody',
+                       'RotateCertificateBody', 'RotatePrivateCertBody',
+                       'RotatePrivateCertBodyWithVersionCustomMetadata', 'RestoreIAMCredentialsSecretBody',
+                       'DeleteCredentialsForIAMCredentialsSecret', 'RotateKvSecretBody']))
         raise Exception(msg)
 
 
@@ -5543,17 +5454,13 @@ class SecretGroupDef():
         """Initialize a SecretGroupDef object from a json dictionary."""
         args = {}
         if 'metadata' in _dict:
-            args['metadata'] = CollectionMetadata.from_dict(
-                _dict.get('metadata'))
+            args['metadata'] = CollectionMetadata.from_dict(_dict.get('metadata'))
         else:
-            raise ValueError(
-                'Required property \'metadata\' not present in SecretGroupDef JSON')
+            raise ValueError('Required property \'metadata\' not present in SecretGroupDef JSON')
         if 'resources' in _dict:
-            args['resources'] = [SecretGroupResource.from_dict(
-                x) for x in _dict.get('resources')]
+            args['resources'] = [SecretGroupResource.from_dict(x) for x in _dict.get('resources')]
         else:
-            raise ValueError(
-                'Required property \'resources\' not present in SecretGroupDef JSON')
+            raise ValueError('Required property \'resources\' not present in SecretGroupDef JSON')
         return cls(**args)
 
     @classmethod
@@ -5682,8 +5589,7 @@ class SecretGroupResource():
     """
 
     # The set of defined properties for the class
-    _properties = frozenset(
-        ['id', 'name', 'description', 'creation_date', 'last_update_date', 'type'])
+    _properties = frozenset(['id', 'name', 'description', 'creation_date', 'last_update_date', 'type'])
 
     def __init__(self,
                  *,
@@ -5727,15 +5633,12 @@ class SecretGroupResource():
         if 'description' in _dict:
             args['description'] = _dict.get('description')
         if 'creation_date' in _dict:
-            args['creation_date'] = string_to_datetime(
-                _dict.get('creation_date'))
+            args['creation_date'] = string_to_datetime(_dict.get('creation_date'))
         if 'last_update_date' in _dict:
-            args['last_update_date'] = string_to_datetime(
-                _dict.get('last_update_date'))
+            args['last_update_date'] = string_to_datetime(_dict.get('last_update_date'))
         if 'type' in _dict:
             args['type'] = _dict.get('type')
-        args.update({k: v for (k, v) in _dict.items()
-                    if k not in cls._properties})
+        args.update({k: v for (k, v) in _dict.items() if k not in cls._properties})
         return cls(**args)
 
     @classmethod
@@ -5753,11 +5656,9 @@ class SecretGroupResource():
         if hasattr(self, 'description') and self.description is not None:
             _dict['description'] = self.description
         if hasattr(self, 'creation_date') and getattr(self, 'creation_date') is not None:
-            _dict['creation_date'] = datetime_to_string(
-                getattr(self, 'creation_date'))
+            _dict['creation_date'] = datetime_to_string(getattr(self, 'creation_date'))
         if hasattr(self, 'last_update_date') and getattr(self, 'last_update_date') is not None:
-            _dict['last_update_date'] = datetime_to_string(
-                getattr(self, 'last_update_date'))
+            _dict['last_update_date'] = datetime_to_string(getattr(self, 'last_update_date'))
         if hasattr(self, 'type') and getattr(self, 'type') is not None:
             _dict['type'] = getattr(self, 'type')
         for _key in [k for k in vars(self).keys() if k not in SecretGroupResource._properties]:
@@ -5876,8 +5777,7 @@ class SecretLockData():
         if 'description' in _dict:
             args['description'] = _dict.get('description')
         if 'creation_date' in _dict:
-            args['creation_date'] = string_to_datetime(
-                _dict.get('creation_date'))
+            args['creation_date'] = string_to_datetime(_dict.get('creation_date'))
         if 'created_by' in _dict:
             args['created_by'] = _dict.get('created_by')
         if 'attributes' in _dict:
@@ -5889,8 +5789,7 @@ class SecretLockData():
         if 'secret_group_id' in _dict:
             args['secret_group_id'] = _dict.get('secret_group_id')
         if 'last_update_date' in _dict:
-            args['last_update_date'] = string_to_datetime(
-                _dict.get('last_update_date'))
+            args['last_update_date'] = string_to_datetime(_dict.get('last_update_date'))
         if 'secret_version_alias' in _dict:
             args['secret_version_alias'] = _dict.get('secret_version_alias')
         return cls(**args)
@@ -5908,8 +5807,7 @@ class SecretLockData():
         if hasattr(self, 'description') and self.description is not None:
             _dict['description'] = self.description
         if hasattr(self, 'creation_date') and getattr(self, 'creation_date') is not None:
-            _dict['creation_date'] = datetime_to_string(
-                getattr(self, 'creation_date'))
+            _dict['creation_date'] = datetime_to_string(getattr(self, 'creation_date'))
         if hasattr(self, 'created_by') and getattr(self, 'created_by') is not None:
             _dict['created_by'] = getattr(self, 'created_by')
         if hasattr(self, 'attributes') and self.attributes is not None:
@@ -5921,11 +5819,9 @@ class SecretLockData():
         if hasattr(self, 'secret_group_id') and getattr(self, 'secret_group_id') is not None:
             _dict['secret_group_id'] = getattr(self, 'secret_group_id')
         if hasattr(self, 'last_update_date') and getattr(self, 'last_update_date') is not None:
-            _dict['last_update_date'] = datetime_to_string(
-                getattr(self, 'last_update_date'))
+            _dict['last_update_date'] = datetime_to_string(getattr(self, 'last_update_date'))
         if hasattr(self, 'secret_version_alias') and getattr(self, 'secret_version_alias') is not None:
-            _dict['secret_version_alias'] = getattr(
-                self, 'secret_version_alias')
+            _dict['secret_version_alias'] = getattr(self, 'secret_version_alias')
         return _dict
 
     def _to_dict(self):
@@ -6000,8 +5896,7 @@ class SecretLockVersion():
             args['locks'] = _dict.get('locks')
         if 'payload_available' in _dict:
             args['payload_available'] = _dict.get('payload_available')
-        args.update({k: v for (k, v) in _dict.items()
-                    if k not in cls._properties})
+        args.update({k: v for (k, v) in _dict.items() if k not in cls._properties})
         return cls(**args)
 
     @classmethod
@@ -6080,7 +5975,9 @@ class SecretMetadata():
 
         """
         msg = "Cannot instantiate base class. Instead, instantiate one of the defined subclasses: {0}".format(
-            ", ".join(['ArbitrarySecretMetadata', 'UsernamePasswordSecretMetadata', 'IAMCredentialsSecretMetadata', 'CertificateSecretMetadata', 'PublicCertificateSecretMetadata', 'PrivateCertificateSecretMetadata', 'KvSecretMetadata']))
+            ", ".join(['ArbitrarySecretMetadata', 'UsernamePasswordSecretMetadata', 'IAMCredentialsSecretMetadata',
+                       'CertificateSecretMetadata', 'PublicCertificateSecretMetadata',
+                       'PrivateCertificateSecretMetadata', 'KvSecretMetadata']))
         raise Exception(msg)
 
 
@@ -6111,16 +6008,13 @@ class SecretMetadataRequest():
         """Initialize a SecretMetadataRequest object from a json dictionary."""
         args = {}
         if 'metadata' in _dict:
-            args['metadata'] = CollectionMetadata.from_dict(
-                _dict.get('metadata'))
+            args['metadata'] = CollectionMetadata.from_dict(_dict.get('metadata'))
         else:
-            raise ValueError(
-                'Required property \'metadata\' not present in SecretMetadataRequest JSON')
+            raise ValueError('Required property \'metadata\' not present in SecretMetadataRequest JSON')
         if 'resources' in _dict:
             args['resources'] = _dict.get('resources')
         else:
-            raise ValueError(
-                'Required property \'resources\' not present in SecretMetadataRequest JSON')
+            raise ValueError('Required property \'resources\' not present in SecretMetadataRequest JSON')
         return cls(**args)
 
     @classmethod
@@ -6191,13 +6085,11 @@ class SecretPolicyRotation():
         if 'type' in _dict:
             args['type'] = _dict.get('type')
         else:
-            raise ValueError(
-                'Required property \'type\' not present in SecretPolicyRotation JSON')
+            raise ValueError('Required property \'type\' not present in SecretPolicyRotation JSON')
         if 'rotation' in _dict:
             args['rotation'] = _dict.get('rotation')
         else:
-            raise ValueError(
-                'Required property \'rotation\' not present in SecretPolicyRotation JSON')
+            raise ValueError('Required property \'rotation\' not present in SecretPolicyRotation JSON')
         return cls(**args)
 
     @classmethod
@@ -6255,7 +6147,9 @@ class SecretPolicyRotationRotation():
 
         """
         msg = "Cannot instantiate base class. Instead, instantiate one of the defined subclasses: {0}".format(
-            ", ".join(['SecretPolicyRotationRotationPolicyRotation', 'SecretPolicyRotationRotationPublicCertPolicyRotation', 'PrivateCertPolicyRotation']))
+            ", ".join(
+                ['SecretPolicyRotationRotationPolicyRotation', 'SecretPolicyRotationRotationPublicCertPolicyRotation',
+                 'PrivateCertPolicyRotation']))
         raise Exception(msg)
 
 
@@ -6271,7 +6165,9 @@ class SecretResource():
 
         """
         msg = "Cannot instantiate base class. Instead, instantiate one of the defined subclasses: {0}".format(
-            ", ".join(['ArbitrarySecretResource', 'UsernamePasswordSecretResource', 'IAMCredentialsSecretResource', 'CertificateSecretResource', 'PublicCertificateSecretResource', 'PrivateCertificateSecretResource', 'KvSecretResource']))
+            ", ".join(['ArbitrarySecretResource', 'UsernamePasswordSecretResource', 'IAMCredentialsSecretResource',
+                       'CertificateSecretResource', 'PublicCertificateSecretResource',
+                       'PrivateCertificateSecretResource', 'KvSecretResource']))
         raise Exception(msg)
 
 
@@ -6287,7 +6183,8 @@ class SecretVersion():
 
         """
         msg = "Cannot instantiate base class. Instead, instantiate one of the defined subclasses: {0}".format(
-            ", ".join(['ArbitrarySecretVersion', 'UsernamePasswordSecretVersion', 'IAMCredentialsSecretVersion', 'CertificateSecretVersion', 'PrivateCertificateSecretVersion']))
+            ", ".join(['ArbitrarySecretVersion', 'UsernamePasswordSecretVersion', 'IAMCredentialsSecretVersion',
+                       'CertificateSecretVersion', 'PrivateCertificateSecretVersion']))
         raise Exception(msg)
 
 
@@ -6303,7 +6200,9 @@ class SecretVersionInfo():
 
         """
         msg = "Cannot instantiate base class. Instead, instantiate one of the defined subclasses: {0}".format(
-            ", ".join(['ArbitrarySecretVersionInfo', 'UsernamePasswordSecretVersionInfo', 'IAMCredentialsSecretVersionInfo', 'CertificateSecretVersionInfo', 'PrivateCertificateSecretVersionInfo']))
+            ", ".join(
+                ['ArbitrarySecretVersionInfo', 'UsernamePasswordSecretVersionInfo', 'IAMCredentialsSecretVersionInfo',
+                 'CertificateSecretVersionInfo', 'PrivateCertificateSecretVersionInfo']))
         raise Exception(msg)
 
 
@@ -6319,7 +6218,9 @@ class SecretVersionMetadata():
 
         """
         msg = "Cannot instantiate base class. Instead, instantiate one of the defined subclasses: {0}".format(
-            ", ".join(['ArbitrarySecretVersionMetadata', 'UsernamePasswordSecretVersionMetadata', 'IAMCredentialsSecretVersionMetadata', 'CertificateSecretVersionMetadata', 'PrivateCertificateSecretVersionMetadata']))
+            ", ".join(['ArbitrarySecretVersionMetadata', 'UsernamePasswordSecretVersionMetadata',
+                       'IAMCredentialsSecretVersionMetadata', 'CertificateSecretVersionMetadata',
+                       'PrivateCertificateSecretVersionMetadata']))
         raise Exception(msg)
 
 
@@ -6367,10 +6268,8 @@ class SecretsLocks():
         if 'secret_group_id' in _dict:
             args['secret_group_id'] = _dict.get('secret_group_id')
         if 'versions' in _dict:
-            args['versions'] = [SecretLockVersion.from_dict(
-                x) for x in _dict.get('versions')]
-        args.update({k: v for (k, v) in _dict.items()
-                    if k not in cls._properties})
+            args['versions'] = [SecretLockVersion.from_dict(x) for x in _dict.get('versions')]
+        args.update({k: v for (k, v) in _dict.items() if k not in cls._properties})
         return cls(**args)
 
     @classmethod
@@ -6635,8 +6534,7 @@ class UpdateSecretVersionMetadata():
         """Initialize a UpdateSecretVersionMetadata object from a json dictionary."""
         args = {}
         if 'version_custom_metadata' in _dict:
-            args['version_custom_metadata'] = _dict.get(
-                'version_custom_metadata')
+            args['version_custom_metadata'] = _dict.get('version_custom_metadata')
         return cls(**args)
 
     @classmethod
@@ -6864,8 +6762,7 @@ class ArbitrarySecretMetadata(SecretMetadata):
         if 'name' in _dict:
             args['name'] = _dict.get('name')
         else:
-            raise ValueError(
-                'Required property \'name\' not present in ArbitrarySecretMetadata JSON')
+            raise ValueError('Required property \'name\' not present in ArbitrarySecretMetadata JSON')
         if 'description' in _dict:
             args['description'] = _dict.get('description')
         if 'secret_group_id' in _dict:
@@ -6879,13 +6776,11 @@ class ArbitrarySecretMetadata(SecretMetadata):
         if 'crn' in _dict:
             args['crn'] = _dict.get('crn')
         if 'creation_date' in _dict:
-            args['creation_date'] = string_to_datetime(
-                _dict.get('creation_date'))
+            args['creation_date'] = string_to_datetime(_dict.get('creation_date'))
         if 'created_by' in _dict:
             args['created_by'] = _dict.get('created_by')
         if 'last_update_date' in _dict:
-            args['last_update_date'] = string_to_datetime(
-                _dict.get('last_update_date'))
+            args['last_update_date'] = string_to_datetime(_dict.get('last_update_date'))
         if 'versions_total' in _dict:
             args['versions_total'] = _dict.get('versions_total')
         if 'locks_total' in _dict:
@@ -6893,8 +6788,7 @@ class ArbitrarySecretMetadata(SecretMetadata):
         if 'custom_metadata' in _dict:
             args['custom_metadata'] = _dict.get('custom_metadata')
         if 'expiration_date' in _dict:
-            args['expiration_date'] = string_to_datetime(
-                _dict.get('expiration_date'))
+            args['expiration_date'] = string_to_datetime(_dict.get('expiration_date'))
         return cls(**args)
 
     @classmethod
@@ -6924,13 +6818,11 @@ class ArbitrarySecretMetadata(SecretMetadata):
         if hasattr(self, 'crn') and getattr(self, 'crn') is not None:
             _dict['crn'] = getattr(self, 'crn')
         if hasattr(self, 'creation_date') and getattr(self, 'creation_date') is not None:
-            _dict['creation_date'] = datetime_to_string(
-                getattr(self, 'creation_date'))
+            _dict['creation_date'] = datetime_to_string(getattr(self, 'creation_date'))
         if hasattr(self, 'created_by') and getattr(self, 'created_by') is not None:
             _dict['created_by'] = getattr(self, 'created_by')
         if hasattr(self, 'last_update_date') and getattr(self, 'last_update_date') is not None:
-            _dict['last_update_date'] = datetime_to_string(
-                getattr(self, 'last_update_date'))
+            _dict['last_update_date'] = datetime_to_string(getattr(self, 'last_update_date'))
         if hasattr(self, 'versions_total') and getattr(self, 'versions_total') is not None:
             _dict['versions_total'] = getattr(self, 'versions_total')
         if hasattr(self, 'locks_total') and getattr(self, 'locks_total') is not None:
@@ -7119,8 +7011,7 @@ class ArbitrarySecretResource(SecretResource):
         if 'name' in _dict:
             args['name'] = _dict.get('name')
         else:
-            raise ValueError(
-                'Required property \'name\' not present in ArbitrarySecretResource JSON')
+            raise ValueError('Required property \'name\' not present in ArbitrarySecretResource JSON')
         if 'description' in _dict:
             args['description'] = _dict.get('description')
         if 'secret_group_id' in _dict:
@@ -7136,13 +7027,11 @@ class ArbitrarySecretResource(SecretResource):
         if 'crn' in _dict:
             args['crn'] = _dict.get('crn')
         if 'creation_date' in _dict:
-            args['creation_date'] = string_to_datetime(
-                _dict.get('creation_date'))
+            args['creation_date'] = string_to_datetime(_dict.get('creation_date'))
         if 'created_by' in _dict:
             args['created_by'] = _dict.get('created_by')
         if 'last_update_date' in _dict:
-            args['last_update_date'] = string_to_datetime(
-                _dict.get('last_update_date'))
+            args['last_update_date'] = string_to_datetime(_dict.get('last_update_date'))
         if 'versions_total' in _dict:
             args['versions_total'] = _dict.get('versions_total')
         if 'versions' in _dict:
@@ -7152,11 +7041,9 @@ class ArbitrarySecretResource(SecretResource):
         if 'custom_metadata' in _dict:
             args['custom_metadata'] = _dict.get('custom_metadata')
         if 'version_custom_metadata' in _dict:
-            args['version_custom_metadata'] = _dict.get(
-                'version_custom_metadata')
+            args['version_custom_metadata'] = _dict.get('version_custom_metadata')
         if 'expiration_date' in _dict:
-            args['expiration_date'] = string_to_datetime(
-                _dict.get('expiration_date'))
+            args['expiration_date'] = string_to_datetime(_dict.get('expiration_date'))
         if 'payload' in _dict:
             args['payload'] = _dict.get('payload')
         if 'secret_data' in _dict:
@@ -7190,13 +7077,11 @@ class ArbitrarySecretResource(SecretResource):
         if hasattr(self, 'crn') and getattr(self, 'crn') is not None:
             _dict['crn'] = getattr(self, 'crn')
         if hasattr(self, 'creation_date') and getattr(self, 'creation_date') is not None:
-            _dict['creation_date'] = datetime_to_string(
-                getattr(self, 'creation_date'))
+            _dict['creation_date'] = datetime_to_string(getattr(self, 'creation_date'))
         if hasattr(self, 'created_by') and getattr(self, 'created_by') is not None:
             _dict['created_by'] = getattr(self, 'created_by')
         if hasattr(self, 'last_update_date') and getattr(self, 'last_update_date') is not None:
-            _dict['last_update_date'] = datetime_to_string(
-                getattr(self, 'last_update_date'))
+            _dict['last_update_date'] = datetime_to_string(getattr(self, 'last_update_date'))
         if hasattr(self, 'versions_total') and getattr(self, 'versions_total') is not None:
             _dict['versions_total'] = getattr(self, 'versions_total')
         if hasattr(self, 'versions') and getattr(self, 'versions') is not None:
@@ -7301,15 +7186,13 @@ class ArbitrarySecretVersion(SecretVersion):
         if 'version_id' in _dict:
             args['version_id'] = _dict.get('version_id')
         if 'creation_date' in _dict:
-            args['creation_date'] = string_to_datetime(
-                _dict.get('creation_date'))
+            args['creation_date'] = string_to_datetime(_dict.get('creation_date'))
         if 'created_by' in _dict:
             args['created_by'] = _dict.get('created_by')
         if 'locks_total' in _dict:
             args['locks_total'] = _dict.get('locks_total')
         if 'version_custom_metadata' in _dict:
-            args['version_custom_metadata'] = _dict.get(
-                'version_custom_metadata')
+            args['version_custom_metadata'] = _dict.get('version_custom_metadata')
         if 'secret_data' in _dict:
             args['secret_data'] = _dict.get('secret_data')
         return cls(**args)
@@ -7327,8 +7210,7 @@ class ArbitrarySecretVersion(SecretVersion):
         if hasattr(self, 'version_id') and getattr(self, 'version_id') is not None:
             _dict['version_id'] = getattr(self, 'version_id')
         if hasattr(self, 'creation_date') and getattr(self, 'creation_date') is not None:
-            _dict['creation_date'] = datetime_to_string(
-                getattr(self, 'creation_date'))
+            _dict['creation_date'] = datetime_to_string(getattr(self, 'creation_date'))
         if hasattr(self, 'created_by') and getattr(self, 'created_by') is not None:
             _dict['created_by'] = getattr(self, 'created_by')
         if hasattr(self, 'locks_total') and getattr(self, 'locks_total') is not None:
@@ -7404,8 +7286,7 @@ class ArbitrarySecretVersionInfo(SecretVersionInfo):
         if 'id' in _dict:
             args['id'] = _dict.get('id')
         if 'creation_date' in _dict:
-            args['creation_date'] = string_to_datetime(
-                _dict.get('creation_date'))
+            args['creation_date'] = string_to_datetime(_dict.get('creation_date'))
         if 'created_by' in _dict:
             args['created_by'] = _dict.get('created_by')
         if 'payload_available' in _dict:
@@ -7413,8 +7294,7 @@ class ArbitrarySecretVersionInfo(SecretVersionInfo):
         if 'downloaded' in _dict:
             args['downloaded'] = _dict.get('downloaded')
         if 'version_custom_metadata' in _dict:
-            args['version_custom_metadata'] = _dict.get(
-                'version_custom_metadata')
+            args['version_custom_metadata'] = _dict.get('version_custom_metadata')
         return cls(**args)
 
     @classmethod
@@ -7428,8 +7308,7 @@ class ArbitrarySecretVersionInfo(SecretVersionInfo):
         if hasattr(self, 'id') and getattr(self, 'id') is not None:
             _dict['id'] = getattr(self, 'id')
         if hasattr(self, 'creation_date') and getattr(self, 'creation_date') is not None:
-            _dict['creation_date'] = datetime_to_string(
-                getattr(self, 'creation_date'))
+            _dict['creation_date'] = datetime_to_string(getattr(self, 'creation_date'))
         if hasattr(self, 'created_by') and getattr(self, 'created_by') is not None:
             _dict['created_by'] = getattr(self, 'created_by')
         if hasattr(self, 'payload_available') and getattr(self, 'payload_available') is not None:
@@ -7515,8 +7394,7 @@ class ArbitrarySecretVersionMetadata(SecretVersionMetadata):
         if 'version_id' in _dict:
             args['version_id'] = _dict.get('version_id')
         if 'creation_date' in _dict:
-            args['creation_date'] = string_to_datetime(
-                _dict.get('creation_date'))
+            args['creation_date'] = string_to_datetime(_dict.get('creation_date'))
         if 'created_by' in _dict:
             args['created_by'] = _dict.get('created_by')
         if 'payload_available' in _dict:
@@ -7526,8 +7404,7 @@ class ArbitrarySecretVersionMetadata(SecretVersionMetadata):
         if 'locks_total' in _dict:
             args['locks_total'] = _dict.get('locks_total')
         if 'version_custom_metadata' in _dict:
-            args['version_custom_metadata'] = _dict.get(
-                'version_custom_metadata')
+            args['version_custom_metadata'] = _dict.get('version_custom_metadata')
         return cls(**args)
 
     @classmethod
@@ -7543,8 +7420,7 @@ class ArbitrarySecretVersionMetadata(SecretVersionMetadata):
         if hasattr(self, 'version_id') and getattr(self, 'version_id') is not None:
             _dict['version_id'] = getattr(self, 'version_id')
         if hasattr(self, 'creation_date') and getattr(self, 'creation_date') is not None:
-            _dict['creation_date'] = datetime_to_string(
-                getattr(self, 'creation_date'))
+            _dict['creation_date'] = datetime_to_string(getattr(self, 'creation_date'))
         if hasattr(self, 'created_by') and getattr(self, 'created_by') is not None:
             _dict['created_by'] = getattr(self, 'created_by')
         if hasattr(self, 'payload_available') and getattr(self, 'payload_available') is not None:
@@ -7725,8 +7601,7 @@ class CertificateSecretMetadata(SecretMetadata):
         if 'name' in _dict:
             args['name'] = _dict.get('name')
         else:
-            raise ValueError(
-                'Required property \'name\' not present in CertificateSecretMetadata JSON')
+            raise ValueError('Required property \'name\' not present in CertificateSecretMetadata JSON')
         if 'description' in _dict:
             args['description'] = _dict.get('description')
         if 'secret_group_id' in _dict:
@@ -7740,13 +7615,11 @@ class CertificateSecretMetadata(SecretMetadata):
         if 'crn' in _dict:
             args['crn'] = _dict.get('crn')
         if 'creation_date' in _dict:
-            args['creation_date'] = string_to_datetime(
-                _dict.get('creation_date'))
+            args['creation_date'] = string_to_datetime(_dict.get('creation_date'))
         if 'created_by' in _dict:
             args['created_by'] = _dict.get('created_by')
         if 'last_update_date' in _dict:
-            args['last_update_date'] = string_to_datetime(
-                _dict.get('last_update_date'))
+            args['last_update_date'] = string_to_datetime(_dict.get('last_update_date'))
         if 'versions_total' in _dict:
             args['versions_total'] = _dict.get('versions_total')
         if 'locks_total' in _dict:
@@ -7762,8 +7635,7 @@ class CertificateSecretMetadata(SecretMetadata):
         if 'issuer' in _dict:
             args['issuer'] = _dict.get('issuer')
         if 'validity' in _dict:
-            args['validity'] = CertificateValidity.from_dict(
-                _dict.get('validity'))
+            args['validity'] = CertificateValidity.from_dict(_dict.get('validity'))
         if 'common_name' in _dict:
             args['common_name'] = _dict.get('common_name')
         if 'intermediate_included' in _dict:
@@ -7773,8 +7645,7 @@ class CertificateSecretMetadata(SecretMetadata):
         if 'alt_names' in _dict:
             args['alt_names'] = _dict.get('alt_names')
         if 'expiration_date' in _dict:
-            args['expiration_date'] = string_to_datetime(
-                _dict.get('expiration_date'))
+            args['expiration_date'] = string_to_datetime(_dict.get('expiration_date'))
         return cls(**args)
 
     @classmethod
@@ -7804,13 +7675,11 @@ class CertificateSecretMetadata(SecretMetadata):
         if hasattr(self, 'crn') and getattr(self, 'crn') is not None:
             _dict['crn'] = getattr(self, 'crn')
         if hasattr(self, 'creation_date') and getattr(self, 'creation_date') is not None:
-            _dict['creation_date'] = datetime_to_string(
-                getattr(self, 'creation_date'))
+            _dict['creation_date'] = datetime_to_string(getattr(self, 'creation_date'))
         if hasattr(self, 'created_by') and getattr(self, 'created_by') is not None:
             _dict['created_by'] = getattr(self, 'created_by')
         if hasattr(self, 'last_update_date') and getattr(self, 'last_update_date') is not None:
-            _dict['last_update_date'] = datetime_to_string(
-                getattr(self, 'last_update_date'))
+            _dict['last_update_date'] = datetime_to_string(getattr(self, 'last_update_date'))
         if hasattr(self, 'versions_total') and getattr(self, 'versions_total') is not None:
             _dict['versions_total'] = getattr(self, 'versions_total')
         if hasattr(self, 'locks_total') and getattr(self, 'locks_total') is not None:
@@ -7830,16 +7699,13 @@ class CertificateSecretMetadata(SecretMetadata):
         if hasattr(self, 'common_name') and getattr(self, 'common_name') is not None:
             _dict['common_name'] = getattr(self, 'common_name')
         if hasattr(self, 'intermediate_included') and getattr(self, 'intermediate_included') is not None:
-            _dict['intermediate_included'] = getattr(
-                self, 'intermediate_included')
+            _dict['intermediate_included'] = getattr(self, 'intermediate_included')
         if hasattr(self, 'private_key_included') and getattr(self, 'private_key_included') is not None:
-            _dict['private_key_included'] = getattr(
-                self, 'private_key_included')
+            _dict['private_key_included'] = getattr(self, 'private_key_included')
         if hasattr(self, 'alt_names') and getattr(self, 'alt_names') is not None:
             _dict['alt_names'] = getattr(self, 'alt_names')
         if hasattr(self, 'expiration_date') and getattr(self, 'expiration_date') is not None:
-            _dict['expiration_date'] = datetime_to_string(
-                getattr(self, 'expiration_date'))
+            _dict['expiration_date'] = datetime_to_string(getattr(self, 'expiration_date'))
         return _dict
 
     def _to_dict(self):
@@ -8074,8 +7940,7 @@ class CertificateSecretResource(SecretResource):
         if 'name' in _dict:
             args['name'] = _dict.get('name')
         else:
-            raise ValueError(
-                'Required property \'name\' not present in CertificateSecretResource JSON')
+            raise ValueError('Required property \'name\' not present in CertificateSecretResource JSON')
         if 'description' in _dict:
             args['description'] = _dict.get('description')
         if 'secret_group_id' in _dict:
@@ -8091,13 +7956,11 @@ class CertificateSecretResource(SecretResource):
         if 'crn' in _dict:
             args['crn'] = _dict.get('crn')
         if 'creation_date' in _dict:
-            args['creation_date'] = string_to_datetime(
-                _dict.get('creation_date'))
+            args['creation_date'] = string_to_datetime(_dict.get('creation_date'))
         if 'created_by' in _dict:
             args['created_by'] = _dict.get('created_by')
         if 'last_update_date' in _dict:
-            args['last_update_date'] = string_to_datetime(
-                _dict.get('last_update_date'))
+            args['last_update_date'] = string_to_datetime(_dict.get('last_update_date'))
         if 'versions_total' in _dict:
             args['versions_total'] = _dict.get('versions_total')
         if 'versions' in _dict:
@@ -8107,8 +7970,7 @@ class CertificateSecretResource(SecretResource):
         if 'custom_metadata' in _dict:
             args['custom_metadata'] = _dict.get('custom_metadata')
         if 'version_custom_metadata' in _dict:
-            args['version_custom_metadata'] = _dict.get(
-                'version_custom_metadata')
+            args['version_custom_metadata'] = _dict.get('version_custom_metadata')
         if 'certificate' in _dict:
             args['certificate'] = _dict.get('certificate')
         if 'private_key' in _dict:
@@ -8126,8 +7988,7 @@ class CertificateSecretResource(SecretResource):
         if 'issuer' in _dict:
             args['issuer'] = _dict.get('issuer')
         if 'validity' in _dict:
-            args['validity'] = CertificateValidity.from_dict(
-                _dict.get('validity'))
+            args['validity'] = CertificateValidity.from_dict(_dict.get('validity'))
         if 'common_name' in _dict:
             args['common_name'] = _dict.get('common_name')
         if 'intermediate_included' in _dict:
@@ -8137,8 +7998,7 @@ class CertificateSecretResource(SecretResource):
         if 'alt_names' in _dict:
             args['alt_names'] = _dict.get('alt_names')
         if 'expiration_date' in _dict:
-            args['expiration_date'] = string_to_datetime(
-                _dict.get('expiration_date'))
+            args['expiration_date'] = string_to_datetime(_dict.get('expiration_date'))
         return cls(**args)
 
     @classmethod
@@ -8168,13 +8028,11 @@ class CertificateSecretResource(SecretResource):
         if hasattr(self, 'crn') and getattr(self, 'crn') is not None:
             _dict['crn'] = getattr(self, 'crn')
         if hasattr(self, 'creation_date') and getattr(self, 'creation_date') is not None:
-            _dict['creation_date'] = datetime_to_string(
-                getattr(self, 'creation_date'))
+            _dict['creation_date'] = datetime_to_string(getattr(self, 'creation_date'))
         if hasattr(self, 'created_by') and getattr(self, 'created_by') is not None:
             _dict['created_by'] = getattr(self, 'created_by')
         if hasattr(self, 'last_update_date') and getattr(self, 'last_update_date') is not None:
-            _dict['last_update_date'] = datetime_to_string(
-                getattr(self, 'last_update_date'))
+            _dict['last_update_date'] = datetime_to_string(getattr(self, 'last_update_date'))
         if hasattr(self, 'versions_total') and getattr(self, 'versions_total') is not None:
             _dict['versions_total'] = getattr(self, 'versions_total')
         if hasattr(self, 'versions') and getattr(self, 'versions') is not None:
@@ -8206,16 +8064,13 @@ class CertificateSecretResource(SecretResource):
         if hasattr(self, 'common_name') and getattr(self, 'common_name') is not None:
             _dict['common_name'] = getattr(self, 'common_name')
         if hasattr(self, 'intermediate_included') and getattr(self, 'intermediate_included') is not None:
-            _dict['intermediate_included'] = getattr(
-                self, 'intermediate_included')
+            _dict['intermediate_included'] = getattr(self, 'intermediate_included')
         if hasattr(self, 'private_key_included') and getattr(self, 'private_key_included') is not None:
-            _dict['private_key_included'] = getattr(
-                self, 'private_key_included')
+            _dict['private_key_included'] = getattr(self, 'private_key_included')
         if hasattr(self, 'alt_names') and self.alt_names is not None:
             _dict['alt_names'] = self.alt_names
         if hasattr(self, 'expiration_date') and getattr(self, 'expiration_date') is not None:
-            _dict['expiration_date'] = datetime_to_string(
-                getattr(self, 'expiration_date'))
+            _dict['expiration_date'] = datetime_to_string(getattr(self, 'expiration_date'))
         return _dict
 
     def _to_dict(self):
@@ -8315,26 +8170,21 @@ class CertificateSecretVersion(SecretVersion):
         if 'version_id' in _dict:
             args['version_id'] = _dict.get('version_id')
         if 'creation_date' in _dict:
-            args['creation_date'] = string_to_datetime(
-                _dict.get('creation_date'))
+            args['creation_date'] = string_to_datetime(_dict.get('creation_date'))
         if 'created_by' in _dict:
             args['created_by'] = _dict.get('created_by')
         if 'locks_total' in _dict:
             args['locks_total'] = _dict.get('locks_total')
         if 'version_custom_metadata' in _dict:
-            args['version_custom_metadata'] = _dict.get(
-                'version_custom_metadata')
+            args['version_custom_metadata'] = _dict.get('version_custom_metadata')
         if 'validity' in _dict:
-            args['validity'] = CertificateValidity.from_dict(
-                _dict.get('validity'))
+            args['validity'] = CertificateValidity.from_dict(_dict.get('validity'))
         if 'serial_number' in _dict:
             args['serial_number'] = _dict.get('serial_number')
         if 'expiration_date' in _dict:
-            args['expiration_date'] = string_to_datetime(
-                _dict.get('expiration_date'))
+            args['expiration_date'] = string_to_datetime(_dict.get('expiration_date'))
         if 'secret_data' in _dict:
-            args['secret_data'] = CertificateSecretData.from_dict(
-                _dict.get('secret_data'))
+            args['secret_data'] = CertificateSecretData.from_dict(_dict.get('secret_data'))
         return cls(**args)
 
     @classmethod
@@ -8350,8 +8200,7 @@ class CertificateSecretVersion(SecretVersion):
         if hasattr(self, 'version_id') and getattr(self, 'version_id') is not None:
             _dict['version_id'] = getattr(self, 'version_id')
         if hasattr(self, 'creation_date') and getattr(self, 'creation_date') is not None:
-            _dict['creation_date'] = datetime_to_string(
-                getattr(self, 'creation_date'))
+            _dict['creation_date'] = datetime_to_string(getattr(self, 'creation_date'))
         if hasattr(self, 'created_by') and getattr(self, 'created_by') is not None:
             _dict['created_by'] = getattr(self, 'created_by')
         if hasattr(self, 'locks_total') and getattr(self, 'locks_total') is not None:
@@ -8363,8 +8212,7 @@ class CertificateSecretVersion(SecretVersion):
         if hasattr(self, 'serial_number') and getattr(self, 'serial_number') is not None:
             _dict['serial_number'] = getattr(self, 'serial_number')
         if hasattr(self, 'expiration_date') and getattr(self, 'expiration_date') is not None:
-            _dict['expiration_date'] = datetime_to_string(
-                getattr(self, 'expiration_date'))
+            _dict['expiration_date'] = datetime_to_string(getattr(self, 'expiration_date'))
         if hasattr(self, 'secret_data') and getattr(self, 'secret_data') is not None:
             _dict['secret_data'] = getattr(self, 'secret_data').to_dict()
         return _dict
@@ -8445,8 +8293,7 @@ class CertificateSecretVersionInfo(SecretVersionInfo):
         if 'id' in _dict:
             args['id'] = _dict.get('id')
         if 'creation_date' in _dict:
-            args['creation_date'] = string_to_datetime(
-                _dict.get('creation_date'))
+            args['creation_date'] = string_to_datetime(_dict.get('creation_date'))
         if 'created_by' in _dict:
             args['created_by'] = _dict.get('created_by')
         if 'payload_available' in _dict:
@@ -8454,16 +8301,13 @@ class CertificateSecretVersionInfo(SecretVersionInfo):
         if 'downloaded' in _dict:
             args['downloaded'] = _dict.get('downloaded')
         if 'version_custom_metadata' in _dict:
-            args['version_custom_metadata'] = _dict.get(
-                'version_custom_metadata')
+            args['version_custom_metadata'] = _dict.get('version_custom_metadata')
         if 'serial_number' in _dict:
             args['serial_number'] = _dict.get('serial_number')
         if 'expiration_date' in _dict:
-            args['expiration_date'] = string_to_datetime(
-                _dict.get('expiration_date'))
+            args['expiration_date'] = string_to_datetime(_dict.get('expiration_date'))
         if 'validity' in _dict:
-            args['validity'] = CertificateValidity.from_dict(
-                _dict.get('validity'))
+            args['validity'] = CertificateValidity.from_dict(_dict.get('validity'))
         return cls(**args)
 
     @classmethod
@@ -8477,8 +8321,7 @@ class CertificateSecretVersionInfo(SecretVersionInfo):
         if hasattr(self, 'id') and getattr(self, 'id') is not None:
             _dict['id'] = getattr(self, 'id')
         if hasattr(self, 'creation_date') and getattr(self, 'creation_date') is not None:
-            _dict['creation_date'] = datetime_to_string(
-                getattr(self, 'creation_date'))
+            _dict['creation_date'] = datetime_to_string(getattr(self, 'creation_date'))
         if hasattr(self, 'created_by') and getattr(self, 'created_by') is not None:
             _dict['created_by'] = getattr(self, 'created_by')
         if hasattr(self, 'payload_available') and getattr(self, 'payload_available') is not None:
@@ -8490,8 +8333,7 @@ class CertificateSecretVersionInfo(SecretVersionInfo):
         if hasattr(self, 'serial_number') and getattr(self, 'serial_number') is not None:
             _dict['serial_number'] = getattr(self, 'serial_number')
         if hasattr(self, 'expiration_date') and getattr(self, 'expiration_date') is not None:
-            _dict['expiration_date'] = datetime_to_string(
-                getattr(self, 'expiration_date'))
+            _dict['expiration_date'] = datetime_to_string(getattr(self, 'expiration_date'))
         if hasattr(self, 'validity') and getattr(self, 'validity') is not None:
             _dict['validity'] = getattr(self, 'validity').to_dict()
         return _dict
@@ -8582,8 +8424,7 @@ class CertificateSecretVersionMetadata(SecretVersionMetadata):
         if 'version_id' in _dict:
             args['version_id'] = _dict.get('version_id')
         if 'creation_date' in _dict:
-            args['creation_date'] = string_to_datetime(
-                _dict.get('creation_date'))
+            args['creation_date'] = string_to_datetime(_dict.get('creation_date'))
         if 'created_by' in _dict:
             args['created_by'] = _dict.get('created_by')
         if 'payload_available' in _dict:
@@ -8593,16 +8434,13 @@ class CertificateSecretVersionMetadata(SecretVersionMetadata):
         if 'locks_total' in _dict:
             args['locks_total'] = _dict.get('locks_total')
         if 'version_custom_metadata' in _dict:
-            args['version_custom_metadata'] = _dict.get(
-                'version_custom_metadata')
+            args['version_custom_metadata'] = _dict.get('version_custom_metadata')
         if 'serial_number' in _dict:
             args['serial_number'] = _dict.get('serial_number')
         if 'expiration_date' in _dict:
-            args['expiration_date'] = string_to_datetime(
-                _dict.get('expiration_date'))
+            args['expiration_date'] = string_to_datetime(_dict.get('expiration_date'))
         if 'validity' in _dict:
-            args['validity'] = CertificateValidity.from_dict(
-                _dict.get('validity'))
+            args['validity'] = CertificateValidity.from_dict(_dict.get('validity'))
         return cls(**args)
 
     @classmethod
@@ -8618,8 +8456,7 @@ class CertificateSecretVersionMetadata(SecretVersionMetadata):
         if hasattr(self, 'version_id') and getattr(self, 'version_id') is not None:
             _dict['version_id'] = getattr(self, 'version_id')
         if hasattr(self, 'creation_date') and getattr(self, 'creation_date') is not None:
-            _dict['creation_date'] = datetime_to_string(
-                getattr(self, 'creation_date'))
+            _dict['creation_date'] = datetime_to_string(getattr(self, 'creation_date'))
         if hasattr(self, 'created_by') and getattr(self, 'created_by') is not None:
             _dict['created_by'] = getattr(self, 'created_by')
         if hasattr(self, 'payload_available') and getattr(self, 'payload_available') is not None:
@@ -8633,8 +8470,7 @@ class CertificateSecretVersionMetadata(SecretVersionMetadata):
         if hasattr(self, 'serial_number') and getattr(self, 'serial_number') is not None:
             _dict['serial_number'] = getattr(self, 'serial_number')
         if hasattr(self, 'expiration_date') and getattr(self, 'expiration_date') is not None:
-            _dict['expiration_date'] = datetime_to_string(
-                getattr(self, 'expiration_date'))
+            _dict['expiration_date'] = datetime_to_string(getattr(self, 'expiration_date'))
         if hasattr(self, 'validity') and getattr(self, 'validity') is not None:
             _dict['validity'] = getattr(self, 'validity').to_dict()
         return _dict
@@ -9045,8 +8881,7 @@ class CertificateTemplateConfig(ConfigElementDefConfig):
         if 'allowed_domains' in _dict:
             args['allowed_domains'] = _dict.get('allowed_domains')
         if 'allowed_domains_template' in _dict:
-            args['allowed_domains_template'] = _dict.get(
-                'allowed_domains_template')
+            args['allowed_domains_template'] = _dict.get('allowed_domains_template')
         if 'allow_bare_domains' in _dict:
             args['allow_bare_domains'] = _dict.get('allow_bare_domains')
         if 'allow_subdomains' in _dict:
@@ -9106,8 +8941,7 @@ class CertificateTemplateConfig(ConfigElementDefConfig):
         if 'policy_identifiers' in _dict:
             args['policy_identifiers'] = _dict.get('policy_identifiers')
         if 'basic_constraints_valid_for_non_ca' in _dict:
-            args['basic_constraints_valid_for_non_ca'] = _dict.get(
-                'basic_constraints_valid_for_non_ca')
+            args['basic_constraints_valid_for_non_ca'] = _dict.get('basic_constraints_valid_for_non_ca')
         if 'not_before_duration' in _dict:
             args['not_before_duration'] = _dict.get('not_before_duration')
         return cls(**args)
@@ -9248,8 +9082,8 @@ class CertificateTemplatesConfig(GetConfigElementsResourcesItem):
         """Initialize a CertificateTemplatesConfig object from a json dictionary."""
         args = {}
         if 'certificate_templates' in _dict:
-            args['certificate_templates'] = [CertificateTemplatesConfigItem.from_dict(
-                x) for x in _dict.get('certificate_templates')]
+            args['certificate_templates'] = [CertificateTemplatesConfigItem.from_dict(x) for x in
+                                             _dict.get('certificate_templates')]
         else:
             raise ValueError(
                 'Required property \'certificate_templates\' not present in CertificateTemplatesConfig JSON')
@@ -9264,8 +9098,7 @@ class CertificateTemplatesConfig(GetConfigElementsResourcesItem):
         """Return a json dictionary representing this model."""
         _dict = {}
         if hasattr(self, 'certificate_templates') and self.certificate_templates is not None:
-            _dict['certificate_templates'] = [x.to_dict()
-                                              for x in self.certificate_templates]
+            _dict['certificate_templates'] = [x.to_dict() for x in self.certificate_templates]
         return _dict
 
     def _to_dict(self):
@@ -9328,14 +9161,12 @@ class ConfigElementDefConfigClassicInfrastructureConfig(ConfigElementDefConfig):
         """Initialize a ConfigElementDefConfigClassicInfrastructureConfig object from a json dictionary."""
         args = {}
         if 'classic_infrastructure_username' in _dict:
-            args['classic_infrastructure_username'] = _dict.get(
-                'classic_infrastructure_username')
+            args['classic_infrastructure_username'] = _dict.get('classic_infrastructure_username')
         else:
             raise ValueError(
                 'Required property \'classic_infrastructure_username\' not present in ConfigElementDefConfigClassicInfrastructureConfig JSON')
         if 'classic_infrastructure_password' in _dict:
-            args['classic_infrastructure_password'] = _dict.get(
-                'classic_infrastructure_password')
+            args['classic_infrastructure_password'] = _dict.get('classic_infrastructure_password')
         else:
             raise ValueError(
                 'Required property \'classic_infrastructure_password\' not present in ConfigElementDefConfigClassicInfrastructureConfig JSON')
@@ -9713,8 +9544,8 @@ class GetConfigElementsResourcesItemCertificateAuthoritiesConfig(GetConfigElemen
         """Initialize a GetConfigElementsResourcesItemCertificateAuthoritiesConfig object from a json dictionary."""
         args = {}
         if 'certificate_authorities' in _dict:
-            args['certificate_authorities'] = [ConfigElementMetadata.from_dict(
-                x) for x in _dict.get('certificate_authorities')]
+            args['certificate_authorities'] = [ConfigElementMetadata.from_dict(x) for x in
+                                               _dict.get('certificate_authorities')]
         else:
             raise ValueError(
                 'Required property \'certificate_authorities\' not present in GetConfigElementsResourcesItemCertificateAuthoritiesConfig JSON')
@@ -9729,8 +9560,7 @@ class GetConfigElementsResourcesItemCertificateAuthoritiesConfig(GetConfigElemen
         """Return a json dictionary representing this model."""
         _dict = {}
         if hasattr(self, 'certificate_authorities') and self.certificate_authorities is not None:
-            _dict['certificate_authorities'] = [x.to_dict()
-                                                for x in self.certificate_authorities]
+            _dict['certificate_authorities'] = [x.to_dict() for x in self.certificate_authorities]
         return _dict
 
     def _to_dict(self):
@@ -9774,8 +9604,7 @@ class GetConfigElementsResourcesItemDnsProvidersConfig(GetConfigElementsResource
         """Initialize a GetConfigElementsResourcesItemDnsProvidersConfig object from a json dictionary."""
         args = {}
         if 'dns_providers' in _dict:
-            args['dns_providers'] = [ConfigElementMetadata.from_dict(
-                x) for x in _dict.get('dns_providers')]
+            args['dns_providers'] = [ConfigElementMetadata.from_dict(x) for x in _dict.get('dns_providers')]
         else:
             raise ValueError(
                 'Required property \'dns_providers\' not present in GetConfigElementsResourcesItemDnsProvidersConfig JSON')
@@ -9840,16 +9669,13 @@ class GetSecretPolicyRotation(GetSecretPolicies):
         """Initialize a GetSecretPolicyRotation object from a json dictionary."""
         args = {}
         if 'metadata' in _dict:
-            args['metadata'] = CollectionMetadata.from_dict(
-                _dict.get('metadata'))
+            args['metadata'] = CollectionMetadata.from_dict(_dict.get('metadata'))
         else:
-            raise ValueError(
-                'Required property \'metadata\' not present in GetSecretPolicyRotation JSON')
+            raise ValueError('Required property \'metadata\' not present in GetSecretPolicyRotation JSON')
         if 'resources' in _dict:
             args['resources'] = _dict.get('resources')
         else:
-            raise ValueError(
-                'Required property \'resources\' not present in GetSecretPolicyRotation JSON')
+            raise ValueError('Required property \'resources\' not present in GetSecretPolicyRotation JSON')
         return cls(**args)
 
     @classmethod
@@ -9923,8 +9749,7 @@ class IAMCredentialsSecretEngineRootConfig(GetConfigResourcesItem):
         if 'api_key' in _dict:
             args['api_key'] = _dict.get('api_key')
         else:
-            raise ValueError(
-                'Required property \'api_key\' not present in IAMCredentialsSecretEngineRootConfig JSON')
+            raise ValueError('Required property \'api_key\' not present in IAMCredentialsSecretEngineRootConfig JSON')
         if 'api_key_hash' in _dict:
             args['api_key_hash'] = _dict.get('api_key_hash')
         return cls(**args)
@@ -10118,8 +9943,7 @@ class IAMCredentialsSecretMetadata(SecretMetadata):
         if 'name' in _dict:
             args['name'] = _dict.get('name')
         else:
-            raise ValueError(
-                'Required property \'name\' not present in IAMCredentialsSecretMetadata JSON')
+            raise ValueError('Required property \'name\' not present in IAMCredentialsSecretMetadata JSON')
         if 'description' in _dict:
             args['description'] = _dict.get('description')
         if 'secret_group_id' in _dict:
@@ -10133,13 +9957,11 @@ class IAMCredentialsSecretMetadata(SecretMetadata):
         if 'crn' in _dict:
             args['crn'] = _dict.get('crn')
         if 'creation_date' in _dict:
-            args['creation_date'] = string_to_datetime(
-                _dict.get('creation_date'))
+            args['creation_date'] = string_to_datetime(_dict.get('creation_date'))
         if 'created_by' in _dict:
             args['created_by'] = _dict.get('created_by')
         if 'last_update_date' in _dict:
-            args['last_update_date'] = string_to_datetime(
-                _dict.get('last_update_date'))
+            args['last_update_date'] = string_to_datetime(_dict.get('last_update_date'))
         if 'versions_total' in _dict:
             args['versions_total'] = _dict.get('versions_total')
         if 'locks_total' in _dict:
@@ -10185,13 +10007,11 @@ class IAMCredentialsSecretMetadata(SecretMetadata):
         if hasattr(self, 'crn') and getattr(self, 'crn') is not None:
             _dict['crn'] = getattr(self, 'crn')
         if hasattr(self, 'creation_date') and getattr(self, 'creation_date') is not None:
-            _dict['creation_date'] = datetime_to_string(
-                getattr(self, 'creation_date'))
+            _dict['creation_date'] = datetime_to_string(getattr(self, 'creation_date'))
         if hasattr(self, 'created_by') and getattr(self, 'created_by') is not None:
             _dict['created_by'] = getattr(self, 'created_by')
         if hasattr(self, 'last_update_date') and getattr(self, 'last_update_date') is not None:
-            _dict['last_update_date'] = datetime_to_string(
-                getattr(self, 'last_update_date'))
+            _dict['last_update_date'] = datetime_to_string(getattr(self, 'last_update_date'))
         if hasattr(self, 'versions_total') and getattr(self, 'versions_total') is not None:
             _dict['versions_total'] = getattr(self, 'versions_total')
         if hasattr(self, 'locks_total') and getattr(self, 'locks_total') is not None:
@@ -10457,8 +10277,7 @@ class IAMCredentialsSecretResource(SecretResource):
         if 'name' in _dict:
             args['name'] = _dict.get('name')
         else:
-            raise ValueError(
-                'Required property \'name\' not present in IAMCredentialsSecretResource JSON')
+            raise ValueError('Required property \'name\' not present in IAMCredentialsSecretResource JSON')
         if 'description' in _dict:
             args['description'] = _dict.get('description')
         if 'secret_group_id' in _dict:
@@ -10474,13 +10293,11 @@ class IAMCredentialsSecretResource(SecretResource):
         if 'crn' in _dict:
             args['crn'] = _dict.get('crn')
         if 'creation_date' in _dict:
-            args['creation_date'] = string_to_datetime(
-                _dict.get('creation_date'))
+            args['creation_date'] = string_to_datetime(_dict.get('creation_date'))
         if 'created_by' in _dict:
             args['created_by'] = _dict.get('created_by')
         if 'last_update_date' in _dict:
-            args['last_update_date'] = string_to_datetime(
-                _dict.get('last_update_date'))
+            args['last_update_date'] = string_to_datetime(_dict.get('last_update_date'))
         if 'versions_total' in _dict:
             args['versions_total'] = _dict.get('versions_total')
         if 'versions' in _dict:
@@ -10490,8 +10307,7 @@ class IAMCredentialsSecretResource(SecretResource):
         if 'custom_metadata' in _dict:
             args['custom_metadata'] = _dict.get('custom_metadata')
         if 'version_custom_metadata' in _dict:
-            args['version_custom_metadata'] = _dict.get(
-                'version_custom_metadata')
+            args['version_custom_metadata'] = _dict.get('version_custom_metadata')
         if 'ttl' in _dict:
             args['ttl'] = _dict.get('ttl')
         if 'access_groups' in _dict:
@@ -10507,8 +10323,7 @@ class IAMCredentialsSecretResource(SecretResource):
         if 'reuse_api_key' in _dict:
             args['reuse_api_key'] = _dict.get('reuse_api_key')
         if 'next_rotation_date' in _dict:
-            args['next_rotation_date'] = string_to_datetime(
-                _dict.get('next_rotation_date'))
+            args['next_rotation_date'] = string_to_datetime(_dict.get('next_rotation_date'))
         return cls(**args)
 
     @classmethod
@@ -10538,13 +10353,11 @@ class IAMCredentialsSecretResource(SecretResource):
         if hasattr(self, 'crn') and getattr(self, 'crn') is not None:
             _dict['crn'] = getattr(self, 'crn')
         if hasattr(self, 'creation_date') and getattr(self, 'creation_date') is not None:
-            _dict['creation_date'] = datetime_to_string(
-                getattr(self, 'creation_date'))
+            _dict['creation_date'] = datetime_to_string(getattr(self, 'creation_date'))
         if hasattr(self, 'created_by') and getattr(self, 'created_by') is not None:
             _dict['created_by'] = getattr(self, 'created_by')
         if hasattr(self, 'last_update_date') and getattr(self, 'last_update_date') is not None:
-            _dict['last_update_date'] = datetime_to_string(
-                getattr(self, 'last_update_date'))
+            _dict['last_update_date'] = datetime_to_string(getattr(self, 'last_update_date'))
         if hasattr(self, 'versions_total') and getattr(self, 'versions_total') is not None:
             _dict['versions_total'] = getattr(self, 'versions_total')
         if hasattr(self, 'versions') and getattr(self, 'versions') is not None:
@@ -10566,13 +10379,11 @@ class IAMCredentialsSecretResource(SecretResource):
         if hasattr(self, 'service_id') and self.service_id is not None:
             _dict['service_id'] = self.service_id
         if hasattr(self, 'service_id_is_static') and getattr(self, 'service_id_is_static') is not None:
-            _dict['service_id_is_static'] = getattr(
-                self, 'service_id_is_static')
+            _dict['service_id_is_static'] = getattr(self, 'service_id_is_static')
         if hasattr(self, 'reuse_api_key') and self.reuse_api_key is not None:
             _dict['reuse_api_key'] = self.reuse_api_key
         if hasattr(self, 'next_rotation_date') and getattr(self, 'next_rotation_date') is not None:
-            _dict['next_rotation_date'] = datetime_to_string(
-                getattr(self, 'next_rotation_date'))
+            _dict['next_rotation_date'] = datetime_to_string(getattr(self, 'next_rotation_date'))
         return _dict
 
     def _to_dict(self):
@@ -10671,15 +10482,13 @@ class IAMCredentialsSecretVersion(SecretVersion):
         if 'version_id' in _dict:
             args['version_id'] = _dict.get('version_id')
         if 'creation_date' in _dict:
-            args['creation_date'] = string_to_datetime(
-                _dict.get('creation_date'))
+            args['creation_date'] = string_to_datetime(_dict.get('creation_date'))
         if 'created_by' in _dict:
             args['created_by'] = _dict.get('created_by')
         if 'locks_total' in _dict:
             args['locks_total'] = _dict.get('locks_total')
         if 'version_custom_metadata' in _dict:
-            args['version_custom_metadata'] = _dict.get(
-                'version_custom_metadata')
+            args['version_custom_metadata'] = _dict.get('version_custom_metadata')
         if 'auto_rotated' in _dict:
             args['auto_rotated'] = _dict.get('auto_rotated')
         if 'secret_data' in _dict:
@@ -10699,8 +10508,7 @@ class IAMCredentialsSecretVersion(SecretVersion):
         if hasattr(self, 'version_id') and getattr(self, 'version_id') is not None:
             _dict['version_id'] = getattr(self, 'version_id')
         if hasattr(self, 'creation_date') and getattr(self, 'creation_date') is not None:
-            _dict['creation_date'] = datetime_to_string(
-                getattr(self, 'creation_date'))
+            _dict['creation_date'] = datetime_to_string(getattr(self, 'creation_date'))
         if hasattr(self, 'created_by') and getattr(self, 'created_by') is not None:
             _dict['created_by'] = getattr(self, 'created_by')
         if hasattr(self, 'locks_total') and getattr(self, 'locks_total') is not None:
@@ -10784,8 +10592,7 @@ class IAMCredentialsSecretVersionInfo(SecretVersionInfo):
         if 'id' in _dict:
             args['id'] = _dict.get('id')
         if 'creation_date' in _dict:
-            args['creation_date'] = string_to_datetime(
-                _dict.get('creation_date'))
+            args['creation_date'] = string_to_datetime(_dict.get('creation_date'))
         if 'created_by' in _dict:
             args['created_by'] = _dict.get('created_by')
         if 'payload_available' in _dict:
@@ -10793,8 +10600,7 @@ class IAMCredentialsSecretVersionInfo(SecretVersionInfo):
         if 'downloaded' in _dict:
             args['downloaded'] = _dict.get('downloaded')
         if 'version_custom_metadata' in _dict:
-            args['version_custom_metadata'] = _dict.get(
-                'version_custom_metadata')
+            args['version_custom_metadata'] = _dict.get('version_custom_metadata')
         if 'auto_rotated' in _dict:
             args['auto_rotated'] = _dict.get('auto_rotated')
         return cls(**args)
@@ -10810,8 +10616,7 @@ class IAMCredentialsSecretVersionInfo(SecretVersionInfo):
         if hasattr(self, 'id') and getattr(self, 'id') is not None:
             _dict['id'] = getattr(self, 'id')
         if hasattr(self, 'creation_date') and getattr(self, 'creation_date') is not None:
-            _dict['creation_date'] = datetime_to_string(
-                getattr(self, 'creation_date'))
+            _dict['creation_date'] = datetime_to_string(getattr(self, 'creation_date'))
         if hasattr(self, 'created_by') and getattr(self, 'created_by') is not None:
             _dict['created_by'] = getattr(self, 'created_by')
         if hasattr(self, 'payload_available') and getattr(self, 'payload_available') is not None:
@@ -10905,8 +10710,7 @@ class IAMCredentialsSecretVersionMetadata(SecretVersionMetadata):
         if 'version_id' in _dict:
             args['version_id'] = _dict.get('version_id')
         if 'creation_date' in _dict:
-            args['creation_date'] = string_to_datetime(
-                _dict.get('creation_date'))
+            args['creation_date'] = string_to_datetime(_dict.get('creation_date'))
         if 'created_by' in _dict:
             args['created_by'] = _dict.get('created_by')
         if 'payload_available' in _dict:
@@ -10916,8 +10720,7 @@ class IAMCredentialsSecretVersionMetadata(SecretVersionMetadata):
         if 'locks_total' in _dict:
             args['locks_total'] = _dict.get('locks_total')
         if 'version_custom_metadata' in _dict:
-            args['version_custom_metadata'] = _dict.get(
-                'version_custom_metadata')
+            args['version_custom_metadata'] = _dict.get('version_custom_metadata')
         if 'auto_rotated' in _dict:
             args['auto_rotated'] = _dict.get('auto_rotated')
         return cls(**args)
@@ -10935,8 +10738,7 @@ class IAMCredentialsSecretVersionMetadata(SecretVersionMetadata):
         if hasattr(self, 'version_id') and getattr(self, 'version_id') is not None:
             _dict['version_id'] = getattr(self, 'version_id')
         if hasattr(self, 'creation_date') and getattr(self, 'creation_date') is not None:
-            _dict['creation_date'] = datetime_to_string(
-                getattr(self, 'creation_date'))
+            _dict['creation_date'] = datetime_to_string(getattr(self, 'creation_date'))
         if hasattr(self, 'created_by') and getattr(self, 'created_by') is not None:
             _dict['created_by'] = getattr(self, 'created_by')
         if hasattr(self, 'payload_available') and getattr(self, 'payload_available') is not None:
@@ -10994,8 +10796,8 @@ class IntermediateCertificateAuthoritiesConfig(GetConfigElementsResourcesItem):
         """Initialize a IntermediateCertificateAuthoritiesConfig object from a json dictionary."""
         args = {}
         if 'intermediate_certificate_authorities' in _dict:
-            args['intermediate_certificate_authorities'] = [IntermediateCertificateAuthoritiesConfigItem.from_dict(
-                x) for x in _dict.get('intermediate_certificate_authorities')]
+            args['intermediate_certificate_authorities'] = [IntermediateCertificateAuthoritiesConfigItem.from_dict(x)
+                                                            for x in _dict.get('intermediate_certificate_authorities')]
         else:
             raise ValueError(
                 'Required property \'intermediate_certificate_authorities\' not present in IntermediateCertificateAuthoritiesConfig JSON')
@@ -11009,9 +10811,10 @@ class IntermediateCertificateAuthoritiesConfig(GetConfigElementsResourcesItem):
     def to_dict(self) -> Dict:
         """Return a json dictionary representing this model."""
         _dict = {}
-        if hasattr(self, 'intermediate_certificate_authorities') and self.intermediate_certificate_authorities is not None:
-            _dict['intermediate_certificate_authorities'] = [
-                x.to_dict() for x in self.intermediate_certificate_authorities]
+        if hasattr(self,
+                   'intermediate_certificate_authorities') and self.intermediate_certificate_authorities is not None:
+            _dict['intermediate_certificate_authorities'] = [x.to_dict() for x in
+                                                             self.intermediate_certificate_authorities]
         return _dict
 
     def _to_dict(self):
@@ -11279,8 +11082,7 @@ class IntermediateCertificateAuthorityConfig(ConfigElementDefConfig):
         if 'max_ttl' in _dict:
             args['max_ttl'] = _dict.get('max_ttl')
         else:
-            raise ValueError(
-                'Required property \'max_ttl\' not present in IntermediateCertificateAuthorityConfig JSON')
+            raise ValueError('Required property \'max_ttl\' not present in IntermediateCertificateAuthorityConfig JSON')
         if 'signing_method' in _dict:
             args['signing_method'] = _dict.get('signing_method')
         else:
@@ -11293,11 +11095,9 @@ class IntermediateCertificateAuthorityConfig(ConfigElementDefConfig):
         if 'crl_disable' in _dict:
             args['crl_disable'] = _dict.get('crl_disable')
         if 'crl_distribution_points_encoded' in _dict:
-            args['crl_distribution_points_encoded'] = _dict.get(
-                'crl_distribution_points_encoded')
+            args['crl_distribution_points_encoded'] = _dict.get('crl_distribution_points_encoded')
         if 'issuing_certificates_urls_encoded' in _dict:
-            args['issuing_certificates_urls_encoded'] = _dict.get(
-                'issuing_certificates_urls_encoded')
+            args['issuing_certificates_urls_encoded'] = _dict.get('issuing_certificates_urls_encoded')
         if 'common_name' in _dict:
             args['common_name'] = _dict.get('common_name')
         else:
@@ -11306,8 +11106,7 @@ class IntermediateCertificateAuthorityConfig(ConfigElementDefConfig):
         if 'status' in _dict:
             args['status'] = _dict.get('status')
         if 'expiration_date' in _dict:
-            args['expiration_date'] = string_to_datetime(
-                _dict.get('expiration_date'))
+            args['expiration_date'] = string_to_datetime(_dict.get('expiration_date'))
         if 'alt_names' in _dict:
             args['alt_names'] = _dict.get('alt_names')
         if 'ip_sans' in _dict:
@@ -11373,8 +11172,7 @@ class IntermediateCertificateAuthorityConfig(ConfigElementDefConfig):
         if hasattr(self, 'status') and getattr(self, 'status') is not None:
             _dict['status'] = getattr(self, 'status')
         if hasattr(self, 'expiration_date') and getattr(self, 'expiration_date') is not None:
-            _dict['expiration_date'] = datetime_to_string(
-                getattr(self, 'expiration_date'))
+            _dict['expiration_date'] = datetime_to_string(getattr(self, 'expiration_date'))
         if hasattr(self, 'alt_names') and self.alt_names is not None:
             _dict['alt_names'] = self.alt_names
         if hasattr(self, 'ip_sans') and self.ip_sans is not None:
@@ -11588,8 +11386,7 @@ class KvSecretMetadata(SecretMetadata):
         if 'name' in _dict:
             args['name'] = _dict.get('name')
         else:
-            raise ValueError(
-                'Required property \'name\' not present in KvSecretMetadata JSON')
+            raise ValueError('Required property \'name\' not present in KvSecretMetadata JSON')
         if 'description' in _dict:
             args['description'] = _dict.get('description')
         if 'secret_group_id' in _dict:
@@ -11603,13 +11400,11 @@ class KvSecretMetadata(SecretMetadata):
         if 'crn' in _dict:
             args['crn'] = _dict.get('crn')
         if 'creation_date' in _dict:
-            args['creation_date'] = string_to_datetime(
-                _dict.get('creation_date'))
+            args['creation_date'] = string_to_datetime(_dict.get('creation_date'))
         if 'created_by' in _dict:
             args['created_by'] = _dict.get('created_by')
         if 'last_update_date' in _dict:
-            args['last_update_date'] = string_to_datetime(
-                _dict.get('last_update_date'))
+            args['last_update_date'] = string_to_datetime(_dict.get('last_update_date'))
         if 'versions_total' in _dict:
             args['versions_total'] = _dict.get('versions_total')
         if 'locks_total' in _dict:
@@ -11645,13 +11440,11 @@ class KvSecretMetadata(SecretMetadata):
         if hasattr(self, 'crn') and getattr(self, 'crn') is not None:
             _dict['crn'] = getattr(self, 'crn')
         if hasattr(self, 'creation_date') and getattr(self, 'creation_date') is not None:
-            _dict['creation_date'] = datetime_to_string(
-                getattr(self, 'creation_date'))
+            _dict['creation_date'] = datetime_to_string(getattr(self, 'creation_date'))
         if hasattr(self, 'created_by') and getattr(self, 'created_by') is not None:
             _dict['created_by'] = getattr(self, 'created_by')
         if hasattr(self, 'last_update_date') and getattr(self, 'last_update_date') is not None:
-            _dict['last_update_date'] = datetime_to_string(
-                getattr(self, 'last_update_date'))
+            _dict['last_update_date'] = datetime_to_string(getattr(self, 'last_update_date'))
         if hasattr(self, 'versions_total') and getattr(self, 'versions_total') is not None:
             _dict['versions_total'] = getattr(self, 'versions_total')
         if hasattr(self, 'locks_total') and getattr(self, 'locks_total') is not None:
@@ -11839,8 +11632,7 @@ class KvSecretResource(SecretResource):
         if 'name' in _dict:
             args['name'] = _dict.get('name')
         else:
-            raise ValueError(
-                'Required property \'name\' not present in KvSecretResource JSON')
+            raise ValueError('Required property \'name\' not present in KvSecretResource JSON')
         if 'description' in _dict:
             args['description'] = _dict.get('description')
         if 'secret_group_id' in _dict:
@@ -11856,13 +11648,11 @@ class KvSecretResource(SecretResource):
         if 'crn' in _dict:
             args['crn'] = _dict.get('crn')
         if 'creation_date' in _dict:
-            args['creation_date'] = string_to_datetime(
-                _dict.get('creation_date'))
+            args['creation_date'] = string_to_datetime(_dict.get('creation_date'))
         if 'created_by' in _dict:
             args['created_by'] = _dict.get('created_by')
         if 'last_update_date' in _dict:
-            args['last_update_date'] = string_to_datetime(
-                _dict.get('last_update_date'))
+            args['last_update_date'] = string_to_datetime(_dict.get('last_update_date'))
         if 'versions_total' in _dict:
             args['versions_total'] = _dict.get('versions_total')
         if 'versions' in _dict:
@@ -11872,11 +11662,9 @@ class KvSecretResource(SecretResource):
         if 'custom_metadata' in _dict:
             args['custom_metadata'] = _dict.get('custom_metadata')
         if 'version_custom_metadata' in _dict:
-            args['version_custom_metadata'] = _dict.get(
-                'version_custom_metadata')
+            args['version_custom_metadata'] = _dict.get('version_custom_metadata')
         if 'expiration_date' in _dict:
-            args['expiration_date'] = string_to_datetime(
-                _dict.get('expiration_date'))
+            args['expiration_date'] = string_to_datetime(_dict.get('expiration_date'))
         if 'payload' in _dict:
             args['payload'] = _dict.get('payload')
         if 'secret_data' in _dict:
@@ -11910,13 +11698,11 @@ class KvSecretResource(SecretResource):
         if hasattr(self, 'crn') and getattr(self, 'crn') is not None:
             _dict['crn'] = getattr(self, 'crn')
         if hasattr(self, 'creation_date') and getattr(self, 'creation_date') is not None:
-            _dict['creation_date'] = datetime_to_string(
-                getattr(self, 'creation_date'))
+            _dict['creation_date'] = datetime_to_string(getattr(self, 'creation_date'))
         if hasattr(self, 'created_by') and getattr(self, 'created_by') is not None:
             _dict['created_by'] = getattr(self, 'created_by')
         if hasattr(self, 'last_update_date') and getattr(self, 'last_update_date') is not None:
-            _dict['last_update_date'] = datetime_to_string(
-                getattr(self, 'last_update_date'))
+            _dict['last_update_date'] = datetime_to_string(getattr(self, 'last_update_date'))
         if hasattr(self, 'versions_total') and getattr(self, 'versions_total') is not None:
             _dict['versions_total'] = getattr(self, 'versions_total')
         if hasattr(self, 'versions') and getattr(self, 'versions') is not None:
@@ -12001,8 +11787,7 @@ class PrivateCertPolicyRotation(SecretPolicyRotationRotation):
         if 'auto_rotate' in _dict:
             args['auto_rotate'] = _dict.get('auto_rotate')
         else:
-            raise ValueError(
-                'Required property \'auto_rotate\' not present in PrivateCertPolicyRotation JSON')
+            raise ValueError('Required property \'auto_rotate\' not present in PrivateCertPolicyRotation JSON')
         if 'interval' in _dict:
             args['interval'] = _dict.get('interval')
         if 'unit' in _dict:
@@ -12084,14 +11869,14 @@ class PrivateCertSecretEngineRootConfig(GetConfigResourcesItem):
         """Initialize a PrivateCertSecretEngineRootConfig object from a json dictionary."""
         args = {}
         if 'root_certificate_authorities' in _dict:
-            args['root_certificate_authorities'] = [RootCertificateAuthoritiesConfigItem.from_dict(
-                x) for x in _dict.get('root_certificate_authorities')]
+            args['root_certificate_authorities'] = [RootCertificateAuthoritiesConfigItem.from_dict(x) for x in
+                                                    _dict.get('root_certificate_authorities')]
         if 'intermediate_certificate_authorities' in _dict:
-            args['intermediate_certificate_authorities'] = [IntermediateCertificateAuthoritiesConfigItem.from_dict(
-                x) for x in _dict.get('intermediate_certificate_authorities')]
+            args['intermediate_certificate_authorities'] = [IntermediateCertificateAuthoritiesConfigItem.from_dict(x)
+                                                            for x in _dict.get('intermediate_certificate_authorities')]
         if 'certificate_templates' in _dict:
-            args['certificate_templates'] = [CertificateTemplatesConfigItem.from_dict(
-                x) for x in _dict.get('certificate_templates')]
+            args['certificate_templates'] = [CertificateTemplatesConfigItem.from_dict(x) for x in
+                                             _dict.get('certificate_templates')]
         return cls(**args)
 
     @classmethod
@@ -12103,14 +11888,13 @@ class PrivateCertSecretEngineRootConfig(GetConfigResourcesItem):
         """Return a json dictionary representing this model."""
         _dict = {}
         if hasattr(self, 'root_certificate_authorities') and getattr(self, 'root_certificate_authorities') is not None:
-            _dict['root_certificate_authorities'] = [x.to_dict()
-                                                     for x in getattr(self, 'root_certificate_authorities')]
-        if hasattr(self, 'intermediate_certificate_authorities') and getattr(self, 'intermediate_certificate_authorities') is not None:
-            _dict['intermediate_certificate_authorities'] = [
-                x.to_dict() for x in getattr(self, 'intermediate_certificate_authorities')]
+            _dict['root_certificate_authorities'] = [x.to_dict() for x in getattr(self, 'root_certificate_authorities')]
+        if hasattr(self, 'intermediate_certificate_authorities') and getattr(self,
+                                                                             'intermediate_certificate_authorities') is not None:
+            _dict['intermediate_certificate_authorities'] = [x.to_dict() for x in
+                                                             getattr(self, 'intermediate_certificate_authorities')]
         if hasattr(self, 'certificate_templates') and getattr(self, 'certificate_templates') is not None:
-            _dict['certificate_templates'] = [x.to_dict()
-                                              for x in getattr(self, 'certificate_templates')]
+            _dict['certificate_templates'] = [x.to_dict() for x in getattr(self, 'certificate_templates')]
         return _dict
 
     def _to_dict(self):
@@ -12288,8 +12072,7 @@ class PrivateCertificateSecretMetadata(SecretMetadata):
         if 'name' in _dict:
             args['name'] = _dict.get('name')
         else:
-            raise ValueError(
-                'Required property \'name\' not present in PrivateCertificateSecretMetadata JSON')
+            raise ValueError('Required property \'name\' not present in PrivateCertificateSecretMetadata JSON')
         if 'description' in _dict:
             args['description'] = _dict.get('description')
         if 'secret_group_id' in _dict:
@@ -12303,13 +12086,11 @@ class PrivateCertificateSecretMetadata(SecretMetadata):
         if 'crn' in _dict:
             args['crn'] = _dict.get('crn')
         if 'creation_date' in _dict:
-            args['creation_date'] = string_to_datetime(
-                _dict.get('creation_date'))
+            args['creation_date'] = string_to_datetime(_dict.get('creation_date'))
         if 'created_by' in _dict:
             args['created_by'] = _dict.get('created_by')
         if 'last_update_date' in _dict:
-            args['last_update_date'] = string_to_datetime(
-                _dict.get('last_update_date'))
+            args['last_update_date'] = string_to_datetime(_dict.get('last_update_date'))
         if 'versions_total' in _dict:
             args['versions_total'] = _dict.get('versions_total')
         if 'locks_total' in _dict:
@@ -12333,15 +12114,13 @@ class PrivateCertificateSecretMetadata(SecretMetadata):
         if 'issuer' in _dict:
             args['issuer'] = _dict.get('issuer')
         if 'validity' in _dict:
-            args['validity'] = CertificateValidity.from_dict(
-                _dict.get('validity'))
+            args['validity'] = CertificateValidity.from_dict(_dict.get('validity'))
         if 'serial_number' in _dict:
             args['serial_number'] = _dict.get('serial_number')
         if 'revocation_time' in _dict:
             args['revocation_time'] = _dict.get('revocation_time')
         if 'revocation_time_rfc3339' in _dict:
-            args['revocation_time_rfc3339'] = string_to_datetime(
-                _dict.get('revocation_time_rfc3339'))
+            args['revocation_time_rfc3339'] = string_to_datetime(_dict.get('revocation_time_rfc3339'))
         return cls(**args)
 
     @classmethod
@@ -12371,13 +12150,11 @@ class PrivateCertificateSecretMetadata(SecretMetadata):
         if hasattr(self, 'crn') and getattr(self, 'crn') is not None:
             _dict['crn'] = getattr(self, 'crn')
         if hasattr(self, 'creation_date') and getattr(self, 'creation_date') is not None:
-            _dict['creation_date'] = datetime_to_string(
-                getattr(self, 'creation_date'))
+            _dict['creation_date'] = datetime_to_string(getattr(self, 'creation_date'))
         if hasattr(self, 'created_by') and getattr(self, 'created_by') is not None:
             _dict['created_by'] = getattr(self, 'created_by')
         if hasattr(self, 'last_update_date') and getattr(self, 'last_update_date') is not None:
-            _dict['last_update_date'] = datetime_to_string(
-                getattr(self, 'last_update_date'))
+            _dict['last_update_date'] = datetime_to_string(getattr(self, 'last_update_date'))
         if hasattr(self, 'versions_total') and getattr(self, 'versions_total') is not None:
             _dict['versions_total'] = getattr(self, 'versions_total')
         if hasattr(self, 'locks_total') and getattr(self, 'locks_total') is not None:
@@ -12385,11 +12162,9 @@ class PrivateCertificateSecretMetadata(SecretMetadata):
         if hasattr(self, 'custom_metadata') and self.custom_metadata is not None:
             _dict['custom_metadata'] = self.custom_metadata
         if hasattr(self, 'certificate_template') and getattr(self, 'certificate_template') is not None:
-            _dict['certificate_template'] = getattr(
-                self, 'certificate_template')
+            _dict['certificate_template'] = getattr(self, 'certificate_template')
         if hasattr(self, 'certificate_authority') and getattr(self, 'certificate_authority') is not None:
-            _dict['certificate_authority'] = getattr(
-                self, 'certificate_authority')
+            _dict['certificate_authority'] = getattr(self, 'certificate_authority')
         if hasattr(self, 'common_name') and getattr(self, 'common_name') is not None:
             _dict['common_name'] = getattr(self, 'common_name')
         if hasattr(self, 'alt_names') and getattr(self, 'alt_names') is not None:
@@ -12409,8 +12184,7 @@ class PrivateCertificateSecretMetadata(SecretMetadata):
         if hasattr(self, 'revocation_time') and getattr(self, 'revocation_time') is not None:
             _dict['revocation_time'] = getattr(self, 'revocation_time')
         if hasattr(self, 'revocation_time_rfc3339') and getattr(self, 'revocation_time_rfc3339') is not None:
-            _dict['revocation_time_rfc3339'] = datetime_to_string(
-                getattr(self, 'revocation_time_rfc3339'))
+            _dict['revocation_time_rfc3339'] = datetime_to_string(getattr(self, 'revocation_time_rfc3339'))
         return _dict
 
     def _to_dict(self):
@@ -12695,8 +12469,7 @@ class PrivateCertificateSecretResource(SecretResource):
         if 'name' in _dict:
             args['name'] = _dict.get('name')
         else:
-            raise ValueError(
-                'Required property \'name\' not present in PrivateCertificateSecretResource JSON')
+            raise ValueError('Required property \'name\' not present in PrivateCertificateSecretResource JSON')
         if 'description' in _dict:
             args['description'] = _dict.get('description')
         if 'secret_group_id' in _dict:
@@ -12712,13 +12485,11 @@ class PrivateCertificateSecretResource(SecretResource):
         if 'crn' in _dict:
             args['crn'] = _dict.get('crn')
         if 'creation_date' in _dict:
-            args['creation_date'] = string_to_datetime(
-                _dict.get('creation_date'))
+            args['creation_date'] = string_to_datetime(_dict.get('creation_date'))
         if 'created_by' in _dict:
             args['created_by'] = _dict.get('created_by')
         if 'last_update_date' in _dict:
-            args['last_update_date'] = string_to_datetime(
-                _dict.get('last_update_date'))
+            args['last_update_date'] = string_to_datetime(_dict.get('last_update_date'))
         if 'versions_total' in _dict:
             args['versions_total'] = _dict.get('versions_total')
         if 'versions' in _dict:
@@ -12728,8 +12499,7 @@ class PrivateCertificateSecretResource(SecretResource):
         if 'custom_metadata' in _dict:
             args['custom_metadata'] = _dict.get('custom_metadata')
         if 'version_custom_metadata' in _dict:
-            args['version_custom_metadata'] = _dict.get(
-                'version_custom_metadata')
+            args['version_custom_metadata'] = _dict.get('version_custom_metadata')
         if 'certificate_template' in _dict:
             args['certificate_template'] = _dict.get('certificate_template')
         else:
@@ -12740,8 +12510,7 @@ class PrivateCertificateSecretResource(SecretResource):
         if 'common_name' in _dict:
             args['common_name'] = _dict.get('common_name')
         else:
-            raise ValueError(
-                'Required property \'common_name\' not present in PrivateCertificateSecretResource JSON')
+            raise ValueError('Required property \'common_name\' not present in PrivateCertificateSecretResource JSON')
         if 'alt_names' in _dict:
             args['alt_names'] = _dict.get('alt_names')
         if 'ip_sans' in _dict:
@@ -12767,15 +12536,13 @@ class PrivateCertificateSecretResource(SecretResource):
         if 'issuer' in _dict:
             args['issuer'] = _dict.get('issuer')
         if 'validity' in _dict:
-            args['validity'] = CertificateValidity.from_dict(
-                _dict.get('validity'))
+            args['validity'] = CertificateValidity.from_dict(_dict.get('validity'))
         if 'serial_number' in _dict:
             args['serial_number'] = _dict.get('serial_number')
         if 'revocation_time' in _dict:
             args['revocation_time'] = _dict.get('revocation_time')
         if 'revocation_time_rfc3339' in _dict:
-            args['revocation_time_rfc3339'] = string_to_datetime(
-                _dict.get('revocation_time_rfc3339'))
+            args['revocation_time_rfc3339'] = string_to_datetime(_dict.get('revocation_time_rfc3339'))
         if 'secret_data' in _dict:
             args['secret_data'] = _dict.get('secret_data')
         return cls(**args)
@@ -12807,13 +12574,11 @@ class PrivateCertificateSecretResource(SecretResource):
         if hasattr(self, 'crn') and getattr(self, 'crn') is not None:
             _dict['crn'] = getattr(self, 'crn')
         if hasattr(self, 'creation_date') and getattr(self, 'creation_date') is not None:
-            _dict['creation_date'] = datetime_to_string(
-                getattr(self, 'creation_date'))
+            _dict['creation_date'] = datetime_to_string(getattr(self, 'creation_date'))
         if hasattr(self, 'created_by') and getattr(self, 'created_by') is not None:
             _dict['created_by'] = getattr(self, 'created_by')
         if hasattr(self, 'last_update_date') and getattr(self, 'last_update_date') is not None:
-            _dict['last_update_date'] = datetime_to_string(
-                getattr(self, 'last_update_date'))
+            _dict['last_update_date'] = datetime_to_string(getattr(self, 'last_update_date'))
         if hasattr(self, 'versions_total') and getattr(self, 'versions_total') is not None:
             _dict['versions_total'] = getattr(self, 'versions_total')
         if hasattr(self, 'versions') and getattr(self, 'versions') is not None:
@@ -12827,8 +12592,7 @@ class PrivateCertificateSecretResource(SecretResource):
         if hasattr(self, 'certificate_template') and self.certificate_template is not None:
             _dict['certificate_template'] = self.certificate_template
         if hasattr(self, 'certificate_authority') and getattr(self, 'certificate_authority') is not None:
-            _dict['certificate_authority'] = getattr(
-                self, 'certificate_authority')
+            _dict['certificate_authority'] = getattr(self, 'certificate_authority')
         if hasattr(self, 'common_name') and self.common_name is not None:
             _dict['common_name'] = self.common_name
         if hasattr(self, 'alt_names') and self.alt_names is not None:
@@ -12862,8 +12626,7 @@ class PrivateCertificateSecretResource(SecretResource):
         if hasattr(self, 'revocation_time') and getattr(self, 'revocation_time') is not None:
             _dict['revocation_time'] = getattr(self, 'revocation_time')
         if hasattr(self, 'revocation_time_rfc3339') and getattr(self, 'revocation_time_rfc3339') is not None:
-            _dict['revocation_time_rfc3339'] = datetime_to_string(
-                getattr(self, 'revocation_time_rfc3339'))
+            _dict['revocation_time_rfc3339'] = datetime_to_string(getattr(self, 'revocation_time_rfc3339'))
         if hasattr(self, 'secret_data') and getattr(self, 'secret_data') is not None:
             _dict['secret_data'] = getattr(self, 'secret_data')
         return _dict
@@ -13002,26 +12765,21 @@ class PrivateCertificateSecretVersion(SecretVersion):
         if 'version_id' in _dict:
             args['version_id'] = _dict.get('version_id')
         if 'creation_date' in _dict:
-            args['creation_date'] = string_to_datetime(
-                _dict.get('creation_date'))
+            args['creation_date'] = string_to_datetime(_dict.get('creation_date'))
         if 'created_by' in _dict:
             args['created_by'] = _dict.get('created_by')
         if 'locks_total' in _dict:
             args['locks_total'] = _dict.get('locks_total')
         if 'version_custom_metadata' in _dict:
-            args['version_custom_metadata'] = _dict.get(
-                'version_custom_metadata')
+            args['version_custom_metadata'] = _dict.get('version_custom_metadata')
         if 'validity' in _dict:
-            args['validity'] = CertificateValidity.from_dict(
-                _dict.get('validity'))
+            args['validity'] = CertificateValidity.from_dict(_dict.get('validity'))
         if 'serial_number' in _dict:
             args['serial_number'] = _dict.get('serial_number')
         if 'expiration_date' in _dict:
-            args['expiration_date'] = string_to_datetime(
-                _dict.get('expiration_date'))
+            args['expiration_date'] = string_to_datetime(_dict.get('expiration_date'))
         if 'secret_data' in _dict:
-            args['secret_data'] = CertificateSecretData.from_dict(
-                _dict.get('secret_data'))
+            args['secret_data'] = CertificateSecretData.from_dict(_dict.get('secret_data'))
         if 'state' in _dict:
             args['state'] = _dict.get('state')
         if 'state_description' in _dict:
@@ -13029,8 +12787,7 @@ class PrivateCertificateSecretVersion(SecretVersion):
         if 'revocation_time' in _dict:
             args['revocation_time'] = _dict.get('revocation_time')
         if 'revocation_time_rfc3339' in _dict:
-            args['revocation_time_rfc3339'] = string_to_datetime(
-                _dict.get('revocation_time_rfc3339'))
+            args['revocation_time_rfc3339'] = string_to_datetime(_dict.get('revocation_time_rfc3339'))
         if 'auto_rotated' in _dict:
             args['auto_rotated'] = _dict.get('auto_rotated')
         return cls(**args)
@@ -13048,8 +12805,7 @@ class PrivateCertificateSecretVersion(SecretVersion):
         if hasattr(self, 'version_id') and getattr(self, 'version_id') is not None:
             _dict['version_id'] = getattr(self, 'version_id')
         if hasattr(self, 'creation_date') and getattr(self, 'creation_date') is not None:
-            _dict['creation_date'] = datetime_to_string(
-                getattr(self, 'creation_date'))
+            _dict['creation_date'] = datetime_to_string(getattr(self, 'creation_date'))
         if hasattr(self, 'created_by') and getattr(self, 'created_by') is not None:
             _dict['created_by'] = getattr(self, 'created_by')
         if hasattr(self, 'locks_total') and getattr(self, 'locks_total') is not None:
@@ -13061,8 +12817,7 @@ class PrivateCertificateSecretVersion(SecretVersion):
         if hasattr(self, 'serial_number') and getattr(self, 'serial_number') is not None:
             _dict['serial_number'] = getattr(self, 'serial_number')
         if hasattr(self, 'expiration_date') and getattr(self, 'expiration_date') is not None:
-            _dict['expiration_date'] = datetime_to_string(
-                getattr(self, 'expiration_date'))
+            _dict['expiration_date'] = datetime_to_string(getattr(self, 'expiration_date'))
         if hasattr(self, 'secret_data') and getattr(self, 'secret_data') is not None:
             _dict['secret_data'] = getattr(self, 'secret_data').to_dict()
         if hasattr(self, 'state') and getattr(self, 'state') is not None:
@@ -13072,8 +12827,7 @@ class PrivateCertificateSecretVersion(SecretVersion):
         if hasattr(self, 'revocation_time') and getattr(self, 'revocation_time') is not None:
             _dict['revocation_time'] = getattr(self, 'revocation_time')
         if hasattr(self, 'revocation_time_rfc3339') and getattr(self, 'revocation_time_rfc3339') is not None:
-            _dict['revocation_time_rfc3339'] = datetime_to_string(
-                getattr(self, 'revocation_time_rfc3339'))
+            _dict['revocation_time_rfc3339'] = datetime_to_string(getattr(self, 'revocation_time_rfc3339'))
         if hasattr(self, 'auto_rotated') and self.auto_rotated is not None:
             _dict['auto_rotated'] = self.auto_rotated
         return _dict
@@ -13177,8 +12931,7 @@ class PrivateCertificateSecretVersionInfo(SecretVersionInfo):
         if 'id' in _dict:
             args['id'] = _dict.get('id')
         if 'creation_date' in _dict:
-            args['creation_date'] = string_to_datetime(
-                _dict.get('creation_date'))
+            args['creation_date'] = string_to_datetime(_dict.get('creation_date'))
         if 'created_by' in _dict:
             args['created_by'] = _dict.get('created_by')
         if 'payload_available' in _dict:
@@ -13186,16 +12939,13 @@ class PrivateCertificateSecretVersionInfo(SecretVersionInfo):
         if 'downloaded' in _dict:
             args['downloaded'] = _dict.get('downloaded')
         if 'version_custom_metadata' in _dict:
-            args['version_custom_metadata'] = _dict.get(
-                'version_custom_metadata')
+            args['version_custom_metadata'] = _dict.get('version_custom_metadata')
         if 'serial_number' in _dict:
             args['serial_number'] = _dict.get('serial_number')
         if 'expiration_date' in _dict:
-            args['expiration_date'] = string_to_datetime(
-                _dict.get('expiration_date'))
+            args['expiration_date'] = string_to_datetime(_dict.get('expiration_date'))
         if 'validity' in _dict:
-            args['validity'] = CertificateValidity.from_dict(
-                _dict.get('validity'))
+            args['validity'] = CertificateValidity.from_dict(_dict.get('validity'))
         if 'state' in _dict:
             args['state'] = _dict.get('state')
         if 'state_description' in _dict:
@@ -13203,8 +12953,7 @@ class PrivateCertificateSecretVersionInfo(SecretVersionInfo):
         if 'revocation_time' in _dict:
             args['revocation_time'] = _dict.get('revocation_time')
         if 'revocation_time_rfc3339' in _dict:
-            args['revocation_time_rfc3339'] = string_to_datetime(
-                _dict.get('revocation_time_rfc3339'))
+            args['revocation_time_rfc3339'] = string_to_datetime(_dict.get('revocation_time_rfc3339'))
         if 'auto_rotated' in _dict:
             args['auto_rotated'] = _dict.get('auto_rotated')
         return cls(**args)
@@ -13220,8 +12969,7 @@ class PrivateCertificateSecretVersionInfo(SecretVersionInfo):
         if hasattr(self, 'id') and getattr(self, 'id') is not None:
             _dict['id'] = getattr(self, 'id')
         if hasattr(self, 'creation_date') and getattr(self, 'creation_date') is not None:
-            _dict['creation_date'] = datetime_to_string(
-                getattr(self, 'creation_date'))
+            _dict['creation_date'] = datetime_to_string(getattr(self, 'creation_date'))
         if hasattr(self, 'created_by') and getattr(self, 'created_by') is not None:
             _dict['created_by'] = getattr(self, 'created_by')
         if hasattr(self, 'payload_available') and getattr(self, 'payload_available') is not None:
@@ -13233,8 +12981,7 @@ class PrivateCertificateSecretVersionInfo(SecretVersionInfo):
         if hasattr(self, 'serial_number') and getattr(self, 'serial_number') is not None:
             _dict['serial_number'] = getattr(self, 'serial_number')
         if hasattr(self, 'expiration_date') and getattr(self, 'expiration_date') is not None:
-            _dict['expiration_date'] = datetime_to_string(
-                getattr(self, 'expiration_date'))
+            _dict['expiration_date'] = datetime_to_string(getattr(self, 'expiration_date'))
         if hasattr(self, 'validity') and getattr(self, 'validity') is not None:
             _dict['validity'] = getattr(self, 'validity').to_dict()
         if hasattr(self, 'state') and getattr(self, 'state') is not None:
@@ -13244,8 +12991,7 @@ class PrivateCertificateSecretVersionInfo(SecretVersionInfo):
         if hasattr(self, 'revocation_time') and getattr(self, 'revocation_time') is not None:
             _dict['revocation_time'] = getattr(self, 'revocation_time')
         if hasattr(self, 'revocation_time_rfc3339') and getattr(self, 'revocation_time_rfc3339') is not None:
-            _dict['revocation_time_rfc3339'] = datetime_to_string(
-                getattr(self, 'revocation_time_rfc3339'))
+            _dict['revocation_time_rfc3339'] = datetime_to_string(getattr(self, 'revocation_time_rfc3339'))
         if hasattr(self, 'auto_rotated') and self.auto_rotated is not None:
             _dict['auto_rotated'] = self.auto_rotated
         return _dict
@@ -13359,8 +13105,7 @@ class PrivateCertificateSecretVersionMetadata(SecretVersionMetadata):
         if 'version_id' in _dict:
             args['version_id'] = _dict.get('version_id')
         if 'creation_date' in _dict:
-            args['creation_date'] = string_to_datetime(
-                _dict.get('creation_date'))
+            args['creation_date'] = string_to_datetime(_dict.get('creation_date'))
         if 'created_by' in _dict:
             args['created_by'] = _dict.get('created_by')
         if 'payload_available' in _dict:
@@ -13370,16 +13115,13 @@ class PrivateCertificateSecretVersionMetadata(SecretVersionMetadata):
         if 'locks_total' in _dict:
             args['locks_total'] = _dict.get('locks_total')
         if 'version_custom_metadata' in _dict:
-            args['version_custom_metadata'] = _dict.get(
-                'version_custom_metadata')
+            args['version_custom_metadata'] = _dict.get('version_custom_metadata')
         if 'serial_number' in _dict:
             args['serial_number'] = _dict.get('serial_number')
         if 'expiration_date' in _dict:
-            args['expiration_date'] = string_to_datetime(
-                _dict.get('expiration_date'))
+            args['expiration_date'] = string_to_datetime(_dict.get('expiration_date'))
         if 'validity' in _dict:
-            args['validity'] = CertificateValidity.from_dict(
-                _dict.get('validity'))
+            args['validity'] = CertificateValidity.from_dict(_dict.get('validity'))
         if 'state' in _dict:
             args['state'] = _dict.get('state')
         if 'state_description' in _dict:
@@ -13387,8 +13129,7 @@ class PrivateCertificateSecretVersionMetadata(SecretVersionMetadata):
         if 'revocation_time' in _dict:
             args['revocation_time'] = _dict.get('revocation_time')
         if 'revocation_time_rfc3339' in _dict:
-            args['revocation_time_rfc3339'] = string_to_datetime(
-                _dict.get('revocation_time_rfc3339'))
+            args['revocation_time_rfc3339'] = string_to_datetime(_dict.get('revocation_time_rfc3339'))
         if 'auto_rotated' in _dict:
             args['auto_rotated'] = _dict.get('auto_rotated')
         return cls(**args)
@@ -13406,8 +13147,7 @@ class PrivateCertificateSecretVersionMetadata(SecretVersionMetadata):
         if hasattr(self, 'version_id') and getattr(self, 'version_id') is not None:
             _dict['version_id'] = getattr(self, 'version_id')
         if hasattr(self, 'creation_date') and getattr(self, 'creation_date') is not None:
-            _dict['creation_date'] = datetime_to_string(
-                getattr(self, 'creation_date'))
+            _dict['creation_date'] = datetime_to_string(getattr(self, 'creation_date'))
         if hasattr(self, 'created_by') and getattr(self, 'created_by') is not None:
             _dict['created_by'] = getattr(self, 'created_by')
         if hasattr(self, 'payload_available') and getattr(self, 'payload_available') is not None:
@@ -13421,8 +13161,7 @@ class PrivateCertificateSecretVersionMetadata(SecretVersionMetadata):
         if hasattr(self, 'serial_number') and getattr(self, 'serial_number') is not None:
             _dict['serial_number'] = getattr(self, 'serial_number')
         if hasattr(self, 'expiration_date') and getattr(self, 'expiration_date') is not None:
-            _dict['expiration_date'] = datetime_to_string(
-                getattr(self, 'expiration_date'))
+            _dict['expiration_date'] = datetime_to_string(getattr(self, 'expiration_date'))
         if hasattr(self, 'validity') and getattr(self, 'validity') is not None:
             _dict['validity'] = getattr(self, 'validity').to_dict()
         if hasattr(self, 'state') and getattr(self, 'state') is not None:
@@ -13432,8 +13171,7 @@ class PrivateCertificateSecretVersionMetadata(SecretVersionMetadata):
         if hasattr(self, 'revocation_time') and getattr(self, 'revocation_time') is not None:
             _dict['revocation_time'] = getattr(self, 'revocation_time')
         if hasattr(self, 'revocation_time_rfc3339') and getattr(self, 'revocation_time_rfc3339') is not None:
-            _dict['revocation_time_rfc3339'] = datetime_to_string(
-                getattr(self, 'revocation_time_rfc3339'))
+            _dict['revocation_time_rfc3339'] = datetime_to_string(getattr(self, 'revocation_time_rfc3339'))
         if hasattr(self, 'auto_rotated') and self.auto_rotated is not None:
             _dict['auto_rotated'] = self.auto_rotated
         return _dict
@@ -13486,11 +13224,10 @@ class PublicCertSecretEngineRootConfig(GetConfigResourcesItem):
         """Initialize a PublicCertSecretEngineRootConfig object from a json dictionary."""
         args = {}
         if 'certificate_authorities' in _dict:
-            args['certificate_authorities'] = [ConfigElementMetadata.from_dict(
-                x) for x in _dict.get('certificate_authorities')]
+            args['certificate_authorities'] = [ConfigElementMetadata.from_dict(x) for x in
+                                               _dict.get('certificate_authorities')]
         if 'dns_providers' in _dict:
-            args['dns_providers'] = [ConfigElementMetadata.from_dict(
-                x) for x in _dict.get('dns_providers')]
+            args['dns_providers'] = [ConfigElementMetadata.from_dict(x) for x in _dict.get('dns_providers')]
         return cls(**args)
 
     @classmethod
@@ -13502,8 +13239,7 @@ class PublicCertSecretEngineRootConfig(GetConfigResourcesItem):
         """Return a json dictionary representing this model."""
         _dict = {}
         if hasattr(self, 'certificate_authorities') and getattr(self, 'certificate_authorities') is not None:
-            _dict['certificate_authorities'] = [x.to_dict()
-                                                for x in getattr(self, 'certificate_authorities')]
+            _dict['certificate_authorities'] = [x.to_dict() for x in getattr(self, 'certificate_authorities')]
         if hasattr(self, 'dns_providers') and self.dns_providers is not None:
             _dict['dns_providers'] = [x.to_dict() for x in self.dns_providers]
         return _dict
@@ -13696,8 +13432,7 @@ class PublicCertificateSecretMetadata(SecretMetadata):
         if 'name' in _dict:
             args['name'] = _dict.get('name')
         else:
-            raise ValueError(
-                'Required property \'name\' not present in PublicCertificateSecretMetadata JSON')
+            raise ValueError('Required property \'name\' not present in PublicCertificateSecretMetadata JSON')
         if 'description' in _dict:
             args['description'] = _dict.get('description')
         if 'secret_group_id' in _dict:
@@ -13711,13 +13446,11 @@ class PublicCertificateSecretMetadata(SecretMetadata):
         if 'crn' in _dict:
             args['crn'] = _dict.get('crn')
         if 'creation_date' in _dict:
-            args['creation_date'] = string_to_datetime(
-                _dict.get('creation_date'))
+            args['creation_date'] = string_to_datetime(_dict.get('creation_date'))
         if 'created_by' in _dict:
             args['created_by'] = _dict.get('created_by')
         if 'last_update_date' in _dict:
-            args['last_update_date'] = string_to_datetime(
-                _dict.get('last_update_date'))
+            args['last_update_date'] = string_to_datetime(_dict.get('last_update_date'))
         if 'versions_total' in _dict:
             args['versions_total'] = _dict.get('versions_total')
         if 'locks_total' in _dict:
@@ -13743,11 +13476,9 @@ class PublicCertificateSecretMetadata(SecretMetadata):
         if 'rotation' in _dict:
             args['rotation'] = Rotation.from_dict(_dict.get('rotation'))
         if 'issuance_info' in _dict:
-            args['issuance_info'] = IssuanceInfo.from_dict(
-                _dict.get('issuance_info'))
+            args['issuance_info'] = IssuanceInfo.from_dict(_dict.get('issuance_info'))
         if 'validity' in _dict:
-            args['validity'] = CertificateValidity.from_dict(
-                _dict.get('validity'))
+            args['validity'] = CertificateValidity.from_dict(_dict.get('validity'))
         if 'serial_number' in _dict:
             args['serial_number'] = _dict.get('serial_number')
         return cls(**args)
@@ -13779,13 +13510,11 @@ class PublicCertificateSecretMetadata(SecretMetadata):
         if hasattr(self, 'crn') and getattr(self, 'crn') is not None:
             _dict['crn'] = getattr(self, 'crn')
         if hasattr(self, 'creation_date') and getattr(self, 'creation_date') is not None:
-            _dict['creation_date'] = datetime_to_string(
-                getattr(self, 'creation_date'))
+            _dict['creation_date'] = datetime_to_string(getattr(self, 'creation_date'))
         if hasattr(self, 'created_by') and getattr(self, 'created_by') is not None:
             _dict['created_by'] = getattr(self, 'created_by')
         if hasattr(self, 'last_update_date') and getattr(self, 'last_update_date') is not None:
-            _dict['last_update_date'] = datetime_to_string(
-                getattr(self, 'last_update_date'))
+            _dict['last_update_date'] = datetime_to_string(getattr(self, 'last_update_date'))
         if hasattr(self, 'versions_total') and getattr(self, 'versions_total') is not None:
             _dict['versions_total'] = getattr(self, 'versions_total')
         if hasattr(self, 'locks_total') and getattr(self, 'locks_total') is not None:
@@ -13805,11 +13534,9 @@ class PublicCertificateSecretMetadata(SecretMetadata):
         if hasattr(self, 'common_name') and self.common_name is not None:
             _dict['common_name'] = self.common_name
         if hasattr(self, 'intermediate_included') and getattr(self, 'intermediate_included') is not None:
-            _dict['intermediate_included'] = getattr(
-                self, 'intermediate_included')
+            _dict['intermediate_included'] = getattr(self, 'intermediate_included')
         if hasattr(self, 'private_key_included') and getattr(self, 'private_key_included') is not None:
-            _dict['private_key_included'] = getattr(
-                self, 'private_key_included')
+            _dict['private_key_included'] = getattr(self, 'private_key_included')
         if hasattr(self, 'rotation') and self.rotation is not None:
             _dict['rotation'] = self.rotation.to_dict()
         if hasattr(self, 'issuance_info') and getattr(self, 'issuance_info') is not None:
@@ -14083,8 +13810,7 @@ class PublicCertificateSecretResource(SecretResource):
         if 'name' in _dict:
             args['name'] = _dict.get('name')
         else:
-            raise ValueError(
-                'Required property \'name\' not present in PublicCertificateSecretResource JSON')
+            raise ValueError('Required property \'name\' not present in PublicCertificateSecretResource JSON')
         if 'description' in _dict:
             args['description'] = _dict.get('description')
         if 'secret_group_id' in _dict:
@@ -14100,13 +13826,11 @@ class PublicCertificateSecretResource(SecretResource):
         if 'crn' in _dict:
             args['crn'] = _dict.get('crn')
         if 'creation_date' in _dict:
-            args['creation_date'] = string_to_datetime(
-                _dict.get('creation_date'))
+            args['creation_date'] = string_to_datetime(_dict.get('creation_date'))
         if 'created_by' in _dict:
             args['created_by'] = _dict.get('created_by')
         if 'last_update_date' in _dict:
-            args['last_update_date'] = string_to_datetime(
-                _dict.get('last_update_date'))
+            args['last_update_date'] = string_to_datetime(_dict.get('last_update_date'))
         if 'versions_total' in _dict:
             args['versions_total'] = _dict.get('versions_total')
         if 'versions' in _dict:
@@ -14116,8 +13840,7 @@ class PublicCertificateSecretResource(SecretResource):
         if 'custom_metadata' in _dict:
             args['custom_metadata'] = _dict.get('custom_metadata')
         if 'version_custom_metadata' in _dict:
-            args['version_custom_metadata'] = _dict.get(
-                'version_custom_metadata')
+            args['version_custom_metadata'] = _dict.get('version_custom_metadata')
         if 'issuer' in _dict:
             args['issuer'] = _dict.get('issuer')
         if 'bundle_certs' in _dict:
@@ -14141,11 +13864,9 @@ class PublicCertificateSecretResource(SecretResource):
         if 'rotation' in _dict:
             args['rotation'] = Rotation.from_dict(_dict.get('rotation'))
         if 'issuance_info' in _dict:
-            args['issuance_info'] = IssuanceInfo.from_dict(
-                _dict.get('issuance_info'))
+            args['issuance_info'] = IssuanceInfo.from_dict(_dict.get('issuance_info'))
         if 'validity' in _dict:
-            args['validity'] = CertificateValidity.from_dict(
-                _dict.get('validity'))
+            args['validity'] = CertificateValidity.from_dict(_dict.get('validity'))
         if 'serial_number' in _dict:
             args['serial_number'] = _dict.get('serial_number')
         if 'secret_data' in _dict:
@@ -14179,13 +13900,11 @@ class PublicCertificateSecretResource(SecretResource):
         if hasattr(self, 'crn') and getattr(self, 'crn') is not None:
             _dict['crn'] = getattr(self, 'crn')
         if hasattr(self, 'creation_date') and getattr(self, 'creation_date') is not None:
-            _dict['creation_date'] = datetime_to_string(
-                getattr(self, 'creation_date'))
+            _dict['creation_date'] = datetime_to_string(getattr(self, 'creation_date'))
         if hasattr(self, 'created_by') and getattr(self, 'created_by') is not None:
             _dict['created_by'] = getattr(self, 'created_by')
         if hasattr(self, 'last_update_date') and getattr(self, 'last_update_date') is not None:
-            _dict['last_update_date'] = datetime_to_string(
-                getattr(self, 'last_update_date'))
+            _dict['last_update_date'] = datetime_to_string(getattr(self, 'last_update_date'))
         if hasattr(self, 'versions_total') and getattr(self, 'versions_total') is not None:
             _dict['versions_total'] = getattr(self, 'versions_total')
         if hasattr(self, 'versions') and getattr(self, 'versions') is not None:
@@ -14213,11 +13932,9 @@ class PublicCertificateSecretResource(SecretResource):
         if hasattr(self, 'common_name') and self.common_name is not None:
             _dict['common_name'] = self.common_name
         if hasattr(self, 'private_key_included') and getattr(self, 'private_key_included') is not None:
-            _dict['private_key_included'] = getattr(
-                self, 'private_key_included')
+            _dict['private_key_included'] = getattr(self, 'private_key_included')
         if hasattr(self, 'intermediate_included') and getattr(self, 'intermediate_included') is not None:
-            _dict['intermediate_included'] = getattr(
-                self, 'intermediate_included')
+            _dict['intermediate_included'] = getattr(self, 'intermediate_included')
         if hasattr(self, 'rotation') and self.rotation is not None:
             _dict['rotation'] = self.rotation.to_dict()
         if hasattr(self, 'issuance_info') and getattr(self, 'issuance_info') is not None:
@@ -14313,13 +14030,11 @@ class RestoreIAMCredentialsSecretBody(SecretAction):
         if 'version_id' in _dict:
             args['version_id'] = _dict.get('version_id')
         else:
-            raise ValueError(
-                'Required property \'version_id\' not present in RestoreIAMCredentialsSecretBody JSON')
+            raise ValueError('Required property \'version_id\' not present in RestoreIAMCredentialsSecretBody JSON')
         if 'custom_metadata' in _dict:
             args['custom_metadata'] = _dict.get('custom_metadata')
         if 'version_custom_metadata' in _dict:
-            args['version_custom_metadata'] = _dict.get(
-                'version_custom_metadata')
+            args['version_custom_metadata'] = _dict.get('version_custom_metadata')
         return cls(**args)
 
     @classmethod
@@ -14382,8 +14097,7 @@ class RevokeAction(ConfigAction):
         if 'serial_number' in _dict:
             args['serial_number'] = _dict.get('serial_number')
         else:
-            raise ValueError(
-                'Required property \'serial_number\' not present in RevokeAction JSON')
+            raise ValueError('Required property \'serial_number\' not present in RevokeAction JSON')
         return cls(**args)
 
     @classmethod
@@ -14499,8 +14213,8 @@ class RootCertificateAuthoritiesConfig(GetConfigElementsResourcesItem):
         """Initialize a RootCertificateAuthoritiesConfig object from a json dictionary."""
         args = {}
         if 'root_certificate_authorities' in _dict:
-            args['root_certificate_authorities'] = [RootCertificateAuthoritiesConfigItem.from_dict(
-                x) for x in _dict.get('root_certificate_authorities')]
+            args['root_certificate_authorities'] = [RootCertificateAuthoritiesConfigItem.from_dict(x) for x in
+                                                    _dict.get('root_certificate_authorities')]
         else:
             raise ValueError(
                 'Required property \'root_certificate_authorities\' not present in RootCertificateAuthoritiesConfig JSON')
@@ -14515,8 +14229,7 @@ class RootCertificateAuthoritiesConfig(GetConfigElementsResourcesItem):
         """Return a json dictionary representing this model."""
         _dict = {}
         if hasattr(self, 'root_certificate_authorities') and self.root_certificate_authorities is not None:
-            _dict['root_certificate_authorities'] = [x.to_dict()
-                                                     for x in self.root_certificate_authorities]
+            _dict['root_certificate_authorities'] = [x.to_dict() for x in self.root_certificate_authorities]
         return _dict
 
     def _to_dict(self):
@@ -14795,28 +14508,23 @@ class RootCertificateAuthorityConfig(ConfigElementDefConfig):
         if 'max_ttl' in _dict:
             args['max_ttl'] = _dict.get('max_ttl')
         else:
-            raise ValueError(
-                'Required property \'max_ttl\' not present in RootCertificateAuthorityConfig JSON')
+            raise ValueError('Required property \'max_ttl\' not present in RootCertificateAuthorityConfig JSON')
         if 'crl_expiry' in _dict:
             args['crl_expiry'] = _dict.get('crl_expiry')
         if 'crl_disable' in _dict:
             args['crl_disable'] = _dict.get('crl_disable')
         if 'crl_distribution_points_encoded' in _dict:
-            args['crl_distribution_points_encoded'] = _dict.get(
-                'crl_distribution_points_encoded')
+            args['crl_distribution_points_encoded'] = _dict.get('crl_distribution_points_encoded')
         if 'issuing_certificates_urls_encoded' in _dict:
-            args['issuing_certificates_urls_encoded'] = _dict.get(
-                'issuing_certificates_urls_encoded')
+            args['issuing_certificates_urls_encoded'] = _dict.get('issuing_certificates_urls_encoded')
         if 'common_name' in _dict:
             args['common_name'] = _dict.get('common_name')
         else:
-            raise ValueError(
-                'Required property \'common_name\' not present in RootCertificateAuthorityConfig JSON')
+            raise ValueError('Required property \'common_name\' not present in RootCertificateAuthorityConfig JSON')
         if 'status' in _dict:
             args['status'] = _dict.get('status')
         if 'expiration_date' in _dict:
-            args['expiration_date'] = string_to_datetime(
-                _dict.get('expiration_date'))
+            args['expiration_date'] = string_to_datetime(_dict.get('expiration_date'))
         if 'alt_names' in _dict:
             args['alt_names'] = _dict.get('alt_names')
         if 'ip_sans' in _dict:
@@ -14884,8 +14592,7 @@ class RootCertificateAuthorityConfig(ConfigElementDefConfig):
         if hasattr(self, 'status') and getattr(self, 'status') is not None:
             _dict['status'] = getattr(self, 'status')
         if hasattr(self, 'expiration_date') and getattr(self, 'expiration_date') is not None:
-            _dict['expiration_date'] = datetime_to_string(
-                getattr(self, 'expiration_date'))
+            _dict['expiration_date'] = datetime_to_string(getattr(self, 'expiration_date'))
         if hasattr(self, 'alt_names') and self.alt_names is not None:
             _dict['alt_names'] = self.alt_names
         if hasattr(self, 'ip_sans') and self.ip_sans is not None:
@@ -15022,13 +14729,11 @@ class RotateArbitrarySecretBody(SecretAction):
         if 'payload' in _dict:
             args['payload'] = _dict.get('payload')
         else:
-            raise ValueError(
-                'Required property \'payload\' not present in RotateArbitrarySecretBody JSON')
+            raise ValueError('Required property \'payload\' not present in RotateArbitrarySecretBody JSON')
         if 'custom_metadata' in _dict:
             args['custom_metadata'] = _dict.get('custom_metadata')
         if 'version_custom_metadata' in _dict:
-            args['version_custom_metadata'] = _dict.get(
-                'version_custom_metadata')
+            args['version_custom_metadata'] = _dict.get('version_custom_metadata')
         return cls(**args)
 
     @classmethod
@@ -15115,8 +14820,7 @@ class RotateCertificateBody(SecretAction):
         if 'certificate' in _dict:
             args['certificate'] = _dict.get('certificate')
         else:
-            raise ValueError(
-                'Required property \'certificate\' not present in RotateCertificateBody JSON')
+            raise ValueError('Required property \'certificate\' not present in RotateCertificateBody JSON')
         if 'private_key' in _dict:
             args['private_key'] = _dict.get('private_key')
         if 'intermediate' in _dict:
@@ -15124,8 +14828,7 @@ class RotateCertificateBody(SecretAction):
         if 'custom_metadata' in _dict:
             args['custom_metadata'] = _dict.get('custom_metadata')
         if 'version_custom_metadata' in _dict:
-            args['version_custom_metadata'] = _dict.get(
-                'version_custom_metadata')
+            args['version_custom_metadata'] = _dict.get('version_custom_metadata')
         return cls(**args)
 
     @classmethod
@@ -15250,13 +14953,11 @@ class RotateKvSecretBody(SecretAction):
         if 'payload' in _dict:
             args['payload'] = _dict.get('payload')
         else:
-            raise ValueError(
-                'Required property \'payload\' not present in RotateKvSecretBody JSON')
+            raise ValueError('Required property \'payload\' not present in RotateKvSecretBody JSON')
         if 'custom_metadata' in _dict:
             args['custom_metadata'] = _dict.get('custom_metadata')
         if 'version_custom_metadata' in _dict:
-            args['version_custom_metadata'] = _dict.get(
-                'version_custom_metadata')
+            args['version_custom_metadata'] = _dict.get('version_custom_metadata')
         return cls(**args)
 
     @classmethod
@@ -15325,11 +15026,9 @@ class RotatePrivateCertBody(SecretAction):
         if 'custom_metadata' in _dict:
             args['custom_metadata'] = _dict.get('custom_metadata')
         else:
-            raise ValueError(
-                'Required property \'custom_metadata\' not present in RotatePrivateCertBody JSON')
+            raise ValueError('Required property \'custom_metadata\' not present in RotatePrivateCertBody JSON')
         if 'version_custom_metadata' in _dict:
-            args['version_custom_metadata'] = _dict.get(
-                'version_custom_metadata')
+            args['version_custom_metadata'] = _dict.get('version_custom_metadata')
         return cls(**args)
 
     @classmethod
@@ -15389,8 +15088,7 @@ class RotatePrivateCertBodyWithVersionCustomMetadata(SecretAction):
         """Initialize a RotatePrivateCertBodyWithVersionCustomMetadata object from a json dictionary."""
         args = {}
         if 'version_custom_metadata' in _dict:
-            args['version_custom_metadata'] = _dict.get(
-                'version_custom_metadata')
+            args['version_custom_metadata'] = _dict.get('version_custom_metadata')
         else:
             raise ValueError(
                 'Required property \'version_custom_metadata\' not present in RotatePrivateCertBodyWithVersionCustomMetadata JSON')
@@ -15464,13 +15162,11 @@ class RotatePublicCertBody(SecretAction):
         if 'rotate_keys' in _dict:
             args['rotate_keys'] = _dict.get('rotate_keys')
         else:
-            raise ValueError(
-                'Required property \'rotate_keys\' not present in RotatePublicCertBody JSON')
+            raise ValueError('Required property \'rotate_keys\' not present in RotatePublicCertBody JSON')
         if 'custom_metadata' in _dict:
             args['custom_metadata'] = _dict.get('custom_metadata')
         if 'version_custom_metadata' in _dict:
-            args['version_custom_metadata'] = _dict.get(
-                'version_custom_metadata')
+            args['version_custom_metadata'] = _dict.get('version_custom_metadata')
         return cls(**args)
 
     @classmethod
@@ -15546,13 +15242,11 @@ class RotateUsernamePasswordSecretBody(SecretAction):
         if 'password' in _dict:
             args['password'] = _dict.get('password')
         else:
-            raise ValueError(
-                'Required property \'password\' not present in RotateUsernamePasswordSecretBody JSON')
+            raise ValueError('Required property \'password\' not present in RotateUsernamePasswordSecretBody JSON')
         if 'custom_metadata' in _dict:
             args['custom_metadata'] = _dict.get('custom_metadata')
         if 'version_custom_metadata' in _dict:
-            args['version_custom_metadata'] = _dict.get(
-                'version_custom_metadata')
+            args['version_custom_metadata'] = _dict.get('version_custom_metadata')
         return cls(**args)
 
     @classmethod
@@ -15761,8 +15455,7 @@ class SetSignedAction(ConfigAction):
         if 'certificate' in _dict:
             args['certificate'] = _dict.get('certificate')
         else:
-            raise ValueError(
-                'Required property \'certificate\' not present in SetSignedAction JSON')
+            raise ValueError('Required property \'certificate\' not present in SetSignedAction JSON')
         return cls(**args)
 
     @classmethod
@@ -16067,8 +15760,7 @@ class SignCsrAction(ConfigAction):
         if 'csr' in _dict:
             args['csr'] = _dict.get('csr')
         else:
-            raise ValueError(
-                'Required property \'csr\' not present in SignCsrAction JSON')
+            raise ValueError('Required property \'csr\' not present in SignCsrAction JSON')
         return cls(**args)
 
     @classmethod
@@ -16376,8 +16068,7 @@ class SignCsrActionResult(ConfigElementActionResultConfig):
         if 'csr' in _dict:
             args['csr'] = _dict.get('csr')
         else:
-            raise ValueError(
-                'Required property \'csr\' not present in SignCsrActionResult JSON')
+            raise ValueError('Required property \'csr\' not present in SignCsrActionResult JSON')
         return cls(**args)
 
     @classmethod
@@ -16683,8 +16374,7 @@ class SignIntermediateAction(ConfigAction):
         if 'serial_number' in _dict:
             args['serial_number'] = _dict.get('serial_number')
         if 'intermediate_certificate_authority' in _dict:
-            args['intermediate_certificate_authority'] = _dict.get(
-                'intermediate_certificate_authority')
+            args['intermediate_certificate_authority'] = _dict.get('intermediate_certificate_authority')
         else:
             raise ValueError(
                 'Required property \'intermediate_certificate_authority\' not present in SignIntermediateAction JSON')
@@ -16993,11 +16683,9 @@ class SignIntermediateActionResult(ConfigElementActionResultConfig):
         if 'serial_number' in _dict:
             args['serial_number'] = _dict.get('serial_number')
         if 'data' in _dict:
-            args['data'] = SignIntermediateActionResultData.from_dict(
-                _dict.get('data'))
+            args['data'] = SignIntermediateActionResultData.from_dict(_dict.get('data'))
         if 'intermediate_certificate_authority' in _dict:
-            args['intermediate_certificate_authority'] = _dict.get(
-                'intermediate_certificate_authority')
+            args['intermediate_certificate_authority'] = _dict.get('intermediate_certificate_authority')
         else:
             raise ValueError(
                 'Required property \'intermediate_certificate_authority\' not present in SignIntermediateActionResult JSON')
@@ -17207,8 +16895,7 @@ class UsernamePasswordSecretMetadata(SecretMetadata):
         if 'name' in _dict:
             args['name'] = _dict.get('name')
         else:
-            raise ValueError(
-                'Required property \'name\' not present in UsernamePasswordSecretMetadata JSON')
+            raise ValueError('Required property \'name\' not present in UsernamePasswordSecretMetadata JSON')
         if 'description' in _dict:
             args['description'] = _dict.get('description')
         if 'secret_group_id' in _dict:
@@ -17222,13 +16909,11 @@ class UsernamePasswordSecretMetadata(SecretMetadata):
         if 'crn' in _dict:
             args['crn'] = _dict.get('crn')
         if 'creation_date' in _dict:
-            args['creation_date'] = string_to_datetime(
-                _dict.get('creation_date'))
+            args['creation_date'] = string_to_datetime(_dict.get('creation_date'))
         if 'created_by' in _dict:
             args['created_by'] = _dict.get('created_by')
         if 'last_update_date' in _dict:
-            args['last_update_date'] = string_to_datetime(
-                _dict.get('last_update_date'))
+            args['last_update_date'] = string_to_datetime(_dict.get('last_update_date'))
         if 'versions_total' in _dict:
             args['versions_total'] = _dict.get('versions_total')
         if 'locks_total' in _dict:
@@ -17236,8 +16921,7 @@ class UsernamePasswordSecretMetadata(SecretMetadata):
         if 'custom_metadata' in _dict:
             args['custom_metadata'] = _dict.get('custom_metadata')
         if 'expiration_date' in _dict:
-            args['expiration_date'] = string_to_datetime(
-                _dict.get('expiration_date'))
+            args['expiration_date'] = string_to_datetime(_dict.get('expiration_date'))
         return cls(**args)
 
     @classmethod
@@ -17267,13 +16951,11 @@ class UsernamePasswordSecretMetadata(SecretMetadata):
         if hasattr(self, 'crn') and getattr(self, 'crn') is not None:
             _dict['crn'] = getattr(self, 'crn')
         if hasattr(self, 'creation_date') and getattr(self, 'creation_date') is not None:
-            _dict['creation_date'] = datetime_to_string(
-                getattr(self, 'creation_date'))
+            _dict['creation_date'] = datetime_to_string(getattr(self, 'creation_date'))
         if hasattr(self, 'created_by') and getattr(self, 'created_by') is not None:
             _dict['created_by'] = getattr(self, 'created_by')
         if hasattr(self, 'last_update_date') and getattr(self, 'last_update_date') is not None:
-            _dict['last_update_date'] = datetime_to_string(
-                getattr(self, 'last_update_date'))
+            _dict['last_update_date'] = datetime_to_string(getattr(self, 'last_update_date'))
         if hasattr(self, 'versions_total') and getattr(self, 'versions_total') is not None:
             _dict['versions_total'] = getattr(self, 'versions_total')
         if hasattr(self, 'locks_total') and getattr(self, 'locks_total') is not None:
@@ -17474,8 +17156,7 @@ class UsernamePasswordSecretResource(SecretResource):
         if 'name' in _dict:
             args['name'] = _dict.get('name')
         else:
-            raise ValueError(
-                'Required property \'name\' not present in UsernamePasswordSecretResource JSON')
+            raise ValueError('Required property \'name\' not present in UsernamePasswordSecretResource JSON')
         if 'description' in _dict:
             args['description'] = _dict.get('description')
         if 'secret_group_id' in _dict:
@@ -17491,13 +17172,11 @@ class UsernamePasswordSecretResource(SecretResource):
         if 'crn' in _dict:
             args['crn'] = _dict.get('crn')
         if 'creation_date' in _dict:
-            args['creation_date'] = string_to_datetime(
-                _dict.get('creation_date'))
+            args['creation_date'] = string_to_datetime(_dict.get('creation_date'))
         if 'created_by' in _dict:
             args['created_by'] = _dict.get('created_by')
         if 'last_update_date' in _dict:
-            args['last_update_date'] = string_to_datetime(
-                _dict.get('last_update_date'))
+            args['last_update_date'] = string_to_datetime(_dict.get('last_update_date'))
         if 'versions_total' in _dict:
             args['versions_total'] = _dict.get('versions_total')
         if 'versions' in _dict:
@@ -17507,8 +17186,7 @@ class UsernamePasswordSecretResource(SecretResource):
         if 'custom_metadata' in _dict:
             args['custom_metadata'] = _dict.get('custom_metadata')
         if 'version_custom_metadata' in _dict:
-            args['version_custom_metadata'] = _dict.get(
-                'version_custom_metadata')
+            args['version_custom_metadata'] = _dict.get('version_custom_metadata')
         if 'username' in _dict:
             args['username'] = _dict.get('username')
         if 'password' in _dict:
@@ -17516,11 +17194,9 @@ class UsernamePasswordSecretResource(SecretResource):
         if 'secret_data' in _dict:
             args['secret_data'] = _dict.get('secret_data')
         if 'expiration_date' in _dict:
-            args['expiration_date'] = string_to_datetime(
-                _dict.get('expiration_date'))
+            args['expiration_date'] = string_to_datetime(_dict.get('expiration_date'))
         if 'next_rotation_date' in _dict:
-            args['next_rotation_date'] = string_to_datetime(
-                _dict.get('next_rotation_date'))
+            args['next_rotation_date'] = string_to_datetime(_dict.get('next_rotation_date'))
         return cls(**args)
 
     @classmethod
@@ -17550,13 +17226,11 @@ class UsernamePasswordSecretResource(SecretResource):
         if hasattr(self, 'crn') and getattr(self, 'crn') is not None:
             _dict['crn'] = getattr(self, 'crn')
         if hasattr(self, 'creation_date') and getattr(self, 'creation_date') is not None:
-            _dict['creation_date'] = datetime_to_string(
-                getattr(self, 'creation_date'))
+            _dict['creation_date'] = datetime_to_string(getattr(self, 'creation_date'))
         if hasattr(self, 'created_by') and getattr(self, 'created_by') is not None:
             _dict['created_by'] = getattr(self, 'created_by')
         if hasattr(self, 'last_update_date') and getattr(self, 'last_update_date') is not None:
-            _dict['last_update_date'] = datetime_to_string(
-                getattr(self, 'last_update_date'))
+            _dict['last_update_date'] = datetime_to_string(getattr(self, 'last_update_date'))
         if hasattr(self, 'versions_total') and getattr(self, 'versions_total') is not None:
             _dict['versions_total'] = getattr(self, 'versions_total')
         if hasattr(self, 'versions') and getattr(self, 'versions') is not None:
@@ -17576,8 +17250,7 @@ class UsernamePasswordSecretResource(SecretResource):
         if hasattr(self, 'expiration_date') and self.expiration_date is not None:
             _dict['expiration_date'] = datetime_to_string(self.expiration_date)
         if hasattr(self, 'next_rotation_date') and getattr(self, 'next_rotation_date') is not None:
-            _dict['next_rotation_date'] = datetime_to_string(
-                getattr(self, 'next_rotation_date'))
+            _dict['next_rotation_date'] = datetime_to_string(getattr(self, 'next_rotation_date'))
         return _dict
 
     def _to_dict(self):
@@ -17674,15 +17347,13 @@ class UsernamePasswordSecretVersion(SecretVersion):
         if 'version_id' in _dict:
             args['version_id'] = _dict.get('version_id')
         if 'creation_date' in _dict:
-            args['creation_date'] = string_to_datetime(
-                _dict.get('creation_date'))
+            args['creation_date'] = string_to_datetime(_dict.get('creation_date'))
         if 'created_by' in _dict:
             args['created_by'] = _dict.get('created_by')
         if 'locks_total' in _dict:
             args['locks_total'] = _dict.get('locks_total')
         if 'version_custom_metadata' in _dict:
-            args['version_custom_metadata'] = _dict.get(
-                'version_custom_metadata')
+            args['version_custom_metadata'] = _dict.get('version_custom_metadata')
         if 'auto_rotated' in _dict:
             args['auto_rotated'] = _dict.get('auto_rotated')
         if 'secret_data' in _dict:
@@ -17702,8 +17373,7 @@ class UsernamePasswordSecretVersion(SecretVersion):
         if hasattr(self, 'version_id') and getattr(self, 'version_id') is not None:
             _dict['version_id'] = getattr(self, 'version_id')
         if hasattr(self, 'creation_date') and getattr(self, 'creation_date') is not None:
-            _dict['creation_date'] = datetime_to_string(
-                getattr(self, 'creation_date'))
+            _dict['creation_date'] = datetime_to_string(getattr(self, 'creation_date'))
         if hasattr(self, 'created_by') and getattr(self, 'created_by') is not None:
             _dict['created_by'] = getattr(self, 'created_by')
         if hasattr(self, 'locks_total') and getattr(self, 'locks_total') is not None:
@@ -17787,8 +17457,7 @@ class UsernamePasswordSecretVersionInfo(SecretVersionInfo):
         if 'id' in _dict:
             args['id'] = _dict.get('id')
         if 'creation_date' in _dict:
-            args['creation_date'] = string_to_datetime(
-                _dict.get('creation_date'))
+            args['creation_date'] = string_to_datetime(_dict.get('creation_date'))
         if 'created_by' in _dict:
             args['created_by'] = _dict.get('created_by')
         if 'payload_available' in _dict:
@@ -17796,8 +17465,7 @@ class UsernamePasswordSecretVersionInfo(SecretVersionInfo):
         if 'downloaded' in _dict:
             args['downloaded'] = _dict.get('downloaded')
         if 'version_custom_metadata' in _dict:
-            args['version_custom_metadata'] = _dict.get(
-                'version_custom_metadata')
+            args['version_custom_metadata'] = _dict.get('version_custom_metadata')
         if 'auto_rotated' in _dict:
             args['auto_rotated'] = _dict.get('auto_rotated')
         return cls(**args)
@@ -17813,8 +17481,7 @@ class UsernamePasswordSecretVersionInfo(SecretVersionInfo):
         if hasattr(self, 'id') and getattr(self, 'id') is not None:
             _dict['id'] = getattr(self, 'id')
         if hasattr(self, 'creation_date') and getattr(self, 'creation_date') is not None:
-            _dict['creation_date'] = datetime_to_string(
-                getattr(self, 'creation_date'))
+            _dict['creation_date'] = datetime_to_string(getattr(self, 'creation_date'))
         if hasattr(self, 'created_by') and getattr(self, 'created_by') is not None:
             _dict['created_by'] = getattr(self, 'created_by')
         if hasattr(self, 'payload_available') and getattr(self, 'payload_available') is not None:
@@ -17908,8 +17575,7 @@ class UsernamePasswordSecretVersionMetadata(SecretVersionMetadata):
         if 'version_id' in _dict:
             args['version_id'] = _dict.get('version_id')
         if 'creation_date' in _dict:
-            args['creation_date'] = string_to_datetime(
-                _dict.get('creation_date'))
+            args['creation_date'] = string_to_datetime(_dict.get('creation_date'))
         if 'created_by' in _dict:
             args['created_by'] = _dict.get('created_by')
         if 'payload_available' in _dict:
@@ -17919,8 +17585,7 @@ class UsernamePasswordSecretVersionMetadata(SecretVersionMetadata):
         if 'locks_total' in _dict:
             args['locks_total'] = _dict.get('locks_total')
         if 'version_custom_metadata' in _dict:
-            args['version_custom_metadata'] = _dict.get(
-                'version_custom_metadata')
+            args['version_custom_metadata'] = _dict.get('version_custom_metadata')
         if 'auto_rotated' in _dict:
             args['auto_rotated'] = _dict.get('auto_rotated')
         return cls(**args)
@@ -17938,8 +17603,7 @@ class UsernamePasswordSecretVersionMetadata(SecretVersionMetadata):
         if hasattr(self, 'version_id') and getattr(self, 'version_id') is not None:
             _dict['version_id'] = getattr(self, 'version_id')
         if hasattr(self, 'creation_date') and getattr(self, 'creation_date') is not None:
-            _dict['creation_date'] = datetime_to_string(
-                getattr(self, 'creation_date'))
+            _dict['creation_date'] = datetime_to_string(getattr(self, 'creation_date'))
         if hasattr(self, 'created_by') and getattr(self, 'created_by') is not None:
             _dict['created_by'] = getattr(self, 'created_by')
         if hasattr(self, 'payload_available') and getattr(self, 'payload_available') is not None:
