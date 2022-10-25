@@ -5076,7 +5076,6 @@ class LockSecretBodyLocksItem():
         :param dict attributes: (optional) Optional information to associate with a
                lock, such as resources CRNs to be used by automation.
         """
-        super().__init__(self)
         self.name = name
         self.description = description
         self.attributes = attributes
