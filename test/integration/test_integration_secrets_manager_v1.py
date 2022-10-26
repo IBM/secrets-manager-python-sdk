@@ -370,7 +370,7 @@ class TestLockSecret(unittest.TestCase):
         secretId = response.result['resources'][0]['id']
 
         # Lock secret
-        locks = [LockSecretBodyLocksItem('test-lock', 'exclusive', {"Key": "Value"})]
+        locks = [LockSecretBodyLocksItem('test-lock')]
         response = secretsManager.lock_secret(
             'arbitrary',
             secretId,
