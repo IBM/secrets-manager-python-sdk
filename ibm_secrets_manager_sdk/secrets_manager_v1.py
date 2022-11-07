@@ -14,7 +14,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-# IBM OpenAPI SDK Code Generator Version: 3.60.0-13f6e1ba-20221019-164457
+# IBM OpenAPI SDK Code Generator Version: 3.60.2-95dc7721-20221102-203229
 
 """
 With IBM Cloud® Secrets Manager, you can create, lease, and centrally manage secrets that
@@ -25,10 +25,10 @@ API Version: 1.0.0
 See: https://cloud.ibm.com/docs/secrets-manager
 """
 
+import json
 from datetime import datetime
 from enum import Enum
 from typing import Dict, List
-import json
 
 from ibm_cloud_sdk_core import BaseService, DetailedResponse
 from ibm_cloud_sdk_core.authenticators.authenticator import Authenticator
@@ -3080,7 +3080,10 @@ class CertificateTemplatesConfigItem():
         if hasattr(self, 'type') and self.type is not None:
             _dict['type'] = self.type
         if hasattr(self, 'config') and self.config is not None:
-            _dict['config'] = self.config.to_dict()
+            if isinstance(self.config, dict):
+                _dict['config'] = self.config
+            else:
+                _dict['config'] = self.config.to_dict()
         return _dict
 
     def _to_dict(self):
@@ -3198,7 +3201,6 @@ class ChallengeResource():
         """Return `true` when self and other are not equal, false otherwise."""
         return not self == other
 
-
 class CollectionMetadata():
     """
     The metadata that describes the resource array.
@@ -3292,7 +3294,6 @@ class ConfigAction():
         msg = "Cannot instantiate base class. Instead, instantiate one of the defined subclasses: {0}".format(
             ", ".join(['SignCsrAction', 'SignIntermediateAction', 'SetSignedAction', 'RevokeAction']))
         raise Exception(msg)
-
 
 class ConfigElementActionData():
     """
@@ -3420,7 +3421,7 @@ class ConfigElementActionResult():
         else:
             raise ValueError('Required property \'metadata\' not present in ConfigElementActionResult JSON')
         if 'resources' in _dict:
-            args['resources'] = [ConfigElementActionData.from_dict(x) for x in _dict.get('resources')]
+            args['resources'] = [ConfigElementActionData.from_dict(v) for v in _dict.get('resources')]
         else:
             raise ValueError('Required property \'resources\' not present in ConfigElementActionResult JSON')
         return cls(**args)
@@ -3434,9 +3435,18 @@ class ConfigElementActionResult():
         """Return a json dictionary representing this model."""
         _dict = {}
         if hasattr(self, 'metadata') and self.metadata is not None:
-            _dict['metadata'] = self.metadata.to_dict()
+            if isinstance(self.metadata, dict):
+                _dict['metadata'] = self.metadata
+            else:
+                _dict['metadata'] = self.metadata.to_dict()
         if hasattr(self, 'resources') and self.resources is not None:
-            _dict['resources'] = [x.to_dict() for x in self.resources]
+            resources_list = []
+            for v in self.resources:
+                if isinstance(v, dict):
+                    resources_list.append(v)
+                else:
+                    resources_list.append(v.to_dict())
+            _dict['resources'] = resources_list
         return _dict
 
     def _to_dict(self):
@@ -3457,7 +3467,6 @@ class ConfigElementActionResult():
         """Return `true` when self and other are not equal, false otherwise."""
         return not self == other
 
-
 class ConfigElementActionResultConfig():
     """
     ConfigElementActionResultConfig.
@@ -3473,7 +3482,6 @@ class ConfigElementActionResultConfig():
             ", ".join(['SignCsrActionResult', 'SignIntermediateActionResult', 'RotateCrlActionResult',
                        'SetSignedActionResult', 'RevokeActionResult']))
         raise Exception(msg)
-
 
 class ConfigElementDef():
     """
@@ -3588,7 +3596,6 @@ class ConfigElementDefConfig():
                        'ConfigElementDefConfigClassicInfrastructureConfig', 'RootCertificateAuthorityConfig',
                        'IntermediateCertificateAuthorityConfig', 'CertificateTemplateConfig']))
         raise Exception(msg)
-
 
 class ConfigElementMetadata():
     """
@@ -3717,14 +3724,17 @@ class CreateSecret():
         """Return a json dictionary representing this model."""
         _dict = {}
         if hasattr(self, 'metadata') and self.metadata is not None:
-            _dict['metadata'] = self.metadata.to_dict()
+            if isinstance(self.metadata, dict):
+                _dict['metadata'] = self.metadata
+            else:
+                _dict['metadata'] = self.metadata.to_dict()
         if hasattr(self, 'resources') and self.resources is not None:
             resources_list = []
-            for x in self.resources:
-                if isinstance(x, dict):
-                    resources_list.append(x)
+            for v in self.resources:
+                if isinstance(v, dict):
+                    resources_list.append(v)
                 else:
-                    resources_list.append(x.to_dict())
+                    resources_list.append(v.to_dict())
             _dict['resources'] = resources_list
         return _dict
 
@@ -3746,7 +3756,6 @@ class CreateSecret():
         """Return `true` when self and other are not equal, false otherwise."""
         return not self == other
 
-
 class EngineConfig():
     """
     EngineConfig.
@@ -3761,7 +3770,6 @@ class EngineConfig():
         msg = "Cannot instantiate base class. Instead, instantiate one of the defined subclasses: {0}".format(
             ", ".join(['CreateIAMCredentialsSecretEngineRootConfig']))
         raise Exception(msg)
-
 
 class GetConfig():
     """
@@ -3808,14 +3816,17 @@ class GetConfig():
         """Return a json dictionary representing this model."""
         _dict = {}
         if hasattr(self, 'metadata') and self.metadata is not None:
-            _dict['metadata'] = self.metadata.to_dict()
+            if isinstance(self.metadata, dict):
+                _dict['metadata'] = self.metadata
+            else:
+                _dict['metadata'] = self.metadata.to_dict()
         if hasattr(self, 'resources') and self.resources is not None:
             resources_list = []
-            for x in self.resources:
-                if isinstance(x, dict):
-                    resources_list.append(x)
+            for v in self.resources:
+                if isinstance(v, dict):
+                    resources_list.append(v)
                 else:
-                    resources_list.append(x.to_dict())
+                    resources_list.append(v.to_dict())
             _dict['resources'] = resources_list
         return _dict
 
@@ -3836,7 +3847,6 @@ class GetConfig():
     def __ne__(self, other: 'GetConfig') -> bool:
         """Return `true` when self and other are not equal, false otherwise."""
         return not self == other
-
 
 class GetConfigElements():
     """
@@ -3884,14 +3894,17 @@ class GetConfigElements():
         """Return a json dictionary representing this model."""
         _dict = {}
         if hasattr(self, 'metadata') and self.metadata is not None:
-            _dict['metadata'] = self.metadata.to_dict()
+            if isinstance(self.metadata, dict):
+                _dict['metadata'] = self.metadata
+            else:
+                _dict['metadata'] = self.metadata.to_dict()
         if hasattr(self, 'resources') and self.resources is not None:
             resources_list = []
-            for x in self.resources:
-                if isinstance(x, dict):
-                    resources_list.append(x)
+            for v in self.resources:
+                if isinstance(v, dict):
+                    resources_list.append(v)
                 else:
-                    resources_list.append(x.to_dict())
+                    resources_list.append(v.to_dict())
             _dict['resources'] = resources_list
         return _dict
 
@@ -3913,7 +3926,6 @@ class GetConfigElements():
         """Return `true` when self and other are not equal, false otherwise."""
         return not self == other
 
-
 class GetConfigElementsResourcesItem():
     """
     GetConfigElementsResourcesItem.
@@ -3931,7 +3943,6 @@ class GetConfigElementsResourcesItem():
                        'IntermediateCertificateAuthoritiesConfig', 'CertificateTemplatesConfig']))
         raise Exception(msg)
 
-
 class GetConfigResourcesItem():
     """
     GetConfigResourcesItem.
@@ -3947,7 +3958,6 @@ class GetConfigResourcesItem():
             ", ".join(['PublicCertSecretEngineRootConfig', 'PrivateCertSecretEngineRootConfig',
                        'IAMCredentialsSecretEngineRootConfig']))
         raise Exception(msg)
-
 
 class GetInstanceLocks():
     """
@@ -3980,7 +3990,7 @@ class GetInstanceLocks():
         else:
             raise ValueError('Required property \'metadata\' not present in GetInstanceLocks JSON')
         if 'resources' in _dict:
-            args['resources'] = [InstanceSecretsLocks.from_dict(x) for x in _dict.get('resources')]
+            args['resources'] = [InstanceSecretsLocks.from_dict(v) for v in _dict.get('resources')]
         else:
             raise ValueError('Required property \'resources\' not present in GetInstanceLocks JSON')
         return cls(**args)
@@ -3994,9 +4004,18 @@ class GetInstanceLocks():
         """Return a json dictionary representing this model."""
         _dict = {}
         if hasattr(self, 'metadata') and self.metadata is not None:
-            _dict['metadata'] = self.metadata.to_dict()
+            if isinstance(self.metadata, dict):
+                _dict['metadata'] = self.metadata
+            else:
+                _dict['metadata'] = self.metadata.to_dict()
         if hasattr(self, 'resources') and self.resources is not None:
-            _dict['resources'] = [x.to_dict() for x in self.resources]
+            resources_list = []
+            for v in self.resources:
+                if isinstance(v, dict):
+                    resources_list.append(v)
+                else:
+                    resources_list.append(v.to_dict())
+            _dict['resources'] = resources_list
         return _dict
 
     def _to_dict(self):
@@ -4016,7 +4035,6 @@ class GetInstanceLocks():
     def __ne__(self, other: 'GetInstanceLocks') -> bool:
         """Return `true` when self and other are not equal, false otherwise."""
         return not self == other
-
 
 class GetNotificationsSettings():
     """
@@ -4049,7 +4067,7 @@ class GetNotificationsSettings():
         else:
             raise ValueError('Required property \'metadata\' not present in GetNotificationsSettings JSON')
         if 'resources' in _dict:
-            args['resources'] = [NotificationsSettings.from_dict(x) for x in _dict.get('resources')]
+            args['resources'] = [NotificationsSettings.from_dict(v) for v in _dict.get('resources')]
         else:
             raise ValueError('Required property \'resources\' not present in GetNotificationsSettings JSON')
         return cls(**args)
@@ -4063,9 +4081,18 @@ class GetNotificationsSettings():
         """Return a json dictionary representing this model."""
         _dict = {}
         if hasattr(self, 'metadata') and self.metadata is not None:
-            _dict['metadata'] = self.metadata.to_dict()
+            if isinstance(self.metadata, dict):
+                _dict['metadata'] = self.metadata
+            else:
+                _dict['metadata'] = self.metadata.to_dict()
         if hasattr(self, 'resources') and self.resources is not None:
-            _dict['resources'] = [x.to_dict() for x in self.resources]
+            resources_list = []
+            for v in self.resources:
+                if isinstance(v, dict):
+                    resources_list.append(v)
+                else:
+                    resources_list.append(v.to_dict())
+            _dict['resources'] = resources_list
         return _dict
 
     def _to_dict(self):
@@ -4085,7 +4112,6 @@ class GetNotificationsSettings():
     def __ne__(self, other: 'GetNotificationsSettings') -> bool:
         """Return `true` when self and other are not equal, false otherwise."""
         return not self == other
-
 
 class GetSecret():
     """
@@ -4132,14 +4158,17 @@ class GetSecret():
         """Return a json dictionary representing this model."""
         _dict = {}
         if hasattr(self, 'metadata') and self.metadata is not None:
-            _dict['metadata'] = self.metadata.to_dict()
+            if isinstance(self.metadata, dict):
+                _dict['metadata'] = self.metadata
+            else:
+                _dict['metadata'] = self.metadata.to_dict()
         if hasattr(self, 'resources') and self.resources is not None:
             resources_list = []
-            for x in self.resources:
-                if isinstance(x, dict):
-                    resources_list.append(x)
+            for v in self.resources:
+                if isinstance(v, dict):
+                    resources_list.append(v)
                 else:
-                    resources_list.append(x.to_dict())
+                    resources_list.append(v.to_dict())
             _dict['resources'] = resources_list
         return _dict
 
@@ -4160,7 +4189,6 @@ class GetSecret():
     def __ne__(self, other: 'GetSecret') -> bool:
         """Return `true` when self and other are not equal, false otherwise."""
         return not self == other
-
 
 class GetSecretLocks():
     """
@@ -4193,7 +4221,7 @@ class GetSecretLocks():
         else:
             raise ValueError('Required property \'metadata\' not present in GetSecretLocks JSON')
         if 'resources' in _dict:
-            args['resources'] = [SecretsLocks.from_dict(x) for x in _dict.get('resources')]
+            args['resources'] = [SecretsLocks.from_dict(v) for v in _dict.get('resources')]
         else:
             raise ValueError('Required property \'resources\' not present in GetSecretLocks JSON')
         return cls(**args)
@@ -4207,9 +4235,18 @@ class GetSecretLocks():
         """Return a json dictionary representing this model."""
         _dict = {}
         if hasattr(self, 'metadata') and self.metadata is not None:
-            _dict['metadata'] = self.metadata.to_dict()
+            if isinstance(self.metadata, dict):
+                _dict['metadata'] = self.metadata
+            else:
+                _dict['metadata'] = self.metadata.to_dict()
         if hasattr(self, 'resources') and self.resources is not None:
-            _dict['resources'] = [x.to_dict() for x in self.resources]
+            resources_list = []
+            for v in self.resources:
+                if isinstance(v, dict):
+                    resources_list.append(v)
+                else:
+                    resources_list.append(v.to_dict())
+            _dict['resources'] = resources_list
         return _dict
 
     def _to_dict(self):
@@ -4230,7 +4267,6 @@ class GetSecretLocks():
         """Return `true` when self and other are not equal, false otherwise."""
         return not self == other
 
-
 class GetSecretPolicies():
     """
     GetSecretPolicies.
@@ -4245,7 +4281,6 @@ class GetSecretPolicies():
         msg = "Cannot instantiate base class. Instead, instantiate one of the defined subclasses: {0}".format(
             ", ".join(['GetSecretPolicyRotation']))
         raise Exception(msg)
-
 
 class GetSecretVersion():
     """
@@ -4292,14 +4327,17 @@ class GetSecretVersion():
         """Return a json dictionary representing this model."""
         _dict = {}
         if hasattr(self, 'metadata') and self.metadata is not None:
-            _dict['metadata'] = self.metadata.to_dict()
+            if isinstance(self.metadata, dict):
+                _dict['metadata'] = self.metadata
+            else:
+                _dict['metadata'] = self.metadata.to_dict()
         if hasattr(self, 'resources') and self.resources is not None:
             resources_list = []
-            for x in self.resources:
-                if isinstance(x, dict):
-                    resources_list.append(x)
+            for v in self.resources:
+                if isinstance(v, dict):
+                    resources_list.append(v)
                 else:
-                    resources_list.append(x.to_dict())
+                    resources_list.append(v.to_dict())
             _dict['resources'] = resources_list
         return _dict
 
@@ -4320,7 +4358,6 @@ class GetSecretVersion():
     def __ne__(self, other: 'GetSecretVersion') -> bool:
         """Return `true` when self and other are not equal, false otherwise."""
         return not self == other
-
 
 class GetSecretVersionMetadata():
     """
@@ -4367,14 +4404,17 @@ class GetSecretVersionMetadata():
         """Return a json dictionary representing this model."""
         _dict = {}
         if hasattr(self, 'metadata') and self.metadata is not None:
-            _dict['metadata'] = self.metadata.to_dict()
+            if isinstance(self.metadata, dict):
+                _dict['metadata'] = self.metadata
+            else:
+                _dict['metadata'] = self.metadata.to_dict()
         if hasattr(self, 'resources') and self.resources is not None:
             resources_list = []
-            for x in self.resources:
-                if isinstance(x, dict):
-                    resources_list.append(x)
+            for v in self.resources:
+                if isinstance(v, dict):
+                    resources_list.append(v)
                 else:
-                    resources_list.append(x.to_dict())
+                    resources_list.append(v.to_dict())
             _dict['resources'] = resources_list
         return _dict
 
@@ -4395,7 +4435,6 @@ class GetSecretVersionMetadata():
     def __ne__(self, other: 'GetSecretVersionMetadata') -> bool:
         """Return `true` when self and other are not equal, false otherwise."""
         return not self == other
-
 
 class GetSingleConfigElement():
     """
@@ -4428,7 +4467,7 @@ class GetSingleConfigElement():
         else:
             raise ValueError('Required property \'metadata\' not present in GetSingleConfigElement JSON')
         if 'resources' in _dict:
-            args['resources'] = [ConfigElementDef.from_dict(x) for x in _dict.get('resources')]
+            args['resources'] = [ConfigElementDef.from_dict(v) for v in _dict.get('resources')]
         else:
             raise ValueError('Required property \'resources\' not present in GetSingleConfigElement JSON')
         return cls(**args)
@@ -4442,9 +4481,18 @@ class GetSingleConfigElement():
         """Return a json dictionary representing this model."""
         _dict = {}
         if hasattr(self, 'metadata') and self.metadata is not None:
-            _dict['metadata'] = self.metadata.to_dict()
+            if isinstance(self.metadata, dict):
+                _dict['metadata'] = self.metadata
+            else:
+                _dict['metadata'] = self.metadata.to_dict()
         if hasattr(self, 'resources') and self.resources is not None:
-            _dict['resources'] = [x.to_dict() for x in self.resources]
+            resources_list = []
+            for v in self.resources:
+                if isinstance(v, dict):
+                    resources_list.append(v)
+                else:
+                    resources_list.append(v.to_dict())
+            _dict['resources'] = resources_list
         return _dict
 
     def _to_dict(self):
@@ -4464,7 +4512,6 @@ class GetSingleConfigElement():
     def __ne__(self, other: 'GetSingleConfigElement') -> bool:
         """Return `true` when self and other are not equal, false otherwise."""
         return not self == other
-
 
 class InstanceSecretsLocks():
     """
@@ -4515,7 +4562,7 @@ class InstanceSecretsLocks():
         if 'secret_type' in _dict:
             args['secret_type'] = _dict.get('secret_type')
         if 'versions' in _dict:
-            args['versions'] = [SecretLockVersion.from_dict(x) for x in _dict.get('versions')]
+            args['versions'] = [SecretLockVersion.from_dict(v) for v in _dict.get('versions')]
         args.update({k: v for (k, v) in _dict.items() if k not in cls._properties})
         return cls(**args)
 
@@ -4534,7 +4581,13 @@ class InstanceSecretsLocks():
         if hasattr(self, 'secret_type') and getattr(self, 'secret_type') is not None:
             _dict['secret_type'] = getattr(self, 'secret_type')
         if hasattr(self, 'versions') and self.versions is not None:
-            _dict['versions'] = [x.to_dict() for x in self.versions]
+            versions_list = []
+            for v in self.versions:
+                if isinstance(v, dict):
+                    versions_list.append(v)
+                else:
+                    versions_list.append(v.to_dict())
+            _dict['versions'] = versions_list
         for _key in [k for k in vars(self).keys() if k not in InstanceSecretsLocks._properties]:
             _dict[_key] = getattr(self, _key)
         return _dict
@@ -4647,7 +4700,10 @@ class IntermediateCertificateAuthoritiesConfigItem():
         if hasattr(self, 'type') and self.type is not None:
             _dict['type'] = self.type
         if hasattr(self, 'config') and self.config is not None:
-            _dict['config'] = self.config.to_dict()
+            if isinstance(self.config, dict):
+                _dict['config'] = self.config
+            else:
+                _dict['config'] = self.config.to_dict()
         return _dict
 
     def _to_dict(self):
@@ -4767,7 +4823,7 @@ class IssuanceInfo():
         if 'dns' in _dict:
             args['dns'] = _dict.get('dns')
         if 'challenges' in _dict:
-            args['challenges'] = [ChallengeResource.from_dict(x) for x in _dict.get('challenges')]
+            args['challenges'] = [ChallengeResource.from_dict(v) for v in _dict.get('challenges')]
         if 'dns_challenge_validation_time' in _dict:
             args['dns_challenge_validation_time'] = string_to_datetime(_dict.get('dns_challenge_validation_time'))
         return cls(**args)
@@ -4799,7 +4855,13 @@ class IssuanceInfo():
         if hasattr(self, 'dns') and getattr(self, 'dns') is not None:
             _dict['dns'] = getattr(self, 'dns')
         if hasattr(self, 'challenges') and getattr(self, 'challenges') is not None:
-            _dict['challenges'] = [x.to_dict() for x in getattr(self, 'challenges')]
+            challenges_list = []
+            for v in getattr(self, 'challenges'):
+                if isinstance(v, dict):
+                    challenges_list.append(v)
+                else:
+                    challenges_list.append(v.to_dict())
+            _dict['challenges'] = challenges_list
         if hasattr(self, 'dns_challenge_validation_time') and getattr(self,
                                                                       'dns_challenge_validation_time') is not None:
             _dict['dns_challenge_validation_time'] = datetime_to_string(getattr(self, 'dns_challenge_validation_time'))
@@ -4822,7 +4884,6 @@ class IssuanceInfo():
     def __ne__(self, other: 'IssuanceInfo') -> bool:
         """Return `true` when self and other are not equal, false otherwise."""
         return not self == other
-
 
 class ListSecretLocks():
     """
@@ -4855,7 +4916,7 @@ class ListSecretLocks():
         else:
             raise ValueError('Required property \'metadata\' not present in ListSecretLocks JSON')
         if 'resources' in _dict:
-            args['resources'] = [SecretLockData.from_dict(x) for x in _dict.get('resources')]
+            args['resources'] = [SecretLockData.from_dict(v) for v in _dict.get('resources')]
         else:
             raise ValueError('Required property \'resources\' not present in ListSecretLocks JSON')
         return cls(**args)
@@ -4869,9 +4930,18 @@ class ListSecretLocks():
         """Return a json dictionary representing this model."""
         _dict = {}
         if hasattr(self, 'metadata') and self.metadata is not None:
-            _dict['metadata'] = self.metadata.to_dict()
+            if isinstance(self.metadata, dict):
+                _dict['metadata'] = self.metadata
+            else:
+                _dict['metadata'] = self.metadata.to_dict()
         if hasattr(self, 'resources') and self.resources is not None:
-            _dict['resources'] = [x.to_dict() for x in self.resources]
+            resources_list = []
+            for v in self.resources:
+                if isinstance(v, dict):
+                    resources_list.append(v)
+                else:
+                    resources_list.append(v.to_dict())
+            _dict['resources'] = resources_list
         return _dict
 
     def _to_dict(self):
@@ -4891,7 +4961,6 @@ class ListSecretLocks():
     def __ne__(self, other: 'ListSecretLocks') -> bool:
         """Return `true` when self and other are not equal, false otherwise."""
         return not self == other
-
 
 class ListSecretVersions():
     """
@@ -4938,14 +5007,17 @@ class ListSecretVersions():
         """Return a json dictionary representing this model."""
         _dict = {}
         if hasattr(self, 'metadata') and self.metadata is not None:
-            _dict['metadata'] = self.metadata.to_dict()
+            if isinstance(self.metadata, dict):
+                _dict['metadata'] = self.metadata
+            else:
+                _dict['metadata'] = self.metadata.to_dict()
         if hasattr(self, 'resources') and self.resources is not None:
             resources_list = []
-            for x in self.resources:
-                if isinstance(x, dict):
-                    resources_list.append(x)
+            for v in self.resources:
+                if isinstance(v, dict):
+                    resources_list.append(v)
                 else:
-                    resources_list.append(x.to_dict())
+                    resources_list.append(v.to_dict())
             _dict['resources'] = resources_list
         return _dict
 
@@ -4966,7 +5038,6 @@ class ListSecretVersions():
     def __ne__(self, other: 'ListSecretVersions') -> bool:
         """Return `true` when self and other are not equal, false otherwise."""
         return not self == other
-
 
 class ListSecrets():
     """
@@ -5013,14 +5084,17 @@ class ListSecrets():
         """Return a json dictionary representing this model."""
         _dict = {}
         if hasattr(self, 'metadata') and self.metadata is not None:
-            _dict['metadata'] = self.metadata.to_dict()
+            if isinstance(self.metadata, dict):
+                _dict['metadata'] = self.metadata
+            else:
+                _dict['metadata'] = self.metadata.to_dict()
         if hasattr(self, 'resources') and self.resources is not None:
             resources_list = []
-            for x in self.resources:
-                if isinstance(x, dict):
-                    resources_list.append(x)
+            for v in self.resources:
+                if isinstance(v, dict):
+                    resources_list.append(v)
                 else:
-                    resources_list.append(x.to_dict())
+                    resources_list.append(v.to_dict())
             _dict['resources'] = resources_list
         return _dict
 
@@ -5041,7 +5115,6 @@ class ListSecrets():
     def __ne__(self, other: 'ListSecrets') -> bool:
         """Return `true` when self and other are not equal, false otherwise."""
         return not self == other
-
 
 class LockSecretBodyLocksItem():
     """
@@ -5128,7 +5201,6 @@ class LockSecretBodyLocksItem():
         """Return `true` when self and other are not equal, false otherwise."""
         return not self == other
 
-
 class NotificationsSettings():
     """
     The Event Notifications details.
@@ -5188,7 +5260,6 @@ class NotificationsSettings():
         """Return `true` when self and other are not equal, false otherwise."""
         return not self == other
 
-
 class RootCertificateAuthoritiesConfigItem():
     """
     Root certificate authorities configuration.
@@ -5247,7 +5318,10 @@ class RootCertificateAuthoritiesConfigItem():
         if hasattr(self, 'type') and self.type is not None:
             _dict['type'] = self.type
         if hasattr(self, 'config') and self.config is not None:
-            _dict['config'] = self.config.to_dict()
+            if isinstance(self.config, dict):
+                _dict['config'] = self.config
+            else:
+                _dict['config'] = self.config.to_dict()
         return _dict
 
     def _to_dict(self):
@@ -5421,11 +5495,10 @@ class SecretAction():
         """
         msg = "Cannot instantiate base class. Instead, instantiate one of the defined subclasses: {0}".format(
             ", ".join(['RotateArbitrarySecretBody', 'RotatePublicCertBody', 'RotateUsernamePasswordSecretBody',
-                       'RotateCertificateBody', 'RotatePrivateCertBody',
+                       'RotateCertificateBody', 'RotatePrivateCertBody', 'RotatePrivateCertBodyWithCsr',
                        'RotatePrivateCertBodyWithVersionCustomMetadata', 'RestoreIAMCredentialsSecretBody',
                        'DeleteCredentialsForIAMCredentialsSecret', 'RotateKvSecretBody']))
         raise Exception(msg)
-
 
 class SecretGroupDef():
     """
@@ -5458,7 +5531,7 @@ class SecretGroupDef():
         else:
             raise ValueError('Required property \'metadata\' not present in SecretGroupDef JSON')
         if 'resources' in _dict:
-            args['resources'] = [SecretGroupResource.from_dict(x) for x in _dict.get('resources')]
+            args['resources'] = [SecretGroupResource.from_dict(v) for v in _dict.get('resources')]
         else:
             raise ValueError('Required property \'resources\' not present in SecretGroupDef JSON')
         return cls(**args)
@@ -5472,9 +5545,18 @@ class SecretGroupDef():
         """Return a json dictionary representing this model."""
         _dict = {}
         if hasattr(self, 'metadata') and self.metadata is not None:
-            _dict['metadata'] = self.metadata.to_dict()
+            if isinstance(self.metadata, dict):
+                _dict['metadata'] = self.metadata
+            else:
+                _dict['metadata'] = self.metadata.to_dict()
         if hasattr(self, 'resources') and self.resources is not None:
-            _dict['resources'] = [x.to_dict() for x in self.resources]
+            resources_list = []
+            for v in self.resources:
+                if isinstance(v, dict):
+                    resources_list.append(v)
+                else:
+                    resources_list.append(v.to_dict())
+            _dict['resources'] = resources_list
         return _dict
 
     def _to_dict(self):
@@ -5494,7 +5576,6 @@ class SecretGroupDef():
     def __ne__(self, other: 'SecretGroupDef') -> bool:
         """Return `true` when self and other are not equal, false otherwise."""
         return not self == other
-
 
 class SecretGroupMetadataUpdatable():
     """
@@ -5568,7 +5649,6 @@ class SecretGroupMetadataUpdatable():
     def __ne__(self, other: 'SecretGroupMetadataUpdatable') -> bool:
         """Return `true` when self and other are not equal, false otherwise."""
         return not self == other
-
 
 class SecretGroupResource():
     """
@@ -5699,7 +5779,6 @@ class SecretGroupResource():
     def __ne__(self, other: 'SecretGroupResource') -> bool:
         """Return `true` when self and other are not equal, false otherwise."""
         return not self == other
-
 
 class SecretLockData():
     """
@@ -5842,7 +5921,6 @@ class SecretLockData():
         """Return `true` when self and other are not equal, false otherwise."""
         return not self == other
 
-
 class SecretLockVersion():
     """
     Properties that describe the secret locks.
@@ -5980,7 +6058,6 @@ class SecretMetadata():
                        'PrivateCertificateSecretMetadata', 'KvSecretMetadata']))
         raise Exception(msg)
 
-
 class SecretMetadataRequest():
     """
     The metadata of a secret.
@@ -6026,14 +6103,17 @@ class SecretMetadataRequest():
         """Return a json dictionary representing this model."""
         _dict = {}
         if hasattr(self, 'metadata') and self.metadata is not None:
-            _dict['metadata'] = self.metadata.to_dict()
+            if isinstance(self.metadata, dict):
+                _dict['metadata'] = self.metadata
+            else:
+                _dict['metadata'] = self.metadata.to_dict()
         if hasattr(self, 'resources') and self.resources is not None:
             resources_list = []
-            for x in self.resources:
-                if isinstance(x, dict):
-                    resources_list.append(x)
+            for v in self.resources:
+                if isinstance(v, dict):
+                    resources_list.append(v)
                 else:
-                    resources_list.append(x.to_dict())
+                    resources_list.append(v.to_dict())
             _dict['resources'] = resources_list
         return _dict
 
@@ -6054,7 +6134,6 @@ class SecretMetadataRequest():
     def __ne__(self, other: 'SecretMetadataRequest') -> bool:
         """Return `true` when self and other are not equal, false otherwise."""
         return not self == other
-
 
 class SecretPolicyRotation():
     """
@@ -6152,7 +6231,6 @@ class SecretPolicyRotationRotation():
                  'PrivateCertPolicyRotation']))
         raise Exception(msg)
 
-
 class SecretResource():
     """
     SecretResource.
@@ -6170,7 +6248,6 @@ class SecretResource():
                        'PrivateCertificateSecretResource', 'KvSecretResource']))
         raise Exception(msg)
 
-
 class SecretVersion():
     """
     SecretVersion.
@@ -6186,7 +6263,6 @@ class SecretVersion():
             ", ".join(['ArbitrarySecretVersion', 'UsernamePasswordSecretVersion', 'IAMCredentialsSecretVersion',
                        'CertificateSecretVersion', 'PrivateCertificateSecretVersion']))
         raise Exception(msg)
-
 
 class SecretVersionInfo():
     """
@@ -6205,7 +6281,6 @@ class SecretVersionInfo():
                  'CertificateSecretVersionInfo', 'PrivateCertificateSecretVersionInfo']))
         raise Exception(msg)
 
-
 class SecretVersionMetadata():
     """
     SecretVersionMetadata.
@@ -6222,7 +6297,6 @@ class SecretVersionMetadata():
                        'IAMCredentialsSecretVersionMetadata', 'CertificateSecretVersionMetadata',
                        'PrivateCertificateSecretVersionMetadata']))
         raise Exception(msg)
-
 
 class SecretsLocks():
     """
@@ -6268,7 +6342,7 @@ class SecretsLocks():
         if 'secret_group_id' in _dict:
             args['secret_group_id'] = _dict.get('secret_group_id')
         if 'versions' in _dict:
-            args['versions'] = [SecretLockVersion.from_dict(x) for x in _dict.get('versions')]
+            args['versions'] = [SecretLockVersion.from_dict(v) for v in _dict.get('versions')]
         args.update({k: v for (k, v) in _dict.items() if k not in cls._properties})
         return cls(**args)
 
@@ -6285,7 +6359,13 @@ class SecretsLocks():
         if hasattr(self, 'secret_group_id') and getattr(self, 'secret_group_id') is not None:
             _dict['secret_group_id'] = getattr(self, 'secret_group_id')
         if hasattr(self, 'versions') and self.versions is not None:
-            _dict['versions'] = [x.to_dict() for x in self.versions]
+            versions_list = []
+            for v in self.versions:
+                if isinstance(v, dict):
+                    versions_list.append(v)
+                else:
+                    versions_list.append(v.to_dict())
+            _dict['versions'] = versions_list
         for _key in [k for k in vars(self).keys() if k not in SecretsLocks._properties]:
             _dict[_key] = getattr(self, _key)
         return _dict
@@ -6324,7 +6404,6 @@ class SecretsLocks():
     def __ne__(self, other: 'SecretsLocks') -> bool:
         """Return `true` when self and other are not equal, false otherwise."""
         return not self == other
-
 
 class SignActionResultData():
     """
@@ -6417,7 +6496,6 @@ class SignActionResultData():
         """Return `true` when self and other are not equal, false otherwise."""
         return not self == other
 
-
 class SignIntermediateActionResultData():
     """
     Properties that are returned with a successful `sign` action.
@@ -6509,7 +6587,6 @@ class SignIntermediateActionResultData():
         """Return `true` when self and other are not equal, false otherwise."""
         return not self == other
 
-
 class UpdateSecretVersionMetadata():
     """
     Properties that update the metadata of a secret version.
@@ -6566,7 +6643,6 @@ class UpdateSecretVersionMetadata():
     def __ne__(self, other: 'UpdateSecretVersionMetadata') -> bool:
         """Return `true` when self and other are not equal, false otherwise."""
         return not self == other
-
 
 class CertificateValidity():
     """
@@ -6634,7 +6710,6 @@ class CertificateValidity():
     def __ne__(self, other: 'CertificateValidity') -> bool:
         """Return `true` when self and other are not equal, false otherwise."""
         return not self == other
-
 
 class ArbitrarySecretMetadata(SecretMetadata):
     """
@@ -7239,7 +7314,6 @@ class ArbitrarySecretVersion(SecretVersion):
         """Return `true` when self and other are not equal, false otherwise."""
         return not self == other
 
-
 class ArbitrarySecretVersionInfo(SecretVersionInfo):
     """
     ArbitrarySecretVersionInfo.
@@ -7336,7 +7410,6 @@ class ArbitrarySecretVersionInfo(SecretVersionInfo):
     def __ne__(self, other: 'ArbitrarySecretVersionInfo') -> bool:
         """Return `true` when self and other are not equal, false otherwise."""
         return not self == other
-
 
 class ArbitrarySecretVersionMetadata(SecretVersionMetadata):
     """
@@ -7450,7 +7523,6 @@ class ArbitrarySecretVersionMetadata(SecretVersionMetadata):
     def __ne__(self, other: 'ArbitrarySecretVersionMetadata') -> bool:
         """Return `true` when self and other are not equal, false otherwise."""
         return not self == other
-
 
 class CertificateSecretMetadata(SecretMetadata):
     """
@@ -7695,7 +7767,10 @@ class CertificateSecretMetadata(SecretMetadata):
         if hasattr(self, 'issuer') and getattr(self, 'issuer') is not None:
             _dict['issuer'] = getattr(self, 'issuer')
         if hasattr(self, 'validity') and getattr(self, 'validity') is not None:
-            _dict['validity'] = getattr(self, 'validity').to_dict()
+            if isinstance(getattr(self, 'validity'), dict):
+                _dict['validity'] = getattr(self, 'validity')
+            else:
+                _dict['validity'] = getattr(self, 'validity').to_dict()
         if hasattr(self, 'common_name') and getattr(self, 'common_name') is not None:
             _dict['common_name'] = getattr(self, 'common_name')
         if hasattr(self, 'intermediate_included') and getattr(self, 'intermediate_included') is not None:
@@ -8060,7 +8135,10 @@ class CertificateSecretResource(SecretResource):
         if hasattr(self, 'issuer') and getattr(self, 'issuer') is not None:
             _dict['issuer'] = getattr(self, 'issuer')
         if hasattr(self, 'validity') and getattr(self, 'validity') is not None:
-            _dict['validity'] = getattr(self, 'validity').to_dict()
+            if isinstance(getattr(self, 'validity'), dict):
+                _dict['validity'] = getattr(self, 'validity')
+            else:
+                _dict['validity'] = getattr(self, 'validity').to_dict()
         if hasattr(self, 'common_name') and getattr(self, 'common_name') is not None:
             _dict['common_name'] = getattr(self, 'common_name')
         if hasattr(self, 'intermediate_included') and getattr(self, 'intermediate_included') is not None:
@@ -8208,13 +8286,19 @@ class CertificateSecretVersion(SecretVersion):
         if hasattr(self, 'version_custom_metadata') and self.version_custom_metadata is not None:
             _dict['version_custom_metadata'] = self.version_custom_metadata
         if hasattr(self, 'validity') and getattr(self, 'validity') is not None:
-            _dict['validity'] = getattr(self, 'validity').to_dict()
+            if isinstance(getattr(self, 'validity'), dict):
+                _dict['validity'] = getattr(self, 'validity')
+            else:
+                _dict['validity'] = getattr(self, 'validity').to_dict()
         if hasattr(self, 'serial_number') and getattr(self, 'serial_number') is not None:
             _dict['serial_number'] = getattr(self, 'serial_number')
         if hasattr(self, 'expiration_date') and getattr(self, 'expiration_date') is not None:
             _dict['expiration_date'] = datetime_to_string(getattr(self, 'expiration_date'))
         if hasattr(self, 'secret_data') and getattr(self, 'secret_data') is not None:
-            _dict['secret_data'] = getattr(self, 'secret_data').to_dict()
+            if isinstance(getattr(self, 'secret_data'), dict):
+                _dict['secret_data'] = getattr(self, 'secret_data')
+            else:
+                _dict['secret_data'] = getattr(self, 'secret_data').to_dict()
         return _dict
 
     def _to_dict(self):
@@ -8234,7 +8318,6 @@ class CertificateSecretVersion(SecretVersion):
     def __ne__(self, other: 'CertificateSecretVersion') -> bool:
         """Return `true` when self and other are not equal, false otherwise."""
         return not self == other
-
 
 class CertificateSecretVersionInfo(SecretVersionInfo):
     """
@@ -8335,7 +8418,10 @@ class CertificateSecretVersionInfo(SecretVersionInfo):
         if hasattr(self, 'expiration_date') and getattr(self, 'expiration_date') is not None:
             _dict['expiration_date'] = datetime_to_string(getattr(self, 'expiration_date'))
         if hasattr(self, 'validity') and getattr(self, 'validity') is not None:
-            _dict['validity'] = getattr(self, 'validity').to_dict()
+            if isinstance(getattr(self, 'validity'), dict):
+                _dict['validity'] = getattr(self, 'validity')
+            else:
+                _dict['validity'] = getattr(self, 'validity').to_dict()
         return _dict
 
     def _to_dict(self):
@@ -8355,7 +8441,6 @@ class CertificateSecretVersionInfo(SecretVersionInfo):
     def __ne__(self, other: 'CertificateSecretVersionInfo') -> bool:
         """Return `true` when self and other are not equal, false otherwise."""
         return not self == other
-
 
 class CertificateSecretVersionMetadata(SecretVersionMetadata):
     """
@@ -8472,7 +8557,10 @@ class CertificateSecretVersionMetadata(SecretVersionMetadata):
         if hasattr(self, 'expiration_date') and getattr(self, 'expiration_date') is not None:
             _dict['expiration_date'] = datetime_to_string(getattr(self, 'expiration_date'))
         if hasattr(self, 'validity') and getattr(self, 'validity') is not None:
-            _dict['validity'] = getattr(self, 'validity').to_dict()
+            if isinstance(getattr(self, 'validity'), dict):
+                _dict['validity'] = getattr(self, 'validity')
+            else:
+                _dict['validity'] = getattr(self, 'validity').to_dict()
         return _dict
 
     def _to_dict(self):
@@ -8492,7 +8580,6 @@ class CertificateSecretVersionMetadata(SecretVersionMetadata):
     def __ne__(self, other: 'CertificateSecretVersionMetadata') -> bool:
         """Return `true` when self and other are not equal, false otherwise."""
         return not self == other
-
 
 class CertificateTemplateConfig(ConfigElementDefConfig):
     """
@@ -9082,7 +9169,7 @@ class CertificateTemplatesConfig(GetConfigElementsResourcesItem):
         """Initialize a CertificateTemplatesConfig object from a json dictionary."""
         args = {}
         if 'certificate_templates' in _dict:
-            args['certificate_templates'] = [CertificateTemplatesConfigItem.from_dict(x) for x in
+            args['certificate_templates'] = [CertificateTemplatesConfigItem.from_dict(v) for v in
                                              _dict.get('certificate_templates')]
         else:
             raise ValueError(
@@ -9098,7 +9185,13 @@ class CertificateTemplatesConfig(GetConfigElementsResourcesItem):
         """Return a json dictionary representing this model."""
         _dict = {}
         if hasattr(self, 'certificate_templates') and self.certificate_templates is not None:
-            _dict['certificate_templates'] = [x.to_dict() for x in self.certificate_templates]
+            certificate_templates_list = []
+            for v in self.certificate_templates:
+                if isinstance(v, dict):
+                    certificate_templates_list.append(v)
+                else:
+                    certificate_templates_list.append(v.to_dict())
+            _dict['certificate_templates'] = certificate_templates_list
         return _dict
 
     def _to_dict(self):
@@ -9118,7 +9211,6 @@ class CertificateTemplatesConfig(GetConfigElementsResourcesItem):
     def __ne__(self, other: 'CertificateTemplatesConfig') -> bool:
         """Return `true` when self and other are not equal, false otherwise."""
         return not self == other
-
 
 class ConfigElementDefConfigClassicInfrastructureConfig(ConfigElementDefConfig):
     """
@@ -9203,7 +9295,6 @@ class ConfigElementDefConfigClassicInfrastructureConfig(ConfigElementDefConfig):
     def __ne__(self, other: 'ConfigElementDefConfigClassicInfrastructureConfig') -> bool:
         """Return `true` when self and other are not equal, false otherwise."""
         return not self == other
-
 
 class ConfigElementDefConfigCloudInternetServicesConfig(ConfigElementDefConfig):
     """
@@ -9296,7 +9387,6 @@ class ConfigElementDefConfigCloudInternetServicesConfig(ConfigElementDefConfig):
         """Return `true` when self and other are not equal, false otherwise."""
         return not self == other
 
-
 class ConfigElementDefConfigLetsEncryptConfig(ConfigElementDefConfig):
     """
     Properties that describe a Let's Encrypt configuration.
@@ -9365,7 +9455,6 @@ class ConfigElementDefConfigLetsEncryptConfig(ConfigElementDefConfig):
     def __ne__(self, other: 'ConfigElementDefConfigLetsEncryptConfig') -> bool:
         """Return `true` when self and other are not equal, false otherwise."""
         return not self == other
-
 
 class CreateIAMCredentialsSecretEngineRootConfig(EngineConfig):
     """
@@ -9442,7 +9531,6 @@ class CreateIAMCredentialsSecretEngineRootConfig(EngineConfig):
     def __ne__(self, other: 'CreateIAMCredentialsSecretEngineRootConfig') -> bool:
         """Return `true` when self and other are not equal, false otherwise."""
         return not self == other
-
 
 class DeleteCredentialsForIAMCredentialsSecret(SecretAction):
     """
@@ -9521,7 +9609,6 @@ class DeleteCredentialsForIAMCredentialsSecret(SecretAction):
         """Return `true` when self and other are not equal, false otherwise."""
         return not self == other
 
-
 class GetConfigElementsResourcesItemCertificateAuthoritiesConfig(GetConfigElementsResourcesItem):
     """
     Certificate authorities configuration.
@@ -9544,7 +9631,7 @@ class GetConfigElementsResourcesItemCertificateAuthoritiesConfig(GetConfigElemen
         """Initialize a GetConfigElementsResourcesItemCertificateAuthoritiesConfig object from a json dictionary."""
         args = {}
         if 'certificate_authorities' in _dict:
-            args['certificate_authorities'] = [ConfigElementMetadata.from_dict(x) for x in
+            args['certificate_authorities'] = [ConfigElementMetadata.from_dict(v) for v in
                                                _dict.get('certificate_authorities')]
         else:
             raise ValueError(
@@ -9560,7 +9647,13 @@ class GetConfigElementsResourcesItemCertificateAuthoritiesConfig(GetConfigElemen
         """Return a json dictionary representing this model."""
         _dict = {}
         if hasattr(self, 'certificate_authorities') and self.certificate_authorities is not None:
-            _dict['certificate_authorities'] = [x.to_dict() for x in self.certificate_authorities]
+            certificate_authorities_list = []
+            for v in self.certificate_authorities:
+                if isinstance(v, dict):
+                    certificate_authorities_list.append(v)
+                else:
+                    certificate_authorities_list.append(v.to_dict())
+            _dict['certificate_authorities'] = certificate_authorities_list
         return _dict
 
     def _to_dict(self):
@@ -9580,7 +9673,6 @@ class GetConfigElementsResourcesItemCertificateAuthoritiesConfig(GetConfigElemen
     def __ne__(self, other: 'GetConfigElementsResourcesItemCertificateAuthoritiesConfig') -> bool:
         """Return `true` when self and other are not equal, false otherwise."""
         return not self == other
-
 
 class GetConfigElementsResourcesItemDnsProvidersConfig(GetConfigElementsResourcesItem):
     """
@@ -9604,7 +9696,7 @@ class GetConfigElementsResourcesItemDnsProvidersConfig(GetConfigElementsResource
         """Initialize a GetConfigElementsResourcesItemDnsProvidersConfig object from a json dictionary."""
         args = {}
         if 'dns_providers' in _dict:
-            args['dns_providers'] = [ConfigElementMetadata.from_dict(x) for x in _dict.get('dns_providers')]
+            args['dns_providers'] = [ConfigElementMetadata.from_dict(v) for v in _dict.get('dns_providers')]
         else:
             raise ValueError(
                 'Required property \'dns_providers\' not present in GetConfigElementsResourcesItemDnsProvidersConfig JSON')
@@ -9619,7 +9711,13 @@ class GetConfigElementsResourcesItemDnsProvidersConfig(GetConfigElementsResource
         """Return a json dictionary representing this model."""
         _dict = {}
         if hasattr(self, 'dns_providers') and self.dns_providers is not None:
-            _dict['dns_providers'] = [x.to_dict() for x in self.dns_providers]
+            dns_providers_list = []
+            for v in self.dns_providers:
+                if isinstance(v, dict):
+                    dns_providers_list.append(v)
+                else:
+                    dns_providers_list.append(v.to_dict())
+            _dict['dns_providers'] = dns_providers_list
         return _dict
 
     def _to_dict(self):
@@ -9639,7 +9737,6 @@ class GetConfigElementsResourcesItemDnsProvidersConfig(GetConfigElementsResource
     def __ne__(self, other: 'GetConfigElementsResourcesItemDnsProvidersConfig') -> bool:
         """Return `true` when self and other are not equal, false otherwise."""
         return not self == other
-
 
 class GetSecretPolicyRotation(GetSecretPolicies):
     """
@@ -9687,7 +9784,10 @@ class GetSecretPolicyRotation(GetSecretPolicies):
         """Return a json dictionary representing this model."""
         _dict = {}
         if hasattr(self, 'metadata') and self.metadata is not None:
-            _dict['metadata'] = self.metadata.to_dict()
+            if isinstance(self.metadata, dict):
+                _dict['metadata'] = self.metadata
+            else:
+                _dict['metadata'] = self.metadata.to_dict()
         if hasattr(self, 'resources') and self.resources is not None:
             _dict['resources'] = self.resources
         return _dict
@@ -9709,7 +9809,6 @@ class GetSecretPolicyRotation(GetSecretPolicies):
     def __ne__(self, other: 'GetSecretPolicyRotation') -> bool:
         """Return `true` when self and other are not equal, false otherwise."""
         return not self == other
-
 
 class IAMCredentialsSecretEngineRootConfig(GetConfigResourcesItem):
     """
@@ -9785,7 +9884,6 @@ class IAMCredentialsSecretEngineRootConfig(GetConfigResourcesItem):
     def __ne__(self, other: 'IAMCredentialsSecretEngineRootConfig') -> bool:
         """Return `true` when self and other are not equal, false otherwise."""
         return not self == other
-
 
 class IAMCredentialsSecretMetadata(SecretMetadata):
     """
@@ -10539,7 +10637,6 @@ class IAMCredentialsSecretVersion(SecretVersion):
         """Return `true` when self and other are not equal, false otherwise."""
         return not self == other
 
-
 class IAMCredentialsSecretVersionInfo(SecretVersionInfo):
     """
     IAMCredentialsSecretVersionInfo.
@@ -10646,7 +10743,6 @@ class IAMCredentialsSecretVersionInfo(SecretVersionInfo):
     def __ne__(self, other: 'IAMCredentialsSecretVersionInfo') -> bool:
         """Return `true` when self and other are not equal, false otherwise."""
         return not self == other
-
 
 class IAMCredentialsSecretVersionMetadata(SecretVersionMetadata):
     """
@@ -10771,7 +10867,6 @@ class IAMCredentialsSecretVersionMetadata(SecretVersionMetadata):
         """Return `true` when self and other are not equal, false otherwise."""
         return not self == other
 
-
 class IntermediateCertificateAuthoritiesConfig(GetConfigElementsResourcesItem):
     """
     Intermediate certificate authorities configuration.
@@ -10796,8 +10891,8 @@ class IntermediateCertificateAuthoritiesConfig(GetConfigElementsResourcesItem):
         """Initialize a IntermediateCertificateAuthoritiesConfig object from a json dictionary."""
         args = {}
         if 'intermediate_certificate_authorities' in _dict:
-            args['intermediate_certificate_authorities'] = [IntermediateCertificateAuthoritiesConfigItem.from_dict(x)
-                                                            for x in _dict.get('intermediate_certificate_authorities')]
+            args['intermediate_certificate_authorities'] = [IntermediateCertificateAuthoritiesConfigItem.from_dict(v)
+                                                            for v in _dict.get('intermediate_certificate_authorities')]
         else:
             raise ValueError(
                 'Required property \'intermediate_certificate_authorities\' not present in IntermediateCertificateAuthoritiesConfig JSON')
@@ -10813,8 +10908,13 @@ class IntermediateCertificateAuthoritiesConfig(GetConfigElementsResourcesItem):
         _dict = {}
         if hasattr(self,
                    'intermediate_certificate_authorities') and self.intermediate_certificate_authorities is not None:
-            _dict['intermediate_certificate_authorities'] = [x.to_dict() for x in
-                                                             self.intermediate_certificate_authorities]
+            intermediate_certificate_authorities_list = []
+            for v in self.intermediate_certificate_authorities:
+                if isinstance(v, dict):
+                    intermediate_certificate_authorities_list.append(v)
+                else:
+                    intermediate_certificate_authorities_list.append(v.to_dict())
+            _dict['intermediate_certificate_authorities'] = intermediate_certificate_authorities_list
         return _dict
 
     def _to_dict(self):
@@ -10834,7 +10934,6 @@ class IntermediateCertificateAuthoritiesConfig(GetConfigElementsResourcesItem):
     def __ne__(self, other: 'IntermediateCertificateAuthoritiesConfig') -> bool:
         """Return `true` when self and other are not equal, false otherwise."""
         return not self == other
-
 
 class IntermediateCertificateAuthorityConfig(ConfigElementDefConfig):
     """
@@ -11869,13 +11968,13 @@ class PrivateCertSecretEngineRootConfig(GetConfigResourcesItem):
         """Initialize a PrivateCertSecretEngineRootConfig object from a json dictionary."""
         args = {}
         if 'root_certificate_authorities' in _dict:
-            args['root_certificate_authorities'] = [RootCertificateAuthoritiesConfigItem.from_dict(x) for x in
+            args['root_certificate_authorities'] = [RootCertificateAuthoritiesConfigItem.from_dict(v) for v in
                                                     _dict.get('root_certificate_authorities')]
         if 'intermediate_certificate_authorities' in _dict:
-            args['intermediate_certificate_authorities'] = [IntermediateCertificateAuthoritiesConfigItem.from_dict(x)
-                                                            for x in _dict.get('intermediate_certificate_authorities')]
+            args['intermediate_certificate_authorities'] = [IntermediateCertificateAuthoritiesConfigItem.from_dict(v)
+                                                            for v in _dict.get('intermediate_certificate_authorities')]
         if 'certificate_templates' in _dict:
-            args['certificate_templates'] = [CertificateTemplatesConfigItem.from_dict(x) for x in
+            args['certificate_templates'] = [CertificateTemplatesConfigItem.from_dict(v) for v in
                                              _dict.get('certificate_templates')]
         return cls(**args)
 
@@ -11888,13 +11987,30 @@ class PrivateCertSecretEngineRootConfig(GetConfigResourcesItem):
         """Return a json dictionary representing this model."""
         _dict = {}
         if hasattr(self, 'root_certificate_authorities') and getattr(self, 'root_certificate_authorities') is not None:
-            _dict['root_certificate_authorities'] = [x.to_dict() for x in getattr(self, 'root_certificate_authorities')]
+            root_certificate_authorities_list = []
+            for v in getattr(self, 'root_certificate_authorities'):
+                if isinstance(v, dict):
+                    root_certificate_authorities_list.append(v)
+                else:
+                    root_certificate_authorities_list.append(v.to_dict())
+            _dict['root_certificate_authorities'] = root_certificate_authorities_list
         if hasattr(self, 'intermediate_certificate_authorities') and getattr(self,
                                                                              'intermediate_certificate_authorities') is not None:
-            _dict['intermediate_certificate_authorities'] = [x.to_dict() for x in
-                                                             getattr(self, 'intermediate_certificate_authorities')]
+            intermediate_certificate_authorities_list = []
+            for v in getattr(self, 'intermediate_certificate_authorities'):
+                if isinstance(v, dict):
+                    intermediate_certificate_authorities_list.append(v)
+                else:
+                    intermediate_certificate_authorities_list.append(v.to_dict())
+            _dict['intermediate_certificate_authorities'] = intermediate_certificate_authorities_list
         if hasattr(self, 'certificate_templates') and getattr(self, 'certificate_templates') is not None:
-            _dict['certificate_templates'] = [x.to_dict() for x in getattr(self, 'certificate_templates')]
+            certificate_templates_list = []
+            for v in getattr(self, 'certificate_templates'):
+                if isinstance(v, dict):
+                    certificate_templates_list.append(v)
+                else:
+                    certificate_templates_list.append(v.to_dict())
+            _dict['certificate_templates'] = certificate_templates_list
         return _dict
 
     def _to_dict(self):
@@ -11914,7 +12030,6 @@ class PrivateCertSecretEngineRootConfig(GetConfigResourcesItem):
     def __ne__(self, other: 'PrivateCertSecretEngineRootConfig') -> bool:
         """Return `true` when self and other are not equal, false otherwise."""
         return not self == other
-
 
 class PrivateCertificateSecretMetadata(SecretMetadata):
     """
@@ -12170,7 +12285,10 @@ class PrivateCertificateSecretMetadata(SecretMetadata):
         if hasattr(self, 'alt_names') and getattr(self, 'alt_names') is not None:
             _dict['alt_names'] = getattr(self, 'alt_names')
         if hasattr(self, 'rotation') and self.rotation is not None:
-            _dict['rotation'] = self.rotation.to_dict()
+            if isinstance(self.rotation, dict):
+                _dict['rotation'] = self.rotation
+            else:
+                _dict['rotation'] = self.rotation.to_dict()
         if hasattr(self, 'algorithm') and getattr(self, 'algorithm') is not None:
             _dict['algorithm'] = getattr(self, 'algorithm')
         if hasattr(self, 'key_algorithm') and getattr(self, 'key_algorithm') is not None:
@@ -12178,7 +12296,10 @@ class PrivateCertificateSecretMetadata(SecretMetadata):
         if hasattr(self, 'issuer') and getattr(self, 'issuer') is not None:
             _dict['issuer'] = getattr(self, 'issuer')
         if hasattr(self, 'validity') and getattr(self, 'validity') is not None:
-            _dict['validity'] = getattr(self, 'validity').to_dict()
+            if isinstance(getattr(self, 'validity'), dict):
+                _dict['validity'] = getattr(self, 'validity')
+            else:
+                _dict['validity'] = getattr(self, 'validity').to_dict()
         if hasattr(self, 'serial_number') and getattr(self, 'serial_number') is not None:
             _dict['serial_number'] = getattr(self, 'serial_number')
         if hasattr(self, 'revocation_time') and getattr(self, 'revocation_time') is not None:
@@ -12268,8 +12389,13 @@ class PrivateCertificateSecretResource(SecretResource):
     :attr str certificate_template: The name of the certificate template.
     :attr str certificate_authority: (optional) The intermediate certificate
           authority that signed this certificate.
+    :attr str csr: (optional) The certificate signing request. If you don't include
+          this parameter, the CSR that is used to generate the certificate is created
+          internally. If you provide a CSR, it is used also for auto rotation and manual
+          rotation,  unless you provide another CSR in the manual rotation request.
     :attr str common_name: The fully qualified domain name or host domain name for
-          the certificate.
+          the certificate. If you provide a CSR that includes a common name value, the
+          certificate is generated with the common name that is provided in the CSR.
     :attr object alt_names: (optional) The alternative names that are defined for
           the certificate.
           For public certificates, this value is provided as an array of strings. For
@@ -12317,7 +12443,8 @@ class PrivateCertificateSecretResource(SecretResource):
     :attr dict secret_data: (optional) The data that is associated with the secret.
           The data object contains the following fields:
           - `certificate`: The contents of the certificate.
-          - `private_key`: The private key that is associated with the certificate.
+          - `private_key`: The private key that is associated with the certificate. If you
+          provide a CSR in the request, the private_key field is not included in the data.
           - `issuing_ca`: The certificate of the certificate authority that signed and
           issued this certificate.
           - `ca_chain`: The chain of certificate authorities that are associated with the
@@ -12346,6 +12473,7 @@ class PrivateCertificateSecretResource(SecretResource):
                  custom_metadata: dict = None,
                  version_custom_metadata: dict = None,
                  certificate_authority: str = None,
+                 csr: str = None,
                  alt_names: object = None,
                  ip_sans: str = None,
                  uri_sans: str = None,
@@ -12371,7 +12499,9 @@ class PrivateCertificateSecretResource(SecretResource):
                location, as an alias for your secret.
         :param str certificate_template: The name of the certificate template.
         :param str common_name: The fully qualified domain name or host domain name
-               for the certificate.
+               for the certificate. If you provide a CSR that includes a common name
+               value, the certificate is generated with the common name that is provided
+               in the CSR.
         :param str description: (optional) An extended description of your secret.
                To protect your privacy, do not use personal data, such as your name or
                location, as a description for your secret.
@@ -12390,6 +12520,11 @@ class PrivateCertificateSecretResource(SecretResource):
                customize.
         :param dict version_custom_metadata: (optional) The secret version metadata
                that a user can customize.
+        :param str csr: (optional) The certificate signing request. If you don't
+               include this parameter, the CSR that is used to generate the certificate is
+               created internally. If you provide a CSR, it is used also for auto rotation
+               and manual rotation,  unless you provide another CSR in the manual rotation
+               request.
         :param object alt_names: (optional) The alternative names that are defined
                for the certificate.
                For public certificates, this value is provided as an array of strings. For
@@ -12441,6 +12576,7 @@ class PrivateCertificateSecretResource(SecretResource):
         self.version_custom_metadata = version_custom_metadata
         self.certificate_template = certificate_template
         self.certificate_authority = certificate_authority
+        self.csr = csr
         self.common_name = common_name
         self.alt_names = alt_names
         self.ip_sans = ip_sans
@@ -12507,6 +12643,8 @@ class PrivateCertificateSecretResource(SecretResource):
                 'Required property \'certificate_template\' not present in PrivateCertificateSecretResource JSON')
         if 'certificate_authority' in _dict:
             args['certificate_authority'] = _dict.get('certificate_authority')
+        if 'csr' in _dict:
+            args['csr'] = _dict.get('csr')
         if 'common_name' in _dict:
             args['common_name'] = _dict.get('common_name')
         else:
@@ -12593,6 +12731,8 @@ class PrivateCertificateSecretResource(SecretResource):
             _dict['certificate_template'] = self.certificate_template
         if hasattr(self, 'certificate_authority') and getattr(self, 'certificate_authority') is not None:
             _dict['certificate_authority'] = getattr(self, 'certificate_authority')
+        if hasattr(self, 'csr') and self.csr is not None:
+            _dict['csr'] = self.csr
         if hasattr(self, 'common_name') and self.common_name is not None:
             _dict['common_name'] = self.common_name
         if hasattr(self, 'alt_names') and self.alt_names is not None:
@@ -12612,7 +12752,10 @@ class PrivateCertificateSecretResource(SecretResource):
         if hasattr(self, 'exclude_cn_from_sans') and self.exclude_cn_from_sans is not None:
             _dict['exclude_cn_from_sans'] = self.exclude_cn_from_sans
         if hasattr(self, 'rotation') and self.rotation is not None:
-            _dict['rotation'] = self.rotation.to_dict()
+            if isinstance(self.rotation, dict):
+                _dict['rotation'] = self.rotation
+            else:
+                _dict['rotation'] = self.rotation.to_dict()
         if hasattr(self, 'algorithm') and getattr(self, 'algorithm') is not None:
             _dict['algorithm'] = getattr(self, 'algorithm')
         if hasattr(self, 'key_algorithm') and getattr(self, 'key_algorithm') is not None:
@@ -12620,7 +12763,10 @@ class PrivateCertificateSecretResource(SecretResource):
         if hasattr(self, 'issuer') and getattr(self, 'issuer') is not None:
             _dict['issuer'] = getattr(self, 'issuer')
         if hasattr(self, 'validity') and getattr(self, 'validity') is not None:
-            _dict['validity'] = getattr(self, 'validity').to_dict()
+            if isinstance(getattr(self, 'validity'), dict):
+                _dict['validity'] = getattr(self, 'validity')
+            else:
+                _dict['validity'] = getattr(self, 'validity').to_dict()
         if hasattr(self, 'serial_number') and getattr(self, 'serial_number') is not None:
             _dict['serial_number'] = getattr(self, 'serial_number')
         if hasattr(self, 'revocation_time') and getattr(self, 'revocation_time') is not None:
@@ -12813,13 +12959,19 @@ class PrivateCertificateSecretVersion(SecretVersion):
         if hasattr(self, 'version_custom_metadata') and self.version_custom_metadata is not None:
             _dict['version_custom_metadata'] = self.version_custom_metadata
         if hasattr(self, 'validity') and getattr(self, 'validity') is not None:
-            _dict['validity'] = getattr(self, 'validity').to_dict()
+            if isinstance(getattr(self, 'validity'), dict):
+                _dict['validity'] = getattr(self, 'validity')
+            else:
+                _dict['validity'] = getattr(self, 'validity').to_dict()
         if hasattr(self, 'serial_number') and getattr(self, 'serial_number') is not None:
             _dict['serial_number'] = getattr(self, 'serial_number')
         if hasattr(self, 'expiration_date') and getattr(self, 'expiration_date') is not None:
             _dict['expiration_date'] = datetime_to_string(getattr(self, 'expiration_date'))
         if hasattr(self, 'secret_data') and getattr(self, 'secret_data') is not None:
-            _dict['secret_data'] = getattr(self, 'secret_data').to_dict()
+            if isinstance(getattr(self, 'secret_data'), dict):
+                _dict['secret_data'] = getattr(self, 'secret_data')
+            else:
+                _dict['secret_data'] = getattr(self, 'secret_data').to_dict()
         if hasattr(self, 'state') and getattr(self, 'state') is not None:
             _dict['state'] = getattr(self, 'state')
         if hasattr(self, 'state_description') and getattr(self, 'state_description') is not None:
@@ -12849,7 +13001,6 @@ class PrivateCertificateSecretVersion(SecretVersion):
     def __ne__(self, other: 'PrivateCertificateSecretVersion') -> bool:
         """Return `true` when self and other are not equal, false otherwise."""
         return not self == other
-
 
 class PrivateCertificateSecretVersionInfo(SecretVersionInfo):
     """
@@ -12983,7 +13134,10 @@ class PrivateCertificateSecretVersionInfo(SecretVersionInfo):
         if hasattr(self, 'expiration_date') and getattr(self, 'expiration_date') is not None:
             _dict['expiration_date'] = datetime_to_string(getattr(self, 'expiration_date'))
         if hasattr(self, 'validity') and getattr(self, 'validity') is not None:
-            _dict['validity'] = getattr(self, 'validity').to_dict()
+            if isinstance(getattr(self, 'validity'), dict):
+                _dict['validity'] = getattr(self, 'validity')
+            else:
+                _dict['validity'] = getattr(self, 'validity').to_dict()
         if hasattr(self, 'state') and getattr(self, 'state') is not None:
             _dict['state'] = getattr(self, 'state')
         if hasattr(self, 'state_description') and getattr(self, 'state_description') is not None:
@@ -13013,7 +13167,6 @@ class PrivateCertificateSecretVersionInfo(SecretVersionInfo):
     def __ne__(self, other: 'PrivateCertificateSecretVersionInfo') -> bool:
         """Return `true` when self and other are not equal, false otherwise."""
         return not self == other
-
 
 class PrivateCertificateSecretVersionMetadata(SecretVersionMetadata):
     """
@@ -13163,7 +13316,10 @@ class PrivateCertificateSecretVersionMetadata(SecretVersionMetadata):
         if hasattr(self, 'expiration_date') and getattr(self, 'expiration_date') is not None:
             _dict['expiration_date'] = datetime_to_string(getattr(self, 'expiration_date'))
         if hasattr(self, 'validity') and getattr(self, 'validity') is not None:
-            _dict['validity'] = getattr(self, 'validity').to_dict()
+            if isinstance(getattr(self, 'validity'), dict):
+                _dict['validity'] = getattr(self, 'validity')
+            else:
+                _dict['validity'] = getattr(self, 'validity').to_dict()
         if hasattr(self, 'state') and getattr(self, 'state') is not None:
             _dict['state'] = getattr(self, 'state')
         if hasattr(self, 'state_description') and getattr(self, 'state_description') is not None:
@@ -13194,7 +13350,6 @@ class PrivateCertificateSecretVersionMetadata(SecretVersionMetadata):
         """Return `true` when self and other are not equal, false otherwise."""
         return not self == other
 
-
 class PublicCertSecretEngineRootConfig(GetConfigResourcesItem):
     """
     Configuration for the public certificates engine.
@@ -13224,10 +13379,10 @@ class PublicCertSecretEngineRootConfig(GetConfigResourcesItem):
         """Initialize a PublicCertSecretEngineRootConfig object from a json dictionary."""
         args = {}
         if 'certificate_authorities' in _dict:
-            args['certificate_authorities'] = [ConfigElementMetadata.from_dict(x) for x in
+            args['certificate_authorities'] = [ConfigElementMetadata.from_dict(v) for v in
                                                _dict.get('certificate_authorities')]
         if 'dns_providers' in _dict:
-            args['dns_providers'] = [ConfigElementMetadata.from_dict(x) for x in _dict.get('dns_providers')]
+            args['dns_providers'] = [ConfigElementMetadata.from_dict(v) for v in _dict.get('dns_providers')]
         return cls(**args)
 
     @classmethod
@@ -13239,9 +13394,21 @@ class PublicCertSecretEngineRootConfig(GetConfigResourcesItem):
         """Return a json dictionary representing this model."""
         _dict = {}
         if hasattr(self, 'certificate_authorities') and getattr(self, 'certificate_authorities') is not None:
-            _dict['certificate_authorities'] = [x.to_dict() for x in getattr(self, 'certificate_authorities')]
+            certificate_authorities_list = []
+            for v in getattr(self, 'certificate_authorities'):
+                if isinstance(v, dict):
+                    certificate_authorities_list.append(v)
+                else:
+                    certificate_authorities_list.append(v.to_dict())
+            _dict['certificate_authorities'] = certificate_authorities_list
         if hasattr(self, 'dns_providers') and self.dns_providers is not None:
-            _dict['dns_providers'] = [x.to_dict() for x in self.dns_providers]
+            dns_providers_list = []
+            for v in self.dns_providers:
+                if isinstance(v, dict):
+                    dns_providers_list.append(v)
+                else:
+                    dns_providers_list.append(v.to_dict())
+            _dict['dns_providers'] = dns_providers_list
         return _dict
 
     def _to_dict(self):
@@ -13261,7 +13428,6 @@ class PublicCertSecretEngineRootConfig(GetConfigResourcesItem):
     def __ne__(self, other: 'PublicCertSecretEngineRootConfig') -> bool:
         """Return `true` when self and other are not equal, false otherwise."""
         return not self == other
-
 
 class PublicCertificateSecretMetadata(SecretMetadata):
     """
@@ -13538,11 +13704,20 @@ class PublicCertificateSecretMetadata(SecretMetadata):
         if hasattr(self, 'private_key_included') and getattr(self, 'private_key_included') is not None:
             _dict['private_key_included'] = getattr(self, 'private_key_included')
         if hasattr(self, 'rotation') and self.rotation is not None:
-            _dict['rotation'] = self.rotation.to_dict()
+            if isinstance(self.rotation, dict):
+                _dict['rotation'] = self.rotation
+            else:
+                _dict['rotation'] = self.rotation.to_dict()
         if hasattr(self, 'issuance_info') and getattr(self, 'issuance_info') is not None:
-            _dict['issuance_info'] = getattr(self, 'issuance_info').to_dict()
+            if isinstance(getattr(self, 'issuance_info'), dict):
+                _dict['issuance_info'] = getattr(self, 'issuance_info')
+            else:
+                _dict['issuance_info'] = getattr(self, 'issuance_info').to_dict()
         if hasattr(self, 'validity') and getattr(self, 'validity') is not None:
-            _dict['validity'] = getattr(self, 'validity').to_dict()
+            if isinstance(getattr(self, 'validity'), dict):
+                _dict['validity'] = getattr(self, 'validity')
+            else:
+                _dict['validity'] = getattr(self, 'validity').to_dict()
         if hasattr(self, 'serial_number') and getattr(self, 'serial_number') is not None:
             _dict['serial_number'] = getattr(self, 'serial_number')
         return _dict
@@ -13936,11 +14111,20 @@ class PublicCertificateSecretResource(SecretResource):
         if hasattr(self, 'intermediate_included') and getattr(self, 'intermediate_included') is not None:
             _dict['intermediate_included'] = getattr(self, 'intermediate_included')
         if hasattr(self, 'rotation') and self.rotation is not None:
-            _dict['rotation'] = self.rotation.to_dict()
+            if isinstance(self.rotation, dict):
+                _dict['rotation'] = self.rotation
+            else:
+                _dict['rotation'] = self.rotation.to_dict()
         if hasattr(self, 'issuance_info') and getattr(self, 'issuance_info') is not None:
-            _dict['issuance_info'] = getattr(self, 'issuance_info').to_dict()
+            if isinstance(getattr(self, 'issuance_info'), dict):
+                _dict['issuance_info'] = getattr(self, 'issuance_info')
+            else:
+                _dict['issuance_info'] = getattr(self, 'issuance_info').to_dict()
         if hasattr(self, 'validity') and getattr(self, 'validity') is not None:
-            _dict['validity'] = getattr(self, 'validity').to_dict()
+            if isinstance(getattr(self, 'validity'), dict):
+                _dict['validity'] = getattr(self, 'validity')
+            else:
+                _dict['validity'] = getattr(self, 'validity').to_dict()
         if hasattr(self, 'serial_number') and getattr(self, 'serial_number') is not None:
             _dict['serial_number'] = getattr(self, 'serial_number')
         if hasattr(self, 'secret_data') and getattr(self, 'secret_data') is not None:
@@ -14071,7 +14255,6 @@ class RestoreIAMCredentialsSecretBody(SecretAction):
         """Return `true` when self and other are not equal, false otherwise."""
         return not self == other
 
-
 class RevokeAction(ConfigAction):
     """
     A request to revoke the certificate of an internally signed intermediate certificate
@@ -14129,7 +14312,6 @@ class RevokeAction(ConfigAction):
     def __ne__(self, other: 'RevokeAction') -> bool:
         """Return `true` when self and other are not equal, false otherwise."""
         return not self == other
-
 
 class RevokeActionResult(ConfigElementActionResultConfig):
     """
@@ -14189,7 +14371,6 @@ class RevokeActionResult(ConfigElementActionResultConfig):
         """Return `true` when self and other are not equal, false otherwise."""
         return not self == other
 
-
 class RootCertificateAuthoritiesConfig(GetConfigElementsResourcesItem):
     """
     Root certificate authorities configuration.
@@ -14213,7 +14394,7 @@ class RootCertificateAuthoritiesConfig(GetConfigElementsResourcesItem):
         """Initialize a RootCertificateAuthoritiesConfig object from a json dictionary."""
         args = {}
         if 'root_certificate_authorities' in _dict:
-            args['root_certificate_authorities'] = [RootCertificateAuthoritiesConfigItem.from_dict(x) for x in
+            args['root_certificate_authorities'] = [RootCertificateAuthoritiesConfigItem.from_dict(v) for v in
                                                     _dict.get('root_certificate_authorities')]
         else:
             raise ValueError(
@@ -14229,7 +14410,13 @@ class RootCertificateAuthoritiesConfig(GetConfigElementsResourcesItem):
         """Return a json dictionary representing this model."""
         _dict = {}
         if hasattr(self, 'root_certificate_authorities') and self.root_certificate_authorities is not None:
-            _dict['root_certificate_authorities'] = [x.to_dict() for x in self.root_certificate_authorities]
+            root_certificate_authorities_list = []
+            for v in self.root_certificate_authorities:
+                if isinstance(v, dict):
+                    root_certificate_authorities_list.append(v)
+                else:
+                    root_certificate_authorities_list.append(v.to_dict())
+            _dict['root_certificate_authorities'] = root_certificate_authorities_list
         return _dict
 
     def _to_dict(self):
@@ -14249,7 +14436,6 @@ class RootCertificateAuthoritiesConfig(GetConfigElementsResourcesItem):
     def __ne__(self, other: 'RootCertificateAuthoritiesConfig') -> bool:
         """Return `true` when self and other are not equal, false otherwise."""
         return not self == other
-
 
 class RootCertificateAuthorityConfig(ConfigElementDefConfig):
     """
@@ -14770,7 +14956,6 @@ class RotateArbitrarySecretBody(SecretAction):
         """Return `true` when self and other are not equal, false otherwise."""
         return not self == other
 
-
 class RotateCertificateBody(SecretAction):
     """
     The request body of a rotate certificate action.
@@ -14869,7 +15054,6 @@ class RotateCertificateBody(SecretAction):
         """Return `true` when self and other are not equal, false otherwise."""
         return not self == other
 
-
 class RotateCrlActionResult(ConfigElementActionResultConfig):
     """
     Properties that are returned with a successful `rotate_crl` action.
@@ -14914,7 +15098,6 @@ class RotateCrlActionResult(ConfigElementActionResultConfig):
     def __ne__(self, other: 'RotateCrlActionResult') -> bool:
         """Return `true` when self and other are not equal, false otherwise."""
         return not self == other
-
 
 class RotateKvSecretBody(SecretAction):
     """
@@ -14994,7 +15177,6 @@ class RotateKvSecretBody(SecretAction):
         """Return `true` when self and other are not equal, false otherwise."""
         return not self == other
 
-
 class RotatePrivateCertBody(SecretAction):
     """
     The request body of a rotate private certificate action.
@@ -15064,6 +15246,94 @@ class RotatePrivateCertBody(SecretAction):
         return not self == other
 
 
+class RotatePrivateCertBodyWithCsr(SecretAction):
+    """
+    The body of a request to rotate a private certificate.
+
+    :attr str csr: The certificate signing request. If you provide a CSR, it is used
+          for auto rotation and manual rotation requests that do not include a CSR. If you
+          don't include the CSR, the certificate is generated with the last CSR that you
+          provided to create the private certificate, or on a previous request to rotate
+          the certificate. If no CSR was provided in the past, the certificate is
+          generated with a CSR that is created internally.
+    :attr dict custom_metadata: (optional) The secret metadata that a user can
+          customize.
+    :attr dict version_custom_metadata: (optional) The secret version metadata that
+          a user can customize.
+    """
+
+    def __init__(self,
+                 csr: str,
+                 *,
+                 custom_metadata: dict = None,
+                 version_custom_metadata: dict = None) -> None:
+        """
+        Initialize a RotatePrivateCertBodyWithCsr object.
+
+        :param str csr: The certificate signing request. If you provide a CSR, it
+               is used for auto rotation and manual rotation requests that do not include
+               a CSR. If you don't include the CSR, the certificate is generated with the
+               last CSR that you provided to create the private certificate, or on a
+               previous request to rotate the certificate. If no CSR was provided in the
+               past, the certificate is generated with a CSR that is created internally.
+        :param dict custom_metadata: (optional) The secret metadata that a user can
+               customize.
+        :param dict version_custom_metadata: (optional) The secret version metadata
+               that a user can customize.
+        """
+        # pylint: disable=super-init-not-called
+        self.csr = csr
+        self.custom_metadata = custom_metadata
+        self.version_custom_metadata = version_custom_metadata
+
+    @classmethod
+    def from_dict(cls, _dict: Dict) -> 'RotatePrivateCertBodyWithCsr':
+        """Initialize a RotatePrivateCertBodyWithCsr object from a json dictionary."""
+        args = {}
+        if 'csr' in _dict:
+            args['csr'] = _dict.get('csr')
+        else:
+            raise ValueError('Required property \'csr\' not present in RotatePrivateCertBodyWithCsr JSON')
+        if 'custom_metadata' in _dict:
+            args['custom_metadata'] = _dict.get('custom_metadata')
+        if 'version_custom_metadata' in _dict:
+            args['version_custom_metadata'] = _dict.get('version_custom_metadata')
+        return cls(**args)
+
+    @classmethod
+    def _from_dict(cls, _dict):
+        """Initialize a RotatePrivateCertBodyWithCsr object from a json dictionary."""
+        return cls.from_dict(_dict)
+
+    def to_dict(self) -> Dict:
+        """Return a json dictionary representing this model."""
+        _dict = {}
+        if hasattr(self, 'csr') and self.csr is not None:
+            _dict['csr'] = self.csr
+        if hasattr(self, 'custom_metadata') and self.custom_metadata is not None:
+            _dict['custom_metadata'] = self.custom_metadata
+        if hasattr(self, 'version_custom_metadata') and self.version_custom_metadata is not None:
+            _dict['version_custom_metadata'] = self.version_custom_metadata
+        return _dict
+
+    def _to_dict(self):
+        """Return a json dictionary representing this model."""
+        return self.to_dict()
+
+    def __str__(self) -> str:
+        """Return a `str` version of this RotatePrivateCertBodyWithCsr object."""
+        return json.dumps(self.to_dict(), indent=2)
+
+    def __eq__(self, other: 'RotatePrivateCertBodyWithCsr') -> bool:
+        """Return `true` when self and other are equal, false otherwise."""
+        if not isinstance(other, self.__class__):
+            return False
+        return self.__dict__ == other.__dict__
+
+    def __ne__(self, other: 'RotatePrivateCertBodyWithCsr') -> bool:
+        """Return `true` when self and other are not equal, false otherwise."""
+        return not self == other
+
 class RotatePrivateCertBodyWithVersionCustomMetadata(SecretAction):
     """
     The request body of a rotate private certificate action.
@@ -15123,7 +15393,6 @@ class RotatePrivateCertBodyWithVersionCustomMetadata(SecretAction):
     def __ne__(self, other: 'RotatePrivateCertBodyWithVersionCustomMetadata') -> bool:
         """Return `true` when self and other are not equal, false otherwise."""
         return not self == other
-
 
 class RotatePublicCertBody(SecretAction):
     """
@@ -15203,7 +15472,6 @@ class RotatePublicCertBody(SecretAction):
         """Return `true` when self and other are not equal, false otherwise."""
         return not self == other
 
-
 class RotateUsernamePasswordSecretBody(SecretAction):
     """
     The request body of a `rotate` action.
@@ -15282,7 +15550,6 @@ class RotateUsernamePasswordSecretBody(SecretAction):
     def __ne__(self, other: 'RotateUsernamePasswordSecretBody') -> bool:
         """Return `true` when self and other are not equal, false otherwise."""
         return not self == other
-
 
 class SecretPolicyRotationRotationPolicyRotation(SecretPolicyRotationRotation):
     """
@@ -15430,7 +15697,6 @@ class SecretPolicyRotationRotationPublicCertPolicyRotation(SecretPolicyRotationR
         """Return `true` when self and other are not equal, false otherwise."""
         return not self == other
 
-
 class SetSignedAction(ConfigAction):
     """
     A request to set a signed certificate in an intermediate certificate authority.
@@ -15488,7 +15754,6 @@ class SetSignedAction(ConfigAction):
         """Return `true` when self and other are not equal, false otherwise."""
         return not self == other
 
-
 class SetSignedActionResult(ConfigElementActionResultConfig):
     """
     Properties that are returned with a successful `set_signed` action.
@@ -15533,7 +15798,6 @@ class SetSignedActionResult(ConfigElementActionResultConfig):
     def __ne__(self, other: 'SetSignedActionResult') -> bool:
         """Return `true` when self and other are not equal, false otherwise."""
         return not self == other
-
 
 class SignCsrAction(ConfigAction):
     """
@@ -16118,7 +16382,10 @@ class SignCsrActionResult(ConfigElementActionResultConfig):
         if hasattr(self, 'serial_number') and self.serial_number is not None:
             _dict['serial_number'] = self.serial_number
         if hasattr(self, 'data') and getattr(self, 'data') is not None:
-            _dict['data'] = getattr(self, 'data').to_dict()
+            if isinstance(getattr(self, 'data'), dict):
+                _dict['data'] = getattr(self, 'data')
+            else:
+                _dict['data'] = getattr(self, 'data').to_dict()
         if hasattr(self, 'csr') and self.csr is not None:
             _dict['csr'] = self.csr
         return _dict
@@ -16738,7 +17005,10 @@ class SignIntermediateActionResult(ConfigElementActionResultConfig):
         if hasattr(self, 'serial_number') and self.serial_number is not None:
             _dict['serial_number'] = self.serial_number
         if hasattr(self, 'data') and getattr(self, 'data') is not None:
-            _dict['data'] = getattr(self, 'data').to_dict()
+            if isinstance(getattr(self, 'data'), dict):
+                _dict['data'] = getattr(self, 'data')
+            else:
+                _dict['data'] = getattr(self, 'data').to_dict()
         if hasattr(self, 'intermediate_certificate_authority') and self.intermediate_certificate_authority is not None:
             _dict['intermediate_certificate_authority'] = self.intermediate_certificate_authority
         return _dict
@@ -17404,7 +17674,6 @@ class UsernamePasswordSecretVersion(SecretVersion):
         """Return `true` when self and other are not equal, false otherwise."""
         return not self == other
 
-
 class UsernamePasswordSecretVersionInfo(SecretVersionInfo):
     """
     UsernamePasswordSecretVersionInfo.
@@ -17511,7 +17780,6 @@ class UsernamePasswordSecretVersionInfo(SecretVersionInfo):
     def __ne__(self, other: 'UsernamePasswordSecretVersionInfo') -> bool:
         """Return `true` when self and other are not equal, false otherwise."""
         return not self == other
-
 
 class UsernamePasswordSecretVersionMetadata(SecretVersionMetadata):
     """

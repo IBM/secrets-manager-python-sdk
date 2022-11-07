@@ -17,19 +17,15 @@
 Unit Tests for SecretsManagerV1
 """
 
-from datetime import datetime, timezone
-from ibm_cloud_sdk_core.authenticators.no_auth_authenticator import NoAuthAuthenticator
-from ibm_cloud_sdk_core.utils import datetime_to_string, string_to_datetime
-import inspect
-import json
 import os
-import pytest
 import re
-import requests
-import responses
 import urllib
-from ibm_secrets_manager_sdk.secrets_manager_v1 import *
 
+import pytest
+import responses
+from ibm_cloud_sdk_core.authenticators.no_auth_authenticator import NoAuthAuthenticator
+
+from ibm_secrets_manager_sdk.secrets_manager_v1 import *
 
 _service = SecretsManagerV1(
     authenticator=NoAuthAuthenticator()
@@ -6970,6 +6966,7 @@ class TestModel_PrivateCertificateSecretResource():
         private_certificate_secret_resource_model_json['custom_metadata'] = {'foo': 'bar'}
         private_certificate_secret_resource_model_json['version_custom_metadata'] = {'foo': 'bar'}
         private_certificate_secret_resource_model_json['certificate_template'] = 'cert-template-1'
+        private_certificate_secret_resource_model_json['csr'] = 'testString'
         private_certificate_secret_resource_model_json['common_name'] = 'example.com'
         private_certificate_secret_resource_model_json['alt_names'] = 'testString'
         private_certificate_secret_resource_model_json['ip_sans'] = 'testString'
@@ -7566,7 +7563,8 @@ class TestModel_RotatePrivateCertBody():
         assert rotate_private_cert_body_model != False
 
         # Construct a model instance of RotatePrivateCertBody by calling from_dict on the json representation
-        rotate_private_cert_body_model_dict = RotatePrivateCertBody.from_dict(rotate_private_cert_body_model_json).__dict__
+        rotate_private_cert_body_model_dict = RotatePrivateCertBody.from_dict(
+            rotate_private_cert_body_model_json).__dict__
         rotate_private_cert_body_model2 = RotatePrivateCertBody(**rotate_private_cert_body_model_dict)
 
         # Verify the model instances are equivalent
@@ -7575,6 +7573,42 @@ class TestModel_RotatePrivateCertBody():
         # Convert model instance back to dict and verify no loss of data
         rotate_private_cert_body_model_json2 = rotate_private_cert_body_model.to_dict()
         assert rotate_private_cert_body_model_json2 == rotate_private_cert_body_model_json
+
+
+class TestModel_RotatePrivateCertBodyWithCsr():
+    """
+    Test Class for RotatePrivateCertBodyWithCsr
+    """
+
+    def test_rotate_private_cert_body_with_csr_serialization(self):
+        """
+        Test serialization/deserialization for RotatePrivateCertBodyWithCsr
+        """
+
+        # Construct a json representation of a RotatePrivateCertBodyWithCsr model
+        rotate_private_cert_body_with_csr_model_json = {}
+        rotate_private_cert_body_with_csr_model_json['csr'] = 'testString'
+        rotate_private_cert_body_with_csr_model_json['custom_metadata'] = {'foo': 'bar'}
+        rotate_private_cert_body_with_csr_model_json['version_custom_metadata'] = {'foo': 'bar'}
+
+        # Construct a model instance of RotatePrivateCertBodyWithCsr by calling from_dict on the json representation
+        rotate_private_cert_body_with_csr_model = RotatePrivateCertBodyWithCsr.from_dict(
+            rotate_private_cert_body_with_csr_model_json)
+        assert rotate_private_cert_body_with_csr_model != False
+
+        # Construct a model instance of RotatePrivateCertBodyWithCsr by calling from_dict on the json representation
+        rotate_private_cert_body_with_csr_model_dict = RotatePrivateCertBodyWithCsr.from_dict(
+            rotate_private_cert_body_with_csr_model_json).__dict__
+        rotate_private_cert_body_with_csr_model2 = RotatePrivateCertBodyWithCsr(
+            **rotate_private_cert_body_with_csr_model_dict)
+
+        # Verify the model instances are equivalent
+        assert rotate_private_cert_body_with_csr_model == rotate_private_cert_body_with_csr_model2
+
+        # Convert model instance back to dict and verify no loss of data
+        rotate_private_cert_body_with_csr_model_json2 = rotate_private_cert_body_with_csr_model.to_dict()
+        assert rotate_private_cert_body_with_csr_model_json2 == rotate_private_cert_body_with_csr_model_json
+
 
 class TestModel_RotatePrivateCertBodyWithVersionCustomMetadata():
     """
