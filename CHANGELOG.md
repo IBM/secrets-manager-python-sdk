@@ -1,3 +1,10 @@
+## [1.0.13](https://github.com/ydekel6/secrets-manager-python-sdk/compare/v1.0.12...v1.0.13) (2022-11-29)
+
+
+### Performance Improvements
+
+* Secrets Manager v2 APIs \n\n BREAKING CHANGE: it breaks something ([7cda1eb](https://github.com/ydekel6/secrets-manager-python-sdk/commit/7cda1ebc42d5a3ef0eed45b165a801a9861f2718))
+
 ## [1.0.12](https://github.com/ydekel6/secrets-manager-python-sdk/compare/v1.0.11...v1.0.12) (2022-11-29)
 
 
