@@ -32,7 +32,7 @@ services:
 - An [IBM Cloud account](https://cloud.ibm.com/registration).
 - A [Secrets Manager service instance](https://cloud.ibm.com/catalog/services/secrets-manager).
 - An [IBM Cloud API key](https://cloud.ibm.com/iam/apikeys) that allows the SDK to access your account.
-- Python 3.6 or above.
+- Python 3.9 or above.
 
 ## Installation
 
