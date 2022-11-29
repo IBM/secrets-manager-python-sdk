@@ -23,9 +23,9 @@ the [IBM Cloud® Secrets Manager APIs](https://cloud.ibm.com/apidocs/secrets-man
 The IBM Cloud Secrets Manager Python SDK allows developers to programmatically interact with the following IBM Cloud
 services:
 
-Service name | Imported class name
---- | ---
-[Secrets Manager](https://cloud.ibm.com/apidocs/secrets-manager) | SecretsManagerV1
+| Service name                                                     | Imported class name  |
+|------------------------------------------------------------------|----------------------|
+| [Secrets Manager](https://cloud.ibm.com/apidocs/secrets-manager) | SecretsManagerV1     |
 
 ## Prerequisites
 
