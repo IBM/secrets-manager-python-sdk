@@ -1,3 +1,10 @@
+## [1.0.14](https://github.com/ydekel6/secrets-manager-python-sdk/compare/v1.0.13...v1.0.14) (2022-11-29)
+
+
+### Bug Fixes
+
+* test GH TOKEN ([631d44e](https://github.com/ydekel6/secrets-manager-python-sdk/commit/631d44e639b9b6f26c0c6e3c2bf18b931704bae5))
+
 ## [1.0.13](https://github.com/ydekel6/secrets-manager-python-sdk/compare/v1.0.12...v1.0.13) (2022-11-29)
 
 
