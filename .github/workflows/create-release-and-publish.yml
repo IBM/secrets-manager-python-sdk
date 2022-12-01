@@ -12,12 +12,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
         with:
           fetch-depth: 0
 
       - name: setup nodejs
-        uses: actions/setup-node@v2
+        uses: actions/setup-node@v3
         with:
           node-version: '16'
 
@@ -38,9 +38,9 @@ jobs:
           npm install @semantic-release/github
           npx semantic-release
 
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
       - name: Set up Python 3.9
-        uses: actions/setup-python@v2
+        uses: actions/setup-python@v4
         with:
           python-version: 3.9
       - name: Install pypa/build
@@ -57,7 +57,7 @@ jobs:
           --wheel
           --outdir dist/
           .
-      #      - name: Publish distribution to PyPI
-      #        uses: pypa/gh-action-pypi-publish@master
-      #        with:
-      #          password: ${{ secrets.PYPI_API_TOKEN }}
+      - name: Publish distribution to PyPI
+        uses: pypa/gh-action-pypi-publish@release/v1
+        with:
+          password: ${{ secrets.PYPI_API_TOKEN }}
