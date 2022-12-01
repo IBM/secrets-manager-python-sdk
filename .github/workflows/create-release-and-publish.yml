@@ -8,8 +8,9 @@ on:
     branches:
       - main
 jobs:
-  build:
+  release:
     runs-on: ubuntu-latest
+    if: "!startsWith(github.event.head_commit.message, 'chore')"
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
@@ -39,6 +40,10 @@ jobs:
           npm install @semantic-release/github
           npx semantic-release
 
+  publish:
+    runs-on: ubuntu-latest
+    if: "github.event_name == 'push' && contains(github.ref, 'refs/tags')"
+    steps:
       - uses: actions/checkout@v3
       - name: Set up Python 3.9
         uses: actions/setup-python@v4
@@ -58,7 +63,7 @@ jobs:
           --wheel
           --outdir dist/
           .
-      - name: Publish distribution to PyPI
-        uses: pypa/gh-action-pypi-publish@release/v1
-        with:
-          password: ${{ secrets.PYPI_API_TOKEN }}
+#      - name: Publish distribution to PyPI
+#        uses: pypa/gh-action-pypi-publish@release/v1
+#        with:
+#          password: ${{ secrets.PYPI_API_TOKEN }}
