@@ -1,36 +1,16 @@
-## [1.0.25](https://github.com/ydekel6/secrets-manager-python-sdk/compare/v1.0.13...v1.0.14) (2022-11-29)
+## [1.0.25](https://github.com/IBM/secrets-manager-python-sdk/compare/v1.0.24...v1.0.25) (2022-11-30)
+
+## [1.0.24](https://github.com/IBM/secrets-manager-python-sdk/compare/v1.0.23...v1.0.24) (2022-11-30)
+
+## [1.0.23](https://github.com/IBM/secrets-manager-python-sdk/compare/v1.0.22...v1.0.23) (2022-11-29)
 
 
 ### Bug Fixes
 
-* test GH TOKEN ([631d44e](https://github.com/ydekel6/secrets-manager-python-sdk/commit/631d44e639b9b6f26c0c6e3c2bf18b931704bae5))
-
-## [1.0.13](https://github.com/ydekel6/secrets-manager-python-sdk/compare/v1.0.12...v1.0.13) (2022-11-29)
-
-
-### Performance Improvements
-
-* Secrets Manager v2 APIs \n\n BREAKING CHANGE: it breaks something ([7cda1eb](https://github.com/ydekel6/secrets-manager-python-sdk/commit/7cda1ebc42d5a3ef0eed45b165a801a9861f2718))
-
-## [1.0.12](https://github.com/ydekel6/secrets-manager-python-sdk/compare/v1.0.11...v1.0.12) (2022-11-29)
-
-
-### Performance Improvements
-
-* Secrets Manager v2 APIs ([4e5a58f](https://github.com/ydekel6/secrets-manager-python-sdk/commit/4e5a58fdf044ffa8f37ff289b85679b60d36a2d2))
-
-## [1.0.11](https://github.com/ydekel6/secrets-manager-python-sdk/compare/v1.0.10...v1.0.11) (2022-11-29)
-
-
-### Bug Fixes
-
-* releases align release number ([ba20cdd](https://github.com/ydekel6/secrets-manager-python-sdk/commit/ba20cdd608baca02e891acb0cf3fe4774cb03e6d))
-* removing double releases ([e0a1af3](https://github.com/ydekel6/secrets-manager-python-sdk/commit/e0a1af3596fcc4121f3832919dae082d97c3d3de))
-
-## [1.0.9](https://github.com/ydekel6/secrets-manager-python-sdk/compare/v1.0.8...v1.0.9) (2022-11-29)
-
-
-### Bug Fixes
-
-* testing semantic-release ([cbee4fc](https://github.com/ydekel6/secrets-manager-python-sdk/commit/cbee4fc484410eeadd08012b9fa3199bfce436e6))
-* testing semantic-release 2 ([8a793ab](https://github.com/ydekel6/secrets-manager-python-sdk/commit/8a793abd7d08dd7019d805bf1b958197accd1d19))
+* new workflow ([2e7f2af](https://github.com/IBM/secrets-manager-python-sdk/commit/2e7f2af1a31f44e04408dd25f6a91421659155ae))
+* new workflow ([6375f21](https://github.com/IBM/secrets-manager-python-sdk/commit/6375f2187a1894cd535a3a461e45888b75a501a3))
+* revert to admin token ([790c6f5](https://github.com/IBM/secrets-manager-python-sdk/commit/790c6f5ed0b6a32087fb7e1c13fc030ffc5cd48f))
+* test adding token ([cc3f2bc](https://github.com/IBM/secrets-manager-python-sdk/commit/cc3f2bc58b325b5c4196ad52073a4df89ac20360))
+* test new token permissions ([5ea4eb3](https://github.com/IBM/secrets-manager-python-sdk/commit/5ea4eb39c57233cd9b936e52fba8b679136fdb3b))
+* test new token permissions ([68c8faa](https://github.com/IBM/secrets-manager-python-sdk/commit/68c8faaf360b003c2ce4113de3cdac99c46c8f96))
+* testing workflow ([21f1176](https://github.com/IBM/secrets-manager-python-sdk/commit/21f117679ca4692aa65a268e39c3db7c5cd151e6))
