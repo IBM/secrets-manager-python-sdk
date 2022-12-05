@@ -1,4 +1,4 @@
-## [1.0.14](https://github.com/ydekel6/secrets-manager-python-sdk/compare/v1.0.13...v1.0.14) (2022-11-29)
+## [1.0.25](https://github.com/ydekel6/secrets-manager-python-sdk/compare/v1.0.13...v1.0.14) (2022-11-29)
 
 
 ### Bug Fixes
