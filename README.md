@@ -145,6 +145,4 @@ For general contribution guidelines, see [CONTRIBUTING](CONTRIBUTING.md).
 
 ## License
 
-This SDK project is released under the Apache 2.0 license. The license's full text can be found in [LICENSE](LICENSE). 
-
-dummy_PR #1
+This SDK project is released under the Apache 2.0 license. The license's full text can be found in [LICENSE](LICENSE).
