@@ -28,7 +28,7 @@ jobs:
     - name: Test with pytest
       run: |
         pytest test
-      env:
+      with:
         AUTH_URL: https://iam.cloud.ibm.com/identity/token
         SECRETS_MANAGER_API_AUTH_TYPE: iam
         SECRETS_MANAGER_API_APIKEY: ${{ secrets.SECRETS_MANAGER_API_APIKEY }}
