@@ -115,7 +115,7 @@ response = secretsManager.get_secret(
 )
 
 secretPayload = response.result['resources'][0]['secret_data']['payload']
-print('The arbitrary secret payload is: ' + secretPayload)
+print('The arbitrary secret payload is: ' + str(secretPayload))
 
 ```
 
