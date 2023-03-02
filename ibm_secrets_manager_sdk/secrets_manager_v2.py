@@ -14,7 +14,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-# IBM OpenAPI SDK Code Generator Version: 3.60.2-95dc7721-20221102-203229
+# IBM OpenAPI SDK Code Generator Version: 3.68.0-c188a613-20230301-190553
 
 """
 With IBM Cloud® Secrets Manager, you can create, lease, and centrally manage secrets that
@@ -143,7 +143,7 @@ class SecretsManagerV2(BaseService):
 
         data = {
             'name': name,
-            'description': description
+            'description': description,
         }
         data = {k: v for (k, v) in data.items() if v is not None}
         data = json.dumps(data)
@@ -450,7 +450,7 @@ class SecretsManagerV2(BaseService):
             'limit': limit,
             'sort': sort,
             'search': search,
-            'groups': convert_list(groups)
+            'groups': convert_list(groups),
         }
 
         if 'headers' in kwargs:
@@ -846,7 +846,7 @@ class SecretsManagerV2(BaseService):
         Delete the data of a secret version.
 
         Delete the data of a secret version by specifying the ID of the version.
-        This operation is available for secret type: iam_credentials.
+        This operation is available for secret type: iam_credentials current version.
 
         :param str secret_id: The v4 UUID that uniquely identifies your secret.
         :param str id: The v4 UUID that uniquely identifies your secret version.
@@ -1104,7 +1104,7 @@ class SecretsManagerV2(BaseService):
             'offset': offset,
             'limit': limit,
             'search': search,
-            'groups': convert_list(groups)
+            'groups': convert_list(groups),
         }
 
         if 'headers' in kwargs:
@@ -1177,7 +1177,7 @@ class SecretsManagerV2(BaseService):
             'offset': offset,
             'limit': limit,
             'sort': sort,
-            'search': search
+            'search': search,
         }
 
         if 'headers' in kwargs:
@@ -1247,11 +1247,11 @@ class SecretsManagerV2(BaseService):
         headers.update(sdk_headers)
 
         params = {
-            'mode': mode
+            'mode': mode,
         }
 
         data = {
-            'locks': locks
+            'locks': locks,
         }
         data = {k: v for (k, v) in data.items() if v is not None}
         data = json.dumps(data)
@@ -1311,7 +1311,7 @@ class SecretsManagerV2(BaseService):
         headers.update(sdk_headers)
 
         params = {
-            'name': convert_list(name)
+            'name': convert_list(name),
         }
 
         if 'headers' in kwargs:
@@ -1393,7 +1393,7 @@ class SecretsManagerV2(BaseService):
             'offset': offset,
             'limit': limit,
             'sort': sort,
-            'search': search
+            'search': search,
         }
 
         if 'headers' in kwargs:
@@ -1469,11 +1469,11 @@ class SecretsManagerV2(BaseService):
         headers.update(sdk_headers)
 
         params = {
-            'mode': mode
+            'mode': mode,
         }
 
         data = {
-            'locks': locks
+            'locks': locks,
         }
         data = {k: v for (k, v) in data.items() if v is not None}
         data = json.dumps(data)
@@ -1539,7 +1539,7 @@ class SecretsManagerV2(BaseService):
         headers.update(sdk_headers)
 
         params = {
-            'name': convert_list(name)
+            'name': convert_list(name),
         }
 
         if 'headers' in kwargs:
@@ -1671,7 +1671,7 @@ class SecretsManagerV2(BaseService):
             'offset': offset,
             'limit': limit,
             'sort': sort,
-            'search': search
+            'search': search,
         }
 
         if 'headers' in kwargs:
@@ -1713,7 +1713,7 @@ class SecretsManagerV2(BaseService):
         if not name:
             raise ValueError('name must be provided')
         headers = {
-            'X-Sm-Accept-Configuration-Type': x_sm_accept_configuration_type
+            'X-Sm-Accept-Configuration-Type': x_sm_accept_configuration_type,
         }
         sdk_headers = get_sdk_headers(service_name=self.DEFAULT_SERVICE_NAME,
                                       service_version='V2',
@@ -1766,7 +1766,7 @@ class SecretsManagerV2(BaseService):
         if isinstance(configuration_patch, ConfigurationPatch):
             configuration_patch = convert_model(configuration_patch)
         headers = {
-            'X-Sm-Accept-Configuration-Type': x_sm_accept_configuration_type
+            'X-Sm-Accept-Configuration-Type': x_sm_accept_configuration_type,
         }
         sdk_headers = get_sdk_headers(service_name=self.DEFAULT_SERVICE_NAME,
                                       service_version='V2',
@@ -1817,7 +1817,7 @@ class SecretsManagerV2(BaseService):
         if not name:
             raise ValueError('name must be provided')
         headers = {
-            'X-Sm-Accept-Configuration-Type': x_sm_accept_configuration_type
+            'X-Sm-Accept-Configuration-Type': x_sm_accept_configuration_type,
         }
         sdk_headers = get_sdk_headers(service_name=self.DEFAULT_SERVICE_NAME,
                                       service_version='V2',
@@ -1879,7 +1879,7 @@ class SecretsManagerV2(BaseService):
         if isinstance(config_action_prototype, ConfigurationActionPrototype):
             config_action_prototype = convert_model(config_action_prototype)
         headers = {
-            'X-Sm-Accept-Configuration-Type': x_sm_accept_configuration_type
+            'X-Sm-Accept-Configuration-Type': x_sm_accept_configuration_type,
         }
         sdk_headers = get_sdk_headers(service_name=self.DEFAULT_SERVICE_NAME,
                                       service_version='V2',
@@ -1952,7 +1952,7 @@ class SecretsManagerV2(BaseService):
         data = {
             'event_notifications_instance_crn': event_notifications_instance_crn,
             'event_notifications_source_name': event_notifications_source_name,
-            'event_notifications_source_description': event_notifications_source_description
+            'event_notifications_source_description': event_notifications_source_description,
         }
         data = {k: v for (k, v) in data.items() if v is not None}
         data = json.dumps(data)
