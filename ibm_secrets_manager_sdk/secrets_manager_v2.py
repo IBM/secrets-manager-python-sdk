@@ -22853,8 +22853,10 @@ class PublicCertificatePrototype(SecretPrototype):
     :attr bool bundle_certs: (optional) This field indicates whether your issued
           certificate is bundled with intermediate certificates. Set to `false` for the
           certificate file to contain only the issued certificate.
-    :attr RotationPolicy rotation: (optional) This field indicates whether Secrets
-          Manager rotates your secrets automatically.
+    :attr PublicCertificateRotationPolicy rotation: (optional) This field indicates
+          whether Secrets Manager rotates your secrets automatically.
+          For public certificates, if `auto_rotate` is set to `true`, the service reorders
+          your certificate for 31 days, before it expires.
     :attr dict custom_metadata: (optional) The secret metadata that a user can
           customize.
     :attr dict version_custom_metadata: (optional) The secret version metadata that
@@ -22874,7 +22876,7 @@ class PublicCertificatePrototype(SecretPrototype):
                  alt_names: List[str] = None,
                  key_algorithm: str = None,
                  bundle_certs: bool = None,
-                 rotation: 'RotationPolicy' = None,
+                 rotation: 'PublicCertificateRotationPolicy' = None,
                  custom_metadata: dict = None,
                  version_custom_metadata: dict = None) -> None:
         """
@@ -22920,8 +22922,10 @@ class PublicCertificatePrototype(SecretPrototype):
         :param bool bundle_certs: (optional) This field indicates whether your
                issued certificate is bundled with intermediate certificates. Set to
                `false` for the certificate file to contain only the issued certificate.
-        :param RotationPolicy rotation: (optional) This field indicates whether
-               Secrets Manager rotates your secrets automatically.
+        :param PublicCertificateRotationPolicy rotation: (optional) This field
+               indicates whether Secrets Manager rotates your secrets automatically.
+               For public certificates, if `auto_rotate` is set to `true`, the service
+               reorders your certificate for 31 days, before it expires.
         :param dict custom_metadata: (optional) The secret metadata that a user can
                customize.
         :param dict version_custom_metadata: (optional) The secret version metadata
@@ -22980,7 +22984,7 @@ class PublicCertificatePrototype(SecretPrototype):
         if 'bundle_certs' in _dict:
             args['bundle_certs'] = _dict.get('bundle_certs')
         if 'rotation' in _dict:
-            args['rotation'] = _dict.get('rotation')
+            args['rotation'] = PublicCertificateRotationPolicy.from_dict(_dict.get('rotation'))
         if 'custom_metadata' in _dict:
             args['custom_metadata'] = _dict.get('custom_metadata')
         if 'version_custom_metadata' in _dict:
@@ -23070,8 +23074,6 @@ class PublicCertificateRotationPolicy(RotationPolicy):
           your secret automatically.
           The default is `false`. If `auto_rotate` is set to `true` the service rotates
           your secret based on the defined interval.
-    :attr int interval: (optional) The length of the secret rotation time interval.
-    :attr str unit: (optional) The units for the secret rotation time interval.
     :attr bool rotate_keys: (optional) This field indicates whether Secrets Manager
           rotates the private key for your public certificate automatically.
           The default is `false`. If it is set to `true`, the service generates and stores
@@ -23081,8 +23083,6 @@ class PublicCertificateRotationPolicy(RotationPolicy):
     def __init__(self,
                  auto_rotate: bool,
                  *,
-                 interval: int = None,
-                 unit: str = None,
                  rotate_keys: bool = None) -> None:
         """
         Initialize a PublicCertificateRotationPolicy object.
@@ -23091,10 +23091,6 @@ class PublicCertificateRotationPolicy(RotationPolicy):
                rotates your secret automatically.
                The default is `false`. If `auto_rotate` is set to `true` the service
                rotates your secret based on the defined interval.
-        :param int interval: (optional) The length of the secret rotation time
-               interval.
-        :param str unit: (optional) The units for the secret rotation time
-               interval.
         :param bool rotate_keys: (optional) This field indicates whether Secrets
                Manager rotates the private key for your public certificate automatically.
                The default is `false`. If it is set to `true`, the service generates and
@@ -23102,8 +23098,6 @@ class PublicCertificateRotationPolicy(RotationPolicy):
         """
         # pylint: disable=super-init-not-called
         self.auto_rotate = auto_rotate
-        self.interval = interval
-        self.unit = unit
         self.rotate_keys = rotate_keys
 
     @classmethod
@@ -23114,10 +23108,6 @@ class PublicCertificateRotationPolicy(RotationPolicy):
             args['auto_rotate'] = _dict.get('auto_rotate')
         else:
             raise ValueError('Required property \'auto_rotate\' not present in PublicCertificateRotationPolicy JSON')
-        if 'interval' in _dict:
-            args['interval'] = _dict.get('interval')
-        if 'unit' in _dict:
-            args['unit'] = _dict.get('unit')
         if 'rotate_keys' in _dict:
             args['rotate_keys'] = _dict.get('rotate_keys')
         return cls(**args)
@@ -23132,10 +23122,6 @@ class PublicCertificateRotationPolicy(RotationPolicy):
         _dict = {}
         if hasattr(self, 'auto_rotate') and self.auto_rotate is not None:
             _dict['auto_rotate'] = self.auto_rotate
-        if hasattr(self, 'interval') and self.interval is not None:
-            _dict['interval'] = self.interval
-        if hasattr(self, 'unit') and self.unit is not None:
-            _dict['unit'] = self.unit
         if hasattr(self, 'rotate_keys') and self.rotate_keys is not None:
             _dict['rotate_keys'] = self.rotate_keys
         return _dict
@@ -23157,14 +23143,6 @@ class PublicCertificateRotationPolicy(RotationPolicy):
     def __ne__(self, other: 'PublicCertificateRotationPolicy') -> bool:
         """Return `true` when self and other are not equal, false otherwise."""
         return not self == other
-
-    class UnitEnum(str, Enum):
-        """
-        The units for the secret rotation time interval.
-        """
-        DAY = 'day'
-        MONTH = 'month'
-
 
 class PublicCertificateVersion(SecretVersion):
     """

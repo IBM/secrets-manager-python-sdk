@@ -8333,10 +8333,9 @@ class TestModel_PublicCertificatePrototype():
 
         # Construct dict forms of any model objects needed in order to build this model.
 
-        rotation_policy_model = {} # CommonRotationPolicy
-        rotation_policy_model['auto_rotate'] = True
-        rotation_policy_model['interval'] = 1
-        rotation_policy_model['unit'] = 'day'
+        public_certificate_rotation_policy_model = {} # PublicCertificateRotationPolicy
+        public_certificate_rotation_policy_model['auto_rotate'] = True
+        public_certificate_rotation_policy_model['rotate_keys'] = True
 
         # Construct a json representation of a PublicCertificatePrototype model
         public_certificate_prototype_model_json = {}
@@ -8351,7 +8350,7 @@ class TestModel_PublicCertificatePrototype():
         public_certificate_prototype_model_json['ca'] = 'my-example-engine-config'
         public_certificate_prototype_model_json['dns'] = 'my-example-engine-config'
         public_certificate_prototype_model_json['bundle_certs'] = True
-        public_certificate_prototype_model_json['rotation'] = rotation_policy_model
+        public_certificate_prototype_model_json['rotation'] = public_certificate_rotation_policy_model
         public_certificate_prototype_model_json['custom_metadata'] = {'foo': 'bar'}
         public_certificate_prototype_model_json['version_custom_metadata'] = {'foo': 'bar'}
 
@@ -8383,8 +8382,6 @@ class TestModel_PublicCertificateRotationPolicy():
         # Construct a json representation of a PublicCertificateRotationPolicy model
         public_certificate_rotation_policy_model_json = {}
         public_certificate_rotation_policy_model_json['auto_rotate'] = True
-        public_certificate_rotation_policy_model_json['interval'] = 1
-        public_certificate_rotation_policy_model_json['unit'] = 'day'
         public_certificate_rotation_policy_model_json['rotate_keys'] = True
 
         # Construct a model instance of PublicCertificateRotationPolicy by calling from_dict on the json representation
