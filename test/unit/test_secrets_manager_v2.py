@@ -4589,12 +4589,6 @@ class TestModel_SecretGroup:
         secret_group_model_json2 = secret_group_model.to_dict()
         assert secret_group_model_json2 == secret_group_model_json
 
-        json_formatted_str = json.dumps(secret_group_model_json, indent=2)
-        print("source\n", json_formatted_str)
-
-        json_formatted_str2 = json.dumps(secret_group_model_json, indent=2)
-        print("tested:\n", json_formatted_str2)
-
 
 class TestModel_SecretGroupCollection:
     """

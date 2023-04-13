@@ -89,7 +89,7 @@ class TestSecretsManagerV2:
 
         # Construct a dict representation of a ArbitrarySecretPrototype model
         secret_prototype_model = {
-            'custom_metadata': {'metadata_custom_key': 'metadata_custom_value'},
+            'custom_metadata': {'metadata_custom_key':'metadata_custom_value'},
             'description': 'Description of my arbitrary secret.',
             'expiration_date': '2023-10-05T11:49:42Z',
             'labels': ['dev', 'us-south'],
@@ -97,7 +97,7 @@ class TestSecretsManagerV2:
             'secret_group_id': 'default',
             'secret_type': 'arbitrary',
             'payload': 'secret-data',
-            'version_custom_metadata': {'custom_version_key': 'custom_version_value'},
+            'version_custom_metadata': {'custom_version_key':'custom_version_value'},
         }
 
         response = self.secrets_manager_service.create_secret(
@@ -132,8 +132,7 @@ class TestSecretsManagerV2:
         secret_version_id_for_get_secret_version_link = secret_version_metadata_collection['versions'][0]['id']
         secret_id_for_create_secret_version_link = secret_version_metadata_collection['versions'][0]['secret_id']
         secret_version_id_for_get_secret_version_metadata_link = secret_version_metadata_collection['versions'][0]['id']
-        secret_version_id_for_update_secret_version_metadata_link = secret_version_metadata_collection['versions'][0][
-            'id']
+        secret_version_id_for_update_secret_version_metadata_link = secret_version_metadata_collection['versions'][0]['id']
         secret_id_for_create_secret_version_locks_link = secret_version_metadata_collection['versions'][0]['secret_id']
         secret_version_id_for_create_secret_version_locks_link = secret_version_metadata_collection['versions'][0]['id']
         secret_version_id_for_delete_secret_version_locks_link = secret_version_metadata_collection['versions'][0]['id']
@@ -148,7 +147,7 @@ class TestSecretsManagerV2:
         secret_lock_prototype_model = {
             'name': 'lock-example-1',
             'description': 'lock for consumer 1',
-            'attributes': {'key': 'value'},
+            'attributes': {'key':'value'},
         }
 
         response = self.secrets_manager_service.create_secret_locks_bulk(
@@ -318,7 +317,7 @@ class TestSecretsManagerV2:
             'name': 'updated-arbitrary-secret-name',
             'description': 'updated Arbitrary Secret description',
             'labels': ['dev', 'us-south'],
-            'custom_metadata': {'metadata_custom_key': 'metadata_custom_value'},
+            'custom_metadata': {'metadata_custom_key':'metadata_custom_value'},
             'expiration_date': '2033-04-12T23:20:50.520Z',
         }
 
@@ -331,18 +330,18 @@ class TestSecretsManagerV2:
         secret_metadata = response.get_result()
         assert secret_metadata is not None
 
-    # The integration test for create_secret_action has been explicitly excluded from generation.
-    # A test for this operation must be developed manually.
-    # @needscredentials
-    # def test_create_secret_action(self):
+  # The integration test for create_secret_action has been explicitly excluded from generation.
+  # A test for this operation must be developed manually.
+  # @needscredentials
+  # def test_create_secret_action(self):
 
     @needscredentials
     def test_create_secret_version(self):
         # Construct a dict representation of a ArbitrarySecretVersionPrototype model
         secret_version_prototype_model = {
             'payload': 'updated secret credentials',
-            'custom_metadata': {'metadata_custom_key': 'metadata_custom_value'},
-            'version_custom_metadata': {'custom_version_key': 'custom_version_value'},
+            'custom_metadata': {'metadata_custom_key':'metadata_custom_value'},
+            'version_custom_metadata': {'custom_version_key':'custom_version_value'},
         }
 
         response = self.secrets_manager_service.create_secret_version(
@@ -380,7 +379,7 @@ class TestSecretsManagerV2:
     def test_update_secret_version_metadata(self):
         # Construct a dict representation of a SecretVersionMetadataPatch model
         secret_version_metadata_patch_model = {
-            'version_custom_metadata': {'key': 'value'},
+            'version_custom_metadata': {'key':'value'},
         }
 
         response = self.secrets_manager_service.update_secret_version_metadata(
@@ -393,10 +392,10 @@ class TestSecretsManagerV2:
         secret_version_metadata = response.get_result()
         assert secret_version_metadata is not None
 
-    # The integration test for create_secret_version_action has been explicitly excluded from generation.
-    # A test for this operation must be developed manually.
-    # @needscredentials
-    # def test_create_secret_version_action(self):
+  # The integration test for create_secret_version_action has been explicitly excluded from generation.
+  # A test for this operation must be developed manually.
+  # @needscredentials
+  # def test_create_secret_version_action(self):
 
     @needscredentials
     def test_list_secrets_locks(self):
@@ -491,7 +490,7 @@ class TestSecretsManagerV2:
         secret_lock_prototype_model = {
             'name': 'lock-example-1',
             'description': 'lock for consumer 1',
-            'attributes': {'key': 'value'},
+            'attributes': {'key':'value'},
         }
 
         response = self.secrets_manager_service.create_secret_version_locks_bulk(
@@ -551,8 +550,7 @@ class TestSecretsManagerV2:
         assert all_items is not None
 
         assert len(all_results) == len(all_items)
-        print(
-            f'\nlist_secret_version_locks() returned a total of {len(all_results)} items(s) using SecretVersionLocksPager.')
+        print(f'\nlist_secret_version_locks() returned a total of {len(all_results)} items(s) using SecretVersionLocksPager.')
 
     @needscredentials
     def test_list_configurations(self):
@@ -661,10 +659,10 @@ class TestSecretsManagerV2:
         notifications_registration = response.get_result()
         assert notifications_registration is not None
 
-    # The integration test for get_notifications_registration_test has been explicitly excluded from generation.
-    # A test for this operation must be developed manually.
-    # @needscredentials
-    # def test_get_notifications_registration_test(self):
+  # The integration test for get_notifications_registration_test has been explicitly excluded from generation.
+  # A test for this operation must be developed manually.
+  # @needscredentials
+  # def test_get_notifications_registration_test(self):
 
     @needscredentials
     def test_delete_secret_group(self):
@@ -674,10 +672,10 @@ class TestSecretsManagerV2:
 
         assert response.get_status_code() == 204
 
-    # The integration test for delete_secret_version_data has been explicitly excluded from generation.
-    # A test for this operation must be developed manually.
-    # @needscredentials
-    # def test_delete_secret_version_data(self):
+  # The integration test for delete_secret_version_data has been explicitly excluded from generation.
+  # A test for this operation must be developed manually.
+  # @needscredentials
+  # def test_delete_secret_version_data(self):
 
     @needscredentials
     def test_delete_secret_locks_bulk(self):

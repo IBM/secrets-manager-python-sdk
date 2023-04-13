@@ -37,7 +37,6 @@ from ibm_cloud_sdk_core.utils import convert_list, convert_model, datetime_to_st
 
 from .common import get_sdk_headers
 
-
 ##############################################################################
 # Service
 ##############################################################################
@@ -53,8 +52,8 @@ class SecretsManagerV2(BaseService):
 
     @classmethod
     def new_instance(
-            cls,
-            service_name: str = DEFAULT_SERVICE_NAME,
+        cls,
+        service_name: str = DEFAULT_SERVICE_NAME,
     ) -> 'SecretsManagerV2':
         """
         Return a new client for the secrets-manager service using the specified
@@ -63,15 +62,15 @@ class SecretsManagerV2(BaseService):
         authenticator = get_authenticator_from_environment(service_name)
         service = cls(
             authenticator
-        )
+            )
         service.configure_service(service_name)
         return service
 
     @classmethod
     def construct_service_url(
-            cls,
-            instance_id: str = 'provide-here-your-smgr-instanceuuid',
-            region: str = 'us-south',
+        cls,
+        instance_id: str = 'provide-here-your-smgr-instanceuuid',
+        region: str = 'us-south',
     ) -> str:
         """
         Construct a service URL by formatting the parameterized service URL.
@@ -92,8 +91,8 @@ class SecretsManagerV2(BaseService):
         )
 
     def __init__(
-            self,
-            authenticator: Authenticator = None,
+        self,
+        authenticator: Authenticator = None,
     ) -> None:
         """
         Construct a new client for the secrets-manager service.
@@ -109,11 +108,11 @@ class SecretsManagerV2(BaseService):
     #########################
 
     def create_secret_group(
-            self,
-            name: str,
-            *,
-            description: str = None,
-            **kwargs,
+        self,
+        name: str,
+        *,
+        description: str = None,
+        **kwargs,
     ) -> DetailedResponse:
         """
         Create a new secret group.
@@ -169,8 +168,8 @@ class SecretsManagerV2(BaseService):
         return response
 
     def list_secret_groups(
-            self,
-            **kwargs,
+        self,
+        **kwargs,
     ) -> DetailedResponse:
         """
         List secret groups.
@@ -206,9 +205,9 @@ class SecretsManagerV2(BaseService):
         return response
 
     def get_secret_group(
-            self,
-            id: str,
-            **kwargs,
+        self,
+        id: str,
+        **kwargs,
     ) -> DetailedResponse:
         """
         Get a secret group.
@@ -250,10 +249,10 @@ class SecretsManagerV2(BaseService):
         return response
 
     def update_secret_group(
-            self,
-            id: str,
-            secret_group_patch: 'SecretGroupPatch',
-            **kwargs,
+        self,
+        id: str,
+        secret_group_patch: 'SecretGroupPatch',
+        **kwargs,
     ) -> DetailedResponse:
         """
         Update a secret group.
@@ -306,9 +305,9 @@ class SecretsManagerV2(BaseService):
         return response
 
     def delete_secret_group(
-            self,
-            id: str,
-            **kwargs,
+        self,
+        id: str,
+        **kwargs,
     ) -> DetailedResponse:
         """
         Delete a secret group.
@@ -356,9 +355,9 @@ class SecretsManagerV2(BaseService):
     #########################
 
     def create_secret(
-            self,
-            secret_prototype: 'SecretPrototype',
-            **kwargs,
+        self,
+        secret_prototype: 'SecretPrototype',
+        **kwargs,
     ) -> DetailedResponse:
         """
         Create a new secret.
@@ -412,14 +411,14 @@ class SecretsManagerV2(BaseService):
         return response
 
     def list_secrets(
-            self,
-            *,
-            offset: int = None,
-            limit: int = None,
-            sort: str = None,
-            search: str = None,
-            groups: List[str] = None,
-            **kwargs,
+        self,
+        *,
+        offset: int = None,
+        limit: int = None,
+        sort: str = None,
+        search: str = None,
+        groups: List[str] = None,
+        **kwargs,
     ) -> DetailedResponse:
         """
         List secrets.
@@ -497,9 +496,9 @@ class SecretsManagerV2(BaseService):
         return response
 
     def get_secret(
-            self,
-            id: str,
-            **kwargs,
+        self,
+        id: str,
+        **kwargs,
     ) -> DetailedResponse:
         """
         Get a secret.
@@ -545,9 +544,9 @@ class SecretsManagerV2(BaseService):
         return response
 
     def delete_secret(
-            self,
-            id: str,
-            **kwargs,
+        self,
+        id: str,
+        **kwargs,
     ) -> DetailedResponse:
         """
         Delete a secret.
@@ -588,9 +587,9 @@ class SecretsManagerV2(BaseService):
         return response
 
     def get_secret_metadata(
-            self,
-            id: str,
-            **kwargs,
+        self,
+        id: str,
+        **kwargs,
     ) -> DetailedResponse:
         """
         Get the metadata of a secret.
@@ -632,10 +631,10 @@ class SecretsManagerV2(BaseService):
         return response
 
     def update_secret_metadata(
-            self,
-            id: str,
-            secret_metadata_patch: 'SecretMetadataPatch',
-            **kwargs,
+        self,
+        id: str,
+        secret_metadata_patch: 'SecretMetadataPatch',
+        **kwargs,
     ) -> DetailedResponse:
         """
         Update the metadata of a secret.
@@ -686,10 +685,10 @@ class SecretsManagerV2(BaseService):
         return response
 
     def create_secret_action(
-            self,
-            id: str,
-            secret_action_prototype: 'SecretActionPrototype',
-            **kwargs,
+        self,
+        id: str,
+        secret_action_prototype: 'SecretActionPrototype',
+        **kwargs,
     ) -> DetailedResponse:
         """
         Create a secret action.
@@ -744,10 +743,10 @@ class SecretsManagerV2(BaseService):
     #########################
 
     def create_secret_version(
-            self,
-            secret_id: str,
-            secret_version_prototype: 'SecretVersionPrototype',
-            **kwargs,
+        self,
+        secret_id: str,
+        secret_version_prototype: 'SecretVersionPrototype',
+        **kwargs,
     ) -> DetailedResponse:
         """
         Create a new secret version.
@@ -798,9 +797,9 @@ class SecretsManagerV2(BaseService):
         return response
 
     def list_secret_versions(
-            self,
-            secret_id: str,
-            **kwargs,
+        self,
+        secret_id: str,
+        **kwargs,
     ) -> DetailedResponse:
         """
         List versions of a secret.
@@ -844,10 +843,10 @@ class SecretsManagerV2(BaseService):
         return response
 
     def get_secret_version(
-            self,
-            secret_id: str,
-            id: str,
-            **kwargs,
+        self,
+        secret_id: str,
+        id: str,
+        **kwargs,
     ) -> DetailedResponse:
         """
         Get a version of a secret.
@@ -898,10 +897,10 @@ class SecretsManagerV2(BaseService):
         return response
 
     def delete_secret_version_data(
-            self,
-            secret_id: str,
-            id: str,
-            **kwargs,
+        self,
+        secret_id: str,
+        id: str,
+        **kwargs,
     ) -> DetailedResponse:
         """
         Delete the data of a secret version.
@@ -948,10 +947,10 @@ class SecretsManagerV2(BaseService):
         return response
 
     def get_secret_version_metadata(
-            self,
-            secret_id: str,
-            id: str,
-            **kwargs,
+        self,
+        secret_id: str,
+        id: str,
+        **kwargs,
     ) -> DetailedResponse:
         """
         Get the metadata of a secret version.
@@ -1002,11 +1001,11 @@ class SecretsManagerV2(BaseService):
         return response
 
     def update_secret_version_metadata(
-            self,
-            secret_id: str,
-            id: str,
-            secret_version_metadata_patch: 'SecretVersionMetadataPatch',
-            **kwargs,
+        self,
+        secret_id: str,
+        id: str,
+        secret_version_metadata_patch: 'SecretVersionMetadataPatch',
+        **kwargs,
     ) -> DetailedResponse:
         """
         Update the metadata of a secret version.
@@ -1062,11 +1061,11 @@ class SecretsManagerV2(BaseService):
         return response
 
     def create_secret_version_action(
-            self,
-            secret_id: str,
-            id: str,
-            secret_version_action_prototype: 'SecretVersionActionPrototype',
-            **kwargs,
+        self,
+        secret_id: str,
+        id: str,
+        secret_version_action_prototype: 'SecretVersionActionPrototype',
+        **kwargs,
     ) -> DetailedResponse:
         """
         Create a version action.
@@ -1128,13 +1127,13 @@ class SecretsManagerV2(BaseService):
     #########################
 
     def list_secrets_locks(
-            self,
-            *,
-            offset: int = None,
-            limit: int = None,
-            search: str = None,
-            groups: List[str] = None,
-            **kwargs,
+        self,
+        *,
+        offset: int = None,
+        limit: int = None,
+        search: str = None,
+        groups: List[str] = None,
+        **kwargs,
     ) -> DetailedResponse:
         """
         List secrets and their locks.
@@ -1203,14 +1202,14 @@ class SecretsManagerV2(BaseService):
         return response
 
     def list_secret_locks(
-            self,
-            id: str,
-            *,
-            offset: int = None,
-            limit: int = None,
-            sort: str = None,
-            search: str = None,
-            **kwargs,
+        self,
+        id: str,
+        *,
+        offset: int = None,
+        limit: int = None,
+        sort: str = None,
+        search: str = None,
+        **kwargs,
     ) -> DetailedResponse:
         """
         List secret locks.
@@ -1283,12 +1282,12 @@ class SecretsManagerV2(BaseService):
         return response
 
     def create_secret_locks_bulk(
-            self,
-            id: str,
-            locks: List['SecretLockPrototype'],
-            *,
-            mode: str = None,
-            **kwargs,
+        self,
+        id: str,
+        locks: List['SecretLockPrototype'],
+        *,
+        mode: str = None,
+        **kwargs,
     ) -> DetailedResponse:
         """
         Create secret locks.
@@ -1366,11 +1365,11 @@ class SecretsManagerV2(BaseService):
         return response
 
     def delete_secret_locks_bulk(
-            self,
-            id: str,
-            *,
-            name: List[str] = None,
-            **kwargs,
+        self,
+        id: str,
+        *,
+        name: List[str] = None,
+        **kwargs,
     ) -> DetailedResponse:
         """
         Delete secret locks.
@@ -1426,15 +1425,15 @@ class SecretsManagerV2(BaseService):
         return response
 
     def list_secret_version_locks(
-            self,
-            secret_id: str,
-            id: str,
-            *,
-            offset: int = None,
-            limit: int = None,
-            sort: str = None,
-            search: str = None,
-            **kwargs,
+        self,
+        secret_id: str,
+        id: str,
+        *,
+        offset: int = None,
+        limit: int = None,
+        sort: str = None,
+        search: str = None,
+        **kwargs,
     ) -> DetailedResponse:
         """
         List secret version locks.
@@ -1512,13 +1511,13 @@ class SecretsManagerV2(BaseService):
         return response
 
     def create_secret_version_locks_bulk(
-            self,
-            secret_id: str,
-            id: str,
-            locks: List['SecretLockPrototype'],
-            *,
-            mode: str = None,
-            **kwargs,
+        self,
+        secret_id: str,
+        id: str,
+        locks: List['SecretLockPrototype'],
+        *,
+        mode: str = None,
+        **kwargs,
     ) -> DetailedResponse:
         """
         Create secret version locks.
@@ -1601,12 +1600,12 @@ class SecretsManagerV2(BaseService):
         return response
 
     def delete_secret_version_locks_bulk(
-            self,
-            secret_id: str,
-            id: str,
-            *,
-            name: List[str] = None,
-            **kwargs,
+        self,
+        secret_id: str,
+        id: str,
+        *,
+        name: List[str] = None,
+        **kwargs,
     ) -> DetailedResponse:
         """
         Delete locks on a secret version.
@@ -1671,9 +1670,9 @@ class SecretsManagerV2(BaseService):
     #########################
 
     def create_configuration(
-            self,
-            configuration_prototype: 'ConfigurationPrototype',
-            **kwargs,
+        self,
+        configuration_prototype: 'ConfigurationPrototype',
+        **kwargs,
     ) -> DetailedResponse:
         """
         Create a new configuration.
@@ -1728,13 +1727,13 @@ class SecretsManagerV2(BaseService):
         return response
 
     def list_configurations(
-            self,
-            *,
-            offset: int = None,
-            limit: int = None,
-            sort: str = None,
-            search: str = None,
-            **kwargs,
+        self,
+        *,
+        offset: int = None,
+        limit: int = None,
+        sort: str = None,
+        search: str = None,
+        **kwargs,
     ) -> DetailedResponse:
         """
         List configurations.
@@ -1804,11 +1803,11 @@ class SecretsManagerV2(BaseService):
         return response
 
     def get_configuration(
-            self,
-            name: str,
-            *,
-            x_sm_accept_configuration_type: str = None,
-            **kwargs,
+        self,
+        name: str,
+        *,
+        x_sm_accept_configuration_type: str = None,
+        **kwargs,
     ) -> DetailedResponse:
         """
         Get a configuration.
@@ -1856,12 +1855,12 @@ class SecretsManagerV2(BaseService):
         return response
 
     def update_configuration(
-            self,
-            name: str,
-            configuration_patch: 'ConfigurationPatch',
-            *,
-            x_sm_accept_configuration_type: str = None,
-            **kwargs,
+        self,
+        name: str,
+        configuration_patch: 'ConfigurationPatch',
+        *,
+        x_sm_accept_configuration_type: str = None,
+        **kwargs,
     ) -> DetailedResponse:
         """
         Update configuration.
@@ -1917,11 +1916,11 @@ class SecretsManagerV2(BaseService):
         return response
 
     def delete_configuration(
-            self,
-            name: str,
-            *,
-            x_sm_accept_configuration_type: str = None,
-            **kwargs,
+        self,
+        name: str,
+        *,
+        x_sm_accept_configuration_type: str = None,
+        **kwargs,
     ) -> DetailedResponse:
         """
         Delete a configuration.
@@ -1967,12 +1966,12 @@ class SecretsManagerV2(BaseService):
         return response
 
     def create_configuration_action(
-            self,
-            name: str,
-            config_action_prototype: 'ConfigurationActionPrototype',
-            *,
-            x_sm_accept_configuration_type: str = None,
-            **kwargs,
+        self,
+        name: str,
+        config_action_prototype: 'ConfigurationActionPrototype',
+        *,
+        x_sm_accept_configuration_type: str = None,
+        **kwargs,
     ) -> DetailedResponse:
         """
         Create a configuration action.
@@ -2042,12 +2041,12 @@ class SecretsManagerV2(BaseService):
     #########################
 
     def create_notifications_registration(
-            self,
-            event_notifications_instance_crn: str,
-            event_notifications_source_name: str,
-            *,
-            event_notifications_source_description: str = None,
-            **kwargs,
+        self,
+        event_notifications_instance_crn: str,
+        event_notifications_source_name: str,
+        *,
+        event_notifications_source_description: str = None,
+        **kwargs,
     ) -> DetailedResponse:
         """
         Register with Event Notifications instance.
@@ -2108,8 +2107,8 @@ class SecretsManagerV2(BaseService):
         return response
 
     def get_notifications_registration(
-            self,
-            **kwargs,
+        self,
+        **kwargs,
     ) -> DetailedResponse:
         """
         Get Event Notifications registration details.
@@ -2146,8 +2145,8 @@ class SecretsManagerV2(BaseService):
         return response
 
     def delete_notifications_registration(
-            self,
-            **kwargs,
+        self,
+        **kwargs,
     ) -> DetailedResponse:
         """
         Unregister from Event Notifications instance.
@@ -2185,8 +2184,8 @@ class SecretsManagerV2(BaseService):
         return response
 
     def get_notifications_registration_test(
-            self,
-            **kwargs,
+        self,
+        **kwargs,
     ) -> DetailedResponse:
         """
         Send a test event for Event Notifications registrations.
@@ -2376,16 +2375,16 @@ class CertificateIssuanceInfo:
     """
 
     def __init__(
-            self,
-            *,
-            auto_rotated: bool = None,
-            challenges: List['ChallengeResource'] = None,
-            dns_challenge_validation_time: datetime = None,
-            error_code: str = None,
-            error_message: str = None,
-            ordered_on: datetime = None,
-            state: int = None,
-            state_description: str = None,
+        self,
+        *,
+        auto_rotated: bool = None,
+        challenges: List['ChallengeResource'] = None,
+        dns_challenge_validation_time: datetime = None,
+        error_code: str = None,
+        error_message: str = None,
+        ordered_on: datetime = None,
+        state: int = None,
+        state_description: str = None,
     ) -> None:
         """
         Initialize a CertificateIssuanceInfo object.
@@ -2440,8 +2439,7 @@ class CertificateIssuanceInfo:
                 else:
                     challenges_list.append(v.to_dict())
             _dict['challenges'] = challenges_list
-        if hasattr(self, 'dns_challenge_validation_time') and getattr(self,
-                                                                      'dns_challenge_validation_time') is not None:
+        if hasattr(self, 'dns_challenge_validation_time') and getattr(self, 'dns_challenge_validation_time') is not None:
             _dict['dns_challenge_validation_time'] = datetime_to_string(getattr(self, 'dns_challenge_validation_time'))
         if hasattr(self, 'error_code') and getattr(self, 'error_code') is not None:
             _dict['error_code'] = getattr(self, 'error_code')
@@ -2485,6 +2483,7 @@ class CertificateIssuanceInfo:
         DESTROYED = 'destroyed'
 
 
+
 class CertificateValidity:
     """
     The date and time that the certificate validity period begins and ends.
@@ -2494,9 +2493,9 @@ class CertificateValidity:
     """
 
     def __init__(
-            self,
-            not_before: datetime,
-            not_after: datetime,
+        self,
+        not_before: datetime,
+        not_after: datetime,
     ) -> None:
         """
         Initialize a CertificateValidity object.
@@ -2567,13 +2566,13 @@ class ChallengeResource:
     """
 
     def __init__(
-            self,
-            *,
-            domain: str = None,
-            expiration: datetime = None,
-            status: str = None,
-            txt_record_name: str = None,
-            txt_record_value: str = None,
+        self,
+        *,
+        domain: str = None,
+        expiration: datetime = None,
+        status: str = None,
+        txt_record_name: str = None,
+        txt_record_value: str = None,
     ) -> None:
         """
         Initialize a ChallengeResource object.
@@ -2647,18 +2646,14 @@ class Configuration:
     """
 
     def __init__(
-            self,
+        self,
     ) -> None:
         """
         Initialize a Configuration object.
 
         """
         msg = "Cannot instantiate base class. Instead, instantiate one of the defined subclasses: {0}".format(
-            ", ".join(['PublicCertificateConfigurationCALetsEncrypt',
-                       'PublicCertificateConfigurationDNSCloudInternetServices',
-                       'PublicCertificateConfigurationDNSClassicInfrastructure', 'IAMCredentialsConfiguration',
-                       'PrivateCertificateConfigurationRootCA', 'PrivateCertificateConfigurationIntermediateCA',
-                       'PrivateCertificateConfigurationTemplate'])
+            ", ".join(['PublicCertificateConfigurationCALetsEncrypt', 'PublicCertificateConfigurationDNSCloudInternetServices', 'PublicCertificateConfigurationDNSClassicInfrastructure', 'IAMCredentialsConfiguration', 'PrivateCertificateConfigurationRootCA', 'PrivateCertificateConfigurationIntermediateCA', 'PrivateCertificateConfigurationTemplate'])
         )
         raise Exception(msg)
 
@@ -2669,11 +2664,7 @@ class Configuration:
         if disc_class != cls:
             return disc_class.from_dict(_dict)
         msg = "Cannot convert dictionary into an instance of base class 'Configuration'. The discriminator value should map to a valid subclass: {1}".format(
-            ", ".join(['PublicCertificateConfigurationCALetsEncrypt',
-                       'PublicCertificateConfigurationDNSCloudInternetServices',
-                       'PublicCertificateConfigurationDNSClassicInfrastructure', 'IAMCredentialsConfiguration',
-                       'PrivateCertificateConfigurationRootCA', 'PrivateCertificateConfigurationIntermediateCA',
-                       'PrivateCertificateConfigurationTemplate'])
+            ", ".join(['PublicCertificateConfigurationCALetsEncrypt', 'PublicCertificateConfigurationDNSCloudInternetServices', 'PublicCertificateConfigurationDNSClassicInfrastructure', 'IAMCredentialsConfiguration', 'PrivateCertificateConfigurationRootCA', 'PrivateCertificateConfigurationIntermediateCA', 'PrivateCertificateConfigurationTemplate'])
         )
         raise Exception(msg)
 
@@ -2686,10 +2677,8 @@ class Configuration:
     def _get_class_by_discriminator(cls, _dict: Dict) -> object:
         mapping = {}
         mapping['public_cert_configuration_ca_lets_encrypt'] = 'PublicCertificateConfigurationCALetsEncrypt'
-        mapping[
-            'public_cert_configuration_dns_cloud_internet_services'] = 'PublicCertificateConfigurationDNSCloudInternetServices'
-        mapping[
-            'public_cert_configuration_dns_classic_infrastructure'] = 'PublicCertificateConfigurationDNSClassicInfrastructure'
+        mapping['public_cert_configuration_dns_cloud_internet_services'] = 'PublicCertificateConfigurationDNSCloudInternetServices'
+        mapping['public_cert_configuration_dns_classic_infrastructure'] = 'PublicCertificateConfigurationDNSClassicInfrastructure'
         mapping['iam_credentials_configuration'] = 'IAMCredentialsConfiguration'
         mapping['private_cert_configuration_root_ca'] = 'PrivateCertificateConfigurationRootCA'
         mapping['private_cert_configuration_intermediate_ca'] = 'PrivateCertificateConfigurationIntermediateCA'
@@ -2714,17 +2703,14 @@ class ConfigurationAction:
     """
 
     def __init__(
-            self,
+        self,
     ) -> None:
         """
         Initialize a ConfigurationAction object.
 
         """
         msg = "Cannot instantiate base class. Instead, instantiate one of the defined subclasses: {0}".format(
-            ", ".join(['PrivateCertificateConfigurationActionRevoke', 'PrivateCertificateConfigurationActionSignCSR',
-                       'PrivateCertificateConfigurationActionSignIntermediate',
-                       'PrivateCertificateConfigurationActionSetSigned',
-                       'PrivateCertificateConfigurationActionRotateCRL'])
+            ", ".join(['PrivateCertificateConfigurationActionRevoke', 'PrivateCertificateConfigurationActionSignCSR', 'PrivateCertificateConfigurationActionSignIntermediate', 'PrivateCertificateConfigurationActionSetSigned', 'PrivateCertificateConfigurationActionRotateCRL'])
         )
         raise Exception(msg)
 
@@ -2735,10 +2721,7 @@ class ConfigurationAction:
         if disc_class != cls:
             return disc_class.from_dict(_dict)
         msg = "Cannot convert dictionary into an instance of base class 'ConfigurationAction'. The discriminator value should map to a valid subclass: {1}".format(
-            ", ".join(['PrivateCertificateConfigurationActionRevoke', 'PrivateCertificateConfigurationActionSignCSR',
-                       'PrivateCertificateConfigurationActionSignIntermediate',
-                       'PrivateCertificateConfigurationActionSetSigned',
-                       'PrivateCertificateConfigurationActionRotateCRL'])
+            ", ".join(['PrivateCertificateConfigurationActionRevoke', 'PrivateCertificateConfigurationActionSignCSR', 'PrivateCertificateConfigurationActionSignIntermediate', 'PrivateCertificateConfigurationActionSetSigned', 'PrivateCertificateConfigurationActionRotateCRL'])
         )
         raise Exception(msg)
 
@@ -2750,11 +2733,9 @@ class ConfigurationAction:
     @classmethod
     def _get_class_by_discriminator(cls, _dict: Dict) -> object:
         mapping = {}
-        mapping[
-            'private_cert_configuration_action_revoke_ca_certificate'] = 'PrivateCertificateConfigurationActionRevoke'
+        mapping['private_cert_configuration_action_revoke_ca_certificate'] = 'PrivateCertificateConfigurationActionRevoke'
         mapping['private_cert_configuration_action_sign_csr'] = 'PrivateCertificateConfigurationActionSignCSR'
-        mapping[
-            'private_cert_configuration_action_sign_intermediate'] = 'PrivateCertificateConfigurationActionSignIntermediate'
+        mapping['private_cert_configuration_action_sign_intermediate'] = 'PrivateCertificateConfigurationActionSignIntermediate'
         mapping['private_cert_configuration_action_set_signed'] = 'PrivateCertificateConfigurationActionSetSigned'
         mapping['private_cert_configuration_action_rotate_crl'] = 'PrivateCertificateConfigurationActionRotateCRL'
         disc_value = _dict.get('action_type')
@@ -2777,18 +2758,14 @@ class ConfigurationActionPrototype:
     """
 
     def __init__(
-            self,
+        self,
     ) -> None:
         """
         Initialize a ConfigurationActionPrototype object.
 
         """
         msg = "Cannot instantiate base class. Instead, instantiate one of the defined subclasses: {0}".format(
-            ", ".join(['PrivateCertificateConfigurationActionRotateCRLPrototype',
-                       'PrivateCertificateConfigurationActionRevokePrototype',
-                       'PrivateCertificateConfigurationActionSignCSRPrototype',
-                       'PrivateCertificateConfigurationActionSignIntermediatePrototype',
-                       'PrivateCertificateConfigurationActionSetSignedPrototype'])
+            ", ".join(['PrivateCertificateConfigurationActionRotateCRLPrototype', 'PrivateCertificateConfigurationActionRevokePrototype', 'PrivateCertificateConfigurationActionSignCSRPrototype', 'PrivateCertificateConfigurationActionSignIntermediatePrototype', 'PrivateCertificateConfigurationActionSetSignedPrototype'])
         )
         raise Exception(msg)
 
@@ -2799,11 +2776,7 @@ class ConfigurationActionPrototype:
         if disc_class != cls:
             return disc_class.from_dict(_dict)
         msg = "Cannot convert dictionary into an instance of base class 'ConfigurationActionPrototype'. The discriminator value should map to a valid subclass: {1}".format(
-            ", ".join(['PrivateCertificateConfigurationActionRotateCRLPrototype',
-                       'PrivateCertificateConfigurationActionRevokePrototype',
-                       'PrivateCertificateConfigurationActionSignCSRPrototype',
-                       'PrivateCertificateConfigurationActionSignIntermediatePrototype',
-                       'PrivateCertificateConfigurationActionSetSignedPrototype'])
+            ", ".join(['PrivateCertificateConfigurationActionRotateCRLPrototype', 'PrivateCertificateConfigurationActionRevokePrototype', 'PrivateCertificateConfigurationActionSignCSRPrototype', 'PrivateCertificateConfigurationActionSignIntermediatePrototype', 'PrivateCertificateConfigurationActionSetSignedPrototype'])
         )
         raise Exception(msg)
 
@@ -2815,15 +2788,11 @@ class ConfigurationActionPrototype:
     @classmethod
     def _get_class_by_discriminator(cls, _dict: Dict) -> object:
         mapping = {}
-        mapping[
-            'private_cert_configuration_action_rotate_crl'] = 'PrivateCertificateConfigurationActionRotateCRLPrototype'
-        mapping[
-            'private_cert_configuration_action_revoke_ca_certificate'] = 'PrivateCertificateConfigurationActionRevokePrototype'
+        mapping['private_cert_configuration_action_rotate_crl'] = 'PrivateCertificateConfigurationActionRotateCRLPrototype'
+        mapping['private_cert_configuration_action_revoke_ca_certificate'] = 'PrivateCertificateConfigurationActionRevokePrototype'
         mapping['private_cert_configuration_action_sign_csr'] = 'PrivateCertificateConfigurationActionSignCSRPrototype'
-        mapping[
-            'private_cert_configuration_action_sign_intermediate'] = 'PrivateCertificateConfigurationActionSignIntermediatePrototype'
-        mapping[
-            'private_cert_configuration_action_set_signed'] = 'PrivateCertificateConfigurationActionSetSignedPrototype'
+        mapping['private_cert_configuration_action_sign_intermediate'] = 'PrivateCertificateConfigurationActionSignIntermediatePrototype'
+        mapping['private_cert_configuration_action_set_signed'] = 'PrivateCertificateConfigurationActionSetSignedPrototype'
         disc_value = _dict.get('action_type')
         if disc_value is None:
             raise ValueError('Discriminator property \'action_type\' not found in ConfigurationActionPrototype JSON')
@@ -2844,19 +2813,14 @@ class ConfigurationMetadata:
     """
 
     def __init__(
-            self,
+        self,
     ) -> None:
         """
         Initialize a ConfigurationMetadata object.
 
         """
         msg = "Cannot instantiate base class. Instead, instantiate one of the defined subclasses: {0}".format(
-            ", ".join(['IAMCredentialsConfigurationMetadata', 'PublicCertificateConfigurationCALetsEncryptMetadata',
-                       'PublicCertificateConfigurationDNSCloudInternetServicesMetadata',
-                       'PublicCertificateConfigurationDNSClassicInfrastructureMetadata',
-                       'PrivateCertificateConfigurationRootCAMetadata',
-                       'PrivateCertificateConfigurationIntermediateCAMetadata',
-                       'PrivateCertificateConfigurationTemplateMetadata'])
+            ", ".join(['IAMCredentialsConfigurationMetadata', 'PublicCertificateConfigurationCALetsEncryptMetadata', 'PublicCertificateConfigurationDNSCloudInternetServicesMetadata', 'PublicCertificateConfigurationDNSClassicInfrastructureMetadata', 'PrivateCertificateConfigurationRootCAMetadata', 'PrivateCertificateConfigurationIntermediateCAMetadata', 'PrivateCertificateConfigurationTemplateMetadata'])
         )
         raise Exception(msg)
 
@@ -2867,12 +2831,7 @@ class ConfigurationMetadata:
         if disc_class != cls:
             return disc_class.from_dict(_dict)
         msg = "Cannot convert dictionary into an instance of base class 'ConfigurationMetadata'. The discriminator value should map to a valid subclass: {1}".format(
-            ", ".join(['IAMCredentialsConfigurationMetadata', 'PublicCertificateConfigurationCALetsEncryptMetadata',
-                       'PublicCertificateConfigurationDNSCloudInternetServicesMetadata',
-                       'PublicCertificateConfigurationDNSClassicInfrastructureMetadata',
-                       'PrivateCertificateConfigurationRootCAMetadata',
-                       'PrivateCertificateConfigurationIntermediateCAMetadata',
-                       'PrivateCertificateConfigurationTemplateMetadata'])
+            ", ".join(['IAMCredentialsConfigurationMetadata', 'PublicCertificateConfigurationCALetsEncryptMetadata', 'PublicCertificateConfigurationDNSCloudInternetServicesMetadata', 'PublicCertificateConfigurationDNSClassicInfrastructureMetadata', 'PrivateCertificateConfigurationRootCAMetadata', 'PrivateCertificateConfigurationIntermediateCAMetadata', 'PrivateCertificateConfigurationTemplateMetadata'])
         )
         raise Exception(msg)
 
@@ -2886,10 +2845,8 @@ class ConfigurationMetadata:
         mapping = {}
         mapping['iam_credentials_configuration'] = 'IAMCredentialsConfigurationMetadata'
         mapping['public_cert_configuration_ca_lets_encrypt'] = 'PublicCertificateConfigurationCALetsEncryptMetadata'
-        mapping[
-            'public_cert_configuration_dns_cloud_internet_services'] = 'PublicCertificateConfigurationDNSCloudInternetServicesMetadata'
-        mapping[
-            'public_cert_configuration_dns_classic_infrastructure'] = 'PublicCertificateConfigurationDNSClassicInfrastructureMetadata'
+        mapping['public_cert_configuration_dns_cloud_internet_services'] = 'PublicCertificateConfigurationDNSCloudInternetServicesMetadata'
+        mapping['public_cert_configuration_dns_classic_infrastructure'] = 'PublicCertificateConfigurationDNSClassicInfrastructureMetadata'
         mapping['private_cert_configuration_root_ca'] = 'PrivateCertificateConfigurationRootCAMetadata'
         mapping['private_cert_configuration_intermediate_ca'] = 'PrivateCertificateConfigurationIntermediateCAMetadata'
         mapping['private_cert_configuration_template'] = 'PrivateCertificateConfigurationTemplateMetadata'
@@ -2926,16 +2883,16 @@ class ConfigurationMetadataPaginatedCollection:
     """
 
     def __init__(
-            self,
-            total_count: int,
-            limit: int,
-            offset: int,
-            first: 'PaginatedCollectionFirst',
-            last: 'PaginatedCollectionLast',
-            configurations: List['ConfigurationMetadata'],
-            *,
-            next: 'PaginatedCollectionNext' = None,
-            previous: 'PaginatedCollectionPrevious' = None,
+        self,
+        total_count: int,
+        limit: int,
+        offset: int,
+        first: 'PaginatedCollectionFirst',
+        last: 'PaginatedCollectionLast',
+        configurations: List['ConfigurationMetadata'],
+        *,
+        next: 'PaginatedCollectionNext' = None,
+        previous: 'PaginatedCollectionPrevious' = None,
     ) -> None:
         """
         Initialize a ConfigurationMetadataPaginatedCollection object.
@@ -2970,8 +2927,7 @@ class ConfigurationMetadataPaginatedCollection:
         if 'total_count' in _dict:
             args['total_count'] = _dict.get('total_count')
         else:
-            raise ValueError(
-                'Required property \'total_count\' not present in ConfigurationMetadataPaginatedCollection JSON')
+            raise ValueError('Required property \'total_count\' not present in ConfigurationMetadataPaginatedCollection JSON')
         if 'limit' in _dict:
             args['limit'] = _dict.get('limit')
         else:
@@ -2979,8 +2935,7 @@ class ConfigurationMetadataPaginatedCollection:
         if 'offset' in _dict:
             args['offset'] = _dict.get('offset')
         else:
-            raise ValueError(
-                'Required property \'offset\' not present in ConfigurationMetadataPaginatedCollection JSON')
+            raise ValueError('Required property \'offset\' not present in ConfigurationMetadataPaginatedCollection JSON')
         if 'first' in _dict:
             args['first'] = PaginatedCollectionFirst.from_dict(_dict.get('first'))
         else:
@@ -2996,8 +2951,7 @@ class ConfigurationMetadataPaginatedCollection:
         if 'configurations' in _dict:
             args['configurations'] = [ConfigurationMetadata.from_dict(v) for v in _dict.get('configurations')]
         else:
-            raise ValueError(
-                'Required property \'configurations\' not present in ConfigurationMetadataPaginatedCollection JSON')
+            raise ValueError('Required property \'configurations\' not present in ConfigurationMetadataPaginatedCollection JSON')
         return cls(**args)
 
     @classmethod
@@ -3070,18 +3024,14 @@ class ConfigurationPatch:
     """
 
     def __init__(
-            self,
+        self,
     ) -> None:
         """
         Initialize a ConfigurationPatch object.
 
         """
         msg = "Cannot instantiate base class. Instead, instantiate one of the defined subclasses: {0}".format(
-            ", ".join(['IAMCredentialsConfigurationPatch', 'PublicCertificateConfigurationCALetsEncryptPatch',
-                       'PublicCertificateConfigurationDNSCloudInternetServicesPatch',
-                       'PublicCertificateConfigurationDNSClassicInfrastructurePatch',
-                       'PrivateCertificateConfigurationRootCAPatch', 'PrivateCertificateConfigurationTemplatePatch',
-                       'PrivateCertificateConfigurationIntermediateCAPatch'])
+            ", ".join(['IAMCredentialsConfigurationPatch', 'PublicCertificateConfigurationCALetsEncryptPatch', 'PublicCertificateConfigurationDNSCloudInternetServicesPatch', 'PublicCertificateConfigurationDNSClassicInfrastructurePatch', 'PrivateCertificateConfigurationRootCAPatch', 'PrivateCertificateConfigurationTemplatePatch', 'PrivateCertificateConfigurationIntermediateCAPatch'])
         )
         raise Exception(msg)
 
@@ -3093,19 +3043,14 @@ class ConfigurationPrototype:
     """
 
     def __init__(
-            self,
+        self,
     ) -> None:
         """
         Initialize a ConfigurationPrototype object.
 
         """
         msg = "Cannot instantiate base class. Instead, instantiate one of the defined subclasses: {0}".format(
-            ", ".join(['PublicCertificateConfigurationCALetsEncryptPrototype',
-                       'PublicCertificateConfigurationDNSCloudInternetServicesPrototype',
-                       'PublicCertificateConfigurationDNSClassicInfrastructurePrototype',
-                       'IAMCredentialsConfigurationPrototype', 'PrivateCertificateConfigurationRootCAPrototype',
-                       'PrivateCertificateConfigurationIntermediateCAPrototype',
-                       'PrivateCertificateConfigurationTemplatePrototype'])
+            ", ".join(['PublicCertificateConfigurationCALetsEncryptPrototype', 'PublicCertificateConfigurationDNSCloudInternetServicesPrototype', 'PublicCertificateConfigurationDNSClassicInfrastructurePrototype', 'IAMCredentialsConfigurationPrototype', 'PrivateCertificateConfigurationRootCAPrototype', 'PrivateCertificateConfigurationIntermediateCAPrototype', 'PrivateCertificateConfigurationTemplatePrototype'])
         )
         raise Exception(msg)
 
@@ -3116,12 +3061,7 @@ class ConfigurationPrototype:
         if disc_class != cls:
             return disc_class.from_dict(_dict)
         msg = "Cannot convert dictionary into an instance of base class 'ConfigurationPrototype'. The discriminator value should map to a valid subclass: {1}".format(
-            ", ".join(['PublicCertificateConfigurationCALetsEncryptPrototype',
-                       'PublicCertificateConfigurationDNSCloudInternetServicesPrototype',
-                       'PublicCertificateConfigurationDNSClassicInfrastructurePrototype',
-                       'IAMCredentialsConfigurationPrototype', 'PrivateCertificateConfigurationRootCAPrototype',
-                       'PrivateCertificateConfigurationIntermediateCAPrototype',
-                       'PrivateCertificateConfigurationTemplatePrototype'])
+            ", ".join(['PublicCertificateConfigurationCALetsEncryptPrototype', 'PublicCertificateConfigurationDNSCloudInternetServicesPrototype', 'PublicCertificateConfigurationDNSClassicInfrastructurePrototype', 'IAMCredentialsConfigurationPrototype', 'PrivateCertificateConfigurationRootCAPrototype', 'PrivateCertificateConfigurationIntermediateCAPrototype', 'PrivateCertificateConfigurationTemplatePrototype'])
         )
         raise Exception(msg)
 
@@ -3134,10 +3074,8 @@ class ConfigurationPrototype:
     def _get_class_by_discriminator(cls, _dict: Dict) -> object:
         mapping = {}
         mapping['public_cert_configuration_ca_lets_encrypt'] = 'PublicCertificateConfigurationCALetsEncryptPrototype'
-        mapping[
-            'public_cert_configuration_dns_cloud_internet_services'] = 'PublicCertificateConfigurationDNSCloudInternetServicesPrototype'
-        mapping[
-            'public_cert_configuration_dns_classic_infrastructure'] = 'PublicCertificateConfigurationDNSClassicInfrastructurePrototype'
+        mapping['public_cert_configuration_dns_cloud_internet_services'] = 'PublicCertificateConfigurationDNSCloudInternetServicesPrototype'
+        mapping['public_cert_configuration_dns_classic_infrastructure'] = 'PublicCertificateConfigurationDNSClassicInfrastructurePrototype'
         mapping['iam_credentials_configuration'] = 'IAMCredentialsConfigurationPrototype'
         mapping['private_cert_configuration_root_ca'] = 'PrivateCertificateConfigurationRootCAPrototype'
         mapping['private_cert_configuration_intermediate_ca'] = 'PrivateCertificateConfigurationIntermediateCAPrototype'
@@ -3164,8 +3102,8 @@ class NotificationsRegistration:
     """
 
     def __init__(
-            self,
-            event_notifications_instance_crn: str,
+        self,
+        event_notifications_instance_crn: str,
     ) -> None:
         """
         Initialize a NotificationsRegistration object.
@@ -3182,8 +3120,7 @@ class NotificationsRegistration:
         if 'event_notifications_instance_crn' in _dict:
             args['event_notifications_instance_crn'] = _dict.get('event_notifications_instance_crn')
         else:
-            raise ValueError(
-                'Required property \'event_notifications_instance_crn\' not present in NotificationsRegistration JSON')
+            raise ValueError('Required property \'event_notifications_instance_crn\' not present in NotificationsRegistration JSON')
         return cls(**args)
 
     @classmethod
@@ -3225,8 +3162,8 @@ class PaginatedCollectionFirst:
     """
 
     def __init__(
-            self,
-            href: str,
+        self,
+        href: str,
     ) -> None:
         """
         Initialize a PaginatedCollectionFirst object.
@@ -3284,8 +3221,8 @@ class PaginatedCollectionLast:
     """
 
     def __init__(
-            self,
-            href: str,
+        self,
+        href: str,
     ) -> None:
         """
         Initialize a PaginatedCollectionLast object.
@@ -3343,8 +3280,8 @@ class PaginatedCollectionNext:
     """
 
     def __init__(
-            self,
-            href: str,
+        self,
+        href: str,
     ) -> None:
         """
         Initialize a PaginatedCollectionNext object.
@@ -3402,8 +3339,8 @@ class PaginatedCollectionPrevious:
     """
 
     def __init__(
-            self,
-            href: str,
+        self,
+        href: str,
     ) -> None:
         """
         Initialize a PaginatedCollectionPrevious object.
@@ -3460,15 +3397,14 @@ class PrivateCertificateCAData:
     """
 
     def __init__(
-            self,
+        self,
     ) -> None:
         """
         Initialize a PrivateCertificateCAData object.
 
         """
         msg = "Cannot instantiate base class. Instead, instantiate one of the defined subclasses: {0}".format(
-            ", ".join(
-                ['PrivateCertificateConfigurationIntermediateCACSR', 'PrivateCertificateConfigurationCACertificate'])
+            ", ".join(['PrivateCertificateConfigurationIntermediateCACSR', 'PrivateCertificateConfigurationCACertificate'])
         )
         raise Exception(msg)
 
@@ -3484,9 +3420,9 @@ class PublicCertificateRotationObject:
     """
 
     def __init__(
-            self,
-            *,
-            rotate_keys: bool = None,
+        self,
+        *,
+        rotate_keys: bool = None,
     ) -> None:
         """
         Initialize a PublicCertificateRotationObject object.
@@ -3544,7 +3480,7 @@ class RotationPolicy:
     """
 
     def __init__(
-            self,
+        self,
     ) -> None:
         """
         Initialize a RotationPolicy object.
@@ -3563,15 +3499,14 @@ class Secret:
     """
 
     def __init__(
-            self,
+        self,
     ) -> None:
         """
         Initialize a Secret object.
 
         """
         msg = "Cannot instantiate base class. Instead, instantiate one of the defined subclasses: {0}".format(
-            ", ".join(['ArbitrarySecret', 'ImportedCertificate', 'PublicCertificate', 'PrivateCertificate', 'KVSecret',
-                       'IAMCredentialsSecret', 'UsernamePasswordSecret'])
+            ", ".join(['ArbitrarySecret', 'ImportedCertificate', 'PublicCertificate', 'PrivateCertificate', 'KVSecret', 'IAMCredentialsSecret', 'UsernamePasswordSecret'])
         )
         raise Exception(msg)
 
@@ -3582,8 +3517,7 @@ class Secret:
         if disc_class != cls:
             return disc_class.from_dict(_dict)
         msg = "Cannot convert dictionary into an instance of base class 'Secret'. The discriminator value should map to a valid subclass: {1}".format(
-            ", ".join(['ArbitrarySecret', 'ImportedCertificate', 'PublicCertificate', 'PrivateCertificate', 'KVSecret',
-                       'IAMCredentialsSecret', 'UsernamePasswordSecret'])
+            ", ".join(['ArbitrarySecret', 'ImportedCertificate', 'PublicCertificate', 'PrivateCertificate', 'KVSecret', 'IAMCredentialsSecret', 'UsernamePasswordSecret'])
         )
         raise Exception(msg)
 
@@ -3622,7 +3556,7 @@ class SecretAction:
     """
 
     def __init__(
-            self,
+        self,
     ) -> None:
         """
         Initialize a SecretAction object.
@@ -3674,7 +3608,7 @@ class SecretActionPrototype:
     """
 
     def __init__(
-            self,
+        self,
     ) -> None:
         """
         Initialize a SecretActionPrototype object.
@@ -3737,14 +3671,14 @@ class SecretGroup:
     """
 
     def __init__(
-            self,
-            id: str,
-            description: str,
-            created_at: datetime,
-            created_by: str,
-            updated_at: datetime,
-            *,
-            name: str = None,
+        self,
+        id: str,
+        description: str,
+        created_at: datetime,
+        created_by: str,
+        updated_at: datetime,
+        *,
+        name: str = None,
     ) -> None:
         """
         Initialize a SecretGroup object.
@@ -3845,9 +3779,9 @@ class SecretGroupCollection:
     """
 
     def __init__(
-            self,
-            secret_groups: List['SecretGroup'],
-            total_count: int,
+        self,
+        secret_groups: List['SecretGroup'],
+        total_count: int,
     ) -> None:
         """
         Initialize a SecretGroupCollection object.
@@ -3922,10 +3856,10 @@ class SecretGroupPatch:
     """
 
     def __init__(
-            self,
-            *,
-            name: str = None,
-            description: str = None,
+        self,
+        *,
+        name: str = None,
+        description: str = None,
     ) -> None:
         """
         Initialize a SecretGroupPatch object.
@@ -4010,18 +3944,18 @@ class SecretLock:
     """
 
     def __init__(
-            self,
-            name: str,
-            created_at: datetime,
-            updated_at: datetime,
-            created_by: str,
-            secret_group_id: str,
-            secret_id: str,
-            secret_version_id: str,
-            secret_version_alias: str,
-            *,
-            description: str = None,
-            attributes: dict = None,
+        self,
+        name: str,
+        created_at: datetime,
+        updated_at: datetime,
+        created_by: str,
+        secret_group_id: str,
+        secret_id: str,
+        secret_version_id: str,
+        secret_version_alias: str,
+        *,
+        description: str = None,
+        attributes: dict = None,
     ) -> None:
         """
         Initialize a SecretLock object.
@@ -4160,6 +4094,7 @@ class SecretLock:
         PREVIOUS = 'previous'
 
 
+
 class SecretLockPrototype:
     """
     SecretLockPrototype.
@@ -4176,11 +4111,11 @@ class SecretLockPrototype:
     """
 
     def __init__(
-            self,
-            name: str,
-            *,
-            description: str = None,
-            attributes: dict = None,
+        self,
+        name: str,
+        *,
+        description: str = None,
+        attributes: dict = None,
     ) -> None:
         """
         Initialize a SecretLockPrototype object.
@@ -4264,13 +4199,13 @@ class SecretLocks:
     """
 
     def __init__(
-            self,
-            secret_id: str,
-            secret_group_id: str,
-            versions: List['SecretVersionLocks'],
-            *,
-            secret_type: str = None,
-            secret_name: str = None,
+        self,
+        secret_id: str,
+        secret_group_id: str,
+        versions: List['SecretVersionLocks'],
+        *,
+        secret_type: str = None,
+        secret_name: str = None,
     ) -> None:
         """
         Initialize a SecretLocks object.
@@ -4371,6 +4306,7 @@ class SecretLocks:
         PRIVATE_CERT = 'private_cert'
 
 
+
 class SecretLocksPaginatedCollection:
     """
     Properties that describe a paginated collection of your secret locks.
@@ -4390,16 +4326,16 @@ class SecretLocksPaginatedCollection:
     """
 
     def __init__(
-            self,
-            total_count: int,
-            limit: int,
-            offset: int,
-            first: 'PaginatedCollectionFirst',
-            last: 'PaginatedCollectionLast',
-            locks: List['SecretLock'],
-            *,
-            next: 'PaginatedCollectionNext' = None,
-            previous: 'PaginatedCollectionPrevious' = None,
+        self,
+        total_count: int,
+        limit: int,
+        offset: int,
+        first: 'PaginatedCollectionFirst',
+        last: 'PaginatedCollectionLast',
+        locks: List['SecretLock'],
+        *,
+        next: 'PaginatedCollectionNext' = None,
+        previous: 'PaginatedCollectionPrevious' = None,
     ) -> None:
         """
         Initialize a SecretLocksPaginatedCollection object.
@@ -4530,16 +4466,14 @@ class SecretMetadata:
     """
 
     def __init__(
-            self,
+        self,
     ) -> None:
         """
         Initialize a SecretMetadata object.
 
         """
         msg = "Cannot instantiate base class. Instead, instantiate one of the defined subclasses: {0}".format(
-            ", ".join(['ImportedCertificateMetadata', 'PublicCertificateMetadata', 'KVSecretMetadata',
-                       'UsernamePasswordSecretMetadata', 'IAMCredentialsSecretMetadata', 'ArbitrarySecretMetadata',
-                       'PrivateCertificateMetadata'])
+            ", ".join(['ImportedCertificateMetadata', 'PublicCertificateMetadata', 'KVSecretMetadata', 'UsernamePasswordSecretMetadata', 'IAMCredentialsSecretMetadata', 'ArbitrarySecretMetadata', 'PrivateCertificateMetadata'])
         )
         raise Exception(msg)
 
@@ -4550,9 +4484,7 @@ class SecretMetadata:
         if disc_class != cls:
             return disc_class.from_dict(_dict)
         msg = "Cannot convert dictionary into an instance of base class 'SecretMetadata'. The discriminator value should map to a valid subclass: {1}".format(
-            ", ".join(['ImportedCertificateMetadata', 'PublicCertificateMetadata', 'KVSecretMetadata',
-                       'UsernamePasswordSecretMetadata', 'IAMCredentialsSecretMetadata', 'ArbitrarySecretMetadata',
-                       'PrivateCertificateMetadata'])
+            ", ".join(['ImportedCertificateMetadata', 'PublicCertificateMetadata', 'KVSecretMetadata', 'UsernamePasswordSecretMetadata', 'IAMCredentialsSecretMetadata', 'ArbitrarySecretMetadata', 'PrivateCertificateMetadata'])
         )
         raise Exception(msg)
 
@@ -4603,16 +4535,16 @@ class SecretMetadataPaginatedCollection:
     """
 
     def __init__(
-            self,
-            total_count: int,
-            limit: int,
-            offset: int,
-            first: 'PaginatedCollectionFirst',
-            last: 'PaginatedCollectionLast',
-            secrets: List['SecretMetadata'],
-            *,
-            next: 'PaginatedCollectionNext' = None,
-            previous: 'PaginatedCollectionPrevious' = None,
+        self,
+        total_count: int,
+        limit: int,
+        offset: int,
+        first: 'PaginatedCollectionFirst',
+        last: 'PaginatedCollectionLast',
+        secrets: List['SecretMetadata'],
+        *,
+        next: 'PaginatedCollectionNext' = None,
+        previous: 'PaginatedCollectionPrevious' = None,
     ) -> None:
         """
         Initialize a SecretMetadataPaginatedCollection object.
@@ -4743,16 +4675,14 @@ class SecretMetadataPatch:
     """
 
     def __init__(
-            self,
+        self,
     ) -> None:
         """
         Initialize a SecretMetadataPatch object.
 
         """
         msg = "Cannot instantiate base class. Instead, instantiate one of the defined subclasses: {0}".format(
-            ", ".join(['ArbitrarySecretMetadataPatch', 'IAMCredentialsSecretMetadataPatch',
-                       'ImportedCertificateMetadataPatch', 'KVSecretMetadataPatch', 'PrivateCertificateMetadataPatch',
-                       'PublicCertificateMetadataPatch', 'UsernamePasswordSecretMetadataPatch'])
+            ", ".join(['ArbitrarySecretMetadataPatch', 'IAMCredentialsSecretMetadataPatch', 'ImportedCertificateMetadataPatch', 'KVSecretMetadataPatch', 'PrivateCertificateMetadataPatch', 'PublicCertificateMetadataPatch', 'UsernamePasswordSecretMetadataPatch'])
         )
         raise Exception(msg)
 
@@ -4764,16 +4694,14 @@ class SecretPrototype:
     """
 
     def __init__(
-            self,
+        self,
     ) -> None:
         """
         Initialize a SecretPrototype object.
 
         """
         msg = "Cannot instantiate base class. Instead, instantiate one of the defined subclasses: {0}".format(
-            ", ".join(['ArbitrarySecretPrototype', 'IAMCredentialsSecretPrototype', 'ImportedCertificatePrototype',
-                       'KVSecretPrototype', 'PrivateCertificatePrototype', 'PublicCertificatePrototype',
-                       'UsernamePasswordSecretPrototype'])
+            ", ".join(['ArbitrarySecretPrototype', 'IAMCredentialsSecretPrototype', 'ImportedCertificatePrototype', 'KVSecretPrototype', 'PrivateCertificatePrototype', 'PublicCertificatePrototype', 'UsernamePasswordSecretPrototype'])
         )
         raise Exception(msg)
 
@@ -4784,9 +4712,7 @@ class SecretPrototype:
         if disc_class != cls:
             return disc_class.from_dict(_dict)
         msg = "Cannot convert dictionary into an instance of base class 'SecretPrototype'. The discriminator value should map to a valid subclass: {1}".format(
-            ", ".join(['ArbitrarySecretPrototype', 'IAMCredentialsSecretPrototype', 'ImportedCertificatePrototype',
-                       'KVSecretPrototype', 'PrivateCertificatePrototype', 'PublicCertificatePrototype',
-                       'UsernamePasswordSecretPrototype'])
+            ", ".join(['ArbitrarySecretPrototype', 'IAMCredentialsSecretPrototype', 'ImportedCertificatePrototype', 'KVSecretPrototype', 'PrivateCertificatePrototype', 'PublicCertificatePrototype', 'UsernamePasswordSecretPrototype'])
         )
         raise Exception(msg)
 
@@ -4825,16 +4751,14 @@ class SecretVersion:
     """
 
     def __init__(
-            self,
+        self,
     ) -> None:
         """
         Initialize a SecretVersion object.
 
         """
         msg = "Cannot instantiate base class. Instead, instantiate one of the defined subclasses: {0}".format(
-            ", ".join(
-                ['ArbitrarySecretVersion', 'ImportedCertificateVersion', 'PublicCertificateVersion', 'KVSecretVersion',
-                 'UsernamePasswordSecretVersion', 'IAMCredentialsSecretVersion', 'PrivateCertificateVersion'])
+            ", ".join(['ArbitrarySecretVersion', 'ImportedCertificateVersion', 'PublicCertificateVersion', 'KVSecretVersion', 'UsernamePasswordSecretVersion', 'IAMCredentialsSecretVersion', 'PrivateCertificateVersion'])
         )
         raise Exception(msg)
 
@@ -4845,9 +4769,7 @@ class SecretVersion:
         if disc_class != cls:
             return disc_class.from_dict(_dict)
         msg = "Cannot convert dictionary into an instance of base class 'SecretVersion'. The discriminator value should map to a valid subclass: {1}".format(
-            ", ".join(
-                ['ArbitrarySecretVersion', 'ImportedCertificateVersion', 'PublicCertificateVersion', 'KVSecretVersion',
-                 'UsernamePasswordSecretVersion', 'IAMCredentialsSecretVersion', 'PrivateCertificateVersion'])
+            ", ".join(['ArbitrarySecretVersion', 'ImportedCertificateVersion', 'PublicCertificateVersion', 'KVSecretVersion', 'UsernamePasswordSecretVersion', 'IAMCredentialsSecretVersion', 'PrivateCertificateVersion'])
         )
         raise Exception(msg)
 
@@ -4886,7 +4808,7 @@ class SecretVersionActionPrototype:
     """
 
     def __init__(
-            self,
+        self,
     ) -> None:
         """
         Initialize a SecretVersionActionPrototype object.
@@ -4945,12 +4867,12 @@ class SecretVersionLocks:
     """
 
     def __init__(
-            self,
-            version_id: str,
-            version_alias: str,
-            locks: List[str],
-            *,
-            payload_available: bool = None,
+        self,
+        version_id: str,
+        version_alias: str,
+        locks: List[str],
+        *,
+        payload_available: bool = None,
     ) -> None:
         """
         Initialize a SecretVersionLocks object.
@@ -5035,6 +4957,7 @@ class SecretVersionLocks:
         PREVIOUS = 'previous'
 
 
+
 class SecretVersionLocksPaginatedCollection:
     """
     Properties that describe a paginated collection of your secret version locks.
@@ -5054,16 +4977,16 @@ class SecretVersionLocksPaginatedCollection:
     """
 
     def __init__(
-            self,
-            total_count: int,
-            limit: int,
-            offset: int,
-            first: 'PaginatedCollectionFirst',
-            last: 'PaginatedCollectionLast',
-            locks: List['SecretLock'],
-            *,
-            next: 'PaginatedCollectionNext' = None,
-            previous: 'PaginatedCollectionPrevious' = None,
+        self,
+        total_count: int,
+        limit: int,
+        offset: int,
+        first: 'PaginatedCollectionFirst',
+        last: 'PaginatedCollectionLast',
+        locks: List['SecretLock'],
+        *,
+        next: 'PaginatedCollectionNext' = None,
+        previous: 'PaginatedCollectionPrevious' = None,
     ) -> None:
         """
         Initialize a SecretVersionLocksPaginatedCollection object.
@@ -5097,8 +5020,7 @@ class SecretVersionLocksPaginatedCollection:
         if 'total_count' in _dict:
             args['total_count'] = _dict.get('total_count')
         else:
-            raise ValueError(
-                'Required property \'total_count\' not present in SecretVersionLocksPaginatedCollection JSON')
+            raise ValueError('Required property \'total_count\' not present in SecretVersionLocksPaginatedCollection JSON')
         if 'limit' in _dict:
             args['limit'] = _dict.get('limit')
         else:
@@ -5195,17 +5117,14 @@ class SecretVersionMetadata:
     """
 
     def __init__(
-            self,
+        self,
     ) -> None:
         """
         Initialize a SecretVersionMetadata object.
 
         """
         msg = "Cannot instantiate base class. Instead, instantiate one of the defined subclasses: {0}".format(
-            ", ".join(['ArbitrarySecretVersionMetadata', 'PublicCertificateVersionMetadata',
-                       'ImportedCertificateVersionMetadata', 'KVSecretVersionMetadata',
-                       'UsernamePasswordSecretVersionMetadata', 'IAMCredentialsSecretVersionMetadata',
-                       'PrivateCertificateVersionMetadata'])
+            ", ".join(['ArbitrarySecretVersionMetadata', 'PublicCertificateVersionMetadata', 'ImportedCertificateVersionMetadata', 'KVSecretVersionMetadata', 'UsernamePasswordSecretVersionMetadata', 'IAMCredentialsSecretVersionMetadata', 'PrivateCertificateVersionMetadata'])
         )
         raise Exception(msg)
 
@@ -5216,10 +5135,7 @@ class SecretVersionMetadata:
         if disc_class != cls:
             return disc_class.from_dict(_dict)
         msg = "Cannot convert dictionary into an instance of base class 'SecretVersionMetadata'. The discriminator value should map to a valid subclass: {1}".format(
-            ", ".join(['ArbitrarySecretVersionMetadata', 'PublicCertificateVersionMetadata',
-                       'ImportedCertificateVersionMetadata', 'KVSecretVersionMetadata',
-                       'UsernamePasswordSecretVersionMetadata', 'IAMCredentialsSecretVersionMetadata',
-                       'PrivateCertificateVersionMetadata'])
+            ", ".join(['ArbitrarySecretVersionMetadata', 'PublicCertificateVersionMetadata', 'ImportedCertificateVersionMetadata', 'KVSecretVersionMetadata', 'UsernamePasswordSecretVersionMetadata', 'IAMCredentialsSecretVersionMetadata', 'PrivateCertificateVersionMetadata'])
         )
         raise Exception(msg)
 
@@ -5261,9 +5177,9 @@ class SecretVersionMetadataCollection:
     """
 
     def __init__(
-            self,
-            versions: List['SecretVersionMetadata'],
-            total_count: int,
+        self,
+        versions: List['SecretVersionMetadata'],
+        total_count: int,
     ) -> None:
         """
         Initialize a SecretVersionMetadataCollection object.
@@ -5337,9 +5253,9 @@ class SecretVersionMetadataPatch:
     """
 
     def __init__(
-            self,
-            *,
-            version_custom_metadata: dict = None,
+        self,
+        *,
+        version_custom_metadata: dict = None,
     ) -> None:
         """
         Initialize a SecretVersionMetadataPatch object.
@@ -5395,17 +5311,14 @@ class SecretVersionPrototype:
     """
 
     def __init__(
-            self,
+        self,
     ) -> None:
         """
         Initialize a SecretVersionPrototype object.
 
         """
         msg = "Cannot instantiate base class. Instead, instantiate one of the defined subclasses: {0}".format(
-            ", ".join(['ArbitrarySecretVersionPrototype', 'IAMCredentialsSecretRestoreFromVersionPrototype',
-                       'IAMCredentialsSecretVersionPrototype', 'ImportedCertificateVersionPrototype',
-                       'KVSecretVersionPrototype', 'PrivateCertificateVersionPrototype',
-                       'PublicCertificateVersionPrototype', 'UsernamePasswordSecretVersionPrototype'])
+            ", ".join(['ArbitrarySecretVersionPrototype', 'IAMCredentialsSecretRestoreFromVersionPrototype', 'IAMCredentialsSecretVersionPrototype', 'ImportedCertificateVersionPrototype', 'KVSecretVersionPrototype', 'PrivateCertificateVersionPrototype', 'PublicCertificateVersionPrototype', 'UsernamePasswordSecretVersionPrototype'])
         )
         raise Exception(msg)
 
@@ -5429,16 +5342,16 @@ class SecretsLocksPaginatedCollection:
     """
 
     def __init__(
-            self,
-            total_count: int,
-            limit: int,
-            offset: int,
-            first: 'PaginatedCollectionFirst',
-            last: 'PaginatedCollectionLast',
-            secrets_locks: List['SecretLocks'],
-            *,
-            next: 'PaginatedCollectionNext' = None,
-            previous: 'PaginatedCollectionPrevious' = None,
+        self,
+        total_count: int,
+        limit: int,
+        offset: int,
+        first: 'PaginatedCollectionFirst',
+        last: 'PaginatedCollectionLast',
+        secrets_locks: List['SecretLocks'],
+        *,
+        next: 'PaginatedCollectionNext' = None,
+        previous: 'PaginatedCollectionPrevious' = None,
     ) -> None:
         """
         Initialize a SecretsLocksPaginatedCollection object.
@@ -5570,7 +5483,7 @@ class VersionAction:
     """
 
     def __init__(
-            self,
+        self,
     ) -> None:
         """
         Initialize a VersionAction object.
@@ -5658,26 +5571,26 @@ class ArbitrarySecret(Secret):
     """
 
     def __init__(
-            self,
-            created_by: str,
-            created_at: datetime,
-            crn: str,
-            id: str,
-            secret_group_id: str,
-            secret_type: str,
-            updated_at: datetime,
-            versions_total: int,
-            *,
-            custom_metadata: dict = None,
-            description: str = None,
-            downloaded: bool = None,
-            labels: List[str] = None,
-            locks_total: int = None,
-            name: str = None,
-            state: int = None,
-            state_description: str = None,
-            expiration_date: datetime = None,
-            payload: str = None,
+        self,
+        created_by: str,
+        created_at: datetime,
+        crn: str,
+        id: str,
+        secret_group_id: str,
+        secret_type: str,
+        updated_at: datetime,
+        versions_total: int,
+        *,
+        custom_metadata: dict = None,
+        description: str = None,
+        downloaded: bool = None,
+        labels: List[str] = None,
+        locks_total: int = None,
+        name: str = None,
+        state: int = None,
+        state_description: str = None,
+        expiration_date: datetime = None,
+        payload: str = None,
     ) -> None:
         """
         Initialize a ArbitrarySecret object.
@@ -5867,6 +5780,7 @@ class ArbitrarySecret(Secret):
         USERNAME_PASSWORD = 'username_password'
         PRIVATE_CERT = 'private_cert'
 
+
     class StateDescriptionEnum(str, Enum):
         """
         A text representation of the secret state.
@@ -5877,6 +5791,7 @@ class ArbitrarySecret(Secret):
         SUSPENDED = 'suspended'
         DEACTIVATED = 'deactivated'
         DESTROYED = 'destroyed'
+
 
 
 class ArbitrarySecretMetadata(SecretMetadata):
@@ -5921,25 +5836,25 @@ class ArbitrarySecretMetadata(SecretMetadata):
     """
 
     def __init__(
-            self,
-            created_by: str,
-            created_at: datetime,
-            crn: str,
-            id: str,
-            secret_group_id: str,
-            secret_type: str,
-            updated_at: datetime,
-            versions_total: int,
-            *,
-            custom_metadata: dict = None,
-            description: str = None,
-            downloaded: bool = None,
-            labels: List[str] = None,
-            locks_total: int = None,
-            name: str = None,
-            state: int = None,
-            state_description: str = None,
-            expiration_date: datetime = None,
+        self,
+        created_by: str,
+        created_at: datetime,
+        crn: str,
+        id: str,
+        secret_group_id: str,
+        secret_type: str,
+        updated_at: datetime,
+        versions_total: int,
+        *,
+        custom_metadata: dict = None,
+        description: str = None,
+        downloaded: bool = None,
+        labels: List[str] = None,
+        locks_total: int = None,
+        name: str = None,
+        state: int = None,
+        state_description: str = None,
+        expiration_date: datetime = None,
     ) -> None:
         """
         Initialize a ArbitrarySecretMetadata object.
@@ -6122,6 +6037,7 @@ class ArbitrarySecretMetadata(SecretMetadata):
         USERNAME_PASSWORD = 'username_password'
         PRIVATE_CERT = 'private_cert'
 
+
     class StateDescriptionEnum(str, Enum):
         """
         A text representation of the secret state.
@@ -6132,6 +6048,7 @@ class ArbitrarySecretMetadata(SecretMetadata):
         SUSPENDED = 'suspended'
         DEACTIVATED = 'deactivated'
         DESTROYED = 'destroyed'
+
 
 
 class ArbitrarySecretMetadataPatch(SecretMetadataPatch):
@@ -6156,13 +6073,13 @@ class ArbitrarySecretMetadataPatch(SecretMetadataPatch):
     """
 
     def __init__(
-            self,
-            *,
-            name: str = None,
-            description: str = None,
-            labels: List[str] = None,
-            custom_metadata: dict = None,
-            expiration_date: datetime = None,
+        self,
+        *,
+        name: str = None,
+        description: str = None,
+        labels: List[str] = None,
+        custom_metadata: dict = None,
+        expiration_date: datetime = None,
     ) -> None:
         """
         Initialize a ArbitrarySecretMetadataPatch object.
@@ -6275,17 +6192,17 @@ class ArbitrarySecretPrototype(SecretPrototype):
     """
 
     def __init__(
-            self,
-            name: str,
-            secret_type: str,
-            payload: str,
-            *,
-            custom_metadata: dict = None,
-            description: str = None,
-            expiration_date: datetime = None,
-            labels: List[str] = None,
-            secret_group_id: str = None,
-            version_custom_metadata: dict = None,
+        self,
+        name: str,
+        secret_type: str,
+        payload: str,
+        *,
+        custom_metadata: dict = None,
+        description: str = None,
+        expiration_date: datetime = None,
+        labels: List[str] = None,
+        secret_group_id: str = None,
+        version_custom_metadata: dict = None,
     ) -> None:
         """
         Initialize a ArbitrarySecretPrototype object.
@@ -6417,6 +6334,7 @@ class ArbitrarySecretPrototype(SecretPrototype):
         PRIVATE_CERT = 'private_cert'
 
 
+
 class ArbitrarySecretVersion(SecretVersion):
     """
     Your arbitrary secret version.
@@ -6451,22 +6369,22 @@ class ArbitrarySecretVersion(SecretVersion):
     """
 
     def __init__(
-            self,
-            created_by: str,
-            created_at: datetime,
-            id: str,
-            secret_type: str,
-            secret_group_id: str,
-            payload_available: bool,
-            secret_id: str,
-            *,
-            auto_rotated: bool = None,
-            downloaded: bool = None,
-            secret_name: str = None,
-            alias: str = None,
-            version_custom_metadata: dict = None,
-            expiration_date: datetime = None,
-            payload: str = None,
+        self,
+        created_by: str,
+        created_at: datetime,
+        id: str,
+        secret_type: str,
+        secret_group_id: str,
+        payload_available: bool,
+        secret_id: str,
+        *,
+        auto_rotated: bool = None,
+        downloaded: bool = None,
+        secret_name: str = None,
+        alias: str = None,
+        version_custom_metadata: dict = None,
+        expiration_date: datetime = None,
+        payload: str = None,
     ) -> None:
         """
         Initialize a ArbitrarySecretVersion object.
@@ -6630,6 +6548,7 @@ class ArbitrarySecretVersion(SecretVersion):
         USERNAME_PASSWORD = 'username_password'
         PRIVATE_CERT = 'private_cert'
 
+
     class AliasEnum(str, Enum):
         """
         A human-readable alias that describes the secret version. 'Current' is used for
@@ -6638,6 +6557,7 @@ class ArbitrarySecretVersion(SecretVersion):
 
         CURRENT = 'current'
         PREVIOUS = 'previous'
+
 
 
 class ArbitrarySecretVersionMetadata(SecretVersionMetadata):
@@ -6672,21 +6592,21 @@ class ArbitrarySecretVersionMetadata(SecretVersionMetadata):
     """
 
     def __init__(
-            self,
-            created_by: str,
-            created_at: datetime,
-            id: str,
-            secret_type: str,
-            secret_group_id: str,
-            payload_available: bool,
-            secret_id: str,
-            *,
-            auto_rotated: bool = None,
-            downloaded: bool = None,
-            secret_name: str = None,
-            alias: str = None,
-            version_custom_metadata: dict = None,
-            expiration_date: datetime = None,
+        self,
+        created_by: str,
+        created_at: datetime,
+        id: str,
+        secret_type: str,
+        secret_group_id: str,
+        payload_available: bool,
+        secret_id: str,
+        *,
+        auto_rotated: bool = None,
+        downloaded: bool = None,
+        secret_name: str = None,
+        alias: str = None,
+        version_custom_metadata: dict = None,
+        expiration_date: datetime = None,
     ) -> None:
         """
         Initialize a ArbitrarySecretVersionMetadata object.
@@ -6762,8 +6682,7 @@ class ArbitrarySecretVersionMetadata(SecretVersionMetadata):
         if 'payload_available' in _dict:
             args['payload_available'] = _dict.get('payload_available')
         else:
-            raise ValueError(
-                'Required property \'payload_available\' not present in ArbitrarySecretVersionMetadata JSON')
+            raise ValueError('Required property \'payload_available\' not present in ArbitrarySecretVersionMetadata JSON')
         if 'alias' in _dict:
             args['alias'] = _dict.get('alias')
         if 'version_custom_metadata' in _dict:
@@ -6844,6 +6763,7 @@ class ArbitrarySecretVersionMetadata(SecretVersionMetadata):
         USERNAME_PASSWORD = 'username_password'
         PRIVATE_CERT = 'private_cert'
 
+
     class AliasEnum(str, Enum):
         """
         A human-readable alias that describes the secret version. 'Current' is used for
@@ -6852,6 +6772,7 @@ class ArbitrarySecretVersionMetadata(SecretVersionMetadata):
 
         CURRENT = 'current'
         PREVIOUS = 'previous'
+
 
 
 class ArbitrarySecretVersionPrototype(SecretVersionPrototype):
@@ -6866,11 +6787,11 @@ class ArbitrarySecretVersionPrototype(SecretVersionPrototype):
     """
 
     def __init__(
-            self,
-            payload: str,
-            *,
-            custom_metadata: dict = None,
-            version_custom_metadata: dict = None,
+        self,
+        payload: str,
+        *,
+        custom_metadata: dict = None,
+        version_custom_metadata: dict = None,
     ) -> None:
         """
         Initialize a ArbitrarySecretVersionPrototype object.
@@ -6949,11 +6870,11 @@ class CommonRotationPolicy(RotationPolicy):
     """
 
     def __init__(
-            self,
-            auto_rotate: bool,
-            *,
-            interval: int = None,
-            unit: str = None,
+        self,
+        auto_rotate: bool,
+        *,
+        interval: int = None,
+        unit: str = None,
     ) -> None:
         """
         Initialize a CommonRotationPolicy object.
@@ -7029,6 +6950,7 @@ class CommonRotationPolicy(RotationPolicy):
         MONTH = 'month'
 
 
+
 class IAMCredentialsConfiguration(Configuration):
     """
     Properties that describe a Classic Infrastructure DNS configuration.
@@ -7051,15 +6973,15 @@ class IAMCredentialsConfiguration(Configuration):
     """
 
     def __init__(
-            self,
-            config_type: str,
-            name: str,
-            secret_type: str,
-            created_by: str,
-            created_at: datetime,
-            updated_at: datetime,
-            *,
-            api_key: str = None,
+        self,
+        config_type: str,
+        name: str,
+        secret_type: str,
+        created_by: str,
+        created_at: datetime,
+        updated_at: datetime,
+        *,
+        api_key: str = None,
     ) -> None:
         """
         Initialize a IAMCredentialsConfiguration object.
@@ -7172,6 +7094,7 @@ class IAMCredentialsConfiguration(Configuration):
         PRIVATE_CERT_CONFIGURATION_INTERMEDIATE_CA = 'private_cert_configuration_intermediate_ca'
         PRIVATE_CERT_CONFIGURATION_TEMPLATE = 'private_cert_configuration_template'
 
+
     class SecretTypeEnum(str, Enum):
         """
         The secret type. Supported types are arbitrary, certificates (imported, public,
@@ -7185,6 +7108,7 @@ class IAMCredentialsConfiguration(Configuration):
         KV = 'kv'
         USERNAME_PASSWORD = 'username_password'
         PRIVATE_CERT = 'private_cert'
+
 
 
 class IAMCredentialsConfigurationMetadata(ConfigurationMetadata):
@@ -7205,13 +7129,13 @@ class IAMCredentialsConfigurationMetadata(ConfigurationMetadata):
     """
 
     def __init__(
-            self,
-            config_type: str,
-            name: str,
-            secret_type: str,
-            created_by: str,
-            created_at: datetime,
-            updated_at: datetime,
+        self,
+        config_type: str,
+        name: str,
+        secret_type: str,
+        created_by: str,
+        created_at: datetime,
+        updated_at: datetime,
     ) -> None:
         """
         Initialize a IAMCredentialsConfigurationMetadata object.
@@ -7243,8 +7167,7 @@ class IAMCredentialsConfigurationMetadata(ConfigurationMetadata):
         if 'config_type' in _dict:
             args['config_type'] = _dict.get('config_type')
         else:
-            raise ValueError(
-                'Required property \'config_type\' not present in IAMCredentialsConfigurationMetadata JSON')
+            raise ValueError('Required property \'config_type\' not present in IAMCredentialsConfigurationMetadata JSON')
         if 'name' in _dict:
             args['name'] = _dict.get('name')
         else:
@@ -7252,8 +7175,7 @@ class IAMCredentialsConfigurationMetadata(ConfigurationMetadata):
         if 'secret_type' in _dict:
             args['secret_type'] = _dict.get('secret_type')
         else:
-            raise ValueError(
-                'Required property \'secret_type\' not present in IAMCredentialsConfigurationMetadata JSON')
+            raise ValueError('Required property \'secret_type\' not present in IAMCredentialsConfigurationMetadata JSON')
         if 'created_by' in _dict:
             args['created_by'] = _dict.get('created_by')
         else:
@@ -7321,6 +7243,7 @@ class IAMCredentialsConfigurationMetadata(ConfigurationMetadata):
         PRIVATE_CERT_CONFIGURATION_INTERMEDIATE_CA = 'private_cert_configuration_intermediate_ca'
         PRIVATE_CERT_CONFIGURATION_TEMPLATE = 'private_cert_configuration_template'
 
+
     class SecretTypeEnum(str, Enum):
         """
         The secret type. Supported types are arbitrary, certificates (imported, public,
@@ -7336,6 +7259,7 @@ class IAMCredentialsConfigurationMetadata(ConfigurationMetadata):
         PRIVATE_CERT = 'private_cert'
 
 
+
 class IAMCredentialsConfigurationPatch(ConfigurationPatch):
     """
     The configuration update of the IAM Credentials engine.
@@ -7347,8 +7271,8 @@ class IAMCredentialsConfigurationPatch(ConfigurationPatch):
     """
 
     def __init__(
-            self,
-            api_key: str,
+        self,
+        api_key: str,
     ) -> None:
         """
         Initialize a IAMCredentialsConfigurationPatch object.
@@ -7417,10 +7341,10 @@ class IAMCredentialsConfigurationPrototype(ConfigurationPrototype):
     """
 
     def __init__(
-            self,
-            name: str,
-            config_type: str,
-            api_key: str,
+        self,
+        name: str,
+        config_type: str,
+        api_key: str,
     ) -> None:
         """
         Initialize a IAMCredentialsConfigurationPrototype object.
@@ -7451,8 +7375,7 @@ class IAMCredentialsConfigurationPrototype(ConfigurationPrototype):
         if 'config_type' in _dict:
             args['config_type'] = _dict.get('config_type')
         else:
-            raise ValueError(
-                'Required property \'config_type\' not present in IAMCredentialsConfigurationPrototype JSON')
+            raise ValueError('Required property \'config_type\' not present in IAMCredentialsConfigurationPrototype JSON')
         if 'api_key' in _dict:
             args['api_key'] = _dict.get('api_key')
         else:
@@ -7505,6 +7428,7 @@ class IAMCredentialsConfigurationPrototype(ConfigurationPrototype):
         PRIVATE_CERT_CONFIGURATION_ROOT_CA = 'private_cert_configuration_root_ca'
         PRIVATE_CERT_CONFIGURATION_INTERMEDIATE_CA = 'private_cert_configuration_intermediate_ca'
         PRIVATE_CERT_CONFIGURATION_TEMPLATE = 'private_cert_configuration_template'
+
 
 
 class IAMCredentialsSecret(Secret):
@@ -7587,33 +7511,33 @@ class IAMCredentialsSecret(Secret):
     """
 
     def __init__(
-            self,
-            created_by: str,
-            created_at: datetime,
-            crn: str,
-            id: str,
-            secret_group_id: str,
-            secret_type: str,
-            updated_at: datetime,
-            versions_total: int,
-            ttl: str,
-            reuse_api_key: bool,
-            *,
-            custom_metadata: dict = None,
-            description: str = None,
-            downloaded: bool = None,
-            labels: List[str] = None,
-            locks_total: int = None,
-            name: str = None,
-            state: int = None,
-            state_description: str = None,
-            access_groups: List[str] = None,
-            api_key_id: str = None,
-            service_id: str = None,
-            service_id_is_static: bool = None,
-            rotation: 'RotationPolicy' = None,
-            next_rotation_date: datetime = None,
-            api_key: str = None,
+        self,
+        created_by: str,
+        created_at: datetime,
+        crn: str,
+        id: str,
+        secret_group_id: str,
+        secret_type: str,
+        updated_at: datetime,
+        versions_total: int,
+        ttl: str,
+        reuse_api_key: bool,
+        *,
+        custom_metadata: dict = None,
+        description: str = None,
+        downloaded: bool = None,
+        labels: List[str] = None,
+        locks_total: int = None,
+        name: str = None,
+        state: int = None,
+        state_description: str = None,
+        access_groups: List[str] = None,
+        api_key_id: str = None,
+        service_id: str = None,
+        service_id_is_static: bool = None,
+        rotation: 'RotationPolicy' = None,
+        next_rotation_date: datetime = None,
+        api_key: str = None,
     ) -> None:
         """
         Initialize a IAMCredentialsSecret object.
@@ -7867,6 +7791,7 @@ class IAMCredentialsSecret(Secret):
         USERNAME_PASSWORD = 'username_password'
         PRIVATE_CERT = 'private_cert'
 
+
     class StateDescriptionEnum(str, Enum):
         """
         A text representation of the secret state.
@@ -7877,6 +7802,7 @@ class IAMCredentialsSecret(Secret):
         SUSPENDED = 'suspended'
         DEACTIVATED = 'deactivated'
         DESTROYED = 'destroyed'
+
 
 
 class IAMCredentialsSecretMetadata(SecretMetadata):
@@ -7955,32 +7881,32 @@ class IAMCredentialsSecretMetadata(SecretMetadata):
     """
 
     def __init__(
-            self,
-            created_by: str,
-            created_at: datetime,
-            crn: str,
-            id: str,
-            secret_group_id: str,
-            secret_type: str,
-            updated_at: datetime,
-            versions_total: int,
-            ttl: str,
-            reuse_api_key: bool,
-            *,
-            custom_metadata: dict = None,
-            description: str = None,
-            downloaded: bool = None,
-            labels: List[str] = None,
-            locks_total: int = None,
-            name: str = None,
-            state: int = None,
-            state_description: str = None,
-            access_groups: List[str] = None,
-            api_key_id: str = None,
-            service_id: str = None,
-            service_id_is_static: bool = None,
-            rotation: 'RotationPolicy' = None,
-            next_rotation_date: datetime = None,
+        self,
+        created_by: str,
+        created_at: datetime,
+        crn: str,
+        id: str,
+        secret_group_id: str,
+        secret_type: str,
+        updated_at: datetime,
+        versions_total: int,
+        ttl: str,
+        reuse_api_key: bool,
+        *,
+        custom_metadata: dict = None,
+        description: str = None,
+        downloaded: bool = None,
+        labels: List[str] = None,
+        locks_total: int = None,
+        name: str = None,
+        state: int = None,
+        state_description: str = None,
+        access_groups: List[str] = None,
+        api_key_id: str = None,
+        service_id: str = None,
+        service_id_is_static: bool = None,
+        rotation: 'RotationPolicy' = None,
+        next_rotation_date: datetime = None,
     ) -> None:
         """
         Initialize a IAMCredentialsSecretMetadata object.
@@ -8229,6 +8155,7 @@ class IAMCredentialsSecretMetadata(SecretMetadata):
         USERNAME_PASSWORD = 'username_password'
         PRIVATE_CERT = 'private_cert'
 
+
     class StateDescriptionEnum(str, Enum):
         """
         A text representation of the secret state.
@@ -8239,6 +8166,7 @@ class IAMCredentialsSecretMetadata(SecretMetadata):
         SUSPENDED = 'suspended'
         DEACTIVATED = 'deactivated'
         DESTROYED = 'destroyed'
+
 
 
 class IAMCredentialsSecretMetadataPatch(SecretMetadataPatch):
@@ -8269,14 +8197,14 @@ class IAMCredentialsSecretMetadataPatch(SecretMetadataPatch):
     """
 
     def __init__(
-            self,
-            *,
-            name: str = None,
-            description: str = None,
-            labels: List[str] = None,
-            custom_metadata: dict = None,
-            ttl: str = None,
-            rotation: 'RotationPolicy' = None,
+        self,
+        *,
+        name: str = None,
+        description: str = None,
+        labels: List[str] = None,
+        custom_metadata: dict = None,
+        ttl: str = None,
+        rotation: 'RotationPolicy' = None,
     ) -> None:
         """
         Initialize a IAMCredentialsSecretMetadataPatch object.
@@ -8425,20 +8353,20 @@ class IAMCredentialsSecretPrototype(SecretPrototype):
     """
 
     def __init__(
-            self,
-            secret_type: str,
-            name: str,
-            ttl: str,
-            reuse_api_key: bool,
-            *,
-            description: str = None,
-            secret_group_id: str = None,
-            labels: List[str] = None,
-            access_groups: List[str] = None,
-            service_id: str = None,
-            rotation: 'RotationPolicy' = None,
-            custom_metadata: dict = None,
-            version_custom_metadata: dict = None,
+        self,
+        secret_type: str,
+        name: str,
+        ttl: str,
+        reuse_api_key: bool,
+        *,
+        description: str = None,
+        secret_group_id: str = None,
+        labels: List[str] = None,
+        access_groups: List[str] = None,
+        service_id: str = None,
+        rotation: 'RotationPolicy' = None,
+        custom_metadata: dict = None,
+        version_custom_metadata: dict = None,
     ) -> None:
         """
         Initialize a IAMCredentialsSecretPrototype object.
@@ -8612,6 +8540,7 @@ class IAMCredentialsSecretPrototype(SecretPrototype):
         PRIVATE_CERT = 'private_cert'
 
 
+
 class IAMCredentialsSecretRestoreFromVersionPrototype(SecretVersionPrototype):
     """
     IAMCredentialsSecretRestoreFromVersionPrototype.
@@ -8625,11 +8554,11 @@ class IAMCredentialsSecretRestoreFromVersionPrototype(SecretVersionPrototype):
     """
 
     def __init__(
-            self,
-            restore_from_version: str,
-            *,
-            custom_metadata: dict = None,
-            version_custom_metadata: dict = None,
+        self,
+        restore_from_version: str,
+        *,
+        custom_metadata: dict = None,
+        version_custom_metadata: dict = None,
     ) -> None:
         """
         Initialize a IAMCredentialsSecretRestoreFromVersionPrototype object.
@@ -8653,8 +8582,7 @@ class IAMCredentialsSecretRestoreFromVersionPrototype(SecretVersionPrototype):
         if 'restore_from_version' in _dict:
             args['restore_from_version'] = _dict.get('restore_from_version')
         else:
-            raise ValueError(
-                'Required property \'restore_from_version\' not present in IAMCredentialsSecretRestoreFromVersionPrototype JSON')
+            raise ValueError('Required property \'restore_from_version\' not present in IAMCredentialsSecretRestoreFromVersionPrototype JSON')
         if 'custom_metadata' in _dict:
             args['custom_metadata'] = _dict.get('custom_metadata')
         if 'version_custom_metadata' in _dict:
@@ -8740,23 +8668,23 @@ class IAMCredentialsSecretVersion(SecretVersion):
     """
 
     def __init__(
-            self,
-            created_by: str,
-            created_at: datetime,
-            id: str,
-            secret_type: str,
-            secret_group_id: str,
-            payload_available: bool,
-            secret_id: str,
-            *,
-            auto_rotated: bool = None,
-            downloaded: bool = None,
-            secret_name: str = None,
-            alias: str = None,
-            version_custom_metadata: dict = None,
-            api_key_id: str = None,
-            service_id: str = None,
-            api_key: str = None,
+        self,
+        created_by: str,
+        created_at: datetime,
+        id: str,
+        secret_type: str,
+        secret_group_id: str,
+        payload_available: bool,
+        secret_id: str,
+        *,
+        auto_rotated: bool = None,
+        downloaded: bool = None,
+        secret_name: str = None,
+        alias: str = None,
+        version_custom_metadata: dict = None,
+        api_key_id: str = None,
+        service_id: str = None,
+        api_key: str = None,
     ) -> None:
         """
         Initialize a IAMCredentialsSecretVersion object.
@@ -8930,6 +8858,7 @@ class IAMCredentialsSecretVersion(SecretVersion):
         USERNAME_PASSWORD = 'username_password'
         PRIVATE_CERT = 'private_cert'
 
+
     class AliasEnum(str, Enum):
         """
         A human-readable alias that describes the secret version. 'Current' is used for
@@ -8938,6 +8867,7 @@ class IAMCredentialsSecretVersion(SecretVersion):
 
         CURRENT = 'current'
         PREVIOUS = 'previous'
+
 
 
 class IAMCredentialsSecretVersionMetadata(SecretVersionMetadata):
@@ -8980,22 +8910,22 @@ class IAMCredentialsSecretVersionMetadata(SecretVersionMetadata):
     """
 
     def __init__(
-            self,
-            created_by: str,
-            created_at: datetime,
-            id: str,
-            secret_type: str,
-            secret_group_id: str,
-            payload_available: bool,
-            secret_id: str,
-            *,
-            auto_rotated: bool = None,
-            downloaded: bool = None,
-            secret_name: str = None,
-            alias: str = None,
-            version_custom_metadata: dict = None,
-            api_key_id: str = None,
-            service_id: str = None,
+        self,
+        created_by: str,
+        created_at: datetime,
+        id: str,
+        secret_type: str,
+        secret_group_id: str,
+        payload_available: bool,
+        secret_id: str,
+        *,
+        auto_rotated: bool = None,
+        downloaded: bool = None,
+        secret_name: str = None,
+        alias: str = None,
+        version_custom_metadata: dict = None,
+        api_key_id: str = None,
+        service_id: str = None,
     ) -> None:
         """
         Initialize a IAMCredentialsSecretVersionMetadata object.
@@ -9071,18 +9001,15 @@ class IAMCredentialsSecretVersionMetadata(SecretVersionMetadata):
         if 'secret_type' in _dict:
             args['secret_type'] = _dict.get('secret_type')
         else:
-            raise ValueError(
-                'Required property \'secret_type\' not present in IAMCredentialsSecretVersionMetadata JSON')
+            raise ValueError('Required property \'secret_type\' not present in IAMCredentialsSecretVersionMetadata JSON')
         if 'secret_group_id' in _dict:
             args['secret_group_id'] = _dict.get('secret_group_id')
         else:
-            raise ValueError(
-                'Required property \'secret_group_id\' not present in IAMCredentialsSecretVersionMetadata JSON')
+            raise ValueError('Required property \'secret_group_id\' not present in IAMCredentialsSecretVersionMetadata JSON')
         if 'payload_available' in _dict:
             args['payload_available'] = _dict.get('payload_available')
         else:
-            raise ValueError(
-                'Required property \'payload_available\' not present in IAMCredentialsSecretVersionMetadata JSON')
+            raise ValueError('Required property \'payload_available\' not present in IAMCredentialsSecretVersionMetadata JSON')
         if 'alias' in _dict:
             args['alias'] = _dict.get('alias')
         if 'version_custom_metadata' in _dict:
@@ -9167,6 +9094,7 @@ class IAMCredentialsSecretVersionMetadata(SecretVersionMetadata):
         USERNAME_PASSWORD = 'username_password'
         PRIVATE_CERT = 'private_cert'
 
+
     class AliasEnum(str, Enum):
         """
         A human-readable alias that describes the secret version. 'Current' is used for
@@ -9175,6 +9103,7 @@ class IAMCredentialsSecretVersionMetadata(SecretVersionMetadata):
 
         CURRENT = 'current'
         PREVIOUS = 'previous'
+
 
 
 class IAMCredentialsSecretVersionPrototype(SecretVersionPrototype):
@@ -9188,10 +9117,10 @@ class IAMCredentialsSecretVersionPrototype(SecretVersionPrototype):
     """
 
     def __init__(
-            self,
-            *,
-            custom_metadata: dict = None,
-            version_custom_metadata: dict = None,
+        self,
+        *,
+        custom_metadata: dict = None,
+        version_custom_metadata: dict = None,
     ) -> None:
         """
         Initialize a IAMCredentialsSecretVersionPrototype object.
@@ -9318,37 +9247,37 @@ class ImportedCertificate(Secret):
     """
 
     def __init__(
-            self,
-            created_by: str,
-            created_at: datetime,
-            crn: str,
-            id: str,
-            secret_group_id: str,
-            secret_type: str,
-            updated_at: datetime,
-            versions_total: int,
-            signing_algorithm: str,
-            expiration_date: datetime,
-            intermediate_included: bool,
-            issuer: str,
-            private_key_included: bool,
-            serial_number: str,
-            validity: 'CertificateValidity',
-            certificate: str,
-            *,
-            custom_metadata: dict = None,
-            description: str = None,
-            downloaded: bool = None,
-            labels: List[str] = None,
-            locks_total: int = None,
-            name: str = None,
-            state: int = None,
-            state_description: str = None,
-            alt_names: List[str] = None,
-            common_name: str = None,
-            key_algorithm: str = None,
-            intermediate: str = None,
-            private_key: str = None,
+        self,
+        created_by: str,
+        created_at: datetime,
+        crn: str,
+        id: str,
+        secret_group_id: str,
+        secret_type: str,
+        updated_at: datetime,
+        versions_total: int,
+        signing_algorithm: str,
+        expiration_date: datetime,
+        intermediate_included: bool,
+        issuer: str,
+        private_key_included: bool,
+        serial_number: str,
+        validity: 'CertificateValidity',
+        certificate: str,
+        *,
+        custom_metadata: dict = None,
+        description: str = None,
+        downloaded: bool = None,
+        labels: List[str] = None,
+        locks_total: int = None,
+        name: str = None,
+        state: int = None,
+        state_description: str = None,
+        alt_names: List[str] = None,
+        common_name: str = None,
+        key_algorithm: str = None,
+        intermediate: str = None,
+        private_key: str = None,
     ) -> None:
         """
         Initialize a ImportedCertificate object.
@@ -9636,6 +9565,7 @@ class ImportedCertificate(Secret):
         USERNAME_PASSWORD = 'username_password'
         PRIVATE_CERT = 'private_cert'
 
+
     class StateDescriptionEnum(str, Enum):
         """
         A text representation of the secret state.
@@ -9646,6 +9576,7 @@ class ImportedCertificate(Secret):
         SUSPENDED = 'suspended'
         DEACTIVATED = 'deactivated'
         DESTROYED = 'destroyed'
+
 
 
 class ImportedCertificateMetadata(SecretMetadata):
@@ -9710,34 +9641,34 @@ class ImportedCertificateMetadata(SecretMetadata):
     """
 
     def __init__(
-            self,
-            created_by: str,
-            created_at: datetime,
-            crn: str,
-            id: str,
-            secret_group_id: str,
-            secret_type: str,
-            updated_at: datetime,
-            versions_total: int,
-            signing_algorithm: str,
-            expiration_date: datetime,
-            intermediate_included: bool,
-            issuer: str,
-            private_key_included: bool,
-            serial_number: str,
-            validity: 'CertificateValidity',
-            *,
-            custom_metadata: dict = None,
-            description: str = None,
-            downloaded: bool = None,
-            labels: List[str] = None,
-            locks_total: int = None,
-            name: str = None,
-            state: int = None,
-            state_description: str = None,
-            alt_names: List[str] = None,
-            common_name: str = None,
-            key_algorithm: str = None,
+        self,
+        created_by: str,
+        created_at: datetime,
+        crn: str,
+        id: str,
+        secret_group_id: str,
+        secret_type: str,
+        updated_at: datetime,
+        versions_total: int,
+        signing_algorithm: str,
+        expiration_date: datetime,
+        intermediate_included: bool,
+        issuer: str,
+        private_key_included: bool,
+        serial_number: str,
+        validity: 'CertificateValidity',
+        *,
+        custom_metadata: dict = None,
+        description: str = None,
+        downloaded: bool = None,
+        labels: List[str] = None,
+        locks_total: int = None,
+        name: str = None,
+        state: int = None,
+        state_description: str = None,
+        alt_names: List[str] = None,
+        common_name: str = None,
+        key_algorithm: str = None,
     ) -> None:
         """
         Initialize a ImportedCertificateMetadata object.
@@ -9882,8 +9813,7 @@ class ImportedCertificateMetadata(SecretMetadata):
         if 'intermediate_included' in _dict:
             args['intermediate_included'] = _dict.get('intermediate_included')
         else:
-            raise ValueError(
-                'Required property \'intermediate_included\' not present in ImportedCertificateMetadata JSON')
+            raise ValueError('Required property \'intermediate_included\' not present in ImportedCertificateMetadata JSON')
         if 'issuer' in _dict:
             args['issuer'] = _dict.get('issuer')
         else:
@@ -9893,8 +9823,7 @@ class ImportedCertificateMetadata(SecretMetadata):
         if 'private_key_included' in _dict:
             args['private_key_included'] = _dict.get('private_key_included')
         else:
-            raise ValueError(
-                'Required property \'private_key_included\' not present in ImportedCertificateMetadata JSON')
+            raise ValueError('Required property \'private_key_included\' not present in ImportedCertificateMetadata JSON')
         if 'serial_number' in _dict:
             args['serial_number'] = _dict.get('serial_number')
         else:
@@ -10002,6 +9931,7 @@ class ImportedCertificateMetadata(SecretMetadata):
         USERNAME_PASSWORD = 'username_password'
         PRIVATE_CERT = 'private_cert'
 
+
     class StateDescriptionEnum(str, Enum):
         """
         A text representation of the secret state.
@@ -10012,6 +9942,7 @@ class ImportedCertificateMetadata(SecretMetadata):
         SUSPENDED = 'suspended'
         DEACTIVATED = 'deactivated'
         DESTROYED = 'destroyed'
+
 
 
 class ImportedCertificateMetadataPatch(SecretMetadataPatch):
@@ -10034,12 +9965,12 @@ class ImportedCertificateMetadataPatch(SecretMetadataPatch):
     """
 
     def __init__(
-            self,
-            *,
-            name: str = None,
-            description: str = None,
-            labels: List[str] = None,
-            custom_metadata: dict = None,
+        self,
+        *,
+        name: str = None,
+        description: str = None,
+        labels: List[str] = None,
+        custom_metadata: dict = None,
     ) -> None:
         """
         Initialize a ImportedCertificateMetadataPatch object.
@@ -10150,18 +10081,18 @@ class ImportedCertificatePrototype(SecretPrototype):
     """
 
     def __init__(
-            self,
-            secret_type: str,
-            name: str,
-            certificate: str,
-            *,
-            description: str = None,
-            secret_group_id: str = None,
-            labels: List[str] = None,
-            intermediate: str = None,
-            private_key: str = None,
-            custom_metadata: dict = None,
-            version_custom_metadata: dict = None,
+        self,
+        secret_type: str,
+        name: str,
+        certificate: str,
+        *,
+        description: str = None,
+        secret_group_id: str = None,
+        labels: List[str] = None,
+        intermediate: str = None,
+        private_key: str = None,
+        custom_metadata: dict = None,
+        version_custom_metadata: dict = None,
     ) -> None:
         """
         Initialize a ImportedCertificatePrototype object.
@@ -10302,6 +10233,7 @@ class ImportedCertificatePrototype(SecretPrototype):
         PRIVATE_CERT = 'private_cert'
 
 
+
 class ImportedCertificateVersion(SecretVersion):
     """
     Versions of your imported certificate.
@@ -10346,26 +10278,26 @@ class ImportedCertificateVersion(SecretVersion):
     """
 
     def __init__(
-            self,
-            created_by: str,
-            created_at: datetime,
-            id: str,
-            secret_type: str,
-            secret_group_id: str,
-            payload_available: bool,
-            secret_id: str,
-            expiration_date: datetime,
-            serial_number: str,
-            validity: 'CertificateValidity',
-            certificate: str,
-            *,
-            auto_rotated: bool = None,
-            downloaded: bool = None,
-            secret_name: str = None,
-            alias: str = None,
-            version_custom_metadata: dict = None,
-            intermediate: str = None,
-            private_key: str = None,
+        self,
+        created_by: str,
+        created_at: datetime,
+        id: str,
+        secret_type: str,
+        secret_group_id: str,
+        payload_available: bool,
+        secret_id: str,
+        expiration_date: datetime,
+        serial_number: str,
+        validity: 'CertificateValidity',
+        certificate: str,
+        *,
+        auto_rotated: bool = None,
+        downloaded: bool = None,
+        secret_name: str = None,
+        alias: str = None,
+        version_custom_metadata: dict = None,
+        intermediate: str = None,
+        private_key: str = None,
     ) -> None:
         """
         Initialize a ImportedCertificateVersion object.
@@ -10570,6 +10502,7 @@ class ImportedCertificateVersion(SecretVersion):
         USERNAME_PASSWORD = 'username_password'
         PRIVATE_CERT = 'private_cert'
 
+
     class AliasEnum(str, Enum):
         """
         A human-readable alias that describes the secret version. 'Current' is used for
@@ -10578,6 +10511,7 @@ class ImportedCertificateVersion(SecretVersion):
 
         CURRENT = 'current'
         PREVIOUS = 'previous'
+
 
 
 class ImportedCertificateVersionMetadata(SecretVersionMetadata):
@@ -10616,23 +10550,23 @@ class ImportedCertificateVersionMetadata(SecretVersionMetadata):
     """
 
     def __init__(
-            self,
-            created_by: str,
-            created_at: datetime,
-            id: str,
-            secret_type: str,
-            secret_group_id: str,
-            payload_available: bool,
-            secret_id: str,
-            expiration_date: datetime,
-            serial_number: str,
-            validity: 'CertificateValidity',
-            *,
-            auto_rotated: bool = None,
-            downloaded: bool = None,
-            secret_name: str = None,
-            alias: str = None,
-            version_custom_metadata: dict = None,
+        self,
+        created_by: str,
+        created_at: datetime,
+        id: str,
+        secret_type: str,
+        secret_group_id: str,
+        payload_available: bool,
+        secret_id: str,
+        expiration_date: datetime,
+        serial_number: str,
+        validity: 'CertificateValidity',
+        *,
+        auto_rotated: bool = None,
+        downloaded: bool = None,
+        secret_name: str = None,
+        alias: str = None,
+        version_custom_metadata: dict = None,
     ) -> None:
         """
         Initialize a ImportedCertificateVersionMetadata object.
@@ -10710,13 +10644,11 @@ class ImportedCertificateVersionMetadata(SecretVersionMetadata):
         if 'secret_group_id' in _dict:
             args['secret_group_id'] = _dict.get('secret_group_id')
         else:
-            raise ValueError(
-                'Required property \'secret_group_id\' not present in ImportedCertificateVersionMetadata JSON')
+            raise ValueError('Required property \'secret_group_id\' not present in ImportedCertificateVersionMetadata JSON')
         if 'payload_available' in _dict:
             args['payload_available'] = _dict.get('payload_available')
         else:
-            raise ValueError(
-                'Required property \'payload_available\' not present in ImportedCertificateVersionMetadata JSON')
+            raise ValueError('Required property \'payload_available\' not present in ImportedCertificateVersionMetadata JSON')
         if 'alias' in _dict:
             args['alias'] = _dict.get('alias')
         if 'version_custom_metadata' in _dict:
@@ -10728,13 +10660,11 @@ class ImportedCertificateVersionMetadata(SecretVersionMetadata):
         if 'expiration_date' in _dict:
             args['expiration_date'] = string_to_datetime(_dict.get('expiration_date'))
         else:
-            raise ValueError(
-                'Required property \'expiration_date\' not present in ImportedCertificateVersionMetadata JSON')
+            raise ValueError('Required property \'expiration_date\' not present in ImportedCertificateVersionMetadata JSON')
         if 'serial_number' in _dict:
             args['serial_number'] = _dict.get('serial_number')
         else:
-            raise ValueError(
-                'Required property \'serial_number\' not present in ImportedCertificateVersionMetadata JSON')
+            raise ValueError('Required property \'serial_number\' not present in ImportedCertificateVersionMetadata JSON')
         if 'validity' in _dict:
             args['validity'] = CertificateValidity.from_dict(_dict.get('validity'))
         else:
@@ -10816,6 +10746,7 @@ class ImportedCertificateVersionMetadata(SecretVersionMetadata):
         USERNAME_PASSWORD = 'username_password'
         PRIVATE_CERT = 'private_cert'
 
+
     class AliasEnum(str, Enum):
         """
         A human-readable alias that describes the secret version. 'Current' is used for
@@ -10824,6 +10755,7 @@ class ImportedCertificateVersionMetadata(SecretVersionMetadata):
 
         CURRENT = 'current'
         PREVIOUS = 'previous'
+
 
 
 class ImportedCertificateVersionPrototype(SecretVersionPrototype):
@@ -10845,13 +10777,13 @@ class ImportedCertificateVersionPrototype(SecretVersionPrototype):
     """
 
     def __init__(
-            self,
-            certificate: str,
-            *,
-            intermediate: str = None,
-            private_key: str = None,
-            custom_metadata: dict = None,
-            version_custom_metadata: dict = None,
+        self,
+        certificate: str,
+        *,
+        intermediate: str = None,
+        private_key: str = None,
+        custom_metadata: dict = None,
+        version_custom_metadata: dict = None,
     ) -> None:
         """
         Initialize a ImportedCertificateVersionPrototype object.
@@ -10883,8 +10815,7 @@ class ImportedCertificateVersionPrototype(SecretVersionPrototype):
         if 'certificate' in _dict:
             args['certificate'] = _dict.get('certificate')
         else:
-            raise ValueError(
-                'Required property \'certificate\' not present in ImportedCertificateVersionPrototype JSON')
+            raise ValueError('Required property \'certificate\' not present in ImportedCertificateVersionPrototype JSON')
         if 'intermediate' in _dict:
             args['intermediate'] = _dict.get('intermediate')
         if 'private_key' in _dict:
@@ -10975,25 +10906,25 @@ class KVSecret(Secret):
     """
 
     def __init__(
-            self,
-            created_by: str,
-            created_at: datetime,
-            crn: str,
-            id: str,
-            secret_group_id: str,
-            secret_type: str,
-            updated_at: datetime,
-            versions_total: int,
-            data: dict,
-            *,
-            custom_metadata: dict = None,
-            description: str = None,
-            downloaded: bool = None,
-            labels: List[str] = None,
-            locks_total: int = None,
-            name: str = None,
-            state: int = None,
-            state_description: str = None,
+        self,
+        created_by: str,
+        created_at: datetime,
+        crn: str,
+        id: str,
+        secret_group_id: str,
+        secret_type: str,
+        updated_at: datetime,
+        versions_total: int,
+        data: dict,
+        *,
+        custom_metadata: dict = None,
+        description: str = None,
+        downloaded: bool = None,
+        labels: List[str] = None,
+        locks_total: int = None,
+        name: str = None,
+        state: int = None,
+        state_description: str = None,
     ) -> None:
         """
         Initialize a KVSecret object.
@@ -11177,6 +11108,7 @@ class KVSecret(Secret):
         USERNAME_PASSWORD = 'username_password'
         PRIVATE_CERT = 'private_cert'
 
+
     class StateDescriptionEnum(str, Enum):
         """
         A text representation of the secret state.
@@ -11187,6 +11119,7 @@ class KVSecret(Secret):
         SUSPENDED = 'suspended'
         DEACTIVATED = 'deactivated'
         DESTROYED = 'destroyed'
+
 
 
 class KVSecretMetadata(SecretMetadata):
@@ -11229,24 +11162,24 @@ class KVSecretMetadata(SecretMetadata):
     """
 
     def __init__(
-            self,
-            created_by: str,
-            created_at: datetime,
-            crn: str,
-            id: str,
-            secret_group_id: str,
-            secret_type: str,
-            updated_at: datetime,
-            versions_total: int,
-            *,
-            custom_metadata: dict = None,
-            description: str = None,
-            downloaded: bool = None,
-            labels: List[str] = None,
-            locks_total: int = None,
-            name: str = None,
-            state: int = None,
-            state_description: str = None,
+        self,
+        created_by: str,
+        created_at: datetime,
+        crn: str,
+        id: str,
+        secret_group_id: str,
+        secret_type: str,
+        updated_at: datetime,
+        versions_total: int,
+        *,
+        custom_metadata: dict = None,
+        description: str = None,
+        downloaded: bool = None,
+        labels: List[str] = None,
+        locks_total: int = None,
+        name: str = None,
+        state: int = None,
+        state_description: str = None,
     ) -> None:
         """
         Initialize a KVSecretMetadata object.
@@ -11422,6 +11355,7 @@ class KVSecretMetadata(SecretMetadata):
         USERNAME_PASSWORD = 'username_password'
         PRIVATE_CERT = 'private_cert'
 
+
     class StateDescriptionEnum(str, Enum):
         """
         A text representation of the secret state.
@@ -11432,6 +11366,7 @@ class KVSecretMetadata(SecretMetadata):
         SUSPENDED = 'suspended'
         DEACTIVATED = 'deactivated'
         DESTROYED = 'destroyed'
+
 
 
 class KVSecretMetadataPatch(SecretMetadataPatch):
@@ -11454,12 +11389,12 @@ class KVSecretMetadataPatch(SecretMetadataPatch):
     """
 
     def __init__(
-            self,
-            *,
-            name: str = None,
-            description: str = None,
-            labels: List[str] = None,
-            custom_metadata: dict = None,
+        self,
+        *,
+        name: str = None,
+        description: str = None,
+        labels: List[str] = None,
+        custom_metadata: dict = None,
     ) -> None:
         """
         Initialize a KVSecretMetadataPatch object.
@@ -11563,16 +11498,16 @@ class KVSecretPrototype(SecretPrototype):
     """
 
     def __init__(
-            self,
-            secret_type: str,
-            name: str,
-            data: dict,
-            *,
-            description: str = None,
-            secret_group_id: str = None,
-            labels: List[str] = None,
-            custom_metadata: dict = None,
-            version_custom_metadata: dict = None,
+        self,
+        secret_type: str,
+        name: str,
+        data: dict,
+        *,
+        description: str = None,
+        secret_group_id: str = None,
+        labels: List[str] = None,
+        custom_metadata: dict = None,
+        version_custom_metadata: dict = None,
     ) -> None:
         """
         Initialize a KVSecretPrototype object.
@@ -11696,6 +11631,7 @@ class KVSecretPrototype(SecretPrototype):
         PRIVATE_CERT = 'private_cert'
 
 
+
 class KVSecretVersion(SecretVersion):
     """
     Your key-value secret version.
@@ -11727,21 +11663,21 @@ class KVSecretVersion(SecretVersion):
     """
 
     def __init__(
-            self,
-            created_by: str,
-            created_at: datetime,
-            id: str,
-            secret_type: str,
-            secret_group_id: str,
-            payload_available: bool,
-            secret_id: str,
-            data: dict,
-            *,
-            auto_rotated: bool = None,
-            downloaded: bool = None,
-            secret_name: str = None,
-            alias: str = None,
-            version_custom_metadata: dict = None,
+        self,
+        created_by: str,
+        created_at: datetime,
+        id: str,
+        secret_type: str,
+        secret_group_id: str,
+        payload_available: bool,
+        secret_id: str,
+        data: dict,
+        *,
+        auto_rotated: bool = None,
+        downloaded: bool = None,
+        secret_name: str = None,
+        alias: str = None,
+        version_custom_metadata: dict = None,
     ) -> None:
         """
         Initialize a KVSecretVersion object.
@@ -11899,6 +11835,7 @@ class KVSecretVersion(SecretVersion):
         USERNAME_PASSWORD = 'username_password'
         PRIVATE_CERT = 'private_cert'
 
+
     class AliasEnum(str, Enum):
         """
         A human-readable alias that describes the secret version. 'Current' is used for
@@ -11907,6 +11844,7 @@ class KVSecretVersion(SecretVersion):
 
         CURRENT = 'current'
         PREVIOUS = 'previous'
+
 
 
 class KVSecretVersionMetadata(SecretVersionMetadata):
@@ -11939,20 +11877,20 @@ class KVSecretVersionMetadata(SecretVersionMetadata):
     """
 
     def __init__(
-            self,
-            created_by: str,
-            created_at: datetime,
-            id: str,
-            secret_type: str,
-            secret_group_id: str,
-            payload_available: bool,
-            secret_id: str,
-            *,
-            auto_rotated: bool = None,
-            downloaded: bool = None,
-            secret_name: str = None,
-            alias: str = None,
-            version_custom_metadata: dict = None,
+        self,
+        created_by: str,
+        created_at: datetime,
+        id: str,
+        secret_type: str,
+        secret_group_id: str,
+        payload_available: bool,
+        secret_id: str,
+        *,
+        auto_rotated: bool = None,
+        downloaded: bool = None,
+        secret_name: str = None,
+        alias: str = None,
+        version_custom_metadata: dict = None,
     ) -> None:
         """
         Initialize a KVSecretVersionMetadata object.
@@ -12102,6 +12040,7 @@ class KVSecretVersionMetadata(SecretVersionMetadata):
         USERNAME_PASSWORD = 'username_password'
         PRIVATE_CERT = 'private_cert'
 
+
     class AliasEnum(str, Enum):
         """
         A human-readable alias that describes the secret version. 'Current' is used for
@@ -12110,6 +12049,7 @@ class KVSecretVersionMetadata(SecretVersionMetadata):
 
         CURRENT = 'current'
         PREVIOUS = 'previous'
+
 
 
 class KVSecretVersionPrototype(SecretVersionPrototype):
@@ -12124,11 +12064,11 @@ class KVSecretVersionPrototype(SecretVersionPrototype):
     """
 
     def __init__(
-            self,
-            data: dict,
-            *,
-            custom_metadata: dict = None,
-            version_custom_metadata: dict = None,
+        self,
+        data: dict,
+        *,
+        custom_metadata: dict = None,
+        version_custom_metadata: dict = None,
     ) -> None:
         """
         Initialize a KVSecretVersionPrototype object.
@@ -12274,42 +12214,42 @@ class PrivateCertificate(Secret):
     """
 
     def __init__(
-            self,
-            created_by: str,
-            created_at: datetime,
-            crn: str,
-            id: str,
-            secret_group_id: str,
-            secret_type: str,
-            updated_at: datetime,
-            versions_total: int,
-            signing_algorithm: str,
-            certificate_template: str,
-            common_name: str,
-            expiration_date: datetime,
-            issuer: str,
-            serial_number: str,
-            validity: 'CertificateValidity',
-            certificate: str,
-            private_key: str,
-            *,
-            custom_metadata: dict = None,
-            description: str = None,
-            downloaded: bool = None,
-            labels: List[str] = None,
-            locks_total: int = None,
-            name: str = None,
-            state: int = None,
-            state_description: str = None,
-            alt_names: List[str] = None,
-            certificate_authority: str = None,
-            key_algorithm: str = None,
-            next_rotation_date: datetime = None,
-            rotation: 'RotationPolicy' = None,
-            revocation_time_seconds: int = None,
-            revocation_time_rfc3339: datetime = None,
-            issuing_ca: str = None,
-            ca_chain: List[str] = None,
+        self,
+        created_by: str,
+        created_at: datetime,
+        crn: str,
+        id: str,
+        secret_group_id: str,
+        secret_type: str,
+        updated_at: datetime,
+        versions_total: int,
+        signing_algorithm: str,
+        certificate_template: str,
+        common_name: str,
+        expiration_date: datetime,
+        issuer: str,
+        serial_number: str,
+        validity: 'CertificateValidity',
+        certificate: str,
+        private_key: str,
+        *,
+        custom_metadata: dict = None,
+        description: str = None,
+        downloaded: bool = None,
+        labels: List[str] = None,
+        locks_total: int = None,
+        name: str = None,
+        state: int = None,
+        state_description: str = None,
+        alt_names: List[str] = None,
+        certificate_authority: str = None,
+        key_algorithm: str = None,
+        next_rotation_date: datetime = None,
+        rotation: 'RotationPolicy' = None,
+        revocation_time_seconds: int = None,
+        revocation_time_rfc3339: datetime = None,
+        issuing_ca: str = None,
+        ca_chain: List[str] = None,
     ) -> None:
         """
         Initialize a PrivateCertificate object.
@@ -12623,6 +12563,7 @@ class PrivateCertificate(Secret):
         USERNAME_PASSWORD = 'username_password'
         PRIVATE_CERT = 'private_cert'
 
+
     class StateDescriptionEnum(str, Enum):
         """
         A text representation of the secret state.
@@ -12635,6 +12576,7 @@ class PrivateCertificate(Secret):
         DESTROYED = 'destroyed'
 
 
+
 class PrivateCertificateActionRevoke(SecretAction):
     """
     The response body of the action to revoke the private certificate.
@@ -12645,10 +12587,10 @@ class PrivateCertificateActionRevoke(SecretAction):
     """
 
     def __init__(
-            self,
-            action_type: str,
-            *,
-            revocation_time_seconds: int = None,
+        self,
+        action_type: str,
+        *,
+        revocation_time_seconds: int = None,
     ) -> None:
         """
         Initialize a PrivateCertificateActionRevoke object.
@@ -12712,6 +12654,7 @@ class PrivateCertificateActionRevoke(SecretAction):
         PRIVATE_CERT_ACTION_REVOKE_CERTIFICATE = 'private_cert_action_revoke_certificate'
 
 
+
 class PrivateCertificateActionRevokePrototype(SecretActionPrototype):
     """
     The request body to specify the properties of the action to revoke the private
@@ -12721,8 +12664,8 @@ class PrivateCertificateActionRevokePrototype(SecretActionPrototype):
     """
 
     def __init__(
-            self,
-            action_type: str,
+        self,
+        action_type: str,
     ) -> None:
         """
         Initialize a PrivateCertificateActionRevokePrototype object.
@@ -12739,8 +12682,7 @@ class PrivateCertificateActionRevokePrototype(SecretActionPrototype):
         if 'action_type' in _dict:
             args['action_type'] = _dict.get('action_type')
         else:
-            raise ValueError(
-                'Required property \'action_type\' not present in PrivateCertificateActionRevokePrototype JSON')
+            raise ValueError('Required property \'action_type\' not present in PrivateCertificateActionRevokePrototype JSON')
         return cls(**args)
 
     @classmethod
@@ -12782,6 +12724,7 @@ class PrivateCertificateActionRevokePrototype(SecretActionPrototype):
         PRIVATE_CERT_ACTION_REVOKE_CERTIFICATE = 'private_cert_action_revoke_certificate'
 
 
+
 class PrivateCertificateConfigurationActionRevoke(ConfigurationAction):
     """
     The response body to specify the properties of the action to revoke the private
@@ -12793,10 +12736,10 @@ class PrivateCertificateConfigurationActionRevoke(ConfigurationAction):
     """
 
     def __init__(
-            self,
-            action_type: str,
-            *,
-            revocation_time_seconds: int = None,
+        self,
+        action_type: str,
+        *,
+        revocation_time_seconds: int = None,
     ) -> None:
         """
         Initialize a PrivateCertificateConfigurationActionRevoke object.
@@ -12814,8 +12757,7 @@ class PrivateCertificateConfigurationActionRevoke(ConfigurationAction):
         if 'action_type' in _dict:
             args['action_type'] = _dict.get('action_type')
         else:
-            raise ValueError(
-                'Required property \'action_type\' not present in PrivateCertificateConfigurationActionRevoke JSON')
+            raise ValueError('Required property \'action_type\' not present in PrivateCertificateConfigurationActionRevoke JSON')
         if 'revocation_time_seconds' in _dict:
             args['revocation_time_seconds'] = _dict.get('revocation_time_seconds')
         return cls(**args)
@@ -12864,6 +12806,7 @@ class PrivateCertificateConfigurationActionRevoke(ConfigurationAction):
         PRIVATE_CERT_CONFIGURATION_ACTION_REVOKE_CA_CERTIFICATE = 'private_cert_configuration_action_revoke_ca_certificate'
 
 
+
 class PrivateCertificateConfigurationActionRevokePrototype(ConfigurationActionPrototype):
     """
     The request body to specify the properties of the action to revoke the private
@@ -12873,8 +12816,8 @@ class PrivateCertificateConfigurationActionRevokePrototype(ConfigurationActionPr
     """
 
     def __init__(
-            self,
-            action_type: str,
+        self,
+        action_type: str,
     ) -> None:
         """
         Initialize a PrivateCertificateConfigurationActionRevokePrototype object.
@@ -12891,8 +12834,7 @@ class PrivateCertificateConfigurationActionRevokePrototype(ConfigurationActionPr
         if 'action_type' in _dict:
             args['action_type'] = _dict.get('action_type')
         else:
-            raise ValueError(
-                'Required property \'action_type\' not present in PrivateCertificateConfigurationActionRevokePrototype JSON')
+            raise ValueError('Required property \'action_type\' not present in PrivateCertificateConfigurationActionRevokePrototype JSON')
         return cls(**args)
 
     @classmethod
@@ -12937,6 +12879,7 @@ class PrivateCertificateConfigurationActionRevokePrototype(ConfigurationActionPr
         PRIVATE_CERT_CONFIGURATION_ACTION_REVOKE_CA_CERTIFICATE = 'private_cert_configuration_action_revoke_ca_certificate'
 
 
+
 class PrivateCertificateConfigurationActionRotateCRL(ConfigurationAction):
     """
     The response body of the action to rotate the CRL of an intermediate certificate
@@ -12948,9 +12891,9 @@ class PrivateCertificateConfigurationActionRotateCRL(ConfigurationAction):
     """
 
     def __init__(
-            self,
-            action_type: str,
-            success: bool,
+        self,
+        action_type: str,
+        success: bool,
     ) -> None:
         """
         Initialize a PrivateCertificateConfigurationActionRotateCRL object.
@@ -12970,13 +12913,11 @@ class PrivateCertificateConfigurationActionRotateCRL(ConfigurationAction):
         if 'action_type' in _dict:
             args['action_type'] = _dict.get('action_type')
         else:
-            raise ValueError(
-                'Required property \'action_type\' not present in PrivateCertificateConfigurationActionRotateCRL JSON')
+            raise ValueError('Required property \'action_type\' not present in PrivateCertificateConfigurationActionRotateCRL JSON')
         if 'success' in _dict:
             args['success'] = _dict.get('success')
         else:
-            raise ValueError(
-                'Required property \'success\' not present in PrivateCertificateConfigurationActionRotateCRL JSON')
+            raise ValueError('Required property \'success\' not present in PrivateCertificateConfigurationActionRotateCRL JSON')
         return cls(**args)
 
     @classmethod
@@ -13023,6 +12964,7 @@ class PrivateCertificateConfigurationActionRotateCRL(ConfigurationAction):
         PRIVATE_CERT_CONFIGURATION_ACTION_REVOKE_CA_CERTIFICATE = 'private_cert_configuration_action_revoke_ca_certificate'
 
 
+
 class PrivateCertificateConfigurationActionRotateCRLPrototype(ConfigurationActionPrototype):
     """
     The request body of the action to rotate the CRL of an intermediate certificate
@@ -13032,8 +12974,8 @@ class PrivateCertificateConfigurationActionRotateCRLPrototype(ConfigurationActio
     """
 
     def __init__(
-            self,
-            action_type: str,
+        self,
+        action_type: str,
     ) -> None:
         """
         Initialize a PrivateCertificateConfigurationActionRotateCRLPrototype object.
@@ -13050,8 +12992,7 @@ class PrivateCertificateConfigurationActionRotateCRLPrototype(ConfigurationActio
         if 'action_type' in _dict:
             args['action_type'] = _dict.get('action_type')
         else:
-            raise ValueError(
-                'Required property \'action_type\' not present in PrivateCertificateConfigurationActionRotateCRLPrototype JSON')
+            raise ValueError('Required property \'action_type\' not present in PrivateCertificateConfigurationActionRotateCRLPrototype JSON')
         return cls(**args)
 
     @classmethod
@@ -13096,6 +13037,7 @@ class PrivateCertificateConfigurationActionRotateCRLPrototype(ConfigurationActio
         PRIVATE_CERT_CONFIGURATION_ACTION_REVOKE_CA_CERTIFICATE = 'private_cert_configuration_action_revoke_ca_certificate'
 
 
+
 class PrivateCertificateConfigurationActionSetSigned(ConfigurationAction):
     """
     The response body of the action to set a signed intermediate certificate authority for
@@ -13107,9 +13049,9 @@ class PrivateCertificateConfigurationActionSetSigned(ConfigurationAction):
     """
 
     def __init__(
-            self,
-            action_type: str,
-            certificate: str,
+        self,
+        action_type: str,
+        certificate: str,
     ) -> None:
         """
         Initialize a PrivateCertificateConfigurationActionSetSigned object.
@@ -13129,13 +13071,11 @@ class PrivateCertificateConfigurationActionSetSigned(ConfigurationAction):
         if 'action_type' in _dict:
             args['action_type'] = _dict.get('action_type')
         else:
-            raise ValueError(
-                'Required property \'action_type\' not present in PrivateCertificateConfigurationActionSetSigned JSON')
+            raise ValueError('Required property \'action_type\' not present in PrivateCertificateConfigurationActionSetSigned JSON')
         if 'certificate' in _dict:
             args['certificate'] = _dict.get('certificate')
         else:
-            raise ValueError(
-                'Required property \'certificate\' not present in PrivateCertificateConfigurationActionSetSigned JSON')
+            raise ValueError('Required property \'certificate\' not present in PrivateCertificateConfigurationActionSetSigned JSON')
         return cls(**args)
 
     @classmethod
@@ -13182,6 +13122,7 @@ class PrivateCertificateConfigurationActionSetSigned(ConfigurationAction):
         PRIVATE_CERT_CONFIGURATION_ACTION_REVOKE_CA_CERTIFICATE = 'private_cert_configuration_action_revoke_ca_certificate'
 
 
+
 class PrivateCertificateConfigurationActionSetSignedPrototype(ConfigurationActionPrototype):
     """
     The request body of the action to set a signed intermediate certificate authority for
@@ -13193,9 +13134,9 @@ class PrivateCertificateConfigurationActionSetSignedPrototype(ConfigurationActio
     """
 
     def __init__(
-            self,
-            action_type: str,
-            certificate: str,
+        self,
+        action_type: str,
+        certificate: str,
     ) -> None:
         """
         Initialize a PrivateCertificateConfigurationActionSetSignedPrototype object.
@@ -13215,13 +13156,11 @@ class PrivateCertificateConfigurationActionSetSignedPrototype(ConfigurationActio
         if 'action_type' in _dict:
             args['action_type'] = _dict.get('action_type')
         else:
-            raise ValueError(
-                'Required property \'action_type\' not present in PrivateCertificateConfigurationActionSetSignedPrototype JSON')
+            raise ValueError('Required property \'action_type\' not present in PrivateCertificateConfigurationActionSetSignedPrototype JSON')
         if 'certificate' in _dict:
             args['certificate'] = _dict.get('certificate')
         else:
-            raise ValueError(
-                'Required property \'certificate\' not present in PrivateCertificateConfigurationActionSetSignedPrototype JSON')
+            raise ValueError('Required property \'certificate\' not present in PrivateCertificateConfigurationActionSetSignedPrototype JSON')
         return cls(**args)
 
     @classmethod
@@ -13266,6 +13205,7 @@ class PrivateCertificateConfigurationActionSetSignedPrototype(ConfigurationActio
         PRIVATE_CERT_CONFIGURATION_ACTION_SIGN_CSR = 'private_cert_configuration_action_sign_csr'
         PRIVATE_CERT_CONFIGURATION_ACTION_SET_SIGNED = 'private_cert_configuration_action_set_signed'
         PRIVATE_CERT_CONFIGURATION_ACTION_REVOKE_CA_CERTIFICATE = 'private_cert_configuration_action_revoke_ca_certificate'
+
 
 
 class PrivateCertificateConfigurationActionSignCSR(ConfigurationAction):
@@ -13342,30 +13282,30 @@ class PrivateCertificateConfigurationActionSignCSR(ConfigurationAction):
     """
 
     def __init__(
-            self,
-            action_type: str,
-            csr: str,
-            *,
-            common_name: str = None,
-            alt_names: List[str] = None,
-            ip_sans: str = None,
-            uri_sans: str = None,
-            other_sans: List[str] = None,
-            ttl: str = None,
-            format: str = None,
-            max_path_length: int = None,
-            exclude_cn_from_sans: bool = None,
-            permitted_dns_domains: List[str] = None,
-            use_csr_values: bool = None,
-            ou: List[str] = None,
-            organization: List[str] = None,
-            country: List[str] = None,
-            locality: List[str] = None,
-            province: List[str] = None,
-            street_address: List[str] = None,
-            postal_code: List[str] = None,
-            serial_number: str = None,
-            data: 'PrivateCertificateConfigurationCACertificate' = None,
+        self,
+        action_type: str,
+        csr: str,
+        *,
+        common_name: str = None,
+        alt_names: List[str] = None,
+        ip_sans: str = None,
+        uri_sans: str = None,
+        other_sans: List[str] = None,
+        ttl: str = None,
+        format: str = None,
+        max_path_length: int = None,
+        exclude_cn_from_sans: bool = None,
+        permitted_dns_domains: List[str] = None,
+        use_csr_values: bool = None,
+        ou: List[str] = None,
+        organization: List[str] = None,
+        country: List[str] = None,
+        locality: List[str] = None,
+        province: List[str] = None,
+        street_address: List[str] = None,
+        postal_code: List[str] = None,
+        serial_number: str = None,
+        data: 'PrivateCertificateConfigurationCACertificate' = None,
     ) -> None:
         """
         Initialize a PrivateCertificateConfigurationActionSignCSR object.
@@ -13505,13 +13445,11 @@ class PrivateCertificateConfigurationActionSignCSR(ConfigurationAction):
         if 'action_type' in _dict:
             args['action_type'] = _dict.get('action_type')
         else:
-            raise ValueError(
-                'Required property \'action_type\' not present in PrivateCertificateConfigurationActionSignCSR JSON')
+            raise ValueError('Required property \'action_type\' not present in PrivateCertificateConfigurationActionSignCSR JSON')
         if 'csr' in _dict:
             args['csr'] = _dict.get('csr')
         else:
-            raise ValueError(
-                'Required property \'csr\' not present in PrivateCertificateConfigurationActionSignCSR JSON')
+            raise ValueError('Required property \'csr\' not present in PrivateCertificateConfigurationActionSignCSR JSON')
         if 'data' in _dict:
             args['data'] = PrivateCertificateConfigurationCACertificate.from_dict(_dict.get('data'))
         return cls(**args)
@@ -13599,6 +13537,7 @@ class PrivateCertificateConfigurationActionSignCSR(ConfigurationAction):
         PEM = 'pem'
         PEM_BUNDLE = 'pem_bundle'
 
+
     class ActionTypeEnum(str, Enum):
         """
         The type of configuration action.
@@ -13609,6 +13548,7 @@ class PrivateCertificateConfigurationActionSignCSR(ConfigurationAction):
         PRIVATE_CERT_CONFIGURATION_ACTION_SIGN_CSR = 'private_cert_configuration_action_sign_csr'
         PRIVATE_CERT_CONFIGURATION_ACTION_SET_SIGNED = 'private_cert_configuration_action_set_signed'
         PRIVATE_CERT_CONFIGURATION_ACTION_REVOKE_CA_CERTIFICATE = 'private_cert_configuration_action_revoke_ca_certificate'
+
 
 
 class PrivateCertificateConfigurationActionSignCSRPrototype(ConfigurationActionPrototype):
@@ -13683,29 +13623,29 @@ class PrivateCertificateConfigurationActionSignCSRPrototype(ConfigurationActionP
     """
 
     def __init__(
-            self,
-            action_type: str,
-            csr: str,
-            *,
-            common_name: str = None,
-            alt_names: List[str] = None,
-            ip_sans: str = None,
-            uri_sans: str = None,
-            other_sans: List[str] = None,
-            ttl: str = None,
-            format: str = None,
-            max_path_length: int = None,
-            exclude_cn_from_sans: bool = None,
-            permitted_dns_domains: List[str] = None,
-            use_csr_values: bool = None,
-            ou: List[str] = None,
-            organization: List[str] = None,
-            country: List[str] = None,
-            locality: List[str] = None,
-            province: List[str] = None,
-            street_address: List[str] = None,
-            postal_code: List[str] = None,
-            serial_number: str = None,
+        self,
+        action_type: str,
+        csr: str,
+        *,
+        common_name: str = None,
+        alt_names: List[str] = None,
+        ip_sans: str = None,
+        uri_sans: str = None,
+        other_sans: List[str] = None,
+        ttl: str = None,
+        format: str = None,
+        max_path_length: int = None,
+        exclude_cn_from_sans: bool = None,
+        permitted_dns_domains: List[str] = None,
+        use_csr_values: bool = None,
+        ou: List[str] = None,
+        organization: List[str] = None,
+        country: List[str] = None,
+        locality: List[str] = None,
+        province: List[str] = None,
+        street_address: List[str] = None,
+        postal_code: List[str] = None,
+        serial_number: str = None,
     ) -> None:
         """
         Initialize a PrivateCertificateConfigurationActionSignCSRPrototype object.
@@ -13844,13 +13784,11 @@ class PrivateCertificateConfigurationActionSignCSRPrototype(ConfigurationActionP
         if 'action_type' in _dict:
             args['action_type'] = _dict.get('action_type')
         else:
-            raise ValueError(
-                'Required property \'action_type\' not present in PrivateCertificateConfigurationActionSignCSRPrototype JSON')
+            raise ValueError('Required property \'action_type\' not present in PrivateCertificateConfigurationActionSignCSRPrototype JSON')
         if 'csr' in _dict:
             args['csr'] = _dict.get('csr')
         else:
-            raise ValueError(
-                'Required property \'csr\' not present in PrivateCertificateConfigurationActionSignCSRPrototype JSON')
+            raise ValueError('Required property \'csr\' not present in PrivateCertificateConfigurationActionSignCSRPrototype JSON')
         return cls(**args)
 
     @classmethod
@@ -13931,6 +13869,7 @@ class PrivateCertificateConfigurationActionSignCSRPrototype(ConfigurationActionP
         PEM = 'pem'
         PEM_BUNDLE = 'pem_bundle'
 
+
     class ActionTypeEnum(str, Enum):
         """
         The type of configuration action.
@@ -13941,6 +13880,7 @@ class PrivateCertificateConfigurationActionSignCSRPrototype(ConfigurationActionP
         PRIVATE_CERT_CONFIGURATION_ACTION_SIGN_CSR = 'private_cert_configuration_action_sign_csr'
         PRIVATE_CERT_CONFIGURATION_ACTION_SET_SIGNED = 'private_cert_configuration_action_set_signed'
         PRIVATE_CERT_CONFIGURATION_ACTION_REVOKE_CA_CERTIFICATE = 'private_cert_configuration_action_revoke_ca_certificate'
+
 
 
 class PrivateCertificateConfigurationActionSignIntermediate(ConfigurationAction):
@@ -14016,29 +13956,29 @@ class PrivateCertificateConfigurationActionSignIntermediate(ConfigurationAction)
     """
 
     def __init__(
-            self,
-            action_type: str,
-            intermediate_certificate_authority: str,
-            *,
-            common_name: str = None,
-            alt_names: List[str] = None,
-            ip_sans: str = None,
-            uri_sans: str = None,
-            other_sans: List[str] = None,
-            ttl: str = None,
-            format: str = None,
-            max_path_length: int = None,
-            exclude_cn_from_sans: bool = None,
-            permitted_dns_domains: List[str] = None,
-            use_csr_values: bool = None,
-            ou: List[str] = None,
-            organization: List[str] = None,
-            country: List[str] = None,
-            locality: List[str] = None,
-            province: List[str] = None,
-            street_address: List[str] = None,
-            postal_code: List[str] = None,
-            serial_number: str = None,
+        self,
+        action_type: str,
+        intermediate_certificate_authority: str,
+        *,
+        common_name: str = None,
+        alt_names: List[str] = None,
+        ip_sans: str = None,
+        uri_sans: str = None,
+        other_sans: List[str] = None,
+        ttl: str = None,
+        format: str = None,
+        max_path_length: int = None,
+        exclude_cn_from_sans: bool = None,
+        permitted_dns_domains: List[str] = None,
+        use_csr_values: bool = None,
+        ou: List[str] = None,
+        organization: List[str] = None,
+        country: List[str] = None,
+        locality: List[str] = None,
+        province: List[str] = None,
+        street_address: List[str] = None,
+        postal_code: List[str] = None,
+        serial_number: str = None,
     ) -> None:
         """
         Initialize a PrivateCertificateConfigurationActionSignIntermediate object.
@@ -14178,13 +14118,11 @@ class PrivateCertificateConfigurationActionSignIntermediate(ConfigurationAction)
         if 'action_type' in _dict:
             args['action_type'] = _dict.get('action_type')
         else:
-            raise ValueError(
-                'Required property \'action_type\' not present in PrivateCertificateConfigurationActionSignIntermediate JSON')
+            raise ValueError('Required property \'action_type\' not present in PrivateCertificateConfigurationActionSignIntermediate JSON')
         if 'intermediate_certificate_authority' in _dict:
             args['intermediate_certificate_authority'] = _dict.get('intermediate_certificate_authority')
         else:
-            raise ValueError(
-                'Required property \'intermediate_certificate_authority\' not present in PrivateCertificateConfigurationActionSignIntermediate JSON')
+            raise ValueError('Required property \'intermediate_certificate_authority\' not present in PrivateCertificateConfigurationActionSignIntermediate JSON')
         return cls(**args)
 
     @classmethod
@@ -14265,6 +14203,7 @@ class PrivateCertificateConfigurationActionSignIntermediate(ConfigurationAction)
         PEM = 'pem'
         PEM_BUNDLE = 'pem_bundle'
 
+
     class ActionTypeEnum(str, Enum):
         """
         The type of configuration action.
@@ -14275,6 +14214,7 @@ class PrivateCertificateConfigurationActionSignIntermediate(ConfigurationAction)
         PRIVATE_CERT_CONFIGURATION_ACTION_SIGN_CSR = 'private_cert_configuration_action_sign_csr'
         PRIVATE_CERT_CONFIGURATION_ACTION_SET_SIGNED = 'private_cert_configuration_action_set_signed'
         PRIVATE_CERT_CONFIGURATION_ACTION_REVOKE_CA_CERTIFICATE = 'private_cert_configuration_action_revoke_ca_certificate'
+
 
 
 class PrivateCertificateConfigurationActionSignIntermediatePrototype(ConfigurationActionPrototype):
@@ -14350,29 +14290,29 @@ class PrivateCertificateConfigurationActionSignIntermediatePrototype(Configurati
     """
 
     def __init__(
-            self,
-            action_type: str,
-            intermediate_certificate_authority: str,
-            *,
-            common_name: str = None,
-            alt_names: List[str] = None,
-            ip_sans: str = None,
-            uri_sans: str = None,
-            other_sans: List[str] = None,
-            ttl: str = None,
-            format: str = None,
-            max_path_length: int = None,
-            exclude_cn_from_sans: bool = None,
-            permitted_dns_domains: List[str] = None,
-            use_csr_values: bool = None,
-            ou: List[str] = None,
-            organization: List[str] = None,
-            country: List[str] = None,
-            locality: List[str] = None,
-            province: List[str] = None,
-            street_address: List[str] = None,
-            postal_code: List[str] = None,
-            serial_number: str = None,
+        self,
+        action_type: str,
+        intermediate_certificate_authority: str,
+        *,
+        common_name: str = None,
+        alt_names: List[str] = None,
+        ip_sans: str = None,
+        uri_sans: str = None,
+        other_sans: List[str] = None,
+        ttl: str = None,
+        format: str = None,
+        max_path_length: int = None,
+        exclude_cn_from_sans: bool = None,
+        permitted_dns_domains: List[str] = None,
+        use_csr_values: bool = None,
+        ou: List[str] = None,
+        organization: List[str] = None,
+        country: List[str] = None,
+        locality: List[str] = None,
+        province: List[str] = None,
+        street_address: List[str] = None,
+        postal_code: List[str] = None,
+        serial_number: str = None,
     ) -> None:
         """
         Initialize a PrivateCertificateConfigurationActionSignIntermediatePrototype object.
@@ -14512,13 +14452,11 @@ class PrivateCertificateConfigurationActionSignIntermediatePrototype(Configurati
         if 'action_type' in _dict:
             args['action_type'] = _dict.get('action_type')
         else:
-            raise ValueError(
-                'Required property \'action_type\' not present in PrivateCertificateConfigurationActionSignIntermediatePrototype JSON')
+            raise ValueError('Required property \'action_type\' not present in PrivateCertificateConfigurationActionSignIntermediatePrototype JSON')
         if 'intermediate_certificate_authority' in _dict:
             args['intermediate_certificate_authority'] = _dict.get('intermediate_certificate_authority')
         else:
-            raise ValueError(
-                'Required property \'intermediate_certificate_authority\' not present in PrivateCertificateConfigurationActionSignIntermediatePrototype JSON')
+            raise ValueError('Required property \'intermediate_certificate_authority\' not present in PrivateCertificateConfigurationActionSignIntermediatePrototype JSON')
         return cls(**args)
 
     @classmethod
@@ -14599,6 +14537,7 @@ class PrivateCertificateConfigurationActionSignIntermediatePrototype(Configurati
         PEM = 'pem'
         PEM_BUNDLE = 'pem_bundle'
 
+
     class ActionTypeEnum(str, Enum):
         """
         The type of configuration action.
@@ -14609,6 +14548,7 @@ class PrivateCertificateConfigurationActionSignIntermediatePrototype(Configurati
         PRIVATE_CERT_CONFIGURATION_ACTION_SIGN_CSR = 'private_cert_configuration_action_sign_csr'
         PRIVATE_CERT_CONFIGURATION_ACTION_SET_SIGNED = 'private_cert_configuration_action_set_signed'
         PRIVATE_CERT_CONFIGURATION_ACTION_REVOKE_CA_CERTIFICATE = 'private_cert_configuration_action_revoke_ca_certificate'
+
 
 
 class PrivateCertificateConfigurationCACertificate(PrivateCertificateCAData):
@@ -14625,12 +14565,12 @@ class PrivateCertificateConfigurationCACertificate(PrivateCertificateCAData):
     """
 
     def __init__(
-            self,
-            certificate: str,
-            *,
-            issuing_ca: str = None,
-            ca_chain: List[str] = None,
-            expiration: int = None,
+        self,
+        certificate: str,
+        *,
+        issuing_ca: str = None,
+        ca_chain: List[str] = None,
+        expiration: int = None,
     ) -> None:
         """
         Initialize a PrivateCertificateConfigurationCACertificate object.
@@ -14651,8 +14591,7 @@ class PrivateCertificateConfigurationCACertificate(PrivateCertificateCAData):
         if 'certificate' in _dict:
             args['certificate'] = _dict.get('certificate')
         else:
-            raise ValueError(
-                'Required property \'certificate\' not present in PrivateCertificateConfigurationCACertificate JSON')
+            raise ValueError('Required property \'certificate\' not present in PrivateCertificateConfigurationCACertificate JSON')
         if 'issuing_ca' in _dict:
             args['issuing_ca'] = _dict.get('issuing_ca')
         if 'ca_chain' in _dict:
@@ -14792,42 +14731,42 @@ class PrivateCertificateConfigurationIntermediateCA(Configuration):
     """
 
     def __init__(
-            self,
-            config_type: str,
-            name: str,
-            secret_type: str,
-            created_by: str,
-            created_at: datetime,
-            updated_at: datetime,
-            common_name: str,
-            signing_method: str,
-            *,
-            crl_distribution_points_encoded: bool = None,
-            expiration_date: datetime = None,
-            issuer: str = None,
-            key_type: str = None,
-            key_bits: int = None,
-            status: str = None,
-            max_ttl_seconds: int = None,
-            crl_expiry_seconds: int = None,
-            crl_disable: bool = None,
-            issuing_certificates_urls_encoded: bool = None,
-            alt_names: List[str] = None,
-            ip_sans: str = None,
-            uri_sans: str = None,
-            other_sans: List[str] = None,
-            format: str = None,
-            private_key_format: str = None,
-            exclude_cn_from_sans: bool = None,
-            ou: List[str] = None,
-            organization: List[str] = None,
-            country: List[str] = None,
-            locality: List[str] = None,
-            province: List[str] = None,
-            street_address: List[str] = None,
-            postal_code: List[str] = None,
-            serial_number: str = None,
-            data: 'PrivateCertificateCAData' = None,
+        self,
+        config_type: str,
+        name: str,
+        secret_type: str,
+        created_by: str,
+        created_at: datetime,
+        updated_at: datetime,
+        common_name: str,
+        signing_method: str,
+        *,
+        crl_distribution_points_encoded: bool = None,
+        expiration_date: datetime = None,
+        issuer: str = None,
+        key_type: str = None,
+        key_bits: int = None,
+        status: str = None,
+        max_ttl_seconds: int = None,
+        crl_expiry_seconds: int = None,
+        crl_disable: bool = None,
+        issuing_certificates_urls_encoded: bool = None,
+        alt_names: List[str] = None,
+        ip_sans: str = None,
+        uri_sans: str = None,
+        other_sans: List[str] = None,
+        format: str = None,
+        private_key_format: str = None,
+        exclude_cn_from_sans: bool = None,
+        ou: List[str] = None,
+        organization: List[str] = None,
+        country: List[str] = None,
+        locality: List[str] = None,
+        province: List[str] = None,
+        street_address: List[str] = None,
+        postal_code: List[str] = None,
+        serial_number: str = None,
+        data: 'PrivateCertificateCAData' = None,
     ) -> None:
         """
         Initialize a PrivateCertificateConfigurationIntermediateCA object.
@@ -14956,38 +14895,31 @@ class PrivateCertificateConfigurationIntermediateCA(Configuration):
         if 'config_type' in _dict:
             args['config_type'] = _dict.get('config_type')
         else:
-            raise ValueError(
-                'Required property \'config_type\' not present in PrivateCertificateConfigurationIntermediateCA JSON')
+            raise ValueError('Required property \'config_type\' not present in PrivateCertificateConfigurationIntermediateCA JSON')
         if 'name' in _dict:
             args['name'] = _dict.get('name')
         else:
-            raise ValueError(
-                'Required property \'name\' not present in PrivateCertificateConfigurationIntermediateCA JSON')
+            raise ValueError('Required property \'name\' not present in PrivateCertificateConfigurationIntermediateCA JSON')
         if 'secret_type' in _dict:
             args['secret_type'] = _dict.get('secret_type')
         else:
-            raise ValueError(
-                'Required property \'secret_type\' not present in PrivateCertificateConfigurationIntermediateCA JSON')
+            raise ValueError('Required property \'secret_type\' not present in PrivateCertificateConfigurationIntermediateCA JSON')
         if 'created_by' in _dict:
             args['created_by'] = _dict.get('created_by')
         else:
-            raise ValueError(
-                'Required property \'created_by\' not present in PrivateCertificateConfigurationIntermediateCA JSON')
+            raise ValueError('Required property \'created_by\' not present in PrivateCertificateConfigurationIntermediateCA JSON')
         if 'created_at' in _dict:
             args['created_at'] = string_to_datetime(_dict.get('created_at'))
         else:
-            raise ValueError(
-                'Required property \'created_at\' not present in PrivateCertificateConfigurationIntermediateCA JSON')
+            raise ValueError('Required property \'created_at\' not present in PrivateCertificateConfigurationIntermediateCA JSON')
         if 'updated_at' in _dict:
             args['updated_at'] = string_to_datetime(_dict.get('updated_at'))
         else:
-            raise ValueError(
-                'Required property \'updated_at\' not present in PrivateCertificateConfigurationIntermediateCA JSON')
+            raise ValueError('Required property \'updated_at\' not present in PrivateCertificateConfigurationIntermediateCA JSON')
         if 'common_name' in _dict:
             args['common_name'] = _dict.get('common_name')
         else:
-            raise ValueError(
-                'Required property \'common_name\' not present in PrivateCertificateConfigurationIntermediateCA JSON')
+            raise ValueError('Required property \'common_name\' not present in PrivateCertificateConfigurationIntermediateCA JSON')
         if 'crl_distribution_points_encoded' in _dict:
             args['crl_distribution_points_encoded'] = _dict.get('crl_distribution_points_encoded')
         if 'expiration_date' in _dict:
@@ -15001,8 +14933,7 @@ class PrivateCertificateConfigurationIntermediateCA(Configuration):
         if 'signing_method' in _dict:
             args['signing_method'] = _dict.get('signing_method')
         else:
-            raise ValueError(
-                'Required property \'signing_method\' not present in PrivateCertificateConfigurationIntermediateCA JSON')
+            raise ValueError('Required property \'signing_method\' not present in PrivateCertificateConfigurationIntermediateCA JSON')
         if 'status' in _dict:
             args['status'] = _dict.get('status')
         if 'max_ttl_seconds' in _dict:
@@ -15159,6 +15090,7 @@ class PrivateCertificateConfigurationIntermediateCA(Configuration):
         PRIVATE_CERT_CONFIGURATION_INTERMEDIATE_CA = 'private_cert_configuration_intermediate_ca'
         PRIVATE_CERT_CONFIGURATION_TEMPLATE = 'private_cert_configuration_template'
 
+
     class SecretTypeEnum(str, Enum):
         """
         The secret type. Supported types are arbitrary, certificates (imported, public,
@@ -15173,6 +15105,7 @@ class PrivateCertificateConfigurationIntermediateCA(Configuration):
         USERNAME_PASSWORD = 'username_password'
         PRIVATE_CERT = 'private_cert'
 
+
     class KeyTypeEnum(str, Enum):
         """
         The type of private key to generate.
@@ -15180,6 +15113,7 @@ class PrivateCertificateConfigurationIntermediateCA(Configuration):
 
         RSA = 'rsa'
         EC = 'ec'
+
 
     class SigningMethodEnum(str, Enum):
         """
@@ -15192,6 +15126,7 @@ class PrivateCertificateConfigurationIntermediateCA(Configuration):
 
         INTERNAL = 'internal'
         EXTERNAL = 'external'
+
 
     class StatusEnum(str, Enum):
         """
@@ -15209,6 +15144,7 @@ class PrivateCertificateConfigurationIntermediateCA(Configuration):
         EXPIRED = 'expired'
         REVOKED = 'revoked'
 
+
     class FormatEnum(str, Enum):
         """
         The format of the returned data.
@@ -15217,6 +15153,7 @@ class PrivateCertificateConfigurationIntermediateCA(Configuration):
         PEM = 'pem'
         PEM_BUNDLE = 'pem_bundle'
 
+
     class PrivateKeyFormatEnum(str, Enum):
         """
         The format of the generated private key.
@@ -15224,6 +15161,7 @@ class PrivateCertificateConfigurationIntermediateCA(Configuration):
 
         DER = 'der'
         PKCS8 = 'pkcs8'
+
 
 
 class PrivateCertificateConfigurationIntermediateCACSR(PrivateCertificateCAData):
@@ -15239,12 +15177,12 @@ class PrivateCertificateConfigurationIntermediateCACSR(PrivateCertificateCAData)
     """
 
     def __init__(
-            self,
-            *,
-            csr: str = None,
-            private_key: str = None,
-            private_key_type: str = None,
-            expiration: int = None,
+        self,
+        *,
+        csr: str = None,
+        private_key: str = None,
+        private_key_type: str = None,
+        expiration: int = None,
     ) -> None:
         """
         Initialize a PrivateCertificateConfigurationIntermediateCACSR object.
@@ -15321,6 +15259,7 @@ class PrivateCertificateConfigurationIntermediateCACSR(PrivateCertificateCAData)
         EC = 'ec'
 
 
+
 class PrivateCertificateConfigurationIntermediateCAMetadata(ConfigurationMetadata):
     """
     The configuration of the metadata properties of the intermediate certificate
@@ -15366,22 +15305,22 @@ class PrivateCertificateConfigurationIntermediateCAMetadata(ConfigurationMetadat
     """
 
     def __init__(
-            self,
-            config_type: str,
-            name: str,
-            secret_type: str,
-            created_by: str,
-            created_at: datetime,
-            updated_at: datetime,
-            common_name: str,
-            signing_method: str,
-            *,
-            crl_distribution_points_encoded: bool = None,
-            expiration_date: datetime = None,
-            issuer: str = None,
-            key_type: str = None,
-            key_bits: int = None,
-            status: str = None,
+        self,
+        config_type: str,
+        name: str,
+        secret_type: str,
+        created_by: str,
+        created_at: datetime,
+        updated_at: datetime,
+        common_name: str,
+        signing_method: str,
+        *,
+        crl_distribution_points_encoded: bool = None,
+        expiration_date: datetime = None,
+        issuer: str = None,
+        key_type: str = None,
+        key_bits: int = None,
+        status: str = None,
     ) -> None:
         """
         Initialize a PrivateCertificateConfigurationIntermediateCAMetadata object.
@@ -15442,38 +15381,31 @@ class PrivateCertificateConfigurationIntermediateCAMetadata(ConfigurationMetadat
         if 'config_type' in _dict:
             args['config_type'] = _dict.get('config_type')
         else:
-            raise ValueError(
-                'Required property \'config_type\' not present in PrivateCertificateConfigurationIntermediateCAMetadata JSON')
+            raise ValueError('Required property \'config_type\' not present in PrivateCertificateConfigurationIntermediateCAMetadata JSON')
         if 'name' in _dict:
             args['name'] = _dict.get('name')
         else:
-            raise ValueError(
-                'Required property \'name\' not present in PrivateCertificateConfigurationIntermediateCAMetadata JSON')
+            raise ValueError('Required property \'name\' not present in PrivateCertificateConfigurationIntermediateCAMetadata JSON')
         if 'secret_type' in _dict:
             args['secret_type'] = _dict.get('secret_type')
         else:
-            raise ValueError(
-                'Required property \'secret_type\' not present in PrivateCertificateConfigurationIntermediateCAMetadata JSON')
+            raise ValueError('Required property \'secret_type\' not present in PrivateCertificateConfigurationIntermediateCAMetadata JSON')
         if 'created_by' in _dict:
             args['created_by'] = _dict.get('created_by')
         else:
-            raise ValueError(
-                'Required property \'created_by\' not present in PrivateCertificateConfigurationIntermediateCAMetadata JSON')
+            raise ValueError('Required property \'created_by\' not present in PrivateCertificateConfigurationIntermediateCAMetadata JSON')
         if 'created_at' in _dict:
             args['created_at'] = string_to_datetime(_dict.get('created_at'))
         else:
-            raise ValueError(
-                'Required property \'created_at\' not present in PrivateCertificateConfigurationIntermediateCAMetadata JSON')
+            raise ValueError('Required property \'created_at\' not present in PrivateCertificateConfigurationIntermediateCAMetadata JSON')
         if 'updated_at' in _dict:
             args['updated_at'] = string_to_datetime(_dict.get('updated_at'))
         else:
-            raise ValueError(
-                'Required property \'updated_at\' not present in PrivateCertificateConfigurationIntermediateCAMetadata JSON')
+            raise ValueError('Required property \'updated_at\' not present in PrivateCertificateConfigurationIntermediateCAMetadata JSON')
         if 'common_name' in _dict:
             args['common_name'] = _dict.get('common_name')
         else:
-            raise ValueError(
-                'Required property \'common_name\' not present in PrivateCertificateConfigurationIntermediateCAMetadata JSON')
+            raise ValueError('Required property \'common_name\' not present in PrivateCertificateConfigurationIntermediateCAMetadata JSON')
         if 'crl_distribution_points_encoded' in _dict:
             args['crl_distribution_points_encoded'] = _dict.get('crl_distribution_points_encoded')
         if 'expiration_date' in _dict:
@@ -15487,8 +15419,7 @@ class PrivateCertificateConfigurationIntermediateCAMetadata(ConfigurationMetadat
         if 'signing_method' in _dict:
             args['signing_method'] = _dict.get('signing_method')
         else:
-            raise ValueError(
-                'Required property \'signing_method\' not present in PrivateCertificateConfigurationIntermediateCAMetadata JSON')
+            raise ValueError('Required property \'signing_method\' not present in PrivateCertificateConfigurationIntermediateCAMetadata JSON')
         if 'status' in _dict:
             args['status'] = _dict.get('status')
         return cls(**args)
@@ -15562,6 +15493,7 @@ class PrivateCertificateConfigurationIntermediateCAMetadata(ConfigurationMetadat
         PRIVATE_CERT_CONFIGURATION_INTERMEDIATE_CA = 'private_cert_configuration_intermediate_ca'
         PRIVATE_CERT_CONFIGURATION_TEMPLATE = 'private_cert_configuration_template'
 
+
     class SecretTypeEnum(str, Enum):
         """
         The secret type. Supported types are arbitrary, certificates (imported, public,
@@ -15576,6 +15508,7 @@ class PrivateCertificateConfigurationIntermediateCAMetadata(ConfigurationMetadat
         USERNAME_PASSWORD = 'username_password'
         PRIVATE_CERT = 'private_cert'
 
+
     class KeyTypeEnum(str, Enum):
         """
         The type of private key to generate.
@@ -15583,6 +15516,7 @@ class PrivateCertificateConfigurationIntermediateCAMetadata(ConfigurationMetadat
 
         RSA = 'rsa'
         EC = 'ec'
+
 
     class SigningMethodEnum(str, Enum):
         """
@@ -15595,6 +15529,7 @@ class PrivateCertificateConfigurationIntermediateCAMetadata(ConfigurationMetadat
 
         INTERNAL = 'internal'
         EXTERNAL = 'external'
+
 
     class StatusEnum(str, Enum):
         """
@@ -15611,6 +15546,7 @@ class PrivateCertificateConfigurationIntermediateCAMetadata(ConfigurationMetadat
         CONFIGURED = 'configured'
         EXPIRED = 'expired'
         REVOKED = 'revoked'
+
 
 
 class PrivateCertificateConfigurationIntermediateCAPatch(ConfigurationPatch):
@@ -15642,13 +15578,13 @@ class PrivateCertificateConfigurationIntermediateCAPatch(ConfigurationPatch):
     """
 
     def __init__(
-            self,
-            *,
-            max_ttl: str = None,
-            crl_expiry: str = None,
-            crl_disable: bool = None,
-            crl_distribution_points_encoded: bool = None,
-            issuing_certificates_urls_encoded: bool = None,
+        self,
+        *,
+        max_ttl: str = None,
+        crl_expiry: str = None,
+        crl_disable: bool = None,
+        crl_distribution_points_encoded: bool = None,
+        issuing_certificates_urls_encoded: bool = None,
     ) -> None:
         """
         Initialize a PrivateCertificateConfigurationIntermediateCAPatch object.
@@ -15825,35 +15761,35 @@ class PrivateCertificateConfigurationIntermediateCAPrototype(ConfigurationProtot
     """
 
     def __init__(
-            self,
-            config_type: str,
-            name: str,
-            max_ttl: str,
-            signing_method: str,
-            common_name: str,
-            *,
-            issuer: str = None,
-            crl_expiry: str = None,
-            crl_disable: bool = None,
-            crl_distribution_points_encoded: bool = None,
-            issuing_certificates_urls_encoded: bool = None,
-            alt_names: List[str] = None,
-            ip_sans: str = None,
-            uri_sans: str = None,
-            other_sans: List[str] = None,
-            format: str = None,
-            private_key_format: str = None,
-            key_type: str = None,
-            key_bits: int = None,
-            exclude_cn_from_sans: bool = None,
-            ou: List[str] = None,
-            organization: List[str] = None,
-            country: List[str] = None,
-            locality: List[str] = None,
-            province: List[str] = None,
-            street_address: List[str] = None,
-            postal_code: List[str] = None,
-            serial_number: str = None,
+        self,
+        config_type: str,
+        name: str,
+        max_ttl: str,
+        signing_method: str,
+        common_name: str,
+        *,
+        issuer: str = None,
+        crl_expiry: str = None,
+        crl_disable: bool = None,
+        crl_distribution_points_encoded: bool = None,
+        issuing_certificates_urls_encoded: bool = None,
+        alt_names: List[str] = None,
+        ip_sans: str = None,
+        uri_sans: str = None,
+        other_sans: List[str] = None,
+        format: str = None,
+        private_key_format: str = None,
+        key_type: str = None,
+        key_bits: int = None,
+        exclude_cn_from_sans: bool = None,
+        ou: List[str] = None,
+        organization: List[str] = None,
+        country: List[str] = None,
+        locality: List[str] = None,
+        province: List[str] = None,
+        street_address: List[str] = None,
+        postal_code: List[str] = None,
+        serial_number: str = None,
     ) -> None:
         """
         Initialize a PrivateCertificateConfigurationIntermediateCAPrototype object.
@@ -15977,23 +15913,19 @@ class PrivateCertificateConfigurationIntermediateCAPrototype(ConfigurationProtot
         if 'config_type' in _dict:
             args['config_type'] = _dict.get('config_type')
         else:
-            raise ValueError(
-                'Required property \'config_type\' not present in PrivateCertificateConfigurationIntermediateCAPrototype JSON')
+            raise ValueError('Required property \'config_type\' not present in PrivateCertificateConfigurationIntermediateCAPrototype JSON')
         if 'name' in _dict:
             args['name'] = _dict.get('name')
         else:
-            raise ValueError(
-                'Required property \'name\' not present in PrivateCertificateConfigurationIntermediateCAPrototype JSON')
+            raise ValueError('Required property \'name\' not present in PrivateCertificateConfigurationIntermediateCAPrototype JSON')
         if 'max_ttl' in _dict:
             args['max_ttl'] = _dict.get('max_ttl')
         else:
-            raise ValueError(
-                'Required property \'max_ttl\' not present in PrivateCertificateConfigurationIntermediateCAPrototype JSON')
+            raise ValueError('Required property \'max_ttl\' not present in PrivateCertificateConfigurationIntermediateCAPrototype JSON')
         if 'signing_method' in _dict:
             args['signing_method'] = _dict.get('signing_method')
         else:
-            raise ValueError(
-                'Required property \'signing_method\' not present in PrivateCertificateConfigurationIntermediateCAPrototype JSON')
+            raise ValueError('Required property \'signing_method\' not present in PrivateCertificateConfigurationIntermediateCAPrototype JSON')
         if 'issuer' in _dict:
             args['issuer'] = _dict.get('issuer')
         if 'crl_expiry' in _dict:
@@ -16007,8 +15939,7 @@ class PrivateCertificateConfigurationIntermediateCAPrototype(ConfigurationProtot
         if 'common_name' in _dict:
             args['common_name'] = _dict.get('common_name')
         else:
-            raise ValueError(
-                'Required property \'common_name\' not present in PrivateCertificateConfigurationIntermediateCAPrototype JSON')
+            raise ValueError('Required property \'common_name\' not present in PrivateCertificateConfigurationIntermediateCAPrototype JSON')
         if 'alt_names' in _dict:
             args['alt_names'] = _dict.get('alt_names')
         if 'ip_sans' in _dict:
@@ -16140,6 +16071,7 @@ class PrivateCertificateConfigurationIntermediateCAPrototype(ConfigurationProtot
         PRIVATE_CERT_CONFIGURATION_INTERMEDIATE_CA = 'private_cert_configuration_intermediate_ca'
         PRIVATE_CERT_CONFIGURATION_TEMPLATE = 'private_cert_configuration_template'
 
+
     class SigningMethodEnum(str, Enum):
         """
         The signing method to use with this certificate authority to generate private
@@ -16152,6 +16084,7 @@ class PrivateCertificateConfigurationIntermediateCAPrototype(ConfigurationProtot
         INTERNAL = 'internal'
         EXTERNAL = 'external'
 
+
     class FormatEnum(str, Enum):
         """
         The format of the returned data.
@@ -16159,6 +16092,7 @@ class PrivateCertificateConfigurationIntermediateCAPrototype(ConfigurationProtot
 
         PEM = 'pem'
         PEM_BUNDLE = 'pem_bundle'
+
 
     class PrivateKeyFormatEnum(str, Enum):
         """
@@ -16168,6 +16102,7 @@ class PrivateCertificateConfigurationIntermediateCAPrototype(ConfigurationProtot
         DER = 'der'
         PKCS8 = 'pkcs8'
 
+
     class KeyTypeEnum(str, Enum):
         """
         The type of private key to generate.
@@ -16175,6 +16110,7 @@ class PrivateCertificateConfigurationIntermediateCAPrototype(ConfigurationProtot
 
         RSA = 'rsa'
         EC = 'ec'
+
 
 
 class PrivateCertificateConfigurationRootCA(Configuration):
@@ -16274,43 +16210,43 @@ class PrivateCertificateConfigurationRootCA(Configuration):
     """
 
     def __init__(
-            self,
-            config_type: str,
-            name: str,
-            secret_type: str,
-            created_by: str,
-            created_at: datetime,
-            updated_at: datetime,
-            common_name: str,
-            *,
-            crl_distribution_points_encoded: bool = None,
-            expiration_date: datetime = None,
-            key_type: str = None,
-            key_bits: int = None,
-            status: str = None,
-            max_ttl_seconds: int = None,
-            crl_expiry_seconds: int = None,
-            crl_disable: bool = None,
-            issuing_certificates_urls_encoded: bool = None,
-            alt_names: List[str] = None,
-            ip_sans: str = None,
-            uri_sans: str = None,
-            other_sans: List[str] = None,
-            ttl_seconds: int = None,
-            format: str = None,
-            private_key_format: str = None,
-            max_path_length: int = None,
-            exclude_cn_from_sans: bool = None,
-            permitted_dns_domains: List[str] = None,
-            ou: List[str] = None,
-            organization: List[str] = None,
-            country: List[str] = None,
-            locality: List[str] = None,
-            province: List[str] = None,
-            street_address: List[str] = None,
-            postal_code: List[str] = None,
-            serial_number: str = None,
-            data: 'PrivateCertificateCAData' = None,
+        self,
+        config_type: str,
+        name: str,
+        secret_type: str,
+        created_by: str,
+        created_at: datetime,
+        updated_at: datetime,
+        common_name: str,
+        *,
+        crl_distribution_points_encoded: bool = None,
+        expiration_date: datetime = None,
+        key_type: str = None,
+        key_bits: int = None,
+        status: str = None,
+        max_ttl_seconds: int = None,
+        crl_expiry_seconds: int = None,
+        crl_disable: bool = None,
+        issuing_certificates_urls_encoded: bool = None,
+        alt_names: List[str] = None,
+        ip_sans: str = None,
+        uri_sans: str = None,
+        other_sans: List[str] = None,
+        ttl_seconds: int = None,
+        format: str = None,
+        private_key_format: str = None,
+        max_path_length: int = None,
+        exclude_cn_from_sans: bool = None,
+        permitted_dns_domains: List[str] = None,
+        ou: List[str] = None,
+        organization: List[str] = None,
+        country: List[str] = None,
+        locality: List[str] = None,
+        province: List[str] = None,
+        street_address: List[str] = None,
+        postal_code: List[str] = None,
+        serial_number: str = None,
+        data: 'PrivateCertificateCAData' = None,
     ) -> None:
         """
         Initialize a PrivateCertificateConfigurationRootCA object.
@@ -16441,8 +16377,7 @@ class PrivateCertificateConfigurationRootCA(Configuration):
         if 'config_type' in _dict:
             args['config_type'] = _dict.get('config_type')
         else:
-            raise ValueError(
-                'Required property \'config_type\' not present in PrivateCertificateConfigurationRootCA JSON')
+            raise ValueError('Required property \'config_type\' not present in PrivateCertificateConfigurationRootCA JSON')
         if 'name' in _dict:
             args['name'] = _dict.get('name')
         else:
@@ -16450,28 +16385,23 @@ class PrivateCertificateConfigurationRootCA(Configuration):
         if 'secret_type' in _dict:
             args['secret_type'] = _dict.get('secret_type')
         else:
-            raise ValueError(
-                'Required property \'secret_type\' not present in PrivateCertificateConfigurationRootCA JSON')
+            raise ValueError('Required property \'secret_type\' not present in PrivateCertificateConfigurationRootCA JSON')
         if 'created_by' in _dict:
             args['created_by'] = _dict.get('created_by')
         else:
-            raise ValueError(
-                'Required property \'created_by\' not present in PrivateCertificateConfigurationRootCA JSON')
+            raise ValueError('Required property \'created_by\' not present in PrivateCertificateConfigurationRootCA JSON')
         if 'created_at' in _dict:
             args['created_at'] = string_to_datetime(_dict.get('created_at'))
         else:
-            raise ValueError(
-                'Required property \'created_at\' not present in PrivateCertificateConfigurationRootCA JSON')
+            raise ValueError('Required property \'created_at\' not present in PrivateCertificateConfigurationRootCA JSON')
         if 'updated_at' in _dict:
             args['updated_at'] = string_to_datetime(_dict.get('updated_at'))
         else:
-            raise ValueError(
-                'Required property \'updated_at\' not present in PrivateCertificateConfigurationRootCA JSON')
+            raise ValueError('Required property \'updated_at\' not present in PrivateCertificateConfigurationRootCA JSON')
         if 'common_name' in _dict:
             args['common_name'] = _dict.get('common_name')
         else:
-            raise ValueError(
-                'Required property \'common_name\' not present in PrivateCertificateConfigurationRootCA JSON')
+            raise ValueError('Required property \'common_name\' not present in PrivateCertificateConfigurationRootCA JSON')
         if 'crl_distribution_points_encoded' in _dict:
             args['crl_distribution_points_encoded'] = _dict.get('crl_distribution_points_encoded')
         if 'expiration_date' in _dict:
@@ -16644,6 +16574,7 @@ class PrivateCertificateConfigurationRootCA(Configuration):
         PRIVATE_CERT_CONFIGURATION_INTERMEDIATE_CA = 'private_cert_configuration_intermediate_ca'
         PRIVATE_CERT_CONFIGURATION_TEMPLATE = 'private_cert_configuration_template'
 
+
     class SecretTypeEnum(str, Enum):
         """
         The secret type. Supported types are arbitrary, certificates (imported, public,
@@ -16658,6 +16589,7 @@ class PrivateCertificateConfigurationRootCA(Configuration):
         USERNAME_PASSWORD = 'username_password'
         PRIVATE_CERT = 'private_cert'
 
+
     class KeyTypeEnum(str, Enum):
         """
         The type of private key to generate.
@@ -16665,6 +16597,7 @@ class PrivateCertificateConfigurationRootCA(Configuration):
 
         RSA = 'rsa'
         EC = 'ec'
+
 
     class StatusEnum(str, Enum):
         """
@@ -16682,6 +16615,7 @@ class PrivateCertificateConfigurationRootCA(Configuration):
         EXPIRED = 'expired'
         REVOKED = 'revoked'
 
+
     class FormatEnum(str, Enum):
         """
         The format of the returned data.
@@ -16690,6 +16624,7 @@ class PrivateCertificateConfigurationRootCA(Configuration):
         PEM = 'pem'
         PEM_BUNDLE = 'pem_bundle'
 
+
     class PrivateKeyFormatEnum(str, Enum):
         """
         The format of the generated private key.
@@ -16697,6 +16632,7 @@ class PrivateCertificateConfigurationRootCA(Configuration):
 
         DER = 'der'
         PKCS8 = 'pkcs8'
+
 
 
 class PrivateCertificateConfigurationRootCAMetadata(ConfigurationMetadata):
@@ -16736,20 +16672,20 @@ class PrivateCertificateConfigurationRootCAMetadata(ConfigurationMetadata):
     """
 
     def __init__(
-            self,
-            config_type: str,
-            name: str,
-            secret_type: str,
-            created_by: str,
-            created_at: datetime,
-            updated_at: datetime,
-            common_name: str,
-            *,
-            crl_distribution_points_encoded: bool = None,
-            expiration_date: datetime = None,
-            key_type: str = None,
-            key_bits: int = None,
-            status: str = None,
+        self,
+        config_type: str,
+        name: str,
+        secret_type: str,
+        created_by: str,
+        created_at: datetime,
+        updated_at: datetime,
+        common_name: str,
+        *,
+        crl_distribution_points_encoded: bool = None,
+        expiration_date: datetime = None,
+        key_type: str = None,
+        key_bits: int = None,
+        status: str = None,
     ) -> None:
         """
         Initialize a PrivateCertificateConfigurationRootCAMetadata object.
@@ -16801,38 +16737,31 @@ class PrivateCertificateConfigurationRootCAMetadata(ConfigurationMetadata):
         if 'config_type' in _dict:
             args['config_type'] = _dict.get('config_type')
         else:
-            raise ValueError(
-                'Required property \'config_type\' not present in PrivateCertificateConfigurationRootCAMetadata JSON')
+            raise ValueError('Required property \'config_type\' not present in PrivateCertificateConfigurationRootCAMetadata JSON')
         if 'name' in _dict:
             args['name'] = _dict.get('name')
         else:
-            raise ValueError(
-                'Required property \'name\' not present in PrivateCertificateConfigurationRootCAMetadata JSON')
+            raise ValueError('Required property \'name\' not present in PrivateCertificateConfigurationRootCAMetadata JSON')
         if 'secret_type' in _dict:
             args['secret_type'] = _dict.get('secret_type')
         else:
-            raise ValueError(
-                'Required property \'secret_type\' not present in PrivateCertificateConfigurationRootCAMetadata JSON')
+            raise ValueError('Required property \'secret_type\' not present in PrivateCertificateConfigurationRootCAMetadata JSON')
         if 'created_by' in _dict:
             args['created_by'] = _dict.get('created_by')
         else:
-            raise ValueError(
-                'Required property \'created_by\' not present in PrivateCertificateConfigurationRootCAMetadata JSON')
+            raise ValueError('Required property \'created_by\' not present in PrivateCertificateConfigurationRootCAMetadata JSON')
         if 'created_at' in _dict:
             args['created_at'] = string_to_datetime(_dict.get('created_at'))
         else:
-            raise ValueError(
-                'Required property \'created_at\' not present in PrivateCertificateConfigurationRootCAMetadata JSON')
+            raise ValueError('Required property \'created_at\' not present in PrivateCertificateConfigurationRootCAMetadata JSON')
         if 'updated_at' in _dict:
             args['updated_at'] = string_to_datetime(_dict.get('updated_at'))
         else:
-            raise ValueError(
-                'Required property \'updated_at\' not present in PrivateCertificateConfigurationRootCAMetadata JSON')
+            raise ValueError('Required property \'updated_at\' not present in PrivateCertificateConfigurationRootCAMetadata JSON')
         if 'common_name' in _dict:
             args['common_name'] = _dict.get('common_name')
         else:
-            raise ValueError(
-                'Required property \'common_name\' not present in PrivateCertificateConfigurationRootCAMetadata JSON')
+            raise ValueError('Required property \'common_name\' not present in PrivateCertificateConfigurationRootCAMetadata JSON')
         if 'crl_distribution_points_encoded' in _dict:
             args['crl_distribution_points_encoded'] = _dict.get('crl_distribution_points_encoded')
         if 'expiration_date' in _dict:
@@ -16910,6 +16839,7 @@ class PrivateCertificateConfigurationRootCAMetadata(ConfigurationMetadata):
         PRIVATE_CERT_CONFIGURATION_INTERMEDIATE_CA = 'private_cert_configuration_intermediate_ca'
         PRIVATE_CERT_CONFIGURATION_TEMPLATE = 'private_cert_configuration_template'
 
+
     class SecretTypeEnum(str, Enum):
         """
         The secret type. Supported types are arbitrary, certificates (imported, public,
@@ -16924,6 +16854,7 @@ class PrivateCertificateConfigurationRootCAMetadata(ConfigurationMetadata):
         USERNAME_PASSWORD = 'username_password'
         PRIVATE_CERT = 'private_cert'
 
+
     class KeyTypeEnum(str, Enum):
         """
         The type of private key to generate.
@@ -16931,6 +16862,7 @@ class PrivateCertificateConfigurationRootCAMetadata(ConfigurationMetadata):
 
         RSA = 'rsa'
         EC = 'ec'
+
 
     class StatusEnum(str, Enum):
         """
@@ -16947,6 +16879,7 @@ class PrivateCertificateConfigurationRootCAMetadata(ConfigurationMetadata):
         CONFIGURED = 'configured'
         EXPIRED = 'expired'
         REVOKED = 'revoked'
+
 
 
 class PrivateCertificateConfigurationRootCAPatch(ConfigurationPatch):
@@ -16978,13 +16911,13 @@ class PrivateCertificateConfigurationRootCAPatch(ConfigurationPatch):
     """
 
     def __init__(
-            self,
-            *,
-            max_ttl: str = None,
-            crl_expiry: str = None,
-            crl_disable: bool = None,
-            crl_distribution_points_encoded: bool = None,
-            issuing_certificates_urls_encoded: bool = None,
+        self,
+        *,
+        max_ttl: str = None,
+        crl_expiry: str = None,
+        crl_disable: bool = None,
+        crl_distribution_points_encoded: bool = None,
+        issuing_certificates_urls_encoded: bool = None,
     ) -> None:
         """
         Initialize a PrivateCertificateConfigurationRootCAPatch object.
@@ -17168,36 +17101,36 @@ class PrivateCertificateConfigurationRootCAPrototype(ConfigurationPrototype):
     """
 
     def __init__(
-            self,
-            config_type: str,
-            name: str,
-            max_ttl: str,
-            common_name: str,
-            *,
-            crl_expiry: str = None,
-            crl_disable: bool = None,
-            crl_distribution_points_encoded: bool = None,
-            issuing_certificates_urls_encoded: bool = None,
-            alt_names: List[str] = None,
-            ip_sans: str = None,
-            uri_sans: str = None,
-            other_sans: List[str] = None,
-            ttl: str = None,
-            format: str = None,
-            private_key_format: str = None,
-            key_type: str = None,
-            key_bits: int = None,
-            max_path_length: int = None,
-            exclude_cn_from_sans: bool = None,
-            permitted_dns_domains: List[str] = None,
-            ou: List[str] = None,
-            organization: List[str] = None,
-            country: List[str] = None,
-            locality: List[str] = None,
-            province: List[str] = None,
-            street_address: List[str] = None,
-            postal_code: List[str] = None,
-            serial_number: str = None,
+        self,
+        config_type: str,
+        name: str,
+        max_ttl: str,
+        common_name: str,
+        *,
+        crl_expiry: str = None,
+        crl_disable: bool = None,
+        crl_distribution_points_encoded: bool = None,
+        issuing_certificates_urls_encoded: bool = None,
+        alt_names: List[str] = None,
+        ip_sans: str = None,
+        uri_sans: str = None,
+        other_sans: List[str] = None,
+        ttl: str = None,
+        format: str = None,
+        private_key_format: str = None,
+        key_type: str = None,
+        key_bits: int = None,
+        max_path_length: int = None,
+        exclude_cn_from_sans: bool = None,
+        permitted_dns_domains: List[str] = None,
+        ou: List[str] = None,
+        organization: List[str] = None,
+        country: List[str] = None,
+        locality: List[str] = None,
+        province: List[str] = None,
+        street_address: List[str] = None,
+        postal_code: List[str] = None,
+        serial_number: str = None,
     ) -> None:
         """
         Initialize a PrivateCertificateConfigurationRootCAPrototype object.
@@ -17329,18 +17262,15 @@ class PrivateCertificateConfigurationRootCAPrototype(ConfigurationPrototype):
         if 'config_type' in _dict:
             args['config_type'] = _dict.get('config_type')
         else:
-            raise ValueError(
-                'Required property \'config_type\' not present in PrivateCertificateConfigurationRootCAPrototype JSON')
+            raise ValueError('Required property \'config_type\' not present in PrivateCertificateConfigurationRootCAPrototype JSON')
         if 'name' in _dict:
             args['name'] = _dict.get('name')
         else:
-            raise ValueError(
-                'Required property \'name\' not present in PrivateCertificateConfigurationRootCAPrototype JSON')
+            raise ValueError('Required property \'name\' not present in PrivateCertificateConfigurationRootCAPrototype JSON')
         if 'max_ttl' in _dict:
             args['max_ttl'] = _dict.get('max_ttl')
         else:
-            raise ValueError(
-                'Required property \'max_ttl\' not present in PrivateCertificateConfigurationRootCAPrototype JSON')
+            raise ValueError('Required property \'max_ttl\' not present in PrivateCertificateConfigurationRootCAPrototype JSON')
         if 'crl_expiry' in _dict:
             args['crl_expiry'] = _dict.get('crl_expiry')
         if 'crl_disable' in _dict:
@@ -17352,8 +17282,7 @@ class PrivateCertificateConfigurationRootCAPrototype(ConfigurationPrototype):
         if 'common_name' in _dict:
             args['common_name'] = _dict.get('common_name')
         else:
-            raise ValueError(
-                'Required property \'common_name\' not present in PrivateCertificateConfigurationRootCAPrototype JSON')
+            raise ValueError('Required property \'common_name\' not present in PrivateCertificateConfigurationRootCAPrototype JSON')
         if 'alt_names' in _dict:
             args['alt_names'] = _dict.get('alt_names')
         if 'ip_sans' in _dict:
@@ -17493,6 +17422,7 @@ class PrivateCertificateConfigurationRootCAPrototype(ConfigurationPrototype):
         PRIVATE_CERT_CONFIGURATION_INTERMEDIATE_CA = 'private_cert_configuration_intermediate_ca'
         PRIVATE_CERT_CONFIGURATION_TEMPLATE = 'private_cert_configuration_template'
 
+
     class FormatEnum(str, Enum):
         """
         The format of the returned data.
@@ -17500,6 +17430,7 @@ class PrivateCertificateConfigurationRootCAPrototype(ConfigurationPrototype):
 
         PEM = 'pem'
         PEM_BUNDLE = 'pem_bundle'
+
 
     class PrivateKeyFormatEnum(str, Enum):
         """
@@ -17509,6 +17440,7 @@ class PrivateCertificateConfigurationRootCAPrototype(ConfigurationPrototype):
         DER = 'der'
         PKCS8 = 'pkcs8'
 
+
     class KeyTypeEnum(str, Enum):
         """
         The type of private key to generate.
@@ -17516,6 +17448,7 @@ class PrivateCertificateConfigurationRootCAPrototype(ConfigurationPrototype):
 
         RSA = 'rsa'
         EC = 'ec'
+
 
 
 class PrivateCertificateConfigurationTemplate(Configuration):
@@ -17659,52 +17592,52 @@ class PrivateCertificateConfigurationTemplate(Configuration):
     """
 
     def __init__(
-            self,
-            config_type: str,
-            name: str,
-            secret_type: str,
-            created_by: str,
-            created_at: datetime,
-            updated_at: datetime,
-            certificate_authority: str,
-            *,
-            allowed_secret_groups: str = None,
-            max_ttl_seconds: int = None,
-            ttl_seconds: int = None,
-            allow_localhost: bool = None,
-            allowed_domains: List[str] = None,
-            allowed_domains_template: bool = None,
-            allow_bare_domains: bool = None,
-            allow_subdomains: bool = None,
-            allow_glob_domains: bool = None,
-            allow_any_name: bool = None,
-            enforce_hostnames: bool = None,
-            allow_ip_sans: bool = None,
-            allowed_uri_sans: List[str] = None,
-            allowed_other_sans: List[str] = None,
-            server_flag: bool = None,
-            client_flag: bool = None,
-            code_signing_flag: bool = None,
-            email_protection_flag: bool = None,
-            key_type: str = None,
-            key_bits: int = None,
-            key_usage: List[str] = None,
-            ext_key_usage: List[str] = None,
-            ext_key_usage_oids: List[str] = None,
-            use_csr_common_name: bool = None,
-            use_csr_sans: bool = None,
-            ou: List[str] = None,
-            organization: List[str] = None,
-            country: List[str] = None,
-            locality: List[str] = None,
-            province: List[str] = None,
-            street_address: List[str] = None,
-            postal_code: List[str] = None,
-            serial_number: str = None,
-            require_cn: bool = None,
-            policy_identifiers: List[str] = None,
-            basic_constraints_valid_for_non_ca: bool = None,
-            not_before_duration_seconds: int = None,
+        self,
+        config_type: str,
+        name: str,
+        secret_type: str,
+        created_by: str,
+        created_at: datetime,
+        updated_at: datetime,
+        certificate_authority: str,
+        *,
+        allowed_secret_groups: str = None,
+        max_ttl_seconds: int = None,
+        ttl_seconds: int = None,
+        allow_localhost: bool = None,
+        allowed_domains: List[str] = None,
+        allowed_domains_template: bool = None,
+        allow_bare_domains: bool = None,
+        allow_subdomains: bool = None,
+        allow_glob_domains: bool = None,
+        allow_any_name: bool = None,
+        enforce_hostnames: bool = None,
+        allow_ip_sans: bool = None,
+        allowed_uri_sans: List[str] = None,
+        allowed_other_sans: List[str] = None,
+        server_flag: bool = None,
+        client_flag: bool = None,
+        code_signing_flag: bool = None,
+        email_protection_flag: bool = None,
+        key_type: str = None,
+        key_bits: int = None,
+        key_usage: List[str] = None,
+        ext_key_usage: List[str] = None,
+        ext_key_usage_oids: List[str] = None,
+        use_csr_common_name: bool = None,
+        use_csr_sans: bool = None,
+        ou: List[str] = None,
+        organization: List[str] = None,
+        country: List[str] = None,
+        locality: List[str] = None,
+        province: List[str] = None,
+        street_address: List[str] = None,
+        postal_code: List[str] = None,
+        serial_number: str = None,
+        require_cn: bool = None,
+        policy_identifiers: List[str] = None,
+        basic_constraints_valid_for_non_ca: bool = None,
+        not_before_duration_seconds: int = None,
     ) -> None:
         """
         Initialize a PrivateCertificateConfigurationTemplate object.
@@ -17893,8 +17826,7 @@ class PrivateCertificateConfigurationTemplate(Configuration):
         if 'config_type' in _dict:
             args['config_type'] = _dict.get('config_type')
         else:
-            raise ValueError(
-                'Required property \'config_type\' not present in PrivateCertificateConfigurationTemplate JSON')
+            raise ValueError('Required property \'config_type\' not present in PrivateCertificateConfigurationTemplate JSON')
         if 'name' in _dict:
             args['name'] = _dict.get('name')
         else:
@@ -17902,28 +17834,23 @@ class PrivateCertificateConfigurationTemplate(Configuration):
         if 'secret_type' in _dict:
             args['secret_type'] = _dict.get('secret_type')
         else:
-            raise ValueError(
-                'Required property \'secret_type\' not present in PrivateCertificateConfigurationTemplate JSON')
+            raise ValueError('Required property \'secret_type\' not present in PrivateCertificateConfigurationTemplate JSON')
         if 'created_by' in _dict:
             args['created_by'] = _dict.get('created_by')
         else:
-            raise ValueError(
-                'Required property \'created_by\' not present in PrivateCertificateConfigurationTemplate JSON')
+            raise ValueError('Required property \'created_by\' not present in PrivateCertificateConfigurationTemplate JSON')
         if 'created_at' in _dict:
             args['created_at'] = string_to_datetime(_dict.get('created_at'))
         else:
-            raise ValueError(
-                'Required property \'created_at\' not present in PrivateCertificateConfigurationTemplate JSON')
+            raise ValueError('Required property \'created_at\' not present in PrivateCertificateConfigurationTemplate JSON')
         if 'updated_at' in _dict:
             args['updated_at'] = string_to_datetime(_dict.get('updated_at'))
         else:
-            raise ValueError(
-                'Required property \'updated_at\' not present in PrivateCertificateConfigurationTemplate JSON')
+            raise ValueError('Required property \'updated_at\' not present in PrivateCertificateConfigurationTemplate JSON')
         if 'certificate_authority' in _dict:
             args['certificate_authority'] = _dict.get('certificate_authority')
         else:
-            raise ValueError(
-                'Required property \'certificate_authority\' not present in PrivateCertificateConfigurationTemplate JSON')
+            raise ValueError('Required property \'certificate_authority\' not present in PrivateCertificateConfigurationTemplate JSON')
         if 'allowed_secret_groups' in _dict:
             args['allowed_secret_groups'] = _dict.get('allowed_secret_groups')
         if 'max_ttl_seconds' in _dict:
@@ -18129,6 +18056,7 @@ class PrivateCertificateConfigurationTemplate(Configuration):
         PRIVATE_CERT_CONFIGURATION_INTERMEDIATE_CA = 'private_cert_configuration_intermediate_ca'
         PRIVATE_CERT_CONFIGURATION_TEMPLATE = 'private_cert_configuration_template'
 
+
     class SecretTypeEnum(str, Enum):
         """
         The secret type. Supported types are arbitrary, certificates (imported, public,
@@ -18143,6 +18071,7 @@ class PrivateCertificateConfigurationTemplate(Configuration):
         USERNAME_PASSWORD = 'username_password'
         PRIVATE_CERT = 'private_cert'
 
+
     class KeyTypeEnum(str, Enum):
         """
         The type of private key to generate.
@@ -18150,6 +18079,7 @@ class PrivateCertificateConfigurationTemplate(Configuration):
 
         RSA = 'rsa'
         EC = 'ec'
+
 
 
 class PrivateCertificateConfigurationTemplateMetadata(ConfigurationMetadata):
@@ -18172,14 +18102,14 @@ class PrivateCertificateConfigurationTemplateMetadata(ConfigurationMetadata):
     """
 
     def __init__(
-            self,
-            config_type: str,
-            name: str,
-            secret_type: str,
-            created_by: str,
-            created_at: datetime,
-            updated_at: datetime,
-            certificate_authority: str,
+        self,
+        config_type: str,
+        name: str,
+        secret_type: str,
+        created_by: str,
+        created_at: datetime,
+        updated_at: datetime,
+        certificate_authority: str,
     ) -> None:
         """
         Initialize a PrivateCertificateConfigurationTemplateMetadata object.
@@ -18214,38 +18144,31 @@ class PrivateCertificateConfigurationTemplateMetadata(ConfigurationMetadata):
         if 'config_type' in _dict:
             args['config_type'] = _dict.get('config_type')
         else:
-            raise ValueError(
-                'Required property \'config_type\' not present in PrivateCertificateConfigurationTemplateMetadata JSON')
+            raise ValueError('Required property \'config_type\' not present in PrivateCertificateConfigurationTemplateMetadata JSON')
         if 'name' in _dict:
             args['name'] = _dict.get('name')
         else:
-            raise ValueError(
-                'Required property \'name\' not present in PrivateCertificateConfigurationTemplateMetadata JSON')
+            raise ValueError('Required property \'name\' not present in PrivateCertificateConfigurationTemplateMetadata JSON')
         if 'secret_type' in _dict:
             args['secret_type'] = _dict.get('secret_type')
         else:
-            raise ValueError(
-                'Required property \'secret_type\' not present in PrivateCertificateConfigurationTemplateMetadata JSON')
+            raise ValueError('Required property \'secret_type\' not present in PrivateCertificateConfigurationTemplateMetadata JSON')
         if 'created_by' in _dict:
             args['created_by'] = _dict.get('created_by')
         else:
-            raise ValueError(
-                'Required property \'created_by\' not present in PrivateCertificateConfigurationTemplateMetadata JSON')
+            raise ValueError('Required property \'created_by\' not present in PrivateCertificateConfigurationTemplateMetadata JSON')
         if 'created_at' in _dict:
             args['created_at'] = string_to_datetime(_dict.get('created_at'))
         else:
-            raise ValueError(
-                'Required property \'created_at\' not present in PrivateCertificateConfigurationTemplateMetadata JSON')
+            raise ValueError('Required property \'created_at\' not present in PrivateCertificateConfigurationTemplateMetadata JSON')
         if 'updated_at' in _dict:
             args['updated_at'] = string_to_datetime(_dict.get('updated_at'))
         else:
-            raise ValueError(
-                'Required property \'updated_at\' not present in PrivateCertificateConfigurationTemplateMetadata JSON')
+            raise ValueError('Required property \'updated_at\' not present in PrivateCertificateConfigurationTemplateMetadata JSON')
         if 'certificate_authority' in _dict:
             args['certificate_authority'] = _dict.get('certificate_authority')
         else:
-            raise ValueError(
-                'Required property \'certificate_authority\' not present in PrivateCertificateConfigurationTemplateMetadata JSON')
+            raise ValueError('Required property \'certificate_authority\' not present in PrivateCertificateConfigurationTemplateMetadata JSON')
         return cls(**args)
 
     @classmethod
@@ -18303,6 +18226,7 @@ class PrivateCertificateConfigurationTemplateMetadata(ConfigurationMetadata):
         PRIVATE_CERT_CONFIGURATION_INTERMEDIATE_CA = 'private_cert_configuration_intermediate_ca'
         PRIVATE_CERT_CONFIGURATION_TEMPLATE = 'private_cert_configuration_template'
 
+
     class SecretTypeEnum(str, Enum):
         """
         The secret type. Supported types are arbitrary, certificates (imported, public,
@@ -18316,6 +18240,7 @@ class PrivateCertificateConfigurationTemplateMetadata(ConfigurationMetadata):
         KV = 'kv'
         USERNAME_PASSWORD = 'username_password'
         PRIVATE_CERT = 'private_cert'
+
 
 
 class PrivateCertificateConfigurationTemplatePatch(ConfigurationPatch):
@@ -18459,45 +18384,45 @@ class PrivateCertificateConfigurationTemplatePatch(ConfigurationPatch):
     """
 
     def __init__(
-            self,
-            *,
-            allowed_secret_groups: str = None,
-            max_ttl: str = None,
-            ttl: str = None,
-            allow_localhost: bool = None,
-            allowed_domains: List[str] = None,
-            allowed_domains_template: bool = None,
-            allow_bare_domains: bool = None,
-            allow_subdomains: bool = None,
-            allow_glob_domains: bool = None,
-            allow_any_name: bool = None,
-            enforce_hostnames: bool = None,
-            allow_ip_sans: bool = None,
-            allowed_uri_sans: List[str] = None,
-            allowed_other_sans: List[str] = None,
-            server_flag: bool = None,
-            client_flag: bool = None,
-            code_signing_flag: bool = None,
-            email_protection_flag: bool = None,
-            key_type: str = None,
-            key_bits: int = None,
-            key_usage: List[str] = None,
-            ext_key_usage: List[str] = None,
-            ext_key_usage_oids: List[str] = None,
-            use_csr_common_name: bool = None,
-            use_csr_sans: bool = None,
-            ou: List[str] = None,
-            organization: List[str] = None,
-            country: List[str] = None,
-            locality: List[str] = None,
-            province: List[str] = None,
-            street_address: List[str] = None,
-            postal_code: List[str] = None,
-            serial_number: str = None,
-            require_cn: bool = None,
-            policy_identifiers: List[str] = None,
-            basic_constraints_valid_for_non_ca: bool = None,
-            not_before_duration: str = None,
+        self,
+        *,
+        allowed_secret_groups: str = None,
+        max_ttl: str = None,
+        ttl: str = None,
+        allow_localhost: bool = None,
+        allowed_domains: List[str] = None,
+        allowed_domains_template: bool = None,
+        allow_bare_domains: bool = None,
+        allow_subdomains: bool = None,
+        allow_glob_domains: bool = None,
+        allow_any_name: bool = None,
+        enforce_hostnames: bool = None,
+        allow_ip_sans: bool = None,
+        allowed_uri_sans: List[str] = None,
+        allowed_other_sans: List[str] = None,
+        server_flag: bool = None,
+        client_flag: bool = None,
+        code_signing_flag: bool = None,
+        email_protection_flag: bool = None,
+        key_type: str = None,
+        key_bits: int = None,
+        key_usage: List[str] = None,
+        ext_key_usage: List[str] = None,
+        ext_key_usage_oids: List[str] = None,
+        use_csr_common_name: bool = None,
+        use_csr_sans: bool = None,
+        ou: List[str] = None,
+        organization: List[str] = None,
+        country: List[str] = None,
+        locality: List[str] = None,
+        province: List[str] = None,
+        street_address: List[str] = None,
+        postal_code: List[str] = None,
+        serial_number: str = None,
+        require_cn: bool = None,
+        policy_identifiers: List[str] = None,
+        basic_constraints_valid_for_non_ca: bool = None,
+        not_before_duration: str = None,
     ) -> None:
         """
         Initialize a PrivateCertificateConfigurationTemplatePatch object.
@@ -18866,6 +18791,7 @@ class PrivateCertificateConfigurationTemplatePatch(ConfigurationPatch):
         EC = 'ec'
 
 
+
 class PrivateCertificateConfigurationTemplatePrototype(ConfigurationPrototype):
     """
     Properties that describe a certificate template. You can use a certificate template to
@@ -19017,49 +18943,49 @@ class PrivateCertificateConfigurationTemplatePrototype(ConfigurationPrototype):
     """
 
     def __init__(
-            self,
-            config_type: str,
-            name: str,
-            certificate_authority: str,
-            *,
-            allowed_secret_groups: str = None,
-            max_ttl: str = None,
-            ttl: str = None,
-            allow_localhost: bool = None,
-            allowed_domains: List[str] = None,
-            allowed_domains_template: bool = None,
-            allow_bare_domains: bool = None,
-            allow_subdomains: bool = None,
-            allow_glob_domains: bool = None,
-            allow_wildcard_certificates: bool = None,
-            allow_any_name: bool = None,
-            enforce_hostnames: bool = None,
-            allow_ip_sans: bool = None,
-            allowed_uri_sans: List[str] = None,
-            allowed_other_sans: List[str] = None,
-            server_flag: bool = None,
-            client_flag: bool = None,
-            code_signing_flag: bool = None,
-            email_protection_flag: bool = None,
-            key_type: str = None,
-            key_bits: int = None,
-            key_usage: List[str] = None,
-            ext_key_usage: List[str] = None,
-            ext_key_usage_oids: List[str] = None,
-            use_csr_common_name: bool = None,
-            use_csr_sans: bool = None,
-            ou: List[str] = None,
-            organization: List[str] = None,
-            country: List[str] = None,
-            locality: List[str] = None,
-            province: List[str] = None,
-            street_address: List[str] = None,
-            postal_code: List[str] = None,
-            serial_number: str = None,
-            require_cn: bool = None,
-            policy_identifiers: List[str] = None,
-            basic_constraints_valid_for_non_ca: bool = None,
-            not_before_duration: str = None,
+        self,
+        config_type: str,
+        name: str,
+        certificate_authority: str,
+        *,
+        allowed_secret_groups: str = None,
+        max_ttl: str = None,
+        ttl: str = None,
+        allow_localhost: bool = None,
+        allowed_domains: List[str] = None,
+        allowed_domains_template: bool = None,
+        allow_bare_domains: bool = None,
+        allow_subdomains: bool = None,
+        allow_glob_domains: bool = None,
+        allow_wildcard_certificates: bool = None,
+        allow_any_name: bool = None,
+        enforce_hostnames: bool = None,
+        allow_ip_sans: bool = None,
+        allowed_uri_sans: List[str] = None,
+        allowed_other_sans: List[str] = None,
+        server_flag: bool = None,
+        client_flag: bool = None,
+        code_signing_flag: bool = None,
+        email_protection_flag: bool = None,
+        key_type: str = None,
+        key_bits: int = None,
+        key_usage: List[str] = None,
+        ext_key_usage: List[str] = None,
+        ext_key_usage_oids: List[str] = None,
+        use_csr_common_name: bool = None,
+        use_csr_sans: bool = None,
+        ou: List[str] = None,
+        organization: List[str] = None,
+        country: List[str] = None,
+        locality: List[str] = None,
+        province: List[str] = None,
+        street_address: List[str] = None,
+        postal_code: List[str] = None,
+        serial_number: str = None,
+        require_cn: bool = None,
+        policy_identifiers: List[str] = None,
+        basic_constraints_valid_for_non_ca: bool = None,
+        not_before_duration: str = None,
     ) -> None:
         """
         Initialize a PrivateCertificateConfigurationTemplatePrototype object.
@@ -19260,18 +19186,15 @@ class PrivateCertificateConfigurationTemplatePrototype(ConfigurationPrototype):
         if 'config_type' in _dict:
             args['config_type'] = _dict.get('config_type')
         else:
-            raise ValueError(
-                'Required property \'config_type\' not present in PrivateCertificateConfigurationTemplatePrototype JSON')
+            raise ValueError('Required property \'config_type\' not present in PrivateCertificateConfigurationTemplatePrototype JSON')
         if 'name' in _dict:
             args['name'] = _dict.get('name')
         else:
-            raise ValueError(
-                'Required property \'name\' not present in PrivateCertificateConfigurationTemplatePrototype JSON')
+            raise ValueError('Required property \'name\' not present in PrivateCertificateConfigurationTemplatePrototype JSON')
         if 'certificate_authority' in _dict:
             args['certificate_authority'] = _dict.get('certificate_authority')
         else:
-            raise ValueError(
-                'Required property \'certificate_authority\' not present in PrivateCertificateConfigurationTemplatePrototype JSON')
+            raise ValueError('Required property \'certificate_authority\' not present in PrivateCertificateConfigurationTemplatePrototype JSON')
         if 'allowed_secret_groups' in _dict:
             args['allowed_secret_groups'] = _dict.get('allowed_secret_groups')
         if 'max_ttl' in _dict:
@@ -19473,6 +19396,7 @@ class PrivateCertificateConfigurationTemplatePrototype(ConfigurationPrototype):
         PRIVATE_CERT_CONFIGURATION_INTERMEDIATE_CA = 'private_cert_configuration_intermediate_ca'
         PRIVATE_CERT_CONFIGURATION_TEMPLATE = 'private_cert_configuration_template'
 
+
     class KeyTypeEnum(str, Enum):
         """
         The type of private key to generate.
@@ -19480,6 +19404,7 @@ class PrivateCertificateConfigurationTemplatePrototype(ConfigurationPrototype):
 
         RSA = 'rsa'
         EC = 'ec'
+
 
 
 class PrivateCertificateMetadata(SecretMetadata):
@@ -19554,38 +19479,38 @@ class PrivateCertificateMetadata(SecretMetadata):
     """
 
     def __init__(
-            self,
-            created_by: str,
-            created_at: datetime,
-            crn: str,
-            id: str,
-            secret_group_id: str,
-            secret_type: str,
-            updated_at: datetime,
-            versions_total: int,
-            signing_algorithm: str,
-            certificate_template: str,
-            common_name: str,
-            expiration_date: datetime,
-            issuer: str,
-            serial_number: str,
-            validity: 'CertificateValidity',
-            *,
-            custom_metadata: dict = None,
-            description: str = None,
-            downloaded: bool = None,
-            labels: List[str] = None,
-            locks_total: int = None,
-            name: str = None,
-            state: int = None,
-            state_description: str = None,
-            alt_names: List[str] = None,
-            certificate_authority: str = None,
-            key_algorithm: str = None,
-            next_rotation_date: datetime = None,
-            rotation: 'RotationPolicy' = None,
-            revocation_time_seconds: int = None,
-            revocation_time_rfc3339: datetime = None,
+        self,
+        created_by: str,
+        created_at: datetime,
+        crn: str,
+        id: str,
+        secret_group_id: str,
+        secret_type: str,
+        updated_at: datetime,
+        versions_total: int,
+        signing_algorithm: str,
+        certificate_template: str,
+        common_name: str,
+        expiration_date: datetime,
+        issuer: str,
+        serial_number: str,
+        validity: 'CertificateValidity',
+        *,
+        custom_metadata: dict = None,
+        description: str = None,
+        downloaded: bool = None,
+        labels: List[str] = None,
+        locks_total: int = None,
+        name: str = None,
+        state: int = None,
+        state_description: str = None,
+        alt_names: List[str] = None,
+        certificate_authority: str = None,
+        key_algorithm: str = None,
+        next_rotation_date: datetime = None,
+        rotation: 'RotationPolicy' = None,
+        revocation_time_seconds: int = None,
+        revocation_time_rfc3339: datetime = None,
     ) -> None:
         """
         Initialize a PrivateCertificateMetadata object.
@@ -19729,8 +19654,7 @@ class PrivateCertificateMetadata(SecretMetadata):
         if 'certificate_template' in _dict:
             args['certificate_template'] = _dict.get('certificate_template')
         else:
-            raise ValueError(
-                'Required property \'certificate_template\' not present in PrivateCertificateMetadata JSON')
+            raise ValueError('Required property \'certificate_template\' not present in PrivateCertificateMetadata JSON')
         if 'common_name' in _dict:
             args['common_name'] = _dict.get('common_name')
         else:
@@ -19871,6 +19795,7 @@ class PrivateCertificateMetadata(SecretMetadata):
         USERNAME_PASSWORD = 'username_password'
         PRIVATE_CERT = 'private_cert'
 
+
     class StateDescriptionEnum(str, Enum):
         """
         A text representation of the secret state.
@@ -19881,6 +19806,7 @@ class PrivateCertificateMetadata(SecretMetadata):
         SUSPENDED = 'suspended'
         DEACTIVATED = 'deactivated'
         DESTROYED = 'destroyed'
+
 
 
 class PrivateCertificateMetadataPatch(SecretMetadataPatch):
@@ -19905,13 +19831,13 @@ class PrivateCertificateMetadataPatch(SecretMetadataPatch):
     """
 
     def __init__(
-            self,
-            *,
-            name: str = None,
-            description: str = None,
-            labels: List[str] = None,
-            custom_metadata: dict = None,
-            rotation: 'RotationPolicy' = None,
+        self,
+        *,
+        name: str = None,
+        description: str = None,
+        labels: List[str] = None,
+        custom_metadata: dict = None,
+        rotation: 'RotationPolicy' = None,
     ) -> None:
         """
         Initialize a PrivateCertificateMetadataPatch object.
@@ -20056,27 +19982,27 @@ class PrivateCertificatePrototype(SecretPrototype):
     """
 
     def __init__(
-            self,
-            secret_type: str,
-            name: str,
-            certificate_template: str,
-            common_name: str,
-            *,
-            description: str = None,
-            secret_group_id: str = None,
-            labels: List[str] = None,
-            alt_names: List[str] = None,
-            ip_sans: str = None,
-            uri_sans: str = None,
-            other_sans: List[str] = None,
-            csr: str = None,
-            format: str = None,
-            private_key_format: str = None,
-            exclude_cn_from_sans: bool = None,
-            ttl: str = None,
-            rotation: 'RotationPolicy' = None,
-            custom_metadata: dict = None,
-            version_custom_metadata: dict = None,
+        self,
+        secret_type: str,
+        name: str,
+        certificate_template: str,
+        common_name: str,
+        *,
+        description: str = None,
+        secret_group_id: str = None,
+        labels: List[str] = None,
+        alt_names: List[str] = None,
+        ip_sans: str = None,
+        uri_sans: str = None,
+        other_sans: List[str] = None,
+        csr: str = None,
+        format: str = None,
+        private_key_format: str = None,
+        exclude_cn_from_sans: bool = None,
+        ttl: str = None,
+        rotation: 'RotationPolicy' = None,
+        custom_metadata: dict = None,
+        version_custom_metadata: dict = None,
     ) -> None:
         """
         Initialize a PrivateCertificatePrototype object.
@@ -20176,8 +20102,7 @@ class PrivateCertificatePrototype(SecretPrototype):
         if 'certificate_template' in _dict:
             args['certificate_template'] = _dict.get('certificate_template')
         else:
-            raise ValueError(
-                'Required property \'certificate_template\' not present in PrivateCertificatePrototype JSON')
+            raise ValueError('Required property \'certificate_template\' not present in PrivateCertificatePrototype JSON')
         if 'common_name' in _dict:
             args['common_name'] = _dict.get('common_name')
         else:
@@ -20291,6 +20216,7 @@ class PrivateCertificatePrototype(SecretPrototype):
         USERNAME_PASSWORD = 'username_password'
         PRIVATE_CERT = 'private_cert'
 
+
     class FormatEnum(str, Enum):
         """
         The format of the returned data.
@@ -20299,6 +20225,7 @@ class PrivateCertificatePrototype(SecretPrototype):
         PEM = 'pem'
         PEM_BUNDLE = 'pem_bundle'
 
+
     class PrivateKeyFormatEnum(str, Enum):
         """
         The format of the generated private key.
@@ -20306,6 +20233,7 @@ class PrivateCertificatePrototype(SecretPrototype):
 
         DER = 'der'
         PKCS8 = 'pkcs8'
+
 
 
 class PrivateCertificateVersion(SecretVersion):
@@ -20353,27 +20281,27 @@ class PrivateCertificateVersion(SecretVersion):
     """
 
     def __init__(
-            self,
-            created_by: str,
-            created_at: datetime,
-            id: str,
-            secret_type: str,
-            secret_group_id: str,
-            payload_available: bool,
-            secret_id: str,
-            expiration_date: datetime,
-            serial_number: str,
-            validity: 'CertificateValidity',
-            certificate: str,
-            private_key: str,
-            *,
-            auto_rotated: bool = None,
-            downloaded: bool = None,
-            secret_name: str = None,
-            alias: str = None,
-            version_custom_metadata: dict = None,
-            issuing_ca: str = None,
-            ca_chain: List[str] = None,
+        self,
+        created_by: str,
+        created_at: datetime,
+        id: str,
+        secret_type: str,
+        secret_group_id: str,
+        payload_available: bool,
+        secret_id: str,
+        expiration_date: datetime,
+        serial_number: str,
+        validity: 'CertificateValidity',
+        certificate: str,
+        private_key: str,
+        *,
+        auto_rotated: bool = None,
+        downloaded: bool = None,
+        secret_name: str = None,
+        alias: str = None,
+        version_custom_metadata: dict = None,
+        issuing_ca: str = None,
+        ca_chain: List[str] = None,
     ) -> None:
         """
         Initialize a PrivateCertificateVersion object.
@@ -20582,6 +20510,7 @@ class PrivateCertificateVersion(SecretVersion):
         USERNAME_PASSWORD = 'username_password'
         PRIVATE_CERT = 'private_cert'
 
+
     class AliasEnum(str, Enum):
         """
         A human-readable alias that describes the secret version. 'Current' is used for
@@ -20590,6 +20519,7 @@ class PrivateCertificateVersion(SecretVersion):
 
         CURRENT = 'current'
         PREVIOUS = 'previous'
+
 
 
 class PrivateCertificateVersionActionRevoke(VersionAction):
@@ -20603,10 +20533,10 @@ class PrivateCertificateVersionActionRevoke(VersionAction):
     """
 
     def __init__(
-            self,
-            action_type: str,
-            *,
-            revocation_time_seconds: int = None,
+        self,
+        action_type: str,
+        *,
+        revocation_time_seconds: int = None,
     ) -> None:
         """
         Initialize a PrivateCertificateVersionActionRevoke object.
@@ -20624,8 +20554,7 @@ class PrivateCertificateVersionActionRevoke(VersionAction):
         if 'action_type' in _dict:
             args['action_type'] = _dict.get('action_type')
         else:
-            raise ValueError(
-                'Required property \'action_type\' not present in PrivateCertificateVersionActionRevoke JSON')
+            raise ValueError('Required property \'action_type\' not present in PrivateCertificateVersionActionRevoke JSON')
         if 'revocation_time_seconds' in _dict:
             args['revocation_time_seconds'] = _dict.get('revocation_time_seconds')
         return cls(**args)
@@ -20670,6 +20599,7 @@ class PrivateCertificateVersionActionRevoke(VersionAction):
         PRIVATE_CERT_ACTION_REVOKE_CERTIFICATE = 'private_cert_action_revoke_certificate'
 
 
+
 class PrivateCertificateVersionActionRevokePrototype(SecretVersionActionPrototype):
     """
     The request body to specify the properties of the action to revoke the private
@@ -20679,8 +20609,8 @@ class PrivateCertificateVersionActionRevokePrototype(SecretVersionActionPrototyp
     """
 
     def __init__(
-            self,
-            action_type: str,
+        self,
+        action_type: str,
     ) -> None:
         """
         Initialize a PrivateCertificateVersionActionRevokePrototype object.
@@ -20697,8 +20627,7 @@ class PrivateCertificateVersionActionRevokePrototype(SecretVersionActionPrototyp
         if 'action_type' in _dict:
             args['action_type'] = _dict.get('action_type')
         else:
-            raise ValueError(
-                'Required property \'action_type\' not present in PrivateCertificateVersionActionRevokePrototype JSON')
+            raise ValueError('Required property \'action_type\' not present in PrivateCertificateVersionActionRevokePrototype JSON')
         return cls(**args)
 
     @classmethod
@@ -20739,6 +20668,7 @@ class PrivateCertificateVersionActionRevokePrototype(SecretVersionActionPrototyp
         PRIVATE_CERT_ACTION_REVOKE_CERTIFICATE = 'private_cert_action_revoke_certificate'
 
 
+
 class PrivateCertificateVersionMetadata(SecretVersionMetadata):
     """
     Properties of the version metadata of your private certificate.
@@ -20775,23 +20705,23 @@ class PrivateCertificateVersionMetadata(SecretVersionMetadata):
     """
 
     def __init__(
-            self,
-            created_by: str,
-            created_at: datetime,
-            id: str,
-            secret_type: str,
-            secret_group_id: str,
-            payload_available: bool,
-            secret_id: str,
-            expiration_date: datetime,
-            serial_number: str,
-            validity: 'CertificateValidity',
-            *,
-            auto_rotated: bool = None,
-            downloaded: bool = None,
-            secret_name: str = None,
-            alias: str = None,
-            version_custom_metadata: dict = None,
+        self,
+        created_by: str,
+        created_at: datetime,
+        id: str,
+        secret_type: str,
+        secret_group_id: str,
+        payload_available: bool,
+        secret_id: str,
+        expiration_date: datetime,
+        serial_number: str,
+        validity: 'CertificateValidity',
+        *,
+        auto_rotated: bool = None,
+        downloaded: bool = None,
+        secret_name: str = None,
+        alias: str = None,
+        version_custom_metadata: dict = None,
     ) -> None:
         """
         Initialize a PrivateCertificateVersionMetadata object.
@@ -20869,13 +20799,11 @@ class PrivateCertificateVersionMetadata(SecretVersionMetadata):
         if 'secret_group_id' in _dict:
             args['secret_group_id'] = _dict.get('secret_group_id')
         else:
-            raise ValueError(
-                'Required property \'secret_group_id\' not present in PrivateCertificateVersionMetadata JSON')
+            raise ValueError('Required property \'secret_group_id\' not present in PrivateCertificateVersionMetadata JSON')
         if 'payload_available' in _dict:
             args['payload_available'] = _dict.get('payload_available')
         else:
-            raise ValueError(
-                'Required property \'payload_available\' not present in PrivateCertificateVersionMetadata JSON')
+            raise ValueError('Required property \'payload_available\' not present in PrivateCertificateVersionMetadata JSON')
         if 'alias' in _dict:
             args['alias'] = _dict.get('alias')
         if 'version_custom_metadata' in _dict:
@@ -20887,13 +20815,11 @@ class PrivateCertificateVersionMetadata(SecretVersionMetadata):
         if 'expiration_date' in _dict:
             args['expiration_date'] = string_to_datetime(_dict.get('expiration_date'))
         else:
-            raise ValueError(
-                'Required property \'expiration_date\' not present in PrivateCertificateVersionMetadata JSON')
+            raise ValueError('Required property \'expiration_date\' not present in PrivateCertificateVersionMetadata JSON')
         if 'serial_number' in _dict:
             args['serial_number'] = _dict.get('serial_number')
         else:
-            raise ValueError(
-                'Required property \'serial_number\' not present in PrivateCertificateVersionMetadata JSON')
+            raise ValueError('Required property \'serial_number\' not present in PrivateCertificateVersionMetadata JSON')
         if 'validity' in _dict:
             args['validity'] = CertificateValidity.from_dict(_dict.get('validity'))
         else:
@@ -20975,6 +20901,7 @@ class PrivateCertificateVersionMetadata(SecretVersionMetadata):
         USERNAME_PASSWORD = 'username_password'
         PRIVATE_CERT = 'private_cert'
 
+
     class AliasEnum(str, Enum):
         """
         A human-readable alias that describes the secret version. 'Current' is used for
@@ -20983,6 +20910,7 @@ class PrivateCertificateVersionMetadata(SecretVersionMetadata):
 
         CURRENT = 'current'
         PREVIOUS = 'previous'
+
 
 
 class PrivateCertificateVersionPrototype(SecretVersionPrototype):
@@ -20997,11 +20925,11 @@ class PrivateCertificateVersionPrototype(SecretVersionPrototype):
     """
 
     def __init__(
-            self,
-            *,
-            custom_metadata: dict = None,
-            version_custom_metadata: dict = None,
-            csr: str = None,
+        self,
+        *,
+        custom_metadata: dict = None,
+        version_custom_metadata: dict = None,
+        csr: str = None,
     ) -> None:
         """
         Initialize a PrivateCertificateVersionPrototype object.
@@ -21143,40 +21071,40 @@ class PublicCertificate(Secret):
     """
 
     def __init__(
-            self,
-            created_by: str,
-            created_at: datetime,
-            crn: str,
-            id: str,
-            secret_group_id: str,
-            secret_type: str,
-            updated_at: datetime,
-            versions_total: int,
-            common_name: str,
-            key_algorithm: str,
-            rotation: 'RotationPolicy',
-            *,
-            custom_metadata: dict = None,
-            description: str = None,
-            downloaded: bool = None,
-            labels: List[str] = None,
-            locks_total: int = None,
-            name: str = None,
-            state: int = None,
-            state_description: str = None,
-            signing_algorithm: str = None,
-            alt_names: List[str] = None,
-            expiration_date: datetime = None,
-            issuance_info: 'CertificateIssuanceInfo' = None,
-            issuer: str = None,
-            serial_number: str = None,
-            validity: 'CertificateValidity' = None,
-            bundle_certs: bool = None,
-            ca: str = None,
-            dns: str = None,
-            certificate: str = None,
-            intermediate: str = None,
-            private_key: str = None,
+        self,
+        created_by: str,
+        created_at: datetime,
+        crn: str,
+        id: str,
+        secret_group_id: str,
+        secret_type: str,
+        updated_at: datetime,
+        versions_total: int,
+        common_name: str,
+        key_algorithm: str,
+        rotation: 'RotationPolicy',
+        *,
+        custom_metadata: dict = None,
+        description: str = None,
+        downloaded: bool = None,
+        labels: List[str] = None,
+        locks_total: int = None,
+        name: str = None,
+        state: int = None,
+        state_description: str = None,
+        signing_algorithm: str = None,
+        alt_names: List[str] = None,
+        expiration_date: datetime = None,
+        issuance_info: 'CertificateIssuanceInfo' = None,
+        issuer: str = None,
+        serial_number: str = None,
+        validity: 'CertificateValidity' = None,
+        bundle_certs: bool = None,
+        ca: str = None,
+        dns: str = None,
+        certificate: str = None,
+        intermediate: str = None,
+        private_key: str = None,
     ) -> None:
         """
         Initialize a PublicCertificate object.
@@ -21481,6 +21409,7 @@ class PublicCertificate(Secret):
         USERNAME_PASSWORD = 'username_password'
         PRIVATE_CERT = 'private_cert'
 
+
     class StateDescriptionEnum(str, Enum):
         """
         A text representation of the secret state.
@@ -21493,6 +21422,7 @@ class PublicCertificate(Secret):
         DESTROYED = 'destroyed'
 
 
+
 class PublicCertificateActionValidateManualDNS(SecretAction):
     """
     The response body of the action to validate manual DNS challenges for the public
@@ -21502,8 +21432,8 @@ class PublicCertificateActionValidateManualDNS(SecretAction):
     """
 
     def __init__(
-            self,
-            action_type: str,
+        self,
+        action_type: str,
     ) -> None:
         """
         Initialize a PublicCertificateActionValidateManualDNS object.
@@ -21520,8 +21450,7 @@ class PublicCertificateActionValidateManualDNS(SecretAction):
         if 'action_type' in _dict:
             args['action_type'] = _dict.get('action_type')
         else:
-            raise ValueError(
-                'Required property \'action_type\' not present in PublicCertificateActionValidateManualDNS JSON')
+            raise ValueError('Required property \'action_type\' not present in PublicCertificateActionValidateManualDNS JSON')
         return cls(**args)
 
     @classmethod
@@ -21563,6 +21492,7 @@ class PublicCertificateActionValidateManualDNS(SecretAction):
         PRIVATE_CERT_ACTION_REVOKE_CERTIFICATE = 'private_cert_action_revoke_certificate'
 
 
+
 class PublicCertificateActionValidateManualDNSPrototype(SecretActionPrototype):
     """
     The request body to specify the properties of the action to validate manual DNS
@@ -21572,8 +21502,8 @@ class PublicCertificateActionValidateManualDNSPrototype(SecretActionPrototype):
     """
 
     def __init__(
-            self,
-            action_type: str,
+        self,
+        action_type: str,
     ) -> None:
         """
         Initialize a PublicCertificateActionValidateManualDNSPrototype object.
@@ -21590,8 +21520,7 @@ class PublicCertificateActionValidateManualDNSPrototype(SecretActionPrototype):
         if 'action_type' in _dict:
             args['action_type'] = _dict.get('action_type')
         else:
-            raise ValueError(
-                'Required property \'action_type\' not present in PublicCertificateActionValidateManualDNSPrototype JSON')
+            raise ValueError('Required property \'action_type\' not present in PublicCertificateActionValidateManualDNSPrototype JSON')
         return cls(**args)
 
     @classmethod
@@ -21633,6 +21562,7 @@ class PublicCertificateActionValidateManualDNSPrototype(SecretActionPrototype):
         PRIVATE_CERT_ACTION_REVOKE_CERTIFICATE = 'private_cert_action_revoke_certificate'
 
 
+
 class PublicCertificateConfigurationCALetsEncrypt(Configuration):
     """
     Properties that describe a Let's Encrypt CA configuration.
@@ -21659,17 +21589,17 @@ class PublicCertificateConfigurationCALetsEncrypt(Configuration):
     """
 
     def __init__(
-            self,
-            config_type: str,
-            name: str,
-            secret_type: str,
-            created_by: str,
-            created_at: datetime,
-            updated_at: datetime,
-            lets_encrypt_environment: str,
-            lets_encrypt_private_key: str,
-            *,
-            lets_encrypt_preferred_chain: str = None,
+        self,
+        config_type: str,
+        name: str,
+        secret_type: str,
+        created_by: str,
+        created_at: datetime,
+        updated_at: datetime,
+        lets_encrypt_environment: str,
+        lets_encrypt_private_key: str,
+        *,
+        lets_encrypt_preferred_chain: str = None,
     ) -> None:
         """
         Initialize a PublicCertificateConfigurationCALetsEncrypt object.
@@ -21712,45 +21642,37 @@ class PublicCertificateConfigurationCALetsEncrypt(Configuration):
         if 'config_type' in _dict:
             args['config_type'] = _dict.get('config_type')
         else:
-            raise ValueError(
-                'Required property \'config_type\' not present in PublicCertificateConfigurationCALetsEncrypt JSON')
+            raise ValueError('Required property \'config_type\' not present in PublicCertificateConfigurationCALetsEncrypt JSON')
         if 'name' in _dict:
             args['name'] = _dict.get('name')
         else:
-            raise ValueError(
-                'Required property \'name\' not present in PublicCertificateConfigurationCALetsEncrypt JSON')
+            raise ValueError('Required property \'name\' not present in PublicCertificateConfigurationCALetsEncrypt JSON')
         if 'secret_type' in _dict:
             args['secret_type'] = _dict.get('secret_type')
         else:
-            raise ValueError(
-                'Required property \'secret_type\' not present in PublicCertificateConfigurationCALetsEncrypt JSON')
+            raise ValueError('Required property \'secret_type\' not present in PublicCertificateConfigurationCALetsEncrypt JSON')
         if 'created_by' in _dict:
             args['created_by'] = _dict.get('created_by')
         else:
-            raise ValueError(
-                'Required property \'created_by\' not present in PublicCertificateConfigurationCALetsEncrypt JSON')
+            raise ValueError('Required property \'created_by\' not present in PublicCertificateConfigurationCALetsEncrypt JSON')
         if 'created_at' in _dict:
             args['created_at'] = string_to_datetime(_dict.get('created_at'))
         else:
-            raise ValueError(
-                'Required property \'created_at\' not present in PublicCertificateConfigurationCALetsEncrypt JSON')
+            raise ValueError('Required property \'created_at\' not present in PublicCertificateConfigurationCALetsEncrypt JSON')
         if 'updated_at' in _dict:
             args['updated_at'] = string_to_datetime(_dict.get('updated_at'))
         else:
-            raise ValueError(
-                'Required property \'updated_at\' not present in PublicCertificateConfigurationCALetsEncrypt JSON')
+            raise ValueError('Required property \'updated_at\' not present in PublicCertificateConfigurationCALetsEncrypt JSON')
         if 'lets_encrypt_environment' in _dict:
             args['lets_encrypt_environment'] = _dict.get('lets_encrypt_environment')
         else:
-            raise ValueError(
-                'Required property \'lets_encrypt_environment\' not present in PublicCertificateConfigurationCALetsEncrypt JSON')
+            raise ValueError('Required property \'lets_encrypt_environment\' not present in PublicCertificateConfigurationCALetsEncrypt JSON')
         if 'lets_encrypt_preferred_chain' in _dict:
             args['lets_encrypt_preferred_chain'] = _dict.get('lets_encrypt_preferred_chain')
         if 'lets_encrypt_private_key' in _dict:
             args['lets_encrypt_private_key'] = _dict.get('lets_encrypt_private_key')
         else:
-            raise ValueError(
-                'Required property \'lets_encrypt_private_key\' not present in PublicCertificateConfigurationCALetsEncrypt JSON')
+            raise ValueError('Required property \'lets_encrypt_private_key\' not present in PublicCertificateConfigurationCALetsEncrypt JSON')
         return cls(**args)
 
     @classmethod
@@ -21812,6 +21734,7 @@ class PublicCertificateConfigurationCALetsEncrypt(Configuration):
         PRIVATE_CERT_CONFIGURATION_INTERMEDIATE_CA = 'private_cert_configuration_intermediate_ca'
         PRIVATE_CERT_CONFIGURATION_TEMPLATE = 'private_cert_configuration_template'
 
+
     class SecretTypeEnum(str, Enum):
         """
         The secret type. Supported types are arbitrary, certificates (imported, public,
@@ -21826,6 +21749,7 @@ class PublicCertificateConfigurationCALetsEncrypt(Configuration):
         USERNAME_PASSWORD = 'username_password'
         PRIVATE_CERT = 'private_cert'
 
+
     class LetsEncryptEnvironmentEnum(str, Enum):
         """
         The configuration of the Let's Encrypt CA environment.
@@ -21833,6 +21757,7 @@ class PublicCertificateConfigurationCALetsEncrypt(Configuration):
 
         PRODUCTION = 'production'
         STAGING = 'staging'
+
 
 
 class PublicCertificateConfigurationCALetsEncryptMetadata(ConfigurationMetadata):
@@ -21858,16 +21783,16 @@ class PublicCertificateConfigurationCALetsEncryptMetadata(ConfigurationMetadata)
     """
 
     def __init__(
-            self,
-            config_type: str,
-            name: str,
-            secret_type: str,
-            created_by: str,
-            created_at: datetime,
-            updated_at: datetime,
-            lets_encrypt_environment: str,
-            *,
-            lets_encrypt_preferred_chain: str = None,
+        self,
+        config_type: str,
+        name: str,
+        secret_type: str,
+        created_by: str,
+        created_at: datetime,
+        updated_at: datetime,
+        lets_encrypt_environment: str,
+        *,
+        lets_encrypt_preferred_chain: str = None,
     ) -> None:
         """
         Initialize a PublicCertificateConfigurationCALetsEncryptMetadata object.
@@ -21906,38 +21831,31 @@ class PublicCertificateConfigurationCALetsEncryptMetadata(ConfigurationMetadata)
         if 'config_type' in _dict:
             args['config_type'] = _dict.get('config_type')
         else:
-            raise ValueError(
-                'Required property \'config_type\' not present in PublicCertificateConfigurationCALetsEncryptMetadata JSON')
+            raise ValueError('Required property \'config_type\' not present in PublicCertificateConfigurationCALetsEncryptMetadata JSON')
         if 'name' in _dict:
             args['name'] = _dict.get('name')
         else:
-            raise ValueError(
-                'Required property \'name\' not present in PublicCertificateConfigurationCALetsEncryptMetadata JSON')
+            raise ValueError('Required property \'name\' not present in PublicCertificateConfigurationCALetsEncryptMetadata JSON')
         if 'secret_type' in _dict:
             args['secret_type'] = _dict.get('secret_type')
         else:
-            raise ValueError(
-                'Required property \'secret_type\' not present in PublicCertificateConfigurationCALetsEncryptMetadata JSON')
+            raise ValueError('Required property \'secret_type\' not present in PublicCertificateConfigurationCALetsEncryptMetadata JSON')
         if 'created_by' in _dict:
             args['created_by'] = _dict.get('created_by')
         else:
-            raise ValueError(
-                'Required property \'created_by\' not present in PublicCertificateConfigurationCALetsEncryptMetadata JSON')
+            raise ValueError('Required property \'created_by\' not present in PublicCertificateConfigurationCALetsEncryptMetadata JSON')
         if 'created_at' in _dict:
             args['created_at'] = string_to_datetime(_dict.get('created_at'))
         else:
-            raise ValueError(
-                'Required property \'created_at\' not present in PublicCertificateConfigurationCALetsEncryptMetadata JSON')
+            raise ValueError('Required property \'created_at\' not present in PublicCertificateConfigurationCALetsEncryptMetadata JSON')
         if 'updated_at' in _dict:
             args['updated_at'] = string_to_datetime(_dict.get('updated_at'))
         else:
-            raise ValueError(
-                'Required property \'updated_at\' not present in PublicCertificateConfigurationCALetsEncryptMetadata JSON')
+            raise ValueError('Required property \'updated_at\' not present in PublicCertificateConfigurationCALetsEncryptMetadata JSON')
         if 'lets_encrypt_environment' in _dict:
             args['lets_encrypt_environment'] = _dict.get('lets_encrypt_environment')
         else:
-            raise ValueError(
-                'Required property \'lets_encrypt_environment\' not present in PublicCertificateConfigurationCALetsEncryptMetadata JSON')
+            raise ValueError('Required property \'lets_encrypt_environment\' not present in PublicCertificateConfigurationCALetsEncryptMetadata JSON')
         if 'lets_encrypt_preferred_chain' in _dict:
             args['lets_encrypt_preferred_chain'] = _dict.get('lets_encrypt_preferred_chain')
         return cls(**args)
@@ -21999,6 +21917,7 @@ class PublicCertificateConfigurationCALetsEncryptMetadata(ConfigurationMetadata)
         PRIVATE_CERT_CONFIGURATION_INTERMEDIATE_CA = 'private_cert_configuration_intermediate_ca'
         PRIVATE_CERT_CONFIGURATION_TEMPLATE = 'private_cert_configuration_template'
 
+
     class SecretTypeEnum(str, Enum):
         """
         The secret type. Supported types are arbitrary, certificates (imported, public,
@@ -22013,6 +21932,7 @@ class PublicCertificateConfigurationCALetsEncryptMetadata(ConfigurationMetadata)
         USERNAME_PASSWORD = 'username_password'
         PRIVATE_CERT = 'private_cert'
 
+
     class LetsEncryptEnvironmentEnum(str, Enum):
         """
         The configuration of the Let's Encrypt CA environment.
@@ -22020,6 +21940,7 @@ class PublicCertificateConfigurationCALetsEncryptMetadata(ConfigurationMetadata)
 
         PRODUCTION = 'production'
         STAGING = 'staging'
+
 
 
 class PublicCertificateConfigurationCALetsEncryptPatch(ConfigurationPatch):
@@ -22037,11 +21958,11 @@ class PublicCertificateConfigurationCALetsEncryptPatch(ConfigurationPatch):
     """
 
     def __init__(
-            self,
-            lets_encrypt_environment: str,
-            *,
-            lets_encrypt_private_key: str = None,
-            lets_encrypt_preferred_chain: str = None,
+        self,
+        lets_encrypt_environment: str,
+        *,
+        lets_encrypt_private_key: str = None,
+        lets_encrypt_preferred_chain: str = None,
     ) -> None:
         """
         Initialize a PublicCertificateConfigurationCALetsEncryptPatch object.
@@ -22067,8 +21988,7 @@ class PublicCertificateConfigurationCALetsEncryptPatch(ConfigurationPatch):
         if 'lets_encrypt_environment' in _dict:
             args['lets_encrypt_environment'] = _dict.get('lets_encrypt_environment')
         else:
-            raise ValueError(
-                'Required property \'lets_encrypt_environment\' not present in PublicCertificateConfigurationCALetsEncryptPatch JSON')
+            raise ValueError('Required property \'lets_encrypt_environment\' not present in PublicCertificateConfigurationCALetsEncryptPatch JSON')
         if 'lets_encrypt_private_key' in _dict:
             args['lets_encrypt_private_key'] = _dict.get('lets_encrypt_private_key')
         if 'lets_encrypt_preferred_chain' in _dict:
@@ -22118,6 +22038,7 @@ class PublicCertificateConfigurationCALetsEncryptPatch(ConfigurationPatch):
         STAGING = 'staging'
 
 
+
 class PublicCertificateConfigurationCALetsEncryptPrototype(ConfigurationPrototype):
     """
     The properties of the Let's Encrypt CA configuration.
@@ -22137,13 +22058,13 @@ class PublicCertificateConfigurationCALetsEncryptPrototype(ConfigurationPrototyp
     """
 
     def __init__(
-            self,
-            config_type: str,
-            name: str,
-            lets_encrypt_environment: str,
-            lets_encrypt_private_key: str,
-            *,
-            lets_encrypt_preferred_chain: str = None,
+        self,
+        config_type: str,
+        name: str,
+        lets_encrypt_environment: str,
+        lets_encrypt_private_key: str,
+        *,
+        lets_encrypt_preferred_chain: str = None,
     ) -> None:
         """
         Initialize a PublicCertificateConfigurationCALetsEncryptPrototype object.
@@ -22176,23 +22097,19 @@ class PublicCertificateConfigurationCALetsEncryptPrototype(ConfigurationPrototyp
         if 'config_type' in _dict:
             args['config_type'] = _dict.get('config_type')
         else:
-            raise ValueError(
-                'Required property \'config_type\' not present in PublicCertificateConfigurationCALetsEncryptPrototype JSON')
+            raise ValueError('Required property \'config_type\' not present in PublicCertificateConfigurationCALetsEncryptPrototype JSON')
         if 'name' in _dict:
             args['name'] = _dict.get('name')
         else:
-            raise ValueError(
-                'Required property \'name\' not present in PublicCertificateConfigurationCALetsEncryptPrototype JSON')
+            raise ValueError('Required property \'name\' not present in PublicCertificateConfigurationCALetsEncryptPrototype JSON')
         if 'lets_encrypt_environment' in _dict:
             args['lets_encrypt_environment'] = _dict.get('lets_encrypt_environment')
         else:
-            raise ValueError(
-                'Required property \'lets_encrypt_environment\' not present in PublicCertificateConfigurationCALetsEncryptPrototype JSON')
+            raise ValueError('Required property \'lets_encrypt_environment\' not present in PublicCertificateConfigurationCALetsEncryptPrototype JSON')
         if 'lets_encrypt_private_key' in _dict:
             args['lets_encrypt_private_key'] = _dict.get('lets_encrypt_private_key')
         else:
-            raise ValueError(
-                'Required property \'lets_encrypt_private_key\' not present in PublicCertificateConfigurationCALetsEncryptPrototype JSON')
+            raise ValueError('Required property \'lets_encrypt_private_key\' not present in PublicCertificateConfigurationCALetsEncryptPrototype JSON')
         if 'lets_encrypt_preferred_chain' in _dict:
             args['lets_encrypt_preferred_chain'] = _dict.get('lets_encrypt_preferred_chain')
         return cls(**args)
@@ -22248,6 +22165,7 @@ class PublicCertificateConfigurationCALetsEncryptPrototype(ConfigurationPrototyp
         PRIVATE_CERT_CONFIGURATION_INTERMEDIATE_CA = 'private_cert_configuration_intermediate_ca'
         PRIVATE_CERT_CONFIGURATION_TEMPLATE = 'private_cert_configuration_template'
 
+
     class LetsEncryptEnvironmentEnum(str, Enum):
         """
         The configuration of the Let's Encrypt CA environment.
@@ -22255,6 +22173,7 @@ class PublicCertificateConfigurationCALetsEncryptPrototype(ConfigurationPrototyp
 
         PRODUCTION = 'production'
         STAGING = 'staging'
+
 
 
 class PublicCertificateConfigurationDNSClassicInfrastructure(Configuration):
@@ -22283,15 +22202,15 @@ class PublicCertificateConfigurationDNSClassicInfrastructure(Configuration):
     """
 
     def __init__(
-            self,
-            config_type: str,
-            name: str,
-            secret_type: str,
-            created_by: str,
-            created_at: datetime,
-            updated_at: datetime,
-            classic_infrastructure_username: str,
-            classic_infrastructure_password: str,
+        self,
+        config_type: str,
+        name: str,
+        secret_type: str,
+        created_by: str,
+        created_at: datetime,
+        updated_at: datetime,
+        classic_infrastructure_username: str,
+        classic_infrastructure_password: str,
     ) -> None:
         """
         Initialize a PublicCertificateConfigurationDNSClassicInfrastructure object.
@@ -22335,43 +22254,35 @@ class PublicCertificateConfigurationDNSClassicInfrastructure(Configuration):
         if 'config_type' in _dict:
             args['config_type'] = _dict.get('config_type')
         else:
-            raise ValueError(
-                'Required property \'config_type\' not present in PublicCertificateConfigurationDNSClassicInfrastructure JSON')
+            raise ValueError('Required property \'config_type\' not present in PublicCertificateConfigurationDNSClassicInfrastructure JSON')
         if 'name' in _dict:
             args['name'] = _dict.get('name')
         else:
-            raise ValueError(
-                'Required property \'name\' not present in PublicCertificateConfigurationDNSClassicInfrastructure JSON')
+            raise ValueError('Required property \'name\' not present in PublicCertificateConfigurationDNSClassicInfrastructure JSON')
         if 'secret_type' in _dict:
             args['secret_type'] = _dict.get('secret_type')
         else:
-            raise ValueError(
-                'Required property \'secret_type\' not present in PublicCertificateConfigurationDNSClassicInfrastructure JSON')
+            raise ValueError('Required property \'secret_type\' not present in PublicCertificateConfigurationDNSClassicInfrastructure JSON')
         if 'created_by' in _dict:
             args['created_by'] = _dict.get('created_by')
         else:
-            raise ValueError(
-                'Required property \'created_by\' not present in PublicCertificateConfigurationDNSClassicInfrastructure JSON')
+            raise ValueError('Required property \'created_by\' not present in PublicCertificateConfigurationDNSClassicInfrastructure JSON')
         if 'created_at' in _dict:
             args['created_at'] = string_to_datetime(_dict.get('created_at'))
         else:
-            raise ValueError(
-                'Required property \'created_at\' not present in PublicCertificateConfigurationDNSClassicInfrastructure JSON')
+            raise ValueError('Required property \'created_at\' not present in PublicCertificateConfigurationDNSClassicInfrastructure JSON')
         if 'updated_at' in _dict:
             args['updated_at'] = string_to_datetime(_dict.get('updated_at'))
         else:
-            raise ValueError(
-                'Required property \'updated_at\' not present in PublicCertificateConfigurationDNSClassicInfrastructure JSON')
+            raise ValueError('Required property \'updated_at\' not present in PublicCertificateConfigurationDNSClassicInfrastructure JSON')
         if 'classic_infrastructure_username' in _dict:
             args['classic_infrastructure_username'] = _dict.get('classic_infrastructure_username')
         else:
-            raise ValueError(
-                'Required property \'classic_infrastructure_username\' not present in PublicCertificateConfigurationDNSClassicInfrastructure JSON')
+            raise ValueError('Required property \'classic_infrastructure_username\' not present in PublicCertificateConfigurationDNSClassicInfrastructure JSON')
         if 'classic_infrastructure_password' in _dict:
             args['classic_infrastructure_password'] = _dict.get('classic_infrastructure_password')
         else:
-            raise ValueError(
-                'Required property \'classic_infrastructure_password\' not present in PublicCertificateConfigurationDNSClassicInfrastructure JSON')
+            raise ValueError('Required property \'classic_infrastructure_password\' not present in PublicCertificateConfigurationDNSClassicInfrastructure JSON')
         return cls(**args)
 
     @classmethod
@@ -22431,6 +22342,7 @@ class PublicCertificateConfigurationDNSClassicInfrastructure(Configuration):
         PRIVATE_CERT_CONFIGURATION_INTERMEDIATE_CA = 'private_cert_configuration_intermediate_ca'
         PRIVATE_CERT_CONFIGURATION_TEMPLATE = 'private_cert_configuration_template'
 
+
     class SecretTypeEnum(str, Enum):
         """
         The secret type. Supported types are arbitrary, certificates (imported, public,
@@ -22444,6 +22356,7 @@ class PublicCertificateConfigurationDNSClassicInfrastructure(Configuration):
         KV = 'kv'
         USERNAME_PASSWORD = 'username_password'
         PRIVATE_CERT = 'private_cert'
+
 
 
 class PublicCertificateConfigurationDNSClassicInfrastructureMetadata(ConfigurationMetadata):
@@ -22464,13 +22377,13 @@ class PublicCertificateConfigurationDNSClassicInfrastructureMetadata(Configurati
     """
 
     def __init__(
-            self,
-            config_type: str,
-            name: str,
-            secret_type: str,
-            created_by: str,
-            created_at: datetime,
-            updated_at: datetime,
+        self,
+        config_type: str,
+        name: str,
+        secret_type: str,
+        created_by: str,
+        created_at: datetime,
+        updated_at: datetime,
     ) -> None:
         """
         Initialize a PublicCertificateConfigurationDNSClassicInfrastructureMetadata object.
@@ -22502,33 +22415,27 @@ class PublicCertificateConfigurationDNSClassicInfrastructureMetadata(Configurati
         if 'config_type' in _dict:
             args['config_type'] = _dict.get('config_type')
         else:
-            raise ValueError(
-                'Required property \'config_type\' not present in PublicCertificateConfigurationDNSClassicInfrastructureMetadata JSON')
+            raise ValueError('Required property \'config_type\' not present in PublicCertificateConfigurationDNSClassicInfrastructureMetadata JSON')
         if 'name' in _dict:
             args['name'] = _dict.get('name')
         else:
-            raise ValueError(
-                'Required property \'name\' not present in PublicCertificateConfigurationDNSClassicInfrastructureMetadata JSON')
+            raise ValueError('Required property \'name\' not present in PublicCertificateConfigurationDNSClassicInfrastructureMetadata JSON')
         if 'secret_type' in _dict:
             args['secret_type'] = _dict.get('secret_type')
         else:
-            raise ValueError(
-                'Required property \'secret_type\' not present in PublicCertificateConfigurationDNSClassicInfrastructureMetadata JSON')
+            raise ValueError('Required property \'secret_type\' not present in PublicCertificateConfigurationDNSClassicInfrastructureMetadata JSON')
         if 'created_by' in _dict:
             args['created_by'] = _dict.get('created_by')
         else:
-            raise ValueError(
-                'Required property \'created_by\' not present in PublicCertificateConfigurationDNSClassicInfrastructureMetadata JSON')
+            raise ValueError('Required property \'created_by\' not present in PublicCertificateConfigurationDNSClassicInfrastructureMetadata JSON')
         if 'created_at' in _dict:
             args['created_at'] = string_to_datetime(_dict.get('created_at'))
         else:
-            raise ValueError(
-                'Required property \'created_at\' not present in PublicCertificateConfigurationDNSClassicInfrastructureMetadata JSON')
+            raise ValueError('Required property \'created_at\' not present in PublicCertificateConfigurationDNSClassicInfrastructureMetadata JSON')
         if 'updated_at' in _dict:
             args['updated_at'] = string_to_datetime(_dict.get('updated_at'))
         else:
-            raise ValueError(
-                'Required property \'updated_at\' not present in PublicCertificateConfigurationDNSClassicInfrastructureMetadata JSON')
+            raise ValueError('Required property \'updated_at\' not present in PublicCertificateConfigurationDNSClassicInfrastructureMetadata JSON')
         return cls(**args)
 
     @classmethod
@@ -22584,6 +22491,7 @@ class PublicCertificateConfigurationDNSClassicInfrastructureMetadata(Configurati
         PRIVATE_CERT_CONFIGURATION_INTERMEDIATE_CA = 'private_cert_configuration_intermediate_ca'
         PRIVATE_CERT_CONFIGURATION_TEMPLATE = 'private_cert_configuration_template'
 
+
     class SecretTypeEnum(str, Enum):
         """
         The secret type. Supported types are arbitrary, certificates (imported, public,
@@ -22597,6 +22505,7 @@ class PublicCertificateConfigurationDNSClassicInfrastructureMetadata(Configurati
         KV = 'kv'
         USERNAME_PASSWORD = 'username_password'
         PRIVATE_CERT = 'private_cert'
+
 
 
 class PublicCertificateConfigurationDNSClassicInfrastructurePatch(ConfigurationPatch):
@@ -22616,10 +22525,10 @@ class PublicCertificateConfigurationDNSClassicInfrastructurePatch(ConfigurationP
     """
 
     def __init__(
-            self,
-            *,
-            classic_infrastructure_username: str = None,
-            classic_infrastructure_password: str = None,
+        self,
+        *,
+        classic_infrastructure_username: str = None,
+        classic_infrastructure_password: str = None,
     ) -> None:
         """
         Initialize a PublicCertificateConfigurationDNSClassicInfrastructurePatch object.
@@ -22701,11 +22610,11 @@ class PublicCertificateConfigurationDNSClassicInfrastructurePrototype(Configurat
     """
 
     def __init__(
-            self,
-            config_type: str,
-            name: str,
-            classic_infrastructure_username: str,
-            classic_infrastructure_password: str,
+        self,
+        config_type: str,
+        name: str,
+        classic_infrastructure_username: str,
+        classic_infrastructure_password: str,
     ) -> None:
         """
         Initialize a PublicCertificateConfigurationDNSClassicInfrastructurePrototype object.
@@ -22739,23 +22648,19 @@ class PublicCertificateConfigurationDNSClassicInfrastructurePrototype(Configurat
         if 'config_type' in _dict:
             args['config_type'] = _dict.get('config_type')
         else:
-            raise ValueError(
-                'Required property \'config_type\' not present in PublicCertificateConfigurationDNSClassicInfrastructurePrototype JSON')
+            raise ValueError('Required property \'config_type\' not present in PublicCertificateConfigurationDNSClassicInfrastructurePrototype JSON')
         if 'name' in _dict:
             args['name'] = _dict.get('name')
         else:
-            raise ValueError(
-                'Required property \'name\' not present in PublicCertificateConfigurationDNSClassicInfrastructurePrototype JSON')
+            raise ValueError('Required property \'name\' not present in PublicCertificateConfigurationDNSClassicInfrastructurePrototype JSON')
         if 'classic_infrastructure_username' in _dict:
             args['classic_infrastructure_username'] = _dict.get('classic_infrastructure_username')
         else:
-            raise ValueError(
-                'Required property \'classic_infrastructure_username\' not present in PublicCertificateConfigurationDNSClassicInfrastructurePrototype JSON')
+            raise ValueError('Required property \'classic_infrastructure_username\' not present in PublicCertificateConfigurationDNSClassicInfrastructurePrototype JSON')
         if 'classic_infrastructure_password' in _dict:
             args['classic_infrastructure_password'] = _dict.get('classic_infrastructure_password')
         else:
-            raise ValueError(
-                'Required property \'classic_infrastructure_password\' not present in PublicCertificateConfigurationDNSClassicInfrastructurePrototype JSON')
+            raise ValueError('Required property \'classic_infrastructure_password\' not present in PublicCertificateConfigurationDNSClassicInfrastructurePrototype JSON')
         return cls(**args)
 
     @classmethod
@@ -22808,6 +22713,7 @@ class PublicCertificateConfigurationDNSClassicInfrastructurePrototype(Configurat
         PRIVATE_CERT_CONFIGURATION_TEMPLATE = 'private_cert_configuration_template'
 
 
+
 class PublicCertificateConfigurationDNSCloudInternetServices(Configuration):
     """
     Properties that describe a Cloud Internet Services DNS configuration.
@@ -22840,16 +22746,16 @@ class PublicCertificateConfigurationDNSCloudInternetServices(Configuration):
     """
 
     def __init__(
-            self,
-            config_type: str,
-            name: str,
-            secret_type: str,
-            created_by: str,
-            created_at: datetime,
-            updated_at: datetime,
-            cloud_internet_services_crn: str,
-            *,
-            cloud_internet_services_apikey: str = None,
+        self,
+        config_type: str,
+        name: str,
+        secret_type: str,
+        created_by: str,
+        created_at: datetime,
+        updated_at: datetime,
+        cloud_internet_services_crn: str,
+        *,
+        cloud_internet_services_apikey: str = None,
     ) -> None:
         """
         Initialize a PublicCertificateConfigurationDNSCloudInternetServices object.
@@ -22897,40 +22803,33 @@ class PublicCertificateConfigurationDNSCloudInternetServices(Configuration):
         if 'config_type' in _dict:
             args['config_type'] = _dict.get('config_type')
         else:
-            raise ValueError(
-                'Required property \'config_type\' not present in PublicCertificateConfigurationDNSCloudInternetServices JSON')
+            raise ValueError('Required property \'config_type\' not present in PublicCertificateConfigurationDNSCloudInternetServices JSON')
         if 'name' in _dict:
             args['name'] = _dict.get('name')
         else:
-            raise ValueError(
-                'Required property \'name\' not present in PublicCertificateConfigurationDNSCloudInternetServices JSON')
+            raise ValueError('Required property \'name\' not present in PublicCertificateConfigurationDNSCloudInternetServices JSON')
         if 'secret_type' in _dict:
             args['secret_type'] = _dict.get('secret_type')
         else:
-            raise ValueError(
-                'Required property \'secret_type\' not present in PublicCertificateConfigurationDNSCloudInternetServices JSON')
+            raise ValueError('Required property \'secret_type\' not present in PublicCertificateConfigurationDNSCloudInternetServices JSON')
         if 'created_by' in _dict:
             args['created_by'] = _dict.get('created_by')
         else:
-            raise ValueError(
-                'Required property \'created_by\' not present in PublicCertificateConfigurationDNSCloudInternetServices JSON')
+            raise ValueError('Required property \'created_by\' not present in PublicCertificateConfigurationDNSCloudInternetServices JSON')
         if 'created_at' in _dict:
             args['created_at'] = string_to_datetime(_dict.get('created_at'))
         else:
-            raise ValueError(
-                'Required property \'created_at\' not present in PublicCertificateConfigurationDNSCloudInternetServices JSON')
+            raise ValueError('Required property \'created_at\' not present in PublicCertificateConfigurationDNSCloudInternetServices JSON')
         if 'updated_at' in _dict:
             args['updated_at'] = string_to_datetime(_dict.get('updated_at'))
         else:
-            raise ValueError(
-                'Required property \'updated_at\' not present in PublicCertificateConfigurationDNSCloudInternetServices JSON')
+            raise ValueError('Required property \'updated_at\' not present in PublicCertificateConfigurationDNSCloudInternetServices JSON')
         if 'cloud_internet_services_apikey' in _dict:
             args['cloud_internet_services_apikey'] = _dict.get('cloud_internet_services_apikey')
         if 'cloud_internet_services_crn' in _dict:
             args['cloud_internet_services_crn'] = _dict.get('cloud_internet_services_crn')
         else:
-            raise ValueError(
-                'Required property \'cloud_internet_services_crn\' not present in PublicCertificateConfigurationDNSCloudInternetServices JSON')
+            raise ValueError('Required property \'cloud_internet_services_crn\' not present in PublicCertificateConfigurationDNSCloudInternetServices JSON')
         return cls(**args)
 
     @classmethod
@@ -22990,6 +22889,7 @@ class PublicCertificateConfigurationDNSCloudInternetServices(Configuration):
         PRIVATE_CERT_CONFIGURATION_INTERMEDIATE_CA = 'private_cert_configuration_intermediate_ca'
         PRIVATE_CERT_CONFIGURATION_TEMPLATE = 'private_cert_configuration_template'
 
+
     class SecretTypeEnum(str, Enum):
         """
         The secret type. Supported types are arbitrary, certificates (imported, public,
@@ -23003,6 +22903,7 @@ class PublicCertificateConfigurationDNSCloudInternetServices(Configuration):
         KV = 'kv'
         USERNAME_PASSWORD = 'username_password'
         PRIVATE_CERT = 'private_cert'
+
 
 
 class PublicCertificateConfigurationDNSCloudInternetServicesMetadata(ConfigurationMetadata):
@@ -23023,13 +22924,13 @@ class PublicCertificateConfigurationDNSCloudInternetServicesMetadata(Configurati
     """
 
     def __init__(
-            self,
-            config_type: str,
-            name: str,
-            secret_type: str,
-            created_by: str,
-            created_at: datetime,
-            updated_at: datetime,
+        self,
+        config_type: str,
+        name: str,
+        secret_type: str,
+        created_by: str,
+        created_at: datetime,
+        updated_at: datetime,
     ) -> None:
         """
         Initialize a PublicCertificateConfigurationDNSCloudInternetServicesMetadata object.
@@ -23061,33 +22962,27 @@ class PublicCertificateConfigurationDNSCloudInternetServicesMetadata(Configurati
         if 'config_type' in _dict:
             args['config_type'] = _dict.get('config_type')
         else:
-            raise ValueError(
-                'Required property \'config_type\' not present in PublicCertificateConfigurationDNSCloudInternetServicesMetadata JSON')
+            raise ValueError('Required property \'config_type\' not present in PublicCertificateConfigurationDNSCloudInternetServicesMetadata JSON')
         if 'name' in _dict:
             args['name'] = _dict.get('name')
         else:
-            raise ValueError(
-                'Required property \'name\' not present in PublicCertificateConfigurationDNSCloudInternetServicesMetadata JSON')
+            raise ValueError('Required property \'name\' not present in PublicCertificateConfigurationDNSCloudInternetServicesMetadata JSON')
         if 'secret_type' in _dict:
             args['secret_type'] = _dict.get('secret_type')
         else:
-            raise ValueError(
-                'Required property \'secret_type\' not present in PublicCertificateConfigurationDNSCloudInternetServicesMetadata JSON')
+            raise ValueError('Required property \'secret_type\' not present in PublicCertificateConfigurationDNSCloudInternetServicesMetadata JSON')
         if 'created_by' in _dict:
             args['created_by'] = _dict.get('created_by')
         else:
-            raise ValueError(
-                'Required property \'created_by\' not present in PublicCertificateConfigurationDNSCloudInternetServicesMetadata JSON')
+            raise ValueError('Required property \'created_by\' not present in PublicCertificateConfigurationDNSCloudInternetServicesMetadata JSON')
         if 'created_at' in _dict:
             args['created_at'] = string_to_datetime(_dict.get('created_at'))
         else:
-            raise ValueError(
-                'Required property \'created_at\' not present in PublicCertificateConfigurationDNSCloudInternetServicesMetadata JSON')
+            raise ValueError('Required property \'created_at\' not present in PublicCertificateConfigurationDNSCloudInternetServicesMetadata JSON')
         if 'updated_at' in _dict:
             args['updated_at'] = string_to_datetime(_dict.get('updated_at'))
         else:
-            raise ValueError(
-                'Required property \'updated_at\' not present in PublicCertificateConfigurationDNSCloudInternetServicesMetadata JSON')
+            raise ValueError('Required property \'updated_at\' not present in PublicCertificateConfigurationDNSCloudInternetServicesMetadata JSON')
         return cls(**args)
 
     @classmethod
@@ -23143,6 +23038,7 @@ class PublicCertificateConfigurationDNSCloudInternetServicesMetadata(Configurati
         PRIVATE_CERT_CONFIGURATION_INTERMEDIATE_CA = 'private_cert_configuration_intermediate_ca'
         PRIVATE_CERT_CONFIGURATION_TEMPLATE = 'private_cert_configuration_template'
 
+
     class SecretTypeEnum(str, Enum):
         """
         The secret type. Supported types are arbitrary, certificates (imported, public,
@@ -23156,6 +23052,7 @@ class PublicCertificateConfigurationDNSCloudInternetServicesMetadata(Configurati
         KV = 'kv'
         USERNAME_PASSWORD = 'username_password'
         PRIVATE_CERT = 'private_cert'
+
 
 
 class PublicCertificateConfigurationDNSCloudInternetServicesPatch(ConfigurationPatch):
@@ -23179,10 +23076,10 @@ class PublicCertificateConfigurationDNSCloudInternetServicesPatch(ConfigurationP
     """
 
     def __init__(
-            self,
-            cloud_internet_services_apikey: str,
-            *,
-            cloud_internet_services_crn: str = None,
+        self,
+        cloud_internet_services_apikey: str,
+        *,
+        cloud_internet_services_crn: str = None,
     ) -> None:
         """
         Initialize a PublicCertificateConfigurationDNSCloudInternetServicesPatch object.
@@ -23213,8 +23110,7 @@ class PublicCertificateConfigurationDNSCloudInternetServicesPatch(ConfigurationP
         if 'cloud_internet_services_apikey' in _dict:
             args['cloud_internet_services_apikey'] = _dict.get('cloud_internet_services_apikey')
         else:
-            raise ValueError(
-                'Required property \'cloud_internet_services_apikey\' not present in PublicCertificateConfigurationDNSCloudInternetServicesPatch JSON')
+            raise ValueError('Required property \'cloud_internet_services_apikey\' not present in PublicCertificateConfigurationDNSCloudInternetServicesPatch JSON')
         if 'cloud_internet_services_crn' in _dict:
             args['cloud_internet_services_crn'] = _dict.get('cloud_internet_services_crn')
         return cls(**args)
@@ -23277,12 +23173,12 @@ class PublicCertificateConfigurationDNSCloudInternetServicesPrototype(Configurat
     """
 
     def __init__(
-            self,
-            config_type: str,
-            name: str,
-            cloud_internet_services_crn: str,
-            *,
-            cloud_internet_services_apikey: str = None,
+        self,
+        config_type: str,
+        name: str,
+        cloud_internet_services_crn: str,
+        *,
+        cloud_internet_services_apikey: str = None,
     ) -> None:
         """
         Initialize a PublicCertificateConfigurationDNSCloudInternetServicesPrototype object.
@@ -23320,20 +23216,17 @@ class PublicCertificateConfigurationDNSCloudInternetServicesPrototype(Configurat
         if 'config_type' in _dict:
             args['config_type'] = _dict.get('config_type')
         else:
-            raise ValueError(
-                'Required property \'config_type\' not present in PublicCertificateConfigurationDNSCloudInternetServicesPrototype JSON')
+            raise ValueError('Required property \'config_type\' not present in PublicCertificateConfigurationDNSCloudInternetServicesPrototype JSON')
         if 'name' in _dict:
             args['name'] = _dict.get('name')
         else:
-            raise ValueError(
-                'Required property \'name\' not present in PublicCertificateConfigurationDNSCloudInternetServicesPrototype JSON')
+            raise ValueError('Required property \'name\' not present in PublicCertificateConfigurationDNSCloudInternetServicesPrototype JSON')
         if 'cloud_internet_services_apikey' in _dict:
             args['cloud_internet_services_apikey'] = _dict.get('cloud_internet_services_apikey')
         if 'cloud_internet_services_crn' in _dict:
             args['cloud_internet_services_crn'] = _dict.get('cloud_internet_services_crn')
         else:
-            raise ValueError(
-                'Required property \'cloud_internet_services_crn\' not present in PublicCertificateConfigurationDNSCloudInternetServicesPrototype JSON')
+            raise ValueError('Required property \'cloud_internet_services_crn\' not present in PublicCertificateConfigurationDNSCloudInternetServicesPrototype JSON')
         return cls(**args)
 
     @classmethod
@@ -23384,6 +23277,7 @@ class PublicCertificateConfigurationDNSCloudInternetServicesPrototype(Configurat
         PRIVATE_CERT_CONFIGURATION_ROOT_CA = 'private_cert_configuration_root_ca'
         PRIVATE_CERT_CONFIGURATION_INTERMEDIATE_CA = 'private_cert_configuration_intermediate_ca'
         PRIVATE_CERT_CONFIGURATION_TEMPLATE = 'private_cert_configuration_template'
+
 
 
 class PublicCertificateMetadata(SecretMetadata):
@@ -23457,37 +23351,37 @@ class PublicCertificateMetadata(SecretMetadata):
     """
 
     def __init__(
-            self,
-            created_by: str,
-            created_at: datetime,
-            crn: str,
-            id: str,
-            secret_group_id: str,
-            secret_type: str,
-            updated_at: datetime,
-            versions_total: int,
-            common_name: str,
-            key_algorithm: str,
-            rotation: 'RotationPolicy',
-            *,
-            custom_metadata: dict = None,
-            description: str = None,
-            downloaded: bool = None,
-            labels: List[str] = None,
-            locks_total: int = None,
-            name: str = None,
-            state: int = None,
-            state_description: str = None,
-            signing_algorithm: str = None,
-            alt_names: List[str] = None,
-            expiration_date: datetime = None,
-            issuance_info: 'CertificateIssuanceInfo' = None,
-            issuer: str = None,
-            serial_number: str = None,
-            validity: 'CertificateValidity' = None,
-            bundle_certs: bool = None,
-            ca: str = None,
-            dns: str = None,
+        self,
+        created_by: str,
+        created_at: datetime,
+        crn: str,
+        id: str,
+        secret_group_id: str,
+        secret_type: str,
+        updated_at: datetime,
+        versions_total: int,
+        common_name: str,
+        key_algorithm: str,
+        rotation: 'RotationPolicy',
+        *,
+        custom_metadata: dict = None,
+        description: str = None,
+        downloaded: bool = None,
+        labels: List[str] = None,
+        locks_total: int = None,
+        name: str = None,
+        state: int = None,
+        state_description: str = None,
+        signing_algorithm: str = None,
+        alt_names: List[str] = None,
+        expiration_date: datetime = None,
+        issuance_info: 'CertificateIssuanceInfo' = None,
+        issuer: str = None,
+        serial_number: str = None,
+        validity: 'CertificateValidity' = None,
+        bundle_certs: bool = None,
+        ca: str = None,
+        dns: str = None,
     ) -> None:
         """
         Initialize a PublicCertificateMetadata object.
@@ -23769,6 +23663,7 @@ class PublicCertificateMetadata(SecretMetadata):
         USERNAME_PASSWORD = 'username_password'
         PRIVATE_CERT = 'private_cert'
 
+
     class StateDescriptionEnum(str, Enum):
         """
         A text representation of the secret state.
@@ -23779,6 +23674,7 @@ class PublicCertificateMetadata(SecretMetadata):
         SUSPENDED = 'suspended'
         DEACTIVATED = 'deactivated'
         DESTROYED = 'destroyed'
+
 
 
 class PublicCertificateMetadataPatch(SecretMetadataPatch):
@@ -23803,13 +23699,13 @@ class PublicCertificateMetadataPatch(SecretMetadataPatch):
     """
 
     def __init__(
-            self,
-            *,
-            name: str = None,
-            description: str = None,
-            labels: List[str] = None,
-            custom_metadata: dict = None,
-            rotation: 'RotationPolicy' = None,
+        self,
+        *,
+        name: str = None,
+        description: str = None,
+        labels: List[str] = None,
+        custom_metadata: dict = None,
+        rotation: 'RotationPolicy' = None,
     ) -> None:
         """
         Initialize a PublicCertificateMetadataPatch object.
@@ -23942,22 +23838,22 @@ class PublicCertificatePrototype(SecretPrototype):
     """
 
     def __init__(
-            self,
-            secret_type: str,
-            name: str,
-            common_name: str,
-            ca: str,
-            dns: str,
-            *,
-            description: str = None,
-            secret_group_id: str = None,
-            labels: List[str] = None,
-            alt_names: List[str] = None,
-            key_algorithm: str = None,
-            bundle_certs: bool = None,
-            rotation: 'RotationPolicy' = None,
-            custom_metadata: dict = None,
-            version_custom_metadata: dict = None,
+        self,
+        secret_type: str,
+        name: str,
+        common_name: str,
+        ca: str,
+        dns: str,
+        *,
+        description: str = None,
+        secret_group_id: str = None,
+        labels: List[str] = None,
+        alt_names: List[str] = None,
+        key_algorithm: str = None,
+        bundle_certs: bool = None,
+        rotation: 'RotationPolicy' = None,
+        custom_metadata: dict = None,
+        version_custom_metadata: dict = None,
     ) -> None:
         """
         Initialize a PublicCertificatePrototype object.
@@ -24137,6 +24033,7 @@ class PublicCertificatePrototype(SecretPrototype):
         PRIVATE_CERT = 'private_cert'
 
 
+
 class PublicCertificateRotationPolicy(RotationPolicy):
     """
     This field indicates whether Secrets Manager rotates your secrets automatically.
@@ -24154,9 +24051,9 @@ class PublicCertificateRotationPolicy(RotationPolicy):
     """
 
     def __init__(
-            self,
-            auto_rotate: bool,
-            rotate_keys: bool,
+        self,
+        auto_rotate: bool,
+        rotate_keys: bool,
     ) -> None:
         """
         Initialize a PublicCertificateRotationPolicy object.
@@ -24265,26 +24162,26 @@ class PublicCertificateVersion(SecretVersion):
     """
 
     def __init__(
-            self,
-            created_by: str,
-            created_at: datetime,
-            id: str,
-            secret_type: str,
-            secret_group_id: str,
-            payload_available: bool,
-            secret_id: str,
-            *,
-            auto_rotated: bool = None,
-            downloaded: bool = None,
-            secret_name: str = None,
-            alias: str = None,
-            version_custom_metadata: dict = None,
-            expiration_date: datetime = None,
-            serial_number: str = None,
-            validity: 'CertificateValidity' = None,
-            certificate: str = None,
-            intermediate: str = None,
-            private_key: str = None,
+        self,
+        created_by: str,
+        created_at: datetime,
+        id: str,
+        secret_type: str,
+        secret_group_id: str,
+        payload_available: bool,
+        secret_id: str,
+        *,
+        auto_rotated: bool = None,
+        downloaded: bool = None,
+        secret_name: str = None,
+        alias: str = None,
+        version_custom_metadata: dict = None,
+        expiration_date: datetime = None,
+        serial_number: str = None,
+        validity: 'CertificateValidity' = None,
+        certificate: str = None,
+        intermediate: str = None,
+        private_key: str = None,
     ) -> None:
         """
         Initialize a PublicCertificateVersion object.
@@ -24481,6 +24378,7 @@ class PublicCertificateVersion(SecretVersion):
         USERNAME_PASSWORD = 'username_password'
         PRIVATE_CERT = 'private_cert'
 
+
     class AliasEnum(str, Enum):
         """
         A human-readable alias that describes the secret version. 'Current' is used for
@@ -24489,6 +24387,7 @@ class PublicCertificateVersion(SecretVersion):
 
         CURRENT = 'current'
         PREVIOUS = 'previous'
+
 
 
 class PublicCertificateVersionMetadata(SecretVersionMetadata):
@@ -24527,23 +24426,23 @@ class PublicCertificateVersionMetadata(SecretVersionMetadata):
     """
 
     def __init__(
-            self,
-            created_by: str,
-            created_at: datetime,
-            id: str,
-            secret_type: str,
-            secret_group_id: str,
-            payload_available: bool,
-            secret_id: str,
-            *,
-            auto_rotated: bool = None,
-            downloaded: bool = None,
-            secret_name: str = None,
-            alias: str = None,
-            version_custom_metadata: dict = None,
-            expiration_date: datetime = None,
-            serial_number: str = None,
-            validity: 'CertificateValidity' = None,
+        self,
+        created_by: str,
+        created_at: datetime,
+        id: str,
+        secret_type: str,
+        secret_group_id: str,
+        payload_available: bool,
+        secret_id: str,
+        *,
+        auto_rotated: bool = None,
+        downloaded: bool = None,
+        secret_name: str = None,
+        alias: str = None,
+        version_custom_metadata: dict = None,
+        expiration_date: datetime = None,
+        serial_number: str = None,
+        validity: 'CertificateValidity' = None,
     ) -> None:
         """
         Initialize a PublicCertificateVersionMetadata object.
@@ -24621,13 +24520,11 @@ class PublicCertificateVersionMetadata(SecretVersionMetadata):
         if 'secret_group_id' in _dict:
             args['secret_group_id'] = _dict.get('secret_group_id')
         else:
-            raise ValueError(
-                'Required property \'secret_group_id\' not present in PublicCertificateVersionMetadata JSON')
+            raise ValueError('Required property \'secret_group_id\' not present in PublicCertificateVersionMetadata JSON')
         if 'payload_available' in _dict:
             args['payload_available'] = _dict.get('payload_available')
         else:
-            raise ValueError(
-                'Required property \'payload_available\' not present in PublicCertificateVersionMetadata JSON')
+            raise ValueError('Required property \'payload_available\' not present in PublicCertificateVersionMetadata JSON')
         if 'alias' in _dict:
             args['alias'] = _dict.get('alias')
         if 'version_custom_metadata' in _dict:
@@ -24719,6 +24616,7 @@ class PublicCertificateVersionMetadata(SecretVersionMetadata):
         USERNAME_PASSWORD = 'username_password'
         PRIVATE_CERT = 'private_cert'
 
+
     class AliasEnum(str, Enum):
         """
         A human-readable alias that describes the secret version. 'Current' is used for
@@ -24727,6 +24625,7 @@ class PublicCertificateVersionMetadata(SecretVersionMetadata):
 
         CURRENT = 'current'
         PREVIOUS = 'previous'
+
 
 
 class PublicCertificateVersionPrototype(SecretVersionPrototype):
@@ -24742,11 +24641,11 @@ class PublicCertificateVersionPrototype(SecretVersionPrototype):
     """
 
     def __init__(
-            self,
-            rotation: 'PublicCertificateRotationObject',
-            *,
-            custom_metadata: dict = None,
-            version_custom_metadata: dict = None,
+        self,
+        rotation: 'PublicCertificateRotationObject',
+        *,
+        custom_metadata: dict = None,
+        version_custom_metadata: dict = None,
     ) -> None:
         """
         Initialize a PublicCertificateVersionPrototype object.
@@ -24868,29 +24767,29 @@ class UsernamePasswordSecret(Secret):
     """
 
     def __init__(
-            self,
-            created_by: str,
-            created_at: datetime,
-            crn: str,
-            id: str,
-            secret_group_id: str,
-            secret_type: str,
-            updated_at: datetime,
-            versions_total: int,
-            rotation: 'RotationPolicy',
-            username: str,
-            password: str,
-            *,
-            custom_metadata: dict = None,
-            description: str = None,
-            downloaded: bool = None,
-            labels: List[str] = None,
-            locks_total: int = None,
-            name: str = None,
-            state: int = None,
-            state_description: str = None,
-            expiration_date: datetime = None,
-            next_rotation_date: datetime = None,
+        self,
+        created_by: str,
+        created_at: datetime,
+        crn: str,
+        id: str,
+        secret_group_id: str,
+        secret_type: str,
+        updated_at: datetime,
+        versions_total: int,
+        rotation: 'RotationPolicy',
+        username: str,
+        password: str,
+        *,
+        custom_metadata: dict = None,
+        description: str = None,
+        downloaded: bool = None,
+        labels: List[str] = None,
+        locks_total: int = None,
+        name: str = None,
+        state: int = None,
+        state_description: str = None,
+        expiration_date: datetime = None,
+        next_rotation_date: datetime = None,
     ) -> None:
         """
         Initialize a UsernamePasswordSecret object.
@@ -25108,6 +25007,7 @@ class UsernamePasswordSecret(Secret):
         USERNAME_PASSWORD = 'username_password'
         PRIVATE_CERT = 'private_cert'
 
+
     class StateDescriptionEnum(str, Enum):
         """
         A text representation of the secret state.
@@ -25118,6 +25018,7 @@ class UsernamePasswordSecret(Secret):
         SUSPENDED = 'suspended'
         DEACTIVATED = 'deactivated'
         DESTROYED = 'destroyed'
+
 
 
 class UsernamePasswordSecretMetadata(SecretMetadata):
@@ -25169,27 +25070,27 @@ class UsernamePasswordSecretMetadata(SecretMetadata):
     """
 
     def __init__(
-            self,
-            created_by: str,
-            created_at: datetime,
-            crn: str,
-            id: str,
-            secret_group_id: str,
-            secret_type: str,
-            updated_at: datetime,
-            versions_total: int,
-            rotation: 'RotationPolicy',
-            *,
-            custom_metadata: dict = None,
-            description: str = None,
-            downloaded: bool = None,
-            labels: List[str] = None,
-            locks_total: int = None,
-            name: str = None,
-            state: int = None,
-            state_description: str = None,
-            expiration_date: datetime = None,
-            next_rotation_date: datetime = None,
+        self,
+        created_by: str,
+        created_at: datetime,
+        crn: str,
+        id: str,
+        secret_group_id: str,
+        secret_type: str,
+        updated_at: datetime,
+        versions_total: int,
+        rotation: 'RotationPolicy',
+        *,
+        custom_metadata: dict = None,
+        description: str = None,
+        downloaded: bool = None,
+        labels: List[str] = None,
+        locks_total: int = None,
+        name: str = None,
+        state: int = None,
+        state_description: str = None,
+        expiration_date: datetime = None,
+        next_rotation_date: datetime = None,
     ) -> None:
         """
         Initialize a UsernamePasswordSecretMetadata object.
@@ -25389,6 +25290,7 @@ class UsernamePasswordSecretMetadata(SecretMetadata):
         USERNAME_PASSWORD = 'username_password'
         PRIVATE_CERT = 'private_cert'
 
+
     class StateDescriptionEnum(str, Enum):
         """
         A text representation of the secret state.
@@ -25399,6 +25301,7 @@ class UsernamePasswordSecretMetadata(SecretMetadata):
         SUSPENDED = 'suspended'
         DEACTIVATED = 'deactivated'
         DESTROYED = 'destroyed'
+
 
 
 class UsernamePasswordSecretMetadataPatch(SecretMetadataPatch):
@@ -25425,14 +25328,14 @@ class UsernamePasswordSecretMetadataPatch(SecretMetadataPatch):
     """
 
     def __init__(
-            self,
-            *,
-            name: str = None,
-            description: str = None,
-            labels: List[str] = None,
-            custom_metadata: dict = None,
-            rotation: 'RotationPolicy' = None,
-            expiration_date: datetime = None,
+        self,
+        *,
+        name: str = None,
+        description: str = None,
+        labels: List[str] = None,
+        custom_metadata: dict = None,
+        rotation: 'RotationPolicy' = None,
+        expiration_date: datetime = None,
     ) -> None:
         """
         Initialize a UsernamePasswordSecretMetadataPatch object.
@@ -25560,19 +25463,19 @@ class UsernamePasswordSecretPrototype(SecretPrototype):
     """
 
     def __init__(
-            self,
-            secret_type: str,
-            name: str,
-            username: str,
-            password: str,
-            *,
-            description: str = None,
-            secret_group_id: str = None,
-            labels: List[str] = None,
-            expiration_date: datetime = None,
-            custom_metadata: dict = None,
-            version_custom_metadata: dict = None,
-            rotation: 'RotationPolicy' = None,
+        self,
+        secret_type: str,
+        name: str,
+        username: str,
+        password: str,
+        *,
+        description: str = None,
+        secret_group_id: str = None,
+        labels: List[str] = None,
+        expiration_date: datetime = None,
+        custom_metadata: dict = None,
+        version_custom_metadata: dict = None,
+        rotation: 'RotationPolicy' = None,
     ) -> None:
         """
         Initialize a UsernamePasswordSecretPrototype object.
@@ -25723,6 +25626,7 @@ class UsernamePasswordSecretPrototype(SecretPrototype):
         PRIVATE_CERT = 'private_cert'
 
 
+
 class UsernamePasswordSecretVersion(SecretVersion):
     """
     Your user credentials secret version.
@@ -25757,22 +25661,22 @@ class UsernamePasswordSecretVersion(SecretVersion):
     """
 
     def __init__(
-            self,
-            created_by: str,
-            created_at: datetime,
-            id: str,
-            secret_type: str,
-            secret_group_id: str,
-            payload_available: bool,
-            secret_id: str,
-            username: str,
-            password: str,
-            *,
-            auto_rotated: bool = None,
-            downloaded: bool = None,
-            secret_name: str = None,
-            alias: str = None,
-            version_custom_metadata: dict = None,
+        self,
+        created_by: str,
+        created_at: datetime,
+        id: str,
+        secret_type: str,
+        secret_group_id: str,
+        payload_available: bool,
+        secret_id: str,
+        username: str,
+        password: str,
+        *,
+        auto_rotated: bool = None,
+        downloaded: bool = None,
+        secret_name: str = None,
+        alias: str = None,
+        version_custom_metadata: dict = None,
     ) -> None:
         """
         Initialize a UsernamePasswordSecretVersion object.
@@ -25851,8 +25755,7 @@ class UsernamePasswordSecretVersion(SecretVersion):
         if 'payload_available' in _dict:
             args['payload_available'] = _dict.get('payload_available')
         else:
-            raise ValueError(
-                'Required property \'payload_available\' not present in UsernamePasswordSecretVersion JSON')
+            raise ValueError('Required property \'payload_available\' not present in UsernamePasswordSecretVersion JSON')
         if 'alias' in _dict:
             args['alias'] = _dict.get('alias')
         if 'version_custom_metadata' in _dict:
@@ -25941,6 +25844,7 @@ class UsernamePasswordSecretVersion(SecretVersion):
         USERNAME_PASSWORD = 'username_password'
         PRIVATE_CERT = 'private_cert'
 
+
     class AliasEnum(str, Enum):
         """
         A human-readable alias that describes the secret version. 'Current' is used for
@@ -25949,6 +25853,7 @@ class UsernamePasswordSecretVersion(SecretVersion):
 
         CURRENT = 'current'
         PREVIOUS = 'previous'
+
 
 
 class UsernamePasswordSecretVersionMetadata(SecretVersionMetadata):
@@ -25981,20 +25886,20 @@ class UsernamePasswordSecretVersionMetadata(SecretVersionMetadata):
     """
 
     def __init__(
-            self,
-            created_by: str,
-            created_at: datetime,
-            id: str,
-            secret_type: str,
-            secret_group_id: str,
-            payload_available: bool,
-            secret_id: str,
-            *,
-            auto_rotated: bool = None,
-            downloaded: bool = None,
-            secret_name: str = None,
-            alias: str = None,
-            version_custom_metadata: dict = None,
+        self,
+        created_by: str,
+        created_at: datetime,
+        id: str,
+        secret_type: str,
+        secret_group_id: str,
+        payload_available: bool,
+        secret_id: str,
+        *,
+        auto_rotated: bool = None,
+        downloaded: bool = None,
+        secret_name: str = None,
+        alias: str = None,
+        version_custom_metadata: dict = None,
     ) -> None:
         """
         Initialize a UsernamePasswordSecretVersionMetadata object.
@@ -26043,13 +25948,11 @@ class UsernamePasswordSecretVersionMetadata(SecretVersionMetadata):
         if 'created_by' in _dict:
             args['created_by'] = _dict.get('created_by')
         else:
-            raise ValueError(
-                'Required property \'created_by\' not present in UsernamePasswordSecretVersionMetadata JSON')
+            raise ValueError('Required property \'created_by\' not present in UsernamePasswordSecretVersionMetadata JSON')
         if 'created_at' in _dict:
             args['created_at'] = string_to_datetime(_dict.get('created_at'))
         else:
-            raise ValueError(
-                'Required property \'created_at\' not present in UsernamePasswordSecretVersionMetadata JSON')
+            raise ValueError('Required property \'created_at\' not present in UsernamePasswordSecretVersionMetadata JSON')
         if 'downloaded' in _dict:
             args['downloaded'] = _dict.get('downloaded')
         if 'id' in _dict:
@@ -26061,18 +25964,15 @@ class UsernamePasswordSecretVersionMetadata(SecretVersionMetadata):
         if 'secret_type' in _dict:
             args['secret_type'] = _dict.get('secret_type')
         else:
-            raise ValueError(
-                'Required property \'secret_type\' not present in UsernamePasswordSecretVersionMetadata JSON')
+            raise ValueError('Required property \'secret_type\' not present in UsernamePasswordSecretVersionMetadata JSON')
         if 'secret_group_id' in _dict:
             args['secret_group_id'] = _dict.get('secret_group_id')
         else:
-            raise ValueError(
-                'Required property \'secret_group_id\' not present in UsernamePasswordSecretVersionMetadata JSON')
+            raise ValueError('Required property \'secret_group_id\' not present in UsernamePasswordSecretVersionMetadata JSON')
         if 'payload_available' in _dict:
             args['payload_available'] = _dict.get('payload_available')
         else:
-            raise ValueError(
-                'Required property \'payload_available\' not present in UsernamePasswordSecretVersionMetadata JSON')
+            raise ValueError('Required property \'payload_available\' not present in UsernamePasswordSecretVersionMetadata JSON')
         if 'alias' in _dict:
             args['alias'] = _dict.get('alias')
         if 'version_custom_metadata' in _dict:
@@ -26080,8 +25980,7 @@ class UsernamePasswordSecretVersionMetadata(SecretVersionMetadata):
         if 'secret_id' in _dict:
             args['secret_id'] = _dict.get('secret_id')
         else:
-            raise ValueError(
-                'Required property \'secret_id\' not present in UsernamePasswordSecretVersionMetadata JSON')
+            raise ValueError('Required property \'secret_id\' not present in UsernamePasswordSecretVersionMetadata JSON')
         return cls(**args)
 
     @classmethod
@@ -26150,6 +26049,7 @@ class UsernamePasswordSecretVersionMetadata(SecretVersionMetadata):
         USERNAME_PASSWORD = 'username_password'
         PRIVATE_CERT = 'private_cert'
 
+
     class AliasEnum(str, Enum):
         """
         A human-readable alias that describes the secret version. 'Current' is used for
@@ -26158,6 +26058,7 @@ class UsernamePasswordSecretVersionMetadata(SecretVersionMetadata):
 
         CURRENT = 'current'
         PREVIOUS = 'previous'
+
 
 
 class UsernamePasswordSecretVersionPrototype(SecretVersionPrototype):
@@ -26173,11 +26074,11 @@ class UsernamePasswordSecretVersionPrototype(SecretVersionPrototype):
     """
 
     def __init__(
-            self,
-            password: str,
-            *,
-            custom_metadata: dict = None,
-            version_custom_metadata: dict = None,
+        self,
+        password: str,
+        *,
+        custom_metadata: dict = None,
+        version_custom_metadata: dict = None,
     ) -> None:
         """
         Initialize a UsernamePasswordSecretVersionPrototype object.
@@ -26201,8 +26102,7 @@ class UsernamePasswordSecretVersionPrototype(SecretVersionPrototype):
         if 'password' in _dict:
             args['password'] = _dict.get('password')
         else:
-            raise ValueError(
-                'Required property \'password\' not present in UsernamePasswordSecretVersionPrototype JSON')
+            raise ValueError('Required property \'password\' not present in UsernamePasswordSecretVersionPrototype JSON')
         if 'custom_metadata' in _dict:
             args['custom_metadata'] = _dict.get('custom_metadata')
         if 'version_custom_metadata' in _dict:
@@ -26243,7 +26143,6 @@ class UsernamePasswordSecretVersionPrototype(SecretVersionPrototype):
         """Return `true` when self and other are not equal, false otherwise."""
         return not self == other
 
-
 ##############################################################################
 # Pagers
 ##############################################################################
@@ -26255,13 +26154,13 @@ class SecretsPager:
     """
 
     def __init__(
-            self,
-            *,
-            client: SecretsManagerV2,
-            limit: int = None,
-            sort: str = None,
-            search: str = None,
-            groups: List[str] = None,
+        self,
+        *,
+        client: SecretsManagerV2,
+        limit: int = None,
+        sort: str = None,
+        search: str = None,
+        groups: List[str] = None,
     ) -> None:
         """
         Initialize a SecretsPager object.
@@ -26354,12 +26253,12 @@ class SecretsLocksPager:
     """
 
     def __init__(
-            self,
-            *,
-            client: SecretsManagerV2,
-            limit: int = None,
-            search: str = None,
-            groups: List[str] = None,
+        self,
+        *,
+        client: SecretsManagerV2,
+        limit: int = None,
+        search: str = None,
+        groups: List[str] = None,
     ) -> None:
         """
         Initialize a SecretsLocksPager object.
@@ -26442,13 +26341,13 @@ class SecretLocksPager:
     """
 
     def __init__(
-            self,
-            *,
-            client: SecretsManagerV2,
-            id: str,
-            limit: int = None,
-            sort: str = None,
-            search: str = None,
+        self,
+        *,
+        client: SecretsManagerV2,
+        id: str,
+        limit: int = None,
+        sort: str = None,
+        search: str = None,
     ) -> None:
         """
         Initialize a SecretLocksPager object.
@@ -26532,14 +26431,14 @@ class SecretVersionLocksPager:
     """
 
     def __init__(
-            self,
-            *,
-            client: SecretsManagerV2,
-            secret_id: str,
-            id: str,
-            limit: int = None,
-            sort: str = None,
-            search: str = None,
+        self,
+        *,
+        client: SecretsManagerV2,
+        secret_id: str,
+        id: str,
+        limit: int = None,
+        sort: str = None,
+        search: str = None,
     ) -> None:
         """
         Initialize a SecretVersionLocksPager object.
@@ -26628,12 +26527,12 @@ class ConfigurationsPager:
     """
 
     def __init__(
-            self,
-            *,
-            client: SecretsManagerV2,
-            limit: int = None,
-            sort: str = None,
-            search: str = None,
+        self,
+        *,
+        client: SecretsManagerV2,
+        limit: int = None,
+        sort: str = None,
+        search: str = None,
     ) -> None:
         """
         Initialize a ConfigurationsPager object.
