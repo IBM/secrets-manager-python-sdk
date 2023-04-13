@@ -41,7 +41,8 @@ secret_version_id_for_get_secret_version_metadata_link = None
 secret_version_id_for_list_secret_version_locks_link = None
 secret_version_id_for_update_secret_version_metadata_link = None
 
-class TestSecretsManagerV2():
+
+class TestSecretsManagerV2:
     """
     Integration Test Class for SecretsManagerV2
     """
@@ -55,8 +56,7 @@ class TestSecretsManagerV2():
             )
             assert cls.secrets_manager_service is not None
 
-            cls.config = read_external_sources(
-                SecretsManagerV2.DEFAULT_SERVICE_NAME)
+            cls.config = read_external_sources(SecretsManagerV2.DEFAULT_SERVICE_NAME)
             assert cls.config is not None
 
             cls.secrets_manager_service.enable_retries()
@@ -153,7 +153,7 @@ class TestSecretsManagerV2():
         response = self.secrets_manager_service.create_secret_locks_bulk(
             id=secret_id_for_get_secret_link,
             locks=[secret_lock_prototype_model],
-            mode='exclusive',
+            mode='remove_previous',
         )
 
         assert response.get_status_code() == 201
@@ -178,17 +178,17 @@ class TestSecretsManagerV2():
             'crl_distribution_points_encoded': True,
             'issuing_certificates_urls_encoded': True,
             'common_name': 'example.com',
-            'alt_names': ['s1.example.com', '*.s2.example.com'],
-            'ip_sans': '1.1.1.1, 2.2.2.2',
-            'uri_sans': 'testString',
-            'other_sans': ['2.5.4.5;UTF8:*.example.com'],
-            'ttl': '8760h',
+            'alt_names': ['alt-name-1', 'alt-name-2'],
+            'ip_sans': '127.0.0.1',
+            'uri_sans': 'https://www.example.com/test',
+            'other_sans': ['1.2.3.5.4.3.201.10.4.3;utf8:test@example.com'],
+            'ttl': '2190h',
             'format': 'pem',
             'private_key_format': 'der',
             'key_type': 'rsa',
             'key_bits': 4096,
-            'max_path_length': 38,
-            'exclude_cn_from_sans': True,
+            'max_path_length': -1,
+            'exclude_cn_from_sans': False,
             'permitted_dns_domains': ['testString'],
             'ou': ['testString'],
             'organization': ['testString'],
@@ -212,7 +212,6 @@ class TestSecretsManagerV2():
 
     @needscredentials
     def test_list_secret_groups(self):
-
         response = self.secrets_manager_service.list_secret_groups()
 
         assert response.get_status_code() == 200
@@ -221,7 +220,6 @@ class TestSecretsManagerV2():
 
     @needscredentials
     def test_get_secret_group(self):
-
         response = self.secrets_manager_service.get_secret_group(
             id=secret_group_id_for_get_secret_group_link,
         )
@@ -232,7 +230,6 @@ class TestSecretsManagerV2():
 
     @needscredentials
     def test_update_secret_group(self):
-
         # Construct a dict representation of a SecretGroupPatch model
         secret_group_patch_model = {
             'name': 'my-secret-group',
@@ -250,7 +247,6 @@ class TestSecretsManagerV2():
 
     @needscredentials
     def test_list_secrets(self):
-
         response = self.secrets_manager_service.list_secrets(
             offset=0,
             limit=1,
@@ -296,7 +292,6 @@ class TestSecretsManagerV2():
 
     @needscredentials
     def test_get_secret(self):
-
         response = self.secrets_manager_service.get_secret(
             id=secret_id_for_get_secret_link,
         )
@@ -307,7 +302,6 @@ class TestSecretsManagerV2():
 
     @needscredentials
     def test_get_secret_metadata(self):
-
         response = self.secrets_manager_service.get_secret_metadata(
             id=secret_id_for_get_secret_link,
         )
@@ -318,7 +312,6 @@ class TestSecretsManagerV2():
 
     @needscredentials
     def test_update_secret_metadata(self):
-
         # Construct a dict representation of a ArbitrarySecretMetadataPatch model
         secret_metadata_patch_model = {
             'name': 'updated-arbitrary-secret-name',
@@ -344,7 +337,6 @@ class TestSecretsManagerV2():
 
     @needscredentials
     def test_create_secret_version(self):
-
         # Construct a dict representation of a ArbitrarySecretVersionPrototype model
         secret_version_prototype_model = {
             'payload': 'updated secret credentials',
@@ -363,7 +355,6 @@ class TestSecretsManagerV2():
 
     @needscredentials
     def test_get_secret_version(self):
-
         response = self.secrets_manager_service.get_secret_version(
             secret_id=secret_id_for_get_secret_version_link,
             id=secret_version_id_for_get_secret_version_link,
@@ -375,7 +366,6 @@ class TestSecretsManagerV2():
 
     @needscredentials
     def test_get_secret_version_metadata(self):
-
         response = self.secrets_manager_service.get_secret_version_metadata(
             secret_id=secret_id_for_get_secret_link,
             id=secret_version_id_for_get_secret_version_metadata_link,
@@ -387,7 +377,6 @@ class TestSecretsManagerV2():
 
     @needscredentials
     def test_update_secret_version_metadata(self):
-
         # Construct a dict representation of a SecretVersionMetadataPatch model
         secret_version_metadata_patch_model = {
             'version_custom_metadata': {'key':'value'},
@@ -410,7 +399,6 @@ class TestSecretsManagerV2():
 
     @needscredentials
     def test_list_secrets_locks(self):
-
         response = self.secrets_manager_service.list_secrets_locks(
             offset=0,
             limit=1,
@@ -453,7 +441,6 @@ class TestSecretsManagerV2():
 
     @needscredentials
     def test_list_secret_locks(self):
-
         response = self.secrets_manager_service.list_secret_locks(
             id=secret_id_for_list_secret_locks_link,
             offset=0,
@@ -499,7 +486,6 @@ class TestSecretsManagerV2():
 
     @needscredentials
     def test_create_secret_version_locks_bulk(self):
-
         # Construct a dict representation of a SecretLockPrototype model
         secret_lock_prototype_model = {
             'name': 'lock-example-1',
@@ -511,7 +497,7 @@ class TestSecretsManagerV2():
             secret_id=secret_id_for_create_secret_version_locks_link,
             id=secret_version_id_for_create_secret_version_locks_link,
             locks=[secret_lock_prototype_model],
-            mode='exclusive',
+            mode='remove_previous',
         )
 
         assert response.get_status_code() == 201
@@ -520,7 +506,6 @@ class TestSecretsManagerV2():
 
     @needscredentials
     def test_list_secret_version_locks(self):
-
         response = self.secrets_manager_service.list_secret_version_locks(
             secret_id=secret_id_for_list_secret_version_locks_link,
             id=secret_version_id_for_list_secret_version_locks_link,
@@ -569,7 +554,6 @@ class TestSecretsManagerV2():
 
     @needscredentials
     def test_list_configurations(self):
-
         response = self.secrets_manager_service.list_configurations(
             offset=0,
             limit=1,
@@ -612,7 +596,6 @@ class TestSecretsManagerV2():
 
     @needscredentials
     def test_get_configuration(self):
-
         response = self.secrets_manager_service.get_configuration(
             name=configuration_name_for_get_configuration_link,
             x_sm_accept_configuration_type='private_cert_configuration_root_ca',
@@ -624,7 +607,6 @@ class TestSecretsManagerV2():
 
     @needscredentials
     def test_update_configuration(self):
-
         # Construct a dict representation of a IAMCredentialsConfigurationPatch model
         configuration_patch_model = {
             'api_key': 'RmnPBn6n1dzoo0v3kyznKEpg0WzdTpW9lW7FtKa017_u',
@@ -642,7 +624,6 @@ class TestSecretsManagerV2():
 
     @needscredentials
     def test_create_configuration_action(self):
-
         # Construct a dict representation of a PrivateCertificateConfigurationActionRotateCRLPrototype model
         configuration_action_prototype_model = {
             'action_type': 'private_cert_configuration_action_rotate_crl',
@@ -660,7 +641,6 @@ class TestSecretsManagerV2():
 
     @needscredentials
     def test_create_notifications_registration(self):
-
         response = self.secrets_manager_service.create_notifications_registration(
             event_notifications_instance_crn='crn:v1:bluemix:public:event-notifications:us-south:a/22018f3c34ff4ff193698d15ca316946:578ad1a4-2fd8-4e66-95d5-79a842ba91f8::',
             event_notifications_source_name='My Secrets Manager',
@@ -673,7 +653,6 @@ class TestSecretsManagerV2():
 
     @needscredentials
     def test_get_notifications_registration(self):
-
         response = self.secrets_manager_service.get_notifications_registration()
 
         assert response.get_status_code() == 200
@@ -687,7 +666,6 @@ class TestSecretsManagerV2():
 
     @needscredentials
     def test_delete_secret_group(self):
-
         response = self.secrets_manager_service.delete_secret_group(
             id=secret_group_id_for_get_secret_group_link,
         )
@@ -701,7 +679,6 @@ class TestSecretsManagerV2():
 
     @needscredentials
     def test_delete_secret_locks_bulk(self):
-
         response = self.secrets_manager_service.delete_secret_locks_bulk(
             id=secret_id_for_get_secret_link,
             name=['lock-example-1'],
@@ -713,7 +690,6 @@ class TestSecretsManagerV2():
 
     @needscredentials
     def test_delete_secret_version_locks_bulk(self):
-
         response = self.secrets_manager_service.delete_secret_version_locks_bulk(
             secret_id=secret_id_for_get_secret_link,
             id=secret_version_id_for_delete_secret_version_locks_link,
@@ -726,7 +702,6 @@ class TestSecretsManagerV2():
 
     @needscredentials
     def test_delete_secret(self):
-
         response = self.secrets_manager_service.delete_secret(
             id=secret_id_for_get_secret_link,
         )
@@ -735,7 +710,6 @@ class TestSecretsManagerV2():
 
     @needscredentials
     def test_delete_configuration(self):
-
         response = self.secrets_manager_service.delete_configuration(
             name=configuration_name_for_get_configuration_link,
             x_sm_accept_configuration_type='private_cert_configuration_root_ca',
@@ -745,7 +719,6 @@ class TestSecretsManagerV2():
 
     @needscredentials
     def test_delete_notifications_registration(self):
-
         response = self.secrets_manager_service.delete_notifications_registration()
 
         assert response.get_status_code() == 204
