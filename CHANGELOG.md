@@ -1,3 +1,17 @@
+# [2.0.0](https://github.com/IBM/secrets-manager-python-sdk/compare/v1.0.26...v2.0.0) (2023-04-17)
+
+
+### Features
+
+* new SM v2 API release ([1b553dd](https://github.com/IBM/secrets-manager-python-sdk/commit/1b553dd266287962de302de3558ceb072cd1137f))
+
+
+### BREAKING CHANGES
+
+* new v2 API.
+
+Signed-off-by: yuval-shlomo-dekel <yuval.shlomo.dekel@ibm.com>
+
 ## [1.0.26](https://github.com/IBM/secrets-manager-python-sdk/compare/v1.0.25...v1.0.26) (2022-12-05)
 
 ## [1.0.25](https://github.com/IBM/secrets-manager-python-sdk/compare/v1.0.24...v1.0.25) (2022-11-30)
