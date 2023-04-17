@@ -20,7 +20,7 @@
 With IBM Cloud® Secrets Manager, you can create, lease, and centrally manage secrets that
 are used in IBM Cloud services or your custom-built applications.
 
-API Version: 2.0.0
+API Version: 1.0.26
 See: https://cloud.ibm.com/docs/secrets-manager
 """
 
