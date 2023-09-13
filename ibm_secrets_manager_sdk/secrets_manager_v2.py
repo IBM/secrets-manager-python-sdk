@@ -14,13 +14,13 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-# IBM OpenAPI SDK Code Generator Version: 3.69.0-370d6400-20230329-174648
+# IBM OpenAPI SDK Code Generator Version: 3.77.0-42417df0-20230811-192318
 
 """
 With IBM Cloud® Secrets Manager, you can create, lease, and centrally manage secrets that
 are used in IBM Cloud services or your custom-built applications.
 
-API Version: 1.0.26
+API Version: 2.0.0
 See: https://cloud.ibm.com/docs/secrets-manager
 """
 
@@ -733,6 +733,66 @@ class SecretsManagerV2(BaseService):
             url=url,
             headers=headers,
             data=data,
+        )
+
+        response = self.send(request, **kwargs)
+        return response
+
+    def get_secret_by_name_type(
+        self,
+        secret_type: str,
+        name: str,
+        secret_group_name: str,
+        **kwargs,
+    ) -> DetailedResponse:
+        """
+        Get a secret by name.
+
+        Get a secret and its details by specifying the Name and Type of the secret.
+        A successful request returns the secret data that is associated with your secret,
+        along with other metadata. To view only the details of a specified secret without
+        retrieving its value, use the [Get secret metadata](#get-secret-metadata)
+        operation.
+
+        :param str secret_type: The secret type. Supported types are arbitrary,
+               certificates (imported, public, and private), IAM credentials, key-value,
+               and user credentials.
+        :param str name: A human-readable name to assign to your secret. To protect
+               your privacy, do not use personal data, such as your name or location, as a
+               name for your secret.
+        :param str secret_group_name: The name of your secret group.
+        :param dict headers: A `dict` containing the request headers
+        :return: A `DetailedResponse` containing the result, headers and HTTP status code.
+        :rtype: DetailedResponse with `dict` result representing a `Secret` object
+        """
+
+        if not secret_type:
+            raise ValueError('secret_type must be provided')
+        if not name:
+            raise ValueError('name must be provided')
+        if not secret_group_name:
+            raise ValueError('secret_group_name must be provided')
+        headers = {}
+        sdk_headers = get_sdk_headers(
+            service_name=self.DEFAULT_SERVICE_NAME,
+            service_version='V2',
+            operation_id='get_secret_by_name_type',
+        )
+        headers.update(sdk_headers)
+
+        if 'headers' in kwargs:
+            headers.update(kwargs.get('headers'))
+            del kwargs['headers']
+        headers['Accept'] = 'application/json'
+
+        path_param_keys = ['secret_type', 'name', 'secret_group_name']
+        path_param_values = self.encode_path_vars(secret_type, name, secret_group_name)
+        path_param_dict = dict(zip(path_param_keys, path_param_values))
+        url = '/api/v2/secret_groups/{secret_group_name}/secret_types/{secret_type}/secrets/{name}'.format(**path_param_dict)
+        request = self.prepare_request(
+            method='GET',
+            url=url,
+            headers=headers,
         )
 
         response = self.send(request, **kwargs)
@@ -1765,7 +1825,7 @@ class SecretsManagerV2(BaseService):
                `config_type`, `secret_type`.
                **Usage:** If you want to list only the configurations that contain the
                string `text`, use
-               `../secrets?search=text`.
+               `../configurations?search=text`.
         :param dict headers: A `dict` containing the request headers
         :return: A `DetailedResponse` containing the result, headers and HTTP status code.
         :rtype: DetailedResponse with `dict` result representing a `ConfigurationMetadataPaginatedCollection` object
@@ -2222,6 +2282,26 @@ class SecretsManagerV2(BaseService):
 
         response = self.send(request, **kwargs)
         return response
+
+
+class GetSecretByNameTypeEnums:
+    """
+    Enums for get_secret_by_name_type parameters.
+    """
+
+    class SecretType(str, Enum):
+        """
+        The secret type. Supported types are arbitrary, certificates (imported, public,
+        and private), IAM credentials, key-value, and user credentials.
+        """
+
+        ARBITRARY = 'arbitrary'
+        IMPORTED_CERT = 'imported_cert'
+        PUBLIC_CERT = 'public_cert'
+        IAM_CREDENTIALS = 'iam_credentials'
+        KV = 'kv'
+        USERNAME_PASSWORD = 'username_password'
+        PRIVATE_CERT = 'private_cert'
 
 
 class CreateSecretLocksBulkEnums:
@@ -3031,7 +3111,7 @@ class ConfigurationPatch:
 
         """
         msg = "Cannot instantiate base class. Instead, instantiate one of the defined subclasses: {0}".format(
-            ", ".join(['IAMCredentialsConfigurationPatch', 'PublicCertificateConfigurationCALetsEncryptPatch', 'PublicCertificateConfigurationDNSCloudInternetServicesPatch', 'PublicCertificateConfigurationDNSClassicInfrastructurePatch', 'PrivateCertificateConfigurationRootCAPatch', 'PrivateCertificateConfigurationTemplatePatch', 'PrivateCertificateConfigurationIntermediateCAPatch'])
+            ", ".join(['IAMCredentialsConfigurationPatch', 'PrivateCertificateConfigurationRootCAPatch', 'PrivateCertificateConfigurationIntermediateCAPatch', 'PrivateCertificateConfigurationTemplatePatch', 'PublicCertificateConfigurationCALetsEncryptPatch', 'PublicCertificateConfigurationDNSCloudInternetServicesPatch', 'PublicCertificateConfigurationDNSClassicInfrastructurePatch'])
         )
         raise Exception(msg)
 
@@ -3050,7 +3130,7 @@ class ConfigurationPrototype:
 
         """
         msg = "Cannot instantiate base class. Instead, instantiate one of the defined subclasses: {0}".format(
-            ", ".join(['PublicCertificateConfigurationCALetsEncryptPrototype', 'PublicCertificateConfigurationDNSCloudInternetServicesPrototype', 'PublicCertificateConfigurationDNSClassicInfrastructurePrototype', 'IAMCredentialsConfigurationPrototype', 'PrivateCertificateConfigurationRootCAPrototype', 'PrivateCertificateConfigurationIntermediateCAPrototype', 'PrivateCertificateConfigurationTemplatePrototype'])
+            ", ".join(['PrivateCertificateConfigurationRootCAPrototype', 'PrivateCertificateConfigurationIntermediateCAPrototype', 'PrivateCertificateConfigurationTemplatePrototype', 'PublicCertificateConfigurationCALetsEncryptPrototype', 'PublicCertificateConfigurationDNSCloudInternetServicesPrototype', 'PublicCertificateConfigurationDNSClassicInfrastructurePrototype', 'IAMCredentialsConfigurationPrototype'])
         )
         raise Exception(msg)
 
@@ -3061,7 +3141,7 @@ class ConfigurationPrototype:
         if disc_class != cls:
             return disc_class.from_dict(_dict)
         msg = "Cannot convert dictionary into an instance of base class 'ConfigurationPrototype'. The discriminator value should map to a valid subclass: {1}".format(
-            ", ".join(['PublicCertificateConfigurationCALetsEncryptPrototype', 'PublicCertificateConfigurationDNSCloudInternetServicesPrototype', 'PublicCertificateConfigurationDNSClassicInfrastructurePrototype', 'IAMCredentialsConfigurationPrototype', 'PrivateCertificateConfigurationRootCAPrototype', 'PrivateCertificateConfigurationIntermediateCAPrototype', 'PrivateCertificateConfigurationTemplatePrototype'])
+            ", ".join(['PrivateCertificateConfigurationRootCAPrototype', 'PrivateCertificateConfigurationIntermediateCAPrototype', 'PrivateCertificateConfigurationTemplatePrototype', 'PublicCertificateConfigurationCALetsEncryptPrototype', 'PublicCertificateConfigurationDNSCloudInternetServicesPrototype', 'PublicCertificateConfigurationDNSClassicInfrastructurePrototype', 'IAMCredentialsConfigurationPrototype'])
         )
         raise Exception(msg)
 
@@ -3073,13 +3153,13 @@ class ConfigurationPrototype:
     @classmethod
     def _get_class_by_discriminator(cls, _dict: Dict) -> object:
         mapping = {}
+        mapping['private_cert_configuration_root_ca'] = 'PrivateCertificateConfigurationRootCAPrototype'
+        mapping['private_cert_configuration_intermediate_ca'] = 'PrivateCertificateConfigurationIntermediateCAPrototype'
+        mapping['private_cert_configuration_template'] = 'PrivateCertificateConfigurationTemplatePrototype'
         mapping['public_cert_configuration_ca_lets_encrypt'] = 'PublicCertificateConfigurationCALetsEncryptPrototype'
         mapping['public_cert_configuration_dns_cloud_internet_services'] = 'PublicCertificateConfigurationDNSCloudInternetServicesPrototype'
         mapping['public_cert_configuration_dns_classic_infrastructure'] = 'PublicCertificateConfigurationDNSClassicInfrastructurePrototype'
         mapping['iam_credentials_configuration'] = 'IAMCredentialsConfigurationPrototype'
-        mapping['private_cert_configuration_root_ca'] = 'PrivateCertificateConfigurationRootCAPrototype'
-        mapping['private_cert_configuration_intermediate_ca'] = 'PrivateCertificateConfigurationIntermediateCAPrototype'
-        mapping['private_cert_configuration_template'] = 'PrivateCertificateConfigurationTemplatePrototype'
         disc_value = _dict.get('config_type')
         if disc_value is None:
             raise ValueError('Discriminator property \'config_type\' not found in ConfigurationPrototype JSON')
@@ -3476,6 +3556,7 @@ class PublicCertificateRotationObject:
 class RotationPolicy:
     """
     This field indicates whether Secrets Manager rotates your secrets automatically.
+    Supported secret types: username_password, private_cert, public_cert, iam_credentials.
 
     """
 
@@ -3586,8 +3667,8 @@ class SecretAction:
     @classmethod
     def _get_class_by_discriminator(cls, _dict: Dict) -> object:
         mapping = {}
-        mapping['public_cert_action_validate_dns_challenge'] = 'PublicCertificateActionValidateManualDNS'
         mapping['private_cert_action_revoke_certificate'] = 'PrivateCertificateActionRevoke'
+        mapping['public_cert_action_validate_dns_challenge'] = 'PublicCertificateActionValidateManualDNS'
         disc_value = _dict.get('action_type')
         if disc_value is None:
             raise ValueError('Discriminator property \'action_type\' not found in SecretAction JSON')
@@ -3615,7 +3696,7 @@ class SecretActionPrototype:
 
         """
         msg = "Cannot instantiate base class. Instead, instantiate one of the defined subclasses: {0}".format(
-            ", ".join(['PublicCertificateActionValidateManualDNSPrototype', 'PrivateCertificateActionRevokePrototype'])
+            ", ".join(['PrivateCertificateActionRevokePrototype', 'PublicCertificateActionValidateManualDNSPrototype'])
         )
         raise Exception(msg)
 
@@ -3626,7 +3707,7 @@ class SecretActionPrototype:
         if disc_class != cls:
             return disc_class.from_dict(_dict)
         msg = "Cannot convert dictionary into an instance of base class 'SecretActionPrototype'. The discriminator value should map to a valid subclass: {1}".format(
-            ", ".join(['PublicCertificateActionValidateManualDNSPrototype', 'PrivateCertificateActionRevokePrototype'])
+            ", ".join(['PrivateCertificateActionRevokePrototype', 'PublicCertificateActionValidateManualDNSPrototype'])
         )
         raise Exception(msg)
 
@@ -4473,7 +4554,7 @@ class SecretMetadata:
 
         """
         msg = "Cannot instantiate base class. Instead, instantiate one of the defined subclasses: {0}".format(
-            ", ".join(['ImportedCertificateMetadata', 'PublicCertificateMetadata', 'KVSecretMetadata', 'UsernamePasswordSecretMetadata', 'IAMCredentialsSecretMetadata', 'ArbitrarySecretMetadata', 'PrivateCertificateMetadata'])
+            ", ".join(['ArbitrarySecretMetadata', 'ImportedCertificateMetadata', 'PublicCertificateMetadata', 'KVSecretMetadata', 'UsernamePasswordSecretMetadata', 'IAMCredentialsSecretMetadata', 'PrivateCertificateMetadata'])
         )
         raise Exception(msg)
 
@@ -4484,7 +4565,7 @@ class SecretMetadata:
         if disc_class != cls:
             return disc_class.from_dict(_dict)
         msg = "Cannot convert dictionary into an instance of base class 'SecretMetadata'. The discriminator value should map to a valid subclass: {1}".format(
-            ", ".join(['ImportedCertificateMetadata', 'PublicCertificateMetadata', 'KVSecretMetadata', 'UsernamePasswordSecretMetadata', 'IAMCredentialsSecretMetadata', 'ArbitrarySecretMetadata', 'PrivateCertificateMetadata'])
+            ", ".join(['ArbitrarySecretMetadata', 'ImportedCertificateMetadata', 'PublicCertificateMetadata', 'KVSecretMetadata', 'UsernamePasswordSecretMetadata', 'IAMCredentialsSecretMetadata', 'PrivateCertificateMetadata'])
         )
         raise Exception(msg)
 
@@ -5565,7 +5646,8 @@ class ArbitrarySecret(Secret):
           format follows `RFC 3339`.
     :attr int versions_total: The number of versions of your secret.
     :attr datetime expiration_date: (optional) The date when the secret material
-          expires. The date format follows the `RFC 3339` format.
+          expires. The date format follows the `RFC 3339` format. Supported secret types:
+          Arbitrary, username_password.
     :attr str payload: (optional) The secret data that is assigned to an `arbitrary`
           secret.
     """
@@ -5620,7 +5702,8 @@ class ArbitrarySecret(Secret):
                To protect your privacy, do not use personal data, such as your name or
                location, as a label for your secret.
         :param datetime expiration_date: (optional) The date when the secret
-               material expires. The date format follows the `RFC 3339` format.
+               material expires. The date format follows the `RFC 3339` format. Supported
+               secret types: Arbitrary, username_password.
         :param str payload: (optional) The secret data that is assigned to an
                `arbitrary` secret.
         """
@@ -5832,7 +5915,8 @@ class ArbitrarySecretMetadata(SecretMetadata):
           format follows `RFC 3339`.
     :attr int versions_total: The number of versions of your secret.
     :attr datetime expiration_date: (optional) The date when the secret material
-          expires. The date format follows the `RFC 3339` format.
+          expires. The date format follows the `RFC 3339` format. Supported secret types:
+          Arbitrary, username_password.
     """
 
     def __init__(
@@ -5884,7 +5968,8 @@ class ArbitrarySecretMetadata(SecretMetadata):
                To protect your privacy, do not use personal data, such as your name or
                location, as a label for your secret.
         :param datetime expiration_date: (optional) The date when the secret
-               material expires. The date format follows the `RFC 3339` format.
+               material expires. The date format follows the `RFC 3339` format. Supported
+               secret types: Arbitrary, username_password.
         """
         # pylint: disable=super-init-not-called
         self.created_by = created_by
@@ -6069,7 +6154,8 @@ class ArbitrarySecretMetadataPatch(SecretMetadataPatch):
     :attr dict custom_metadata: (optional) The secret metadata that a user can
           customize.
     :attr datetime expiration_date: (optional) The date when the secret material
-          expires. The date format follows the `RFC 3339` format.
+          expires. The date format follows the `RFC 3339` format. Supported secret types:
+          Arbitrary, username_password.
     """
 
     def __init__(
@@ -6098,7 +6184,8 @@ class ArbitrarySecretMetadataPatch(SecretMetadataPatch):
         :param dict custom_metadata: (optional) The secret metadata that a user can
                customize.
         :param datetime expiration_date: (optional) The date when the secret
-               material expires. The date format follows the `RFC 3339` format.
+               material expires. The date format follows the `RFC 3339` format. Supported
+               secret types: Arbitrary, username_password.
         """
         # pylint: disable=super-init-not-called
         self.name = name
@@ -6172,7 +6259,8 @@ class ArbitrarySecretPrototype(SecretPrototype):
           To protect your privacy, do not use personal data, such as your name or
           location, as a description for your secret group.
     :attr datetime expiration_date: (optional) The date when the secret material
-          expires. The date format follows the `RFC 3339` format.
+          expires. The date format follows the `RFC 3339` format. Supported secret types:
+          Arbitrary, username_password.
     :attr List[str] labels: (optional) Labels that you can use to search secrets in
           your instance. Only 30 labels can be created.
           Label can be between 2-30 characters, including spaces.
@@ -6221,7 +6309,8 @@ class ArbitrarySecretPrototype(SecretPrototype):
                To protect your privacy, do not use personal data, such as your name or
                location, as a description for your secret group.
         :param datetime expiration_date: (optional) The date when the secret
-               material expires. The date format follows the `RFC 3339` format.
+               material expires. The date format follows the `RFC 3339` format. Supported
+               secret types: Arbitrary, username_password.
         :param List[str] labels: (optional) Labels that you can use to search
                secrets in your instance. Only 30 labels can be created.
                Label can be between 2-30 characters, including spaces.
@@ -6363,7 +6452,8 @@ class ArbitrarySecretVersion(SecretVersion):
           a user can customize.
     :attr str secret_id: A v4 UUID identifier.
     :attr datetime expiration_date: (optional) The date when the secret material
-          expires. The date format follows the `RFC 3339` format.
+          expires. The date format follows the `RFC 3339` format. Supported secret types:
+          Arbitrary, username_password.
     :attr str payload: (optional) The secret data that is assigned to an `arbitrary`
           secret.
     """
@@ -6410,7 +6500,8 @@ class ArbitrarySecretVersion(SecretVersion):
         :param dict version_custom_metadata: (optional) The secret version metadata
                that a user can customize.
         :param datetime expiration_date: (optional) The date when the secret
-               material expires. The date format follows the `RFC 3339` format.
+               material expires. The date format follows the `RFC 3339` format. Supported
+               secret types: Arbitrary, username_password.
         :param str payload: (optional) The secret data that is assigned to an
                `arbitrary` secret.
         """
@@ -6588,7 +6679,8 @@ class ArbitrarySecretVersionMetadata(SecretVersionMetadata):
           a user can customize.
     :attr str secret_id: A v4 UUID identifier.
     :attr datetime expiration_date: (optional) The date when the secret material
-          expires. The date format follows the `RFC 3339` format.
+          expires. The date format follows the `RFC 3339` format. Supported secret types:
+          Arbitrary, username_password.
     """
 
     def __init__(
@@ -6632,7 +6724,8 @@ class ArbitrarySecretVersionMetadata(SecretVersionMetadata):
         :param dict version_custom_metadata: (optional) The secret version metadata
                that a user can customize.
         :param datetime expiration_date: (optional) The date when the secret
-               material expires. The date format follows the `RFC 3339` format.
+               material expires. The date format follows the `RFC 3339` format. Supported
+               secret types: Arbitrary, username_password.
         """
         # pylint: disable=super-init-not-called
         self.auto_rotated = auto_rotated
@@ -6966,10 +7059,11 @@ class IAMCredentialsConfiguration(Configuration):
           format follows `RFC 3339`.
     :attr datetime updated_at: The date when a resource was modified. The date
           format follows `RFC 3339`.
-    :attr str api_key: (optional) The API key that is generated for this secret.
-          After the secret reaches the end of its lease (see the `ttl` field), the API key
-          is deleted automatically. If you want to continue to use the same API key for
-          future read operations, see the `reuse_api_key` field.
+    :attr str api_key: (optional) An IBM Cloud API key that can create and manage
+          service IDs. The API key must be assigned the Editor platform role on the Access
+          Groups Service and the Operator platform role on the IAM Identity Service.  For
+          more information, see the
+          [docs](https://cloud.ibm.com/docs/secrets-manager?topic=secrets-manager-configure-iam-engine).
     """
 
     def __init__(
@@ -7264,10 +7358,11 @@ class IAMCredentialsConfigurationPatch(ConfigurationPatch):
     """
     The configuration update of the IAM Credentials engine.
 
-    :attr str api_key: The API key that is generated for this secret.
-          After the secret reaches the end of its lease (see the `ttl` field), the API key
-          is deleted automatically. If you want to continue to use the same API key for
-          future read operations, see the `reuse_api_key` field.
+    :attr str api_key: An IBM Cloud API key that can create and manage service IDs.
+          The API key must be assigned the Editor platform role on the Access Groups
+          Service and the Operator platform role on the IAM Identity Service.  For more
+          information, see the
+          [docs](https://cloud.ibm.com/docs/secrets-manager?topic=secrets-manager-configure-iam-engine).
     """
 
     def __init__(
@@ -7277,10 +7372,11 @@ class IAMCredentialsConfigurationPatch(ConfigurationPatch):
         """
         Initialize a IAMCredentialsConfigurationPatch object.
 
-        :param str api_key: The API key that is generated for this secret.
-               After the secret reaches the end of its lease (see the `ttl` field), the
-               API key is deleted automatically. If you want to continue to use the same
-               API key for future read operations, see the `reuse_api_key` field.
+        :param str api_key: An IBM Cloud API key that can create and manage service
+               IDs. The API key must be assigned the Editor platform role on the Access
+               Groups Service and the Operator platform role on the IAM Identity Service.
+               For more information, see the
+               [docs](https://cloud.ibm.com/docs/secrets-manager?topic=secrets-manager-configure-iam-engine).
         """
         # pylint: disable=super-init-not-called
         self.api_key = api_key
@@ -7334,10 +7430,7 @@ class IAMCredentialsConfigurationPrototype(ConfigurationPrototype):
           To protect your privacy, do not use personal data, such as your name or
           location, as an name for your secret.
     :attr str config_type: The configuration type.
-    :attr str api_key: The API key that is generated for this secret.
-          After the secret reaches the end of its lease (see the `ttl` field), the API key
-          is deleted automatically. If you want to continue to use the same API key for
-          future read operations, see the `reuse_api_key` field.
+    :attr str api_key: The API key that is used to set the iam_credentials engine.
     """
 
     def __init__(
@@ -7354,10 +7447,8 @@ class IAMCredentialsConfigurationPrototype(ConfigurationPrototype):
                To protect your privacy, do not use personal data, such as your name or
                location, as an name for your secret.
         :param str config_type: The configuration type.
-        :param str api_key: The API key that is generated for this secret.
-               After the secret reaches the end of its lease (see the `ttl` field), the
-               API key is deleted automatically. If you want to continue to use the same
-               API key for future read operations, see the `reuse_api_key` field.
+        :param str api_key: The API key that is used to set the iam_credentials
+               engine.
         """
         # pylint: disable=super-init-not-called
         self.name = name
@@ -7498,7 +7589,8 @@ class IAMCredentialsSecret(Secret):
           to `false`, a new service ID and API key are generated each time that the secret
           is read or accessed.
     :attr RotationPolicy rotation: (optional) This field indicates whether Secrets
-          Manager rotates your secrets automatically.
+          Manager rotates your secrets automatically. Supported secret types:
+          username_password, private_cert, public_cert, iam_credentials.
     :attr datetime next_rotation_date: (optional) The date that the secret is
           scheduled for automatic rotation.
           The service automatically creates a new version of the secret on its next
@@ -7591,7 +7683,8 @@ class IAMCredentialsSecret(Secret):
                secret expires, is rotated, or deleted. If you provide a service ID, do not
                include the `access_groups` parameter.
         :param RotationPolicy rotation: (optional) This field indicates whether
-               Secrets Manager rotates your secrets automatically.
+               Secrets Manager rotates your secrets automatically. Supported secret types:
+               username_password, private_cert, public_cert, iam_credentials.
         """
         # pylint: disable=super-init-not-called
         self.created_by = created_by
@@ -7872,7 +7965,8 @@ class IAMCredentialsSecretMetadata(SecretMetadata):
           to `false`, a new service ID and API key are generated each time that the secret
           is read or accessed.
     :attr RotationPolicy rotation: (optional) This field indicates whether Secrets
-          Manager rotates your secrets automatically.
+          Manager rotates your secrets automatically. Supported secret types:
+          username_password, private_cert, public_cert, iam_credentials.
     :attr datetime next_rotation_date: (optional) The date that the secret is
           scheduled for automatic rotation.
           The service automatically creates a new version of the secret on its next
@@ -7960,7 +8054,8 @@ class IAMCredentialsSecretMetadata(SecretMetadata):
                secret expires, is rotated, or deleted. If you provide a service ID, do not
                include the `access_groups` parameter.
         :param RotationPolicy rotation: (optional) This field indicates whether
-               Secrets Manager rotates your secrets automatically.
+               Secrets Manager rotates your secrets automatically. Supported secret types:
+               username_password, private_cert, public_cert, iam_credentials.
         """
         # pylint: disable=super-init-not-called
         self.created_by = created_by
@@ -8193,7 +8288,8 @@ class IAMCredentialsSecretMetadataPatch(SecretMetadataPatch):
           of seconds, or the string representation of a duration, such as `120m` or `24h`.
           The minimum duration is 1 minute. The maximum is 90 days.
     :attr RotationPolicy rotation: (optional) This field indicates whether Secrets
-          Manager rotates your secrets automatically.
+          Manager rotates your secrets automatically. Supported secret types:
+          username_password, private_cert, public_cert, iam_credentials.
     """
 
     def __init__(
@@ -8230,7 +8326,8 @@ class IAMCredentialsSecretMetadataPatch(SecretMetadataPatch):
                `120m` or `24h`.
                The minimum duration is 1 minute. The maximum is 90 days.
         :param RotationPolicy rotation: (optional) This field indicates whether
-               Secrets Manager rotates your secrets automatically.
+               Secrets Manager rotates your secrets automatically. Supported secret types:
+               username_password, private_cert, public_cert, iam_credentials.
         """
         # pylint: disable=super-init-not-called
         self.name = name
@@ -8345,7 +8442,8 @@ class IAMCredentialsSecretPrototype(SecretPrototype):
           to `false`, a new service ID and API key are generated each time that the secret
           is read or accessed.
     :attr RotationPolicy rotation: (optional) This field indicates whether Secrets
-          Manager rotates your secrets automatically.
+          Manager rotates your secrets automatically. Supported secret types:
+          username_password, private_cert, public_cert, iam_credentials.
     :attr dict custom_metadata: (optional) The secret metadata that a user can
           customize.
     :attr dict version_custom_metadata: (optional) The secret version metadata that
@@ -8412,7 +8510,8 @@ class IAMCredentialsSecretPrototype(SecretPrototype):
                secret expires, is rotated, or deleted. If you provide a service ID, do not
                include the `access_groups` parameter.
         :param RotationPolicy rotation: (optional) This field indicates whether
-               Secrets Manager rotates your secrets automatically.
+               Secrets Manager rotates your secrets automatically. Supported secret types:
+               username_password, private_cert, public_cert, iam_credentials.
         :param dict custom_metadata: (optional) The secret metadata that a user can
                customize.
         :param dict version_custom_metadata: (optional) The secret version metadata
@@ -9222,7 +9321,8 @@ class ImportedCertificate(Secret):
     :attr str common_name: (optional) The Common Name (CN) represents the server
           name protected by the SSL certificate.
     :attr datetime expiration_date: The date when the secret material expires. The
-          date format follows the `RFC 3339` format.
+          date format follows the `RFC 3339` format. Supported secret types: Arbitrary,
+          username_password.
     :attr bool intermediate_included: Indicates whether the certificate was imported
           with an associated intermediate certificate.
     :attr str issuer: The distinguished name that identifies the entity that signed
@@ -9300,7 +9400,8 @@ class ImportedCertificate(Secret):
                algorithm that is used by the issuing certificate authority to sign a
                certificate.
         :param datetime expiration_date: The date when the secret material expires.
-               The date format follows the `RFC 3339` format.
+               The date format follows the `RFC 3339` format. Supported secret types:
+               Arbitrary, username_password.
         :param bool intermediate_included: Indicates whether the certificate was
                imported with an associated intermediate certificate.
         :param str issuer: The distinguished name that identifies the entity that
@@ -9624,7 +9725,8 @@ class ImportedCertificateMetadata(SecretMetadata):
     :attr str common_name: (optional) The Common Name (CN) represents the server
           name protected by the SSL certificate.
     :attr datetime expiration_date: The date when the secret material expires. The
-          date format follows the `RFC 3339` format.
+          date format follows the `RFC 3339` format. Supported secret types: Arbitrary,
+          username_password.
     :attr bool intermediate_included: Indicates whether the certificate was imported
           with an associated intermediate certificate.
     :attr str issuer: The distinguished name that identifies the entity that signed
@@ -9691,7 +9793,8 @@ class ImportedCertificateMetadata(SecretMetadata):
                algorithm that is used by the issuing certificate authority to sign a
                certificate.
         :param datetime expiration_date: The date when the secret material expires.
-               The date format follows the `RFC 3339` format.
+               The date format follows the `RFC 3339` format. Supported secret types:
+               Arbitrary, username_password.
         :param bool intermediate_included: Indicates whether the certificate was
                imported with an associated intermediate certificate.
         :param str issuer: The distinguished name that identifies the entity that
@@ -10262,7 +10365,8 @@ class ImportedCertificateVersion(SecretVersion):
           a user can customize.
     :attr str secret_id: A v4 UUID identifier.
     :attr datetime expiration_date: The date when the secret material expires. The
-          date format follows the `RFC 3339` format.
+          date format follows the `RFC 3339` format. Supported secret types: Arbitrary,
+          username_password.
     :attr str serial_number: The unique serial number that was assigned to a
           certificate by the issuing certificate authority.
     :attr CertificateValidity validity: The date and time that the certificate
@@ -10316,7 +10420,8 @@ class ImportedCertificateVersion(SecretVersion):
                available in this secret version.
         :param str secret_id: A v4 UUID identifier.
         :param datetime expiration_date: The date when the secret material expires.
-               The date format follows the `RFC 3339` format.
+               The date format follows the `RFC 3339` format. Supported secret types:
+               Arbitrary, username_password.
         :param str serial_number: The unique serial number that was assigned to a
                certificate by the issuing certificate authority.
         :param CertificateValidity validity: The date and time that the certificate
@@ -10542,7 +10647,8 @@ class ImportedCertificateVersionMetadata(SecretVersionMetadata):
           a user can customize.
     :attr str secret_id: A v4 UUID identifier.
     :attr datetime expiration_date: The date when the secret material expires. The
-          date format follows the `RFC 3339` format.
+          date format follows the `RFC 3339` format. Supported secret types: Arbitrary,
+          username_password.
     :attr str serial_number: The unique serial number that was assigned to a
           certificate by the issuing certificate authority.
     :attr CertificateValidity validity: The date and time that the certificate
@@ -10585,7 +10691,8 @@ class ImportedCertificateVersionMetadata(SecretVersionMetadata):
                available in this secret version.
         :param str secret_id: A v4 UUID identifier.
         :param datetime expiration_date: The date when the secret material expires.
-               The date format follows the `RFC 3339` format.
+               The date format follows the `RFC 3339` format. Supported secret types:
+               Arbitrary, username_password.
         :param str serial_number: The unique serial number that was assigned to a
                certificate by the issuing certificate authority.
         :param CertificateValidity validity: The date and time that the certificate
@@ -12181,7 +12288,8 @@ class PrivateCertificate(Secret):
     :attr str common_name: The Common Name (CN) represents the server name that is
           protected by the SSL certificate.
     :attr datetime expiration_date: The date when the secret material expires. The
-          date format follows the `RFC 3339` format.
+          date format follows the `RFC 3339` format. Supported secret types: Arbitrary,
+          username_password.
     :attr str issuer: The distinguished name that identifies the entity that signed
           and issued the certificate.
     :attr str key_algorithm: (optional) The identifier for the cryptographic
@@ -12193,7 +12301,8 @@ class PrivateCertificate(Secret):
           rotation date. This field exists only for secrets that can be auto-rotated and
           an existing rotation policy.
     :attr RotationPolicy rotation: (optional) This field indicates whether Secrets
-          Manager rotates your secrets automatically.
+          Manager rotates your secrets automatically. Supported secret types:
+          username_password, private_cert, public_cert, iam_credentials.
     :attr str serial_number: The unique serial number that was assigned to a
           certificate by the issuing certificate authority.
     :attr CertificateValidity validity: The date and time that the certificate
@@ -12275,7 +12384,8 @@ class PrivateCertificate(Secret):
         :param str common_name: The Common Name (CN) represents the server name
                that is protected by the SSL certificate.
         :param datetime expiration_date: The date when the secret material expires.
-               The date format follows the `RFC 3339` format.
+               The date format follows the `RFC 3339` format. Supported secret types:
+               Arbitrary, username_password.
         :param str issuer: The distinguished name that identifies the entity that
                signed and issued the certificate.
         :param str serial_number: The unique serial number that was assigned to a
@@ -12301,7 +12411,8 @@ class PrivateCertificate(Secret):
                field, you can specify additional hostnames to be protected by a single SSL
                certificate.
         :param RotationPolicy rotation: (optional) This field indicates whether
-               Secrets Manager rotates your secrets automatically.
+               Secrets Manager rotates your secrets automatically. Supported secret types:
+               username_password, private_cert, public_cert, iam_credentials.
         """
         # pylint: disable=super-init-not-called
         self.created_by = created_by
@@ -13254,7 +13365,7 @@ class PrivateCertificateConfigurationActionSignCSR(ConfigurationAction):
           1) Subject information, including names and alternate names, are preserved from
           the CSR rather than by using the values that are provided in the other
           parameters to this operation.
-          2) Any key usage, for example, nonrepudiation, that is requested in the CSR are
+          2) Any key usage, for example, non-repudiation, that is requested in the CSR are
           added to the basic set of key usages used for CA certificates that are signed by
           the intermediate authority.
           3) Extensions that are requested in the CSR are copied into the issued private
@@ -13273,8 +13384,12 @@ class PrivateCertificateConfigurationActionSignCSR(ConfigurationAction):
           in the subject field of the resulting certificate.
     :attr List[str] postal_code: (optional) The postal code values to define in the
           subject field of the resulting certificate.
-    :attr str serial_number: (optional) The serial number to assign to the generated
-          certificate. To assign a random serial number, you can omit this field.
+    :attr str serial_number: (optional) The requested value for the
+          [`serialNumber`](https://datatracker.ietf.org/doc/html/rfc4519#section-2.31)
+          attribute that is in the certificate's distinguished name (DN).
+          **Note:** This field is not related to the `serial_number` field that is
+          returned in the API response. The `serial_number` field represents the
+          certificate's randomly assigned serial number.
     :attr str action_type: The type of configuration action.
     :attr str csr: The certificate signing request.
     :attr PrivateCertificateConfigurationCACertificate data: (optional) The data
@@ -13353,9 +13468,9 @@ class PrivateCertificateConfigurationActionSignCSR(ConfigurationAction):
                1) Subject information, including names and alternate names, are preserved
                from the CSR rather than by using the values that are provided in the other
                parameters to this operation.
-               2) Any key usage, for example, nonrepudiation, that is requested in the CSR
-               are added to the basic set of key usages used for CA certificates that are
-               signed by the intermediate authority.
+               2) Any key usage, for example, non-repudiation, that is requested in the
+               CSR are added to the basic set of key usages used for CA certificates that
+               are signed by the intermediate authority.
                3) Extensions that are requested in the CSR are copied into the issued
                private certificate.
         :param List[str] ou: (optional) The Organizational Unit (OU) values to
@@ -13372,9 +13487,12 @@ class PrivateCertificateConfigurationActionSignCSR(ConfigurationAction):
                define in the subject field of the resulting certificate.
         :param List[str] postal_code: (optional) The postal code values to define
                in the subject field of the resulting certificate.
-        :param str serial_number: (optional) The serial number to assign to the
-               generated certificate. To assign a random serial number, you can omit this
-               field.
+        :param str serial_number: (optional) The requested value for the
+               [`serialNumber`](https://datatracker.ietf.org/doc/html/rfc4519#section-2.31)
+               attribute that is in the certificate's distinguished name (DN).
+               **Note:** This field is not related to the `serial_number` field that is
+               returned in the API response. The `serial_number` field represents the
+               certificate's randomly assigned serial number.
         """
         # pylint: disable=super-init-not-called
         self.common_name = common_name
@@ -13597,7 +13715,7 @@ class PrivateCertificateConfigurationActionSignCSRPrototype(ConfigurationActionP
           1) Subject information, including names and alternate names, are preserved from
           the CSR rather than by using the values that are provided in the other
           parameters to this operation.
-          2) Any key usage, for example, nonrepudiation, that is requested in the CSR are
+          2) Any key usage, for example, non-repudiation, that is requested in the CSR are
           added to the basic set of key usages used for CA certificates that are signed by
           the intermediate authority.
           3) Extensions that are requested in the CSR are copied into the issued private
@@ -13616,8 +13734,12 @@ class PrivateCertificateConfigurationActionSignCSRPrototype(ConfigurationActionP
           in the subject field of the resulting certificate.
     :attr List[str] postal_code: (optional) The postal code values to define in the
           subject field of the resulting certificate.
-    :attr str serial_number: (optional) The serial number to assign to the generated
-          certificate. To assign a random serial number, you can omit this field.
+    :attr str serial_number: (optional) The requested value for the
+          [`serialNumber`](https://datatracker.ietf.org/doc/html/rfc4519#section-2.31)
+          attribute that is in the certificate's distinguished name (DN).
+          **Note:** This field is not related to the `serial_number` field that is
+          returned in the API response. The `serial_number` field represents the
+          certificate's randomly assigned serial number.
     :attr str action_type: The type of configuration action.
     :attr str csr: The certificate signing request.
     """
@@ -13693,9 +13815,9 @@ class PrivateCertificateConfigurationActionSignCSRPrototype(ConfigurationActionP
                1) Subject information, including names and alternate names, are preserved
                from the CSR rather than by using the values that are provided in the other
                parameters to this operation.
-               2) Any key usage, for example, nonrepudiation, that is requested in the CSR
-               are added to the basic set of key usages used for CA certificates that are
-               signed by the intermediate authority.
+               2) Any key usage, for example, non-repudiation, that is requested in the
+               CSR are added to the basic set of key usages used for CA certificates that
+               are signed by the intermediate authority.
                3) Extensions that are requested in the CSR are copied into the issued
                private certificate.
         :param List[str] ou: (optional) The Organizational Unit (OU) values to
@@ -13712,9 +13834,12 @@ class PrivateCertificateConfigurationActionSignCSRPrototype(ConfigurationActionP
                define in the subject field of the resulting certificate.
         :param List[str] postal_code: (optional) The postal code values to define
                in the subject field of the resulting certificate.
-        :param str serial_number: (optional) The serial number to assign to the
-               generated certificate. To assign a random serial number, you can omit this
-               field.
+        :param str serial_number: (optional) The requested value for the
+               [`serialNumber`](https://datatracker.ietf.org/doc/html/rfc4519#section-2.31)
+               attribute that is in the certificate's distinguished name (DN).
+               **Note:** This field is not related to the `serial_number` field that is
+               returned in the API response. The `serial_number` field represents the
+               certificate's randomly assigned serial number.
         """
         # pylint: disable=super-init-not-called
         self.common_name = common_name
@@ -13929,7 +14054,7 @@ class PrivateCertificateConfigurationActionSignIntermediate(ConfigurationAction)
           1) Subject information, including names and alternate names, are preserved from
           the CSR rather than by using the values that are provided in the other
           parameters to this operation.
-          2) Any key usage, for example, nonrepudiation, that is requested in the CSR are
+          2) Any key usage, for example, non-repudiation, that is requested in the CSR are
           added to the basic set of key usages used for CA certificates that are signed by
           the intermediate authority.
           3) Extensions that are requested in the CSR are copied into the issued private
@@ -13948,8 +14073,12 @@ class PrivateCertificateConfigurationActionSignIntermediate(ConfigurationAction)
           in the subject field of the resulting certificate.
     :attr List[str] postal_code: (optional) The postal code values to define in the
           subject field of the resulting certificate.
-    :attr str serial_number: (optional) The serial number to assign to the generated
-          certificate. To assign a random serial number, you can omit this field.
+    :attr str serial_number: (optional) The requested value for the
+          [`serialNumber`](https://datatracker.ietf.org/doc/html/rfc4519#section-2.31)
+          attribute that is in the certificate's distinguished name (DN).
+          **Note:** This field is not related to the `serial_number` field that is
+          returned in the API response. The `serial_number` field represents the
+          certificate's randomly assigned serial number.
     :attr str action_type: The type of configuration action.
     :attr str intermediate_certificate_authority: The unique name of your
           configuration.
@@ -14027,9 +14156,9 @@ class PrivateCertificateConfigurationActionSignIntermediate(ConfigurationAction)
                1) Subject information, including names and alternate names, are preserved
                from the CSR rather than by using the values that are provided in the other
                parameters to this operation.
-               2) Any key usage, for example, nonrepudiation, that is requested in the CSR
-               are added to the basic set of key usages used for CA certificates that are
-               signed by the intermediate authority.
+               2) Any key usage, for example, non-repudiation, that is requested in the
+               CSR are added to the basic set of key usages used for CA certificates that
+               are signed by the intermediate authority.
                3) Extensions that are requested in the CSR are copied into the issued
                private certificate.
         :param List[str] ou: (optional) The Organizational Unit (OU) values to
@@ -14046,9 +14175,12 @@ class PrivateCertificateConfigurationActionSignIntermediate(ConfigurationAction)
                define in the subject field of the resulting certificate.
         :param List[str] postal_code: (optional) The postal code values to define
                in the subject field of the resulting certificate.
-        :param str serial_number: (optional) The serial number to assign to the
-               generated certificate. To assign a random serial number, you can omit this
-               field.
+        :param str serial_number: (optional) The requested value for the
+               [`serialNumber`](https://datatracker.ietf.org/doc/html/rfc4519#section-2.31)
+               attribute that is in the certificate's distinguished name (DN).
+               **Note:** This field is not related to the `serial_number` field that is
+               returned in the API response. The `serial_number` field represents the
+               certificate's randomly assigned serial number.
         """
         # pylint: disable=super-init-not-called
         self.common_name = common_name
@@ -14263,7 +14395,7 @@ class PrivateCertificateConfigurationActionSignIntermediatePrototype(Configurati
           1) Subject information, including names and alternate names, are preserved from
           the CSR rather than by using the values that are provided in the other
           parameters to this operation.
-          2) Any key usage, for example, nonrepudiation, that is requested in the CSR are
+          2) Any key usage, for example, non-repudiation, that is requested in the CSR are
           added to the basic set of key usages used for CA certificates that are signed by
           the intermediate authority.
           3) Extensions that are requested in the CSR are copied into the issued private
@@ -14282,8 +14414,12 @@ class PrivateCertificateConfigurationActionSignIntermediatePrototype(Configurati
           in the subject field of the resulting certificate.
     :attr List[str] postal_code: (optional) The postal code values to define in the
           subject field of the resulting certificate.
-    :attr str serial_number: (optional) The serial number to assign to the generated
-          certificate. To assign a random serial number, you can omit this field.
+    :attr str serial_number: (optional) The requested value for the
+          [`serialNumber`](https://datatracker.ietf.org/doc/html/rfc4519#section-2.31)
+          attribute that is in the certificate's distinguished name (DN).
+          **Note:** This field is not related to the `serial_number` field that is
+          returned in the API response. The `serial_number` field represents the
+          certificate's randomly assigned serial number.
     :attr str action_type: The type of configuration action.
     :attr str intermediate_certificate_authority: The unique name of your
           configuration.
@@ -14361,9 +14497,9 @@ class PrivateCertificateConfigurationActionSignIntermediatePrototype(Configurati
                1) Subject information, including names and alternate names, are preserved
                from the CSR rather than by using the values that are provided in the other
                parameters to this operation.
-               2) Any key usage, for example, nonrepudiation, that is requested in the CSR
-               are added to the basic set of key usages used for CA certificates that are
-               signed by the intermediate authority.
+               2) Any key usage, for example, non-repudiation, that is requested in the
+               CSR are added to the basic set of key usages used for CA certificates that
+               are signed by the intermediate authority.
                3) Extensions that are requested in the CSR are copied into the issued
                private certificate.
         :param List[str] ou: (optional) The Organizational Unit (OU) values to
@@ -14380,9 +14516,12 @@ class PrivateCertificateConfigurationActionSignIntermediatePrototype(Configurati
                define in the subject field of the resulting certificate.
         :param List[str] postal_code: (optional) The postal code values to define
                in the subject field of the resulting certificate.
-        :param str serial_number: (optional) The serial number to assign to the
-               generated certificate. To assign a random serial number, you can omit this
-               field.
+        :param str serial_number: (optional) The requested value for the
+               [`serialNumber`](https://datatracker.ietf.org/doc/html/rfc4519#section-2.31)
+               attribute that is in the certificate's distinguished name (DN).
+               **Note:** This field is not related to the `serial_number` field that is
+               returned in the API response. The `serial_number` field represents the
+               certificate's randomly assigned serial number.
         """
         # pylint: disable=super-init-not-called
         self.common_name = common_name
@@ -14658,7 +14797,8 @@ class PrivateCertificateConfigurationIntermediateCA(Configuration):
           whether to encode the certificate revocation list (CRL) distribution points in
           the certificates that are issued by this certificate authority.
     :attr datetime expiration_date: (optional) The date when the secret material
-          expires. The date format follows the `RFC 3339` format.
+          expires. The date format follows the `RFC 3339` format. Supported secret types:
+          Arbitrary, username_password.
     :attr str issuer: (optional) The distinguished name that identifies the entity
           that signed and issued the certificate.
     :attr str key_type: (optional) The type of private key to generate.
@@ -14724,8 +14864,8 @@ class PrivateCertificateConfigurationIntermediateCA(Configuration):
           in the subject field of the resulting certificate.
     :attr List[str] postal_code: (optional) The postal code values to define in the
           subject field of the resulting certificate.
-    :attr str serial_number: (optional) The serial number to assign to the generated
-          certificate. To assign a random serial number, you can omit this field.
+    :attr str serial_number: (optional) The unique serial number that was assigned
+          to a certificate by the issuing certificate authority.
     :attr PrivateCertificateCAData data: (optional) The configuration data of your
           Private Certificate.
     """
@@ -14794,7 +14934,8 @@ class PrivateCertificateConfigurationIntermediateCA(Configuration):
                distribution points in the certificates that are issued by this certificate
                authority.
         :param datetime expiration_date: (optional) The date when the secret
-               material expires. The date format follows the `RFC 3339` format.
+               material expires. The date format follows the `RFC 3339` format. Supported
+               secret types: Arbitrary, username_password.
         :param str issuer: (optional) The distinguished name that identifies the
                entity that signed and issued the certificate.
         :param str key_type: (optional) The type of private key to generate.
@@ -14846,9 +14987,8 @@ class PrivateCertificateConfigurationIntermediateCA(Configuration):
                define in the subject field of the resulting certificate.
         :param List[str] postal_code: (optional) The postal code values to define
                in the subject field of the resulting certificate.
-        :param str serial_number: (optional) The serial number to assign to the
-               generated certificate. To assign a random serial number, you can omit this
-               field.
+        :param str serial_number: (optional) The unique serial number that was
+               assigned to a certificate by the issuing certificate authority.
         :param PrivateCertificateCAData data: (optional) The configuration data of
                your Private Certificate.
         """
@@ -15282,7 +15422,8 @@ class PrivateCertificateConfigurationIntermediateCAMetadata(ConfigurationMetadat
           whether to encode the certificate revocation list (CRL) distribution points in
           the certificates that are issued by this certificate authority.
     :attr datetime expiration_date: (optional) The date when the secret material
-          expires. The date format follows the `RFC 3339` format.
+          expires. The date format follows the `RFC 3339` format. Supported secret types:
+          Arbitrary, username_password.
     :attr str issuer: (optional) The distinguished name that identifies the entity
           that signed and issued the certificate.
     :attr str key_type: (optional) The type of private key to generate.
@@ -15348,7 +15489,8 @@ class PrivateCertificateConfigurationIntermediateCAMetadata(ConfigurationMetadat
                distribution points in the certificates that are issued by this certificate
                authority.
         :param datetime expiration_date: (optional) The date when the secret
-               material expires. The date format follows the `RFC 3339` format.
+               material expires. The date format follows the `RFC 3339` format. Supported
+               secret types: Arbitrary, username_password.
         :param str issuer: (optional) The distinguished name that identifies the
                entity that signed and issued the certificate.
         :param str key_type: (optional) The type of private key to generate.
@@ -15756,8 +15898,12 @@ class PrivateCertificateConfigurationIntermediateCAPrototype(ConfigurationProtot
           in the subject field of the resulting certificate.
     :attr List[str] postal_code: (optional) The postal code values to define in the
           subject field of the resulting certificate.
-    :attr str serial_number: (optional) The serial number to assign to the generated
-          certificate. To assign a random serial number, you can omit this field.
+    :attr str serial_number: (optional) The requested value for the
+          [`serialNumber`](https://datatracker.ietf.org/doc/html/rfc4519#section-2.31)
+          attribute that is in the certificate's distinguished name (DN).
+          **Note:** This field is not related to the `serial_number` field that is
+          returned in the API response. The `serial_number` field represents the
+          certificate's randomly assigned serial number.
     """
 
     def __init__(
@@ -15873,9 +16019,12 @@ class PrivateCertificateConfigurationIntermediateCAPrototype(ConfigurationProtot
                define in the subject field of the resulting certificate.
         :param List[str] postal_code: (optional) The postal code values to define
                in the subject field of the resulting certificate.
-        :param str serial_number: (optional) The serial number to assign to the
-               generated certificate. To assign a random serial number, you can omit this
-               field.
+        :param str serial_number: (optional) The requested value for the
+               [`serialNumber`](https://datatracker.ietf.org/doc/html/rfc4519#section-2.31)
+               attribute that is in the certificate's distinguished name (DN).
+               **Note:** This field is not related to the `serial_number` field that is
+               returned in the API response. The `serial_number` field represents the
+               certificate's randomly assigned serial number.
         """
         # pylint: disable=super-init-not-called
         self.config_type = config_type
@@ -16134,7 +16283,8 @@ class PrivateCertificateConfigurationRootCA(Configuration):
           whether to encode the certificate revocation list (CRL) distribution points in
           the certificates that are issued by this certificate authority.
     :attr datetime expiration_date: (optional) The date when the secret material
-          expires. The date format follows the `RFC 3339` format.
+          expires. The date format follows the `RFC 3339` format. Supported secret types:
+          Arbitrary, username_password.
     :attr str key_type: (optional) The type of private key to generate.
     :attr int key_bits: (optional) The number of bits to use to generate the private
           key.
@@ -16203,8 +16353,8 @@ class PrivateCertificateConfigurationRootCA(Configuration):
           in the subject field of the resulting certificate.
     :attr List[str] postal_code: (optional) The postal code values to define in the
           subject field of the resulting certificate.
-    :attr str serial_number: (optional) The serial number to assign to the generated
-          certificate. To assign a random serial number, you can omit this field.
+    :attr str serial_number: (optional) The unique serial number that was assigned
+          to a certificate by the issuing certificate authority.
     :attr PrivateCertificateCAData data: (optional) The configuration data of your
           Private Certificate.
     """
@@ -16269,7 +16419,8 @@ class PrivateCertificateConfigurationRootCA(Configuration):
                distribution points in the certificates that are issued by this certificate
                authority.
         :param datetime expiration_date: (optional) The date when the secret
-               material expires. The date format follows the `RFC 3339` format.
+               material expires. The date format follows the `RFC 3339` format. Supported
+               secret types: Arbitrary, username_password.
         :param str key_type: (optional) The type of private key to generate.
         :param int key_bits: (optional) The number of bits to use to generate the
                private key.
@@ -16327,9 +16478,8 @@ class PrivateCertificateConfigurationRootCA(Configuration):
                define in the subject field of the resulting certificate.
         :param List[str] postal_code: (optional) The postal code values to define
                in the subject field of the resulting certificate.
-        :param str serial_number: (optional) The serial number to assign to the
-               generated certificate. To assign a random serial number, you can omit this
-               field.
+        :param str serial_number: (optional) The unique serial number that was
+               assigned to a certificate by the issuing certificate authority.
         :param PrivateCertificateCAData data: (optional) The configuration data of
                your Private Certificate.
         """
@@ -16656,7 +16806,8 @@ class PrivateCertificateConfigurationRootCAMetadata(ConfigurationMetadata):
           whether to encode the certificate revocation list (CRL) distribution points in
           the certificates that are issued by this certificate authority.
     :attr datetime expiration_date: (optional) The date when the secret material
-          expires. The date format follows the `RFC 3339` format.
+          expires. The date format follows the `RFC 3339` format. Supported secret types:
+          Arbitrary, username_password.
     :attr str key_type: (optional) The type of private key to generate.
     :attr int key_bits: (optional) The number of bits to use to generate the private
           key.
@@ -16708,7 +16859,8 @@ class PrivateCertificateConfigurationRootCAMetadata(ConfigurationMetadata):
                distribution points in the certificates that are issued by this certificate
                authority.
         :param datetime expiration_date: (optional) The date when the secret
-               material expires. The date format follows the `RFC 3339` format.
+               material expires. The date format follows the `RFC 3339` format. Supported
+               secret types: Arbitrary, username_password.
         :param str key_type: (optional) The type of private key to generate.
         :param int key_bits: (optional) The number of bits to use to generate the
                private key.
@@ -17096,8 +17248,12 @@ class PrivateCertificateConfigurationRootCAPrototype(ConfigurationPrototype):
           in the subject field of the resulting certificate.
     :attr List[str] postal_code: (optional) The postal code values to define in the
           subject field of the resulting certificate.
-    :attr str serial_number: (optional) The serial number to assign to the generated
-          certificate. To assign a random serial number, you can omit this field.
+    :attr str serial_number: (optional) The requested value for the
+          [`serialNumber`](https://datatracker.ietf.org/doc/html/rfc4519#section-2.31)
+          attribute that is in the certificate's distinguished name (DN).
+          **Note:** This field is not related to the `serial_number` field that is
+          returned in the API response. The `serial_number` field represents the
+          certificate's randomly assigned serial number.
     """
 
     def __init__(
@@ -17221,9 +17377,12 @@ class PrivateCertificateConfigurationRootCAPrototype(ConfigurationPrototype):
                define in the subject field of the resulting certificate.
         :param List[str] postal_code: (optional) The postal code values to define
                in the subject field of the resulting certificate.
-        :param str serial_number: (optional) The serial number to assign to the
-               generated certificate. To assign a random serial number, you can omit this
-               field.
+        :param str serial_number: (optional) The requested value for the
+               [`serialNumber`](https://datatracker.ietf.org/doc/html/rfc4519#section-2.31)
+               attribute that is in the certificate's distinguished name (DN).
+               **Note:** This field is not related to the `serial_number` field that is
+               returned in the API response. The `serial_number` field represents the
+               certificate's randomly assigned serial number.
         """
         # pylint: disable=super-init-not-called
         self.config_type = config_type
@@ -17576,8 +17735,8 @@ class PrivateCertificateConfigurationTemplate(Configuration):
           in the subject field of the resulting certificate.
     :attr List[str] postal_code: (optional) The postal code values to define in the
           subject field of the resulting certificate.
-    :attr str serial_number: (optional) The serial number to assign to the generated
-          certificate. To assign a random serial number, you can omit this field.
+    :attr str serial_number: (optional) This field is deprecated. You can ignore its
+          value.
     :attr bool require_cn: (optional) This field indicates whether to require a
           common name to create a private certificate.
           By default, a common name is required to generate a certificate. To make the
@@ -17760,9 +17919,8 @@ class PrivateCertificateConfigurationTemplate(Configuration):
                define in the subject field of the resulting certificate.
         :param List[str] postal_code: (optional) The postal code values to define
                in the subject field of the resulting certificate.
-        :param str serial_number: (optional) The serial number to assign to the
-               generated certificate. To assign a random serial number, you can omit this
-               field.
+        :param str serial_number: (optional) This field is deprecated. You can
+               ignore its value.
         :param bool require_cn: (optional) This field indicates whether to require
                a common name to create a private certificate.
                By default, a common name is required to generate a certificate. To make
@@ -18366,8 +18524,8 @@ class PrivateCertificateConfigurationTemplatePatch(ConfigurationPatch):
           in the subject field of the resulting certificate.
     :attr List[str] postal_code: (optional) The postal code values to define in the
           subject field of the resulting certificate.
-    :attr str serial_number: (optional) The serial number to assign to the generated
-          certificate. To assign a random serial number, you can omit this field.
+    :attr str serial_number: (optional) This field is deprecated. You can ignore its
+          value.
     :attr bool require_cn: (optional) This field indicates whether to require a
           common name to create a private certificate.
           By default, a common name is required to generate a certificate. To make the
@@ -18544,9 +18702,8 @@ class PrivateCertificateConfigurationTemplatePatch(ConfigurationPatch):
                define in the subject field of the resulting certificate.
         :param List[str] postal_code: (optional) The postal code values to define
                in the subject field of the resulting certificate.
-        :param str serial_number: (optional) The serial number to assign to the
-               generated certificate. To assign a random serial number, you can omit this
-               field.
+        :param str serial_number: (optional) This field is deprecated. You can
+               ignore its value.
         :param bool require_cn: (optional) This field indicates whether to require
                a common name to create a private certificate.
                By default, a common name is required to generate a certificate. To make
@@ -18925,8 +19082,8 @@ class PrivateCertificateConfigurationTemplatePrototype(ConfigurationPrototype):
           in the subject field of the resulting certificate.
     :attr List[str] postal_code: (optional) The postal code values to define in the
           subject field of the resulting certificate.
-    :attr str serial_number: (optional) The serial number to assign to the generated
-          certificate. To assign a random serial number, you can omit this field.
+    :attr str serial_number: (optional) This field is deprecated. You can ignore its
+          value.
     :attr bool require_cn: (optional) This field indicates whether to require a
           common name to create a private certificate.
           By default, a common name is required to generate a certificate. To make the
@@ -19119,9 +19276,8 @@ class PrivateCertificateConfigurationTemplatePrototype(ConfigurationPrototype):
                define in the subject field of the resulting certificate.
         :param List[str] postal_code: (optional) The postal code values to define
                in the subject field of the resulting certificate.
-        :param str serial_number: (optional) The serial number to assign to the
-               generated certificate. To assign a random serial number, you can omit this
-               field.
+        :param str serial_number: (optional) This field is deprecated. You can
+               ignore its value.
         :param bool require_cn: (optional) This field indicates whether to require
                a common name to create a private certificate.
                By default, a common name is required to generate a certificate. To make
@@ -19455,7 +19611,8 @@ class PrivateCertificateMetadata(SecretMetadata):
     :attr str common_name: The Common Name (CN) represents the server name that is
           protected by the SSL certificate.
     :attr datetime expiration_date: The date when the secret material expires. The
-          date format follows the `RFC 3339` format.
+          date format follows the `RFC 3339` format. Supported secret types: Arbitrary,
+          username_password.
     :attr str issuer: The distinguished name that identifies the entity that signed
           and issued the certificate.
     :attr str key_algorithm: (optional) The identifier for the cryptographic
@@ -19467,7 +19624,8 @@ class PrivateCertificateMetadata(SecretMetadata):
           rotation date. This field exists only for secrets that can be auto-rotated and
           an existing rotation policy.
     :attr RotationPolicy rotation: (optional) This field indicates whether Secrets
-          Manager rotates your secrets automatically.
+          Manager rotates your secrets automatically. Supported secret types:
+          username_password, private_cert, public_cert, iam_credentials.
     :attr str serial_number: The unique serial number that was assigned to a
           certificate by the issuing certificate authority.
     :attr CertificateValidity validity: The date and time that the certificate
@@ -19536,7 +19694,8 @@ class PrivateCertificateMetadata(SecretMetadata):
         :param str common_name: The Common Name (CN) represents the server name
                that is protected by the SSL certificate.
         :param datetime expiration_date: The date when the secret material expires.
-               The date format follows the `RFC 3339` format.
+               The date format follows the `RFC 3339` format. Supported secret types:
+               Arbitrary, username_password.
         :param str issuer: The distinguished name that identifies the entity that
                signed and issued the certificate.
         :param str serial_number: The unique serial number that was assigned to a
@@ -19557,7 +19716,8 @@ class PrivateCertificateMetadata(SecretMetadata):
                field, you can specify additional hostnames to be protected by a single SSL
                certificate.
         :param RotationPolicy rotation: (optional) This field indicates whether
-               Secrets Manager rotates your secrets automatically.
+               Secrets Manager rotates your secrets automatically. Supported secret types:
+               username_password, private_cert, public_cert, iam_credentials.
         """
         # pylint: disable=super-init-not-called
         self.created_by = created_by
@@ -19827,7 +19987,8 @@ class PrivateCertificateMetadataPatch(SecretMetadataPatch):
     :attr dict custom_metadata: (optional) The secret metadata that a user can
           customize.
     :attr RotationPolicy rotation: (optional) This field indicates whether Secrets
-          Manager rotates your secrets automatically.
+          Manager rotates your secrets automatically. Supported secret types:
+          username_password, private_cert, public_cert, iam_credentials.
     """
 
     def __init__(
@@ -19856,7 +20017,8 @@ class PrivateCertificateMetadataPatch(SecretMetadataPatch):
         :param dict custom_metadata: (optional) The secret metadata that a user can
                customize.
         :param RotationPolicy rotation: (optional) This field indicates whether
-               Secrets Manager rotates your secrets automatically.
+               Secrets Manager rotates your secrets automatically. Supported secret types:
+               username_password, private_cert, public_cert, iam_credentials.
         """
         # pylint: disable=super-init-not-called
         self.name = name
@@ -19974,7 +20136,8 @@ class PrivateCertificatePrototype(SecretPrototype):
           example '12h'. The value can't exceed the `max_ttl` that is defined in the
           associated certificate template.
     :attr RotationPolicy rotation: (optional) This field indicates whether Secrets
-          Manager rotates your secrets automatically.
+          Manager rotates your secrets automatically. Supported secret types:
+          username_password, private_cert, public_cert, iam_credentials.
     :attr dict custom_metadata: (optional) The secret metadata that a user can
           customize.
     :attr dict version_custom_metadata: (optional) The secret version metadata that
@@ -20054,7 +20217,8 @@ class PrivateCertificatePrototype(SecretPrototype):
                hours, for example '12h'. The value can't exceed the `max_ttl` that is
                defined in the associated certificate template.
         :param RotationPolicy rotation: (optional) This field indicates whether
-               Secrets Manager rotates your secrets automatically.
+               Secrets Manager rotates your secrets automatically. Supported secret types:
+               username_password, private_cert, public_cert, iam_credentials.
         :param dict custom_metadata: (optional) The secret metadata that a user can
                customize.
         :param dict version_custom_metadata: (optional) The secret version metadata
@@ -20264,7 +20428,8 @@ class PrivateCertificateVersion(SecretVersion):
           a user can customize.
     :attr str secret_id: A v4 UUID identifier.
     :attr datetime expiration_date: The date when the secret material expires. The
-          date format follows the `RFC 3339` format.
+          date format follows the `RFC 3339` format. Supported secret types: Arbitrary,
+          username_password.
     :attr str serial_number: The unique serial number that was assigned to a
           certificate by the issuing certificate authority.
     :attr CertificateValidity validity: The date and time that the certificate
@@ -20320,7 +20485,8 @@ class PrivateCertificateVersion(SecretVersion):
                available in this secret version.
         :param str secret_id: A v4 UUID identifier.
         :param datetime expiration_date: The date when the secret material expires.
-               The date format follows the `RFC 3339` format.
+               The date format follows the `RFC 3339` format. Supported secret types:
+               Arbitrary, username_password.
         :param str serial_number: The unique serial number that was assigned to a
                certificate by the issuing certificate authority.
         :param CertificateValidity validity: The date and time that the certificate
@@ -20697,7 +20863,8 @@ class PrivateCertificateVersionMetadata(SecretVersionMetadata):
           a user can customize.
     :attr str secret_id: A v4 UUID identifier.
     :attr datetime expiration_date: The date when the secret material expires. The
-          date format follows the `RFC 3339` format.
+          date format follows the `RFC 3339` format. Supported secret types: Arbitrary,
+          username_password.
     :attr str serial_number: The unique serial number that was assigned to a
           certificate by the issuing certificate authority.
     :attr CertificateValidity validity: The date and time that the certificate
@@ -20740,7 +20907,8 @@ class PrivateCertificateVersionMetadata(SecretVersionMetadata):
                available in this secret version.
         :param str secret_id: A v4 UUID identifier.
         :param datetime expiration_date: The date when the secret material expires.
-               The date format follows the `RFC 3339` format.
+               The date format follows the `RFC 3339` format. Supported secret types:
+               Arbitrary, username_password.
         :param str serial_number: The unique serial number that was assigned to a
                certificate by the issuing certificate authority.
         :param CertificateValidity validity: The date and time that the certificate
@@ -21038,7 +21206,8 @@ class PublicCertificate(Secret):
     :attr str common_name: The Common Name (CN) represents the server name protected
           by the SSL certificate.
     :attr datetime expiration_date: (optional) The date when the secret material
-          expires. The date format follows the `RFC 3339` format.
+          expires. The date format follows the `RFC 3339` format. Supported secret types:
+          Arbitrary, username_password.
     :attr CertificateIssuanceInfo issuance_info: (optional) Issuance information
           that is associated with your certificate.
     :attr str issuer: (optional) The distinguished name that identifies the entity
@@ -21048,14 +21217,15 @@ class PublicCertificate(Secret):
           The algorithm that you select determines the encryption algorithm (`RSA` or
           `ECDSA`) and key size to be used to generate keys and sign certificates. For
           longer living certificates, it is recommended to use longer keys to provide more
-          encryption protection. Allowed values:  `RSA2048`, `RSA4096`, `EC256`, and
-          `EC384`.
+          encryption protection. Allowed values:  `RSA2048`, `RSA4096`, `ECDSA256`, and
+          `ECDSA384`.
     :attr str serial_number: (optional) The unique serial number that was assigned
           to a certificate by the issuing certificate authority.
     :attr CertificateValidity validity: (optional) The date and time that the
           certificate validity period begins and ends.
     :attr RotationPolicy rotation: This field indicates whether Secrets Manager
-          rotates your secrets automatically.
+          rotates your secrets automatically. Supported secret types: username_password,
+          private_cert, public_cert, iam_credentials.
     :attr bool bundle_certs: (optional) Indicates whether the issued certificate is
           bundled with intermediate certificates.
     :attr str ca: (optional) The name of the certificate authority configuration.
@@ -21132,9 +21302,10 @@ class PublicCertificate(Secret):
                `ECDSA`) and key size to be used to generate keys and sign certificates.
                For longer living certificates, it is recommended to use longer keys to
                provide more encryption protection. Allowed values:  `RSA2048`, `RSA4096`,
-               `EC256`, and `EC384`.
+               `ECDSA256`, and `ECDSA384`.
         :param RotationPolicy rotation: This field indicates whether Secrets
-               Manager rotates your secrets automatically.
+               Manager rotates your secrets automatically. Supported secret types:
+               username_password, private_cert, public_cert, iam_credentials.
         :param dict custom_metadata: (optional) The secret metadata that a user can
                customize.
         :param str description: (optional) An extended description of your secret.
@@ -21152,7 +21323,8 @@ class PublicCertificate(Secret):
                field, you can specify additional hostnames to be protected by a single SSL
                certificate.
         :param datetime expiration_date: (optional) The date when the secret
-               material expires. The date format follows the `RFC 3339` format.
+               material expires. The date format follows the `RFC 3339` format. Supported
+               secret types: Arbitrary, username_password.
         :param str issuer: (optional) The distinguished name that identifies the
                entity that signed and issued the certificate.
         :param str serial_number: (optional) The unique serial number that was
@@ -23326,7 +23498,8 @@ class PublicCertificateMetadata(SecretMetadata):
     :attr str common_name: The Common Name (CN) represents the server name protected
           by the SSL certificate.
     :attr datetime expiration_date: (optional) The date when the secret material
-          expires. The date format follows the `RFC 3339` format.
+          expires. The date format follows the `RFC 3339` format. Supported secret types:
+          Arbitrary, username_password.
     :attr CertificateIssuanceInfo issuance_info: (optional) Issuance information
           that is associated with your certificate.
     :attr str issuer: (optional) The distinguished name that identifies the entity
@@ -23336,14 +23509,15 @@ class PublicCertificateMetadata(SecretMetadata):
           The algorithm that you select determines the encryption algorithm (`RSA` or
           `ECDSA`) and key size to be used to generate keys and sign certificates. For
           longer living certificates, it is recommended to use longer keys to provide more
-          encryption protection. Allowed values:  `RSA2048`, `RSA4096`, `EC256`, and
-          `EC384`.
+          encryption protection. Allowed values:  `RSA2048`, `RSA4096`, `ECDSA256`, and
+          `ECDSA384`.
     :attr str serial_number: (optional) The unique serial number that was assigned
           to a certificate by the issuing certificate authority.
     :attr CertificateValidity validity: (optional) The date and time that the
           certificate validity period begins and ends.
     :attr RotationPolicy rotation: This field indicates whether Secrets Manager
-          rotates your secrets automatically.
+          rotates your secrets automatically. Supported secret types: username_password,
+          private_cert, public_cert, iam_credentials.
     :attr bool bundle_certs: (optional) Indicates whether the issued certificate is
           bundled with intermediate certificates.
     :attr str ca: (optional) The name of the certificate authority configuration.
@@ -23409,9 +23583,10 @@ class PublicCertificateMetadata(SecretMetadata):
                `ECDSA`) and key size to be used to generate keys and sign certificates.
                For longer living certificates, it is recommended to use longer keys to
                provide more encryption protection. Allowed values:  `RSA2048`, `RSA4096`,
-               `EC256`, and `EC384`.
+               `ECDSA256`, and `ECDSA384`.
         :param RotationPolicy rotation: This field indicates whether Secrets
-               Manager rotates your secrets automatically.
+               Manager rotates your secrets automatically. Supported secret types:
+               username_password, private_cert, public_cert, iam_credentials.
         :param dict custom_metadata: (optional) The secret metadata that a user can
                customize.
         :param str description: (optional) An extended description of your secret.
@@ -23429,7 +23604,8 @@ class PublicCertificateMetadata(SecretMetadata):
                field, you can specify additional hostnames to be protected by a single SSL
                certificate.
         :param datetime expiration_date: (optional) The date when the secret
-               material expires. The date format follows the `RFC 3339` format.
+               material expires. The date format follows the `RFC 3339` format. Supported
+               secret types: Arbitrary, username_password.
         :param str issuer: (optional) The distinguished name that identifies the
                entity that signed and issued the certificate.
         :param str serial_number: (optional) The unique serial number that was
@@ -23695,7 +23871,8 @@ class PublicCertificateMetadataPatch(SecretMetadataPatch):
     :attr dict custom_metadata: (optional) The secret metadata that a user can
           customize.
     :attr RotationPolicy rotation: (optional) This field indicates whether Secrets
-          Manager rotates your secrets automatically.
+          Manager rotates your secrets automatically. Supported secret types:
+          username_password, private_cert, public_cert, iam_credentials.
     """
 
     def __init__(
@@ -23724,7 +23901,8 @@ class PublicCertificateMetadataPatch(SecretMetadataPatch):
         :param dict custom_metadata: (optional) The secret metadata that a user can
                customize.
         :param RotationPolicy rotation: (optional) This field indicates whether
-               Secrets Manager rotates your secrets automatically.
+               Secrets Manager rotates your secrets automatically. Supported secret types:
+               username_password, private_cert, public_cert, iam_credentials.
         """
         # pylint: disable=super-init-not-called
         self.name = name
@@ -23822,15 +24000,16 @@ class PublicCertificatePrototype(SecretPrototype):
           The algorithm that you select determines the encryption algorithm (`RSA` or
           `ECDSA`) and key size to be used to generate keys and sign certificates. For
           longer living certificates, it is recommended to use longer keys to provide more
-          encryption protection. Allowed values:  `RSA2048`, `RSA4096`, `EC256`, and
-          `EC384`.
+          encryption protection. Allowed values:  `RSA2048`, `RSA4096`, `ECDSA256`, and
+          `ECDSA384`.
     :attr str ca: The name of the certificate authority configuration.
     :attr str dns: The name of the DNS provider configuration.
     :attr bool bundle_certs: (optional) This field indicates whether your issued
           certificate is bundled with intermediate certificates. Set to `false` for the
           certificate file to contain only the issued certificate.
     :attr RotationPolicy rotation: (optional) This field indicates whether Secrets
-          Manager rotates your secrets automatically.
+          Manager rotates your secrets automatically. Supported secret types:
+          username_password, private_cert, public_cert, iam_credentials.
     :attr dict custom_metadata: (optional) The secret metadata that a user can
           customize.
     :attr dict version_custom_metadata: (optional) The secret version metadata that
@@ -23888,12 +24067,13 @@ class PublicCertificatePrototype(SecretPrototype):
                `ECDSA`) and key size to be used to generate keys and sign certificates.
                For longer living certificates, it is recommended to use longer keys to
                provide more encryption protection. Allowed values:  `RSA2048`, `RSA4096`,
-               `EC256`, and `EC384`.
+               `ECDSA256`, and `ECDSA384`.
         :param bool bundle_certs: (optional) This field indicates whether your
                issued certificate is bundled with intermediate certificates. Set to
                `false` for the certificate file to contain only the issued certificate.
         :param RotationPolicy rotation: (optional) This field indicates whether
-               Secrets Manager rotates your secrets automatically.
+               Secrets Manager rotates your secrets automatically. Supported secret types:
+               username_password, private_cert, public_cert, iam_credentials.
         :param dict custom_metadata: (optional) The secret metadata that a user can
                customize.
         :param dict version_custom_metadata: (optional) The secret version metadata
@@ -24146,7 +24326,8 @@ class PublicCertificateVersion(SecretVersion):
           a user can customize.
     :attr str secret_id: A v4 UUID identifier.
     :attr datetime expiration_date: (optional) The date when the secret material
-          expires. The date format follows the `RFC 3339` format.
+          expires. The date format follows the `RFC 3339` format. Supported secret types:
+          Arbitrary, username_password.
     :attr str serial_number: (optional) The unique serial number that was assigned
           to a certificate by the issuing certificate authority.
     :attr CertificateValidity validity: (optional) The date and time that the
@@ -24207,7 +24388,8 @@ class PublicCertificateVersion(SecretVersion):
         :param dict version_custom_metadata: (optional) The secret version metadata
                that a user can customize.
         :param datetime expiration_date: (optional) The date when the secret
-               material expires. The date format follows the `RFC 3339` format.
+               material expires. The date format follows the `RFC 3339` format. Supported
+               secret types: Arbitrary, username_password.
         :param str serial_number: (optional) The unique serial number that was
                assigned to a certificate by the issuing certificate authority.
         :param CertificateValidity validity: (optional) The date and time that the
@@ -24418,7 +24600,8 @@ class PublicCertificateVersionMetadata(SecretVersionMetadata):
           a user can customize.
     :attr str secret_id: A v4 UUID identifier.
     :attr datetime expiration_date: (optional) The date when the secret material
-          expires. The date format follows the `RFC 3339` format.
+          expires. The date format follows the `RFC 3339` format. Supported secret types:
+          Arbitrary, username_password.
     :attr str serial_number: (optional) The unique serial number that was assigned
           to a certificate by the issuing certificate authority.
     :attr CertificateValidity validity: (optional) The date and time that the
@@ -24468,7 +24651,8 @@ class PublicCertificateVersionMetadata(SecretVersionMetadata):
         :param dict version_custom_metadata: (optional) The secret version metadata
                that a user can customize.
         :param datetime expiration_date: (optional) The date when the secret
-               material expires. The date format follows the `RFC 3339` format.
+               material expires. The date format follows the `RFC 3339` format. Supported
+               secret types: Arbitrary, username_password.
         :param str serial_number: (optional) The unique serial number that was
                assigned to a certificate by the issuing certificate authority.
         :param CertificateValidity validity: (optional) The date and time that the
@@ -24752,9 +24936,11 @@ class UsernamePasswordSecret(Secret):
           format follows `RFC 3339`.
     :attr int versions_total: The number of versions of your secret.
     :attr RotationPolicy rotation: This field indicates whether Secrets Manager
-          rotates your secrets automatically.
+          rotates your secrets automatically. Supported secret types: username_password,
+          private_cert, public_cert, iam_credentials.
     :attr datetime expiration_date: (optional) The date when the secret material
-          expires. The date format follows the `RFC 3339` format.
+          expires. The date format follows the `RFC 3339` format. Supported secret types:
+          Arbitrary, username_password.
     :attr datetime next_rotation_date: (optional) The date that the secret is
           scheduled for automatic rotation.
           The service automatically creates a new version of the secret on its next
@@ -24809,7 +24995,8 @@ class UsernamePasswordSecret(Secret):
                format follows `RFC 3339`.
         :param int versions_total: The number of versions of your secret.
         :param RotationPolicy rotation: This field indicates whether Secrets
-               Manager rotates your secrets automatically.
+               Manager rotates your secrets automatically. Supported secret types:
+               username_password, private_cert, public_cert, iam_credentials.
         :param str username: The username that is assigned to an
                `username_password` secret.
         :param str password: The password that is assigned to an
@@ -24825,7 +25012,8 @@ class UsernamePasswordSecret(Secret):
                To protect your privacy, do not use personal data, such as your name or
                location, as a label for your secret.
         :param datetime expiration_date: (optional) The date when the secret
-               material expires. The date format follows the `RFC 3339` format.
+               material expires. The date format follows the `RFC 3339` format. Supported
+               secret types: Arbitrary, username_password.
         """
         # pylint: disable=super-init-not-called
         self.created_by = created_by
@@ -25059,9 +25247,11 @@ class UsernamePasswordSecretMetadata(SecretMetadata):
           format follows `RFC 3339`.
     :attr int versions_total: The number of versions of your secret.
     :attr RotationPolicy rotation: This field indicates whether Secrets Manager
-          rotates your secrets automatically.
+          rotates your secrets automatically. Supported secret types: username_password,
+          private_cert, public_cert, iam_credentials.
     :attr datetime expiration_date: (optional) The date when the secret material
-          expires. The date format follows the `RFC 3339` format.
+          expires. The date format follows the `RFC 3339` format. Supported secret types:
+          Arbitrary, username_password.
     :attr datetime next_rotation_date: (optional) The date that the secret is
           scheduled for automatic rotation.
           The service automatically creates a new version of the secret on its next
@@ -25110,7 +25300,8 @@ class UsernamePasswordSecretMetadata(SecretMetadata):
                format follows `RFC 3339`.
         :param int versions_total: The number of versions of your secret.
         :param RotationPolicy rotation: This field indicates whether Secrets
-               Manager rotates your secrets automatically.
+               Manager rotates your secrets automatically. Supported secret types:
+               username_password, private_cert, public_cert, iam_credentials.
         :param dict custom_metadata: (optional) The secret metadata that a user can
                customize.
         :param str description: (optional) An extended description of your secret.
@@ -25122,7 +25313,8 @@ class UsernamePasswordSecretMetadata(SecretMetadata):
                To protect your privacy, do not use personal data, such as your name or
                location, as a label for your secret.
         :param datetime expiration_date: (optional) The date when the secret
-               material expires. The date format follows the `RFC 3339` format.
+               material expires. The date format follows the `RFC 3339` format. Supported
+               secret types: Arbitrary, username_password.
         """
         # pylint: disable=super-init-not-called
         self.created_by = created_by
@@ -25322,9 +25514,11 @@ class UsernamePasswordSecretMetadataPatch(SecretMetadataPatch):
     :attr dict custom_metadata: (optional) The secret metadata that a user can
           customize.
     :attr RotationPolicy rotation: (optional) This field indicates whether Secrets
-          Manager rotates your secrets automatically.
+          Manager rotates your secrets automatically. Supported secret types:
+          username_password, private_cert, public_cert, iam_credentials.
     :attr datetime expiration_date: (optional) The date when the secret material
-          expires. The date format follows the `RFC 3339` format.
+          expires. The date format follows the `RFC 3339` format. Supported secret types:
+          Arbitrary, username_password.
     """
 
     def __init__(
@@ -25354,9 +25548,11 @@ class UsernamePasswordSecretMetadataPatch(SecretMetadataPatch):
         :param dict custom_metadata: (optional) The secret metadata that a user can
                customize.
         :param RotationPolicy rotation: (optional) This field indicates whether
-               Secrets Manager rotates your secrets automatically.
+               Secrets Manager rotates your secrets automatically. Supported secret types:
+               username_password, private_cert, public_cert, iam_credentials.
         :param datetime expiration_date: (optional) The date when the secret
-               material expires. The date format follows the `RFC 3339` format.
+               material expires. The date format follows the `RFC 3339` format. Supported
+               secret types: Arbitrary, username_password.
         """
         # pylint: disable=super-init-not-called
         self.name = name
@@ -25453,13 +25649,15 @@ class UsernamePasswordSecretPrototype(SecretPrototype):
     :attr str password: The password that is assigned to an `username_password`
           secret.
     :attr datetime expiration_date: (optional) The date when the secret material
-          expires. The date format follows the `RFC 3339` format.
+          expires. The date format follows the `RFC 3339` format. Supported secret types:
+          Arbitrary, username_password.
     :attr dict custom_metadata: (optional) The secret metadata that a user can
           customize.
     :attr dict version_custom_metadata: (optional) The secret version metadata that
           a user can customize.
     :attr RotationPolicy rotation: (optional) This field indicates whether Secrets
-          Manager rotates your secrets automatically.
+          Manager rotates your secrets automatically. Supported secret types:
+          username_password, private_cert, public_cert, iam_credentials.
     """
 
     def __init__(
@@ -25501,13 +25699,15 @@ class UsernamePasswordSecretPrototype(SecretPrototype):
                To protect your privacy, do not use personal data, such as your name or
                location, as a label for your secret.
         :param datetime expiration_date: (optional) The date when the secret
-               material expires. The date format follows the `RFC 3339` format.
+               material expires. The date format follows the `RFC 3339` format. Supported
+               secret types: Arbitrary, username_password.
         :param dict custom_metadata: (optional) The secret metadata that a user can
                customize.
         :param dict version_custom_metadata: (optional) The secret version metadata
                that a user can customize.
         :param RotationPolicy rotation: (optional) This field indicates whether
-               Secrets Manager rotates your secrets automatically.
+               Secrets Manager rotates your secrets automatically. Supported secret types:
+               username_password, private_cert, public_cert, iam_credentials.
         """
         # pylint: disable=super-init-not-called
         self.secret_type = secret_type
@@ -26065,8 +26265,8 @@ class UsernamePasswordSecretVersionPrototype(SecretVersionPrototype):
     """
     UsernamePasswordSecretVersionPrototype.
 
-    :attr str password: The password that is assigned to an `username_password`
-          secret.
+    :attr str password: (optional) The password that is assigned to an
+          `username_password` secret.
     :attr dict custom_metadata: (optional) The secret metadata that a user can
           customize.
     :attr dict version_custom_metadata: (optional) The secret version metadata that
@@ -26075,15 +26275,15 @@ class UsernamePasswordSecretVersionPrototype(SecretVersionPrototype):
 
     def __init__(
         self,
-        password: str,
         *,
+        password: str = None,
         custom_metadata: dict = None,
         version_custom_metadata: dict = None,
     ) -> None:
         """
         Initialize a UsernamePasswordSecretVersionPrototype object.
 
-        :param str password: The password that is assigned to an
+        :param str password: (optional) The password that is assigned to an
                `username_password` secret.
         :param dict custom_metadata: (optional) The secret metadata that a user can
                customize.
@@ -26101,8 +26301,6 @@ class UsernamePasswordSecretVersionPrototype(SecretVersionPrototype):
         args = {}
         if 'password' in _dict:
             args['password'] = _dict.get('password')
-        else:
-            raise ValueError('Required property \'password\' not present in UsernamePasswordSecretVersionPrototype JSON')
         if 'custom_metadata' in _dict:
             args['custom_metadata'] = _dict.get('custom_metadata')
         if 'version_custom_metadata' in _dict:
@@ -26554,7 +26752,7 @@ class ConfigurationsPager:
                `config_type`, `secret_type`.
                **Usage:** If you want to list only the configurations that contain the
                string `text`, use
-               `../secrets?search=text`.
+               `../configurations?search=text`.
         """
         self._has_next = True
         self._client = client
