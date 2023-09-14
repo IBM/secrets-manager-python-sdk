@@ -67,7 +67,7 @@ authenticators from `ibm_cloud_sdk_core.authenticators`.
 ```python
 from ibm_cloud_sdk_core.authenticators.iam_authenticator import IAMAuthenticator
 
-secretsManager = SecretsManagerV1(
+secretsManager = SecretsManagerV2(
     authenticator=IAMAuthenticator(apikey='<IBM_CLOUD_API_KEY>')
 )
 ```
