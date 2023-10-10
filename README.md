@@ -101,7 +101,7 @@ secretsManager.set_service_url('<SERVICE_URL>')
 secret_prototype_model = {
     'custom_metadata': {'metadata_custom_key':'metadata_custom_value'},
     'description': 'Description of my arbitrary secret.',
-    'expiration_date': '2023-10-05T11:49:42Z',
+    'expiration_date': '2030-10-05T11:49:42Z',
     'labels': ['dev', 'us-south'],
     'name': 'example-arbitrary-secret',
     'secret_group_id': 'default',

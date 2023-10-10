@@ -551,7 +551,7 @@ class TestCreateSecret:
         secret_prototype_model = {}
         secret_prototype_model['custom_metadata'] = {'anyKey': 'anyValue'}
         secret_prototype_model['description'] = 'Description of my arbitrary secret.'
-        secret_prototype_model['expiration_date'] = '2023-10-05T11:49:42Z'
+        secret_prototype_model['expiration_date'] = '2030-10-05T11:49:42Z'
         secret_prototype_model['labels'] = ['dev', 'us-south']
         secret_prototype_model['name'] = 'example-arbitrary-secret'
         secret_prototype_model['secret_group_id'] = 'default'
@@ -604,7 +604,7 @@ class TestCreateSecret:
         secret_prototype_model = {}
         secret_prototype_model['custom_metadata'] = {'anyKey': 'anyValue'}
         secret_prototype_model['description'] = 'Description of my arbitrary secret.'
-        secret_prototype_model['expiration_date'] = '2023-10-05T11:49:42Z'
+        secret_prototype_model['expiration_date'] = '2030-10-05T11:49:42Z'
         secret_prototype_model['labels'] = ['dev', 'us-south']
         secret_prototype_model['name'] = 'example-arbitrary-secret'
         secret_prototype_model['secret_group_id'] = 'default'
