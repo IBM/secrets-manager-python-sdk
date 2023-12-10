@@ -61,7 +61,8 @@ def preprocess_url(operation_path: str):
     # Otherwise, return a regular expression that matches one or more trailing /.
     if re.fullmatch('.*/+', request_url) is None:
         return request_url
-    return re.compile(request_url.rstrip('/') + '/+')
+    else:
+        return re.compile(request_url.rstrip('/') + '/+')
 
 
 def test_parameterized_url():
@@ -548,7 +549,7 @@ class TestCreateSecret:
 
         # Construct a dict representation of a ArbitrarySecretPrototype model
         secret_prototype_model = {}
-        secret_prototype_model['custom_metadata'] = {'metadata_custom_key': 'metadata_custom_value'}
+        secret_prototype_model['custom_metadata'] = {'anyKey': 'anyValue'}
         secret_prototype_model['description'] = 'Description of my arbitrary secret.'
         secret_prototype_model['expiration_date'] = '2030-10-05T11:49:42Z'
         secret_prototype_model['labels'] = ['dev', 'us-south']
@@ -556,7 +557,7 @@ class TestCreateSecret:
         secret_prototype_model['secret_group_id'] = 'default'
         secret_prototype_model['secret_type'] = 'arbitrary'
         secret_prototype_model['payload'] = 'secret-data'
-        secret_prototype_model['version_custom_metadata'] = {'custom_version_key': 'custom_version_value'}
+        secret_prototype_model['version_custom_metadata'] = {'anyKey': 'anyValue'}
 
         # Set up parameter values
         secret_prototype = secret_prototype_model
@@ -601,7 +602,7 @@ class TestCreateSecret:
 
         # Construct a dict representation of a ArbitrarySecretPrototype model
         secret_prototype_model = {}
-        secret_prototype_model['custom_metadata'] = {'metadata_custom_key': 'metadata_custom_value'}
+        secret_prototype_model['custom_metadata'] = {'anyKey': 'anyValue'}
         secret_prototype_model['description'] = 'Description of my arbitrary secret.'
         secret_prototype_model['expiration_date'] = '2030-10-05T11:49:42Z'
         secret_prototype_model['labels'] = ['dev', 'us-south']
@@ -609,7 +610,7 @@ class TestCreateSecret:
         secret_prototype_model['secret_group_id'] = 'default'
         secret_prototype_model['secret_type'] = 'arbitrary'
         secret_prototype_model['payload'] = 'secret-data'
-        secret_prototype_model['version_custom_metadata'] = {'custom_version_key': 'custom_version_value'}
+        secret_prototype_model['version_custom_metadata'] = {'anyKey': 'anyValue'}
 
         # Set up parameter values
         secret_prototype = secret_prototype_model
@@ -1063,7 +1064,7 @@ class TestUpdateSecretMetadata:
         secret_metadata_patch_model['name'] = 'updated-arbitrary-secret-name-example'
         secret_metadata_patch_model['description'] = 'updated Arbitrary Secret description'
         secret_metadata_patch_model['labels'] = ['dev', 'us-south']
-        secret_metadata_patch_model['custom_metadata'] = {'metadata_custom_key': 'metadata_custom_value'}
+        secret_metadata_patch_model['custom_metadata'] = {'anyKey': 'anyValue'}
         secret_metadata_patch_model['expiration_date'] = '2033-04-12T23:20:50.520000Z'
 
         # Set up parameter values
@@ -1114,7 +1115,7 @@ class TestUpdateSecretMetadata:
         secret_metadata_patch_model['name'] = 'updated-arbitrary-secret-name-example'
         secret_metadata_patch_model['description'] = 'updated Arbitrary Secret description'
         secret_metadata_patch_model['labels'] = ['dev', 'us-south']
-        secret_metadata_patch_model['custom_metadata'] = {'metadata_custom_key': 'metadata_custom_value'}
+        secret_metadata_patch_model['custom_metadata'] = {'anyKey': 'anyValue'}
         secret_metadata_patch_model['expiration_date'] = '2033-04-12T23:20:50.520000Z'
 
         # Set up parameter values
@@ -1389,8 +1390,8 @@ class TestCreateSecretVersion:
         # Construct a dict representation of a ArbitrarySecretVersionPrototype model
         secret_version_prototype_model = {}
         secret_version_prototype_model['payload'] = 'updated secret credentials'
-        secret_version_prototype_model['custom_metadata'] = {'metadata_custom_key': 'metadata_custom_value'}
-        secret_version_prototype_model['version_custom_metadata'] = {'custom_version_key': 'custom_version_value'}
+        secret_version_prototype_model['custom_metadata'] = {'anyKey': 'anyValue'}
+        secret_version_prototype_model['version_custom_metadata'] = {'anyKey': 'anyValue'}
 
         # Set up parameter values
         secret_id = '0b5571f7-21e6-42b7-91c5-3f5ac9793a46'
@@ -1438,8 +1439,8 @@ class TestCreateSecretVersion:
         # Construct a dict representation of a ArbitrarySecretVersionPrototype model
         secret_version_prototype_model = {}
         secret_version_prototype_model['payload'] = 'updated secret credentials'
-        secret_version_prototype_model['custom_metadata'] = {'metadata_custom_key': 'metadata_custom_value'}
-        secret_version_prototype_model['version_custom_metadata'] = {'custom_version_key': 'custom_version_value'}
+        secret_version_prototype_model['custom_metadata'] = {'anyKey': 'anyValue'}
+        secret_version_prototype_model['version_custom_metadata'] = {'anyKey': 'anyValue'}
 
         # Set up parameter values
         secret_id = '0b5571f7-21e6-42b7-91c5-3f5ac9793a46'
@@ -1818,7 +1819,7 @@ class TestUpdateSecretVersionMetadata:
 
         # Construct a dict representation of a SecretVersionMetadataPatch model
         secret_version_metadata_patch_model = {}
-        secret_version_metadata_patch_model['version_custom_metadata'] = {'key': 'value'}
+        secret_version_metadata_patch_model['version_custom_metadata'] = {'anyKey': 'anyValue'}
 
         # Set up parameter values
         secret_id = '0b5571f7-21e6-42b7-91c5-3f5ac9793a46'
@@ -1867,7 +1868,7 @@ class TestUpdateSecretVersionMetadata:
 
         # Construct a dict representation of a SecretVersionMetadataPatch model
         secret_version_metadata_patch_model = {}
-        secret_version_metadata_patch_model['version_custom_metadata'] = {'key': 'value'}
+        secret_version_metadata_patch_model['version_custom_metadata'] = {'anyKey': 'anyValue'}
 
         # Set up parameter values
         secret_id = '0b5571f7-21e6-42b7-91c5-3f5ac9793a46'
@@ -2430,7 +2431,7 @@ class TestCreateSecretLocksBulk:
         secret_lock_prototype_model = {}
         secret_lock_prototype_model['name'] = 'lock-example-1'
         secret_lock_prototype_model['description'] = 'lock for consumer 1'
-        secret_lock_prototype_model['attributes'] = {'key': 'value'}
+        secret_lock_prototype_model['attributes'] = {'anyKey': 'anyValue'}
 
         # Set up parameter values
         id = '0b5571f7-21e6-42b7-91c5-3f5ac9793a46'
@@ -2485,7 +2486,7 @@ class TestCreateSecretLocksBulk:
         secret_lock_prototype_model = {}
         secret_lock_prototype_model['name'] = 'lock-example-1'
         secret_lock_prototype_model['description'] = 'lock for consumer 1'
-        secret_lock_prototype_model['attributes'] = {'key': 'value'}
+        secret_lock_prototype_model['attributes'] = {'anyKey': 'anyValue'}
 
         # Set up parameter values
         id = '0b5571f7-21e6-42b7-91c5-3f5ac9793a46'
@@ -2534,7 +2535,7 @@ class TestCreateSecretLocksBulk:
         secret_lock_prototype_model = {}
         secret_lock_prototype_model['name'] = 'lock-example-1'
         secret_lock_prototype_model['description'] = 'lock for consumer 1'
-        secret_lock_prototype_model['attributes'] = {'key': 'value'}
+        secret_lock_prototype_model['attributes'] = {'anyKey': 'anyValue'}
 
         # Set up parameter values
         id = '0b5571f7-21e6-42b7-91c5-3f5ac9793a46'
@@ -2927,7 +2928,7 @@ class TestCreateSecretVersionLocksBulk:
         secret_lock_prototype_model = {}
         secret_lock_prototype_model['name'] = 'lock-example-1'
         secret_lock_prototype_model['description'] = 'lock for consumer 1'
-        secret_lock_prototype_model['attributes'] = {'key': 'value'}
+        secret_lock_prototype_model['attributes'] = {'anyKey': 'anyValue'}
 
         # Set up parameter values
         secret_id = '0b5571f7-21e6-42b7-91c5-3f5ac9793a46'
@@ -2984,7 +2985,7 @@ class TestCreateSecretVersionLocksBulk:
         secret_lock_prototype_model = {}
         secret_lock_prototype_model['name'] = 'lock-example-1'
         secret_lock_prototype_model['description'] = 'lock for consumer 1'
-        secret_lock_prototype_model['attributes'] = {'key': 'value'}
+        secret_lock_prototype_model['attributes'] = {'anyKey': 'anyValue'}
 
         # Set up parameter values
         secret_id = '0b5571f7-21e6-42b7-91c5-3f5ac9793a46'
@@ -3035,7 +3036,7 @@ class TestCreateSecretVersionLocksBulk:
         secret_lock_prototype_model = {}
         secret_lock_prototype_model['name'] = 'lock-example-1'
         secret_lock_prototype_model['description'] = 'lock for consumer 1'
-        secret_lock_prototype_model['attributes'] = {'key': 'value'}
+        secret_lock_prototype_model['attributes'] = {'anyKey': 'anyValue'}
 
         # Set up parameter values
         secret_id = '0b5571f7-21e6-42b7-91c5-3f5ac9793a46'
@@ -4464,35 +4465,6 @@ class TestModel_ConfigurationMetadataPaginatedCollection:
         assert configuration_metadata_paginated_collection_model_json2 == configuration_metadata_paginated_collection_model_json
 
 
-class TestModel_CosHmacKeys:
-    """
-    Test Class for CosHmacKeys
-    """
-
-    def test_cos_hmac_keys_serialization(self):
-        """
-        Test serialization/deserialization for CosHmacKeys
-        """
-
-        # Construct a json representation of a CosHmacKeys model
-        cos_hmac_keys_model_json = {}
-
-        # Construct a model instance of CosHmacKeys by calling from_dict on the json representation
-        cos_hmac_keys_model = CosHmacKeys.from_dict(cos_hmac_keys_model_json)
-        assert cos_hmac_keys_model != False
-
-        # Construct a model instance of CosHmacKeys by calling from_dict on the json representation
-        cos_hmac_keys_model_dict = CosHmacKeys.from_dict(cos_hmac_keys_model_json).__dict__
-        cos_hmac_keys_model2 = CosHmacKeys(**cos_hmac_keys_model_dict)
-
-        # Verify the model instances are equivalent
-        assert cos_hmac_keys_model == cos_hmac_keys_model2
-
-        # Convert model instance back to dict and verify no loss of data
-        cos_hmac_keys_model_json2 = cos_hmac_keys_model.to_dict()
-        assert cos_hmac_keys_model_json2 == cos_hmac_keys_model_json
-
-
 class TestModel_NotificationsRegistration:
     """
     Test Class for NotificationsRegistration
@@ -4792,7 +4764,7 @@ class TestModel_SecretLock:
         secret_lock_model_json = {}
         secret_lock_model_json['name'] = 'lock-example'
         secret_lock_model_json['description'] = 'testString'
-        secret_lock_model_json['attributes'] = {'key': 'value'}
+        secret_lock_model_json['attributes'] = {'anyKey': 'anyValue'}
         secret_lock_model_json['created_at'] = '2022-04-12T23:20:50.520000Z'
         secret_lock_model_json['updated_at'] = '2022-04-12T23:20:50.520000Z'
         secret_lock_model_json['created_by'] = 'iam-ServiceId-e4a2f0a4-3c76-4bef-b1f2-fbeae11c0f21'
@@ -4831,7 +4803,7 @@ class TestModel_SecretLockPrototype:
         secret_lock_prototype_model_json = {}
         secret_lock_prototype_model_json['name'] = 'lock-example'
         secret_lock_prototype_model_json['description'] = 'testString'
-        secret_lock_prototype_model_json['attributes'] = {'key': 'value'}
+        secret_lock_prototype_model_json['attributes'] = {'anyKey': 'anyValue'}
 
         # Construct a model instance of SecretLockPrototype by calling from_dict on the json representation
         secret_lock_prototype_model = SecretLockPrototype.from_dict(secret_lock_prototype_model_json)
@@ -4917,7 +4889,7 @@ class TestModel_SecretLocksPaginatedCollection:
         secret_lock_model = {}  # SecretLock
         secret_lock_model['name'] = 'lock-example'
         secret_lock_model['description'] = 'testString'
-        secret_lock_model['attributes'] = {'key': 'value'}
+        secret_lock_model['attributes'] = {'anyKey': 'anyValue'}
         secret_lock_model['created_at'] = '2022-04-12T23:20:50.520000Z'
         secret_lock_model['updated_at'] = '2022-04-12T23:20:50.520000Z'
         secret_lock_model['created_by'] = 'iam-ServiceId-e4a2f0a4-3c76-4bef-b1f2-fbeae11c0f21'
@@ -4981,7 +4953,7 @@ class TestModel_SecretMetadataPaginatedCollection:
         secret_metadata_model['created_by'] = 'iam-ServiceId-e4a2f0a4-3c76-4bef-b1f2-fbeae11c0f21'
         secret_metadata_model['created_at'] = '2022-04-12T23:20:50.520000Z'
         secret_metadata_model['crn'] = 'testString'
-        secret_metadata_model['custom_metadata'] = {'key': 'value'}
+        secret_metadata_model['custom_metadata'] = {'anyKey': 'anyValue'}
         secret_metadata_model['description'] = 'Extended description for this secret.'
         secret_metadata_model['id'] = 'b49ad24d-81d4-5ebc-b9b9-b0937d1c84d5'
         secret_metadata_model['labels'] = ['my-label']
@@ -5078,7 +5050,7 @@ class TestModel_SecretVersionLocksPaginatedCollection:
         secret_lock_model = {}  # SecretLock
         secret_lock_model['name'] = 'lock-example'
         secret_lock_model['description'] = 'testString'
-        secret_lock_model['attributes'] = {'key': 'value'}
+        secret_lock_model['attributes'] = {'anyKey': 'anyValue'}
         secret_lock_model['created_at'] = '2022-04-12T23:20:50.520000Z'
         secret_lock_model['updated_at'] = '2022-04-12T23:20:50.520000Z'
         secret_lock_model['created_by'] = 'iam-ServiceId-e4a2f0a4-3c76-4bef-b1f2-fbeae11c0f21'
@@ -5135,7 +5107,7 @@ class TestModel_SecretVersionMetadataCollection:
         secret_version_metadata_model['secret_group_id'] = 'default'
         secret_version_metadata_model['payload_available'] = True
         secret_version_metadata_model['alias'] = 'current'
-        secret_version_metadata_model['version_custom_metadata'] = {'key': 'value'}
+        secret_version_metadata_model['version_custom_metadata'] = {'anyKey': 'anyValue'}
         secret_version_metadata_model['secret_id'] = 'b49ad24d-81d4-5ebc-b9b9-b0937d1c84d5'
         secret_version_metadata_model['expiration_date'] = '2033-04-12T23:20:50.520000Z'
 
@@ -5172,7 +5144,7 @@ class TestModel_SecretVersionMetadataPatch:
 
         # Construct a json representation of a SecretVersionMetadataPatch model
         secret_version_metadata_patch_model_json = {}
-        secret_version_metadata_patch_model_json['version_custom_metadata'] = {'key': 'value'}
+        secret_version_metadata_patch_model_json['version_custom_metadata'] = {'anyKey': 'anyValue'}
 
         # Construct a model instance of SecretVersionMetadataPatch by calling from_dict on the json representation
         secret_version_metadata_patch_model = SecretVersionMetadataPatch.from_dict(secret_version_metadata_patch_model_json)
@@ -5253,356 +5225,6 @@ class TestModel_SecretsLocksPaginatedCollection:
         assert secrets_locks_paginated_collection_model_json2 == secrets_locks_paginated_collection_model_json
 
 
-class TestModel_ServiceCredentialsResourceKey:
-    """
-    Test Class for ServiceCredentialsResourceKey
-    """
-
-    def test_service_credentials_resource_key_serialization(self):
-        """
-        Test serialization/deserialization for ServiceCredentialsResourceKey
-        """
-
-        # Construct a json representation of a ServiceCredentialsResourceKey model
-        service_credentials_resource_key_model_json = {}
-
-        # Construct a model instance of ServiceCredentialsResourceKey by calling from_dict on the json representation
-        service_credentials_resource_key_model = ServiceCredentialsResourceKey.from_dict(service_credentials_resource_key_model_json)
-        assert service_credentials_resource_key_model != False
-
-        # Construct a model instance of ServiceCredentialsResourceKey by calling from_dict on the json representation
-        service_credentials_resource_key_model_dict = ServiceCredentialsResourceKey.from_dict(service_credentials_resource_key_model_json).__dict__
-        service_credentials_resource_key_model2 = ServiceCredentialsResourceKey(**service_credentials_resource_key_model_dict)
-
-        # Verify the model instances are equivalent
-        assert service_credentials_resource_key_model == service_credentials_resource_key_model2
-
-        # Convert model instance back to dict and verify no loss of data
-        service_credentials_resource_key_model_json2 = service_credentials_resource_key_model.to_dict()
-        assert service_credentials_resource_key_model_json2 == service_credentials_resource_key_model_json
-
-
-class TestModel_ServiceCredentialsSecretCredentials:
-    """
-    Test Class for ServiceCredentialsSecretCredentials
-    """
-
-    def test_service_credentials_secret_credentials_serialization(self):
-        """
-        Test serialization/deserialization for ServiceCredentialsSecretCredentials
-        """
-
-        # Construct dict forms of any model objects needed in order to build this model.
-
-        cos_hmac_keys_model = {}  # CosHmacKeys
-
-        # Construct a json representation of a ServiceCredentialsSecretCredentials model
-        service_credentials_secret_credentials_model_json = {}
-        service_credentials_secret_credentials_model_json['cos_hmac_keys'] = cos_hmac_keys_model
-
-        # Construct a model instance of ServiceCredentialsSecretCredentials by calling from_dict on the json representation
-        service_credentials_secret_credentials_model = ServiceCredentialsSecretCredentials.from_dict(service_credentials_secret_credentials_model_json)
-        assert service_credentials_secret_credentials_model != False
-
-        # Construct a model instance of ServiceCredentialsSecretCredentials by calling from_dict on the json representation
-        service_credentials_secret_credentials_model_dict = ServiceCredentialsSecretCredentials.from_dict(service_credentials_secret_credentials_model_json).__dict__
-        service_credentials_secret_credentials_model2 = ServiceCredentialsSecretCredentials(**service_credentials_secret_credentials_model_dict)
-
-        # Verify the model instances are equivalent
-        assert service_credentials_secret_credentials_model == service_credentials_secret_credentials_model2
-
-        # Convert model instance back to dict and verify no loss of data
-        service_credentials_secret_credentials_model_json2 = service_credentials_secret_credentials_model.to_dict()
-        assert service_credentials_secret_credentials_model_json2 == service_credentials_secret_credentials_model_json
-
-
-class TestModel_ServiceCredentialsSecretSourceService:
-    """
-    Test Class for ServiceCredentialsSecretSourceService
-    """
-
-    def test_service_credentials_secret_source_service_serialization(self):
-        """
-        Test serialization/deserialization for ServiceCredentialsSecretSourceService
-        """
-
-        # Construct dict forms of any model objects needed in order to build this model.
-
-        service_credentials_source_service_instance_model = {}  # ServiceCredentialsSourceServiceInstance
-        service_credentials_source_service_instance_model['crn'] = 'testString'
-
-        service_credentials_source_service_parameters_model = {}  # ServiceCredentialsSourceServiceParameters
-        service_credentials_source_service_parameters_model['serviceid_crn'] = 'testString'
-        service_credentials_source_service_parameters_model['foo'] = 'testString'
-
-        service_credentials_source_service_role_model = {}  # ServiceCredentialsSourceServiceRole
-        service_credentials_source_service_role_model['crn'] = 'testString'
-
-        service_credentials_source_service_iam_apikey_model = {}  # ServiceCredentialsSourceServiceIamApikey
-
-        service_credentials_source_service_iam_role_model = {}  # ServiceCredentialsSourceServiceIamRole
-
-        service_credentials_source_service_iam_serviceid_model = {}  # ServiceCredentialsSourceServiceIamServiceid
-
-        service_credentials_source_service_iam_model = {}  # ServiceCredentialsSourceServiceIam
-        service_credentials_source_service_iam_model['apikey'] = service_credentials_source_service_iam_apikey_model
-        service_credentials_source_service_iam_model['role'] = service_credentials_source_service_iam_role_model
-        service_credentials_source_service_iam_model['serviceid'] = service_credentials_source_service_iam_serviceid_model
-
-        service_credentials_resource_key_model = {}  # ServiceCredentialsResourceKey
-
-        # Construct a json representation of a ServiceCredentialsSecretSourceService model
-        service_credentials_secret_source_service_model_json = {}
-        service_credentials_secret_source_service_model_json['instance'] = service_credentials_source_service_instance_model
-        service_credentials_secret_source_service_model_json['parameters'] = service_credentials_source_service_parameters_model
-        service_credentials_secret_source_service_model_json['role'] = service_credentials_source_service_role_model
-        service_credentials_secret_source_service_model_json['iam'] = service_credentials_source_service_iam_model
-        service_credentials_secret_source_service_model_json['resource_key'] = service_credentials_resource_key_model
-
-        # Construct a model instance of ServiceCredentialsSecretSourceService by calling from_dict on the json representation
-        service_credentials_secret_source_service_model = ServiceCredentialsSecretSourceService.from_dict(service_credentials_secret_source_service_model_json)
-        assert service_credentials_secret_source_service_model != False
-
-        # Construct a model instance of ServiceCredentialsSecretSourceService by calling from_dict on the json representation
-        service_credentials_secret_source_service_model_dict = ServiceCredentialsSecretSourceService.from_dict(service_credentials_secret_source_service_model_json).__dict__
-        service_credentials_secret_source_service_model2 = ServiceCredentialsSecretSourceService(**service_credentials_secret_source_service_model_dict)
-
-        # Verify the model instances are equivalent
-        assert service_credentials_secret_source_service_model == service_credentials_secret_source_service_model2
-
-        # Convert model instance back to dict and verify no loss of data
-        service_credentials_secret_source_service_model_json2 = service_credentials_secret_source_service_model.to_dict()
-        assert service_credentials_secret_source_service_model_json2 == service_credentials_secret_source_service_model_json
-
-
-class TestModel_ServiceCredentialsSourceServiceIam:
-    """
-    Test Class for ServiceCredentialsSourceServiceIam
-    """
-
-    def test_service_credentials_source_service_iam_serialization(self):
-        """
-        Test serialization/deserialization for ServiceCredentialsSourceServiceIam
-        """
-
-        # Construct dict forms of any model objects needed in order to build this model.
-
-        service_credentials_source_service_iam_apikey_model = {}  # ServiceCredentialsSourceServiceIamApikey
-
-        service_credentials_source_service_iam_role_model = {}  # ServiceCredentialsSourceServiceIamRole
-
-        service_credentials_source_service_iam_serviceid_model = {}  # ServiceCredentialsSourceServiceIamServiceid
-
-        # Construct a json representation of a ServiceCredentialsSourceServiceIam model
-        service_credentials_source_service_iam_model_json = {}
-        service_credentials_source_service_iam_model_json['apikey'] = service_credentials_source_service_iam_apikey_model
-        service_credentials_source_service_iam_model_json['role'] = service_credentials_source_service_iam_role_model
-        service_credentials_source_service_iam_model_json['serviceid'] = service_credentials_source_service_iam_serviceid_model
-
-        # Construct a model instance of ServiceCredentialsSourceServiceIam by calling from_dict on the json representation
-        service_credentials_source_service_iam_model = ServiceCredentialsSourceServiceIam.from_dict(service_credentials_source_service_iam_model_json)
-        assert service_credentials_source_service_iam_model != False
-
-        # Construct a model instance of ServiceCredentialsSourceServiceIam by calling from_dict on the json representation
-        service_credentials_source_service_iam_model_dict = ServiceCredentialsSourceServiceIam.from_dict(service_credentials_source_service_iam_model_json).__dict__
-        service_credentials_source_service_iam_model2 = ServiceCredentialsSourceServiceIam(**service_credentials_source_service_iam_model_dict)
-
-        # Verify the model instances are equivalent
-        assert service_credentials_source_service_iam_model == service_credentials_source_service_iam_model2
-
-        # Convert model instance back to dict and verify no loss of data
-        service_credentials_source_service_iam_model_json2 = service_credentials_source_service_iam_model.to_dict()
-        assert service_credentials_source_service_iam_model_json2 == service_credentials_source_service_iam_model_json
-
-
-class TestModel_ServiceCredentialsSourceServiceIamApikey:
-    """
-    Test Class for ServiceCredentialsSourceServiceIamApikey
-    """
-
-    def test_service_credentials_source_service_iam_apikey_serialization(self):
-        """
-        Test serialization/deserialization for ServiceCredentialsSourceServiceIamApikey
-        """
-
-        # Construct a json representation of a ServiceCredentialsSourceServiceIamApikey model
-        service_credentials_source_service_iam_apikey_model_json = {}
-
-        # Construct a model instance of ServiceCredentialsSourceServiceIamApikey by calling from_dict on the json representation
-        service_credentials_source_service_iam_apikey_model = ServiceCredentialsSourceServiceIamApikey.from_dict(service_credentials_source_service_iam_apikey_model_json)
-        assert service_credentials_source_service_iam_apikey_model != False
-
-        # Construct a model instance of ServiceCredentialsSourceServiceIamApikey by calling from_dict on the json representation
-        service_credentials_source_service_iam_apikey_model_dict = ServiceCredentialsSourceServiceIamApikey.from_dict(service_credentials_source_service_iam_apikey_model_json).__dict__
-        service_credentials_source_service_iam_apikey_model2 = ServiceCredentialsSourceServiceIamApikey(**service_credentials_source_service_iam_apikey_model_dict)
-
-        # Verify the model instances are equivalent
-        assert service_credentials_source_service_iam_apikey_model == service_credentials_source_service_iam_apikey_model2
-
-        # Convert model instance back to dict and verify no loss of data
-        service_credentials_source_service_iam_apikey_model_json2 = service_credentials_source_service_iam_apikey_model.to_dict()
-        assert service_credentials_source_service_iam_apikey_model_json2 == service_credentials_source_service_iam_apikey_model_json
-
-
-class TestModel_ServiceCredentialsSourceServiceIamRole:
-    """
-    Test Class for ServiceCredentialsSourceServiceIamRole
-    """
-
-    def test_service_credentials_source_service_iam_role_serialization(self):
-        """
-        Test serialization/deserialization for ServiceCredentialsSourceServiceIamRole
-        """
-
-        # Construct a json representation of a ServiceCredentialsSourceServiceIamRole model
-        service_credentials_source_service_iam_role_model_json = {}
-
-        # Construct a model instance of ServiceCredentialsSourceServiceIamRole by calling from_dict on the json representation
-        service_credentials_source_service_iam_role_model = ServiceCredentialsSourceServiceIamRole.from_dict(service_credentials_source_service_iam_role_model_json)
-        assert service_credentials_source_service_iam_role_model != False
-
-        # Construct a model instance of ServiceCredentialsSourceServiceIamRole by calling from_dict on the json representation
-        service_credentials_source_service_iam_role_model_dict = ServiceCredentialsSourceServiceIamRole.from_dict(service_credentials_source_service_iam_role_model_json).__dict__
-        service_credentials_source_service_iam_role_model2 = ServiceCredentialsSourceServiceIamRole(**service_credentials_source_service_iam_role_model_dict)
-
-        # Verify the model instances are equivalent
-        assert service_credentials_source_service_iam_role_model == service_credentials_source_service_iam_role_model2
-
-        # Convert model instance back to dict and verify no loss of data
-        service_credentials_source_service_iam_role_model_json2 = service_credentials_source_service_iam_role_model.to_dict()
-        assert service_credentials_source_service_iam_role_model_json2 == service_credentials_source_service_iam_role_model_json
-
-
-class TestModel_ServiceCredentialsSourceServiceIamServiceid:
-    """
-    Test Class for ServiceCredentialsSourceServiceIamServiceid
-    """
-
-    def test_service_credentials_source_service_iam_serviceid_serialization(self):
-        """
-        Test serialization/deserialization for ServiceCredentialsSourceServiceIamServiceid
-        """
-
-        # Construct a json representation of a ServiceCredentialsSourceServiceIamServiceid model
-        service_credentials_source_service_iam_serviceid_model_json = {}
-
-        # Construct a model instance of ServiceCredentialsSourceServiceIamServiceid by calling from_dict on the json representation
-        service_credentials_source_service_iam_serviceid_model = ServiceCredentialsSourceServiceIamServiceid.from_dict(service_credentials_source_service_iam_serviceid_model_json)
-        assert service_credentials_source_service_iam_serviceid_model != False
-
-        # Construct a model instance of ServiceCredentialsSourceServiceIamServiceid by calling from_dict on the json representation
-        service_credentials_source_service_iam_serviceid_model_dict = ServiceCredentialsSourceServiceIamServiceid.from_dict(service_credentials_source_service_iam_serviceid_model_json).__dict__
-        service_credentials_source_service_iam_serviceid_model2 = ServiceCredentialsSourceServiceIamServiceid(**service_credentials_source_service_iam_serviceid_model_dict)
-
-        # Verify the model instances are equivalent
-        assert service_credentials_source_service_iam_serviceid_model == service_credentials_source_service_iam_serviceid_model2
-
-        # Convert model instance back to dict and verify no loss of data
-        service_credentials_source_service_iam_serviceid_model_json2 = service_credentials_source_service_iam_serviceid_model.to_dict()
-        assert service_credentials_source_service_iam_serviceid_model_json2 == service_credentials_source_service_iam_serviceid_model_json
-
-
-class TestModel_ServiceCredentialsSourceServiceInstance:
-    """
-    Test Class for ServiceCredentialsSourceServiceInstance
-    """
-
-    def test_service_credentials_source_service_instance_serialization(self):
-        """
-        Test serialization/deserialization for ServiceCredentialsSourceServiceInstance
-        """
-
-        # Construct a json representation of a ServiceCredentialsSourceServiceInstance model
-        service_credentials_source_service_instance_model_json = {}
-        service_credentials_source_service_instance_model_json['crn'] = 'testString'
-
-        # Construct a model instance of ServiceCredentialsSourceServiceInstance by calling from_dict on the json representation
-        service_credentials_source_service_instance_model = ServiceCredentialsSourceServiceInstance.from_dict(service_credentials_source_service_instance_model_json)
-        assert service_credentials_source_service_instance_model != False
-
-        # Construct a model instance of ServiceCredentialsSourceServiceInstance by calling from_dict on the json representation
-        service_credentials_source_service_instance_model_dict = ServiceCredentialsSourceServiceInstance.from_dict(service_credentials_source_service_instance_model_json).__dict__
-        service_credentials_source_service_instance_model2 = ServiceCredentialsSourceServiceInstance(**service_credentials_source_service_instance_model_dict)
-
-        # Verify the model instances are equivalent
-        assert service_credentials_source_service_instance_model == service_credentials_source_service_instance_model2
-
-        # Convert model instance back to dict and verify no loss of data
-        service_credentials_source_service_instance_model_json2 = service_credentials_source_service_instance_model.to_dict()
-        assert service_credentials_source_service_instance_model_json2 == service_credentials_source_service_instance_model_json
-
-
-class TestModel_ServiceCredentialsSourceServiceParameters:
-    """
-    Test Class for ServiceCredentialsSourceServiceParameters
-    """
-
-    def test_service_credentials_source_service_parameters_serialization(self):
-        """
-        Test serialization/deserialization for ServiceCredentialsSourceServiceParameters
-        """
-
-        # Construct a json representation of a ServiceCredentialsSourceServiceParameters model
-        service_credentials_source_service_parameters_model_json = {}
-        service_credentials_source_service_parameters_model_json['serviceid_crn'] = 'testString'
-        service_credentials_source_service_parameters_model_json['foo'] = 'testString'
-
-        # Construct a model instance of ServiceCredentialsSourceServiceParameters by calling from_dict on the json representation
-        service_credentials_source_service_parameters_model = ServiceCredentialsSourceServiceParameters.from_dict(service_credentials_source_service_parameters_model_json)
-        assert service_credentials_source_service_parameters_model != False
-
-        # Construct a model instance of ServiceCredentialsSourceServiceParameters by calling from_dict on the json representation
-        service_credentials_source_service_parameters_model_dict = ServiceCredentialsSourceServiceParameters.from_dict(service_credentials_source_service_parameters_model_json).__dict__
-        service_credentials_source_service_parameters_model2 = ServiceCredentialsSourceServiceParameters(**service_credentials_source_service_parameters_model_dict)
-
-        # Verify the model instances are equivalent
-        assert service_credentials_source_service_parameters_model == service_credentials_source_service_parameters_model2
-
-        # Convert model instance back to dict and verify no loss of data
-        service_credentials_source_service_parameters_model_json2 = service_credentials_source_service_parameters_model.to_dict()
-        assert service_credentials_source_service_parameters_model_json2 == service_credentials_source_service_parameters_model_json
-
-        # Test get_properties and set_properties methods.
-        service_credentials_source_service_parameters_model.set_properties({})
-        actual_dict = service_credentials_source_service_parameters_model.get_properties()
-        assert actual_dict == {}
-
-        expected_dict = {'foo': 'testString'}
-        service_credentials_source_service_parameters_model.set_properties(expected_dict)
-        actual_dict = service_credentials_source_service_parameters_model.get_properties()
-        assert actual_dict == expected_dict
-
-
-class TestModel_ServiceCredentialsSourceServiceRole:
-    """
-    Test Class for ServiceCredentialsSourceServiceRole
-    """
-
-    def test_service_credentials_source_service_role_serialization(self):
-        """
-        Test serialization/deserialization for ServiceCredentialsSourceServiceRole
-        """
-
-        # Construct a json representation of a ServiceCredentialsSourceServiceRole model
-        service_credentials_source_service_role_model_json = {}
-        service_credentials_source_service_role_model_json['crn'] = 'testString'
-
-        # Construct a model instance of ServiceCredentialsSourceServiceRole by calling from_dict on the json representation
-        service_credentials_source_service_role_model = ServiceCredentialsSourceServiceRole.from_dict(service_credentials_source_service_role_model_json)
-        assert service_credentials_source_service_role_model != False
-
-        # Construct a model instance of ServiceCredentialsSourceServiceRole by calling from_dict on the json representation
-        service_credentials_source_service_role_model_dict = ServiceCredentialsSourceServiceRole.from_dict(service_credentials_source_service_role_model_json).__dict__
-        service_credentials_source_service_role_model2 = ServiceCredentialsSourceServiceRole(**service_credentials_source_service_role_model_dict)
-
-        # Verify the model instances are equivalent
-        assert service_credentials_source_service_role_model == service_credentials_source_service_role_model2
-
-        # Convert model instance back to dict and verify no loss of data
-        service_credentials_source_service_role_model_json2 = service_credentials_source_service_role_model.to_dict()
-        assert service_credentials_source_service_role_model_json2 == service_credentials_source_service_role_model_json
-
-
 class TestModel_ArbitrarySecret:
     """
     Test Class for ArbitrarySecret
@@ -5618,7 +5240,7 @@ class TestModel_ArbitrarySecret:
         arbitrary_secret_model_json['created_by'] = 'iam-ServiceId-e4a2f0a4-3c76-4bef-b1f2-fbeae11c0f21'
         arbitrary_secret_model_json['created_at'] = '2022-04-12T23:20:50.520000Z'
         arbitrary_secret_model_json['crn'] = 'testString'
-        arbitrary_secret_model_json['custom_metadata'] = {'key': 'value'}
+        arbitrary_secret_model_json['custom_metadata'] = {'anyKey': 'anyValue'}
         arbitrary_secret_model_json['description'] = 'Extended description for this secret.'
         arbitrary_secret_model_json['id'] = 'b49ad24d-81d4-5ebc-b9b9-b0937d1c84d5'
         arbitrary_secret_model_json['labels'] = ['my-label']
@@ -5660,7 +5282,7 @@ class TestModel_ArbitrarySecretMetadata:
         arbitrary_secret_metadata_model_json['created_by'] = 'iam-ServiceId-e4a2f0a4-3c76-4bef-b1f2-fbeae11c0f21'
         arbitrary_secret_metadata_model_json['created_at'] = '2022-04-12T23:20:50.520000Z'
         arbitrary_secret_metadata_model_json['crn'] = 'testString'
-        arbitrary_secret_metadata_model_json['custom_metadata'] = {'key': 'value'}
+        arbitrary_secret_metadata_model_json['custom_metadata'] = {'anyKey': 'anyValue'}
         arbitrary_secret_metadata_model_json['description'] = 'Extended description for this secret.'
         arbitrary_secret_metadata_model_json['id'] = 'b49ad24d-81d4-5ebc-b9b9-b0937d1c84d5'
         arbitrary_secret_metadata_model_json['labels'] = ['my-label']
@@ -5701,7 +5323,7 @@ class TestModel_ArbitrarySecretMetadataPatch:
         arbitrary_secret_metadata_patch_model_json['name'] = 'my-secret-example'
         arbitrary_secret_metadata_patch_model_json['description'] = 'Extended description for this secret.'
         arbitrary_secret_metadata_patch_model_json['labels'] = ['my-label']
-        arbitrary_secret_metadata_patch_model_json['custom_metadata'] = {'key': 'value'}
+        arbitrary_secret_metadata_patch_model_json['custom_metadata'] = {'anyKey': 'anyValue'}
         arbitrary_secret_metadata_patch_model_json['expiration_date'] = '2033-04-12T23:20:50.520000Z'
 
         # Construct a model instance of ArbitrarySecretMetadataPatch by calling from_dict on the json representation
@@ -5732,7 +5354,7 @@ class TestModel_ArbitrarySecretPrototype:
 
         # Construct a json representation of a ArbitrarySecretPrototype model
         arbitrary_secret_prototype_model_json = {}
-        arbitrary_secret_prototype_model_json['custom_metadata'] = {'key': 'value'}
+        arbitrary_secret_prototype_model_json['custom_metadata'] = {'anyKey': 'anyValue'}
         arbitrary_secret_prototype_model_json['description'] = 'Extended description for this secret.'
         arbitrary_secret_prototype_model_json['expiration_date'] = '2033-04-12T23:20:50.520000Z'
         arbitrary_secret_prototype_model_json['labels'] = ['my-label']
@@ -5740,7 +5362,7 @@ class TestModel_ArbitrarySecretPrototype:
         arbitrary_secret_prototype_model_json['secret_group_id'] = 'default'
         arbitrary_secret_prototype_model_json['secret_type'] = 'arbitrary'
         arbitrary_secret_prototype_model_json['payload'] = 'secret-credentials'
-        arbitrary_secret_prototype_model_json['version_custom_metadata'] = {'key': 'value'}
+        arbitrary_secret_prototype_model_json['version_custom_metadata'] = {'anyKey': 'anyValue'}
 
         # Construct a model instance of ArbitrarySecretPrototype by calling from_dict on the json representation
         arbitrary_secret_prototype_model = ArbitrarySecretPrototype.from_dict(arbitrary_secret_prototype_model_json)
@@ -5778,7 +5400,7 @@ class TestModel_ArbitrarySecretVersion:
         arbitrary_secret_version_model_json['secret_group_id'] = 'default'
         arbitrary_secret_version_model_json['payload_available'] = True
         arbitrary_secret_version_model_json['alias'] = 'current'
-        arbitrary_secret_version_model_json['version_custom_metadata'] = {'key': 'value'}
+        arbitrary_secret_version_model_json['version_custom_metadata'] = {'anyKey': 'anyValue'}
         arbitrary_secret_version_model_json['secret_id'] = 'b49ad24d-81d4-5ebc-b9b9-b0937d1c84d5'
         arbitrary_secret_version_model_json['expiration_date'] = '2033-04-12T23:20:50.520000Z'
         arbitrary_secret_version_model_json['payload'] = 'secret-credentials'
@@ -5819,7 +5441,7 @@ class TestModel_ArbitrarySecretVersionMetadata:
         arbitrary_secret_version_metadata_model_json['secret_group_id'] = 'default'
         arbitrary_secret_version_metadata_model_json['payload_available'] = True
         arbitrary_secret_version_metadata_model_json['alias'] = 'current'
-        arbitrary_secret_version_metadata_model_json['version_custom_metadata'] = {'key': 'value'}
+        arbitrary_secret_version_metadata_model_json['version_custom_metadata'] = {'anyKey': 'anyValue'}
         arbitrary_secret_version_metadata_model_json['secret_id'] = 'b49ad24d-81d4-5ebc-b9b9-b0937d1c84d5'
         arbitrary_secret_version_metadata_model_json['expiration_date'] = '2033-04-12T23:20:50.520000Z'
 
@@ -5852,8 +5474,8 @@ class TestModel_ArbitrarySecretVersionPrototype:
         # Construct a json representation of a ArbitrarySecretVersionPrototype model
         arbitrary_secret_version_prototype_model_json = {}
         arbitrary_secret_version_prototype_model_json['payload'] = 'secret-credentials'
-        arbitrary_secret_version_prototype_model_json['custom_metadata'] = {'key': 'value'}
-        arbitrary_secret_version_prototype_model_json['version_custom_metadata'] = {'key': 'value'}
+        arbitrary_secret_version_prototype_model_json['custom_metadata'] = {'anyKey': 'anyValue'}
+        arbitrary_secret_version_prototype_model_json['version_custom_metadata'] = {'anyKey': 'anyValue'}
 
         # Construct a model instance of ArbitrarySecretVersionPrototype by calling from_dict on the json representation
         arbitrary_secret_version_prototype_model = ArbitrarySecretVersionPrototype.from_dict(arbitrary_secret_version_prototype_model_json)
@@ -6057,7 +5679,7 @@ class TestModel_IAMCredentialsSecret:
         iam_credentials_secret_model_json['created_by'] = 'iam-ServiceId-e4a2f0a4-3c76-4bef-b1f2-fbeae11c0f21'
         iam_credentials_secret_model_json['created_at'] = '2022-04-12T23:20:50.520000Z'
         iam_credentials_secret_model_json['crn'] = 'testString'
-        iam_credentials_secret_model_json['custom_metadata'] = {'key': 'value'}
+        iam_credentials_secret_model_json['custom_metadata'] = {'anyKey': 'anyValue'}
         iam_credentials_secret_model_json['description'] = 'Extended description for this secret.'
         iam_credentials_secret_model_json['id'] = 'b49ad24d-81d4-5ebc-b9b9-b0937d1c84d5'
         iam_credentials_secret_model_json['labels'] = ['my-label']
@@ -6065,7 +5687,7 @@ class TestModel_IAMCredentialsSecret:
         iam_credentials_secret_model_json['secret_type'] = 'iam_credentials'
         iam_credentials_secret_model_json['updated_at'] = '2022-04-12T23:20:50.520000Z'
         iam_credentials_secret_model_json['versions_total'] = 0
-        iam_credentials_secret_model_json['ttl'] = '1d'
+        iam_credentials_secret_model_json['ttl'] = '30m'
         iam_credentials_secret_model_json['access_groups'] = ['AccessGroupId-45884031-54be-4dd7-86ff-112511e92699']
         iam_credentials_secret_model_json['service_id'] = 'ServiceId-bb4ccc31-bd31-493a-bb58-52ec399800be'
         iam_credentials_secret_model_json['reuse_api_key'] = True
@@ -6109,7 +5731,7 @@ class TestModel_IAMCredentialsSecretMetadata:
         iam_credentials_secret_metadata_model_json['created_by'] = 'iam-ServiceId-e4a2f0a4-3c76-4bef-b1f2-fbeae11c0f21'
         iam_credentials_secret_metadata_model_json['created_at'] = '2022-04-12T23:20:50.520000Z'
         iam_credentials_secret_metadata_model_json['crn'] = 'testString'
-        iam_credentials_secret_metadata_model_json['custom_metadata'] = {'key': 'value'}
+        iam_credentials_secret_metadata_model_json['custom_metadata'] = {'anyKey': 'anyValue'}
         iam_credentials_secret_metadata_model_json['description'] = 'Extended description for this secret.'
         iam_credentials_secret_metadata_model_json['id'] = 'b49ad24d-81d4-5ebc-b9b9-b0937d1c84d5'
         iam_credentials_secret_metadata_model_json['labels'] = ['my-label']
@@ -6117,7 +5739,7 @@ class TestModel_IAMCredentialsSecretMetadata:
         iam_credentials_secret_metadata_model_json['secret_type'] = 'iam_credentials'
         iam_credentials_secret_metadata_model_json['updated_at'] = '2022-04-12T23:20:50.520000Z'
         iam_credentials_secret_metadata_model_json['versions_total'] = 0
-        iam_credentials_secret_metadata_model_json['ttl'] = '1d'
+        iam_credentials_secret_metadata_model_json['ttl'] = '30m'
         iam_credentials_secret_metadata_model_json['access_groups'] = ['AccessGroupId-45884031-54be-4dd7-86ff-112511e92699']
         iam_credentials_secret_metadata_model_json['service_id'] = 'ServiceId-bb4ccc31-bd31-493a-bb58-52ec399800be'
         iam_credentials_secret_metadata_model_json['reuse_api_key'] = True
@@ -6161,8 +5783,8 @@ class TestModel_IAMCredentialsSecretMetadataPatch:
         iam_credentials_secret_metadata_patch_model_json['name'] = 'my-secret-example'
         iam_credentials_secret_metadata_patch_model_json['description'] = 'Extended description for this secret.'
         iam_credentials_secret_metadata_patch_model_json['labels'] = ['my-label']
-        iam_credentials_secret_metadata_patch_model_json['custom_metadata'] = {'key': 'value'}
-        iam_credentials_secret_metadata_patch_model_json['ttl'] = '1d'
+        iam_credentials_secret_metadata_patch_model_json['custom_metadata'] = {'anyKey': 'anyValue'}
+        iam_credentials_secret_metadata_patch_model_json['ttl'] = '30m'
         iam_credentials_secret_metadata_patch_model_json['rotation'] = rotation_policy_model
 
         # Construct a model instance of IAMCredentialsSecretMetadataPatch by calling from_dict on the json representation
@@ -6205,13 +5827,13 @@ class TestModel_IAMCredentialsSecretPrototype:
         iam_credentials_secret_prototype_model_json['description'] = 'Extended description for this secret.'
         iam_credentials_secret_prototype_model_json['secret_group_id'] = 'default'
         iam_credentials_secret_prototype_model_json['labels'] = ['my-label']
-        iam_credentials_secret_prototype_model_json['ttl'] = '1d'
+        iam_credentials_secret_prototype_model_json['ttl'] = '30m'
         iam_credentials_secret_prototype_model_json['access_groups'] = ['AccessGroupId-45884031-54be-4dd7-86ff-112511e92699']
         iam_credentials_secret_prototype_model_json['service_id'] = 'ServiceId-bb4ccc31-bd31-493a-bb58-52ec399800be'
         iam_credentials_secret_prototype_model_json['reuse_api_key'] = True
         iam_credentials_secret_prototype_model_json['rotation'] = rotation_policy_model
-        iam_credentials_secret_prototype_model_json['custom_metadata'] = {'key': 'value'}
-        iam_credentials_secret_prototype_model_json['version_custom_metadata'] = {'key': 'value'}
+        iam_credentials_secret_prototype_model_json['custom_metadata'] = {'anyKey': 'anyValue'}
+        iam_credentials_secret_prototype_model_json['version_custom_metadata'] = {'anyKey': 'anyValue'}
 
         # Construct a model instance of IAMCredentialsSecretPrototype by calling from_dict on the json representation
         iam_credentials_secret_prototype_model = IAMCredentialsSecretPrototype.from_dict(iam_credentials_secret_prototype_model_json)
@@ -6242,8 +5864,8 @@ class TestModel_IAMCredentialsSecretRestoreFromVersionPrototype:
         # Construct a json representation of a IAMCredentialsSecretRestoreFromVersionPrototype model
         iam_credentials_secret_restore_from_version_prototype_model_json = {}
         iam_credentials_secret_restore_from_version_prototype_model_json['restore_from_version'] = 'current'
-        iam_credentials_secret_restore_from_version_prototype_model_json['custom_metadata'] = {'key': 'value'}
-        iam_credentials_secret_restore_from_version_prototype_model_json['version_custom_metadata'] = {'key': 'value'}
+        iam_credentials_secret_restore_from_version_prototype_model_json['custom_metadata'] = {'anyKey': 'anyValue'}
+        iam_credentials_secret_restore_from_version_prototype_model_json['version_custom_metadata'] = {'anyKey': 'anyValue'}
 
         # Construct a model instance of IAMCredentialsSecretRestoreFromVersionPrototype by calling from_dict on the json representation
         iam_credentials_secret_restore_from_version_prototype_model = IAMCredentialsSecretRestoreFromVersionPrototype.from_dict(iam_credentials_secret_restore_from_version_prototype_model_json)
@@ -6281,7 +5903,7 @@ class TestModel_IAMCredentialsSecretVersion:
         iam_credentials_secret_version_model_json['secret_group_id'] = 'default'
         iam_credentials_secret_version_model_json['payload_available'] = True
         iam_credentials_secret_version_model_json['alias'] = 'current'
-        iam_credentials_secret_version_model_json['version_custom_metadata'] = {'key': 'value'}
+        iam_credentials_secret_version_model_json['version_custom_metadata'] = {'anyKey': 'anyValue'}
         iam_credentials_secret_version_model_json['secret_id'] = 'b49ad24d-81d4-5ebc-b9b9-b0937d1c84d5'
         iam_credentials_secret_version_model_json['service_id'] = 'ServiceId-bb4ccc31-bd31-493a-bb58-52ec399800be'
 
@@ -6321,7 +5943,7 @@ class TestModel_IAMCredentialsSecretVersionMetadata:
         iam_credentials_secret_version_metadata_model_json['secret_group_id'] = 'default'
         iam_credentials_secret_version_metadata_model_json['payload_available'] = True
         iam_credentials_secret_version_metadata_model_json['alias'] = 'current'
-        iam_credentials_secret_version_metadata_model_json['version_custom_metadata'] = {'key': 'value'}
+        iam_credentials_secret_version_metadata_model_json['version_custom_metadata'] = {'anyKey': 'anyValue'}
         iam_credentials_secret_version_metadata_model_json['secret_id'] = 'b49ad24d-81d4-5ebc-b9b9-b0937d1c84d5'
         iam_credentials_secret_version_metadata_model_json['service_id'] = 'ServiceId-bb4ccc31-bd31-493a-bb58-52ec399800be'
 
@@ -6353,8 +5975,8 @@ class TestModel_IAMCredentialsSecretVersionPrototype:
 
         # Construct a json representation of a IAMCredentialsSecretVersionPrototype model
         iam_credentials_secret_version_prototype_model_json = {}
-        iam_credentials_secret_version_prototype_model_json['custom_metadata'] = {'key': 'value'}
-        iam_credentials_secret_version_prototype_model_json['version_custom_metadata'] = {'key': 'value'}
+        iam_credentials_secret_version_prototype_model_json['custom_metadata'] = {'anyKey': 'anyValue'}
+        iam_credentials_secret_version_prototype_model_json['version_custom_metadata'] = {'anyKey': 'anyValue'}
 
         # Construct a model instance of IAMCredentialsSecretVersionPrototype by calling from_dict on the json representation
         iam_credentials_secret_version_prototype_model = IAMCredentialsSecretVersionPrototype.from_dict(iam_credentials_secret_version_prototype_model_json)
@@ -6393,7 +6015,7 @@ class TestModel_ImportedCertificate:
         imported_certificate_model_json['created_by'] = 'iam-ServiceId-e4a2f0a4-3c76-4bef-b1f2-fbeae11c0f21'
         imported_certificate_model_json['created_at'] = '2022-04-12T23:20:50.520000Z'
         imported_certificate_model_json['crn'] = 'testString'
-        imported_certificate_model_json['custom_metadata'] = {'key': 'value'}
+        imported_certificate_model_json['custom_metadata'] = {'anyKey': 'anyValue'}
         imported_certificate_model_json['description'] = 'Extended description for this secret.'
         imported_certificate_model_json['id'] = 'b49ad24d-81d4-5ebc-b9b9-b0937d1c84d5'
         imported_certificate_model_json['labels'] = ['my-label']
@@ -6451,7 +6073,7 @@ class TestModel_ImportedCertificateMetadata:
         imported_certificate_metadata_model_json['created_by'] = 'iam-ServiceId-e4a2f0a4-3c76-4bef-b1f2-fbeae11c0f21'
         imported_certificate_metadata_model_json['created_at'] = '2022-04-12T23:20:50.520000Z'
         imported_certificate_metadata_model_json['crn'] = 'testString'
-        imported_certificate_metadata_model_json['custom_metadata'] = {'key': 'value'}
+        imported_certificate_metadata_model_json['custom_metadata'] = {'anyKey': 'anyValue'}
         imported_certificate_metadata_model_json['description'] = 'Extended description for this secret.'
         imported_certificate_metadata_model_json['id'] = 'b49ad24d-81d4-5ebc-b9b9-b0937d1c84d5'
         imported_certificate_metadata_model_json['labels'] = ['my-label']
@@ -6500,7 +6122,7 @@ class TestModel_ImportedCertificateMetadataPatch:
         imported_certificate_metadata_patch_model_json['name'] = 'my-secret-example'
         imported_certificate_metadata_patch_model_json['description'] = 'Extended description for this secret.'
         imported_certificate_metadata_patch_model_json['labels'] = ['my-label']
-        imported_certificate_metadata_patch_model_json['custom_metadata'] = {'key': 'value'}
+        imported_certificate_metadata_patch_model_json['custom_metadata'] = {'anyKey': 'anyValue'}
 
         # Construct a model instance of ImportedCertificateMetadataPatch by calling from_dict on the json representation
         imported_certificate_metadata_patch_model = ImportedCertificateMetadataPatch.from_dict(imported_certificate_metadata_patch_model_json)
@@ -6538,8 +6160,8 @@ class TestModel_ImportedCertificatePrototype:
         imported_certificate_prototype_model_json['certificate'] = 'testString'
         imported_certificate_prototype_model_json['intermediate'] = 'testString'
         imported_certificate_prototype_model_json['private_key'] = 'testString'
-        imported_certificate_prototype_model_json['custom_metadata'] = {'key': 'value'}
-        imported_certificate_prototype_model_json['version_custom_metadata'] = {'key': 'value'}
+        imported_certificate_prototype_model_json['custom_metadata'] = {'anyKey': 'anyValue'}
+        imported_certificate_prototype_model_json['version_custom_metadata'] = {'anyKey': 'anyValue'}
 
         # Construct a model instance of ImportedCertificatePrototype by calling from_dict on the json representation
         imported_certificate_prototype_model = ImportedCertificatePrototype.from_dict(imported_certificate_prototype_model_json)
@@ -6583,7 +6205,7 @@ class TestModel_ImportedCertificateVersion:
         imported_certificate_version_model_json['secret_group_id'] = 'default'
         imported_certificate_version_model_json['payload_available'] = True
         imported_certificate_version_model_json['alias'] = 'current'
-        imported_certificate_version_model_json['version_custom_metadata'] = {'key': 'value'}
+        imported_certificate_version_model_json['version_custom_metadata'] = {'anyKey': 'anyValue'}
         imported_certificate_version_model_json['secret_id'] = 'b49ad24d-81d4-5ebc-b9b9-b0937d1c84d5'
         imported_certificate_version_model_json['expiration_date'] = '2033-04-12T23:20:50.520000Z'
         imported_certificate_version_model_json['serial_number'] = '38:eb:01:a3:22:e9:de:55:24:56:9b:14:cb:e2:f3:e3:e2:fb:f5:18'
@@ -6634,7 +6256,7 @@ class TestModel_ImportedCertificateVersionMetadata:
         imported_certificate_version_metadata_model_json['secret_group_id'] = 'default'
         imported_certificate_version_metadata_model_json['payload_available'] = True
         imported_certificate_version_metadata_model_json['alias'] = 'current'
-        imported_certificate_version_metadata_model_json['version_custom_metadata'] = {'key': 'value'}
+        imported_certificate_version_metadata_model_json['version_custom_metadata'] = {'anyKey': 'anyValue'}
         imported_certificate_version_metadata_model_json['secret_id'] = 'b49ad24d-81d4-5ebc-b9b9-b0937d1c84d5'
         imported_certificate_version_metadata_model_json['expiration_date'] = '2033-04-12T23:20:50.520000Z'
         imported_certificate_version_metadata_model_json['serial_number'] = '38:eb:01:a3:22:e9:de:55:24:56:9b:14:cb:e2:f3:e3:e2:fb:f5:18'
@@ -6671,8 +6293,8 @@ class TestModel_ImportedCertificateVersionPrototype:
         imported_certificate_version_prototype_model_json['certificate'] = 'testString'
         imported_certificate_version_prototype_model_json['intermediate'] = 'testString'
         imported_certificate_version_prototype_model_json['private_key'] = 'testString'
-        imported_certificate_version_prototype_model_json['custom_metadata'] = {'key': 'value'}
-        imported_certificate_version_prototype_model_json['version_custom_metadata'] = {'key': 'value'}
+        imported_certificate_version_prototype_model_json['custom_metadata'] = {'anyKey': 'anyValue'}
+        imported_certificate_version_prototype_model_json['version_custom_metadata'] = {'anyKey': 'anyValue'}
 
         # Construct a model instance of ImportedCertificateVersionPrototype by calling from_dict on the json representation
         imported_certificate_version_prototype_model = ImportedCertificateVersionPrototype.from_dict(imported_certificate_version_prototype_model_json)
@@ -6705,7 +6327,7 @@ class TestModel_KVSecret:
         kv_secret_model_json['created_by'] = 'iam-ServiceId-e4a2f0a4-3c76-4bef-b1f2-fbeae11c0f21'
         kv_secret_model_json['created_at'] = '2022-04-12T23:20:50.520000Z'
         kv_secret_model_json['crn'] = 'testString'
-        kv_secret_model_json['custom_metadata'] = {'key': 'value'}
+        kv_secret_model_json['custom_metadata'] = {'anyKey': 'anyValue'}
         kv_secret_model_json['description'] = 'Extended description for this secret.'
         kv_secret_model_json['id'] = 'b49ad24d-81d4-5ebc-b9b9-b0937d1c84d5'
         kv_secret_model_json['labels'] = ['my-label']
@@ -6713,7 +6335,7 @@ class TestModel_KVSecret:
         kv_secret_model_json['secret_type'] = 'kv'
         kv_secret_model_json['updated_at'] = '2022-04-12T23:20:50.520000Z'
         kv_secret_model_json['versions_total'] = 0
-        kv_secret_model_json['data'] = {'key': 'value'}
+        kv_secret_model_json['data'] = {'anyKey': 'anyValue'}
 
         # Construct a model instance of KVSecret by calling from_dict on the json representation
         kv_secret_model = KVSecret.from_dict(kv_secret_model_json)
@@ -6746,7 +6368,7 @@ class TestModel_KVSecretMetadata:
         kv_secret_metadata_model_json['created_by'] = 'iam-ServiceId-e4a2f0a4-3c76-4bef-b1f2-fbeae11c0f21'
         kv_secret_metadata_model_json['created_at'] = '2022-04-12T23:20:50.520000Z'
         kv_secret_metadata_model_json['crn'] = 'testString'
-        kv_secret_metadata_model_json['custom_metadata'] = {'key': 'value'}
+        kv_secret_metadata_model_json['custom_metadata'] = {'anyKey': 'anyValue'}
         kv_secret_metadata_model_json['description'] = 'Extended description for this secret.'
         kv_secret_metadata_model_json['id'] = 'b49ad24d-81d4-5ebc-b9b9-b0937d1c84d5'
         kv_secret_metadata_model_json['labels'] = ['my-label']
@@ -6786,7 +6408,7 @@ class TestModel_KVSecretMetadataPatch:
         kv_secret_metadata_patch_model_json['name'] = 'my-secret-example'
         kv_secret_metadata_patch_model_json['description'] = 'Extended description for this secret.'
         kv_secret_metadata_patch_model_json['labels'] = ['my-label']
-        kv_secret_metadata_patch_model_json['custom_metadata'] = {'key': 'value'}
+        kv_secret_metadata_patch_model_json['custom_metadata'] = {'anyKey': 'anyValue'}
 
         # Construct a model instance of KVSecretMetadataPatch by calling from_dict on the json representation
         kv_secret_metadata_patch_model = KVSecretMetadataPatch.from_dict(kv_secret_metadata_patch_model_json)
@@ -6821,9 +6443,9 @@ class TestModel_KVSecretPrototype:
         kv_secret_prototype_model_json['description'] = 'Extended description for this secret.'
         kv_secret_prototype_model_json['secret_group_id'] = 'default'
         kv_secret_prototype_model_json['labels'] = ['my-label']
-        kv_secret_prototype_model_json['data'] = {'key': 'value'}
-        kv_secret_prototype_model_json['custom_metadata'] = {'key': 'value'}
-        kv_secret_prototype_model_json['version_custom_metadata'] = {'key': 'value'}
+        kv_secret_prototype_model_json['data'] = {'anyKey': 'anyValue'}
+        kv_secret_prototype_model_json['custom_metadata'] = {'anyKey': 'anyValue'}
+        kv_secret_prototype_model_json['version_custom_metadata'] = {'anyKey': 'anyValue'}
 
         # Construct a model instance of KVSecretPrototype by calling from_dict on the json representation
         kv_secret_prototype_model = KVSecretPrototype.from_dict(kv_secret_prototype_model_json)
@@ -6861,9 +6483,9 @@ class TestModel_KVSecretVersion:
         kv_secret_version_model_json['secret_group_id'] = 'default'
         kv_secret_version_model_json['payload_available'] = True
         kv_secret_version_model_json['alias'] = 'current'
-        kv_secret_version_model_json['version_custom_metadata'] = {'key': 'value'}
+        kv_secret_version_model_json['version_custom_metadata'] = {'anyKey': 'anyValue'}
         kv_secret_version_model_json['secret_id'] = 'b49ad24d-81d4-5ebc-b9b9-b0937d1c84d5'
-        kv_secret_version_model_json['data'] = {'key': 'value'}
+        kv_secret_version_model_json['data'] = {'anyKey': 'anyValue'}
 
         # Construct a model instance of KVSecretVersion by calling from_dict on the json representation
         kv_secret_version_model = KVSecretVersion.from_dict(kv_secret_version_model_json)
@@ -6901,7 +6523,7 @@ class TestModel_KVSecretVersionMetadata:
         kv_secret_version_metadata_model_json['secret_group_id'] = 'default'
         kv_secret_version_metadata_model_json['payload_available'] = True
         kv_secret_version_metadata_model_json['alias'] = 'current'
-        kv_secret_version_metadata_model_json['version_custom_metadata'] = {'key': 'value'}
+        kv_secret_version_metadata_model_json['version_custom_metadata'] = {'anyKey': 'anyValue'}
         kv_secret_version_metadata_model_json['secret_id'] = 'b49ad24d-81d4-5ebc-b9b9-b0937d1c84d5'
 
         # Construct a model instance of KVSecretVersionMetadata by calling from_dict on the json representation
@@ -6932,9 +6554,9 @@ class TestModel_KVSecretVersionPrototype:
 
         # Construct a json representation of a KVSecretVersionPrototype model
         kv_secret_version_prototype_model_json = {}
-        kv_secret_version_prototype_model_json['data'] = {'key': 'value'}
-        kv_secret_version_prototype_model_json['custom_metadata'] = {'key': 'value'}
-        kv_secret_version_prototype_model_json['version_custom_metadata'] = {'key': 'value'}
+        kv_secret_version_prototype_model_json['data'] = {'anyKey': 'anyValue'}
+        kv_secret_version_prototype_model_json['custom_metadata'] = {'anyKey': 'anyValue'}
+        kv_secret_version_prototype_model_json['version_custom_metadata'] = {'anyKey': 'anyValue'}
 
         # Construct a model instance of KVSecretVersionPrototype by calling from_dict on the json representation
         kv_secret_version_prototype_model = KVSecretVersionPrototype.from_dict(kv_secret_version_prototype_model_json)
@@ -6978,7 +6600,7 @@ class TestModel_PrivateCertificate:
         private_certificate_model_json['created_by'] = 'iam-ServiceId-e4a2f0a4-3c76-4bef-b1f2-fbeae11c0f21'
         private_certificate_model_json['created_at'] = '2022-04-12T23:20:50.520000Z'
         private_certificate_model_json['crn'] = 'testString'
-        private_certificate_model_json['custom_metadata'] = {'key': 'value'}
+        private_certificate_model_json['custom_metadata'] = {'anyKey': 'anyValue'}
         private_certificate_model_json['description'] = 'Extended description for this secret.'
         private_certificate_model_json['id'] = 'b49ad24d-81d4-5ebc-b9b9-b0937d1c84d5'
         private_certificate_model_json['labels'] = ['my-label']
@@ -8184,7 +7806,7 @@ class TestModel_PrivateCertificateMetadata:
         private_certificate_metadata_model_json['created_by'] = 'iam-ServiceId-e4a2f0a4-3c76-4bef-b1f2-fbeae11c0f21'
         private_certificate_metadata_model_json['created_at'] = '2022-04-12T23:20:50.520000Z'
         private_certificate_metadata_model_json['crn'] = 'testString'
-        private_certificate_metadata_model_json['custom_metadata'] = {'key': 'value'}
+        private_certificate_metadata_model_json['custom_metadata'] = {'anyKey': 'anyValue'}
         private_certificate_metadata_model_json['description'] = 'Extended description for this secret.'
         private_certificate_metadata_model_json['id'] = 'b49ad24d-81d4-5ebc-b9b9-b0937d1c84d5'
         private_certificate_metadata_model_json['labels'] = ['my-label']
@@ -8240,7 +7862,7 @@ class TestModel_PrivateCertificateMetadataPatch:
         private_certificate_metadata_patch_model_json['name'] = 'my-secret-example'
         private_certificate_metadata_patch_model_json['description'] = 'Extended description for this secret.'
         private_certificate_metadata_patch_model_json['labels'] = ['my-label']
-        private_certificate_metadata_patch_model_json['custom_metadata'] = {'key': 'value'}
+        private_certificate_metadata_patch_model_json['custom_metadata'] = {'anyKey': 'anyValue'}
         private_certificate_metadata_patch_model_json['rotation'] = rotation_policy_model
 
         # Construct a model instance of PrivateCertificateMetadataPatch by calling from_dict on the json representation
@@ -8295,8 +7917,8 @@ class TestModel_PrivateCertificatePrototype:
         private_certificate_prototype_model_json['exclude_cn_from_sans'] = True
         private_certificate_prototype_model_json['ttl'] = '12h'
         private_certificate_prototype_model_json['rotation'] = rotation_policy_model
-        private_certificate_prototype_model_json['custom_metadata'] = {'key': 'value'}
-        private_certificate_prototype_model_json['version_custom_metadata'] = {'key': 'value'}
+        private_certificate_prototype_model_json['custom_metadata'] = {'anyKey': 'anyValue'}
+        private_certificate_prototype_model_json['version_custom_metadata'] = {'anyKey': 'anyValue'}
 
         # Construct a model instance of PrivateCertificatePrototype by calling from_dict on the json representation
         private_certificate_prototype_model = PrivateCertificatePrototype.from_dict(private_certificate_prototype_model_json)
@@ -8340,7 +7962,7 @@ class TestModel_PrivateCertificateVersion:
         private_certificate_version_model_json['secret_group_id'] = 'default'
         private_certificate_version_model_json['payload_available'] = True
         private_certificate_version_model_json['alias'] = 'current'
-        private_certificate_version_model_json['version_custom_metadata'] = {'key': 'value'}
+        private_certificate_version_model_json['version_custom_metadata'] = {'anyKey': 'anyValue'}
         private_certificate_version_model_json['secret_id'] = 'b49ad24d-81d4-5ebc-b9b9-b0937d1c84d5'
         private_certificate_version_model_json['expiration_date'] = '2033-04-12T23:20:50.520000Z'
         private_certificate_version_model_json['serial_number'] = '38:eb:01:a3:22:e9:de:55:24:56:9b:14:cb:e2:f3:e3:e2:fb:f5:18'
@@ -8450,7 +8072,7 @@ class TestModel_PrivateCertificateVersionMetadata:
         private_certificate_version_metadata_model_json['secret_group_id'] = 'default'
         private_certificate_version_metadata_model_json['payload_available'] = True
         private_certificate_version_metadata_model_json['alias'] = 'current'
-        private_certificate_version_metadata_model_json['version_custom_metadata'] = {'key': 'value'}
+        private_certificate_version_metadata_model_json['version_custom_metadata'] = {'anyKey': 'anyValue'}
         private_certificate_version_metadata_model_json['secret_id'] = 'b49ad24d-81d4-5ebc-b9b9-b0937d1c84d5'
         private_certificate_version_metadata_model_json['expiration_date'] = '2033-04-12T23:20:50.520000Z'
         private_certificate_version_metadata_model_json['serial_number'] = '38:eb:01:a3:22:e9:de:55:24:56:9b:14:cb:e2:f3:e3:e2:fb:f5:18'
@@ -8484,8 +8106,8 @@ class TestModel_PrivateCertificateVersionPrototype:
 
         # Construct a json representation of a PrivateCertificateVersionPrototype model
         private_certificate_version_prototype_model_json = {}
-        private_certificate_version_prototype_model_json['custom_metadata'] = {'key': 'value'}
-        private_certificate_version_prototype_model_json['version_custom_metadata'] = {'key': 'value'}
+        private_certificate_version_prototype_model_json['custom_metadata'] = {'anyKey': 'anyValue'}
+        private_certificate_version_prototype_model_json['version_custom_metadata'] = {'anyKey': 'anyValue'}
         private_certificate_version_prototype_model_json['csr'] = 'testString'
 
         # Construct a model instance of PrivateCertificateVersionPrototype by calling from_dict on the json representation
@@ -8530,7 +8152,7 @@ class TestModel_PublicCertificate:
         public_certificate_model_json['created_by'] = 'iam-ServiceId-e4a2f0a4-3c76-4bef-b1f2-fbeae11c0f21'
         public_certificate_model_json['created_at'] = '2022-04-12T23:20:50.520000Z'
         public_certificate_model_json['crn'] = 'testString'
-        public_certificate_model_json['custom_metadata'] = {'key': 'value'}
+        public_certificate_model_json['custom_metadata'] = {'anyKey': 'anyValue'}
         public_certificate_model_json['description'] = 'Extended description for this secret.'
         public_certificate_model_json['id'] = 'b49ad24d-81d4-5ebc-b9b9-b0937d1c84d5'
         public_certificate_model_json['labels'] = ['my-label']
@@ -9066,7 +8688,7 @@ class TestModel_PublicCertificateMetadata:
         public_certificate_metadata_model_json['created_by'] = 'iam-ServiceId-e4a2f0a4-3c76-4bef-b1f2-fbeae11c0f21'
         public_certificate_metadata_model_json['created_at'] = '2022-04-12T23:20:50.520000Z'
         public_certificate_metadata_model_json['crn'] = 'testString'
-        public_certificate_metadata_model_json['custom_metadata'] = {'key': 'value'}
+        public_certificate_metadata_model_json['custom_metadata'] = {'anyKey': 'anyValue'}
         public_certificate_metadata_model_json['description'] = 'Extended description for this secret.'
         public_certificate_metadata_model_json['id'] = 'b49ad24d-81d4-5ebc-b9b9-b0937d1c84d5'
         public_certificate_metadata_model_json['labels'] = ['my-label']
@@ -9122,7 +8744,7 @@ class TestModel_PublicCertificateMetadataPatch:
         public_certificate_metadata_patch_model_json['name'] = 'my-secret-example'
         public_certificate_metadata_patch_model_json['description'] = 'Extended description for this secret.'
         public_certificate_metadata_patch_model_json['labels'] = ['my-label']
-        public_certificate_metadata_patch_model_json['custom_metadata'] = {'key': 'value'}
+        public_certificate_metadata_patch_model_json['custom_metadata'] = {'anyKey': 'anyValue'}
         public_certificate_metadata_patch_model_json['rotation'] = rotation_policy_model
 
         # Construct a model instance of PublicCertificateMetadataPatch by calling from_dict on the json representation
@@ -9172,8 +8794,8 @@ class TestModel_PublicCertificatePrototype:
         public_certificate_prototype_model_json['dns'] = 'my-dns-config'
         public_certificate_prototype_model_json['bundle_certs'] = True
         public_certificate_prototype_model_json['rotation'] = rotation_policy_model
-        public_certificate_prototype_model_json['custom_metadata'] = {'key': 'value'}
-        public_certificate_prototype_model_json['version_custom_metadata'] = {'key': 'value'}
+        public_certificate_prototype_model_json['custom_metadata'] = {'anyKey': 'anyValue'}
+        public_certificate_prototype_model_json['version_custom_metadata'] = {'anyKey': 'anyValue'}
 
         # Construct a model instance of PublicCertificatePrototype by calling from_dict on the json representation
         public_certificate_prototype_model = PublicCertificatePrototype.from_dict(public_certificate_prototype_model_json)
@@ -9248,7 +8870,7 @@ class TestModel_PublicCertificateVersion:
         public_certificate_version_model_json['secret_group_id'] = 'default'
         public_certificate_version_model_json['payload_available'] = True
         public_certificate_version_model_json['alias'] = 'current'
-        public_certificate_version_model_json['version_custom_metadata'] = {'key': 'value'}
+        public_certificate_version_model_json['version_custom_metadata'] = {'anyKey': 'anyValue'}
         public_certificate_version_model_json['secret_id'] = 'b49ad24d-81d4-5ebc-b9b9-b0937d1c84d5'
         public_certificate_version_model_json['expiration_date'] = '2033-04-12T23:20:50.520000Z'
         public_certificate_version_model_json['serial_number'] = '38:eb:01:a3:22:e9:de:55:24:56:9b:14:cb:e2:f3:e3:e2:fb:f5:18'
@@ -9299,7 +8921,7 @@ class TestModel_PublicCertificateVersionMetadata:
         public_certificate_version_metadata_model_json['secret_group_id'] = 'default'
         public_certificate_version_metadata_model_json['payload_available'] = True
         public_certificate_version_metadata_model_json['alias'] = 'current'
-        public_certificate_version_metadata_model_json['version_custom_metadata'] = {'key': 'value'}
+        public_certificate_version_metadata_model_json['version_custom_metadata'] = {'anyKey': 'anyValue'}
         public_certificate_version_metadata_model_json['secret_id'] = 'b49ad24d-81d4-5ebc-b9b9-b0937d1c84d5'
         public_certificate_version_metadata_model_json['expiration_date'] = '2033-04-12T23:20:50.520000Z'
         public_certificate_version_metadata_model_json['serial_number'] = '38:eb:01:a3:22:e9:de:55:24:56:9b:14:cb:e2:f3:e3:e2:fb:f5:18'
@@ -9339,8 +8961,8 @@ class TestModel_PublicCertificateVersionPrototype:
         # Construct a json representation of a PublicCertificateVersionPrototype model
         public_certificate_version_prototype_model_json = {}
         public_certificate_version_prototype_model_json['rotation'] = public_certificate_rotation_object_model
-        public_certificate_version_prototype_model_json['custom_metadata'] = {'key': 'value'}
-        public_certificate_version_prototype_model_json['version_custom_metadata'] = {'key': 'value'}
+        public_certificate_version_prototype_model_json['custom_metadata'] = {'anyKey': 'anyValue'}
+        public_certificate_version_prototype_model_json['version_custom_metadata'] = {'anyKey': 'anyValue'}
 
         # Construct a model instance of PublicCertificateVersionPrototype by calling from_dict on the json representation
         public_certificate_version_prototype_model = PublicCertificateVersionPrototype.from_dict(public_certificate_version_prototype_model_json)
@@ -9356,417 +8978,6 @@ class TestModel_PublicCertificateVersionPrototype:
         # Convert model instance back to dict and verify no loss of data
         public_certificate_version_prototype_model_json2 = public_certificate_version_prototype_model.to_dict()
         assert public_certificate_version_prototype_model_json2 == public_certificate_version_prototype_model_json
-
-
-class TestModel_ServiceCredentialsSecret:
-    """
-    Test Class for ServiceCredentialsSecret
-    """
-
-    def test_service_credentials_secret_serialization(self):
-        """
-        Test serialization/deserialization for ServiceCredentialsSecret
-        """
-
-        # Construct dict forms of any model objects needed in order to build this model.
-
-        rotation_policy_model = {}  # CommonRotationPolicy
-        rotation_policy_model['auto_rotate'] = True
-        rotation_policy_model['interval'] = 1
-        rotation_policy_model['unit'] = 'day'
-
-        service_credentials_source_service_instance_model = {}  # ServiceCredentialsSourceServiceInstance
-        service_credentials_source_service_instance_model['crn'] = 'testString'
-
-        service_credentials_source_service_parameters_model = {}  # ServiceCredentialsSourceServiceParameters
-        service_credentials_source_service_parameters_model['serviceid_crn'] = 'testString'
-        service_credentials_source_service_parameters_model['foo'] = 'testString'
-
-        service_credentials_source_service_role_model = {}  # ServiceCredentialsSourceServiceRole
-        service_credentials_source_service_role_model['crn'] = 'testString'
-
-        service_credentials_source_service_iam_apikey_model = {}  # ServiceCredentialsSourceServiceIamApikey
-
-        service_credentials_source_service_iam_role_model = {}  # ServiceCredentialsSourceServiceIamRole
-
-        service_credentials_source_service_iam_serviceid_model = {}  # ServiceCredentialsSourceServiceIamServiceid
-
-        service_credentials_source_service_iam_model = {}  # ServiceCredentialsSourceServiceIam
-        service_credentials_source_service_iam_model['apikey'] = service_credentials_source_service_iam_apikey_model
-        service_credentials_source_service_iam_model['role'] = service_credentials_source_service_iam_role_model
-        service_credentials_source_service_iam_model['serviceid'] = service_credentials_source_service_iam_serviceid_model
-
-        service_credentials_resource_key_model = {}  # ServiceCredentialsResourceKey
-
-        service_credentials_secret_source_service_model = {}  # ServiceCredentialsSecretSourceService
-        service_credentials_secret_source_service_model['instance'] = service_credentials_source_service_instance_model
-        service_credentials_secret_source_service_model['parameters'] = service_credentials_source_service_parameters_model
-        service_credentials_secret_source_service_model['role'] = service_credentials_source_service_role_model
-        service_credentials_secret_source_service_model['iam'] = service_credentials_source_service_iam_model
-        service_credentials_secret_source_service_model['resource_key'] = service_credentials_resource_key_model
-
-        cos_hmac_keys_model = {}  # CosHmacKeys
-
-        service_credentials_secret_credentials_model = {}  # ServiceCredentialsSecretCredentials
-        service_credentials_secret_credentials_model['cos_hmac_keys'] = cos_hmac_keys_model
-
-        # Construct a json representation of a ServiceCredentialsSecret model
-        service_credentials_secret_model_json = {}
-        service_credentials_secret_model_json['created_by'] = 'iam-ServiceId-e4a2f0a4-3c76-4bef-b1f2-fbeae11c0f21'
-        service_credentials_secret_model_json['created_at'] = '2022-04-12T23:20:50.520000Z'
-        service_credentials_secret_model_json['crn'] = 'testString'
-        service_credentials_secret_model_json['custom_metadata'] = {'key': 'value'}
-        service_credentials_secret_model_json['description'] = 'Extended description for this secret.'
-        service_credentials_secret_model_json['id'] = 'b49ad24d-81d4-5ebc-b9b9-b0937d1c84d5'
-        service_credentials_secret_model_json['labels'] = ['my-label']
-        service_credentials_secret_model_json['secret_group_id'] = 'default'
-        service_credentials_secret_model_json['secret_type'] = 'service_credentials'
-        service_credentials_secret_model_json['updated_at'] = '2022-04-12T23:20:50.520000Z'
-        service_credentials_secret_model_json['versions_total'] = 0
-        service_credentials_secret_model_json['rotation'] = rotation_policy_model
-        service_credentials_secret_model_json['ttl'] = '1d'
-        service_credentials_secret_model_json['source_service'] = service_credentials_secret_source_service_model
-        service_credentials_secret_model_json['credentials'] = service_credentials_secret_credentials_model
-
-        # Construct a model instance of ServiceCredentialsSecret by calling from_dict on the json representation
-        service_credentials_secret_model = ServiceCredentialsSecret.from_dict(service_credentials_secret_model_json)
-        assert service_credentials_secret_model != False
-
-        # Construct a model instance of ServiceCredentialsSecret by calling from_dict on the json representation
-        service_credentials_secret_model_dict = ServiceCredentialsSecret.from_dict(service_credentials_secret_model_json).__dict__
-        service_credentials_secret_model2 = ServiceCredentialsSecret(**service_credentials_secret_model_dict)
-
-        # Verify the model instances are equivalent
-        assert service_credentials_secret_model == service_credentials_secret_model2
-
-        # Convert model instance back to dict and verify no loss of data
-        service_credentials_secret_model_json2 = service_credentials_secret_model.to_dict()
-        assert service_credentials_secret_model_json2 == service_credentials_secret_model_json
-
-
-class TestModel_ServiceCredentialsSecretMetadata:
-    """
-    Test Class for ServiceCredentialsSecretMetadata
-    """
-
-    def test_service_credentials_secret_metadata_serialization(self):
-        """
-        Test serialization/deserialization for ServiceCredentialsSecretMetadata
-        """
-
-        # Construct dict forms of any model objects needed in order to build this model.
-
-        rotation_policy_model = {}  # CommonRotationPolicy
-        rotation_policy_model['auto_rotate'] = True
-        rotation_policy_model['interval'] = 1
-        rotation_policy_model['unit'] = 'day'
-
-        service_credentials_source_service_instance_model = {}  # ServiceCredentialsSourceServiceInstance
-        service_credentials_source_service_instance_model['crn'] = 'testString'
-
-        service_credentials_source_service_parameters_model = {}  # ServiceCredentialsSourceServiceParameters
-        service_credentials_source_service_parameters_model['serviceid_crn'] = 'testString'
-        service_credentials_source_service_parameters_model['foo'] = 'testString'
-
-        service_credentials_source_service_role_model = {}  # ServiceCredentialsSourceServiceRole
-        service_credentials_source_service_role_model['crn'] = 'testString'
-
-        service_credentials_source_service_iam_apikey_model = {}  # ServiceCredentialsSourceServiceIamApikey
-
-        service_credentials_source_service_iam_role_model = {}  # ServiceCredentialsSourceServiceIamRole
-
-        service_credentials_source_service_iam_serviceid_model = {}  # ServiceCredentialsSourceServiceIamServiceid
-
-        service_credentials_source_service_iam_model = {}  # ServiceCredentialsSourceServiceIam
-        service_credentials_source_service_iam_model['apikey'] = service_credentials_source_service_iam_apikey_model
-        service_credentials_source_service_iam_model['role'] = service_credentials_source_service_iam_role_model
-        service_credentials_source_service_iam_model['serviceid'] = service_credentials_source_service_iam_serviceid_model
-
-        service_credentials_resource_key_model = {}  # ServiceCredentialsResourceKey
-
-        service_credentials_secret_source_service_model = {}  # ServiceCredentialsSecretSourceService
-        service_credentials_secret_source_service_model['instance'] = service_credentials_source_service_instance_model
-        service_credentials_secret_source_service_model['parameters'] = service_credentials_source_service_parameters_model
-        service_credentials_secret_source_service_model['role'] = service_credentials_source_service_role_model
-        service_credentials_secret_source_service_model['iam'] = service_credentials_source_service_iam_model
-        service_credentials_secret_source_service_model['resource_key'] = service_credentials_resource_key_model
-
-        # Construct a json representation of a ServiceCredentialsSecretMetadata model
-        service_credentials_secret_metadata_model_json = {}
-        service_credentials_secret_metadata_model_json['created_by'] = 'iam-ServiceId-e4a2f0a4-3c76-4bef-b1f2-fbeae11c0f21'
-        service_credentials_secret_metadata_model_json['created_at'] = '2022-04-12T23:20:50.520000Z'
-        service_credentials_secret_metadata_model_json['crn'] = 'testString'
-        service_credentials_secret_metadata_model_json['custom_metadata'] = {'key': 'value'}
-        service_credentials_secret_metadata_model_json['description'] = 'Extended description for this secret.'
-        service_credentials_secret_metadata_model_json['id'] = 'b49ad24d-81d4-5ebc-b9b9-b0937d1c84d5'
-        service_credentials_secret_metadata_model_json['labels'] = ['my-label']
-        service_credentials_secret_metadata_model_json['secret_group_id'] = 'default'
-        service_credentials_secret_metadata_model_json['secret_type'] = 'service_credentials'
-        service_credentials_secret_metadata_model_json['updated_at'] = '2022-04-12T23:20:50.520000Z'
-        service_credentials_secret_metadata_model_json['versions_total'] = 0
-        service_credentials_secret_metadata_model_json['rotation'] = rotation_policy_model
-        service_credentials_secret_metadata_model_json['ttl'] = '1d'
-        service_credentials_secret_metadata_model_json['source_service'] = service_credentials_secret_source_service_model
-
-        # Construct a model instance of ServiceCredentialsSecretMetadata by calling from_dict on the json representation
-        service_credentials_secret_metadata_model = ServiceCredentialsSecretMetadata.from_dict(service_credentials_secret_metadata_model_json)
-        assert service_credentials_secret_metadata_model != False
-
-        # Construct a model instance of ServiceCredentialsSecretMetadata by calling from_dict on the json representation
-        service_credentials_secret_metadata_model_dict = ServiceCredentialsSecretMetadata.from_dict(service_credentials_secret_metadata_model_json).__dict__
-        service_credentials_secret_metadata_model2 = ServiceCredentialsSecretMetadata(**service_credentials_secret_metadata_model_dict)
-
-        # Verify the model instances are equivalent
-        assert service_credentials_secret_metadata_model == service_credentials_secret_metadata_model2
-
-        # Convert model instance back to dict and verify no loss of data
-        service_credentials_secret_metadata_model_json2 = service_credentials_secret_metadata_model.to_dict()
-        assert service_credentials_secret_metadata_model_json2 == service_credentials_secret_metadata_model_json
-
-
-class TestModel_ServiceCredentialsSecretMetadataPatch:
-    """
-    Test Class for ServiceCredentialsSecretMetadataPatch
-    """
-
-    def test_service_credentials_secret_metadata_patch_serialization(self):
-        """
-        Test serialization/deserialization for ServiceCredentialsSecretMetadataPatch
-        """
-
-        # Construct dict forms of any model objects needed in order to build this model.
-
-        rotation_policy_model = {}  # CommonRotationPolicy
-        rotation_policy_model['auto_rotate'] = True
-        rotation_policy_model['interval'] = 1
-        rotation_policy_model['unit'] = 'day'
-
-        # Construct a json representation of a ServiceCredentialsSecretMetadataPatch model
-        service_credentials_secret_metadata_patch_model_json = {}
-        service_credentials_secret_metadata_patch_model_json['custom_metadata'] = {'key': 'value'}
-        service_credentials_secret_metadata_patch_model_json['description'] = 'Extended description for this secret.'
-        service_credentials_secret_metadata_patch_model_json['labels'] = ['my-label']
-        service_credentials_secret_metadata_patch_model_json['name'] = 'my-secret-example'
-        service_credentials_secret_metadata_patch_model_json['rotation'] = rotation_policy_model
-        service_credentials_secret_metadata_patch_model_json['ttl'] = '1d'
-
-        # Construct a model instance of ServiceCredentialsSecretMetadataPatch by calling from_dict on the json representation
-        service_credentials_secret_metadata_patch_model = ServiceCredentialsSecretMetadataPatch.from_dict(service_credentials_secret_metadata_patch_model_json)
-        assert service_credentials_secret_metadata_patch_model != False
-
-        # Construct a model instance of ServiceCredentialsSecretMetadataPatch by calling from_dict on the json representation
-        service_credentials_secret_metadata_patch_model_dict = ServiceCredentialsSecretMetadataPatch.from_dict(service_credentials_secret_metadata_patch_model_json).__dict__
-        service_credentials_secret_metadata_patch_model2 = ServiceCredentialsSecretMetadataPatch(**service_credentials_secret_metadata_patch_model_dict)
-
-        # Verify the model instances are equivalent
-        assert service_credentials_secret_metadata_patch_model == service_credentials_secret_metadata_patch_model2
-
-        # Convert model instance back to dict and verify no loss of data
-        service_credentials_secret_metadata_patch_model_json2 = service_credentials_secret_metadata_patch_model.to_dict()
-        assert service_credentials_secret_metadata_patch_model_json2 == service_credentials_secret_metadata_patch_model_json
-
-
-class TestModel_ServiceCredentialsSecretPrototype:
-    """
-    Test Class for ServiceCredentialsSecretPrototype
-    """
-
-    def test_service_credentials_secret_prototype_serialization(self):
-        """
-        Test serialization/deserialization for ServiceCredentialsSecretPrototype
-        """
-
-        # Construct dict forms of any model objects needed in order to build this model.
-
-        rotation_policy_model = {}  # CommonRotationPolicy
-        rotation_policy_model['auto_rotate'] = True
-        rotation_policy_model['interval'] = 1
-        rotation_policy_model['unit'] = 'day'
-
-        service_credentials_source_service_instance_model = {}  # ServiceCredentialsSourceServiceInstance
-        service_credentials_source_service_instance_model['crn'] = 'testString'
-
-        service_credentials_source_service_parameters_model = {}  # ServiceCredentialsSourceServiceParameters
-        service_credentials_source_service_parameters_model['serviceid_crn'] = 'testString'
-        service_credentials_source_service_parameters_model['foo'] = 'testString'
-
-        service_credentials_source_service_role_model = {}  # ServiceCredentialsSourceServiceRole
-        service_credentials_source_service_role_model['crn'] = 'testString'
-
-        service_credentials_source_service_iam_apikey_model = {}  # ServiceCredentialsSourceServiceIamApikey
-
-        service_credentials_source_service_iam_role_model = {}  # ServiceCredentialsSourceServiceIamRole
-
-        service_credentials_source_service_iam_serviceid_model = {}  # ServiceCredentialsSourceServiceIamServiceid
-
-        service_credentials_source_service_iam_model = {}  # ServiceCredentialsSourceServiceIam
-        service_credentials_source_service_iam_model['apikey'] = service_credentials_source_service_iam_apikey_model
-        service_credentials_source_service_iam_model['role'] = service_credentials_source_service_iam_role_model
-        service_credentials_source_service_iam_model['serviceid'] = service_credentials_source_service_iam_serviceid_model
-
-        service_credentials_resource_key_model = {}  # ServiceCredentialsResourceKey
-
-        service_credentials_secret_source_service_model = {}  # ServiceCredentialsSecretSourceService
-        service_credentials_secret_source_service_model['instance'] = service_credentials_source_service_instance_model
-        service_credentials_secret_source_service_model['parameters'] = service_credentials_source_service_parameters_model
-        service_credentials_secret_source_service_model['role'] = service_credentials_source_service_role_model
-        service_credentials_secret_source_service_model['iam'] = service_credentials_source_service_iam_model
-        service_credentials_secret_source_service_model['resource_key'] = service_credentials_resource_key_model
-
-        # Construct a json representation of a ServiceCredentialsSecretPrototype model
-        service_credentials_secret_prototype_model_json = {}
-        service_credentials_secret_prototype_model_json['custom_metadata'] = {'key': 'value'}
-        service_credentials_secret_prototype_model_json['description'] = 'Extended description for this secret.'
-        service_credentials_secret_prototype_model_json['labels'] = ['my-label']
-        service_credentials_secret_prototype_model_json['name'] = 'my-secret-example'
-        service_credentials_secret_prototype_model_json['rotation'] = rotation_policy_model
-        service_credentials_secret_prototype_model_json['secret_group_id'] = 'default'
-        service_credentials_secret_prototype_model_json['secret_type'] = 'service_credentials'
-        service_credentials_secret_prototype_model_json['source_service'] = service_credentials_secret_source_service_model
-        service_credentials_secret_prototype_model_json['ttl'] = '1d'
-        service_credentials_secret_prototype_model_json['version_custom_metadata'] = {'key': 'value'}
-
-        # Construct a model instance of ServiceCredentialsSecretPrototype by calling from_dict on the json representation
-        service_credentials_secret_prototype_model = ServiceCredentialsSecretPrototype.from_dict(service_credentials_secret_prototype_model_json)
-        assert service_credentials_secret_prototype_model != False
-
-        # Construct a model instance of ServiceCredentialsSecretPrototype by calling from_dict on the json representation
-        service_credentials_secret_prototype_model_dict = ServiceCredentialsSecretPrototype.from_dict(service_credentials_secret_prototype_model_json).__dict__
-        service_credentials_secret_prototype_model2 = ServiceCredentialsSecretPrototype(**service_credentials_secret_prototype_model_dict)
-
-        # Verify the model instances are equivalent
-        assert service_credentials_secret_prototype_model == service_credentials_secret_prototype_model2
-
-        # Convert model instance back to dict and verify no loss of data
-        service_credentials_secret_prototype_model_json2 = service_credentials_secret_prototype_model.to_dict()
-        assert service_credentials_secret_prototype_model_json2 == service_credentials_secret_prototype_model_json
-
-
-class TestModel_ServiceCredentialsSecretVersion:
-    """
-    Test Class for ServiceCredentialsSecretVersion
-    """
-
-    def test_service_credentials_secret_version_serialization(self):
-        """
-        Test serialization/deserialization for ServiceCredentialsSecretVersion
-        """
-
-        # Construct dict forms of any model objects needed in order to build this model.
-
-        service_credentials_resource_key_model = {}  # ServiceCredentialsResourceKey
-
-        cos_hmac_keys_model = {}  # CosHmacKeys
-
-        service_credentials_secret_credentials_model = {}  # ServiceCredentialsSecretCredentials
-        service_credentials_secret_credentials_model['cos_hmac_keys'] = cos_hmac_keys_model
-
-        # Construct a json representation of a ServiceCredentialsSecretVersion model
-        service_credentials_secret_version_model_json = {}
-        service_credentials_secret_version_model_json['auto_rotated'] = True
-        service_credentials_secret_version_model_json['created_by'] = 'iam-ServiceId-e4a2f0a4-3c76-4bef-b1f2-fbeae11c0f21'
-        service_credentials_secret_version_model_json['created_at'] = '2022-04-12T23:20:50.520000Z'
-        service_credentials_secret_version_model_json['id'] = 'b49ad24d-81d4-5ebc-b9b9-b0937d1c84d5'
-        service_credentials_secret_version_model_json['secret_type'] = 'service_credentials'
-        service_credentials_secret_version_model_json['secret_group_id'] = 'default'
-        service_credentials_secret_version_model_json['payload_available'] = True
-        service_credentials_secret_version_model_json['alias'] = 'current'
-        service_credentials_secret_version_model_json['version_custom_metadata'] = {'key': 'value'}
-        service_credentials_secret_version_model_json['secret_id'] = 'b49ad24d-81d4-5ebc-b9b9-b0937d1c84d5'
-        service_credentials_secret_version_model_json['expiration_date'] = '2033-04-12T23:20:50.520000Z'
-        service_credentials_secret_version_model_json['resource_key'] = service_credentials_resource_key_model
-        service_credentials_secret_version_model_json['credentials'] = service_credentials_secret_credentials_model
-
-        # Construct a model instance of ServiceCredentialsSecretVersion by calling from_dict on the json representation
-        service_credentials_secret_version_model = ServiceCredentialsSecretVersion.from_dict(service_credentials_secret_version_model_json)
-        assert service_credentials_secret_version_model != False
-
-        # Construct a model instance of ServiceCredentialsSecretVersion by calling from_dict on the json representation
-        service_credentials_secret_version_model_dict = ServiceCredentialsSecretVersion.from_dict(service_credentials_secret_version_model_json).__dict__
-        service_credentials_secret_version_model2 = ServiceCredentialsSecretVersion(**service_credentials_secret_version_model_dict)
-
-        # Verify the model instances are equivalent
-        assert service_credentials_secret_version_model == service_credentials_secret_version_model2
-
-        # Convert model instance back to dict and verify no loss of data
-        service_credentials_secret_version_model_json2 = service_credentials_secret_version_model.to_dict()
-        assert service_credentials_secret_version_model_json2 == service_credentials_secret_version_model_json
-
-
-class TestModel_ServiceCredentialsSecretVersionMetadata:
-    """
-    Test Class for ServiceCredentialsSecretVersionMetadata
-    """
-
-    def test_service_credentials_secret_version_metadata_serialization(self):
-        """
-        Test serialization/deserialization for ServiceCredentialsSecretVersionMetadata
-        """
-
-        # Construct dict forms of any model objects needed in order to build this model.
-
-        service_credentials_resource_key_model = {}  # ServiceCredentialsResourceKey
-
-        # Construct a json representation of a ServiceCredentialsSecretVersionMetadata model
-        service_credentials_secret_version_metadata_model_json = {}
-        service_credentials_secret_version_metadata_model_json['auto_rotated'] = True
-        service_credentials_secret_version_metadata_model_json['created_by'] = 'iam-ServiceId-e4a2f0a4-3c76-4bef-b1f2-fbeae11c0f21'
-        service_credentials_secret_version_metadata_model_json['created_at'] = '2022-04-12T23:20:50.520000Z'
-        service_credentials_secret_version_metadata_model_json['id'] = 'b49ad24d-81d4-5ebc-b9b9-b0937d1c84d5'
-        service_credentials_secret_version_metadata_model_json['secret_type'] = 'service_credentials'
-        service_credentials_secret_version_metadata_model_json['secret_group_id'] = 'default'
-        service_credentials_secret_version_metadata_model_json['payload_available'] = True
-        service_credentials_secret_version_metadata_model_json['alias'] = 'current'
-        service_credentials_secret_version_metadata_model_json['version_custom_metadata'] = {'key': 'value'}
-        service_credentials_secret_version_metadata_model_json['secret_id'] = 'b49ad24d-81d4-5ebc-b9b9-b0937d1c84d5'
-        service_credentials_secret_version_metadata_model_json['expiration_date'] = '2033-04-12T23:20:50.520000Z'
-        service_credentials_secret_version_metadata_model_json['resource_key'] = service_credentials_resource_key_model
-
-        # Construct a model instance of ServiceCredentialsSecretVersionMetadata by calling from_dict on the json representation
-        service_credentials_secret_version_metadata_model = ServiceCredentialsSecretVersionMetadata.from_dict(service_credentials_secret_version_metadata_model_json)
-        assert service_credentials_secret_version_metadata_model != False
-
-        # Construct a model instance of ServiceCredentialsSecretVersionMetadata by calling from_dict on the json representation
-        service_credentials_secret_version_metadata_model_dict = ServiceCredentialsSecretVersionMetadata.from_dict(service_credentials_secret_version_metadata_model_json).__dict__
-        service_credentials_secret_version_metadata_model2 = ServiceCredentialsSecretVersionMetadata(**service_credentials_secret_version_metadata_model_dict)
-
-        # Verify the model instances are equivalent
-        assert service_credentials_secret_version_metadata_model == service_credentials_secret_version_metadata_model2
-
-        # Convert model instance back to dict and verify no loss of data
-        service_credentials_secret_version_metadata_model_json2 = service_credentials_secret_version_metadata_model.to_dict()
-        assert service_credentials_secret_version_metadata_model_json2 == service_credentials_secret_version_metadata_model_json
-
-
-class TestModel_ServiceCredentialsSecretVersionPrototype:
-    """
-    Test Class for ServiceCredentialsSecretVersionPrototype
-    """
-
-    def test_service_credentials_secret_version_prototype_serialization(self):
-        """
-        Test serialization/deserialization for ServiceCredentialsSecretVersionPrototype
-        """
-
-        # Construct a json representation of a ServiceCredentialsSecretVersionPrototype model
-        service_credentials_secret_version_prototype_model_json = {}
-        service_credentials_secret_version_prototype_model_json['custom_metadata'] = {'key': 'value'}
-        service_credentials_secret_version_prototype_model_json['version_custom_metadata'] = {'key': 'value'}
-
-        # Construct a model instance of ServiceCredentialsSecretVersionPrototype by calling from_dict on the json representation
-        service_credentials_secret_version_prototype_model = ServiceCredentialsSecretVersionPrototype.from_dict(service_credentials_secret_version_prototype_model_json)
-        assert service_credentials_secret_version_prototype_model != False
-
-        # Construct a model instance of ServiceCredentialsSecretVersionPrototype by calling from_dict on the json representation
-        service_credentials_secret_version_prototype_model_dict = ServiceCredentialsSecretVersionPrototype.from_dict(service_credentials_secret_version_prototype_model_json).__dict__
-        service_credentials_secret_version_prototype_model2 = ServiceCredentialsSecretVersionPrototype(**service_credentials_secret_version_prototype_model_dict)
-
-        # Verify the model instances are equivalent
-        assert service_credentials_secret_version_prototype_model == service_credentials_secret_version_prototype_model2
-
-        # Convert model instance back to dict and verify no loss of data
-        service_credentials_secret_version_prototype_model_json2 = service_credentials_secret_version_prototype_model.to_dict()
-        assert service_credentials_secret_version_prototype_model_json2 == service_credentials_secret_version_prototype_model_json
 
 
 class TestModel_UsernamePasswordSecret:
@@ -9791,7 +9002,7 @@ class TestModel_UsernamePasswordSecret:
         username_password_secret_model_json['created_by'] = 'iam-ServiceId-e4a2f0a4-3c76-4bef-b1f2-fbeae11c0f21'
         username_password_secret_model_json['created_at'] = '2022-04-12T23:20:50.520000Z'
         username_password_secret_model_json['crn'] = 'testString'
-        username_password_secret_model_json['custom_metadata'] = {'key': 'value'}
+        username_password_secret_model_json['custom_metadata'] = {'anyKey': 'anyValue'}
         username_password_secret_model_json['description'] = 'Extended description for this secret.'
         username_password_secret_model_json['id'] = 'b49ad24d-81d4-5ebc-b9b9-b0937d1c84d5'
         username_password_secret_model_json['labels'] = ['my-label']
@@ -9842,7 +9053,7 @@ class TestModel_UsernamePasswordSecretMetadata:
         username_password_secret_metadata_model_json['created_by'] = 'iam-ServiceId-e4a2f0a4-3c76-4bef-b1f2-fbeae11c0f21'
         username_password_secret_metadata_model_json['created_at'] = '2022-04-12T23:20:50.520000Z'
         username_password_secret_metadata_model_json['crn'] = 'testString'
-        username_password_secret_metadata_model_json['custom_metadata'] = {'key': 'value'}
+        username_password_secret_metadata_model_json['custom_metadata'] = {'anyKey': 'anyValue'}
         username_password_secret_metadata_model_json['description'] = 'Extended description for this secret.'
         username_password_secret_metadata_model_json['id'] = 'b49ad24d-81d4-5ebc-b9b9-b0937d1c84d5'
         username_password_secret_metadata_model_json['labels'] = ['my-label']
@@ -9891,7 +9102,7 @@ class TestModel_UsernamePasswordSecretMetadataPatch:
         username_password_secret_metadata_patch_model_json['name'] = 'my-secret-example'
         username_password_secret_metadata_patch_model_json['description'] = 'Extended description for this secret.'
         username_password_secret_metadata_patch_model_json['labels'] = ['my-label']
-        username_password_secret_metadata_patch_model_json['custom_metadata'] = {'key': 'value'}
+        username_password_secret_metadata_patch_model_json['custom_metadata'] = {'anyKey': 'anyValue'}
         username_password_secret_metadata_patch_model_json['rotation'] = rotation_policy_model
         username_password_secret_metadata_patch_model_json['expiration_date'] = '2033-04-12T23:20:50.520000Z'
 
@@ -9938,8 +9149,8 @@ class TestModel_UsernamePasswordSecretPrototype:
         username_password_secret_prototype_model_json['username'] = 'testString'
         username_password_secret_prototype_model_json['password'] = 'testString'
         username_password_secret_prototype_model_json['expiration_date'] = '2033-04-12T23:20:50.520000Z'
-        username_password_secret_prototype_model_json['custom_metadata'] = {'key': 'value'}
-        username_password_secret_prototype_model_json['version_custom_metadata'] = {'key': 'value'}
+        username_password_secret_prototype_model_json['custom_metadata'] = {'anyKey': 'anyValue'}
+        username_password_secret_prototype_model_json['version_custom_metadata'] = {'anyKey': 'anyValue'}
         username_password_secret_prototype_model_json['rotation'] = rotation_policy_model
 
         # Construct a model instance of UsernamePasswordSecretPrototype by calling from_dict on the json representation
@@ -9978,7 +9189,7 @@ class TestModel_UsernamePasswordSecretVersion:
         username_password_secret_version_model_json['secret_group_id'] = 'default'
         username_password_secret_version_model_json['payload_available'] = True
         username_password_secret_version_model_json['alias'] = 'current'
-        username_password_secret_version_model_json['version_custom_metadata'] = {'key': 'value'}
+        username_password_secret_version_model_json['version_custom_metadata'] = {'anyKey': 'anyValue'}
         username_password_secret_version_model_json['secret_id'] = 'b49ad24d-81d4-5ebc-b9b9-b0937d1c84d5'
         username_password_secret_version_model_json['username'] = 'testString'
         username_password_secret_version_model_json['password'] = 'testString'
@@ -10019,7 +9230,7 @@ class TestModel_UsernamePasswordSecretVersionMetadata:
         username_password_secret_version_metadata_model_json['secret_group_id'] = 'default'
         username_password_secret_version_metadata_model_json['payload_available'] = True
         username_password_secret_version_metadata_model_json['alias'] = 'current'
-        username_password_secret_version_metadata_model_json['version_custom_metadata'] = {'key': 'value'}
+        username_password_secret_version_metadata_model_json['version_custom_metadata'] = {'anyKey': 'anyValue'}
         username_password_secret_version_metadata_model_json['secret_id'] = 'b49ad24d-81d4-5ebc-b9b9-b0937d1c84d5'
 
         # Construct a model instance of UsernamePasswordSecretVersionMetadata by calling from_dict on the json representation
@@ -10051,8 +9262,8 @@ class TestModel_UsernamePasswordSecretVersionPrototype:
         # Construct a json representation of a UsernamePasswordSecretVersionPrototype model
         username_password_secret_version_prototype_model_json = {}
         username_password_secret_version_prototype_model_json['password'] = 'testString'
-        username_password_secret_version_prototype_model_json['custom_metadata'] = {'key': 'value'}
-        username_password_secret_version_prototype_model_json['version_custom_metadata'] = {'key': 'value'}
+        username_password_secret_version_prototype_model_json['custom_metadata'] = {'anyKey': 'anyValue'}
+        username_password_secret_version_prototype_model_json['version_custom_metadata'] = {'anyKey': 'anyValue'}
 
         # Construct a model instance of UsernamePasswordSecretVersionPrototype by calling from_dict on the json representation
         username_password_secret_version_prototype_model = UsernamePasswordSecretVersionPrototype.from_dict(username_password_secret_version_prototype_model_json)

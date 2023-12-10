@@ -1,7 +1,6 @@
 # IBM Cloud Secrets Manager Python SDK
 
-A Python client library to interact with
-the [IBM Cloud® Secrets Manager APIs](https://cloud.ibm.com/apidocs/secrets-manager).
+A Python client library to interact with the [IBM Cloud® Secrets Manager APIs](https://cloud.ibm.com/apidocs/secrets-manager).
 
 <details>
 <summary>Table of Contents</summary>
@@ -25,7 +24,7 @@ services:
 
 | Service name                                                     | Imported class name  |
 |------------------------------------------------------------------|----------------------|
-| [Secrets Manager](https://cloud.ibm.com/apidocs/secrets-manager) | SecretsManagerV1     |
+| [Secrets Manager](https://cloud.ibm.com/apidocs/secrets-manager) | SecretsManagerV2     |
 
 ## Prerequisites
 
@@ -67,7 +66,7 @@ authenticators from `ibm_cloud_sdk_core.authenticators`.
 ```python
 from ibm_cloud_sdk_core.authenticators.iam_authenticator import IAMAuthenticator
 
-secretsManager = SecretsManagerV1(
+secretsManager = SecretsManagerV2(
     authenticator=IAMAuthenticator(apikey='<IBM_CLOUD_API_KEY>')
 )
 ```
@@ -90,31 +89,39 @@ Here's an example `secrets_manager.py` file:
 
 ```python
 from ibm_cloud_sdk_core.authenticators.iam_authenticator import IAMAuthenticator
-from ibm_secrets_manager_sdk.secrets_manager_v1 import *
+from ibm_secrets_manager_sdk.secrets_manager_v2 import *
 
-secretsManager = SecretsManagerV1(
+secretsManager = SecretsManagerV2(
     authenticator=IAMAuthenticator(apikey='<IBM_CLOUD_API_KEY>')
 )
 
 secretsManager.set_service_url('<SERVICE_URL>')
 
 # create arbitrary secret
+secret_prototype_model = {
+    'custom_metadata': {'metadata_custom_key':'metadata_custom_value'},
+    'description': 'Description of my arbitrary secret.',
+    'expiration_date': '2030-10-05T11:49:42Z',
+    'labels': ['dev', 'us-south'],
+    'name': 'example-arbitrary-secret',
+    'secret_group_id': 'default',
+    'secret_type': 'arbitrary',
+    'payload': 'secret-data',
+    'version_custom_metadata': {'custom_version_key':'custom_version_value'},
+}
+
 response = secretsManager.create_secret(
-    'arbitrary',
-    {'collection_type': 'application/vnd.ibm.secrets-manager.secret+json', 'collection_total': 1},
-    [{'name': 'example-arbitrary-secret', 'description': 'Extended description for this secret.',
-      'payload': 'secret-data'}]
+  secret_prototype=secret_prototype_model,
 )
 
-secretId = response.result['resources'][0]['id']
+secretId = response.result['id']
 
 # get arbitrary secret
 response = secretsManager.get_secret(
-    'arbitrary',
-    secretId
+    id=secretId
 )
 
-secretPayload = response.result['resources'][0]['secret_data']['payload']
+secretPayload = response.result['payload']
 print('The arbitrary secret payload is: ' + secretPayload)
 
 ```
@@ -145,6 +152,4 @@ For general contribution guidelines, see [CONTRIBUTING](CONTRIBUTING.md).
 
 ## License
 
-This SDK project is released under the Apache 2.0 license. The license's full text can be found in [LICENSE](LICENSE). 
-
-dummy_PR #1
+This SDK project is released under the Apache 2.0 license. The license's full text can be found in [LICENSE](LICENSE).

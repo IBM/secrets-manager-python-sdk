@@ -70,6 +70,8 @@ class TestSecretsManagerV2:
 
     @needscredentials
     def test_create_secret_group(self):
+        global secret_group_id_for_get_secret_group_link
+
         response = self.secrets_manager_service.create_secret_group(
             name='my-secret-group',
             description='Extended description for this group.',
@@ -79,14 +81,16 @@ class TestSecretsManagerV2:
         secret_group = response.get_result()
         assert secret_group is not None
 
-        global secret_group_id_for_get_secret_group_link
         secret_group_id_for_get_secret_group_link = secret_group['id']
 
     @needscredentials
     def test_create_secret(self):
+        global secret_id_for_get_secret_link
+        global secret_id_for_get_secret_version_link
+
         # Construct a dict representation of a ArbitrarySecretPrototype model
         secret_prototype_model = {
-            'custom_metadata': {'metadata_custom_key': 'metadata_custom_value'},
+            'custom_metadata': {'metadata_custom_key':'metadata_custom_value'},
             'description': 'Description of my arbitrary secret.',
             'expiration_date': '2030-10-05T11:49:42Z',
             'labels': ['dev', 'us-south'],
@@ -94,7 +98,7 @@ class TestSecretsManagerV2:
             'secret_group_id': 'default',
             'secret_type': 'arbitrary',
             'payload': 'secret-data',
-            'version_custom_metadata': {'custom_version_key': 'custom_version_value'},
+            'version_custom_metadata': {'custom_version_key':'custom_version_value'},
         }
 
         response = self.secrets_manager_service.create_secret(
@@ -105,19 +109,19 @@ class TestSecretsManagerV2:
         secret = response.get_result()
         assert secret is not None
 
-        global secret_id_for_get_secret_link
         secret_id_for_get_secret_link = secret['id']
-        global secret_id_for_get_secret_version_link
         secret_id_for_get_secret_version_link = secret['id']
 
     @needscredentials
     def test_update_secret_metadata(self):
+        global secret_name_link
+
         # Construct a dict representation of a ArbitrarySecretMetadataPatch model
         secret_metadata_patch_model = {
             'name': 'updated-arbitrary-secret-name-example',
             'description': 'updated Arbitrary Secret description',
             'labels': ['dev', 'us-south'],
-            'custom_metadata': {'metadata_custom_key': 'metadata_custom_value'},
+            'custom_metadata': {'metadata_custom_key':'metadata_custom_value'},
             'expiration_date': '2033-04-12T23:20:50.520Z',
         }
 
@@ -130,11 +134,18 @@ class TestSecretsManagerV2:
         secret_metadata = response.get_result()
         assert secret_metadata is not None
 
-        global secret_name_link
         secret_name_link = secret_metadata['name']
 
     @needscredentials
     def test_list_secret_versions(self):
+        global secret_version_id_for_get_secret_version_link
+        global secret_id_for_create_secret_version_link
+        global secret_version_id_for_get_secret_version_metadata_link
+        global secret_version_id_for_update_secret_version_metadata_link
+        global secret_id_for_create_secret_version_locks_link
+        global secret_version_id_for_create_secret_version_locks_link
+        global secret_version_id_for_delete_secret_version_locks_link
+
         response = self.secrets_manager_service.list_secret_versions(
             secret_id=secret_id_for_get_secret_link,
         )
@@ -143,28 +154,25 @@ class TestSecretsManagerV2:
         secret_version_metadata_collection = response.get_result()
         assert secret_version_metadata_collection is not None
 
-        global secret_version_id_for_get_secret_version_link
         secret_version_id_for_get_secret_version_link = secret_version_metadata_collection['versions'][0]['id']
-        global secret_id_for_create_secret_version_link
         secret_id_for_create_secret_version_link = secret_version_metadata_collection['versions'][0]['secret_id']
-        global secret_version_id_for_get_secret_version_metadata_link
         secret_version_id_for_get_secret_version_metadata_link = secret_version_metadata_collection['versions'][0]['id']
-        global secret_version_id_for_update_secret_version_metadata_link
         secret_version_id_for_update_secret_version_metadata_link = secret_version_metadata_collection['versions'][0]['id']
-        global secret_id_for_create_secret_version_locks_link
         secret_id_for_create_secret_version_locks_link = secret_version_metadata_collection['versions'][0]['secret_id']
-        global secret_version_id_for_create_secret_version_locks_link
         secret_version_id_for_create_secret_version_locks_link = secret_version_metadata_collection['versions'][0]['id']
-        global secret_version_id_for_delete_secret_version_locks_link
         secret_version_id_for_delete_secret_version_locks_link = secret_version_metadata_collection['versions'][0]['id']
 
     @needscredentials
     def test_create_secret_locks_bulk(self):
+        global secret_id_for_list_secret_locks_link
+        global secret_id_for_list_secret_version_locks_link
+        global secret_version_id_for_list_secret_version_locks_link
+
         # Construct a dict representation of a SecretLockPrototype model
         secret_lock_prototype_model = {
             'name': 'lock-example-1',
             'description': 'lock for consumer 1',
-            'attributes': {'key': 'value'},
+            'attributes': {'key':'value'},
         }
 
         response = self.secrets_manager_service.create_secret_locks_bulk(
@@ -177,15 +185,14 @@ class TestSecretsManagerV2:
         secret_locks = response.get_result()
         assert secret_locks is not None
 
-        global secret_id_for_list_secret_locks_link
         secret_id_for_list_secret_locks_link = secret_locks['secret_id']
-        global secret_id_for_list_secret_version_locks_link
         secret_id_for_list_secret_version_locks_link = secret_locks['secret_id']
-        global secret_version_id_for_list_secret_version_locks_link
         secret_version_id_for_list_secret_version_locks_link = secret_locks['versions'][0]['version_id']
 
     @needscredentials
     def test_create_configuration(self):
+        global configuration_name_for_get_configuration_link
+
         # Construct a dict representation of a PrivateCertificateConfigurationRootCAPrototype model
         configuration_prototype_model = {
             'config_type': 'private_cert_configuration_root_ca',
@@ -226,7 +233,6 @@ class TestSecretsManagerV2:
         configuration = response.get_result()
         assert configuration is not None
 
-        global configuration_name_for_get_configuration_link
         configuration_name_for_get_configuration_link = configuration['name']
 
     @needscredentials
@@ -351,8 +357,8 @@ class TestSecretsManagerV2:
         # Construct a dict representation of a ArbitrarySecretVersionPrototype model
         secret_version_prototype_model = {
             'payload': 'updated secret credentials',
-            'custom_metadata': {'metadata_custom_key': 'metadata_custom_value'},
-            'version_custom_metadata': {'custom_version_key': 'custom_version_value'},
+            'custom_metadata': {'metadata_custom_key':'metadata_custom_value'},
+            'version_custom_metadata': {'custom_version_key':'custom_version_value'},
         }
 
         response = self.secrets_manager_service.create_secret_version(
@@ -390,7 +396,7 @@ class TestSecretsManagerV2:
     def test_update_secret_version_metadata(self):
         # Construct a dict representation of a SecretVersionMetadataPatch model
         secret_version_metadata_patch_model = {
-            'version_custom_metadata': {'key': 'value'},
+            'version_custom_metadata': {'key':'value'},
         }
 
         response = self.secrets_manager_service.update_secret_version_metadata(
@@ -501,7 +507,7 @@ class TestSecretsManagerV2:
         secret_lock_prototype_model = {
             'name': 'lock-example-1',
             'description': 'lock for consumer 1',
-            'attributes': {'key': 'value'},
+            'attributes': {'key':'value'},
         }
 
         response = self.secrets_manager_service.create_secret_version_locks_bulk(
