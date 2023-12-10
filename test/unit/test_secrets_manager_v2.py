@@ -61,8 +61,7 @@ def preprocess_url(operation_path: str):
     # Otherwise, return a regular expression that matches one or more trailing /.
     if re.fullmatch('.*/+', request_url) is None:
         return request_url
-    else:
-        return re.compile(request_url.rstrip('/') + '/+')
+    return re.compile(request_url.rstrip('/') + '/+')
 
 
 def test_parameterized_url():
@@ -78,7 +77,8 @@ def test_parameterized_url():
 ##############################################################################
 # region
 
-class TestNewInstance():
+
+class TestNewInstance:
     """
     Test Class for new_instance
     """
@@ -105,7 +105,8 @@ class TestNewInstance():
                 service_name='TEST_SERVICE_NOT_FOUND',
             )
 
-class TestCreateSecretGroup():
+
+class TestCreateSecretGroup:
     """
     Test Class for create_secret_group
     """
@@ -117,12 +118,14 @@ class TestCreateSecretGroup():
         """
         # Set up mock
         url = preprocess_url('/api/v2/secret_groups')
-        mock_response = '{"id": "default", "name": "my-secret-group", "description": "Extended description for this group.", "created_at": "2022-04-12T23:20:50.520Z", "updated_at": "2022-04-12T23:20:50.520Z"}'
-        responses.add(responses.POST,
-                      url,
-                      body=mock_response,
-                      content_type='application/json',
-                      status=201)
+        mock_response = '{"id": "default", "name": "my-secret-group", "description": "Extended description for this group.", "created_at": "2022-04-12T23:20:50.520Z", "created_by": "iam-ServiceId-e4a2f0a4-3c76-4bef-b1f2-fbeae11c0f21", "updated_at": "2022-04-12T23:20:50.520Z"}'
+        responses.add(
+            responses.POST,
+            url,
+            body=mock_response,
+            content_type='application/json',
+            status=201,
+        )
 
         # Set up parameter values
         name = 'my-secret-group'
@@ -132,7 +135,7 @@ class TestCreateSecretGroup():
         response = _service.create_secret_group(
             name,
             description=description,
-            headers={}
+            headers={},
         )
 
         # Check for correct operation
@@ -159,12 +162,14 @@ class TestCreateSecretGroup():
         """
         # Set up mock
         url = preprocess_url('/api/v2/secret_groups')
-        mock_response = '{"id": "default", "name": "my-secret-group", "description": "Extended description for this group.", "created_at": "2022-04-12T23:20:50.520Z", "updated_at": "2022-04-12T23:20:50.520Z"}'
-        responses.add(responses.POST,
-                      url,
-                      body=mock_response,
-                      content_type='application/json',
-                      status=201)
+        mock_response = '{"id": "default", "name": "my-secret-group", "description": "Extended description for this group.", "created_at": "2022-04-12T23:20:50.520Z", "created_by": "iam-ServiceId-e4a2f0a4-3c76-4bef-b1f2-fbeae11c0f21", "updated_at": "2022-04-12T23:20:50.520Z"}'
+        responses.add(
+            responses.POST,
+            url,
+            body=mock_response,
+            content_type='application/json',
+            status=201,
+        )
 
         # Set up parameter values
         name = 'my-secret-group'
@@ -175,7 +180,7 @@ class TestCreateSecretGroup():
             "name": name,
         }
         for param in req_param_dict.keys():
-            req_copy = {key:val if key is not param else None for (key,val) in req_param_dict.items()}
+            req_copy = {key: val if key is not param else None for (key, val) in req_param_dict.items()}
             with pytest.raises(ValueError):
                 _service.create_secret_group(**req_copy)
 
@@ -188,7 +193,8 @@ class TestCreateSecretGroup():
         _service.disable_retries()
         self.test_create_secret_group_value_error()
 
-class TestListSecretGroups():
+
+class TestListSecretGroups:
     """
     Test Class for list_secret_groups
     """
@@ -200,16 +206,17 @@ class TestListSecretGroups():
         """
         # Set up mock
         url = preprocess_url('/api/v2/secret_groups')
-        mock_response = '{"secret_groups": [{"id": "default", "name": "my-secret-group", "description": "Extended description for this group.", "created_at": "2022-04-12T23:20:50.520Z", "updated_at": "2022-04-12T23:20:50.520Z"}], "total_count": 0}'
-        responses.add(responses.GET,
-                      url,
-                      body=mock_response,
-                      content_type='application/json',
-                      status=200)
+        mock_response = '{"secret_groups": [{"id": "default", "name": "my-secret-group", "description": "Extended description for this group.", "created_at": "2022-04-12T23:20:50.520Z", "created_by": "iam-ServiceId-e4a2f0a4-3c76-4bef-b1f2-fbeae11c0f21", "updated_at": "2022-04-12T23:20:50.520Z"}], "total_count": 0}'
+        responses.add(
+            responses.GET,
+            url,
+            body=mock_response,
+            content_type='application/json',
+            status=200,
+        )
 
         # Invoke method
         response = _service.list_secret_groups()
-
 
         # Check for correct operation
         assert len(responses.calls) == 1
@@ -224,7 +231,8 @@ class TestListSecretGroups():
         _service.disable_retries()
         self.test_list_secret_groups_all_params()
 
-class TestGetSecretGroup():
+
+class TestGetSecretGroup:
     """
     Test Class for get_secret_group
     """
@@ -236,12 +244,14 @@ class TestGetSecretGroup():
         """
         # Set up mock
         url = preprocess_url('/api/v2/secret_groups/d898bb90-82f6-4d61-b5cc-b079b66cfa76')
-        mock_response = '{"id": "default", "name": "my-secret-group", "description": "Extended description for this group.", "created_at": "2022-04-12T23:20:50.520Z", "updated_at": "2022-04-12T23:20:50.520Z"}'
-        responses.add(responses.GET,
-                      url,
-                      body=mock_response,
-                      content_type='application/json',
-                      status=200)
+        mock_response = '{"id": "default", "name": "my-secret-group", "description": "Extended description for this group.", "created_at": "2022-04-12T23:20:50.520Z", "created_by": "iam-ServiceId-e4a2f0a4-3c76-4bef-b1f2-fbeae11c0f21", "updated_at": "2022-04-12T23:20:50.520Z"}'
+        responses.add(
+            responses.GET,
+            url,
+            body=mock_response,
+            content_type='application/json',
+            status=200,
+        )
 
         # Set up parameter values
         id = 'd898bb90-82f6-4d61-b5cc-b079b66cfa76'
@@ -249,7 +259,7 @@ class TestGetSecretGroup():
         # Invoke method
         response = _service.get_secret_group(
             id,
-            headers={}
+            headers={},
         )
 
         # Check for correct operation
@@ -272,12 +282,14 @@ class TestGetSecretGroup():
         """
         # Set up mock
         url = preprocess_url('/api/v2/secret_groups/d898bb90-82f6-4d61-b5cc-b079b66cfa76')
-        mock_response = '{"id": "default", "name": "my-secret-group", "description": "Extended description for this group.", "created_at": "2022-04-12T23:20:50.520Z", "updated_at": "2022-04-12T23:20:50.520Z"}'
-        responses.add(responses.GET,
-                      url,
-                      body=mock_response,
-                      content_type='application/json',
-                      status=200)
+        mock_response = '{"id": "default", "name": "my-secret-group", "description": "Extended description for this group.", "created_at": "2022-04-12T23:20:50.520Z", "created_by": "iam-ServiceId-e4a2f0a4-3c76-4bef-b1f2-fbeae11c0f21", "updated_at": "2022-04-12T23:20:50.520Z"}'
+        responses.add(
+            responses.GET,
+            url,
+            body=mock_response,
+            content_type='application/json',
+            status=200,
+        )
 
         # Set up parameter values
         id = 'd898bb90-82f6-4d61-b5cc-b079b66cfa76'
@@ -287,7 +299,7 @@ class TestGetSecretGroup():
             "id": id,
         }
         for param in req_param_dict.keys():
-            req_copy = {key:val if key is not param else None for (key,val) in req_param_dict.items()}
+            req_copy = {key: val if key is not param else None for (key, val) in req_param_dict.items()}
             with pytest.raises(ValueError):
                 _service.get_secret_group(**req_copy)
 
@@ -300,7 +312,8 @@ class TestGetSecretGroup():
         _service.disable_retries()
         self.test_get_secret_group_value_error()
 
-class TestUpdateSecretGroup():
+
+class TestUpdateSecretGroup:
     """
     Test Class for update_secret_group
     """
@@ -312,12 +325,14 @@ class TestUpdateSecretGroup():
         """
         # Set up mock
         url = preprocess_url('/api/v2/secret_groups/d898bb90-82f6-4d61-b5cc-b079b66cfa76')
-        mock_response = '{"id": "default", "name": "my-secret-group", "description": "Extended description for this group.", "created_at": "2022-04-12T23:20:50.520Z", "updated_at": "2022-04-12T23:20:50.520Z"}'
-        responses.add(responses.PATCH,
-                      url,
-                      body=mock_response,
-                      content_type='application/json',
-                      status=200)
+        mock_response = '{"id": "default", "name": "my-secret-group", "description": "Extended description for this group.", "created_at": "2022-04-12T23:20:50.520Z", "created_by": "iam-ServiceId-e4a2f0a4-3c76-4bef-b1f2-fbeae11c0f21", "updated_at": "2022-04-12T23:20:50.520Z"}'
+        responses.add(
+            responses.PATCH,
+            url,
+            body=mock_response,
+            content_type='application/json',
+            status=200,
+        )
 
         # Construct a dict representation of a SecretGroupPatch model
         secret_group_patch_model = {}
@@ -332,7 +347,7 @@ class TestUpdateSecretGroup():
         response = _service.update_secret_group(
             id,
             secret_group_patch,
-            headers={}
+            headers={},
         )
 
         # Check for correct operation
@@ -358,12 +373,14 @@ class TestUpdateSecretGroup():
         """
         # Set up mock
         url = preprocess_url('/api/v2/secret_groups/d898bb90-82f6-4d61-b5cc-b079b66cfa76')
-        mock_response = '{"id": "default", "name": "my-secret-group", "description": "Extended description for this group.", "created_at": "2022-04-12T23:20:50.520Z", "updated_at": "2022-04-12T23:20:50.520Z"}'
-        responses.add(responses.PATCH,
-                      url,
-                      body=mock_response,
-                      content_type='application/json',
-                      status=200)
+        mock_response = '{"id": "default", "name": "my-secret-group", "description": "Extended description for this group.", "created_at": "2022-04-12T23:20:50.520Z", "created_by": "iam-ServiceId-e4a2f0a4-3c76-4bef-b1f2-fbeae11c0f21", "updated_at": "2022-04-12T23:20:50.520Z"}'
+        responses.add(
+            responses.PATCH,
+            url,
+            body=mock_response,
+            content_type='application/json',
+            status=200,
+        )
 
         # Construct a dict representation of a SecretGroupPatch model
         secret_group_patch_model = {}
@@ -380,7 +397,7 @@ class TestUpdateSecretGroup():
             "secret_group_patch": secret_group_patch,
         }
         for param in req_param_dict.keys():
-            req_copy = {key:val if key is not param else None for (key,val) in req_param_dict.items()}
+            req_copy = {key: val if key is not param else None for (key, val) in req_param_dict.items()}
             with pytest.raises(ValueError):
                 _service.update_secret_group(**req_copy)
 
@@ -393,7 +410,8 @@ class TestUpdateSecretGroup():
         _service.disable_retries()
         self.test_update_secret_group_value_error()
 
-class TestDeleteSecretGroup():
+
+class TestDeleteSecretGroup:
     """
     Test Class for delete_secret_group
     """
@@ -405,9 +423,11 @@ class TestDeleteSecretGroup():
         """
         # Set up mock
         url = preprocess_url('/api/v2/secret_groups/d898bb90-82f6-4d61-b5cc-b079b66cfa76')
-        responses.add(responses.DELETE,
-                      url,
-                      status=204)
+        responses.add(
+            responses.DELETE,
+            url,
+            status=204,
+        )
 
         # Set up parameter values
         id = 'd898bb90-82f6-4d61-b5cc-b079b66cfa76'
@@ -415,7 +435,7 @@ class TestDeleteSecretGroup():
         # Invoke method
         response = _service.delete_secret_group(
             id,
-            headers={}
+            headers={},
         )
 
         # Check for correct operation
@@ -438,9 +458,11 @@ class TestDeleteSecretGroup():
         """
         # Set up mock
         url = preprocess_url('/api/v2/secret_groups/d898bb90-82f6-4d61-b5cc-b079b66cfa76')
-        responses.add(responses.DELETE,
-                      url,
-                      status=204)
+        responses.add(
+            responses.DELETE,
+            url,
+            status=204,
+        )
 
         # Set up parameter values
         id = 'd898bb90-82f6-4d61-b5cc-b079b66cfa76'
@@ -450,7 +472,7 @@ class TestDeleteSecretGroup():
             "id": id,
         }
         for param in req_param_dict.keys():
-            req_copy = {key:val if key is not param else None for (key,val) in req_param_dict.items()}
+            req_copy = {key: val if key is not param else None for (key, val) in req_param_dict.items()}
             with pytest.raises(ValueError):
                 _service.delete_secret_group(**req_copy)
 
@@ -463,6 +485,7 @@ class TestDeleteSecretGroup():
         _service.disable_retries()
         self.test_delete_secret_group_value_error()
 
+
 # endregion
 ##############################################################################
 # End of Service: SecretGroups
@@ -473,7 +496,8 @@ class TestDeleteSecretGroup():
 ##############################################################################
 # region
 
-class TestNewInstance():
+
+class TestNewInstance:
     """
     Test Class for new_instance
     """
@@ -500,7 +524,8 @@ class TestNewInstance():
                 service_name='TEST_SERVICE_NOT_FOUND',
             )
 
-class TestCreateSecret():
+
+class TestCreateSecret:
     """
     Test Class for create_secret
     """
@@ -513,23 +538,25 @@ class TestCreateSecret():
         # Set up mock
         url = preprocess_url('/api/v2/secrets')
         mock_response = '{"created_by": "iam-ServiceId-e4a2f0a4-3c76-4bef-b1f2-fbeae11c0f21", "created_at": "2022-04-12T23:20:50.520Z", "crn": "crn", "custom_metadata": {"anyKey": "anyValue"}, "description": "Extended description for this secret.", "downloaded": true, "id": "b49ad24d-81d4-5ebc-b9b9-b0937d1c84d5", "labels": ["my-label"], "locks_total": 0, "name": "my-secret", "secret_group_id": "default", "secret_type": "arbitrary", "state": 0, "state_description": "active", "updated_at": "2022-04-12T23:20:50.520Z", "versions_total": 0, "expiration_date": "2033-04-12T23:20:50.520Z", "payload": "secret-credentials"}'
-        responses.add(responses.POST,
-                      url,
-                      body=mock_response,
-                      content_type='application/json',
-                      status=201)
+        responses.add(
+            responses.POST,
+            url,
+            body=mock_response,
+            content_type='application/json',
+            status=201,
+        )
 
         # Construct a dict representation of a ArbitrarySecretPrototype model
         secret_prototype_model = {}
-        secret_prototype_model['custom_metadata'] = {'foo': 'bar'}
+        secret_prototype_model['custom_metadata'] = {'metadata_custom_key': 'metadata_custom_value'}
         secret_prototype_model['description'] = 'Description of my arbitrary secret.'
-        secret_prototype_model['expiration_date'] = '2023-10-05T11:49:42Z'
+        secret_prototype_model['expiration_date'] = '2030-10-05T11:49:42Z'
         secret_prototype_model['labels'] = ['dev', 'us-south']
         secret_prototype_model['name'] = 'example-arbitrary-secret'
         secret_prototype_model['secret_group_id'] = 'default'
         secret_prototype_model['secret_type'] = 'arbitrary'
         secret_prototype_model['payload'] = 'secret-data'
-        secret_prototype_model['version_custom_metadata'] = {'foo': 'bar'}
+        secret_prototype_model['version_custom_metadata'] = {'custom_version_key': 'custom_version_value'}
 
         # Set up parameter values
         secret_prototype = secret_prototype_model
@@ -537,7 +564,7 @@ class TestCreateSecret():
         # Invoke method
         response = _service.create_secret(
             secret_prototype,
-            headers={}
+            headers={},
         )
 
         # Check for correct operation
@@ -564,23 +591,25 @@ class TestCreateSecret():
         # Set up mock
         url = preprocess_url('/api/v2/secrets')
         mock_response = '{"created_by": "iam-ServiceId-e4a2f0a4-3c76-4bef-b1f2-fbeae11c0f21", "created_at": "2022-04-12T23:20:50.520Z", "crn": "crn", "custom_metadata": {"anyKey": "anyValue"}, "description": "Extended description for this secret.", "downloaded": true, "id": "b49ad24d-81d4-5ebc-b9b9-b0937d1c84d5", "labels": ["my-label"], "locks_total": 0, "name": "my-secret", "secret_group_id": "default", "secret_type": "arbitrary", "state": 0, "state_description": "active", "updated_at": "2022-04-12T23:20:50.520Z", "versions_total": 0, "expiration_date": "2033-04-12T23:20:50.520Z", "payload": "secret-credentials"}'
-        responses.add(responses.POST,
-                      url,
-                      body=mock_response,
-                      content_type='application/json',
-                      status=201)
+        responses.add(
+            responses.POST,
+            url,
+            body=mock_response,
+            content_type='application/json',
+            status=201,
+        )
 
         # Construct a dict representation of a ArbitrarySecretPrototype model
         secret_prototype_model = {}
-        secret_prototype_model['custom_metadata'] = {'foo': 'bar'}
+        secret_prototype_model['custom_metadata'] = {'metadata_custom_key': 'metadata_custom_value'}
         secret_prototype_model['description'] = 'Description of my arbitrary secret.'
-        secret_prototype_model['expiration_date'] = '2023-10-05T11:49:42Z'
+        secret_prototype_model['expiration_date'] = '2030-10-05T11:49:42Z'
         secret_prototype_model['labels'] = ['dev', 'us-south']
         secret_prototype_model['name'] = 'example-arbitrary-secret'
         secret_prototype_model['secret_group_id'] = 'default'
         secret_prototype_model['secret_type'] = 'arbitrary'
         secret_prototype_model['payload'] = 'secret-data'
-        secret_prototype_model['version_custom_metadata'] = {'foo': 'bar'}
+        secret_prototype_model['version_custom_metadata'] = {'custom_version_key': 'custom_version_value'}
 
         # Set up parameter values
         secret_prototype = secret_prototype_model
@@ -590,7 +619,7 @@ class TestCreateSecret():
             "secret_prototype": secret_prototype,
         }
         for param in req_param_dict.keys():
-            req_copy = {key:val if key is not param else None for (key,val) in req_param_dict.items()}
+            req_copy = {key: val if key is not param else None for (key, val) in req_param_dict.items()}
             with pytest.raises(ValueError):
                 _service.create_secret(**req_copy)
 
@@ -603,7 +632,8 @@ class TestCreateSecret():
         _service.disable_retries()
         self.test_create_secret_value_error()
 
-class TestListSecrets():
+
+class TestListSecrets:
     """
     Test Class for list_secrets
     """
@@ -615,19 +645,21 @@ class TestListSecrets():
         """
         # Set up mock
         url = preprocess_url('/api/v2/secrets')
-        mock_response = '{"total_count": 0, "limit": 0, "offset": 0, "first": {"href": "href"}, "next": {"href": "href"}, "previous": {"href": "href"}, "last": {"href": "href"}, "secrets": [{"created_by": "iam-ServiceId-e4a2f0a4-3c76-4bef-b1f2-fbeae11c0f21", "created_at": "2022-04-12T23:20:50.520Z", "crn": "crn", "custom_metadata": {"anyKey": "anyValue"}, "description": "Extended description for this secret.", "downloaded": true, "id": "b49ad24d-81d4-5ebc-b9b9-b0937d1c84d5", "labels": ["my-label"], "locks_total": 0, "name": "my-secret", "secret_group_id": "default", "secret_type": "imported_cert", "state": 0, "state_description": "active", "updated_at": "2022-04-12T23:20:50.520Z", "versions_total": 0, "signing_algorithm": "SHA256-RSA", "alt_names": ["alt_names"], "common_name": "example.com", "expiration_date": "2033-04-12T23:20:50.520Z", "intermediate_included": false, "issuer": "Lets Encrypt", "key_algorithm": "RSA2048", "private_key_included": true, "serial_number": "38:eb:01:a3:22:e9:de:55:24:56:9b:14:cb:e2:f3:e3:e2:fb:f5:18", "validity": {"not_before": "2025-04-12T23:20:50.000Z", "not_after": "2025-04-12T23:20:50.000Z"}}]}'
-        responses.add(responses.GET,
-                      url,
-                      body=mock_response,
-                      content_type='application/json',
-                      status=200)
+        mock_response = '{"total_count": 0, "limit": 25, "offset": 25, "first": {"href": "href"}, "next": {"href": "href"}, "previous": {"href": "href"}, "last": {"href": "href"}, "secrets": [{"created_by": "iam-ServiceId-e4a2f0a4-3c76-4bef-b1f2-fbeae11c0f21", "created_at": "2022-04-12T23:20:50.520Z", "crn": "crn", "custom_metadata": {"anyKey": "anyValue"}, "description": "Extended description for this secret.", "downloaded": true, "id": "b49ad24d-81d4-5ebc-b9b9-b0937d1c84d5", "labels": ["my-label"], "locks_total": 0, "name": "my-secret", "secret_group_id": "default", "secret_type": "arbitrary", "state": 0, "state_description": "active", "updated_at": "2022-04-12T23:20:50.520Z", "versions_total": 0, "expiration_date": "2033-04-12T23:20:50.520Z"}]}'
+        responses.add(
+            responses.GET,
+            url,
+            body=mock_response,
+            content_type='application/json',
+            status=200,
+        )
 
         # Set up parameter values
         offset = 0
-        limit = 1
+        limit = 200
         sort = 'created_at'
         search = 'example'
-        groups = ['default']
+        groups = ['default', 'cac40995-c37a-4dcb-9506-472869077634']
 
         # Invoke method
         response = _service.list_secrets(
@@ -636,14 +668,14 @@ class TestListSecrets():
             sort=sort,
             search=search,
             groups=groups,
-            headers={}
+            headers={},
         )
 
         # Check for correct operation
         assert len(responses.calls) == 1
         assert response.status_code == 200
         # Validate query params
-        query_string = responses.calls[0].request.url.split('?',1)[1]
+        query_string = responses.calls[0].request.url.split('?', 1)[1]
         query_string = urllib.parse.unquote_plus(query_string)
         assert 'offset={}'.format(offset) in query_string
         assert 'limit={}'.format(limit) in query_string
@@ -667,16 +699,17 @@ class TestListSecrets():
         """
         # Set up mock
         url = preprocess_url('/api/v2/secrets')
-        mock_response = '{"total_count": 0, "limit": 0, "offset": 0, "first": {"href": "href"}, "next": {"href": "href"}, "previous": {"href": "href"}, "last": {"href": "href"}, "secrets": [{"created_by": "iam-ServiceId-e4a2f0a4-3c76-4bef-b1f2-fbeae11c0f21", "created_at": "2022-04-12T23:20:50.520Z", "crn": "crn", "custom_metadata": {"anyKey": "anyValue"}, "description": "Extended description for this secret.", "downloaded": true, "id": "b49ad24d-81d4-5ebc-b9b9-b0937d1c84d5", "labels": ["my-label"], "locks_total": 0, "name": "my-secret", "secret_group_id": "default", "secret_type": "imported_cert", "state": 0, "state_description": "active", "updated_at": "2022-04-12T23:20:50.520Z", "versions_total": 0, "signing_algorithm": "SHA256-RSA", "alt_names": ["alt_names"], "common_name": "example.com", "expiration_date": "2033-04-12T23:20:50.520Z", "intermediate_included": false, "issuer": "Lets Encrypt", "key_algorithm": "RSA2048", "private_key_included": true, "serial_number": "38:eb:01:a3:22:e9:de:55:24:56:9b:14:cb:e2:f3:e3:e2:fb:f5:18", "validity": {"not_before": "2025-04-12T23:20:50.000Z", "not_after": "2025-04-12T23:20:50.000Z"}}]}'
-        responses.add(responses.GET,
-                      url,
-                      body=mock_response,
-                      content_type='application/json',
-                      status=200)
+        mock_response = '{"total_count": 0, "limit": 25, "offset": 25, "first": {"href": "href"}, "next": {"href": "href"}, "previous": {"href": "href"}, "last": {"href": "href"}, "secrets": [{"created_by": "iam-ServiceId-e4a2f0a4-3c76-4bef-b1f2-fbeae11c0f21", "created_at": "2022-04-12T23:20:50.520Z", "crn": "crn", "custom_metadata": {"anyKey": "anyValue"}, "description": "Extended description for this secret.", "downloaded": true, "id": "b49ad24d-81d4-5ebc-b9b9-b0937d1c84d5", "labels": ["my-label"], "locks_total": 0, "name": "my-secret", "secret_group_id": "default", "secret_type": "arbitrary", "state": 0, "state_description": "active", "updated_at": "2022-04-12T23:20:50.520Z", "versions_total": 0, "expiration_date": "2033-04-12T23:20:50.520Z"}]}'
+        responses.add(
+            responses.GET,
+            url,
+            body=mock_response,
+            content_type='application/json',
+            status=200,
+        )
 
         # Invoke method
         response = _service.list_secrets()
-
 
         # Check for correct operation
         assert len(responses.calls) == 1
@@ -698,18 +731,22 @@ class TestListSecrets():
         """
         # Set up a two-page mock response
         url = preprocess_url('/api/v2/secrets')
-        mock_response1 = '{"next":{"href":"https://myhost.com/somePath?offset=1"},"total_count":2,"limit":1,"secrets":[{"created_by":"iam-ServiceId-e4a2f0a4-3c76-4bef-b1f2-fbeae11c0f21","created_at":"2022-04-12T23:20:50.520Z","crn":"crn","custom_metadata":{"anyKey":"anyValue"},"description":"Extended description for this secret.","downloaded":true,"id":"b49ad24d-81d4-5ebc-b9b9-b0937d1c84d5","labels":["my-label"],"locks_total":0,"name":"my-secret","secret_group_id":"default","secret_type":"imported_cert","state":0,"state_description":"active","updated_at":"2022-04-12T23:20:50.520Z","versions_total":0,"signing_algorithm":"SHA256-RSA","alt_names":["alt_names"],"common_name":"example.com","expiration_date":"2033-04-12T23:20:50.520Z","intermediate_included":false,"issuer":"Lets Encrypt","key_algorithm":"RSA2048","private_key_included":true,"serial_number":"38:eb:01:a3:22:e9:de:55:24:56:9b:14:cb:e2:f3:e3:e2:fb:f5:18","validity":{"not_before":"2025-04-12T23:20:50.000Z","not_after":"2025-04-12T23:20:50.000Z"}}]}'
-        mock_response2 = '{"total_count":2,"limit":1,"secrets":[{"created_by":"iam-ServiceId-e4a2f0a4-3c76-4bef-b1f2-fbeae11c0f21","created_at":"2022-04-12T23:20:50.520Z","crn":"crn","custom_metadata":{"anyKey":"anyValue"},"description":"Extended description for this secret.","downloaded":true,"id":"b49ad24d-81d4-5ebc-b9b9-b0937d1c84d5","labels":["my-label"],"locks_total":0,"name":"my-secret","secret_group_id":"default","secret_type":"imported_cert","state":0,"state_description":"active","updated_at":"2022-04-12T23:20:50.520Z","versions_total":0,"signing_algorithm":"SHA256-RSA","alt_names":["alt_names"],"common_name":"example.com","expiration_date":"2033-04-12T23:20:50.520Z","intermediate_included":false,"issuer":"Lets Encrypt","key_algorithm":"RSA2048","private_key_included":true,"serial_number":"38:eb:01:a3:22:e9:de:55:24:56:9b:14:cb:e2:f3:e3:e2:fb:f5:18","validity":{"not_before":"2025-04-12T23:20:50.000Z","not_after":"2025-04-12T23:20:50.000Z"}}]}'
-        responses.add(responses.GET,
-                      url,
-                      body=mock_response1,
-                      content_type='application/json',
-                      status=200)
-        responses.add(responses.GET,
-                      url,
-                      body=mock_response2,
-                      content_type='application/json',
-                      status=200)
+        mock_response1 = '{"next":{"href":"https://myhost.com/somePath?offset=1"},"total_count":2,"limit":1,"secrets":[{"created_by":"iam-ServiceId-e4a2f0a4-3c76-4bef-b1f2-fbeae11c0f21","created_at":"2022-04-12T23:20:50.520Z","crn":"crn","custom_metadata":{"anyKey":"anyValue"},"description":"Extended description for this secret.","downloaded":true,"id":"b49ad24d-81d4-5ebc-b9b9-b0937d1c84d5","labels":["my-label"],"locks_total":0,"name":"my-secret","secret_group_id":"default","secret_type":"arbitrary","state":0,"state_description":"active","updated_at":"2022-04-12T23:20:50.520Z","versions_total":0,"expiration_date":"2033-04-12T23:20:50.520Z"}]}'
+        mock_response2 = '{"total_count":2,"limit":1,"secrets":[{"created_by":"iam-ServiceId-e4a2f0a4-3c76-4bef-b1f2-fbeae11c0f21","created_at":"2022-04-12T23:20:50.520Z","crn":"crn","custom_metadata":{"anyKey":"anyValue"},"description":"Extended description for this secret.","downloaded":true,"id":"b49ad24d-81d4-5ebc-b9b9-b0937d1c84d5","labels":["my-label"],"locks_total":0,"name":"my-secret","secret_group_id":"default","secret_type":"arbitrary","state":0,"state_description":"active","updated_at":"2022-04-12T23:20:50.520Z","versions_total":0,"expiration_date":"2033-04-12T23:20:50.520Z"}]}'
+        responses.add(
+            responses.GET,
+            url,
+            body=mock_response1,
+            content_type='application/json',
+            status=200,
+        )
+        responses.add(
+            responses.GET,
+            url,
+            body=mock_response2,
+            content_type='application/json',
+            status=200,
+        )
 
         # Exercise the pager class for this operation
         all_results = []
@@ -718,7 +755,7 @@ class TestListSecrets():
             limit=10,
             sort='created_at',
             search='example',
-            groups=['default'],
+            groups=['default', 'cac40995-c37a-4dcb-9506-472869077634'],
         )
         while pager.has_next():
             next_page = pager.get_next()
@@ -733,18 +770,22 @@ class TestListSecrets():
         """
         # Set up a two-page mock response
         url = preprocess_url('/api/v2/secrets')
-        mock_response1 = '{"next":{"href":"https://myhost.com/somePath?offset=1"},"total_count":2,"limit":1,"secrets":[{"created_by":"iam-ServiceId-e4a2f0a4-3c76-4bef-b1f2-fbeae11c0f21","created_at":"2022-04-12T23:20:50.520Z","crn":"crn","custom_metadata":{"anyKey":"anyValue"},"description":"Extended description for this secret.","downloaded":true,"id":"b49ad24d-81d4-5ebc-b9b9-b0937d1c84d5","labels":["my-label"],"locks_total":0,"name":"my-secret","secret_group_id":"default","secret_type":"imported_cert","state":0,"state_description":"active","updated_at":"2022-04-12T23:20:50.520Z","versions_total":0,"signing_algorithm":"SHA256-RSA","alt_names":["alt_names"],"common_name":"example.com","expiration_date":"2033-04-12T23:20:50.520Z","intermediate_included":false,"issuer":"Lets Encrypt","key_algorithm":"RSA2048","private_key_included":true,"serial_number":"38:eb:01:a3:22:e9:de:55:24:56:9b:14:cb:e2:f3:e3:e2:fb:f5:18","validity":{"not_before":"2025-04-12T23:20:50.000Z","not_after":"2025-04-12T23:20:50.000Z"}}]}'
-        mock_response2 = '{"total_count":2,"limit":1,"secrets":[{"created_by":"iam-ServiceId-e4a2f0a4-3c76-4bef-b1f2-fbeae11c0f21","created_at":"2022-04-12T23:20:50.520Z","crn":"crn","custom_metadata":{"anyKey":"anyValue"},"description":"Extended description for this secret.","downloaded":true,"id":"b49ad24d-81d4-5ebc-b9b9-b0937d1c84d5","labels":["my-label"],"locks_total":0,"name":"my-secret","secret_group_id":"default","secret_type":"imported_cert","state":0,"state_description":"active","updated_at":"2022-04-12T23:20:50.520Z","versions_total":0,"signing_algorithm":"SHA256-RSA","alt_names":["alt_names"],"common_name":"example.com","expiration_date":"2033-04-12T23:20:50.520Z","intermediate_included":false,"issuer":"Lets Encrypt","key_algorithm":"RSA2048","private_key_included":true,"serial_number":"38:eb:01:a3:22:e9:de:55:24:56:9b:14:cb:e2:f3:e3:e2:fb:f5:18","validity":{"not_before":"2025-04-12T23:20:50.000Z","not_after":"2025-04-12T23:20:50.000Z"}}]}'
-        responses.add(responses.GET,
-                      url,
-                      body=mock_response1,
-                      content_type='application/json',
-                      status=200)
-        responses.add(responses.GET,
-                      url,
-                      body=mock_response2,
-                      content_type='application/json',
-                      status=200)
+        mock_response1 = '{"next":{"href":"https://myhost.com/somePath?offset=1"},"total_count":2,"limit":1,"secrets":[{"created_by":"iam-ServiceId-e4a2f0a4-3c76-4bef-b1f2-fbeae11c0f21","created_at":"2022-04-12T23:20:50.520Z","crn":"crn","custom_metadata":{"anyKey":"anyValue"},"description":"Extended description for this secret.","downloaded":true,"id":"b49ad24d-81d4-5ebc-b9b9-b0937d1c84d5","labels":["my-label"],"locks_total":0,"name":"my-secret","secret_group_id":"default","secret_type":"arbitrary","state":0,"state_description":"active","updated_at":"2022-04-12T23:20:50.520Z","versions_total":0,"expiration_date":"2033-04-12T23:20:50.520Z"}]}'
+        mock_response2 = '{"total_count":2,"limit":1,"secrets":[{"created_by":"iam-ServiceId-e4a2f0a4-3c76-4bef-b1f2-fbeae11c0f21","created_at":"2022-04-12T23:20:50.520Z","crn":"crn","custom_metadata":{"anyKey":"anyValue"},"description":"Extended description for this secret.","downloaded":true,"id":"b49ad24d-81d4-5ebc-b9b9-b0937d1c84d5","labels":["my-label"],"locks_total":0,"name":"my-secret","secret_group_id":"default","secret_type":"arbitrary","state":0,"state_description":"active","updated_at":"2022-04-12T23:20:50.520Z","versions_total":0,"expiration_date":"2033-04-12T23:20:50.520Z"}]}'
+        responses.add(
+            responses.GET,
+            url,
+            body=mock_response1,
+            content_type='application/json',
+            status=200,
+        )
+        responses.add(
+            responses.GET,
+            url,
+            body=mock_response2,
+            content_type='application/json',
+            status=200,
+        )
 
         # Exercise the pager class for this operation
         pager = SecretsPager(
@@ -752,13 +793,14 @@ class TestListSecrets():
             limit=10,
             sort='created_at',
             search='example',
-            groups=['default'],
+            groups=['default', 'cac40995-c37a-4dcb-9506-472869077634'],
         )
         all_results = pager.get_all()
         assert all_results is not None
         assert len(all_results) == 2
 
-class TestGetSecret():
+
+class TestGetSecret:
     """
     Test Class for get_secret
     """
@@ -771,11 +813,13 @@ class TestGetSecret():
         # Set up mock
         url = preprocess_url('/api/v2/secrets/0b5571f7-21e6-42b7-91c5-3f5ac9793a46')
         mock_response = '{"created_by": "iam-ServiceId-e4a2f0a4-3c76-4bef-b1f2-fbeae11c0f21", "created_at": "2022-04-12T23:20:50.520Z", "crn": "crn", "custom_metadata": {"anyKey": "anyValue"}, "description": "Extended description for this secret.", "downloaded": true, "id": "b49ad24d-81d4-5ebc-b9b9-b0937d1c84d5", "labels": ["my-label"], "locks_total": 0, "name": "my-secret", "secret_group_id": "default", "secret_type": "arbitrary", "state": 0, "state_description": "active", "updated_at": "2022-04-12T23:20:50.520Z", "versions_total": 0, "expiration_date": "2033-04-12T23:20:50.520Z", "payload": "secret-credentials"}'
-        responses.add(responses.GET,
-                      url,
-                      body=mock_response,
-                      content_type='application/json',
-                      status=200)
+        responses.add(
+            responses.GET,
+            url,
+            body=mock_response,
+            content_type='application/json',
+            status=200,
+        )
 
         # Set up parameter values
         id = '0b5571f7-21e6-42b7-91c5-3f5ac9793a46'
@@ -783,7 +827,7 @@ class TestGetSecret():
         # Invoke method
         response = _service.get_secret(
             id,
-            headers={}
+            headers={},
         )
 
         # Check for correct operation
@@ -807,11 +851,13 @@ class TestGetSecret():
         # Set up mock
         url = preprocess_url('/api/v2/secrets/0b5571f7-21e6-42b7-91c5-3f5ac9793a46')
         mock_response = '{"created_by": "iam-ServiceId-e4a2f0a4-3c76-4bef-b1f2-fbeae11c0f21", "created_at": "2022-04-12T23:20:50.520Z", "crn": "crn", "custom_metadata": {"anyKey": "anyValue"}, "description": "Extended description for this secret.", "downloaded": true, "id": "b49ad24d-81d4-5ebc-b9b9-b0937d1c84d5", "labels": ["my-label"], "locks_total": 0, "name": "my-secret", "secret_group_id": "default", "secret_type": "arbitrary", "state": 0, "state_description": "active", "updated_at": "2022-04-12T23:20:50.520Z", "versions_total": 0, "expiration_date": "2033-04-12T23:20:50.520Z", "payload": "secret-credentials"}'
-        responses.add(responses.GET,
-                      url,
-                      body=mock_response,
-                      content_type='application/json',
-                      status=200)
+        responses.add(
+            responses.GET,
+            url,
+            body=mock_response,
+            content_type='application/json',
+            status=200,
+        )
 
         # Set up parameter values
         id = '0b5571f7-21e6-42b7-91c5-3f5ac9793a46'
@@ -821,7 +867,7 @@ class TestGetSecret():
             "id": id,
         }
         for param in req_param_dict.keys():
-            req_copy = {key:val if key is not param else None for (key,val) in req_param_dict.items()}
+            req_copy = {key: val if key is not param else None for (key, val) in req_param_dict.items()}
             with pytest.raises(ValueError):
                 _service.get_secret(**req_copy)
 
@@ -834,7 +880,8 @@ class TestGetSecret():
         _service.disable_retries()
         self.test_get_secret_value_error()
 
-class TestDeleteSecret():
+
+class TestDeleteSecret:
     """
     Test Class for delete_secret
     """
@@ -846,9 +893,11 @@ class TestDeleteSecret():
         """
         # Set up mock
         url = preprocess_url('/api/v2/secrets/0b5571f7-21e6-42b7-91c5-3f5ac9793a46')
-        responses.add(responses.DELETE,
-                      url,
-                      status=204)
+        responses.add(
+            responses.DELETE,
+            url,
+            status=204,
+        )
 
         # Set up parameter values
         id = '0b5571f7-21e6-42b7-91c5-3f5ac9793a46'
@@ -856,7 +905,7 @@ class TestDeleteSecret():
         # Invoke method
         response = _service.delete_secret(
             id,
-            headers={}
+            headers={},
         )
 
         # Check for correct operation
@@ -879,9 +928,11 @@ class TestDeleteSecret():
         """
         # Set up mock
         url = preprocess_url('/api/v2/secrets/0b5571f7-21e6-42b7-91c5-3f5ac9793a46')
-        responses.add(responses.DELETE,
-                      url,
-                      status=204)
+        responses.add(
+            responses.DELETE,
+            url,
+            status=204,
+        )
 
         # Set up parameter values
         id = '0b5571f7-21e6-42b7-91c5-3f5ac9793a46'
@@ -891,7 +942,7 @@ class TestDeleteSecret():
             "id": id,
         }
         for param in req_param_dict.keys():
-            req_copy = {key:val if key is not param else None for (key,val) in req_param_dict.items()}
+            req_copy = {key: val if key is not param else None for (key, val) in req_param_dict.items()}
             with pytest.raises(ValueError):
                 _service.delete_secret(**req_copy)
 
@@ -904,7 +955,8 @@ class TestDeleteSecret():
         _service.disable_retries()
         self.test_delete_secret_value_error()
 
-class TestGetSecretMetadata():
+
+class TestGetSecretMetadata:
     """
     Test Class for get_secret_metadata
     """
@@ -916,12 +968,14 @@ class TestGetSecretMetadata():
         """
         # Set up mock
         url = preprocess_url('/api/v2/secrets/0b5571f7-21e6-42b7-91c5-3f5ac9793a46/metadata')
-        mock_response = '{"created_by": "iam-ServiceId-e4a2f0a4-3c76-4bef-b1f2-fbeae11c0f21", "created_at": "2022-04-12T23:20:50.520Z", "crn": "crn", "custom_metadata": {"anyKey": "anyValue"}, "description": "Extended description for this secret.", "downloaded": true, "id": "b49ad24d-81d4-5ebc-b9b9-b0937d1c84d5", "labels": ["my-label"], "locks_total": 0, "name": "my-secret", "secret_group_id": "default", "secret_type": "imported_cert", "state": 0, "state_description": "active", "updated_at": "2022-04-12T23:20:50.520Z", "versions_total": 0, "signing_algorithm": "SHA256-RSA", "alt_names": ["alt_names"], "common_name": "example.com", "expiration_date": "2033-04-12T23:20:50.520Z", "intermediate_included": false, "issuer": "Lets Encrypt", "key_algorithm": "RSA2048", "private_key_included": true, "serial_number": "38:eb:01:a3:22:e9:de:55:24:56:9b:14:cb:e2:f3:e3:e2:fb:f5:18", "validity": {"not_before": "2025-04-12T23:20:50.000Z", "not_after": "2025-04-12T23:20:50.000Z"}}'
-        responses.add(responses.GET,
-                      url,
-                      body=mock_response,
-                      content_type='application/json',
-                      status=200)
+        mock_response = '{"created_by": "iam-ServiceId-e4a2f0a4-3c76-4bef-b1f2-fbeae11c0f21", "created_at": "2022-04-12T23:20:50.520Z", "crn": "crn", "custom_metadata": {"anyKey": "anyValue"}, "description": "Extended description for this secret.", "downloaded": true, "id": "b49ad24d-81d4-5ebc-b9b9-b0937d1c84d5", "labels": ["my-label"], "locks_total": 0, "name": "my-secret", "secret_group_id": "default", "secret_type": "arbitrary", "state": 0, "state_description": "active", "updated_at": "2022-04-12T23:20:50.520Z", "versions_total": 0, "expiration_date": "2033-04-12T23:20:50.520Z"}'
+        responses.add(
+            responses.GET,
+            url,
+            body=mock_response,
+            content_type='application/json',
+            status=200,
+        )
 
         # Set up parameter values
         id = '0b5571f7-21e6-42b7-91c5-3f5ac9793a46'
@@ -929,7 +983,7 @@ class TestGetSecretMetadata():
         # Invoke method
         response = _service.get_secret_metadata(
             id,
-            headers={}
+            headers={},
         )
 
         # Check for correct operation
@@ -952,12 +1006,14 @@ class TestGetSecretMetadata():
         """
         # Set up mock
         url = preprocess_url('/api/v2/secrets/0b5571f7-21e6-42b7-91c5-3f5ac9793a46/metadata')
-        mock_response = '{"created_by": "iam-ServiceId-e4a2f0a4-3c76-4bef-b1f2-fbeae11c0f21", "created_at": "2022-04-12T23:20:50.520Z", "crn": "crn", "custom_metadata": {"anyKey": "anyValue"}, "description": "Extended description for this secret.", "downloaded": true, "id": "b49ad24d-81d4-5ebc-b9b9-b0937d1c84d5", "labels": ["my-label"], "locks_total": 0, "name": "my-secret", "secret_group_id": "default", "secret_type": "imported_cert", "state": 0, "state_description": "active", "updated_at": "2022-04-12T23:20:50.520Z", "versions_total": 0, "signing_algorithm": "SHA256-RSA", "alt_names": ["alt_names"], "common_name": "example.com", "expiration_date": "2033-04-12T23:20:50.520Z", "intermediate_included": false, "issuer": "Lets Encrypt", "key_algorithm": "RSA2048", "private_key_included": true, "serial_number": "38:eb:01:a3:22:e9:de:55:24:56:9b:14:cb:e2:f3:e3:e2:fb:f5:18", "validity": {"not_before": "2025-04-12T23:20:50.000Z", "not_after": "2025-04-12T23:20:50.000Z"}}'
-        responses.add(responses.GET,
-                      url,
-                      body=mock_response,
-                      content_type='application/json',
-                      status=200)
+        mock_response = '{"created_by": "iam-ServiceId-e4a2f0a4-3c76-4bef-b1f2-fbeae11c0f21", "created_at": "2022-04-12T23:20:50.520Z", "crn": "crn", "custom_metadata": {"anyKey": "anyValue"}, "description": "Extended description for this secret.", "downloaded": true, "id": "b49ad24d-81d4-5ebc-b9b9-b0937d1c84d5", "labels": ["my-label"], "locks_total": 0, "name": "my-secret", "secret_group_id": "default", "secret_type": "arbitrary", "state": 0, "state_description": "active", "updated_at": "2022-04-12T23:20:50.520Z", "versions_total": 0, "expiration_date": "2033-04-12T23:20:50.520Z"}'
+        responses.add(
+            responses.GET,
+            url,
+            body=mock_response,
+            content_type='application/json',
+            status=200,
+        )
 
         # Set up parameter values
         id = '0b5571f7-21e6-42b7-91c5-3f5ac9793a46'
@@ -967,7 +1023,7 @@ class TestGetSecretMetadata():
             "id": id,
         }
         for param in req_param_dict.keys():
-            req_copy = {key:val if key is not param else None for (key,val) in req_param_dict.items()}
+            req_copy = {key: val if key is not param else None for (key, val) in req_param_dict.items()}
             with pytest.raises(ValueError):
                 _service.get_secret_metadata(**req_copy)
 
@@ -980,7 +1036,8 @@ class TestGetSecretMetadata():
         _service.disable_retries()
         self.test_get_secret_metadata_value_error()
 
-class TestUpdateSecretMetadata():
+
+class TestUpdateSecretMetadata:
     """
     Test Class for update_secret_metadata
     """
@@ -992,19 +1049,21 @@ class TestUpdateSecretMetadata():
         """
         # Set up mock
         url = preprocess_url('/api/v2/secrets/0b5571f7-21e6-42b7-91c5-3f5ac9793a46/metadata')
-        mock_response = '{"created_by": "iam-ServiceId-e4a2f0a4-3c76-4bef-b1f2-fbeae11c0f21", "created_at": "2022-04-12T23:20:50.520Z", "crn": "crn", "custom_metadata": {"anyKey": "anyValue"}, "description": "Extended description for this secret.", "downloaded": true, "id": "b49ad24d-81d4-5ebc-b9b9-b0937d1c84d5", "labels": ["my-label"], "locks_total": 0, "name": "my-secret", "secret_group_id": "default", "secret_type": "imported_cert", "state": 0, "state_description": "active", "updated_at": "2022-04-12T23:20:50.520Z", "versions_total": 0, "signing_algorithm": "SHA256-RSA", "alt_names": ["alt_names"], "common_name": "example.com", "expiration_date": "2033-04-12T23:20:50.520Z", "intermediate_included": false, "issuer": "Lets Encrypt", "key_algorithm": "RSA2048", "private_key_included": true, "serial_number": "38:eb:01:a3:22:e9:de:55:24:56:9b:14:cb:e2:f3:e3:e2:fb:f5:18", "validity": {"not_before": "2025-04-12T23:20:50.000Z", "not_after": "2025-04-12T23:20:50.000Z"}}'
-        responses.add(responses.PATCH,
-                      url,
-                      body=mock_response,
-                      content_type='application/json',
-                      status=200)
+        mock_response = '{"created_by": "iam-ServiceId-e4a2f0a4-3c76-4bef-b1f2-fbeae11c0f21", "created_at": "2022-04-12T23:20:50.520Z", "crn": "crn", "custom_metadata": {"anyKey": "anyValue"}, "description": "Extended description for this secret.", "downloaded": true, "id": "b49ad24d-81d4-5ebc-b9b9-b0937d1c84d5", "labels": ["my-label"], "locks_total": 0, "name": "my-secret", "secret_group_id": "default", "secret_type": "arbitrary", "state": 0, "state_description": "active", "updated_at": "2022-04-12T23:20:50.520Z", "versions_total": 0, "expiration_date": "2033-04-12T23:20:50.520Z"}'
+        responses.add(
+            responses.PATCH,
+            url,
+            body=mock_response,
+            content_type='application/json',
+            status=200,
+        )
 
         # Construct a dict representation of a ArbitrarySecretMetadataPatch model
         secret_metadata_patch_model = {}
-        secret_metadata_patch_model['name'] = 'updated-arbitrary-secret-name'
+        secret_metadata_patch_model['name'] = 'updated-arbitrary-secret-name-example'
         secret_metadata_patch_model['description'] = 'updated Arbitrary Secret description'
         secret_metadata_patch_model['labels'] = ['dev', 'us-south']
-        secret_metadata_patch_model['custom_metadata'] = {'foo': 'bar'}
+        secret_metadata_patch_model['custom_metadata'] = {'metadata_custom_key': 'metadata_custom_value'}
         secret_metadata_patch_model['expiration_date'] = '2033-04-12T23:20:50.520000Z'
 
         # Set up parameter values
@@ -1015,7 +1074,7 @@ class TestUpdateSecretMetadata():
         response = _service.update_secret_metadata(
             id,
             secret_metadata_patch,
-            headers={}
+            headers={},
         )
 
         # Check for correct operation
@@ -1041,19 +1100,21 @@ class TestUpdateSecretMetadata():
         """
         # Set up mock
         url = preprocess_url('/api/v2/secrets/0b5571f7-21e6-42b7-91c5-3f5ac9793a46/metadata')
-        mock_response = '{"created_by": "iam-ServiceId-e4a2f0a4-3c76-4bef-b1f2-fbeae11c0f21", "created_at": "2022-04-12T23:20:50.520Z", "crn": "crn", "custom_metadata": {"anyKey": "anyValue"}, "description": "Extended description for this secret.", "downloaded": true, "id": "b49ad24d-81d4-5ebc-b9b9-b0937d1c84d5", "labels": ["my-label"], "locks_total": 0, "name": "my-secret", "secret_group_id": "default", "secret_type": "imported_cert", "state": 0, "state_description": "active", "updated_at": "2022-04-12T23:20:50.520Z", "versions_total": 0, "signing_algorithm": "SHA256-RSA", "alt_names": ["alt_names"], "common_name": "example.com", "expiration_date": "2033-04-12T23:20:50.520Z", "intermediate_included": false, "issuer": "Lets Encrypt", "key_algorithm": "RSA2048", "private_key_included": true, "serial_number": "38:eb:01:a3:22:e9:de:55:24:56:9b:14:cb:e2:f3:e3:e2:fb:f5:18", "validity": {"not_before": "2025-04-12T23:20:50.000Z", "not_after": "2025-04-12T23:20:50.000Z"}}'
-        responses.add(responses.PATCH,
-                      url,
-                      body=mock_response,
-                      content_type='application/json',
-                      status=200)
+        mock_response = '{"created_by": "iam-ServiceId-e4a2f0a4-3c76-4bef-b1f2-fbeae11c0f21", "created_at": "2022-04-12T23:20:50.520Z", "crn": "crn", "custom_metadata": {"anyKey": "anyValue"}, "description": "Extended description for this secret.", "downloaded": true, "id": "b49ad24d-81d4-5ebc-b9b9-b0937d1c84d5", "labels": ["my-label"], "locks_total": 0, "name": "my-secret", "secret_group_id": "default", "secret_type": "arbitrary", "state": 0, "state_description": "active", "updated_at": "2022-04-12T23:20:50.520Z", "versions_total": 0, "expiration_date": "2033-04-12T23:20:50.520Z"}'
+        responses.add(
+            responses.PATCH,
+            url,
+            body=mock_response,
+            content_type='application/json',
+            status=200,
+        )
 
         # Construct a dict representation of a ArbitrarySecretMetadataPatch model
         secret_metadata_patch_model = {}
-        secret_metadata_patch_model['name'] = 'updated-arbitrary-secret-name'
+        secret_metadata_patch_model['name'] = 'updated-arbitrary-secret-name-example'
         secret_metadata_patch_model['description'] = 'updated Arbitrary Secret description'
         secret_metadata_patch_model['labels'] = ['dev', 'us-south']
-        secret_metadata_patch_model['custom_metadata'] = {'foo': 'bar'}
+        secret_metadata_patch_model['custom_metadata'] = {'metadata_custom_key': 'metadata_custom_value'}
         secret_metadata_patch_model['expiration_date'] = '2033-04-12T23:20:50.520000Z'
 
         # Set up parameter values
@@ -1066,7 +1127,7 @@ class TestUpdateSecretMetadata():
             "secret_metadata_patch": secret_metadata_patch,
         }
         for param in req_param_dict.keys():
-            req_copy = {key:val if key is not param else None for (key,val) in req_param_dict.items()}
+            req_copy = {key: val if key is not param else None for (key, val) in req_param_dict.items()}
             with pytest.raises(ValueError):
                 _service.update_secret_metadata(**req_copy)
 
@@ -1079,7 +1140,8 @@ class TestUpdateSecretMetadata():
         _service.disable_retries()
         self.test_update_secret_metadata_value_error()
 
-class TestCreateSecretAction():
+
+class TestCreateSecretAction:
     """
     Test Class for create_secret_action
     """
@@ -1092,15 +1154,17 @@ class TestCreateSecretAction():
         # Set up mock
         url = preprocess_url('/api/v2/secrets/0b5571f7-21e6-42b7-91c5-3f5ac9793a46/actions')
         mock_response = '{"action_type": "public_cert_action_validate_dns_challenge"}'
-        responses.add(responses.POST,
-                      url,
-                      body=mock_response,
-                      content_type='application/json',
-                      status=201)
+        responses.add(
+            responses.POST,
+            url,
+            body=mock_response,
+            content_type='application/json',
+            status=201,
+        )
 
-        # Construct a dict representation of a PublicCertificateActionValidateManualDNSPrototype model
+        # Construct a dict representation of a PrivateCertificateActionRevokePrototype model
         secret_action_prototype_model = {}
-        secret_action_prototype_model['action_type'] = 'public_cert_action_validate_dns_challenge'
+        secret_action_prototype_model['action_type'] = 'private_cert_action_revoke_certificate'
 
         # Set up parameter values
         id = '0b5571f7-21e6-42b7-91c5-3f5ac9793a46'
@@ -1110,7 +1174,7 @@ class TestCreateSecretAction():
         response = _service.create_secret_action(
             id,
             secret_action_prototype,
-            headers={}
+            headers={},
         )
 
         # Check for correct operation
@@ -1137,15 +1201,17 @@ class TestCreateSecretAction():
         # Set up mock
         url = preprocess_url('/api/v2/secrets/0b5571f7-21e6-42b7-91c5-3f5ac9793a46/actions')
         mock_response = '{"action_type": "public_cert_action_validate_dns_challenge"}'
-        responses.add(responses.POST,
-                      url,
-                      body=mock_response,
-                      content_type='application/json',
-                      status=201)
+        responses.add(
+            responses.POST,
+            url,
+            body=mock_response,
+            content_type='application/json',
+            status=201,
+        )
 
-        # Construct a dict representation of a PublicCertificateActionValidateManualDNSPrototype model
+        # Construct a dict representation of a PrivateCertificateActionRevokePrototype model
         secret_action_prototype_model = {}
-        secret_action_prototype_model['action_type'] = 'public_cert_action_validate_dns_challenge'
+        secret_action_prototype_model['action_type'] = 'private_cert_action_revoke_certificate'
 
         # Set up parameter values
         id = '0b5571f7-21e6-42b7-91c5-3f5ac9793a46'
@@ -1157,7 +1223,7 @@ class TestCreateSecretAction():
             "secret_action_prototype": secret_action_prototype,
         }
         for param in req_param_dict.keys():
-            req_copy = {key:val if key is not param else None for (key,val) in req_param_dict.items()}
+            req_copy = {key: val if key is not param else None for (key, val) in req_param_dict.items()}
             with pytest.raises(ValueError):
                 _service.create_secret_action(**req_copy)
 
@@ -1170,6 +1236,96 @@ class TestCreateSecretAction():
         _service.disable_retries()
         self.test_create_secret_action_value_error()
 
+
+class TestGetSecretByNameType:
+    """
+    Test Class for get_secret_by_name_type
+    """
+
+    @responses.activate
+    def test_get_secret_by_name_type_all_params(self):
+        """
+        get_secret_by_name_type()
+        """
+        # Set up mock
+        url = preprocess_url('/api/v2/secret_groups/default/secret_types/arbitrary/secrets/my-secret')
+        mock_response = '{"created_by": "iam-ServiceId-e4a2f0a4-3c76-4bef-b1f2-fbeae11c0f21", "created_at": "2022-04-12T23:20:50.520Z", "crn": "crn", "custom_metadata": {"anyKey": "anyValue"}, "description": "Extended description for this secret.", "downloaded": true, "id": "b49ad24d-81d4-5ebc-b9b9-b0937d1c84d5", "labels": ["my-label"], "locks_total": 0, "name": "my-secret", "secret_group_id": "default", "secret_type": "arbitrary", "state": 0, "state_description": "active", "updated_at": "2022-04-12T23:20:50.520Z", "versions_total": 0, "expiration_date": "2033-04-12T23:20:50.520Z", "payload": "secret-credentials"}'
+        responses.add(
+            responses.GET,
+            url,
+            body=mock_response,
+            content_type='application/json',
+            status=200,
+        )
+
+        # Set up parameter values
+        secret_type = 'arbitrary'
+        name = 'my-secret'
+        secret_group_name = 'default'
+
+        # Invoke method
+        response = _service.get_secret_by_name_type(
+            secret_type,
+            name,
+            secret_group_name,
+            headers={},
+        )
+
+        # Check for correct operation
+        assert len(responses.calls) == 1
+        assert response.status_code == 200
+
+    def test_get_secret_by_name_type_all_params_with_retries(self):
+        # Enable retries and run test_get_secret_by_name_type_all_params.
+        _service.enable_retries()
+        self.test_get_secret_by_name_type_all_params()
+
+        # Disable retries and run test_get_secret_by_name_type_all_params.
+        _service.disable_retries()
+        self.test_get_secret_by_name_type_all_params()
+
+    @responses.activate
+    def test_get_secret_by_name_type_value_error(self):
+        """
+        test_get_secret_by_name_type_value_error()
+        """
+        # Set up mock
+        url = preprocess_url('/api/v2/secret_groups/default/secret_types/arbitrary/secrets/my-secret')
+        mock_response = '{"created_by": "iam-ServiceId-e4a2f0a4-3c76-4bef-b1f2-fbeae11c0f21", "created_at": "2022-04-12T23:20:50.520Z", "crn": "crn", "custom_metadata": {"anyKey": "anyValue"}, "description": "Extended description for this secret.", "downloaded": true, "id": "b49ad24d-81d4-5ebc-b9b9-b0937d1c84d5", "labels": ["my-label"], "locks_total": 0, "name": "my-secret", "secret_group_id": "default", "secret_type": "arbitrary", "state": 0, "state_description": "active", "updated_at": "2022-04-12T23:20:50.520Z", "versions_total": 0, "expiration_date": "2033-04-12T23:20:50.520Z", "payload": "secret-credentials"}'
+        responses.add(
+            responses.GET,
+            url,
+            body=mock_response,
+            content_type='application/json',
+            status=200,
+        )
+
+        # Set up parameter values
+        secret_type = 'arbitrary'
+        name = 'my-secret'
+        secret_group_name = 'default'
+
+        # Pass in all but one required param and check for a ValueError
+        req_param_dict = {
+            "secret_type": secret_type,
+            "name": name,
+            "secret_group_name": secret_group_name,
+        }
+        for param in req_param_dict.keys():
+            req_copy = {key: val if key is not param else None for (key, val) in req_param_dict.items()}
+            with pytest.raises(ValueError):
+                _service.get_secret_by_name_type(**req_copy)
+
+    def test_get_secret_by_name_type_value_error_with_retries(self):
+        # Enable retries and run test_get_secret_by_name_type_value_error.
+        _service.enable_retries()
+        self.test_get_secret_by_name_type_value_error()
+
+        # Disable retries and run test_get_secret_by_name_type_value_error.
+        _service.disable_retries()
+        self.test_get_secret_by_name_type_value_error()
+
+
 # endregion
 ##############################################################################
 # End of Service: Secrets
@@ -1180,7 +1336,8 @@ class TestCreateSecretAction():
 ##############################################################################
 # region
 
-class TestNewInstance():
+
+class TestNewInstance:
     """
     Test Class for new_instance
     """
@@ -1207,7 +1364,8 @@ class TestNewInstance():
                 service_name='TEST_SERVICE_NOT_FOUND',
             )
 
-class TestCreateSecretVersion():
+
+class TestCreateSecretVersion:
     """
     Test Class for create_secret_version
     """
@@ -1220,17 +1378,19 @@ class TestCreateSecretVersion():
         # Set up mock
         url = preprocess_url('/api/v2/secrets/0b5571f7-21e6-42b7-91c5-3f5ac9793a46/versions')
         mock_response = '{"auto_rotated": true, "created_by": "iam-ServiceId-e4a2f0a4-3c76-4bef-b1f2-fbeae11c0f21", "created_at": "2022-04-12T23:20:50.520Z", "downloaded": true, "id": "b49ad24d-81d4-5ebc-b9b9-b0937d1c84d5", "secret_name": "my-secret", "secret_type": "arbitrary", "secret_group_id": "default", "payload_available": false, "alias": "current", "version_custom_metadata": {"anyKey": "anyValue"}, "secret_id": "b49ad24d-81d4-5ebc-b9b9-b0937d1c84d5", "expiration_date": "2033-04-12T23:20:50.520Z", "payload": "secret-credentials"}'
-        responses.add(responses.POST,
-                      url,
-                      body=mock_response,
-                      content_type='application/json',
-                      status=201)
+        responses.add(
+            responses.POST,
+            url,
+            body=mock_response,
+            content_type='application/json',
+            status=201,
+        )
 
         # Construct a dict representation of a ArbitrarySecretVersionPrototype model
         secret_version_prototype_model = {}
         secret_version_prototype_model['payload'] = 'updated secret credentials'
-        secret_version_prototype_model['custom_metadata'] = {'foo': 'bar'}
-        secret_version_prototype_model['version_custom_metadata'] = {'foo': 'bar'}
+        secret_version_prototype_model['custom_metadata'] = {'metadata_custom_key': 'metadata_custom_value'}
+        secret_version_prototype_model['version_custom_metadata'] = {'custom_version_key': 'custom_version_value'}
 
         # Set up parameter values
         secret_id = '0b5571f7-21e6-42b7-91c5-3f5ac9793a46'
@@ -1240,7 +1400,7 @@ class TestCreateSecretVersion():
         response = _service.create_secret_version(
             secret_id,
             secret_version_prototype,
-            headers={}
+            headers={},
         )
 
         # Check for correct operation
@@ -1267,17 +1427,19 @@ class TestCreateSecretVersion():
         # Set up mock
         url = preprocess_url('/api/v2/secrets/0b5571f7-21e6-42b7-91c5-3f5ac9793a46/versions')
         mock_response = '{"auto_rotated": true, "created_by": "iam-ServiceId-e4a2f0a4-3c76-4bef-b1f2-fbeae11c0f21", "created_at": "2022-04-12T23:20:50.520Z", "downloaded": true, "id": "b49ad24d-81d4-5ebc-b9b9-b0937d1c84d5", "secret_name": "my-secret", "secret_type": "arbitrary", "secret_group_id": "default", "payload_available": false, "alias": "current", "version_custom_metadata": {"anyKey": "anyValue"}, "secret_id": "b49ad24d-81d4-5ebc-b9b9-b0937d1c84d5", "expiration_date": "2033-04-12T23:20:50.520Z", "payload": "secret-credentials"}'
-        responses.add(responses.POST,
-                      url,
-                      body=mock_response,
-                      content_type='application/json',
-                      status=201)
+        responses.add(
+            responses.POST,
+            url,
+            body=mock_response,
+            content_type='application/json',
+            status=201,
+        )
 
         # Construct a dict representation of a ArbitrarySecretVersionPrototype model
         secret_version_prototype_model = {}
         secret_version_prototype_model['payload'] = 'updated secret credentials'
-        secret_version_prototype_model['custom_metadata'] = {'foo': 'bar'}
-        secret_version_prototype_model['version_custom_metadata'] = {'foo': 'bar'}
+        secret_version_prototype_model['custom_metadata'] = {'metadata_custom_key': 'metadata_custom_value'}
+        secret_version_prototype_model['version_custom_metadata'] = {'custom_version_key': 'custom_version_value'}
 
         # Set up parameter values
         secret_id = '0b5571f7-21e6-42b7-91c5-3f5ac9793a46'
@@ -1289,7 +1451,7 @@ class TestCreateSecretVersion():
             "secret_version_prototype": secret_version_prototype,
         }
         for param in req_param_dict.keys():
-            req_copy = {key:val if key is not param else None for (key,val) in req_param_dict.items()}
+            req_copy = {key: val if key is not param else None for (key, val) in req_param_dict.items()}
             with pytest.raises(ValueError):
                 _service.create_secret_version(**req_copy)
 
@@ -1302,7 +1464,8 @@ class TestCreateSecretVersion():
         _service.disable_retries()
         self.test_create_secret_version_value_error()
 
-class TestListSecretVersions():
+
+class TestListSecretVersions:
     """
     Test Class for list_secret_versions
     """
@@ -1315,11 +1478,13 @@ class TestListSecretVersions():
         # Set up mock
         url = preprocess_url('/api/v2/secrets/0b5571f7-21e6-42b7-91c5-3f5ac9793a46/versions')
         mock_response = '{"versions": [{"auto_rotated": true, "created_by": "iam-ServiceId-e4a2f0a4-3c76-4bef-b1f2-fbeae11c0f21", "created_at": "2022-04-12T23:20:50.520Z", "downloaded": true, "id": "b49ad24d-81d4-5ebc-b9b9-b0937d1c84d5", "secret_name": "my-secret", "secret_type": "arbitrary", "secret_group_id": "default", "payload_available": false, "alias": "current", "version_custom_metadata": {"anyKey": "anyValue"}, "secret_id": "b49ad24d-81d4-5ebc-b9b9-b0937d1c84d5", "expiration_date": "2033-04-12T23:20:50.520Z"}], "total_count": 0}'
-        responses.add(responses.GET,
-                      url,
-                      body=mock_response,
-                      content_type='application/json',
-                      status=200)
+        responses.add(
+            responses.GET,
+            url,
+            body=mock_response,
+            content_type='application/json',
+            status=200,
+        )
 
         # Set up parameter values
         secret_id = '0b5571f7-21e6-42b7-91c5-3f5ac9793a46'
@@ -1327,7 +1492,7 @@ class TestListSecretVersions():
         # Invoke method
         response = _service.list_secret_versions(
             secret_id,
-            headers={}
+            headers={},
         )
 
         # Check for correct operation
@@ -1351,11 +1516,13 @@ class TestListSecretVersions():
         # Set up mock
         url = preprocess_url('/api/v2/secrets/0b5571f7-21e6-42b7-91c5-3f5ac9793a46/versions')
         mock_response = '{"versions": [{"auto_rotated": true, "created_by": "iam-ServiceId-e4a2f0a4-3c76-4bef-b1f2-fbeae11c0f21", "created_at": "2022-04-12T23:20:50.520Z", "downloaded": true, "id": "b49ad24d-81d4-5ebc-b9b9-b0937d1c84d5", "secret_name": "my-secret", "secret_type": "arbitrary", "secret_group_id": "default", "payload_available": false, "alias": "current", "version_custom_metadata": {"anyKey": "anyValue"}, "secret_id": "b49ad24d-81d4-5ebc-b9b9-b0937d1c84d5", "expiration_date": "2033-04-12T23:20:50.520Z"}], "total_count": 0}'
-        responses.add(responses.GET,
-                      url,
-                      body=mock_response,
-                      content_type='application/json',
-                      status=200)
+        responses.add(
+            responses.GET,
+            url,
+            body=mock_response,
+            content_type='application/json',
+            status=200,
+        )
 
         # Set up parameter values
         secret_id = '0b5571f7-21e6-42b7-91c5-3f5ac9793a46'
@@ -1365,7 +1532,7 @@ class TestListSecretVersions():
             "secret_id": secret_id,
         }
         for param in req_param_dict.keys():
-            req_copy = {key:val if key is not param else None for (key,val) in req_param_dict.items()}
+            req_copy = {key: val if key is not param else None for (key, val) in req_param_dict.items()}
             with pytest.raises(ValueError):
                 _service.list_secret_versions(**req_copy)
 
@@ -1378,7 +1545,8 @@ class TestListSecretVersions():
         _service.disable_retries()
         self.test_list_secret_versions_value_error()
 
-class TestGetSecretVersion():
+
+class TestGetSecretVersion:
     """
     Test Class for get_secret_version
     """
@@ -1391,11 +1559,13 @@ class TestGetSecretVersion():
         # Set up mock
         url = preprocess_url('/api/v2/secrets/0b5571f7-21e6-42b7-91c5-3f5ac9793a46/versions/eb4cf24d-9cae-424b-945e-159788a5f535')
         mock_response = '{"auto_rotated": true, "created_by": "iam-ServiceId-e4a2f0a4-3c76-4bef-b1f2-fbeae11c0f21", "created_at": "2022-04-12T23:20:50.520Z", "downloaded": true, "id": "b49ad24d-81d4-5ebc-b9b9-b0937d1c84d5", "secret_name": "my-secret", "secret_type": "arbitrary", "secret_group_id": "default", "payload_available": false, "alias": "current", "version_custom_metadata": {"anyKey": "anyValue"}, "secret_id": "b49ad24d-81d4-5ebc-b9b9-b0937d1c84d5", "expiration_date": "2033-04-12T23:20:50.520Z", "payload": "secret-credentials"}'
-        responses.add(responses.GET,
-                      url,
-                      body=mock_response,
-                      content_type='application/json',
-                      status=200)
+        responses.add(
+            responses.GET,
+            url,
+            body=mock_response,
+            content_type='application/json',
+            status=200,
+        )
 
         # Set up parameter values
         secret_id = '0b5571f7-21e6-42b7-91c5-3f5ac9793a46'
@@ -1405,7 +1575,7 @@ class TestGetSecretVersion():
         response = _service.get_secret_version(
             secret_id,
             id,
-            headers={}
+            headers={},
         )
 
         # Check for correct operation
@@ -1429,11 +1599,13 @@ class TestGetSecretVersion():
         # Set up mock
         url = preprocess_url('/api/v2/secrets/0b5571f7-21e6-42b7-91c5-3f5ac9793a46/versions/eb4cf24d-9cae-424b-945e-159788a5f535')
         mock_response = '{"auto_rotated": true, "created_by": "iam-ServiceId-e4a2f0a4-3c76-4bef-b1f2-fbeae11c0f21", "created_at": "2022-04-12T23:20:50.520Z", "downloaded": true, "id": "b49ad24d-81d4-5ebc-b9b9-b0937d1c84d5", "secret_name": "my-secret", "secret_type": "arbitrary", "secret_group_id": "default", "payload_available": false, "alias": "current", "version_custom_metadata": {"anyKey": "anyValue"}, "secret_id": "b49ad24d-81d4-5ebc-b9b9-b0937d1c84d5", "expiration_date": "2033-04-12T23:20:50.520Z", "payload": "secret-credentials"}'
-        responses.add(responses.GET,
-                      url,
-                      body=mock_response,
-                      content_type='application/json',
-                      status=200)
+        responses.add(
+            responses.GET,
+            url,
+            body=mock_response,
+            content_type='application/json',
+            status=200,
+        )
 
         # Set up parameter values
         secret_id = '0b5571f7-21e6-42b7-91c5-3f5ac9793a46'
@@ -1445,7 +1617,7 @@ class TestGetSecretVersion():
             "id": id,
         }
         for param in req_param_dict.keys():
-            req_copy = {key:val if key is not param else None for (key,val) in req_param_dict.items()}
+            req_copy = {key: val if key is not param else None for (key, val) in req_param_dict.items()}
             with pytest.raises(ValueError):
                 _service.get_secret_version(**req_copy)
 
@@ -1458,7 +1630,8 @@ class TestGetSecretVersion():
         _service.disable_retries()
         self.test_get_secret_version_value_error()
 
-class TestDeleteSecretVersionData():
+
+class TestDeleteSecretVersionData:
     """
     Test Class for delete_secret_version_data
     """
@@ -1470,9 +1643,11 @@ class TestDeleteSecretVersionData():
         """
         # Set up mock
         url = preprocess_url('/api/v2/secrets/0b5571f7-21e6-42b7-91c5-3f5ac9793a46/versions/eb4cf24d-9cae-424b-945e-159788a5f535/secret_data')
-        responses.add(responses.DELETE,
-                      url,
-                      status=204)
+        responses.add(
+            responses.DELETE,
+            url,
+            status=204,
+        )
 
         # Set up parameter values
         secret_id = '0b5571f7-21e6-42b7-91c5-3f5ac9793a46'
@@ -1482,7 +1657,7 @@ class TestDeleteSecretVersionData():
         response = _service.delete_secret_version_data(
             secret_id,
             id,
-            headers={}
+            headers={},
         )
 
         # Check for correct operation
@@ -1505,9 +1680,11 @@ class TestDeleteSecretVersionData():
         """
         # Set up mock
         url = preprocess_url('/api/v2/secrets/0b5571f7-21e6-42b7-91c5-3f5ac9793a46/versions/eb4cf24d-9cae-424b-945e-159788a5f535/secret_data')
-        responses.add(responses.DELETE,
-                      url,
-                      status=204)
+        responses.add(
+            responses.DELETE,
+            url,
+            status=204,
+        )
 
         # Set up parameter values
         secret_id = '0b5571f7-21e6-42b7-91c5-3f5ac9793a46'
@@ -1519,7 +1696,7 @@ class TestDeleteSecretVersionData():
             "id": id,
         }
         for param in req_param_dict.keys():
-            req_copy = {key:val if key is not param else None for (key,val) in req_param_dict.items()}
+            req_copy = {key: val if key is not param else None for (key, val) in req_param_dict.items()}
             with pytest.raises(ValueError):
                 _service.delete_secret_version_data(**req_copy)
 
@@ -1532,7 +1709,8 @@ class TestDeleteSecretVersionData():
         _service.disable_retries()
         self.test_delete_secret_version_data_value_error()
 
-class TestGetSecretVersionMetadata():
+
+class TestGetSecretVersionMetadata:
     """
     Test Class for get_secret_version_metadata
     """
@@ -1545,11 +1723,13 @@ class TestGetSecretVersionMetadata():
         # Set up mock
         url = preprocess_url('/api/v2/secrets/0b5571f7-21e6-42b7-91c5-3f5ac9793a46/versions/eb4cf24d-9cae-424b-945e-159788a5f535/metadata')
         mock_response = '{"auto_rotated": true, "created_by": "iam-ServiceId-e4a2f0a4-3c76-4bef-b1f2-fbeae11c0f21", "created_at": "2022-04-12T23:20:50.520Z", "downloaded": true, "id": "b49ad24d-81d4-5ebc-b9b9-b0937d1c84d5", "secret_name": "my-secret", "secret_type": "arbitrary", "secret_group_id": "default", "payload_available": false, "alias": "current", "version_custom_metadata": {"anyKey": "anyValue"}, "secret_id": "b49ad24d-81d4-5ebc-b9b9-b0937d1c84d5", "expiration_date": "2033-04-12T23:20:50.520Z"}'
-        responses.add(responses.GET,
-                      url,
-                      body=mock_response,
-                      content_type='application/json',
-                      status=200)
+        responses.add(
+            responses.GET,
+            url,
+            body=mock_response,
+            content_type='application/json',
+            status=200,
+        )
 
         # Set up parameter values
         secret_id = '0b5571f7-21e6-42b7-91c5-3f5ac9793a46'
@@ -1559,7 +1739,7 @@ class TestGetSecretVersionMetadata():
         response = _service.get_secret_version_metadata(
             secret_id,
             id,
-            headers={}
+            headers={},
         )
 
         # Check for correct operation
@@ -1583,11 +1763,13 @@ class TestGetSecretVersionMetadata():
         # Set up mock
         url = preprocess_url('/api/v2/secrets/0b5571f7-21e6-42b7-91c5-3f5ac9793a46/versions/eb4cf24d-9cae-424b-945e-159788a5f535/metadata')
         mock_response = '{"auto_rotated": true, "created_by": "iam-ServiceId-e4a2f0a4-3c76-4bef-b1f2-fbeae11c0f21", "created_at": "2022-04-12T23:20:50.520Z", "downloaded": true, "id": "b49ad24d-81d4-5ebc-b9b9-b0937d1c84d5", "secret_name": "my-secret", "secret_type": "arbitrary", "secret_group_id": "default", "payload_available": false, "alias": "current", "version_custom_metadata": {"anyKey": "anyValue"}, "secret_id": "b49ad24d-81d4-5ebc-b9b9-b0937d1c84d5", "expiration_date": "2033-04-12T23:20:50.520Z"}'
-        responses.add(responses.GET,
-                      url,
-                      body=mock_response,
-                      content_type='application/json',
-                      status=200)
+        responses.add(
+            responses.GET,
+            url,
+            body=mock_response,
+            content_type='application/json',
+            status=200,
+        )
 
         # Set up parameter values
         secret_id = '0b5571f7-21e6-42b7-91c5-3f5ac9793a46'
@@ -1599,7 +1781,7 @@ class TestGetSecretVersionMetadata():
             "id": id,
         }
         for param in req_param_dict.keys():
-            req_copy = {key:val if key is not param else None for (key,val) in req_param_dict.items()}
+            req_copy = {key: val if key is not param else None for (key, val) in req_param_dict.items()}
             with pytest.raises(ValueError):
                 _service.get_secret_version_metadata(**req_copy)
 
@@ -1612,7 +1794,8 @@ class TestGetSecretVersionMetadata():
         _service.disable_retries()
         self.test_get_secret_version_metadata_value_error()
 
-class TestUpdateSecretVersionMetadata():
+
+class TestUpdateSecretVersionMetadata:
     """
     Test Class for update_secret_version_metadata
     """
@@ -1625,15 +1808,17 @@ class TestUpdateSecretVersionMetadata():
         # Set up mock
         url = preprocess_url('/api/v2/secrets/0b5571f7-21e6-42b7-91c5-3f5ac9793a46/versions/eb4cf24d-9cae-424b-945e-159788a5f535/metadata')
         mock_response = '{"auto_rotated": true, "created_by": "iam-ServiceId-e4a2f0a4-3c76-4bef-b1f2-fbeae11c0f21", "created_at": "2022-04-12T23:20:50.520Z", "downloaded": true, "id": "b49ad24d-81d4-5ebc-b9b9-b0937d1c84d5", "secret_name": "my-secret", "secret_type": "arbitrary", "secret_group_id": "default", "payload_available": false, "alias": "current", "version_custom_metadata": {"anyKey": "anyValue"}, "secret_id": "b49ad24d-81d4-5ebc-b9b9-b0937d1c84d5", "expiration_date": "2033-04-12T23:20:50.520Z"}'
-        responses.add(responses.PATCH,
-                      url,
-                      body=mock_response,
-                      content_type='application/json',
-                      status=200)
+        responses.add(
+            responses.PATCH,
+            url,
+            body=mock_response,
+            content_type='application/json',
+            status=200,
+        )
 
         # Construct a dict representation of a SecretVersionMetadataPatch model
         secret_version_metadata_patch_model = {}
-        secret_version_metadata_patch_model['version_custom_metadata'] = {'foo': 'bar'}
+        secret_version_metadata_patch_model['version_custom_metadata'] = {'key': 'value'}
 
         # Set up parameter values
         secret_id = '0b5571f7-21e6-42b7-91c5-3f5ac9793a46'
@@ -1645,7 +1830,7 @@ class TestUpdateSecretVersionMetadata():
             secret_id,
             id,
             secret_version_metadata_patch,
-            headers={}
+            headers={},
         )
 
         # Check for correct operation
@@ -1672,15 +1857,17 @@ class TestUpdateSecretVersionMetadata():
         # Set up mock
         url = preprocess_url('/api/v2/secrets/0b5571f7-21e6-42b7-91c5-3f5ac9793a46/versions/eb4cf24d-9cae-424b-945e-159788a5f535/metadata')
         mock_response = '{"auto_rotated": true, "created_by": "iam-ServiceId-e4a2f0a4-3c76-4bef-b1f2-fbeae11c0f21", "created_at": "2022-04-12T23:20:50.520Z", "downloaded": true, "id": "b49ad24d-81d4-5ebc-b9b9-b0937d1c84d5", "secret_name": "my-secret", "secret_type": "arbitrary", "secret_group_id": "default", "payload_available": false, "alias": "current", "version_custom_metadata": {"anyKey": "anyValue"}, "secret_id": "b49ad24d-81d4-5ebc-b9b9-b0937d1c84d5", "expiration_date": "2033-04-12T23:20:50.520Z"}'
-        responses.add(responses.PATCH,
-                      url,
-                      body=mock_response,
-                      content_type='application/json',
-                      status=200)
+        responses.add(
+            responses.PATCH,
+            url,
+            body=mock_response,
+            content_type='application/json',
+            status=200,
+        )
 
         # Construct a dict representation of a SecretVersionMetadataPatch model
         secret_version_metadata_patch_model = {}
-        secret_version_metadata_patch_model['version_custom_metadata'] = {'foo': 'bar'}
+        secret_version_metadata_patch_model['version_custom_metadata'] = {'key': 'value'}
 
         # Set up parameter values
         secret_id = '0b5571f7-21e6-42b7-91c5-3f5ac9793a46'
@@ -1694,7 +1881,7 @@ class TestUpdateSecretVersionMetadata():
             "secret_version_metadata_patch": secret_version_metadata_patch,
         }
         for param in req_param_dict.keys():
-            req_copy = {key:val if key is not param else None for (key,val) in req_param_dict.items()}
+            req_copy = {key: val if key is not param else None for (key, val) in req_param_dict.items()}
             with pytest.raises(ValueError):
                 _service.update_secret_version_metadata(**req_copy)
 
@@ -1707,7 +1894,8 @@ class TestUpdateSecretVersionMetadata():
         _service.disable_retries()
         self.test_update_secret_version_metadata_value_error()
 
-class TestCreateSecretVersionAction():
+
+class TestCreateSecretVersionAction:
     """
     Test Class for create_secret_version_action
     """
@@ -1720,11 +1908,13 @@ class TestCreateSecretVersionAction():
         # Set up mock
         url = preprocess_url('/api/v2/secrets/0b5571f7-21e6-42b7-91c5-3f5ac9793a46/versions/eb4cf24d-9cae-424b-945e-159788a5f535/actions')
         mock_response = '{"action_type": "private_cert_action_revoke_certificate", "revocation_time_seconds": 23}'
-        responses.add(responses.POST,
-                      url,
-                      body=mock_response,
-                      content_type='application/json',
-                      status=201)
+        responses.add(
+            responses.POST,
+            url,
+            body=mock_response,
+            content_type='application/json',
+            status=201,
+        )
 
         # Construct a dict representation of a PrivateCertificateVersionActionRevokePrototype model
         secret_version_action_prototype_model = {}
@@ -1740,7 +1930,7 @@ class TestCreateSecretVersionAction():
             secret_id,
             id,
             secret_version_action_prototype,
-            headers={}
+            headers={},
         )
 
         # Check for correct operation
@@ -1767,11 +1957,13 @@ class TestCreateSecretVersionAction():
         # Set up mock
         url = preprocess_url('/api/v2/secrets/0b5571f7-21e6-42b7-91c5-3f5ac9793a46/versions/eb4cf24d-9cae-424b-945e-159788a5f535/actions')
         mock_response = '{"action_type": "private_cert_action_revoke_certificate", "revocation_time_seconds": 23}'
-        responses.add(responses.POST,
-                      url,
-                      body=mock_response,
-                      content_type='application/json',
-                      status=201)
+        responses.add(
+            responses.POST,
+            url,
+            body=mock_response,
+            content_type='application/json',
+            status=201,
+        )
 
         # Construct a dict representation of a PrivateCertificateVersionActionRevokePrototype model
         secret_version_action_prototype_model = {}
@@ -1789,7 +1981,7 @@ class TestCreateSecretVersionAction():
             "secret_version_action_prototype": secret_version_action_prototype,
         }
         for param in req_param_dict.keys():
-            req_copy = {key:val if key is not param else None for (key,val) in req_param_dict.items()}
+            req_copy = {key: val if key is not param else None for (key, val) in req_param_dict.items()}
             with pytest.raises(ValueError):
                 _service.create_secret_version_action(**req_copy)
 
@@ -1802,6 +1994,7 @@ class TestCreateSecretVersionAction():
         _service.disable_retries()
         self.test_create_secret_version_action_value_error()
 
+
 # endregion
 ##############################################################################
 # End of Service: SecretVersions
@@ -1812,7 +2005,8 @@ class TestCreateSecretVersionAction():
 ##############################################################################
 # region
 
-class TestNewInstance():
+
+class TestNewInstance:
     """
     Test Class for new_instance
     """
@@ -1839,7 +2033,8 @@ class TestNewInstance():
                 service_name='TEST_SERVICE_NOT_FOUND',
             )
 
-class TestListSecretsLocks():
+
+class TestListSecretsLocks:
     """
     Test Class for list_secrets_locks
     """
@@ -1851,18 +2046,20 @@ class TestListSecretsLocks():
         """
         # Set up mock
         url = preprocess_url('/api/v2/secrets_locks')
-        mock_response = '{"total_count": 0, "limit": 0, "offset": 0, "first": {"href": "href"}, "next": {"href": "href"}, "previous": {"href": "href"}, "last": {"href": "href"}, "secrets_locks": [{"secret_id": "b49ad24d-81d4-5ebc-b9b9-b0937d1c84d5", "secret_group_id": "default", "secret_type": "arbitrary", "secret_name": "my-secret", "versions": [{"version_id": "b49ad24d-81d4-5ebc-b9b9-b0937d1c84d5", "version_alias": "current", "locks": ["lock-example"], "payload_available": false}]}]}'
-        responses.add(responses.GET,
-                      url,
-                      body=mock_response,
-                      content_type='application/json',
-                      status=200)
+        mock_response = '{"total_count": 0, "limit": 25, "offset": 25, "first": {"href": "href"}, "next": {"href": "href"}, "previous": {"href": "href"}, "last": {"href": "href"}, "secrets_locks": [{"secret_id": "b49ad24d-81d4-5ebc-b9b9-b0937d1c84d5", "secret_group_id": "default", "secret_type": "arbitrary", "secret_name": "my-secret", "versions": [{"version_id": "b49ad24d-81d4-5ebc-b9b9-b0937d1c84d5", "version_alias": "current", "locks": ["lock-example"], "payload_available": false}]}]}'
+        responses.add(
+            responses.GET,
+            url,
+            body=mock_response,
+            content_type='application/json',
+            status=200,
+        )
 
         # Set up parameter values
         offset = 0
-        limit = 1
+        limit = 200
         search = 'example'
-        groups = ['default']
+        groups = ['default', 'cac40995-c37a-4dcb-9506-472869077634']
 
         # Invoke method
         response = _service.list_secrets_locks(
@@ -1870,14 +2067,14 @@ class TestListSecretsLocks():
             limit=limit,
             search=search,
             groups=groups,
-            headers={}
+            headers={},
         )
 
         # Check for correct operation
         assert len(responses.calls) == 1
         assert response.status_code == 200
         # Validate query params
-        query_string = responses.calls[0].request.url.split('?',1)[1]
+        query_string = responses.calls[0].request.url.split('?', 1)[1]
         query_string = urllib.parse.unquote_plus(query_string)
         assert 'offset={}'.format(offset) in query_string
         assert 'limit={}'.format(limit) in query_string
@@ -1900,16 +2097,17 @@ class TestListSecretsLocks():
         """
         # Set up mock
         url = preprocess_url('/api/v2/secrets_locks')
-        mock_response = '{"total_count": 0, "limit": 0, "offset": 0, "first": {"href": "href"}, "next": {"href": "href"}, "previous": {"href": "href"}, "last": {"href": "href"}, "secrets_locks": [{"secret_id": "b49ad24d-81d4-5ebc-b9b9-b0937d1c84d5", "secret_group_id": "default", "secret_type": "arbitrary", "secret_name": "my-secret", "versions": [{"version_id": "b49ad24d-81d4-5ebc-b9b9-b0937d1c84d5", "version_alias": "current", "locks": ["lock-example"], "payload_available": false}]}]}'
-        responses.add(responses.GET,
-                      url,
-                      body=mock_response,
-                      content_type='application/json',
-                      status=200)
+        mock_response = '{"total_count": 0, "limit": 25, "offset": 25, "first": {"href": "href"}, "next": {"href": "href"}, "previous": {"href": "href"}, "last": {"href": "href"}, "secrets_locks": [{"secret_id": "b49ad24d-81d4-5ebc-b9b9-b0937d1c84d5", "secret_group_id": "default", "secret_type": "arbitrary", "secret_name": "my-secret", "versions": [{"version_id": "b49ad24d-81d4-5ebc-b9b9-b0937d1c84d5", "version_alias": "current", "locks": ["lock-example"], "payload_available": false}]}]}'
+        responses.add(
+            responses.GET,
+            url,
+            body=mock_response,
+            content_type='application/json',
+            status=200,
+        )
 
         # Invoke method
         response = _service.list_secrets_locks()
-
 
         # Check for correct operation
         assert len(responses.calls) == 1
@@ -1933,16 +2131,20 @@ class TestListSecretsLocks():
         url = preprocess_url('/api/v2/secrets_locks')
         mock_response1 = '{"next":{"href":"https://myhost.com/somePath?offset=1"},"secrets_locks":[{"secret_id":"b49ad24d-81d4-5ebc-b9b9-b0937d1c84d5","secret_group_id":"default","secret_type":"arbitrary","secret_name":"my-secret","versions":[{"version_id":"b49ad24d-81d4-5ebc-b9b9-b0937d1c84d5","version_alias":"current","locks":["lock-example"],"payload_available":false}]}],"total_count":2,"limit":1}'
         mock_response2 = '{"secrets_locks":[{"secret_id":"b49ad24d-81d4-5ebc-b9b9-b0937d1c84d5","secret_group_id":"default","secret_type":"arbitrary","secret_name":"my-secret","versions":[{"version_id":"b49ad24d-81d4-5ebc-b9b9-b0937d1c84d5","version_alias":"current","locks":["lock-example"],"payload_available":false}]}],"total_count":2,"limit":1}'
-        responses.add(responses.GET,
-                      url,
-                      body=mock_response1,
-                      content_type='application/json',
-                      status=200)
-        responses.add(responses.GET,
-                      url,
-                      body=mock_response2,
-                      content_type='application/json',
-                      status=200)
+        responses.add(
+            responses.GET,
+            url,
+            body=mock_response1,
+            content_type='application/json',
+            status=200,
+        )
+        responses.add(
+            responses.GET,
+            url,
+            body=mock_response2,
+            content_type='application/json',
+            status=200,
+        )
 
         # Exercise the pager class for this operation
         all_results = []
@@ -1950,7 +2152,7 @@ class TestListSecretsLocks():
             client=_service,
             limit=10,
             search='example',
-            groups=['default'],
+            groups=['default', 'cac40995-c37a-4dcb-9506-472869077634'],
         )
         while pager.has_next():
             next_page = pager.get_next()
@@ -1967,29 +2169,34 @@ class TestListSecretsLocks():
         url = preprocess_url('/api/v2/secrets_locks')
         mock_response1 = '{"next":{"href":"https://myhost.com/somePath?offset=1"},"secrets_locks":[{"secret_id":"b49ad24d-81d4-5ebc-b9b9-b0937d1c84d5","secret_group_id":"default","secret_type":"arbitrary","secret_name":"my-secret","versions":[{"version_id":"b49ad24d-81d4-5ebc-b9b9-b0937d1c84d5","version_alias":"current","locks":["lock-example"],"payload_available":false}]}],"total_count":2,"limit":1}'
         mock_response2 = '{"secrets_locks":[{"secret_id":"b49ad24d-81d4-5ebc-b9b9-b0937d1c84d5","secret_group_id":"default","secret_type":"arbitrary","secret_name":"my-secret","versions":[{"version_id":"b49ad24d-81d4-5ebc-b9b9-b0937d1c84d5","version_alias":"current","locks":["lock-example"],"payload_available":false}]}],"total_count":2,"limit":1}'
-        responses.add(responses.GET,
-                      url,
-                      body=mock_response1,
-                      content_type='application/json',
-                      status=200)
-        responses.add(responses.GET,
-                      url,
-                      body=mock_response2,
-                      content_type='application/json',
-                      status=200)
+        responses.add(
+            responses.GET,
+            url,
+            body=mock_response1,
+            content_type='application/json',
+            status=200,
+        )
+        responses.add(
+            responses.GET,
+            url,
+            body=mock_response2,
+            content_type='application/json',
+            status=200,
+        )
 
         # Exercise the pager class for this operation
         pager = SecretsLocksPager(
             client=_service,
             limit=10,
             search='example',
-            groups=['default'],
+            groups=['default', 'cac40995-c37a-4dcb-9506-472869077634'],
         )
         all_results = pager.get_all()
         assert all_results is not None
         assert len(all_results) == 2
 
-class TestListSecretLocks():
+
+class TestListSecretLocks:
     """
     Test Class for list_secret_locks
     """
@@ -2001,17 +2208,19 @@ class TestListSecretLocks():
         """
         # Set up mock
         url = preprocess_url('/api/v2/secrets/0b5571f7-21e6-42b7-91c5-3f5ac9793a46/locks')
-        mock_response = '{"total_count": 0, "limit": 0, "offset": 0, "first": {"href": "href"}, "next": {"href": "href"}, "previous": {"href": "href"}, "last": {"href": "href"}, "locks": [{"name": "lock-example", "description": "description", "attributes": {"anyKey": "anyValue"}, "created_at": "2022-04-12T23:20:50.520Z", "updated_at": "2022-04-12T23:20:50.520Z", "created_by": "iam-ServiceId-e4a2f0a4-3c76-4bef-b1f2-fbeae11c0f21", "secret_group_id": "default", "secret_id": "b49ad24d-81d4-5ebc-b9b9-b0937d1c84d5", "secret_version_id": "b49ad24d-81d4-5ebc-b9b9-b0937d1c84d5", "secret_version_alias": "current"}]}'
-        responses.add(responses.GET,
-                      url,
-                      body=mock_response,
-                      content_type='application/json',
-                      status=200)
+        mock_response = '{"total_count": 0, "limit": 25, "offset": 25, "first": {"href": "href"}, "next": {"href": "href"}, "previous": {"href": "href"}, "last": {"href": "href"}, "locks": [{"name": "lock-example", "description": "description", "attributes": {"anyKey": "anyValue"}, "created_at": "2022-04-12T23:20:50.520Z", "updated_at": "2022-04-12T23:20:50.520Z", "created_by": "iam-ServiceId-e4a2f0a4-3c76-4bef-b1f2-fbeae11c0f21", "secret_group_id": "default", "secret_id": "b49ad24d-81d4-5ebc-b9b9-b0937d1c84d5", "secret_version_id": "b49ad24d-81d4-5ebc-b9b9-b0937d1c84d5", "secret_version_alias": "current"}]}'
+        responses.add(
+            responses.GET,
+            url,
+            body=mock_response,
+            content_type='application/json',
+            status=200,
+        )
 
         # Set up parameter values
         id = '0b5571f7-21e6-42b7-91c5-3f5ac9793a46'
         offset = 0
-        limit = 1
+        limit = 25
         sort = 'name'
         search = 'example'
 
@@ -2022,14 +2231,14 @@ class TestListSecretLocks():
             limit=limit,
             sort=sort,
             search=search,
-            headers={}
+            headers={},
         )
 
         # Check for correct operation
         assert len(responses.calls) == 1
         assert response.status_code == 200
         # Validate query params
-        query_string = responses.calls[0].request.url.split('?',1)[1]
+        query_string = responses.calls[0].request.url.split('?', 1)[1]
         query_string = urllib.parse.unquote_plus(query_string)
         assert 'offset={}'.format(offset) in query_string
         assert 'limit={}'.format(limit) in query_string
@@ -2052,12 +2261,14 @@ class TestListSecretLocks():
         """
         # Set up mock
         url = preprocess_url('/api/v2/secrets/0b5571f7-21e6-42b7-91c5-3f5ac9793a46/locks')
-        mock_response = '{"total_count": 0, "limit": 0, "offset": 0, "first": {"href": "href"}, "next": {"href": "href"}, "previous": {"href": "href"}, "last": {"href": "href"}, "locks": [{"name": "lock-example", "description": "description", "attributes": {"anyKey": "anyValue"}, "created_at": "2022-04-12T23:20:50.520Z", "updated_at": "2022-04-12T23:20:50.520Z", "created_by": "iam-ServiceId-e4a2f0a4-3c76-4bef-b1f2-fbeae11c0f21", "secret_group_id": "default", "secret_id": "b49ad24d-81d4-5ebc-b9b9-b0937d1c84d5", "secret_version_id": "b49ad24d-81d4-5ebc-b9b9-b0937d1c84d5", "secret_version_alias": "current"}]}'
-        responses.add(responses.GET,
-                      url,
-                      body=mock_response,
-                      content_type='application/json',
-                      status=200)
+        mock_response = '{"total_count": 0, "limit": 25, "offset": 25, "first": {"href": "href"}, "next": {"href": "href"}, "previous": {"href": "href"}, "last": {"href": "href"}, "locks": [{"name": "lock-example", "description": "description", "attributes": {"anyKey": "anyValue"}, "created_at": "2022-04-12T23:20:50.520Z", "updated_at": "2022-04-12T23:20:50.520Z", "created_by": "iam-ServiceId-e4a2f0a4-3c76-4bef-b1f2-fbeae11c0f21", "secret_group_id": "default", "secret_id": "b49ad24d-81d4-5ebc-b9b9-b0937d1c84d5", "secret_version_id": "b49ad24d-81d4-5ebc-b9b9-b0937d1c84d5", "secret_version_alias": "current"}]}'
+        responses.add(
+            responses.GET,
+            url,
+            body=mock_response,
+            content_type='application/json',
+            status=200,
+        )
 
         # Set up parameter values
         id = '0b5571f7-21e6-42b7-91c5-3f5ac9793a46'
@@ -2065,7 +2276,7 @@ class TestListSecretLocks():
         # Invoke method
         response = _service.list_secret_locks(
             id,
-            headers={}
+            headers={},
         )
 
         # Check for correct operation
@@ -2088,12 +2299,14 @@ class TestListSecretLocks():
         """
         # Set up mock
         url = preprocess_url('/api/v2/secrets/0b5571f7-21e6-42b7-91c5-3f5ac9793a46/locks')
-        mock_response = '{"total_count": 0, "limit": 0, "offset": 0, "first": {"href": "href"}, "next": {"href": "href"}, "previous": {"href": "href"}, "last": {"href": "href"}, "locks": [{"name": "lock-example", "description": "description", "attributes": {"anyKey": "anyValue"}, "created_at": "2022-04-12T23:20:50.520Z", "updated_at": "2022-04-12T23:20:50.520Z", "created_by": "iam-ServiceId-e4a2f0a4-3c76-4bef-b1f2-fbeae11c0f21", "secret_group_id": "default", "secret_id": "b49ad24d-81d4-5ebc-b9b9-b0937d1c84d5", "secret_version_id": "b49ad24d-81d4-5ebc-b9b9-b0937d1c84d5", "secret_version_alias": "current"}]}'
-        responses.add(responses.GET,
-                      url,
-                      body=mock_response,
-                      content_type='application/json',
-                      status=200)
+        mock_response = '{"total_count": 0, "limit": 25, "offset": 25, "first": {"href": "href"}, "next": {"href": "href"}, "previous": {"href": "href"}, "last": {"href": "href"}, "locks": [{"name": "lock-example", "description": "description", "attributes": {"anyKey": "anyValue"}, "created_at": "2022-04-12T23:20:50.520Z", "updated_at": "2022-04-12T23:20:50.520Z", "created_by": "iam-ServiceId-e4a2f0a4-3c76-4bef-b1f2-fbeae11c0f21", "secret_group_id": "default", "secret_id": "b49ad24d-81d4-5ebc-b9b9-b0937d1c84d5", "secret_version_id": "b49ad24d-81d4-5ebc-b9b9-b0937d1c84d5", "secret_version_alias": "current"}]}'
+        responses.add(
+            responses.GET,
+            url,
+            body=mock_response,
+            content_type='application/json',
+            status=200,
+        )
 
         # Set up parameter values
         id = '0b5571f7-21e6-42b7-91c5-3f5ac9793a46'
@@ -2103,7 +2316,7 @@ class TestListSecretLocks():
             "id": id,
         }
         for param in req_param_dict.keys():
-            req_copy = {key:val if key is not param else None for (key,val) in req_param_dict.items()}
+            req_copy = {key: val if key is not param else None for (key, val) in req_param_dict.items()}
             with pytest.raises(ValueError):
                 _service.list_secret_locks(**req_copy)
 
@@ -2125,16 +2338,20 @@ class TestListSecretLocks():
         url = preprocess_url('/api/v2/secrets/0b5571f7-21e6-42b7-91c5-3f5ac9793a46/locks')
         mock_response1 = '{"next":{"href":"https://myhost.com/somePath?offset=1"},"total_count":2,"limit":1,"locks":[{"name":"lock-example","description":"description","attributes":{"anyKey":"anyValue"},"created_at":"2022-04-12T23:20:50.520Z","updated_at":"2022-04-12T23:20:50.520Z","created_by":"iam-ServiceId-e4a2f0a4-3c76-4bef-b1f2-fbeae11c0f21","secret_group_id":"default","secret_id":"b49ad24d-81d4-5ebc-b9b9-b0937d1c84d5","secret_version_id":"b49ad24d-81d4-5ebc-b9b9-b0937d1c84d5","secret_version_alias":"current"}]}'
         mock_response2 = '{"total_count":2,"limit":1,"locks":[{"name":"lock-example","description":"description","attributes":{"anyKey":"anyValue"},"created_at":"2022-04-12T23:20:50.520Z","updated_at":"2022-04-12T23:20:50.520Z","created_by":"iam-ServiceId-e4a2f0a4-3c76-4bef-b1f2-fbeae11c0f21","secret_group_id":"default","secret_id":"b49ad24d-81d4-5ebc-b9b9-b0937d1c84d5","secret_version_id":"b49ad24d-81d4-5ebc-b9b9-b0937d1c84d5","secret_version_alias":"current"}]}'
-        responses.add(responses.GET,
-                      url,
-                      body=mock_response1,
-                      content_type='application/json',
-                      status=200)
-        responses.add(responses.GET,
-                      url,
-                      body=mock_response2,
-                      content_type='application/json',
-                      status=200)
+        responses.add(
+            responses.GET,
+            url,
+            body=mock_response1,
+            content_type='application/json',
+            status=200,
+        )
+        responses.add(
+            responses.GET,
+            url,
+            body=mock_response2,
+            content_type='application/json',
+            status=200,
+        )
 
         # Exercise the pager class for this operation
         all_results = []
@@ -2160,16 +2377,20 @@ class TestListSecretLocks():
         url = preprocess_url('/api/v2/secrets/0b5571f7-21e6-42b7-91c5-3f5ac9793a46/locks')
         mock_response1 = '{"next":{"href":"https://myhost.com/somePath?offset=1"},"total_count":2,"limit":1,"locks":[{"name":"lock-example","description":"description","attributes":{"anyKey":"anyValue"},"created_at":"2022-04-12T23:20:50.520Z","updated_at":"2022-04-12T23:20:50.520Z","created_by":"iam-ServiceId-e4a2f0a4-3c76-4bef-b1f2-fbeae11c0f21","secret_group_id":"default","secret_id":"b49ad24d-81d4-5ebc-b9b9-b0937d1c84d5","secret_version_id":"b49ad24d-81d4-5ebc-b9b9-b0937d1c84d5","secret_version_alias":"current"}]}'
         mock_response2 = '{"total_count":2,"limit":1,"locks":[{"name":"lock-example","description":"description","attributes":{"anyKey":"anyValue"},"created_at":"2022-04-12T23:20:50.520Z","updated_at":"2022-04-12T23:20:50.520Z","created_by":"iam-ServiceId-e4a2f0a4-3c76-4bef-b1f2-fbeae11c0f21","secret_group_id":"default","secret_id":"b49ad24d-81d4-5ebc-b9b9-b0937d1c84d5","secret_version_id":"b49ad24d-81d4-5ebc-b9b9-b0937d1c84d5","secret_version_alias":"current"}]}'
-        responses.add(responses.GET,
-                      url,
-                      body=mock_response1,
-                      content_type='application/json',
-                      status=200)
-        responses.add(responses.GET,
-                      url,
-                      body=mock_response2,
-                      content_type='application/json',
-                      status=200)
+        responses.add(
+            responses.GET,
+            url,
+            body=mock_response1,
+            content_type='application/json',
+            status=200,
+        )
+        responses.add(
+            responses.GET,
+            url,
+            body=mock_response2,
+            content_type='application/json',
+            status=200,
+        )
 
         # Exercise the pager class for this operation
         pager = SecretLocksPager(
@@ -2183,7 +2404,8 @@ class TestListSecretLocks():
         assert all_results is not None
         assert len(all_results) == 2
 
-class TestCreateSecretLocksBulk():
+
+class TestCreateSecretLocksBulk:
     """
     Test Class for create_secret_locks_bulk
     """
@@ -2196,36 +2418,38 @@ class TestCreateSecretLocksBulk():
         # Set up mock
         url = preprocess_url('/api/v2/secrets/0b5571f7-21e6-42b7-91c5-3f5ac9793a46/locks_bulk')
         mock_response = '{"secret_id": "b49ad24d-81d4-5ebc-b9b9-b0937d1c84d5", "secret_group_id": "default", "secret_type": "arbitrary", "secret_name": "my-secret", "versions": [{"version_id": "b49ad24d-81d4-5ebc-b9b9-b0937d1c84d5", "version_alias": "current", "locks": ["lock-example"], "payload_available": false}]}'
-        responses.add(responses.POST,
-                      url,
-                      body=mock_response,
-                      content_type='application/json',
-                      status=201)
+        responses.add(
+            responses.POST,
+            url,
+            body=mock_response,
+            content_type='application/json',
+            status=201,
+        )
 
         # Construct a dict representation of a SecretLockPrototype model
         secret_lock_prototype_model = {}
         secret_lock_prototype_model['name'] = 'lock-example-1'
         secret_lock_prototype_model['description'] = 'lock for consumer 1'
-        secret_lock_prototype_model['attributes'] = {'foo': 'bar'}
+        secret_lock_prototype_model['attributes'] = {'key': 'value'}
 
         # Set up parameter values
         id = '0b5571f7-21e6-42b7-91c5-3f5ac9793a46'
         locks = [secret_lock_prototype_model]
-        mode = 'exclusive'
+        mode = 'remove_previous'
 
         # Invoke method
         response = _service.create_secret_locks_bulk(
             id,
             locks,
             mode=mode,
-            headers={}
+            headers={},
         )
 
         # Check for correct operation
         assert len(responses.calls) == 1
         assert response.status_code == 201
         # Validate query params
-        query_string = responses.calls[0].request.url.split('?',1)[1]
+        query_string = responses.calls[0].request.url.split('?', 1)[1]
         query_string = urllib.parse.unquote_plus(query_string)
         assert 'mode={}'.format(mode) in query_string
         # Validate body params
@@ -2249,17 +2473,19 @@ class TestCreateSecretLocksBulk():
         # Set up mock
         url = preprocess_url('/api/v2/secrets/0b5571f7-21e6-42b7-91c5-3f5ac9793a46/locks_bulk')
         mock_response = '{"secret_id": "b49ad24d-81d4-5ebc-b9b9-b0937d1c84d5", "secret_group_id": "default", "secret_type": "arbitrary", "secret_name": "my-secret", "versions": [{"version_id": "b49ad24d-81d4-5ebc-b9b9-b0937d1c84d5", "version_alias": "current", "locks": ["lock-example"], "payload_available": false}]}'
-        responses.add(responses.POST,
-                      url,
-                      body=mock_response,
-                      content_type='application/json',
-                      status=201)
+        responses.add(
+            responses.POST,
+            url,
+            body=mock_response,
+            content_type='application/json',
+            status=201,
+        )
 
         # Construct a dict representation of a SecretLockPrototype model
         secret_lock_prototype_model = {}
         secret_lock_prototype_model['name'] = 'lock-example-1'
         secret_lock_prototype_model['description'] = 'lock for consumer 1'
-        secret_lock_prototype_model['attributes'] = {'foo': 'bar'}
+        secret_lock_prototype_model['attributes'] = {'key': 'value'}
 
         # Set up parameter values
         id = '0b5571f7-21e6-42b7-91c5-3f5ac9793a46'
@@ -2269,7 +2495,7 @@ class TestCreateSecretLocksBulk():
         response = _service.create_secret_locks_bulk(
             id,
             locks,
-            headers={}
+            headers={},
         )
 
         # Check for correct operation
@@ -2296,17 +2522,19 @@ class TestCreateSecretLocksBulk():
         # Set up mock
         url = preprocess_url('/api/v2/secrets/0b5571f7-21e6-42b7-91c5-3f5ac9793a46/locks_bulk')
         mock_response = '{"secret_id": "b49ad24d-81d4-5ebc-b9b9-b0937d1c84d5", "secret_group_id": "default", "secret_type": "arbitrary", "secret_name": "my-secret", "versions": [{"version_id": "b49ad24d-81d4-5ebc-b9b9-b0937d1c84d5", "version_alias": "current", "locks": ["lock-example"], "payload_available": false}]}'
-        responses.add(responses.POST,
-                      url,
-                      body=mock_response,
-                      content_type='application/json',
-                      status=201)
+        responses.add(
+            responses.POST,
+            url,
+            body=mock_response,
+            content_type='application/json',
+            status=201,
+        )
 
         # Construct a dict representation of a SecretLockPrototype model
         secret_lock_prototype_model = {}
         secret_lock_prototype_model['name'] = 'lock-example-1'
         secret_lock_prototype_model['description'] = 'lock for consumer 1'
-        secret_lock_prototype_model['attributes'] = {'foo': 'bar'}
+        secret_lock_prototype_model['attributes'] = {'key': 'value'}
 
         # Set up parameter values
         id = '0b5571f7-21e6-42b7-91c5-3f5ac9793a46'
@@ -2318,7 +2546,7 @@ class TestCreateSecretLocksBulk():
             "locks": locks,
         }
         for param in req_param_dict.keys():
-            req_copy = {key:val if key is not param else None for (key,val) in req_param_dict.items()}
+            req_copy = {key: val if key is not param else None for (key, val) in req_param_dict.items()}
             with pytest.raises(ValueError):
                 _service.create_secret_locks_bulk(**req_copy)
 
@@ -2331,7 +2559,8 @@ class TestCreateSecretLocksBulk():
         _service.disable_retries()
         self.test_create_secret_locks_bulk_value_error()
 
-class TestDeleteSecretLocksBulk():
+
+class TestDeleteSecretLocksBulk:
     """
     Test Class for delete_secret_locks_bulk
     """
@@ -2344,11 +2573,13 @@ class TestDeleteSecretLocksBulk():
         # Set up mock
         url = preprocess_url('/api/v2/secrets/0b5571f7-21e6-42b7-91c5-3f5ac9793a46/locks_bulk')
         mock_response = '{"secret_id": "b49ad24d-81d4-5ebc-b9b9-b0937d1c84d5", "secret_group_id": "default", "secret_type": "arbitrary", "secret_name": "my-secret", "versions": [{"version_id": "b49ad24d-81d4-5ebc-b9b9-b0937d1c84d5", "version_alias": "current", "locks": ["lock-example"], "payload_available": false}]}'
-        responses.add(responses.DELETE,
-                      url,
-                      body=mock_response,
-                      content_type='application/json',
-                      status=200)
+        responses.add(
+            responses.DELETE,
+            url,
+            body=mock_response,
+            content_type='application/json',
+            status=200,
+        )
 
         # Set up parameter values
         id = '0b5571f7-21e6-42b7-91c5-3f5ac9793a46'
@@ -2358,14 +2589,14 @@ class TestDeleteSecretLocksBulk():
         response = _service.delete_secret_locks_bulk(
             id,
             name=name,
-            headers={}
+            headers={},
         )
 
         # Check for correct operation
         assert len(responses.calls) == 1
         assert response.status_code == 200
         # Validate query params
-        query_string = responses.calls[0].request.url.split('?',1)[1]
+        query_string = responses.calls[0].request.url.split('?', 1)[1]
         query_string = urllib.parse.unquote_plus(query_string)
         assert 'name={}'.format(','.join(name)) in query_string
 
@@ -2386,11 +2617,13 @@ class TestDeleteSecretLocksBulk():
         # Set up mock
         url = preprocess_url('/api/v2/secrets/0b5571f7-21e6-42b7-91c5-3f5ac9793a46/locks_bulk')
         mock_response = '{"secret_id": "b49ad24d-81d4-5ebc-b9b9-b0937d1c84d5", "secret_group_id": "default", "secret_type": "arbitrary", "secret_name": "my-secret", "versions": [{"version_id": "b49ad24d-81d4-5ebc-b9b9-b0937d1c84d5", "version_alias": "current", "locks": ["lock-example"], "payload_available": false}]}'
-        responses.add(responses.DELETE,
-                      url,
-                      body=mock_response,
-                      content_type='application/json',
-                      status=200)
+        responses.add(
+            responses.DELETE,
+            url,
+            body=mock_response,
+            content_type='application/json',
+            status=200,
+        )
 
         # Set up parameter values
         id = '0b5571f7-21e6-42b7-91c5-3f5ac9793a46'
@@ -2398,7 +2631,7 @@ class TestDeleteSecretLocksBulk():
         # Invoke method
         response = _service.delete_secret_locks_bulk(
             id,
-            headers={}
+            headers={},
         )
 
         # Check for correct operation
@@ -2422,11 +2655,13 @@ class TestDeleteSecretLocksBulk():
         # Set up mock
         url = preprocess_url('/api/v2/secrets/0b5571f7-21e6-42b7-91c5-3f5ac9793a46/locks_bulk')
         mock_response = '{"secret_id": "b49ad24d-81d4-5ebc-b9b9-b0937d1c84d5", "secret_group_id": "default", "secret_type": "arbitrary", "secret_name": "my-secret", "versions": [{"version_id": "b49ad24d-81d4-5ebc-b9b9-b0937d1c84d5", "version_alias": "current", "locks": ["lock-example"], "payload_available": false}]}'
-        responses.add(responses.DELETE,
-                      url,
-                      body=mock_response,
-                      content_type='application/json',
-                      status=200)
+        responses.add(
+            responses.DELETE,
+            url,
+            body=mock_response,
+            content_type='application/json',
+            status=200,
+        )
 
         # Set up parameter values
         id = '0b5571f7-21e6-42b7-91c5-3f5ac9793a46'
@@ -2436,7 +2671,7 @@ class TestDeleteSecretLocksBulk():
             "id": id,
         }
         for param in req_param_dict.keys():
-            req_copy = {key:val if key is not param else None for (key,val) in req_param_dict.items()}
+            req_copy = {key: val if key is not param else None for (key, val) in req_param_dict.items()}
             with pytest.raises(ValueError):
                 _service.delete_secret_locks_bulk(**req_copy)
 
@@ -2449,7 +2684,8 @@ class TestDeleteSecretLocksBulk():
         _service.disable_retries()
         self.test_delete_secret_locks_bulk_value_error()
 
-class TestListSecretVersionLocks():
+
+class TestListSecretVersionLocks:
     """
     Test Class for list_secret_version_locks
     """
@@ -2461,18 +2697,20 @@ class TestListSecretVersionLocks():
         """
         # Set up mock
         url = preprocess_url('/api/v2/secrets/0b5571f7-21e6-42b7-91c5-3f5ac9793a46/versions/eb4cf24d-9cae-424b-945e-159788a5f535/locks')
-        mock_response = '{"total_count": 0, "limit": 0, "offset": 0, "first": {"href": "href"}, "next": {"href": "href"}, "previous": {"href": "href"}, "last": {"href": "href"}, "locks": [{"name": "lock-example", "description": "description", "attributes": {"anyKey": "anyValue"}, "created_at": "2022-04-12T23:20:50.520Z", "updated_at": "2022-04-12T23:20:50.520Z", "created_by": "iam-ServiceId-e4a2f0a4-3c76-4bef-b1f2-fbeae11c0f21", "secret_group_id": "default", "secret_id": "b49ad24d-81d4-5ebc-b9b9-b0937d1c84d5", "secret_version_id": "b49ad24d-81d4-5ebc-b9b9-b0937d1c84d5", "secret_version_alias": "current"}]}'
-        responses.add(responses.GET,
-                      url,
-                      body=mock_response,
-                      content_type='application/json',
-                      status=200)
+        mock_response = '{"total_count": 0, "limit": 25, "offset": 25, "first": {"href": "href"}, "next": {"href": "href"}, "previous": {"href": "href"}, "last": {"href": "href"}, "locks": [{"name": "lock-example", "description": "description", "attributes": {"anyKey": "anyValue"}, "created_at": "2022-04-12T23:20:50.520Z", "updated_at": "2022-04-12T23:20:50.520Z", "created_by": "iam-ServiceId-e4a2f0a4-3c76-4bef-b1f2-fbeae11c0f21", "secret_group_id": "default", "secret_id": "b49ad24d-81d4-5ebc-b9b9-b0937d1c84d5", "secret_version_id": "b49ad24d-81d4-5ebc-b9b9-b0937d1c84d5", "secret_version_alias": "current"}]}'
+        responses.add(
+            responses.GET,
+            url,
+            body=mock_response,
+            content_type='application/json',
+            status=200,
+        )
 
         # Set up parameter values
         secret_id = '0b5571f7-21e6-42b7-91c5-3f5ac9793a46'
         id = 'eb4cf24d-9cae-424b-945e-159788a5f535'
         offset = 0
-        limit = 1
+        limit = 25
         sort = 'name'
         search = 'example'
 
@@ -2484,14 +2722,14 @@ class TestListSecretVersionLocks():
             limit=limit,
             sort=sort,
             search=search,
-            headers={}
+            headers={},
         )
 
         # Check for correct operation
         assert len(responses.calls) == 1
         assert response.status_code == 200
         # Validate query params
-        query_string = responses.calls[0].request.url.split('?',1)[1]
+        query_string = responses.calls[0].request.url.split('?', 1)[1]
         query_string = urllib.parse.unquote_plus(query_string)
         assert 'offset={}'.format(offset) in query_string
         assert 'limit={}'.format(limit) in query_string
@@ -2514,12 +2752,14 @@ class TestListSecretVersionLocks():
         """
         # Set up mock
         url = preprocess_url('/api/v2/secrets/0b5571f7-21e6-42b7-91c5-3f5ac9793a46/versions/eb4cf24d-9cae-424b-945e-159788a5f535/locks')
-        mock_response = '{"total_count": 0, "limit": 0, "offset": 0, "first": {"href": "href"}, "next": {"href": "href"}, "previous": {"href": "href"}, "last": {"href": "href"}, "locks": [{"name": "lock-example", "description": "description", "attributes": {"anyKey": "anyValue"}, "created_at": "2022-04-12T23:20:50.520Z", "updated_at": "2022-04-12T23:20:50.520Z", "created_by": "iam-ServiceId-e4a2f0a4-3c76-4bef-b1f2-fbeae11c0f21", "secret_group_id": "default", "secret_id": "b49ad24d-81d4-5ebc-b9b9-b0937d1c84d5", "secret_version_id": "b49ad24d-81d4-5ebc-b9b9-b0937d1c84d5", "secret_version_alias": "current"}]}'
-        responses.add(responses.GET,
-                      url,
-                      body=mock_response,
-                      content_type='application/json',
-                      status=200)
+        mock_response = '{"total_count": 0, "limit": 25, "offset": 25, "first": {"href": "href"}, "next": {"href": "href"}, "previous": {"href": "href"}, "last": {"href": "href"}, "locks": [{"name": "lock-example", "description": "description", "attributes": {"anyKey": "anyValue"}, "created_at": "2022-04-12T23:20:50.520Z", "updated_at": "2022-04-12T23:20:50.520Z", "created_by": "iam-ServiceId-e4a2f0a4-3c76-4bef-b1f2-fbeae11c0f21", "secret_group_id": "default", "secret_id": "b49ad24d-81d4-5ebc-b9b9-b0937d1c84d5", "secret_version_id": "b49ad24d-81d4-5ebc-b9b9-b0937d1c84d5", "secret_version_alias": "current"}]}'
+        responses.add(
+            responses.GET,
+            url,
+            body=mock_response,
+            content_type='application/json',
+            status=200,
+        )
 
         # Set up parameter values
         secret_id = '0b5571f7-21e6-42b7-91c5-3f5ac9793a46'
@@ -2529,7 +2769,7 @@ class TestListSecretVersionLocks():
         response = _service.list_secret_version_locks(
             secret_id,
             id,
-            headers={}
+            headers={},
         )
 
         # Check for correct operation
@@ -2552,12 +2792,14 @@ class TestListSecretVersionLocks():
         """
         # Set up mock
         url = preprocess_url('/api/v2/secrets/0b5571f7-21e6-42b7-91c5-3f5ac9793a46/versions/eb4cf24d-9cae-424b-945e-159788a5f535/locks')
-        mock_response = '{"total_count": 0, "limit": 0, "offset": 0, "first": {"href": "href"}, "next": {"href": "href"}, "previous": {"href": "href"}, "last": {"href": "href"}, "locks": [{"name": "lock-example", "description": "description", "attributes": {"anyKey": "anyValue"}, "created_at": "2022-04-12T23:20:50.520Z", "updated_at": "2022-04-12T23:20:50.520Z", "created_by": "iam-ServiceId-e4a2f0a4-3c76-4bef-b1f2-fbeae11c0f21", "secret_group_id": "default", "secret_id": "b49ad24d-81d4-5ebc-b9b9-b0937d1c84d5", "secret_version_id": "b49ad24d-81d4-5ebc-b9b9-b0937d1c84d5", "secret_version_alias": "current"}]}'
-        responses.add(responses.GET,
-                      url,
-                      body=mock_response,
-                      content_type='application/json',
-                      status=200)
+        mock_response = '{"total_count": 0, "limit": 25, "offset": 25, "first": {"href": "href"}, "next": {"href": "href"}, "previous": {"href": "href"}, "last": {"href": "href"}, "locks": [{"name": "lock-example", "description": "description", "attributes": {"anyKey": "anyValue"}, "created_at": "2022-04-12T23:20:50.520Z", "updated_at": "2022-04-12T23:20:50.520Z", "created_by": "iam-ServiceId-e4a2f0a4-3c76-4bef-b1f2-fbeae11c0f21", "secret_group_id": "default", "secret_id": "b49ad24d-81d4-5ebc-b9b9-b0937d1c84d5", "secret_version_id": "b49ad24d-81d4-5ebc-b9b9-b0937d1c84d5", "secret_version_alias": "current"}]}'
+        responses.add(
+            responses.GET,
+            url,
+            body=mock_response,
+            content_type='application/json',
+            status=200,
+        )
 
         # Set up parameter values
         secret_id = '0b5571f7-21e6-42b7-91c5-3f5ac9793a46'
@@ -2569,7 +2811,7 @@ class TestListSecretVersionLocks():
             "id": id,
         }
         for param in req_param_dict.keys():
-            req_copy = {key:val if key is not param else None for (key,val) in req_param_dict.items()}
+            req_copy = {key: val if key is not param else None for (key, val) in req_param_dict.items()}
             with pytest.raises(ValueError):
                 _service.list_secret_version_locks(**req_copy)
 
@@ -2591,16 +2833,20 @@ class TestListSecretVersionLocks():
         url = preprocess_url('/api/v2/secrets/0b5571f7-21e6-42b7-91c5-3f5ac9793a46/versions/eb4cf24d-9cae-424b-945e-159788a5f535/locks')
         mock_response1 = '{"next":{"href":"https://myhost.com/somePath?offset=1"},"total_count":2,"limit":1,"locks":[{"name":"lock-example","description":"description","attributes":{"anyKey":"anyValue"},"created_at":"2022-04-12T23:20:50.520Z","updated_at":"2022-04-12T23:20:50.520Z","created_by":"iam-ServiceId-e4a2f0a4-3c76-4bef-b1f2-fbeae11c0f21","secret_group_id":"default","secret_id":"b49ad24d-81d4-5ebc-b9b9-b0937d1c84d5","secret_version_id":"b49ad24d-81d4-5ebc-b9b9-b0937d1c84d5","secret_version_alias":"current"}]}'
         mock_response2 = '{"total_count":2,"limit":1,"locks":[{"name":"lock-example","description":"description","attributes":{"anyKey":"anyValue"},"created_at":"2022-04-12T23:20:50.520Z","updated_at":"2022-04-12T23:20:50.520Z","created_by":"iam-ServiceId-e4a2f0a4-3c76-4bef-b1f2-fbeae11c0f21","secret_group_id":"default","secret_id":"b49ad24d-81d4-5ebc-b9b9-b0937d1c84d5","secret_version_id":"b49ad24d-81d4-5ebc-b9b9-b0937d1c84d5","secret_version_alias":"current"}]}'
-        responses.add(responses.GET,
-                      url,
-                      body=mock_response1,
-                      content_type='application/json',
-                      status=200)
-        responses.add(responses.GET,
-                      url,
-                      body=mock_response2,
-                      content_type='application/json',
-                      status=200)
+        responses.add(
+            responses.GET,
+            url,
+            body=mock_response1,
+            content_type='application/json',
+            status=200,
+        )
+        responses.add(
+            responses.GET,
+            url,
+            body=mock_response2,
+            content_type='application/json',
+            status=200,
+        )
 
         # Exercise the pager class for this operation
         all_results = []
@@ -2627,16 +2873,20 @@ class TestListSecretVersionLocks():
         url = preprocess_url('/api/v2/secrets/0b5571f7-21e6-42b7-91c5-3f5ac9793a46/versions/eb4cf24d-9cae-424b-945e-159788a5f535/locks')
         mock_response1 = '{"next":{"href":"https://myhost.com/somePath?offset=1"},"total_count":2,"limit":1,"locks":[{"name":"lock-example","description":"description","attributes":{"anyKey":"anyValue"},"created_at":"2022-04-12T23:20:50.520Z","updated_at":"2022-04-12T23:20:50.520Z","created_by":"iam-ServiceId-e4a2f0a4-3c76-4bef-b1f2-fbeae11c0f21","secret_group_id":"default","secret_id":"b49ad24d-81d4-5ebc-b9b9-b0937d1c84d5","secret_version_id":"b49ad24d-81d4-5ebc-b9b9-b0937d1c84d5","secret_version_alias":"current"}]}'
         mock_response2 = '{"total_count":2,"limit":1,"locks":[{"name":"lock-example","description":"description","attributes":{"anyKey":"anyValue"},"created_at":"2022-04-12T23:20:50.520Z","updated_at":"2022-04-12T23:20:50.520Z","created_by":"iam-ServiceId-e4a2f0a4-3c76-4bef-b1f2-fbeae11c0f21","secret_group_id":"default","secret_id":"b49ad24d-81d4-5ebc-b9b9-b0937d1c84d5","secret_version_id":"b49ad24d-81d4-5ebc-b9b9-b0937d1c84d5","secret_version_alias":"current"}]}'
-        responses.add(responses.GET,
-                      url,
-                      body=mock_response1,
-                      content_type='application/json',
-                      status=200)
-        responses.add(responses.GET,
-                      url,
-                      body=mock_response2,
-                      content_type='application/json',
-                      status=200)
+        responses.add(
+            responses.GET,
+            url,
+            body=mock_response1,
+            content_type='application/json',
+            status=200,
+        )
+        responses.add(
+            responses.GET,
+            url,
+            body=mock_response2,
+            content_type='application/json',
+            status=200,
+        )
 
         # Exercise the pager class for this operation
         pager = SecretVersionLocksPager(
@@ -2651,7 +2901,8 @@ class TestListSecretVersionLocks():
         assert all_results is not None
         assert len(all_results) == 2
 
-class TestCreateSecretVersionLocksBulk():
+
+class TestCreateSecretVersionLocksBulk:
     """
     Test Class for create_secret_version_locks_bulk
     """
@@ -2664,23 +2915,25 @@ class TestCreateSecretVersionLocksBulk():
         # Set up mock
         url = preprocess_url('/api/v2/secrets/0b5571f7-21e6-42b7-91c5-3f5ac9793a46/versions/eb4cf24d-9cae-424b-945e-159788a5f535/locks_bulk')
         mock_response = '{"secret_id": "b49ad24d-81d4-5ebc-b9b9-b0937d1c84d5", "secret_group_id": "default", "secret_type": "arbitrary", "secret_name": "my-secret", "versions": [{"version_id": "b49ad24d-81d4-5ebc-b9b9-b0937d1c84d5", "version_alias": "current", "locks": ["lock-example"], "payload_available": false}]}'
-        responses.add(responses.POST,
-                      url,
-                      body=mock_response,
-                      content_type='application/json',
-                      status=201)
+        responses.add(
+            responses.POST,
+            url,
+            body=mock_response,
+            content_type='application/json',
+            status=201,
+        )
 
         # Construct a dict representation of a SecretLockPrototype model
         secret_lock_prototype_model = {}
         secret_lock_prototype_model['name'] = 'lock-example-1'
         secret_lock_prototype_model['description'] = 'lock for consumer 1'
-        secret_lock_prototype_model['attributes'] = {'foo': 'bar'}
+        secret_lock_prototype_model['attributes'] = {'key': 'value'}
 
         # Set up parameter values
         secret_id = '0b5571f7-21e6-42b7-91c5-3f5ac9793a46'
         id = 'eb4cf24d-9cae-424b-945e-159788a5f535'
         locks = [secret_lock_prototype_model]
-        mode = 'exclusive'
+        mode = 'remove_previous'
 
         # Invoke method
         response = _service.create_secret_version_locks_bulk(
@@ -2688,14 +2941,14 @@ class TestCreateSecretVersionLocksBulk():
             id,
             locks,
             mode=mode,
-            headers={}
+            headers={},
         )
 
         # Check for correct operation
         assert len(responses.calls) == 1
         assert response.status_code == 201
         # Validate query params
-        query_string = responses.calls[0].request.url.split('?',1)[1]
+        query_string = responses.calls[0].request.url.split('?', 1)[1]
         query_string = urllib.parse.unquote_plus(query_string)
         assert 'mode={}'.format(mode) in query_string
         # Validate body params
@@ -2719,17 +2972,19 @@ class TestCreateSecretVersionLocksBulk():
         # Set up mock
         url = preprocess_url('/api/v2/secrets/0b5571f7-21e6-42b7-91c5-3f5ac9793a46/versions/eb4cf24d-9cae-424b-945e-159788a5f535/locks_bulk')
         mock_response = '{"secret_id": "b49ad24d-81d4-5ebc-b9b9-b0937d1c84d5", "secret_group_id": "default", "secret_type": "arbitrary", "secret_name": "my-secret", "versions": [{"version_id": "b49ad24d-81d4-5ebc-b9b9-b0937d1c84d5", "version_alias": "current", "locks": ["lock-example"], "payload_available": false}]}'
-        responses.add(responses.POST,
-                      url,
-                      body=mock_response,
-                      content_type='application/json',
-                      status=201)
+        responses.add(
+            responses.POST,
+            url,
+            body=mock_response,
+            content_type='application/json',
+            status=201,
+        )
 
         # Construct a dict representation of a SecretLockPrototype model
         secret_lock_prototype_model = {}
         secret_lock_prototype_model['name'] = 'lock-example-1'
         secret_lock_prototype_model['description'] = 'lock for consumer 1'
-        secret_lock_prototype_model['attributes'] = {'foo': 'bar'}
+        secret_lock_prototype_model['attributes'] = {'key': 'value'}
 
         # Set up parameter values
         secret_id = '0b5571f7-21e6-42b7-91c5-3f5ac9793a46'
@@ -2741,7 +2996,7 @@ class TestCreateSecretVersionLocksBulk():
             secret_id,
             id,
             locks,
-            headers={}
+            headers={},
         )
 
         # Check for correct operation
@@ -2768,17 +3023,19 @@ class TestCreateSecretVersionLocksBulk():
         # Set up mock
         url = preprocess_url('/api/v2/secrets/0b5571f7-21e6-42b7-91c5-3f5ac9793a46/versions/eb4cf24d-9cae-424b-945e-159788a5f535/locks_bulk')
         mock_response = '{"secret_id": "b49ad24d-81d4-5ebc-b9b9-b0937d1c84d5", "secret_group_id": "default", "secret_type": "arbitrary", "secret_name": "my-secret", "versions": [{"version_id": "b49ad24d-81d4-5ebc-b9b9-b0937d1c84d5", "version_alias": "current", "locks": ["lock-example"], "payload_available": false}]}'
-        responses.add(responses.POST,
-                      url,
-                      body=mock_response,
-                      content_type='application/json',
-                      status=201)
+        responses.add(
+            responses.POST,
+            url,
+            body=mock_response,
+            content_type='application/json',
+            status=201,
+        )
 
         # Construct a dict representation of a SecretLockPrototype model
         secret_lock_prototype_model = {}
         secret_lock_prototype_model['name'] = 'lock-example-1'
         secret_lock_prototype_model['description'] = 'lock for consumer 1'
-        secret_lock_prototype_model['attributes'] = {'foo': 'bar'}
+        secret_lock_prototype_model['attributes'] = {'key': 'value'}
 
         # Set up parameter values
         secret_id = '0b5571f7-21e6-42b7-91c5-3f5ac9793a46'
@@ -2792,7 +3049,7 @@ class TestCreateSecretVersionLocksBulk():
             "locks": locks,
         }
         for param in req_param_dict.keys():
-            req_copy = {key:val if key is not param else None for (key,val) in req_param_dict.items()}
+            req_copy = {key: val if key is not param else None for (key, val) in req_param_dict.items()}
             with pytest.raises(ValueError):
                 _service.create_secret_version_locks_bulk(**req_copy)
 
@@ -2805,7 +3062,8 @@ class TestCreateSecretVersionLocksBulk():
         _service.disable_retries()
         self.test_create_secret_version_locks_bulk_value_error()
 
-class TestDeleteSecretVersionLocksBulk():
+
+class TestDeleteSecretVersionLocksBulk:
     """
     Test Class for delete_secret_version_locks_bulk
     """
@@ -2818,11 +3076,13 @@ class TestDeleteSecretVersionLocksBulk():
         # Set up mock
         url = preprocess_url('/api/v2/secrets/0b5571f7-21e6-42b7-91c5-3f5ac9793a46/versions/eb4cf24d-9cae-424b-945e-159788a5f535/locks_bulk')
         mock_response = '{"secret_id": "b49ad24d-81d4-5ebc-b9b9-b0937d1c84d5", "secret_group_id": "default", "secret_type": "arbitrary", "secret_name": "my-secret", "versions": [{"version_id": "b49ad24d-81d4-5ebc-b9b9-b0937d1c84d5", "version_alias": "current", "locks": ["lock-example"], "payload_available": false}]}'
-        responses.add(responses.DELETE,
-                      url,
-                      body=mock_response,
-                      content_type='application/json',
-                      status=200)
+        responses.add(
+            responses.DELETE,
+            url,
+            body=mock_response,
+            content_type='application/json',
+            status=200,
+        )
 
         # Set up parameter values
         secret_id = '0b5571f7-21e6-42b7-91c5-3f5ac9793a46'
@@ -2834,14 +3094,14 @@ class TestDeleteSecretVersionLocksBulk():
             secret_id,
             id,
             name=name,
-            headers={}
+            headers={},
         )
 
         # Check for correct operation
         assert len(responses.calls) == 1
         assert response.status_code == 200
         # Validate query params
-        query_string = responses.calls[0].request.url.split('?',1)[1]
+        query_string = responses.calls[0].request.url.split('?', 1)[1]
         query_string = urllib.parse.unquote_plus(query_string)
         assert 'name={}'.format(','.join(name)) in query_string
 
@@ -2862,11 +3122,13 @@ class TestDeleteSecretVersionLocksBulk():
         # Set up mock
         url = preprocess_url('/api/v2/secrets/0b5571f7-21e6-42b7-91c5-3f5ac9793a46/versions/eb4cf24d-9cae-424b-945e-159788a5f535/locks_bulk')
         mock_response = '{"secret_id": "b49ad24d-81d4-5ebc-b9b9-b0937d1c84d5", "secret_group_id": "default", "secret_type": "arbitrary", "secret_name": "my-secret", "versions": [{"version_id": "b49ad24d-81d4-5ebc-b9b9-b0937d1c84d5", "version_alias": "current", "locks": ["lock-example"], "payload_available": false}]}'
-        responses.add(responses.DELETE,
-                      url,
-                      body=mock_response,
-                      content_type='application/json',
-                      status=200)
+        responses.add(
+            responses.DELETE,
+            url,
+            body=mock_response,
+            content_type='application/json',
+            status=200,
+        )
 
         # Set up parameter values
         secret_id = '0b5571f7-21e6-42b7-91c5-3f5ac9793a46'
@@ -2876,7 +3138,7 @@ class TestDeleteSecretVersionLocksBulk():
         response = _service.delete_secret_version_locks_bulk(
             secret_id,
             id,
-            headers={}
+            headers={},
         )
 
         # Check for correct operation
@@ -2900,11 +3162,13 @@ class TestDeleteSecretVersionLocksBulk():
         # Set up mock
         url = preprocess_url('/api/v2/secrets/0b5571f7-21e6-42b7-91c5-3f5ac9793a46/versions/eb4cf24d-9cae-424b-945e-159788a5f535/locks_bulk')
         mock_response = '{"secret_id": "b49ad24d-81d4-5ebc-b9b9-b0937d1c84d5", "secret_group_id": "default", "secret_type": "arbitrary", "secret_name": "my-secret", "versions": [{"version_id": "b49ad24d-81d4-5ebc-b9b9-b0937d1c84d5", "version_alias": "current", "locks": ["lock-example"], "payload_available": false}]}'
-        responses.add(responses.DELETE,
-                      url,
-                      body=mock_response,
-                      content_type='application/json',
-                      status=200)
+        responses.add(
+            responses.DELETE,
+            url,
+            body=mock_response,
+            content_type='application/json',
+            status=200,
+        )
 
         # Set up parameter values
         secret_id = '0b5571f7-21e6-42b7-91c5-3f5ac9793a46'
@@ -2916,7 +3180,7 @@ class TestDeleteSecretVersionLocksBulk():
             "id": id,
         }
         for param in req_param_dict.keys():
-            req_copy = {key:val if key is not param else None for (key,val) in req_param_dict.items()}
+            req_copy = {key: val if key is not param else None for (key, val) in req_param_dict.items()}
             with pytest.raises(ValueError):
                 _service.delete_secret_version_locks_bulk(**req_copy)
 
@@ -2929,6 +3193,7 @@ class TestDeleteSecretVersionLocksBulk():
         _service.disable_retries()
         self.test_delete_secret_version_locks_bulk_value_error()
 
+
 # endregion
 ##############################################################################
 # End of Service: SecretLocks
@@ -2939,7 +3204,8 @@ class TestDeleteSecretVersionLocksBulk():
 ##############################################################################
 # region
 
-class TestNewInstance():
+
+class TestNewInstance:
     """
     Test Class for new_instance
     """
@@ -2966,7 +3232,8 @@ class TestNewInstance():
                 service_name='TEST_SERVICE_NOT_FOUND',
             )
 
-class TestCreateConfiguration():
+
+class TestCreateConfiguration:
     """
     Test Class for create_configuration
     """
@@ -2978,12 +3245,14 @@ class TestCreateConfiguration():
         """
         # Set up mock
         url = preprocess_url('/api/v2/configurations')
-        mock_response = '{"config_type": "public_cert_configuration_ca_lets_encrypt", "name": "my-secret-engine-config", "secret_type": "arbitrary", "created_by": "iam-ServiceId-e4a2f0a4-3c76-4bef-b1f2-fbeae11c0f21", "created_at": "2022-04-12T23:20:50.520Z", "updated_at": "2022-04-12T23:20:50.520Z", "lets_encrypt_environment": "production", "lets_encrypt_private_key": "lets_encrypt_private_key", "lets_encrypt_preferred_chain": "lets_encrypt_preferred_chain"}'
-        responses.add(responses.POST,
-                      url,
-                      body=mock_response,
-                      content_type='application/json',
-                      status=201)
+        mock_response = '{"config_type": "public_cert_configuration_ca_lets_encrypt", "name": "my-secret-engine-config", "secret_type": "arbitrary", "created_by": "iam-ServiceId-e4a2f0a4-3c76-4bef-b1f2-fbeae11c0f21", "created_at": "2022-04-12T23:20:50.520Z", "updated_at": "2022-04-12T23:20:50.520Z", "lets_encrypt_environment": "production", "lets_encrypt_preferred_chain": "lets_encrypt_preferred_chain", "lets_encrypt_private_key": "lets_encrypt_private_key"}'
+        responses.add(
+            responses.POST,
+            url,
+            body=mock_response,
+            content_type='application/json',
+            status=201,
+        )
 
         # Construct a dict representation of a PrivateCertificateConfigurationRootCAPrototype model
         configuration_prototype_model = {}
@@ -2995,17 +3264,17 @@ class TestCreateConfiguration():
         configuration_prototype_model['crl_distribution_points_encoded'] = True
         configuration_prototype_model['issuing_certificates_urls_encoded'] = True
         configuration_prototype_model['common_name'] = 'example.com'
-        configuration_prototype_model['alt_names'] = ['s1.example.com', '*.s2.example.com']
-        configuration_prototype_model['ip_sans'] = '1.1.1.1, 2.2.2.2'
-        configuration_prototype_model['uri_sans'] = 'testString'
-        configuration_prototype_model['other_sans'] = ['2.5.4.5;UTF8:*.example.com']
-        configuration_prototype_model['ttl'] = '8760h'
+        configuration_prototype_model['alt_names'] = ['alt-name-1', 'alt-name-2']
+        configuration_prototype_model['ip_sans'] = '127.0.0.1'
+        configuration_prototype_model['uri_sans'] = 'https://www.example.com/test'
+        configuration_prototype_model['other_sans'] = ['1.2.3.5.4.3.201.10.4.3;utf8:test@example.com']
+        configuration_prototype_model['ttl'] = '2190h'
         configuration_prototype_model['format'] = 'pem'
         configuration_prototype_model['private_key_format'] = 'der'
         configuration_prototype_model['key_type'] = 'rsa'
         configuration_prototype_model['key_bits'] = 4096
-        configuration_prototype_model['max_path_length'] = 38
-        configuration_prototype_model['exclude_cn_from_sans'] = True
+        configuration_prototype_model['max_path_length'] = -1
+        configuration_prototype_model['exclude_cn_from_sans'] = False
         configuration_prototype_model['permitted_dns_domains'] = ['testString']
         configuration_prototype_model['ou'] = ['testString']
         configuration_prototype_model['organization'] = ['testString']
@@ -3022,7 +3291,7 @@ class TestCreateConfiguration():
         # Invoke method
         response = _service.create_configuration(
             configuration_prototype,
-            headers={}
+            headers={},
         )
 
         # Check for correct operation
@@ -3048,12 +3317,14 @@ class TestCreateConfiguration():
         """
         # Set up mock
         url = preprocess_url('/api/v2/configurations')
-        mock_response = '{"config_type": "public_cert_configuration_ca_lets_encrypt", "name": "my-secret-engine-config", "secret_type": "arbitrary", "created_by": "iam-ServiceId-e4a2f0a4-3c76-4bef-b1f2-fbeae11c0f21", "created_at": "2022-04-12T23:20:50.520Z", "updated_at": "2022-04-12T23:20:50.520Z", "lets_encrypt_environment": "production", "lets_encrypt_private_key": "lets_encrypt_private_key", "lets_encrypt_preferred_chain": "lets_encrypt_preferred_chain"}'
-        responses.add(responses.POST,
-                      url,
-                      body=mock_response,
-                      content_type='application/json',
-                      status=201)
+        mock_response = '{"config_type": "public_cert_configuration_ca_lets_encrypt", "name": "my-secret-engine-config", "secret_type": "arbitrary", "created_by": "iam-ServiceId-e4a2f0a4-3c76-4bef-b1f2-fbeae11c0f21", "created_at": "2022-04-12T23:20:50.520Z", "updated_at": "2022-04-12T23:20:50.520Z", "lets_encrypt_environment": "production", "lets_encrypt_preferred_chain": "lets_encrypt_preferred_chain", "lets_encrypt_private_key": "lets_encrypt_private_key"}'
+        responses.add(
+            responses.POST,
+            url,
+            body=mock_response,
+            content_type='application/json',
+            status=201,
+        )
 
         # Construct a dict representation of a PrivateCertificateConfigurationRootCAPrototype model
         configuration_prototype_model = {}
@@ -3065,17 +3336,17 @@ class TestCreateConfiguration():
         configuration_prototype_model['crl_distribution_points_encoded'] = True
         configuration_prototype_model['issuing_certificates_urls_encoded'] = True
         configuration_prototype_model['common_name'] = 'example.com'
-        configuration_prototype_model['alt_names'] = ['s1.example.com', '*.s2.example.com']
-        configuration_prototype_model['ip_sans'] = '1.1.1.1, 2.2.2.2'
-        configuration_prototype_model['uri_sans'] = 'testString'
-        configuration_prototype_model['other_sans'] = ['2.5.4.5;UTF8:*.example.com']
-        configuration_prototype_model['ttl'] = '8760h'
+        configuration_prototype_model['alt_names'] = ['alt-name-1', 'alt-name-2']
+        configuration_prototype_model['ip_sans'] = '127.0.0.1'
+        configuration_prototype_model['uri_sans'] = 'https://www.example.com/test'
+        configuration_prototype_model['other_sans'] = ['1.2.3.5.4.3.201.10.4.3;utf8:test@example.com']
+        configuration_prototype_model['ttl'] = '2190h'
         configuration_prototype_model['format'] = 'pem'
         configuration_prototype_model['private_key_format'] = 'der'
         configuration_prototype_model['key_type'] = 'rsa'
         configuration_prototype_model['key_bits'] = 4096
-        configuration_prototype_model['max_path_length'] = 38
-        configuration_prototype_model['exclude_cn_from_sans'] = True
+        configuration_prototype_model['max_path_length'] = -1
+        configuration_prototype_model['exclude_cn_from_sans'] = False
         configuration_prototype_model['permitted_dns_domains'] = ['testString']
         configuration_prototype_model['ou'] = ['testString']
         configuration_prototype_model['organization'] = ['testString']
@@ -3094,7 +3365,7 @@ class TestCreateConfiguration():
             "configuration_prototype": configuration_prototype,
         }
         for param in req_param_dict.keys():
-            req_copy = {key:val if key is not param else None for (key,val) in req_param_dict.items()}
+            req_copy = {key: val if key is not param else None for (key, val) in req_param_dict.items()}
             with pytest.raises(ValueError):
                 _service.create_configuration(**req_copy)
 
@@ -3107,7 +3378,8 @@ class TestCreateConfiguration():
         _service.disable_retries()
         self.test_create_configuration_value_error()
 
-class TestListConfigurations():
+
+class TestListConfigurations:
     """
     Test Class for list_configurations
     """
@@ -3119,16 +3391,18 @@ class TestListConfigurations():
         """
         # Set up mock
         url = preprocess_url('/api/v2/configurations')
-        mock_response = '{"total_count": 0, "limit": 0, "offset": 0, "first": {"href": "href"}, "next": {"href": "href"}, "previous": {"href": "href"}, "last": {"href": "href"}, "configurations": [{"config_type": "iam_credentials_configuration", "name": "my-secret-engine-config", "secret_type": "arbitrary", "created_by": "iam-ServiceId-e4a2f0a4-3c76-4bef-b1f2-fbeae11c0f21", "created_at": "2022-04-12T23:20:50.520Z", "updated_at": "2022-04-12T23:20:50.520Z"}]}'
-        responses.add(responses.GET,
-                      url,
-                      body=mock_response,
-                      content_type='application/json',
-                      status=200)
+        mock_response = '{"total_count": 0, "limit": 25, "offset": 25, "first": {"href": "href"}, "next": {"href": "href"}, "previous": {"href": "href"}, "last": {"href": "href"}, "configurations": [{"config_type": "iam_credentials_configuration", "name": "my-secret-engine-config", "secret_type": "arbitrary", "created_by": "iam-ServiceId-e4a2f0a4-3c76-4bef-b1f2-fbeae11c0f21", "created_at": "2022-04-12T23:20:50.520Z", "updated_at": "2022-04-12T23:20:50.520Z"}]}'
+        responses.add(
+            responses.GET,
+            url,
+            body=mock_response,
+            content_type='application/json',
+            status=200,
+        )
 
         # Set up parameter values
         offset = 0
-        limit = 1
+        limit = 200
         sort = 'config_type'
         search = 'example'
 
@@ -3138,14 +3412,14 @@ class TestListConfigurations():
             limit=limit,
             sort=sort,
             search=search,
-            headers={}
+            headers={},
         )
 
         # Check for correct operation
         assert len(responses.calls) == 1
         assert response.status_code == 200
         # Validate query params
-        query_string = responses.calls[0].request.url.split('?',1)[1]
+        query_string = responses.calls[0].request.url.split('?', 1)[1]
         query_string = urllib.parse.unquote_plus(query_string)
         assert 'offset={}'.format(offset) in query_string
         assert 'limit={}'.format(limit) in query_string
@@ -3168,16 +3442,17 @@ class TestListConfigurations():
         """
         # Set up mock
         url = preprocess_url('/api/v2/configurations')
-        mock_response = '{"total_count": 0, "limit": 0, "offset": 0, "first": {"href": "href"}, "next": {"href": "href"}, "previous": {"href": "href"}, "last": {"href": "href"}, "configurations": [{"config_type": "iam_credentials_configuration", "name": "my-secret-engine-config", "secret_type": "arbitrary", "created_by": "iam-ServiceId-e4a2f0a4-3c76-4bef-b1f2-fbeae11c0f21", "created_at": "2022-04-12T23:20:50.520Z", "updated_at": "2022-04-12T23:20:50.520Z"}]}'
-        responses.add(responses.GET,
-                      url,
-                      body=mock_response,
-                      content_type='application/json',
-                      status=200)
+        mock_response = '{"total_count": 0, "limit": 25, "offset": 25, "first": {"href": "href"}, "next": {"href": "href"}, "previous": {"href": "href"}, "last": {"href": "href"}, "configurations": [{"config_type": "iam_credentials_configuration", "name": "my-secret-engine-config", "secret_type": "arbitrary", "created_by": "iam-ServiceId-e4a2f0a4-3c76-4bef-b1f2-fbeae11c0f21", "created_at": "2022-04-12T23:20:50.520Z", "updated_at": "2022-04-12T23:20:50.520Z"}]}'
+        responses.add(
+            responses.GET,
+            url,
+            body=mock_response,
+            content_type='application/json',
+            status=200,
+        )
 
         # Invoke method
         response = _service.list_configurations()
-
 
         # Check for correct operation
         assert len(responses.calls) == 1
@@ -3201,16 +3476,20 @@ class TestListConfigurations():
         url = preprocess_url('/api/v2/configurations')
         mock_response1 = '{"next":{"href":"https://myhost.com/somePath?offset=1"},"total_count":2,"configurations":[{"config_type":"iam_credentials_configuration","name":"my-secret-engine-config","secret_type":"arbitrary","created_by":"iam-ServiceId-e4a2f0a4-3c76-4bef-b1f2-fbeae11c0f21","created_at":"2022-04-12T23:20:50.520Z","updated_at":"2022-04-12T23:20:50.520Z"}],"limit":1}'
         mock_response2 = '{"total_count":2,"configurations":[{"config_type":"iam_credentials_configuration","name":"my-secret-engine-config","secret_type":"arbitrary","created_by":"iam-ServiceId-e4a2f0a4-3c76-4bef-b1f2-fbeae11c0f21","created_at":"2022-04-12T23:20:50.520Z","updated_at":"2022-04-12T23:20:50.520Z"}],"limit":1}'
-        responses.add(responses.GET,
-                      url,
-                      body=mock_response1,
-                      content_type='application/json',
-                      status=200)
-        responses.add(responses.GET,
-                      url,
-                      body=mock_response2,
-                      content_type='application/json',
-                      status=200)
+        responses.add(
+            responses.GET,
+            url,
+            body=mock_response1,
+            content_type='application/json',
+            status=200,
+        )
+        responses.add(
+            responses.GET,
+            url,
+            body=mock_response2,
+            content_type='application/json',
+            status=200,
+        )
 
         # Exercise the pager class for this operation
         all_results = []
@@ -3235,16 +3514,20 @@ class TestListConfigurations():
         url = preprocess_url('/api/v2/configurations')
         mock_response1 = '{"next":{"href":"https://myhost.com/somePath?offset=1"},"total_count":2,"configurations":[{"config_type":"iam_credentials_configuration","name":"my-secret-engine-config","secret_type":"arbitrary","created_by":"iam-ServiceId-e4a2f0a4-3c76-4bef-b1f2-fbeae11c0f21","created_at":"2022-04-12T23:20:50.520Z","updated_at":"2022-04-12T23:20:50.520Z"}],"limit":1}'
         mock_response2 = '{"total_count":2,"configurations":[{"config_type":"iam_credentials_configuration","name":"my-secret-engine-config","secret_type":"arbitrary","created_by":"iam-ServiceId-e4a2f0a4-3c76-4bef-b1f2-fbeae11c0f21","created_at":"2022-04-12T23:20:50.520Z","updated_at":"2022-04-12T23:20:50.520Z"}],"limit":1}'
-        responses.add(responses.GET,
-                      url,
-                      body=mock_response1,
-                      content_type='application/json',
-                      status=200)
-        responses.add(responses.GET,
-                      url,
-                      body=mock_response2,
-                      content_type='application/json',
-                      status=200)
+        responses.add(
+            responses.GET,
+            url,
+            body=mock_response1,
+            content_type='application/json',
+            status=200,
+        )
+        responses.add(
+            responses.GET,
+            url,
+            body=mock_response2,
+            content_type='application/json',
+            status=200,
+        )
 
         # Exercise the pager class for this operation
         pager = ConfigurationsPager(
@@ -3257,7 +3540,8 @@ class TestListConfigurations():
         assert all_results is not None
         assert len(all_results) == 2
 
-class TestGetConfiguration():
+
+class TestGetConfiguration:
     """
     Test Class for get_configuration
     """
@@ -3269,12 +3553,14 @@ class TestGetConfiguration():
         """
         # Set up mock
         url = preprocess_url('/api/v2/configurations/configuration-name')
-        mock_response = '{"config_type": "public_cert_configuration_ca_lets_encrypt", "name": "my-secret-engine-config", "secret_type": "arbitrary", "created_by": "iam-ServiceId-e4a2f0a4-3c76-4bef-b1f2-fbeae11c0f21", "created_at": "2022-04-12T23:20:50.520Z", "updated_at": "2022-04-12T23:20:50.520Z", "lets_encrypt_environment": "production", "lets_encrypt_private_key": "lets_encrypt_private_key", "lets_encrypt_preferred_chain": "lets_encrypt_preferred_chain"}'
-        responses.add(responses.GET,
-                      url,
-                      body=mock_response,
-                      content_type='application/json',
-                      status=200)
+        mock_response = '{"config_type": "public_cert_configuration_ca_lets_encrypt", "name": "my-secret-engine-config", "secret_type": "arbitrary", "created_by": "iam-ServiceId-e4a2f0a4-3c76-4bef-b1f2-fbeae11c0f21", "created_at": "2022-04-12T23:20:50.520Z", "updated_at": "2022-04-12T23:20:50.520Z", "lets_encrypt_environment": "production", "lets_encrypt_preferred_chain": "lets_encrypt_preferred_chain", "lets_encrypt_private_key": "lets_encrypt_private_key"}'
+        responses.add(
+            responses.GET,
+            url,
+            body=mock_response,
+            content_type='application/json',
+            status=200,
+        )
 
         # Set up parameter values
         name = 'configuration-name'
@@ -3284,7 +3570,7 @@ class TestGetConfiguration():
         response = _service.get_configuration(
             name,
             x_sm_accept_configuration_type=x_sm_accept_configuration_type,
-            headers={}
+            headers={},
         )
 
         # Check for correct operation
@@ -3307,12 +3593,14 @@ class TestGetConfiguration():
         """
         # Set up mock
         url = preprocess_url('/api/v2/configurations/configuration-name')
-        mock_response = '{"config_type": "public_cert_configuration_ca_lets_encrypt", "name": "my-secret-engine-config", "secret_type": "arbitrary", "created_by": "iam-ServiceId-e4a2f0a4-3c76-4bef-b1f2-fbeae11c0f21", "created_at": "2022-04-12T23:20:50.520Z", "updated_at": "2022-04-12T23:20:50.520Z", "lets_encrypt_environment": "production", "lets_encrypt_private_key": "lets_encrypt_private_key", "lets_encrypt_preferred_chain": "lets_encrypt_preferred_chain"}'
-        responses.add(responses.GET,
-                      url,
-                      body=mock_response,
-                      content_type='application/json',
-                      status=200)
+        mock_response = '{"config_type": "public_cert_configuration_ca_lets_encrypt", "name": "my-secret-engine-config", "secret_type": "arbitrary", "created_by": "iam-ServiceId-e4a2f0a4-3c76-4bef-b1f2-fbeae11c0f21", "created_at": "2022-04-12T23:20:50.520Z", "updated_at": "2022-04-12T23:20:50.520Z", "lets_encrypt_environment": "production", "lets_encrypt_preferred_chain": "lets_encrypt_preferred_chain", "lets_encrypt_private_key": "lets_encrypt_private_key"}'
+        responses.add(
+            responses.GET,
+            url,
+            body=mock_response,
+            content_type='application/json',
+            status=200,
+        )
 
         # Set up parameter values
         name = 'configuration-name'
@@ -3320,7 +3608,7 @@ class TestGetConfiguration():
         # Invoke method
         response = _service.get_configuration(
             name,
-            headers={}
+            headers={},
         )
 
         # Check for correct operation
@@ -3343,12 +3631,14 @@ class TestGetConfiguration():
         """
         # Set up mock
         url = preprocess_url('/api/v2/configurations/configuration-name')
-        mock_response = '{"config_type": "public_cert_configuration_ca_lets_encrypt", "name": "my-secret-engine-config", "secret_type": "arbitrary", "created_by": "iam-ServiceId-e4a2f0a4-3c76-4bef-b1f2-fbeae11c0f21", "created_at": "2022-04-12T23:20:50.520Z", "updated_at": "2022-04-12T23:20:50.520Z", "lets_encrypt_environment": "production", "lets_encrypt_private_key": "lets_encrypt_private_key", "lets_encrypt_preferred_chain": "lets_encrypt_preferred_chain"}'
-        responses.add(responses.GET,
-                      url,
-                      body=mock_response,
-                      content_type='application/json',
-                      status=200)
+        mock_response = '{"config_type": "public_cert_configuration_ca_lets_encrypt", "name": "my-secret-engine-config", "secret_type": "arbitrary", "created_by": "iam-ServiceId-e4a2f0a4-3c76-4bef-b1f2-fbeae11c0f21", "created_at": "2022-04-12T23:20:50.520Z", "updated_at": "2022-04-12T23:20:50.520Z", "lets_encrypt_environment": "production", "lets_encrypt_preferred_chain": "lets_encrypt_preferred_chain", "lets_encrypt_private_key": "lets_encrypt_private_key"}'
+        responses.add(
+            responses.GET,
+            url,
+            body=mock_response,
+            content_type='application/json',
+            status=200,
+        )
 
         # Set up parameter values
         name = 'configuration-name'
@@ -3358,7 +3648,7 @@ class TestGetConfiguration():
             "name": name,
         }
         for param in req_param_dict.keys():
-            req_copy = {key:val if key is not param else None for (key,val) in req_param_dict.items()}
+            req_copy = {key: val if key is not param else None for (key, val) in req_param_dict.items()}
             with pytest.raises(ValueError):
                 _service.get_configuration(**req_copy)
 
@@ -3371,7 +3661,8 @@ class TestGetConfiguration():
         _service.disable_retries()
         self.test_get_configuration_value_error()
 
-class TestUpdateConfiguration():
+
+class TestUpdateConfiguration:
     """
     Test Class for update_configuration
     """
@@ -3383,12 +3674,14 @@ class TestUpdateConfiguration():
         """
         # Set up mock
         url = preprocess_url('/api/v2/configurations/configuration-name')
-        mock_response = '{"config_type": "public_cert_configuration_ca_lets_encrypt", "name": "my-secret-engine-config", "secret_type": "arbitrary", "created_by": "iam-ServiceId-e4a2f0a4-3c76-4bef-b1f2-fbeae11c0f21", "created_at": "2022-04-12T23:20:50.520Z", "updated_at": "2022-04-12T23:20:50.520Z", "lets_encrypt_environment": "production", "lets_encrypt_private_key": "lets_encrypt_private_key", "lets_encrypt_preferred_chain": "lets_encrypt_preferred_chain"}'
-        responses.add(responses.PATCH,
-                      url,
-                      body=mock_response,
-                      content_type='application/json',
-                      status=200)
+        mock_response = '{"config_type": "public_cert_configuration_ca_lets_encrypt", "name": "my-secret-engine-config", "secret_type": "arbitrary", "created_by": "iam-ServiceId-e4a2f0a4-3c76-4bef-b1f2-fbeae11c0f21", "created_at": "2022-04-12T23:20:50.520Z", "updated_at": "2022-04-12T23:20:50.520Z", "lets_encrypt_environment": "production", "lets_encrypt_preferred_chain": "lets_encrypt_preferred_chain", "lets_encrypt_private_key": "lets_encrypt_private_key"}'
+        responses.add(
+            responses.PATCH,
+            url,
+            body=mock_response,
+            content_type='application/json',
+            status=200,
+        )
 
         # Construct a dict representation of a IAMCredentialsConfigurationPatch model
         configuration_patch_model = {}
@@ -3404,7 +3697,7 @@ class TestUpdateConfiguration():
             name,
             configuration_patch,
             x_sm_accept_configuration_type=x_sm_accept_configuration_type,
-            headers={}
+            headers={},
         )
 
         # Check for correct operation
@@ -3430,12 +3723,14 @@ class TestUpdateConfiguration():
         """
         # Set up mock
         url = preprocess_url('/api/v2/configurations/configuration-name')
-        mock_response = '{"config_type": "public_cert_configuration_ca_lets_encrypt", "name": "my-secret-engine-config", "secret_type": "arbitrary", "created_by": "iam-ServiceId-e4a2f0a4-3c76-4bef-b1f2-fbeae11c0f21", "created_at": "2022-04-12T23:20:50.520Z", "updated_at": "2022-04-12T23:20:50.520Z", "lets_encrypt_environment": "production", "lets_encrypt_private_key": "lets_encrypt_private_key", "lets_encrypt_preferred_chain": "lets_encrypt_preferred_chain"}'
-        responses.add(responses.PATCH,
-                      url,
-                      body=mock_response,
-                      content_type='application/json',
-                      status=200)
+        mock_response = '{"config_type": "public_cert_configuration_ca_lets_encrypt", "name": "my-secret-engine-config", "secret_type": "arbitrary", "created_by": "iam-ServiceId-e4a2f0a4-3c76-4bef-b1f2-fbeae11c0f21", "created_at": "2022-04-12T23:20:50.520Z", "updated_at": "2022-04-12T23:20:50.520Z", "lets_encrypt_environment": "production", "lets_encrypt_preferred_chain": "lets_encrypt_preferred_chain", "lets_encrypt_private_key": "lets_encrypt_private_key"}'
+        responses.add(
+            responses.PATCH,
+            url,
+            body=mock_response,
+            content_type='application/json',
+            status=200,
+        )
 
         # Construct a dict representation of a IAMCredentialsConfigurationPatch model
         configuration_patch_model = {}
@@ -3449,7 +3744,7 @@ class TestUpdateConfiguration():
         response = _service.update_configuration(
             name,
             configuration_patch,
-            headers={}
+            headers={},
         )
 
         # Check for correct operation
@@ -3475,12 +3770,14 @@ class TestUpdateConfiguration():
         """
         # Set up mock
         url = preprocess_url('/api/v2/configurations/configuration-name')
-        mock_response = '{"config_type": "public_cert_configuration_ca_lets_encrypt", "name": "my-secret-engine-config", "secret_type": "arbitrary", "created_by": "iam-ServiceId-e4a2f0a4-3c76-4bef-b1f2-fbeae11c0f21", "created_at": "2022-04-12T23:20:50.520Z", "updated_at": "2022-04-12T23:20:50.520Z", "lets_encrypt_environment": "production", "lets_encrypt_private_key": "lets_encrypt_private_key", "lets_encrypt_preferred_chain": "lets_encrypt_preferred_chain"}'
-        responses.add(responses.PATCH,
-                      url,
-                      body=mock_response,
-                      content_type='application/json',
-                      status=200)
+        mock_response = '{"config_type": "public_cert_configuration_ca_lets_encrypt", "name": "my-secret-engine-config", "secret_type": "arbitrary", "created_by": "iam-ServiceId-e4a2f0a4-3c76-4bef-b1f2-fbeae11c0f21", "created_at": "2022-04-12T23:20:50.520Z", "updated_at": "2022-04-12T23:20:50.520Z", "lets_encrypt_environment": "production", "lets_encrypt_preferred_chain": "lets_encrypt_preferred_chain", "lets_encrypt_private_key": "lets_encrypt_private_key"}'
+        responses.add(
+            responses.PATCH,
+            url,
+            body=mock_response,
+            content_type='application/json',
+            status=200,
+        )
 
         # Construct a dict representation of a IAMCredentialsConfigurationPatch model
         configuration_patch_model = {}
@@ -3496,7 +3793,7 @@ class TestUpdateConfiguration():
             "configuration_patch": configuration_patch,
         }
         for param in req_param_dict.keys():
-            req_copy = {key:val if key is not param else None for (key,val) in req_param_dict.items()}
+            req_copy = {key: val if key is not param else None for (key, val) in req_param_dict.items()}
             with pytest.raises(ValueError):
                 _service.update_configuration(**req_copy)
 
@@ -3509,7 +3806,8 @@ class TestUpdateConfiguration():
         _service.disable_retries()
         self.test_update_configuration_value_error()
 
-class TestDeleteConfiguration():
+
+class TestDeleteConfiguration:
     """
     Test Class for delete_configuration
     """
@@ -3521,9 +3819,11 @@ class TestDeleteConfiguration():
         """
         # Set up mock
         url = preprocess_url('/api/v2/configurations/configuration-name')
-        responses.add(responses.DELETE,
-                      url,
-                      status=204)
+        responses.add(
+            responses.DELETE,
+            url,
+            status=204,
+        )
 
         # Set up parameter values
         name = 'configuration-name'
@@ -3533,7 +3833,7 @@ class TestDeleteConfiguration():
         response = _service.delete_configuration(
             name,
             x_sm_accept_configuration_type=x_sm_accept_configuration_type,
-            headers={}
+            headers={},
         )
 
         # Check for correct operation
@@ -3556,9 +3856,11 @@ class TestDeleteConfiguration():
         """
         # Set up mock
         url = preprocess_url('/api/v2/configurations/configuration-name')
-        responses.add(responses.DELETE,
-                      url,
-                      status=204)
+        responses.add(
+            responses.DELETE,
+            url,
+            status=204,
+        )
 
         # Set up parameter values
         name = 'configuration-name'
@@ -3566,7 +3868,7 @@ class TestDeleteConfiguration():
         # Invoke method
         response = _service.delete_configuration(
             name,
-            headers={}
+            headers={},
         )
 
         # Check for correct operation
@@ -3589,9 +3891,11 @@ class TestDeleteConfiguration():
         """
         # Set up mock
         url = preprocess_url('/api/v2/configurations/configuration-name')
-        responses.add(responses.DELETE,
-                      url,
-                      status=204)
+        responses.add(
+            responses.DELETE,
+            url,
+            status=204,
+        )
 
         # Set up parameter values
         name = 'configuration-name'
@@ -3601,7 +3905,7 @@ class TestDeleteConfiguration():
             "name": name,
         }
         for param in req_param_dict.keys():
-            req_copy = {key:val if key is not param else None for (key,val) in req_param_dict.items()}
+            req_copy = {key: val if key is not param else None for (key, val) in req_param_dict.items()}
             with pytest.raises(ValueError):
                 _service.delete_configuration(**req_copy)
 
@@ -3614,7 +3918,8 @@ class TestDeleteConfiguration():
         _service.disable_retries()
         self.test_delete_configuration_value_error()
 
-class TestCreateConfigurationAction():
+
+class TestCreateConfigurationAction:
     """
     Test Class for create_configuration_action
     """
@@ -3627,11 +3932,13 @@ class TestCreateConfigurationAction():
         # Set up mock
         url = preprocess_url('/api/v2/configurations/configuration-name/actions')
         mock_response = '{"action_type": "private_cert_configuration_action_revoke_ca_certificate", "revocation_time_seconds": 23}'
-        responses.add(responses.POST,
-                      url,
-                      body=mock_response,
-                      content_type='application/json',
-                      status=201)
+        responses.add(
+            responses.POST,
+            url,
+            body=mock_response,
+            content_type='application/json',
+            status=201,
+        )
 
         # Construct a dict representation of a PrivateCertificateConfigurationActionRotateCRLPrototype model
         configuration_action_prototype_model = {}
@@ -3647,7 +3954,7 @@ class TestCreateConfigurationAction():
             name,
             config_action_prototype,
             x_sm_accept_configuration_type=x_sm_accept_configuration_type,
-            headers={}
+            headers={},
         )
 
         # Check for correct operation
@@ -3674,11 +3981,13 @@ class TestCreateConfigurationAction():
         # Set up mock
         url = preprocess_url('/api/v2/configurations/configuration-name/actions')
         mock_response = '{"action_type": "private_cert_configuration_action_revoke_ca_certificate", "revocation_time_seconds": 23}'
-        responses.add(responses.POST,
-                      url,
-                      body=mock_response,
-                      content_type='application/json',
-                      status=201)
+        responses.add(
+            responses.POST,
+            url,
+            body=mock_response,
+            content_type='application/json',
+            status=201,
+        )
 
         # Construct a dict representation of a PrivateCertificateConfigurationActionRotateCRLPrototype model
         configuration_action_prototype_model = {}
@@ -3692,7 +4001,7 @@ class TestCreateConfigurationAction():
         response = _service.create_configuration_action(
             name,
             config_action_prototype,
-            headers={}
+            headers={},
         )
 
         # Check for correct operation
@@ -3719,11 +4028,13 @@ class TestCreateConfigurationAction():
         # Set up mock
         url = preprocess_url('/api/v2/configurations/configuration-name/actions')
         mock_response = '{"action_type": "private_cert_configuration_action_revoke_ca_certificate", "revocation_time_seconds": 23}'
-        responses.add(responses.POST,
-                      url,
-                      body=mock_response,
-                      content_type='application/json',
-                      status=201)
+        responses.add(
+            responses.POST,
+            url,
+            body=mock_response,
+            content_type='application/json',
+            status=201,
+        )
 
         # Construct a dict representation of a PrivateCertificateConfigurationActionRotateCRLPrototype model
         configuration_action_prototype_model = {}
@@ -3739,7 +4050,7 @@ class TestCreateConfigurationAction():
             "config_action_prototype": config_action_prototype,
         }
         for param in req_param_dict.keys():
-            req_copy = {key:val if key is not param else None for (key,val) in req_param_dict.items()}
+            req_copy = {key: val if key is not param else None for (key, val) in req_param_dict.items()}
             with pytest.raises(ValueError):
                 _service.create_configuration_action(**req_copy)
 
@@ -3752,6 +4063,7 @@ class TestCreateConfigurationAction():
         _service.disable_retries()
         self.test_create_configuration_action_value_error()
 
+
 # endregion
 ##############################################################################
 # End of Service: Configurations
@@ -3762,7 +4074,8 @@ class TestCreateConfigurationAction():
 ##############################################################################
 # region
 
-class TestNewInstance():
+
+class TestNewInstance:
     """
     Test Class for new_instance
     """
@@ -3789,7 +4102,8 @@ class TestNewInstance():
                 service_name='TEST_SERVICE_NOT_FOUND',
             )
 
-class TestCreateNotificationsRegistration():
+
+class TestCreateNotificationsRegistration:
     """
     Test Class for create_notifications_registration
     """
@@ -3802,11 +4116,13 @@ class TestCreateNotificationsRegistration():
         # Set up mock
         url = preprocess_url('/api/v2/notifications/registration')
         mock_response = '{"event_notifications_instance_crn": "event_notifications_instance_crn"}'
-        responses.add(responses.POST,
-                      url,
-                      body=mock_response,
-                      content_type='application/json',
-                      status=201)
+        responses.add(
+            responses.POST,
+            url,
+            body=mock_response,
+            content_type='application/json',
+            status=201,
+        )
 
         # Set up parameter values
         event_notifications_instance_crn = 'crn:v1:bluemix:public:event-notifications:us-south:a/22018f3c34ff4ff193698d15ca316946:578ad1a4-2fd8-4e66-95d5-79a842ba91f8::'
@@ -3818,7 +4134,7 @@ class TestCreateNotificationsRegistration():
             event_notifications_instance_crn,
             event_notifications_source_name,
             event_notifications_source_description=event_notifications_source_description,
-            headers={}
+            headers={},
         )
 
         # Check for correct operation
@@ -3847,11 +4163,13 @@ class TestCreateNotificationsRegistration():
         # Set up mock
         url = preprocess_url('/api/v2/notifications/registration')
         mock_response = '{"event_notifications_instance_crn": "event_notifications_instance_crn"}'
-        responses.add(responses.POST,
-                      url,
-                      body=mock_response,
-                      content_type='application/json',
-                      status=201)
+        responses.add(
+            responses.POST,
+            url,
+            body=mock_response,
+            content_type='application/json',
+            status=201,
+        )
 
         # Set up parameter values
         event_notifications_instance_crn = 'crn:v1:bluemix:public:event-notifications:us-south:a/22018f3c34ff4ff193698d15ca316946:578ad1a4-2fd8-4e66-95d5-79a842ba91f8::'
@@ -3864,7 +4182,7 @@ class TestCreateNotificationsRegistration():
             "event_notifications_source_name": event_notifications_source_name,
         }
         for param in req_param_dict.keys():
-            req_copy = {key:val if key is not param else None for (key,val) in req_param_dict.items()}
+            req_copy = {key: val if key is not param else None for (key, val) in req_param_dict.items()}
             with pytest.raises(ValueError):
                 _service.create_notifications_registration(**req_copy)
 
@@ -3877,7 +4195,8 @@ class TestCreateNotificationsRegistration():
         _service.disable_retries()
         self.test_create_notifications_registration_value_error()
 
-class TestGetNotificationsRegistration():
+
+class TestGetNotificationsRegistration:
     """
     Test Class for get_notifications_registration
     """
@@ -3890,15 +4209,16 @@ class TestGetNotificationsRegistration():
         # Set up mock
         url = preprocess_url('/api/v2/notifications/registration')
         mock_response = '{"event_notifications_instance_crn": "event_notifications_instance_crn"}'
-        responses.add(responses.GET,
-                      url,
-                      body=mock_response,
-                      content_type='application/json',
-                      status=200)
+        responses.add(
+            responses.GET,
+            url,
+            body=mock_response,
+            content_type='application/json',
+            status=200,
+        )
 
         # Invoke method
         response = _service.get_notifications_registration()
-
 
         # Check for correct operation
         assert len(responses.calls) == 1
@@ -3913,7 +4233,8 @@ class TestGetNotificationsRegistration():
         _service.disable_retries()
         self.test_get_notifications_registration_all_params()
 
-class TestDeleteNotificationsRegistration():
+
+class TestDeleteNotificationsRegistration:
     """
     Test Class for delete_notifications_registration
     """
@@ -3925,13 +4246,14 @@ class TestDeleteNotificationsRegistration():
         """
         # Set up mock
         url = preprocess_url('/api/v2/notifications/registration')
-        responses.add(responses.DELETE,
-                      url,
-                      status=204)
+        responses.add(
+            responses.DELETE,
+            url,
+            status=204,
+        )
 
         # Invoke method
         response = _service.delete_notifications_registration()
-
 
         # Check for correct operation
         assert len(responses.calls) == 1
@@ -3946,7 +4268,8 @@ class TestDeleteNotificationsRegistration():
         _service.disable_retries()
         self.test_delete_notifications_registration_all_params()
 
-class TestGetNotificationsRegistrationTest():
+
+class TestGetNotificationsRegistrationTest:
     """
     Test Class for get_notifications_registration_test
     """
@@ -3958,13 +4281,14 @@ class TestGetNotificationsRegistrationTest():
         """
         # Set up mock
         url = preprocess_url('/api/v2/notifications/registration/test')
-        responses.add(responses.GET,
-                      url,
-                      status=204)
+        responses.add(
+            responses.GET,
+            url,
+            status=204,
+        )
 
         # Invoke method
         response = _service.get_notifications_registration_test()
-
 
         # Check for correct operation
         assert len(responses.calls) == 1
@@ -3979,6 +4303,7 @@ class TestGetNotificationsRegistrationTest():
         _service.disable_retries()
         self.test_get_notifications_registration_test_all_params()
 
+
 # endregion
 ##############################################################################
 # End of Service: Notifications
@@ -3989,7 +4314,9 @@ class TestGetNotificationsRegistrationTest():
 # Start of Model Tests
 ##############################################################################
 # region
-class TestModel_CertificateIssuanceInfo():
+
+
+class TestModel_CertificateIssuanceInfo:
     """
     Test Class for CertificateIssuanceInfo
     """
@@ -4017,7 +4344,8 @@ class TestModel_CertificateIssuanceInfo():
         certificate_issuance_info_model_json2 = certificate_issuance_info_model.to_dict()
         assert certificate_issuance_info_model_json2 == certificate_issuance_info_model_json
 
-class TestModel_CertificateValidity():
+
+class TestModel_CertificateValidity:
     """
     Test Class for CertificateValidity
     """
@@ -4047,7 +4375,8 @@ class TestModel_CertificateValidity():
         certificate_validity_model_json2 = certificate_validity_model.to_dict()
         assert certificate_validity_model_json2 == certificate_validity_model_json
 
-class TestModel_ChallengeResource():
+
+class TestModel_ChallengeResource:
     """
     Test Class for ChallengeResource
     """
@@ -4075,7 +4404,8 @@ class TestModel_ChallengeResource():
         challenge_resource_model_json2 = challenge_resource_model.to_dict()
         assert challenge_resource_model_json2 == challenge_resource_model_json
 
-class TestModel_ConfigurationMetadataPaginatedCollection():
+
+class TestModel_ConfigurationMetadataPaginatedCollection:
     """
     Test Class for ConfigurationMetadataPaginatedCollection
     """
@@ -4087,19 +4417,19 @@ class TestModel_ConfigurationMetadataPaginatedCollection():
 
         # Construct dict forms of any model objects needed in order to build this model.
 
-        paginated_collection_first_model = {} # PaginatedCollectionFirst
+        paginated_collection_first_model = {}  # PaginatedCollectionFirst
         paginated_collection_first_model['href'] = 'testString'
 
-        paginated_collection_next_model = {} # PaginatedCollectionNext
+        paginated_collection_next_model = {}  # PaginatedCollectionNext
         paginated_collection_next_model['href'] = 'testString'
 
-        paginated_collection_previous_model = {} # PaginatedCollectionPrevious
+        paginated_collection_previous_model = {}  # PaginatedCollectionPrevious
         paginated_collection_previous_model['href'] = 'testString'
 
-        paginated_collection_last_model = {} # PaginatedCollectionLast
+        paginated_collection_last_model = {}  # PaginatedCollectionLast
         paginated_collection_last_model['href'] = 'testString'
 
-        configuration_metadata_model = {} # IAMCredentialsConfigurationMetadata
+        configuration_metadata_model = {}  # IAMCredentialsConfigurationMetadata
         configuration_metadata_model['config_type'] = 'iam_credentials_configuration'
         configuration_metadata_model['name'] = 'my-secret-engine-config'
         configuration_metadata_model['secret_type'] = 'arbitrary'
@@ -4110,8 +4440,8 @@ class TestModel_ConfigurationMetadataPaginatedCollection():
         # Construct a json representation of a ConfigurationMetadataPaginatedCollection model
         configuration_metadata_paginated_collection_model_json = {}
         configuration_metadata_paginated_collection_model_json['total_count'] = 0
-        configuration_metadata_paginated_collection_model_json['limit'] = 0
-        configuration_metadata_paginated_collection_model_json['offset'] = 0
+        configuration_metadata_paginated_collection_model_json['limit'] = 25
+        configuration_metadata_paginated_collection_model_json['offset'] = 25
         configuration_metadata_paginated_collection_model_json['first'] = paginated_collection_first_model
         configuration_metadata_paginated_collection_model_json['next'] = paginated_collection_next_model
         configuration_metadata_paginated_collection_model_json['previous'] = paginated_collection_previous_model
@@ -4133,7 +4463,37 @@ class TestModel_ConfigurationMetadataPaginatedCollection():
         configuration_metadata_paginated_collection_model_json2 = configuration_metadata_paginated_collection_model.to_dict()
         assert configuration_metadata_paginated_collection_model_json2 == configuration_metadata_paginated_collection_model_json
 
-class TestModel_NotificationsRegistration():
+
+class TestModel_CosHmacKeys:
+    """
+    Test Class for CosHmacKeys
+    """
+
+    def test_cos_hmac_keys_serialization(self):
+        """
+        Test serialization/deserialization for CosHmacKeys
+        """
+
+        # Construct a json representation of a CosHmacKeys model
+        cos_hmac_keys_model_json = {}
+
+        # Construct a model instance of CosHmacKeys by calling from_dict on the json representation
+        cos_hmac_keys_model = CosHmacKeys.from_dict(cos_hmac_keys_model_json)
+        assert cos_hmac_keys_model != False
+
+        # Construct a model instance of CosHmacKeys by calling from_dict on the json representation
+        cos_hmac_keys_model_dict = CosHmacKeys.from_dict(cos_hmac_keys_model_json).__dict__
+        cos_hmac_keys_model2 = CosHmacKeys(**cos_hmac_keys_model_dict)
+
+        # Verify the model instances are equivalent
+        assert cos_hmac_keys_model == cos_hmac_keys_model2
+
+        # Convert model instance back to dict and verify no loss of data
+        cos_hmac_keys_model_json2 = cos_hmac_keys_model.to_dict()
+        assert cos_hmac_keys_model_json2 == cos_hmac_keys_model_json
+
+
+class TestModel_NotificationsRegistration:
     """
     Test Class for NotificationsRegistration
     """
@@ -4162,7 +4522,8 @@ class TestModel_NotificationsRegistration():
         notifications_registration_model_json2 = notifications_registration_model.to_dict()
         assert notifications_registration_model_json2 == notifications_registration_model_json
 
-class TestModel_PaginatedCollectionFirst():
+
+class TestModel_PaginatedCollectionFirst:
     """
     Test Class for PaginatedCollectionFirst
     """
@@ -4191,7 +4552,8 @@ class TestModel_PaginatedCollectionFirst():
         paginated_collection_first_model_json2 = paginated_collection_first_model.to_dict()
         assert paginated_collection_first_model_json2 == paginated_collection_first_model_json
 
-class TestModel_PaginatedCollectionLast():
+
+class TestModel_PaginatedCollectionLast:
     """
     Test Class for PaginatedCollectionLast
     """
@@ -4220,7 +4582,8 @@ class TestModel_PaginatedCollectionLast():
         paginated_collection_last_model_json2 = paginated_collection_last_model.to_dict()
         assert paginated_collection_last_model_json2 == paginated_collection_last_model_json
 
-class TestModel_PaginatedCollectionNext():
+
+class TestModel_PaginatedCollectionNext:
     """
     Test Class for PaginatedCollectionNext
     """
@@ -4249,7 +4612,8 @@ class TestModel_PaginatedCollectionNext():
         paginated_collection_next_model_json2 = paginated_collection_next_model.to_dict()
         assert paginated_collection_next_model_json2 == paginated_collection_next_model_json
 
-class TestModel_PaginatedCollectionPrevious():
+
+class TestModel_PaginatedCollectionPrevious:
     """
     Test Class for PaginatedCollectionPrevious
     """
@@ -4278,7 +4642,8 @@ class TestModel_PaginatedCollectionPrevious():
         paginated_collection_previous_model_json2 = paginated_collection_previous_model.to_dict()
         assert paginated_collection_previous_model_json2 == paginated_collection_previous_model_json
 
-class TestModel_PublicCertificateRotationObject():
+
+class TestModel_PublicCertificateRotationObject:
     """
     Test Class for PublicCertificateRotationObject
     """
@@ -4307,7 +4672,8 @@ class TestModel_PublicCertificateRotationObject():
         public_certificate_rotation_object_model_json2 = public_certificate_rotation_object_model.to_dict()
         assert public_certificate_rotation_object_model_json2 == public_certificate_rotation_object_model_json
 
-class TestModel_SecretGroup():
+
+class TestModel_SecretGroup:
     """
     Test Class for SecretGroup
     """
@@ -4322,6 +4688,7 @@ class TestModel_SecretGroup():
         secret_group_model_json['id'] = 'default'
         secret_group_model_json['description'] = 'Extended description for this group.'
         secret_group_model_json['created_at'] = '2022-04-12T23:20:50.520000Z'
+        secret_group_model_json['created_by'] = 'iam-ServiceId-e4a2f0a4-3c76-4bef-b1f2-fbeae11c0f21'
         secret_group_model_json['updated_at'] = '2022-04-12T23:20:50.520000Z'
 
         # Construct a model instance of SecretGroup by calling from_dict on the json representation
@@ -4339,7 +4706,8 @@ class TestModel_SecretGroup():
         secret_group_model_json2 = secret_group_model.to_dict()
         assert secret_group_model_json2 == secret_group_model_json
 
-class TestModel_SecretGroupCollection():
+
+class TestModel_SecretGroupCollection:
     """
     Test Class for SecretGroupCollection
     """
@@ -4351,10 +4719,11 @@ class TestModel_SecretGroupCollection():
 
         # Construct dict forms of any model objects needed in order to build this model.
 
-        secret_group_model = {} # SecretGroup
+        secret_group_model = {}  # SecretGroup
         secret_group_model['id'] = 'default'
         secret_group_model['description'] = 'Extended description for this group.'
         secret_group_model['created_at'] = '2022-04-12T23:20:50.520000Z'
+        secret_group_model['created_by'] = 'iam-ServiceId-e4a2f0a4-3c76-4bef-b1f2-fbeae11c0f21'
         secret_group_model['updated_at'] = '2022-04-12T23:20:50.520000Z'
 
         # Construct a json representation of a SecretGroupCollection model
@@ -4377,7 +4746,8 @@ class TestModel_SecretGroupCollection():
         secret_group_collection_model_json2 = secret_group_collection_model.to_dict()
         assert secret_group_collection_model_json2 == secret_group_collection_model_json
 
-class TestModel_SecretGroupPatch():
+
+class TestModel_SecretGroupPatch:
     """
     Test Class for SecretGroupPatch
     """
@@ -4407,7 +4777,8 @@ class TestModel_SecretGroupPatch():
         secret_group_patch_model_json2 = secret_group_patch_model.to_dict()
         assert secret_group_patch_model_json2 == secret_group_patch_model_json
 
-class TestModel_SecretLock():
+
+class TestModel_SecretLock:
     """
     Test Class for SecretLock
     """
@@ -4421,7 +4792,7 @@ class TestModel_SecretLock():
         secret_lock_model_json = {}
         secret_lock_model_json['name'] = 'lock-example'
         secret_lock_model_json['description'] = 'testString'
-        secret_lock_model_json['attributes'] = {'foo': 'bar'}
+        secret_lock_model_json['attributes'] = {'key': 'value'}
         secret_lock_model_json['created_at'] = '2022-04-12T23:20:50.520000Z'
         secret_lock_model_json['updated_at'] = '2022-04-12T23:20:50.520000Z'
         secret_lock_model_json['created_by'] = 'iam-ServiceId-e4a2f0a4-3c76-4bef-b1f2-fbeae11c0f21'
@@ -4445,7 +4816,8 @@ class TestModel_SecretLock():
         secret_lock_model_json2 = secret_lock_model.to_dict()
         assert secret_lock_model_json2 == secret_lock_model_json
 
-class TestModel_SecretLockPrototype():
+
+class TestModel_SecretLockPrototype:
     """
     Test Class for SecretLockPrototype
     """
@@ -4459,7 +4831,7 @@ class TestModel_SecretLockPrototype():
         secret_lock_prototype_model_json = {}
         secret_lock_prototype_model_json['name'] = 'lock-example'
         secret_lock_prototype_model_json['description'] = 'testString'
-        secret_lock_prototype_model_json['attributes'] = {'foo': 'bar'}
+        secret_lock_prototype_model_json['attributes'] = {'key': 'value'}
 
         # Construct a model instance of SecretLockPrototype by calling from_dict on the json representation
         secret_lock_prototype_model = SecretLockPrototype.from_dict(secret_lock_prototype_model_json)
@@ -4476,7 +4848,8 @@ class TestModel_SecretLockPrototype():
         secret_lock_prototype_model_json2 = secret_lock_prototype_model.to_dict()
         assert secret_lock_prototype_model_json2 == secret_lock_prototype_model_json
 
-class TestModel_SecretLocks():
+
+class TestModel_SecretLocks:
     """
     Test Class for SecretLocks
     """
@@ -4488,7 +4861,7 @@ class TestModel_SecretLocks():
 
         # Construct dict forms of any model objects needed in order to build this model.
 
-        secret_version_locks_model = {} # SecretVersionLocks
+        secret_version_locks_model = {}  # SecretVersionLocks
         secret_version_locks_model['version_id'] = 'b49ad24d-81d4-5ebc-b9b9-b0937d1c84d5'
         secret_version_locks_model['version_alias'] = 'current'
         secret_version_locks_model['locks'] = ['lock-example-1', 'lock-example-2']
@@ -4516,7 +4889,8 @@ class TestModel_SecretLocks():
         secret_locks_model_json2 = secret_locks_model.to_dict()
         assert secret_locks_model_json2 == secret_locks_model_json
 
-class TestModel_SecretLocksPaginatedCollection():
+
+class TestModel_SecretLocksPaginatedCollection:
     """
     Test Class for SecretLocksPaginatedCollection
     """
@@ -4528,22 +4902,22 @@ class TestModel_SecretLocksPaginatedCollection():
 
         # Construct dict forms of any model objects needed in order to build this model.
 
-        paginated_collection_first_model = {} # PaginatedCollectionFirst
+        paginated_collection_first_model = {}  # PaginatedCollectionFirst
         paginated_collection_first_model['href'] = 'testString'
 
-        paginated_collection_next_model = {} # PaginatedCollectionNext
+        paginated_collection_next_model = {}  # PaginatedCollectionNext
         paginated_collection_next_model['href'] = 'testString'
 
-        paginated_collection_previous_model = {} # PaginatedCollectionPrevious
+        paginated_collection_previous_model = {}  # PaginatedCollectionPrevious
         paginated_collection_previous_model['href'] = 'testString'
 
-        paginated_collection_last_model = {} # PaginatedCollectionLast
+        paginated_collection_last_model = {}  # PaginatedCollectionLast
         paginated_collection_last_model['href'] = 'testString'
 
-        secret_lock_model = {} # SecretLock
+        secret_lock_model = {}  # SecretLock
         secret_lock_model['name'] = 'lock-example'
         secret_lock_model['description'] = 'testString'
-        secret_lock_model['attributes'] = {'foo': 'bar'}
+        secret_lock_model['attributes'] = {'key': 'value'}
         secret_lock_model['created_at'] = '2022-04-12T23:20:50.520000Z'
         secret_lock_model['updated_at'] = '2022-04-12T23:20:50.520000Z'
         secret_lock_model['created_by'] = 'iam-ServiceId-e4a2f0a4-3c76-4bef-b1f2-fbeae11c0f21'
@@ -4555,8 +4929,8 @@ class TestModel_SecretLocksPaginatedCollection():
         # Construct a json representation of a SecretLocksPaginatedCollection model
         secret_locks_paginated_collection_model_json = {}
         secret_locks_paginated_collection_model_json['total_count'] = 0
-        secret_locks_paginated_collection_model_json['limit'] = 0
-        secret_locks_paginated_collection_model_json['offset'] = 0
+        secret_locks_paginated_collection_model_json['limit'] = 25
+        secret_locks_paginated_collection_model_json['offset'] = 25
         secret_locks_paginated_collection_model_json['first'] = paginated_collection_first_model
         secret_locks_paginated_collection_model_json['next'] = paginated_collection_next_model
         secret_locks_paginated_collection_model_json['previous'] = paginated_collection_previous_model
@@ -4578,7 +4952,8 @@ class TestModel_SecretLocksPaginatedCollection():
         secret_locks_paginated_collection_model_json2 = secret_locks_paginated_collection_model.to_dict()
         assert secret_locks_paginated_collection_model_json2 == secret_locks_paginated_collection_model_json
 
-class TestModel_SecretMetadataPaginatedCollection():
+
+class TestModel_SecretMetadataPaginatedCollection:
     """
     Test Class for SecretMetadataPaginatedCollection
     """
@@ -4590,49 +4965,37 @@ class TestModel_SecretMetadataPaginatedCollection():
 
         # Construct dict forms of any model objects needed in order to build this model.
 
-        paginated_collection_first_model = {} # PaginatedCollectionFirst
+        paginated_collection_first_model = {}  # PaginatedCollectionFirst
         paginated_collection_first_model['href'] = 'testString'
 
-        paginated_collection_next_model = {} # PaginatedCollectionNext
+        paginated_collection_next_model = {}  # PaginatedCollectionNext
         paginated_collection_next_model['href'] = 'testString'
 
-        paginated_collection_previous_model = {} # PaginatedCollectionPrevious
+        paginated_collection_previous_model = {}  # PaginatedCollectionPrevious
         paginated_collection_previous_model['href'] = 'testString'
 
-        paginated_collection_last_model = {} # PaginatedCollectionLast
+        paginated_collection_last_model = {}  # PaginatedCollectionLast
         paginated_collection_last_model['href'] = 'testString'
 
-        certificate_validity_model = {} # CertificateValidity
-        certificate_validity_model['not_before'] = '2025-04-12T23:20:50Z'
-        certificate_validity_model['not_after'] = '2025-04-12T23:20:50Z'
-
-        secret_metadata_model = {} # ImportedCertificateMetadata
+        secret_metadata_model = {}  # ArbitrarySecretMetadata
         secret_metadata_model['created_by'] = 'iam-ServiceId-e4a2f0a4-3c76-4bef-b1f2-fbeae11c0f21'
         secret_metadata_model['created_at'] = '2022-04-12T23:20:50.520000Z'
         secret_metadata_model['crn'] = 'testString'
-        secret_metadata_model['custom_metadata'] = {'foo': 'bar'}
+        secret_metadata_model['custom_metadata'] = {'key': 'value'}
         secret_metadata_model['description'] = 'Extended description for this secret.'
         secret_metadata_model['id'] = 'b49ad24d-81d4-5ebc-b9b9-b0937d1c84d5'
         secret_metadata_model['labels'] = ['my-label']
         secret_metadata_model['secret_group_id'] = 'default'
-        secret_metadata_model['secret_type'] = 'imported_cert'
+        secret_metadata_model['secret_type'] = 'arbitrary'
         secret_metadata_model['updated_at'] = '2022-04-12T23:20:50.520000Z'
         secret_metadata_model['versions_total'] = 0
-        secret_metadata_model['signing_algorithm'] = 'SHA256-RSA'
-        secret_metadata_model['alt_names'] = ['s1.example.com', '*.s2.example.com']
-        secret_metadata_model['common_name'] = 'example.com'
         secret_metadata_model['expiration_date'] = '2033-04-12T23:20:50.520000Z'
-        secret_metadata_model['intermediate_included'] = True
-        secret_metadata_model['issuer'] = 'Lets Encrypt'
-        secret_metadata_model['private_key_included'] = True
-        secret_metadata_model['serial_number'] = '38:eb:01:a3:22:e9:de:55:24:56:9b:14:cb:e2:f3:e3:e2:fb:f5:18'
-        secret_metadata_model['validity'] = certificate_validity_model
 
         # Construct a json representation of a SecretMetadataPaginatedCollection model
         secret_metadata_paginated_collection_model_json = {}
         secret_metadata_paginated_collection_model_json['total_count'] = 0
-        secret_metadata_paginated_collection_model_json['limit'] = 0
-        secret_metadata_paginated_collection_model_json['offset'] = 0
+        secret_metadata_paginated_collection_model_json['limit'] = 25
+        secret_metadata_paginated_collection_model_json['offset'] = 25
         secret_metadata_paginated_collection_model_json['first'] = paginated_collection_first_model
         secret_metadata_paginated_collection_model_json['next'] = paginated_collection_next_model
         secret_metadata_paginated_collection_model_json['previous'] = paginated_collection_previous_model
@@ -4654,7 +5017,8 @@ class TestModel_SecretMetadataPaginatedCollection():
         secret_metadata_paginated_collection_model_json2 = secret_metadata_paginated_collection_model.to_dict()
         assert secret_metadata_paginated_collection_model_json2 == secret_metadata_paginated_collection_model_json
 
-class TestModel_SecretVersionLocks():
+
+class TestModel_SecretVersionLocks:
     """
     Test Class for SecretVersionLocks
     """
@@ -4686,7 +5050,8 @@ class TestModel_SecretVersionLocks():
         secret_version_locks_model_json2 = secret_version_locks_model.to_dict()
         assert secret_version_locks_model_json2 == secret_version_locks_model_json
 
-class TestModel_SecretVersionLocksPaginatedCollection():
+
+class TestModel_SecretVersionLocksPaginatedCollection:
     """
     Test Class for SecretVersionLocksPaginatedCollection
     """
@@ -4698,22 +5063,22 @@ class TestModel_SecretVersionLocksPaginatedCollection():
 
         # Construct dict forms of any model objects needed in order to build this model.
 
-        paginated_collection_first_model = {} # PaginatedCollectionFirst
+        paginated_collection_first_model = {}  # PaginatedCollectionFirst
         paginated_collection_first_model['href'] = 'testString'
 
-        paginated_collection_next_model = {} # PaginatedCollectionNext
+        paginated_collection_next_model = {}  # PaginatedCollectionNext
         paginated_collection_next_model['href'] = 'testString'
 
-        paginated_collection_previous_model = {} # PaginatedCollectionPrevious
+        paginated_collection_previous_model = {}  # PaginatedCollectionPrevious
         paginated_collection_previous_model['href'] = 'testString'
 
-        paginated_collection_last_model = {} # PaginatedCollectionLast
+        paginated_collection_last_model = {}  # PaginatedCollectionLast
         paginated_collection_last_model['href'] = 'testString'
 
-        secret_lock_model = {} # SecretLock
+        secret_lock_model = {}  # SecretLock
         secret_lock_model['name'] = 'lock-example'
         secret_lock_model['description'] = 'testString'
-        secret_lock_model['attributes'] = {'foo': 'bar'}
+        secret_lock_model['attributes'] = {'key': 'value'}
         secret_lock_model['created_at'] = '2022-04-12T23:20:50.520000Z'
         secret_lock_model['updated_at'] = '2022-04-12T23:20:50.520000Z'
         secret_lock_model['created_by'] = 'iam-ServiceId-e4a2f0a4-3c76-4bef-b1f2-fbeae11c0f21'
@@ -4725,8 +5090,8 @@ class TestModel_SecretVersionLocksPaginatedCollection():
         # Construct a json representation of a SecretVersionLocksPaginatedCollection model
         secret_version_locks_paginated_collection_model_json = {}
         secret_version_locks_paginated_collection_model_json['total_count'] = 0
-        secret_version_locks_paginated_collection_model_json['limit'] = 0
-        secret_version_locks_paginated_collection_model_json['offset'] = 0
+        secret_version_locks_paginated_collection_model_json['limit'] = 25
+        secret_version_locks_paginated_collection_model_json['offset'] = 25
         secret_version_locks_paginated_collection_model_json['first'] = paginated_collection_first_model
         secret_version_locks_paginated_collection_model_json['next'] = paginated_collection_next_model
         secret_version_locks_paginated_collection_model_json['previous'] = paginated_collection_previous_model
@@ -4748,7 +5113,8 @@ class TestModel_SecretVersionLocksPaginatedCollection():
         secret_version_locks_paginated_collection_model_json2 = secret_version_locks_paginated_collection_model.to_dict()
         assert secret_version_locks_paginated_collection_model_json2 == secret_version_locks_paginated_collection_model_json
 
-class TestModel_SecretVersionMetadataCollection():
+
+class TestModel_SecretVersionMetadataCollection:
     """
     Test Class for SecretVersionMetadataCollection
     """
@@ -4760,7 +5126,7 @@ class TestModel_SecretVersionMetadataCollection():
 
         # Construct dict forms of any model objects needed in order to build this model.
 
-        secret_version_metadata_model = {} # ArbitrarySecretVersionMetadata
+        secret_version_metadata_model = {}  # ArbitrarySecretVersionMetadata
         secret_version_metadata_model['auto_rotated'] = True
         secret_version_metadata_model['created_by'] = 'iam-ServiceId-e4a2f0a4-3c76-4bef-b1f2-fbeae11c0f21'
         secret_version_metadata_model['created_at'] = '2022-04-12T23:20:50.520000Z'
@@ -4769,7 +5135,7 @@ class TestModel_SecretVersionMetadataCollection():
         secret_version_metadata_model['secret_group_id'] = 'default'
         secret_version_metadata_model['payload_available'] = True
         secret_version_metadata_model['alias'] = 'current'
-        secret_version_metadata_model['version_custom_metadata'] = {'foo': 'bar'}
+        secret_version_metadata_model['version_custom_metadata'] = {'key': 'value'}
         secret_version_metadata_model['secret_id'] = 'b49ad24d-81d4-5ebc-b9b9-b0937d1c84d5'
         secret_version_metadata_model['expiration_date'] = '2033-04-12T23:20:50.520000Z'
 
@@ -4793,7 +5159,8 @@ class TestModel_SecretVersionMetadataCollection():
         secret_version_metadata_collection_model_json2 = secret_version_metadata_collection_model.to_dict()
         assert secret_version_metadata_collection_model_json2 == secret_version_metadata_collection_model_json
 
-class TestModel_SecretVersionMetadataPatch():
+
+class TestModel_SecretVersionMetadataPatch:
     """
     Test Class for SecretVersionMetadataPatch
     """
@@ -4805,7 +5172,7 @@ class TestModel_SecretVersionMetadataPatch():
 
         # Construct a json representation of a SecretVersionMetadataPatch model
         secret_version_metadata_patch_model_json = {}
-        secret_version_metadata_patch_model_json['version_custom_metadata'] = {'foo': 'bar'}
+        secret_version_metadata_patch_model_json['version_custom_metadata'] = {'key': 'value'}
 
         # Construct a model instance of SecretVersionMetadataPatch by calling from_dict on the json representation
         secret_version_metadata_patch_model = SecretVersionMetadataPatch.from_dict(secret_version_metadata_patch_model_json)
@@ -4822,7 +5189,8 @@ class TestModel_SecretVersionMetadataPatch():
         secret_version_metadata_patch_model_json2 = secret_version_metadata_patch_model.to_dict()
         assert secret_version_metadata_patch_model_json2 == secret_version_metadata_patch_model_json
 
-class TestModel_SecretsLocksPaginatedCollection():
+
+class TestModel_SecretsLocksPaginatedCollection:
     """
     Test Class for SecretsLocksPaginatedCollection
     """
@@ -4834,25 +5202,25 @@ class TestModel_SecretsLocksPaginatedCollection():
 
         # Construct dict forms of any model objects needed in order to build this model.
 
-        paginated_collection_first_model = {} # PaginatedCollectionFirst
+        paginated_collection_first_model = {}  # PaginatedCollectionFirst
         paginated_collection_first_model['href'] = 'testString'
 
-        paginated_collection_next_model = {} # PaginatedCollectionNext
+        paginated_collection_next_model = {}  # PaginatedCollectionNext
         paginated_collection_next_model['href'] = 'testString'
 
-        paginated_collection_previous_model = {} # PaginatedCollectionPrevious
+        paginated_collection_previous_model = {}  # PaginatedCollectionPrevious
         paginated_collection_previous_model['href'] = 'testString'
 
-        paginated_collection_last_model = {} # PaginatedCollectionLast
+        paginated_collection_last_model = {}  # PaginatedCollectionLast
         paginated_collection_last_model['href'] = 'testString'
 
-        secret_version_locks_model = {} # SecretVersionLocks
+        secret_version_locks_model = {}  # SecretVersionLocks
         secret_version_locks_model['version_id'] = 'b49ad24d-81d4-5ebc-b9b9-b0937d1c84d5'
         secret_version_locks_model['version_alias'] = 'current'
         secret_version_locks_model['locks'] = ['lock-example-1', 'lock-example-2']
         secret_version_locks_model['payload_available'] = True
 
-        secret_locks_model = {} # SecretLocks
+        secret_locks_model = {}  # SecretLocks
         secret_locks_model['secret_id'] = 'b49ad24d-81d4-5ebc-b9b9-b0937d1c84d5'
         secret_locks_model['secret_group_id'] = 'default'
         secret_locks_model['secret_type'] = 'arbitrary'
@@ -4861,8 +5229,8 @@ class TestModel_SecretsLocksPaginatedCollection():
         # Construct a json representation of a SecretsLocksPaginatedCollection model
         secrets_locks_paginated_collection_model_json = {}
         secrets_locks_paginated_collection_model_json['total_count'] = 0
-        secrets_locks_paginated_collection_model_json['limit'] = 0
-        secrets_locks_paginated_collection_model_json['offset'] = 0
+        secrets_locks_paginated_collection_model_json['limit'] = 25
+        secrets_locks_paginated_collection_model_json['offset'] = 25
         secrets_locks_paginated_collection_model_json['first'] = paginated_collection_first_model
         secrets_locks_paginated_collection_model_json['next'] = paginated_collection_next_model
         secrets_locks_paginated_collection_model_json['previous'] = paginated_collection_previous_model
@@ -4884,7 +5252,358 @@ class TestModel_SecretsLocksPaginatedCollection():
         secrets_locks_paginated_collection_model_json2 = secrets_locks_paginated_collection_model.to_dict()
         assert secrets_locks_paginated_collection_model_json2 == secrets_locks_paginated_collection_model_json
 
-class TestModel_ArbitrarySecret():
+
+class TestModel_ServiceCredentialsResourceKey:
+    """
+    Test Class for ServiceCredentialsResourceKey
+    """
+
+    def test_service_credentials_resource_key_serialization(self):
+        """
+        Test serialization/deserialization for ServiceCredentialsResourceKey
+        """
+
+        # Construct a json representation of a ServiceCredentialsResourceKey model
+        service_credentials_resource_key_model_json = {}
+
+        # Construct a model instance of ServiceCredentialsResourceKey by calling from_dict on the json representation
+        service_credentials_resource_key_model = ServiceCredentialsResourceKey.from_dict(service_credentials_resource_key_model_json)
+        assert service_credentials_resource_key_model != False
+
+        # Construct a model instance of ServiceCredentialsResourceKey by calling from_dict on the json representation
+        service_credentials_resource_key_model_dict = ServiceCredentialsResourceKey.from_dict(service_credentials_resource_key_model_json).__dict__
+        service_credentials_resource_key_model2 = ServiceCredentialsResourceKey(**service_credentials_resource_key_model_dict)
+
+        # Verify the model instances are equivalent
+        assert service_credentials_resource_key_model == service_credentials_resource_key_model2
+
+        # Convert model instance back to dict and verify no loss of data
+        service_credentials_resource_key_model_json2 = service_credentials_resource_key_model.to_dict()
+        assert service_credentials_resource_key_model_json2 == service_credentials_resource_key_model_json
+
+
+class TestModel_ServiceCredentialsSecretCredentials:
+    """
+    Test Class for ServiceCredentialsSecretCredentials
+    """
+
+    def test_service_credentials_secret_credentials_serialization(self):
+        """
+        Test serialization/deserialization for ServiceCredentialsSecretCredentials
+        """
+
+        # Construct dict forms of any model objects needed in order to build this model.
+
+        cos_hmac_keys_model = {}  # CosHmacKeys
+
+        # Construct a json representation of a ServiceCredentialsSecretCredentials model
+        service_credentials_secret_credentials_model_json = {}
+        service_credentials_secret_credentials_model_json['cos_hmac_keys'] = cos_hmac_keys_model
+
+        # Construct a model instance of ServiceCredentialsSecretCredentials by calling from_dict on the json representation
+        service_credentials_secret_credentials_model = ServiceCredentialsSecretCredentials.from_dict(service_credentials_secret_credentials_model_json)
+        assert service_credentials_secret_credentials_model != False
+
+        # Construct a model instance of ServiceCredentialsSecretCredentials by calling from_dict on the json representation
+        service_credentials_secret_credentials_model_dict = ServiceCredentialsSecretCredentials.from_dict(service_credentials_secret_credentials_model_json).__dict__
+        service_credentials_secret_credentials_model2 = ServiceCredentialsSecretCredentials(**service_credentials_secret_credentials_model_dict)
+
+        # Verify the model instances are equivalent
+        assert service_credentials_secret_credentials_model == service_credentials_secret_credentials_model2
+
+        # Convert model instance back to dict and verify no loss of data
+        service_credentials_secret_credentials_model_json2 = service_credentials_secret_credentials_model.to_dict()
+        assert service_credentials_secret_credentials_model_json2 == service_credentials_secret_credentials_model_json
+
+
+class TestModel_ServiceCredentialsSecretSourceService:
+    """
+    Test Class for ServiceCredentialsSecretSourceService
+    """
+
+    def test_service_credentials_secret_source_service_serialization(self):
+        """
+        Test serialization/deserialization for ServiceCredentialsSecretSourceService
+        """
+
+        # Construct dict forms of any model objects needed in order to build this model.
+
+        service_credentials_source_service_instance_model = {}  # ServiceCredentialsSourceServiceInstance
+        service_credentials_source_service_instance_model['crn'] = 'testString'
+
+        service_credentials_source_service_parameters_model = {}  # ServiceCredentialsSourceServiceParameters
+        service_credentials_source_service_parameters_model['serviceid_crn'] = 'testString'
+        service_credentials_source_service_parameters_model['foo'] = 'testString'
+
+        service_credentials_source_service_role_model = {}  # ServiceCredentialsSourceServiceRole
+        service_credentials_source_service_role_model['crn'] = 'testString'
+
+        service_credentials_source_service_iam_apikey_model = {}  # ServiceCredentialsSourceServiceIamApikey
+
+        service_credentials_source_service_iam_role_model = {}  # ServiceCredentialsSourceServiceIamRole
+
+        service_credentials_source_service_iam_serviceid_model = {}  # ServiceCredentialsSourceServiceIamServiceid
+
+        service_credentials_source_service_iam_model = {}  # ServiceCredentialsSourceServiceIam
+        service_credentials_source_service_iam_model['apikey'] = service_credentials_source_service_iam_apikey_model
+        service_credentials_source_service_iam_model['role'] = service_credentials_source_service_iam_role_model
+        service_credentials_source_service_iam_model['serviceid'] = service_credentials_source_service_iam_serviceid_model
+
+        service_credentials_resource_key_model = {}  # ServiceCredentialsResourceKey
+
+        # Construct a json representation of a ServiceCredentialsSecretSourceService model
+        service_credentials_secret_source_service_model_json = {}
+        service_credentials_secret_source_service_model_json['instance'] = service_credentials_source_service_instance_model
+        service_credentials_secret_source_service_model_json['parameters'] = service_credentials_source_service_parameters_model
+        service_credentials_secret_source_service_model_json['role'] = service_credentials_source_service_role_model
+        service_credentials_secret_source_service_model_json['iam'] = service_credentials_source_service_iam_model
+        service_credentials_secret_source_service_model_json['resource_key'] = service_credentials_resource_key_model
+
+        # Construct a model instance of ServiceCredentialsSecretSourceService by calling from_dict on the json representation
+        service_credentials_secret_source_service_model = ServiceCredentialsSecretSourceService.from_dict(service_credentials_secret_source_service_model_json)
+        assert service_credentials_secret_source_service_model != False
+
+        # Construct a model instance of ServiceCredentialsSecretSourceService by calling from_dict on the json representation
+        service_credentials_secret_source_service_model_dict = ServiceCredentialsSecretSourceService.from_dict(service_credentials_secret_source_service_model_json).__dict__
+        service_credentials_secret_source_service_model2 = ServiceCredentialsSecretSourceService(**service_credentials_secret_source_service_model_dict)
+
+        # Verify the model instances are equivalent
+        assert service_credentials_secret_source_service_model == service_credentials_secret_source_service_model2
+
+        # Convert model instance back to dict and verify no loss of data
+        service_credentials_secret_source_service_model_json2 = service_credentials_secret_source_service_model.to_dict()
+        assert service_credentials_secret_source_service_model_json2 == service_credentials_secret_source_service_model_json
+
+
+class TestModel_ServiceCredentialsSourceServiceIam:
+    """
+    Test Class for ServiceCredentialsSourceServiceIam
+    """
+
+    def test_service_credentials_source_service_iam_serialization(self):
+        """
+        Test serialization/deserialization for ServiceCredentialsSourceServiceIam
+        """
+
+        # Construct dict forms of any model objects needed in order to build this model.
+
+        service_credentials_source_service_iam_apikey_model = {}  # ServiceCredentialsSourceServiceIamApikey
+
+        service_credentials_source_service_iam_role_model = {}  # ServiceCredentialsSourceServiceIamRole
+
+        service_credentials_source_service_iam_serviceid_model = {}  # ServiceCredentialsSourceServiceIamServiceid
+
+        # Construct a json representation of a ServiceCredentialsSourceServiceIam model
+        service_credentials_source_service_iam_model_json = {}
+        service_credentials_source_service_iam_model_json['apikey'] = service_credentials_source_service_iam_apikey_model
+        service_credentials_source_service_iam_model_json['role'] = service_credentials_source_service_iam_role_model
+        service_credentials_source_service_iam_model_json['serviceid'] = service_credentials_source_service_iam_serviceid_model
+
+        # Construct a model instance of ServiceCredentialsSourceServiceIam by calling from_dict on the json representation
+        service_credentials_source_service_iam_model = ServiceCredentialsSourceServiceIam.from_dict(service_credentials_source_service_iam_model_json)
+        assert service_credentials_source_service_iam_model != False
+
+        # Construct a model instance of ServiceCredentialsSourceServiceIam by calling from_dict on the json representation
+        service_credentials_source_service_iam_model_dict = ServiceCredentialsSourceServiceIam.from_dict(service_credentials_source_service_iam_model_json).__dict__
+        service_credentials_source_service_iam_model2 = ServiceCredentialsSourceServiceIam(**service_credentials_source_service_iam_model_dict)
+
+        # Verify the model instances are equivalent
+        assert service_credentials_source_service_iam_model == service_credentials_source_service_iam_model2
+
+        # Convert model instance back to dict and verify no loss of data
+        service_credentials_source_service_iam_model_json2 = service_credentials_source_service_iam_model.to_dict()
+        assert service_credentials_source_service_iam_model_json2 == service_credentials_source_service_iam_model_json
+
+
+class TestModel_ServiceCredentialsSourceServiceIamApikey:
+    """
+    Test Class for ServiceCredentialsSourceServiceIamApikey
+    """
+
+    def test_service_credentials_source_service_iam_apikey_serialization(self):
+        """
+        Test serialization/deserialization for ServiceCredentialsSourceServiceIamApikey
+        """
+
+        # Construct a json representation of a ServiceCredentialsSourceServiceIamApikey model
+        service_credentials_source_service_iam_apikey_model_json = {}
+
+        # Construct a model instance of ServiceCredentialsSourceServiceIamApikey by calling from_dict on the json representation
+        service_credentials_source_service_iam_apikey_model = ServiceCredentialsSourceServiceIamApikey.from_dict(service_credentials_source_service_iam_apikey_model_json)
+        assert service_credentials_source_service_iam_apikey_model != False
+
+        # Construct a model instance of ServiceCredentialsSourceServiceIamApikey by calling from_dict on the json representation
+        service_credentials_source_service_iam_apikey_model_dict = ServiceCredentialsSourceServiceIamApikey.from_dict(service_credentials_source_service_iam_apikey_model_json).__dict__
+        service_credentials_source_service_iam_apikey_model2 = ServiceCredentialsSourceServiceIamApikey(**service_credentials_source_service_iam_apikey_model_dict)
+
+        # Verify the model instances are equivalent
+        assert service_credentials_source_service_iam_apikey_model == service_credentials_source_service_iam_apikey_model2
+
+        # Convert model instance back to dict and verify no loss of data
+        service_credentials_source_service_iam_apikey_model_json2 = service_credentials_source_service_iam_apikey_model.to_dict()
+        assert service_credentials_source_service_iam_apikey_model_json2 == service_credentials_source_service_iam_apikey_model_json
+
+
+class TestModel_ServiceCredentialsSourceServiceIamRole:
+    """
+    Test Class for ServiceCredentialsSourceServiceIamRole
+    """
+
+    def test_service_credentials_source_service_iam_role_serialization(self):
+        """
+        Test serialization/deserialization for ServiceCredentialsSourceServiceIamRole
+        """
+
+        # Construct a json representation of a ServiceCredentialsSourceServiceIamRole model
+        service_credentials_source_service_iam_role_model_json = {}
+
+        # Construct a model instance of ServiceCredentialsSourceServiceIamRole by calling from_dict on the json representation
+        service_credentials_source_service_iam_role_model = ServiceCredentialsSourceServiceIamRole.from_dict(service_credentials_source_service_iam_role_model_json)
+        assert service_credentials_source_service_iam_role_model != False
+
+        # Construct a model instance of ServiceCredentialsSourceServiceIamRole by calling from_dict on the json representation
+        service_credentials_source_service_iam_role_model_dict = ServiceCredentialsSourceServiceIamRole.from_dict(service_credentials_source_service_iam_role_model_json).__dict__
+        service_credentials_source_service_iam_role_model2 = ServiceCredentialsSourceServiceIamRole(**service_credentials_source_service_iam_role_model_dict)
+
+        # Verify the model instances are equivalent
+        assert service_credentials_source_service_iam_role_model == service_credentials_source_service_iam_role_model2
+
+        # Convert model instance back to dict and verify no loss of data
+        service_credentials_source_service_iam_role_model_json2 = service_credentials_source_service_iam_role_model.to_dict()
+        assert service_credentials_source_service_iam_role_model_json2 == service_credentials_source_service_iam_role_model_json
+
+
+class TestModel_ServiceCredentialsSourceServiceIamServiceid:
+    """
+    Test Class for ServiceCredentialsSourceServiceIamServiceid
+    """
+
+    def test_service_credentials_source_service_iam_serviceid_serialization(self):
+        """
+        Test serialization/deserialization for ServiceCredentialsSourceServiceIamServiceid
+        """
+
+        # Construct a json representation of a ServiceCredentialsSourceServiceIamServiceid model
+        service_credentials_source_service_iam_serviceid_model_json = {}
+
+        # Construct a model instance of ServiceCredentialsSourceServiceIamServiceid by calling from_dict on the json representation
+        service_credentials_source_service_iam_serviceid_model = ServiceCredentialsSourceServiceIamServiceid.from_dict(service_credentials_source_service_iam_serviceid_model_json)
+        assert service_credentials_source_service_iam_serviceid_model != False
+
+        # Construct a model instance of ServiceCredentialsSourceServiceIamServiceid by calling from_dict on the json representation
+        service_credentials_source_service_iam_serviceid_model_dict = ServiceCredentialsSourceServiceIamServiceid.from_dict(service_credentials_source_service_iam_serviceid_model_json).__dict__
+        service_credentials_source_service_iam_serviceid_model2 = ServiceCredentialsSourceServiceIamServiceid(**service_credentials_source_service_iam_serviceid_model_dict)
+
+        # Verify the model instances are equivalent
+        assert service_credentials_source_service_iam_serviceid_model == service_credentials_source_service_iam_serviceid_model2
+
+        # Convert model instance back to dict and verify no loss of data
+        service_credentials_source_service_iam_serviceid_model_json2 = service_credentials_source_service_iam_serviceid_model.to_dict()
+        assert service_credentials_source_service_iam_serviceid_model_json2 == service_credentials_source_service_iam_serviceid_model_json
+
+
+class TestModel_ServiceCredentialsSourceServiceInstance:
+    """
+    Test Class for ServiceCredentialsSourceServiceInstance
+    """
+
+    def test_service_credentials_source_service_instance_serialization(self):
+        """
+        Test serialization/deserialization for ServiceCredentialsSourceServiceInstance
+        """
+
+        # Construct a json representation of a ServiceCredentialsSourceServiceInstance model
+        service_credentials_source_service_instance_model_json = {}
+        service_credentials_source_service_instance_model_json['crn'] = 'testString'
+
+        # Construct a model instance of ServiceCredentialsSourceServiceInstance by calling from_dict on the json representation
+        service_credentials_source_service_instance_model = ServiceCredentialsSourceServiceInstance.from_dict(service_credentials_source_service_instance_model_json)
+        assert service_credentials_source_service_instance_model != False
+
+        # Construct a model instance of ServiceCredentialsSourceServiceInstance by calling from_dict on the json representation
+        service_credentials_source_service_instance_model_dict = ServiceCredentialsSourceServiceInstance.from_dict(service_credentials_source_service_instance_model_json).__dict__
+        service_credentials_source_service_instance_model2 = ServiceCredentialsSourceServiceInstance(**service_credentials_source_service_instance_model_dict)
+
+        # Verify the model instances are equivalent
+        assert service_credentials_source_service_instance_model == service_credentials_source_service_instance_model2
+
+        # Convert model instance back to dict and verify no loss of data
+        service_credentials_source_service_instance_model_json2 = service_credentials_source_service_instance_model.to_dict()
+        assert service_credentials_source_service_instance_model_json2 == service_credentials_source_service_instance_model_json
+
+
+class TestModel_ServiceCredentialsSourceServiceParameters:
+    """
+    Test Class for ServiceCredentialsSourceServiceParameters
+    """
+
+    def test_service_credentials_source_service_parameters_serialization(self):
+        """
+        Test serialization/deserialization for ServiceCredentialsSourceServiceParameters
+        """
+
+        # Construct a json representation of a ServiceCredentialsSourceServiceParameters model
+        service_credentials_source_service_parameters_model_json = {}
+        service_credentials_source_service_parameters_model_json['serviceid_crn'] = 'testString'
+        service_credentials_source_service_parameters_model_json['foo'] = 'testString'
+
+        # Construct a model instance of ServiceCredentialsSourceServiceParameters by calling from_dict on the json representation
+        service_credentials_source_service_parameters_model = ServiceCredentialsSourceServiceParameters.from_dict(service_credentials_source_service_parameters_model_json)
+        assert service_credentials_source_service_parameters_model != False
+
+        # Construct a model instance of ServiceCredentialsSourceServiceParameters by calling from_dict on the json representation
+        service_credentials_source_service_parameters_model_dict = ServiceCredentialsSourceServiceParameters.from_dict(service_credentials_source_service_parameters_model_json).__dict__
+        service_credentials_source_service_parameters_model2 = ServiceCredentialsSourceServiceParameters(**service_credentials_source_service_parameters_model_dict)
+
+        # Verify the model instances are equivalent
+        assert service_credentials_source_service_parameters_model == service_credentials_source_service_parameters_model2
+
+        # Convert model instance back to dict and verify no loss of data
+        service_credentials_source_service_parameters_model_json2 = service_credentials_source_service_parameters_model.to_dict()
+        assert service_credentials_source_service_parameters_model_json2 == service_credentials_source_service_parameters_model_json
+
+        # Test get_properties and set_properties methods.
+        service_credentials_source_service_parameters_model.set_properties({})
+        actual_dict = service_credentials_source_service_parameters_model.get_properties()
+        assert actual_dict == {}
+
+        expected_dict = {'foo': 'testString'}
+        service_credentials_source_service_parameters_model.set_properties(expected_dict)
+        actual_dict = service_credentials_source_service_parameters_model.get_properties()
+        assert actual_dict == expected_dict
+
+
+class TestModel_ServiceCredentialsSourceServiceRole:
+    """
+    Test Class for ServiceCredentialsSourceServiceRole
+    """
+
+    def test_service_credentials_source_service_role_serialization(self):
+        """
+        Test serialization/deserialization for ServiceCredentialsSourceServiceRole
+        """
+
+        # Construct a json representation of a ServiceCredentialsSourceServiceRole model
+        service_credentials_source_service_role_model_json = {}
+        service_credentials_source_service_role_model_json['crn'] = 'testString'
+
+        # Construct a model instance of ServiceCredentialsSourceServiceRole by calling from_dict on the json representation
+        service_credentials_source_service_role_model = ServiceCredentialsSourceServiceRole.from_dict(service_credentials_source_service_role_model_json)
+        assert service_credentials_source_service_role_model != False
+
+        # Construct a model instance of ServiceCredentialsSourceServiceRole by calling from_dict on the json representation
+        service_credentials_source_service_role_model_dict = ServiceCredentialsSourceServiceRole.from_dict(service_credentials_source_service_role_model_json).__dict__
+        service_credentials_source_service_role_model2 = ServiceCredentialsSourceServiceRole(**service_credentials_source_service_role_model_dict)
+
+        # Verify the model instances are equivalent
+        assert service_credentials_source_service_role_model == service_credentials_source_service_role_model2
+
+        # Convert model instance back to dict and verify no loss of data
+        service_credentials_source_service_role_model_json2 = service_credentials_source_service_role_model.to_dict()
+        assert service_credentials_source_service_role_model_json2 == service_credentials_source_service_role_model_json
+
+
+class TestModel_ArbitrarySecret:
     """
     Test Class for ArbitrarySecret
     """
@@ -4899,7 +5618,7 @@ class TestModel_ArbitrarySecret():
         arbitrary_secret_model_json['created_by'] = 'iam-ServiceId-e4a2f0a4-3c76-4bef-b1f2-fbeae11c0f21'
         arbitrary_secret_model_json['created_at'] = '2022-04-12T23:20:50.520000Z'
         arbitrary_secret_model_json['crn'] = 'testString'
-        arbitrary_secret_model_json['custom_metadata'] = {'foo': 'bar'}
+        arbitrary_secret_model_json['custom_metadata'] = {'key': 'value'}
         arbitrary_secret_model_json['description'] = 'Extended description for this secret.'
         arbitrary_secret_model_json['id'] = 'b49ad24d-81d4-5ebc-b9b9-b0937d1c84d5'
         arbitrary_secret_model_json['labels'] = ['my-label']
@@ -4925,7 +5644,8 @@ class TestModel_ArbitrarySecret():
         arbitrary_secret_model_json2 = arbitrary_secret_model.to_dict()
         assert arbitrary_secret_model_json2 == arbitrary_secret_model_json
 
-class TestModel_ArbitrarySecretMetadata():
+
+class TestModel_ArbitrarySecretMetadata:
     """
     Test Class for ArbitrarySecretMetadata
     """
@@ -4940,7 +5660,7 @@ class TestModel_ArbitrarySecretMetadata():
         arbitrary_secret_metadata_model_json['created_by'] = 'iam-ServiceId-e4a2f0a4-3c76-4bef-b1f2-fbeae11c0f21'
         arbitrary_secret_metadata_model_json['created_at'] = '2022-04-12T23:20:50.520000Z'
         arbitrary_secret_metadata_model_json['crn'] = 'testString'
-        arbitrary_secret_metadata_model_json['custom_metadata'] = {'foo': 'bar'}
+        arbitrary_secret_metadata_model_json['custom_metadata'] = {'key': 'value'}
         arbitrary_secret_metadata_model_json['description'] = 'Extended description for this secret.'
         arbitrary_secret_metadata_model_json['id'] = 'b49ad24d-81d4-5ebc-b9b9-b0937d1c84d5'
         arbitrary_secret_metadata_model_json['labels'] = ['my-label']
@@ -4965,7 +5685,8 @@ class TestModel_ArbitrarySecretMetadata():
         arbitrary_secret_metadata_model_json2 = arbitrary_secret_metadata_model.to_dict()
         assert arbitrary_secret_metadata_model_json2 == arbitrary_secret_metadata_model_json
 
-class TestModel_ArbitrarySecretMetadataPatch():
+
+class TestModel_ArbitrarySecretMetadataPatch:
     """
     Test Class for ArbitrarySecretMetadataPatch
     """
@@ -4980,7 +5701,7 @@ class TestModel_ArbitrarySecretMetadataPatch():
         arbitrary_secret_metadata_patch_model_json['name'] = 'my-secret-example'
         arbitrary_secret_metadata_patch_model_json['description'] = 'Extended description for this secret.'
         arbitrary_secret_metadata_patch_model_json['labels'] = ['my-label']
-        arbitrary_secret_metadata_patch_model_json['custom_metadata'] = {'foo': 'bar'}
+        arbitrary_secret_metadata_patch_model_json['custom_metadata'] = {'key': 'value'}
         arbitrary_secret_metadata_patch_model_json['expiration_date'] = '2033-04-12T23:20:50.520000Z'
 
         # Construct a model instance of ArbitrarySecretMetadataPatch by calling from_dict on the json representation
@@ -4998,7 +5719,8 @@ class TestModel_ArbitrarySecretMetadataPatch():
         arbitrary_secret_metadata_patch_model_json2 = arbitrary_secret_metadata_patch_model.to_dict()
         assert arbitrary_secret_metadata_patch_model_json2 == arbitrary_secret_metadata_patch_model_json
 
-class TestModel_ArbitrarySecretPrototype():
+
+class TestModel_ArbitrarySecretPrototype:
     """
     Test Class for ArbitrarySecretPrototype
     """
@@ -5010,7 +5732,7 @@ class TestModel_ArbitrarySecretPrototype():
 
         # Construct a json representation of a ArbitrarySecretPrototype model
         arbitrary_secret_prototype_model_json = {}
-        arbitrary_secret_prototype_model_json['custom_metadata'] = {'foo': 'bar'}
+        arbitrary_secret_prototype_model_json['custom_metadata'] = {'key': 'value'}
         arbitrary_secret_prototype_model_json['description'] = 'Extended description for this secret.'
         arbitrary_secret_prototype_model_json['expiration_date'] = '2033-04-12T23:20:50.520000Z'
         arbitrary_secret_prototype_model_json['labels'] = ['my-label']
@@ -5018,7 +5740,7 @@ class TestModel_ArbitrarySecretPrototype():
         arbitrary_secret_prototype_model_json['secret_group_id'] = 'default'
         arbitrary_secret_prototype_model_json['secret_type'] = 'arbitrary'
         arbitrary_secret_prototype_model_json['payload'] = 'secret-credentials'
-        arbitrary_secret_prototype_model_json['version_custom_metadata'] = {'foo': 'bar'}
+        arbitrary_secret_prototype_model_json['version_custom_metadata'] = {'key': 'value'}
 
         # Construct a model instance of ArbitrarySecretPrototype by calling from_dict on the json representation
         arbitrary_secret_prototype_model = ArbitrarySecretPrototype.from_dict(arbitrary_secret_prototype_model_json)
@@ -5035,7 +5757,8 @@ class TestModel_ArbitrarySecretPrototype():
         arbitrary_secret_prototype_model_json2 = arbitrary_secret_prototype_model.to_dict()
         assert arbitrary_secret_prototype_model_json2 == arbitrary_secret_prototype_model_json
 
-class TestModel_ArbitrarySecretVersion():
+
+class TestModel_ArbitrarySecretVersion:
     """
     Test Class for ArbitrarySecretVersion
     """
@@ -5055,7 +5778,7 @@ class TestModel_ArbitrarySecretVersion():
         arbitrary_secret_version_model_json['secret_group_id'] = 'default'
         arbitrary_secret_version_model_json['payload_available'] = True
         arbitrary_secret_version_model_json['alias'] = 'current'
-        arbitrary_secret_version_model_json['version_custom_metadata'] = {'foo': 'bar'}
+        arbitrary_secret_version_model_json['version_custom_metadata'] = {'key': 'value'}
         arbitrary_secret_version_model_json['secret_id'] = 'b49ad24d-81d4-5ebc-b9b9-b0937d1c84d5'
         arbitrary_secret_version_model_json['expiration_date'] = '2033-04-12T23:20:50.520000Z'
         arbitrary_secret_version_model_json['payload'] = 'secret-credentials'
@@ -5075,7 +5798,8 @@ class TestModel_ArbitrarySecretVersion():
         arbitrary_secret_version_model_json2 = arbitrary_secret_version_model.to_dict()
         assert arbitrary_secret_version_model_json2 == arbitrary_secret_version_model_json
 
-class TestModel_ArbitrarySecretVersionMetadata():
+
+class TestModel_ArbitrarySecretVersionMetadata:
     """
     Test Class for ArbitrarySecretVersionMetadata
     """
@@ -5095,7 +5819,7 @@ class TestModel_ArbitrarySecretVersionMetadata():
         arbitrary_secret_version_metadata_model_json['secret_group_id'] = 'default'
         arbitrary_secret_version_metadata_model_json['payload_available'] = True
         arbitrary_secret_version_metadata_model_json['alias'] = 'current'
-        arbitrary_secret_version_metadata_model_json['version_custom_metadata'] = {'foo': 'bar'}
+        arbitrary_secret_version_metadata_model_json['version_custom_metadata'] = {'key': 'value'}
         arbitrary_secret_version_metadata_model_json['secret_id'] = 'b49ad24d-81d4-5ebc-b9b9-b0937d1c84d5'
         arbitrary_secret_version_metadata_model_json['expiration_date'] = '2033-04-12T23:20:50.520000Z'
 
@@ -5114,7 +5838,8 @@ class TestModel_ArbitrarySecretVersionMetadata():
         arbitrary_secret_version_metadata_model_json2 = arbitrary_secret_version_metadata_model.to_dict()
         assert arbitrary_secret_version_metadata_model_json2 == arbitrary_secret_version_metadata_model_json
 
-class TestModel_ArbitrarySecretVersionPrototype():
+
+class TestModel_ArbitrarySecretVersionPrototype:
     """
     Test Class for ArbitrarySecretVersionPrototype
     """
@@ -5127,8 +5852,8 @@ class TestModel_ArbitrarySecretVersionPrototype():
         # Construct a json representation of a ArbitrarySecretVersionPrototype model
         arbitrary_secret_version_prototype_model_json = {}
         arbitrary_secret_version_prototype_model_json['payload'] = 'secret-credentials'
-        arbitrary_secret_version_prototype_model_json['custom_metadata'] = {'foo': 'bar'}
-        arbitrary_secret_version_prototype_model_json['version_custom_metadata'] = {'foo': 'bar'}
+        arbitrary_secret_version_prototype_model_json['custom_metadata'] = {'key': 'value'}
+        arbitrary_secret_version_prototype_model_json['version_custom_metadata'] = {'key': 'value'}
 
         # Construct a model instance of ArbitrarySecretVersionPrototype by calling from_dict on the json representation
         arbitrary_secret_version_prototype_model = ArbitrarySecretVersionPrototype.from_dict(arbitrary_secret_version_prototype_model_json)
@@ -5145,7 +5870,8 @@ class TestModel_ArbitrarySecretVersionPrototype():
         arbitrary_secret_version_prototype_model_json2 = arbitrary_secret_version_prototype_model.to_dict()
         assert arbitrary_secret_version_prototype_model_json2 == arbitrary_secret_version_prototype_model_json
 
-class TestModel_CommonRotationPolicy():
+
+class TestModel_CommonRotationPolicy:
     """
     Test Class for CommonRotationPolicy
     """
@@ -5176,7 +5902,8 @@ class TestModel_CommonRotationPolicy():
         common_rotation_policy_model_json2 = common_rotation_policy_model.to_dict()
         assert common_rotation_policy_model_json2 == common_rotation_policy_model_json
 
-class TestModel_IAMCredentialsConfiguration():
+
+class TestModel_IAMCredentialsConfiguration:
     """
     Test Class for IAMCredentialsConfiguration
     """
@@ -5210,7 +5937,8 @@ class TestModel_IAMCredentialsConfiguration():
         iam_credentials_configuration_model_json2 = iam_credentials_configuration_model.to_dict()
         assert iam_credentials_configuration_model_json2 == iam_credentials_configuration_model_json
 
-class TestModel_IAMCredentialsConfigurationMetadata():
+
+class TestModel_IAMCredentialsConfigurationMetadata:
     """
     Test Class for IAMCredentialsConfigurationMetadata
     """
@@ -5244,7 +5972,8 @@ class TestModel_IAMCredentialsConfigurationMetadata():
         iam_credentials_configuration_metadata_model_json2 = iam_credentials_configuration_metadata_model.to_dict()
         assert iam_credentials_configuration_metadata_model_json2 == iam_credentials_configuration_metadata_model_json
 
-class TestModel_IAMCredentialsConfigurationPatch():
+
+class TestModel_IAMCredentialsConfigurationPatch:
     """
     Test Class for IAMCredentialsConfigurationPatch
     """
@@ -5273,7 +6002,8 @@ class TestModel_IAMCredentialsConfigurationPatch():
         iam_credentials_configuration_patch_model_json2 = iam_credentials_configuration_patch_model.to_dict()
         assert iam_credentials_configuration_patch_model_json2 == iam_credentials_configuration_patch_model_json
 
-class TestModel_IAMCredentialsConfigurationPrototype():
+
+class TestModel_IAMCredentialsConfigurationPrototype:
     """
     Test Class for IAMCredentialsConfigurationPrototype
     """
@@ -5304,7 +6034,8 @@ class TestModel_IAMCredentialsConfigurationPrototype():
         iam_credentials_configuration_prototype_model_json2 = iam_credentials_configuration_prototype_model.to_dict()
         assert iam_credentials_configuration_prototype_model_json2 == iam_credentials_configuration_prototype_model_json
 
-class TestModel_IAMCredentialsSecret():
+
+class TestModel_IAMCredentialsSecret:
     """
     Test Class for IAMCredentialsSecret
     """
@@ -5316,7 +6047,7 @@ class TestModel_IAMCredentialsSecret():
 
         # Construct dict forms of any model objects needed in order to build this model.
 
-        rotation_policy_model = {} # CommonRotationPolicy
+        rotation_policy_model = {}  # CommonRotationPolicy
         rotation_policy_model['auto_rotate'] = True
         rotation_policy_model['interval'] = 1
         rotation_policy_model['unit'] = 'day'
@@ -5326,7 +6057,7 @@ class TestModel_IAMCredentialsSecret():
         iam_credentials_secret_model_json['created_by'] = 'iam-ServiceId-e4a2f0a4-3c76-4bef-b1f2-fbeae11c0f21'
         iam_credentials_secret_model_json['created_at'] = '2022-04-12T23:20:50.520000Z'
         iam_credentials_secret_model_json['crn'] = 'testString'
-        iam_credentials_secret_model_json['custom_metadata'] = {'foo': 'bar'}
+        iam_credentials_secret_model_json['custom_metadata'] = {'key': 'value'}
         iam_credentials_secret_model_json['description'] = 'Extended description for this secret.'
         iam_credentials_secret_model_json['id'] = 'b49ad24d-81d4-5ebc-b9b9-b0937d1c84d5'
         iam_credentials_secret_model_json['labels'] = ['my-label']
@@ -5334,7 +6065,7 @@ class TestModel_IAMCredentialsSecret():
         iam_credentials_secret_model_json['secret_type'] = 'iam_credentials'
         iam_credentials_secret_model_json['updated_at'] = '2022-04-12T23:20:50.520000Z'
         iam_credentials_secret_model_json['versions_total'] = 0
-        iam_credentials_secret_model_json['ttl'] = '30m'
+        iam_credentials_secret_model_json['ttl'] = '1d'
         iam_credentials_secret_model_json['access_groups'] = ['AccessGroupId-45884031-54be-4dd7-86ff-112511e92699']
         iam_credentials_secret_model_json['service_id'] = 'ServiceId-bb4ccc31-bd31-493a-bb58-52ec399800be'
         iam_credentials_secret_model_json['reuse_api_key'] = True
@@ -5355,7 +6086,8 @@ class TestModel_IAMCredentialsSecret():
         iam_credentials_secret_model_json2 = iam_credentials_secret_model.to_dict()
         assert iam_credentials_secret_model_json2 == iam_credentials_secret_model_json
 
-class TestModel_IAMCredentialsSecretMetadata():
+
+class TestModel_IAMCredentialsSecretMetadata:
     """
     Test Class for IAMCredentialsSecretMetadata
     """
@@ -5367,7 +6099,7 @@ class TestModel_IAMCredentialsSecretMetadata():
 
         # Construct dict forms of any model objects needed in order to build this model.
 
-        rotation_policy_model = {} # CommonRotationPolicy
+        rotation_policy_model = {}  # CommonRotationPolicy
         rotation_policy_model['auto_rotate'] = True
         rotation_policy_model['interval'] = 1
         rotation_policy_model['unit'] = 'day'
@@ -5377,7 +6109,7 @@ class TestModel_IAMCredentialsSecretMetadata():
         iam_credentials_secret_metadata_model_json['created_by'] = 'iam-ServiceId-e4a2f0a4-3c76-4bef-b1f2-fbeae11c0f21'
         iam_credentials_secret_metadata_model_json['created_at'] = '2022-04-12T23:20:50.520000Z'
         iam_credentials_secret_metadata_model_json['crn'] = 'testString'
-        iam_credentials_secret_metadata_model_json['custom_metadata'] = {'foo': 'bar'}
+        iam_credentials_secret_metadata_model_json['custom_metadata'] = {'key': 'value'}
         iam_credentials_secret_metadata_model_json['description'] = 'Extended description for this secret.'
         iam_credentials_secret_metadata_model_json['id'] = 'b49ad24d-81d4-5ebc-b9b9-b0937d1c84d5'
         iam_credentials_secret_metadata_model_json['labels'] = ['my-label']
@@ -5385,7 +6117,7 @@ class TestModel_IAMCredentialsSecretMetadata():
         iam_credentials_secret_metadata_model_json['secret_type'] = 'iam_credentials'
         iam_credentials_secret_metadata_model_json['updated_at'] = '2022-04-12T23:20:50.520000Z'
         iam_credentials_secret_metadata_model_json['versions_total'] = 0
-        iam_credentials_secret_metadata_model_json['ttl'] = '30m'
+        iam_credentials_secret_metadata_model_json['ttl'] = '1d'
         iam_credentials_secret_metadata_model_json['access_groups'] = ['AccessGroupId-45884031-54be-4dd7-86ff-112511e92699']
         iam_credentials_secret_metadata_model_json['service_id'] = 'ServiceId-bb4ccc31-bd31-493a-bb58-52ec399800be'
         iam_credentials_secret_metadata_model_json['reuse_api_key'] = True
@@ -5406,7 +6138,8 @@ class TestModel_IAMCredentialsSecretMetadata():
         iam_credentials_secret_metadata_model_json2 = iam_credentials_secret_metadata_model.to_dict()
         assert iam_credentials_secret_metadata_model_json2 == iam_credentials_secret_metadata_model_json
 
-class TestModel_IAMCredentialsSecretMetadataPatch():
+
+class TestModel_IAMCredentialsSecretMetadataPatch:
     """
     Test Class for IAMCredentialsSecretMetadataPatch
     """
@@ -5418,7 +6151,7 @@ class TestModel_IAMCredentialsSecretMetadataPatch():
 
         # Construct dict forms of any model objects needed in order to build this model.
 
-        rotation_policy_model = {} # CommonRotationPolicy
+        rotation_policy_model = {}  # CommonRotationPolicy
         rotation_policy_model['auto_rotate'] = True
         rotation_policy_model['interval'] = 1
         rotation_policy_model['unit'] = 'day'
@@ -5428,8 +6161,8 @@ class TestModel_IAMCredentialsSecretMetadataPatch():
         iam_credentials_secret_metadata_patch_model_json['name'] = 'my-secret-example'
         iam_credentials_secret_metadata_patch_model_json['description'] = 'Extended description for this secret.'
         iam_credentials_secret_metadata_patch_model_json['labels'] = ['my-label']
-        iam_credentials_secret_metadata_patch_model_json['custom_metadata'] = {'foo': 'bar'}
-        iam_credentials_secret_metadata_patch_model_json['ttl'] = '30m'
+        iam_credentials_secret_metadata_patch_model_json['custom_metadata'] = {'key': 'value'}
+        iam_credentials_secret_metadata_patch_model_json['ttl'] = '1d'
         iam_credentials_secret_metadata_patch_model_json['rotation'] = rotation_policy_model
 
         # Construct a model instance of IAMCredentialsSecretMetadataPatch by calling from_dict on the json representation
@@ -5447,7 +6180,8 @@ class TestModel_IAMCredentialsSecretMetadataPatch():
         iam_credentials_secret_metadata_patch_model_json2 = iam_credentials_secret_metadata_patch_model.to_dict()
         assert iam_credentials_secret_metadata_patch_model_json2 == iam_credentials_secret_metadata_patch_model_json
 
-class TestModel_IAMCredentialsSecretPrototype():
+
+class TestModel_IAMCredentialsSecretPrototype:
     """
     Test Class for IAMCredentialsSecretPrototype
     """
@@ -5459,7 +6193,7 @@ class TestModel_IAMCredentialsSecretPrototype():
 
         # Construct dict forms of any model objects needed in order to build this model.
 
-        rotation_policy_model = {} # CommonRotationPolicy
+        rotation_policy_model = {}  # CommonRotationPolicy
         rotation_policy_model['auto_rotate'] = True
         rotation_policy_model['interval'] = 1
         rotation_policy_model['unit'] = 'day'
@@ -5471,13 +6205,13 @@ class TestModel_IAMCredentialsSecretPrototype():
         iam_credentials_secret_prototype_model_json['description'] = 'Extended description for this secret.'
         iam_credentials_secret_prototype_model_json['secret_group_id'] = 'default'
         iam_credentials_secret_prototype_model_json['labels'] = ['my-label']
-        iam_credentials_secret_prototype_model_json['ttl'] = '30m'
+        iam_credentials_secret_prototype_model_json['ttl'] = '1d'
         iam_credentials_secret_prototype_model_json['access_groups'] = ['AccessGroupId-45884031-54be-4dd7-86ff-112511e92699']
         iam_credentials_secret_prototype_model_json['service_id'] = 'ServiceId-bb4ccc31-bd31-493a-bb58-52ec399800be'
         iam_credentials_secret_prototype_model_json['reuse_api_key'] = True
         iam_credentials_secret_prototype_model_json['rotation'] = rotation_policy_model
-        iam_credentials_secret_prototype_model_json['custom_metadata'] = {'foo': 'bar'}
-        iam_credentials_secret_prototype_model_json['version_custom_metadata'] = {'foo': 'bar'}
+        iam_credentials_secret_prototype_model_json['custom_metadata'] = {'key': 'value'}
+        iam_credentials_secret_prototype_model_json['version_custom_metadata'] = {'key': 'value'}
 
         # Construct a model instance of IAMCredentialsSecretPrototype by calling from_dict on the json representation
         iam_credentials_secret_prototype_model = IAMCredentialsSecretPrototype.from_dict(iam_credentials_secret_prototype_model_json)
@@ -5494,7 +6228,8 @@ class TestModel_IAMCredentialsSecretPrototype():
         iam_credentials_secret_prototype_model_json2 = iam_credentials_secret_prototype_model.to_dict()
         assert iam_credentials_secret_prototype_model_json2 == iam_credentials_secret_prototype_model_json
 
-class TestModel_IAMCredentialsSecretRestoreFromVersionPrototype():
+
+class TestModel_IAMCredentialsSecretRestoreFromVersionPrototype:
     """
     Test Class for IAMCredentialsSecretRestoreFromVersionPrototype
     """
@@ -5507,8 +6242,8 @@ class TestModel_IAMCredentialsSecretRestoreFromVersionPrototype():
         # Construct a json representation of a IAMCredentialsSecretRestoreFromVersionPrototype model
         iam_credentials_secret_restore_from_version_prototype_model_json = {}
         iam_credentials_secret_restore_from_version_prototype_model_json['restore_from_version'] = 'current'
-        iam_credentials_secret_restore_from_version_prototype_model_json['custom_metadata'] = {'foo': 'bar'}
-        iam_credentials_secret_restore_from_version_prototype_model_json['version_custom_metadata'] = {'foo': 'bar'}
+        iam_credentials_secret_restore_from_version_prototype_model_json['custom_metadata'] = {'key': 'value'}
+        iam_credentials_secret_restore_from_version_prototype_model_json['version_custom_metadata'] = {'key': 'value'}
 
         # Construct a model instance of IAMCredentialsSecretRestoreFromVersionPrototype by calling from_dict on the json representation
         iam_credentials_secret_restore_from_version_prototype_model = IAMCredentialsSecretRestoreFromVersionPrototype.from_dict(iam_credentials_secret_restore_from_version_prototype_model_json)
@@ -5525,7 +6260,8 @@ class TestModel_IAMCredentialsSecretRestoreFromVersionPrototype():
         iam_credentials_secret_restore_from_version_prototype_model_json2 = iam_credentials_secret_restore_from_version_prototype_model.to_dict()
         assert iam_credentials_secret_restore_from_version_prototype_model_json2 == iam_credentials_secret_restore_from_version_prototype_model_json
 
-class TestModel_IAMCredentialsSecretVersion():
+
+class TestModel_IAMCredentialsSecretVersion:
     """
     Test Class for IAMCredentialsSecretVersion
     """
@@ -5545,7 +6281,7 @@ class TestModel_IAMCredentialsSecretVersion():
         iam_credentials_secret_version_model_json['secret_group_id'] = 'default'
         iam_credentials_secret_version_model_json['payload_available'] = True
         iam_credentials_secret_version_model_json['alias'] = 'current'
-        iam_credentials_secret_version_model_json['version_custom_metadata'] = {'foo': 'bar'}
+        iam_credentials_secret_version_model_json['version_custom_metadata'] = {'key': 'value'}
         iam_credentials_secret_version_model_json['secret_id'] = 'b49ad24d-81d4-5ebc-b9b9-b0937d1c84d5'
         iam_credentials_secret_version_model_json['service_id'] = 'ServiceId-bb4ccc31-bd31-493a-bb58-52ec399800be'
 
@@ -5564,7 +6300,8 @@ class TestModel_IAMCredentialsSecretVersion():
         iam_credentials_secret_version_model_json2 = iam_credentials_secret_version_model.to_dict()
         assert iam_credentials_secret_version_model_json2 == iam_credentials_secret_version_model_json
 
-class TestModel_IAMCredentialsSecretVersionMetadata():
+
+class TestModel_IAMCredentialsSecretVersionMetadata:
     """
     Test Class for IAMCredentialsSecretVersionMetadata
     """
@@ -5584,7 +6321,7 @@ class TestModel_IAMCredentialsSecretVersionMetadata():
         iam_credentials_secret_version_metadata_model_json['secret_group_id'] = 'default'
         iam_credentials_secret_version_metadata_model_json['payload_available'] = True
         iam_credentials_secret_version_metadata_model_json['alias'] = 'current'
-        iam_credentials_secret_version_metadata_model_json['version_custom_metadata'] = {'foo': 'bar'}
+        iam_credentials_secret_version_metadata_model_json['version_custom_metadata'] = {'key': 'value'}
         iam_credentials_secret_version_metadata_model_json['secret_id'] = 'b49ad24d-81d4-5ebc-b9b9-b0937d1c84d5'
         iam_credentials_secret_version_metadata_model_json['service_id'] = 'ServiceId-bb4ccc31-bd31-493a-bb58-52ec399800be'
 
@@ -5603,7 +6340,8 @@ class TestModel_IAMCredentialsSecretVersionMetadata():
         iam_credentials_secret_version_metadata_model_json2 = iam_credentials_secret_version_metadata_model.to_dict()
         assert iam_credentials_secret_version_metadata_model_json2 == iam_credentials_secret_version_metadata_model_json
 
-class TestModel_IAMCredentialsSecretVersionPrototype():
+
+class TestModel_IAMCredentialsSecretVersionPrototype:
     """
     Test Class for IAMCredentialsSecretVersionPrototype
     """
@@ -5615,8 +6353,8 @@ class TestModel_IAMCredentialsSecretVersionPrototype():
 
         # Construct a json representation of a IAMCredentialsSecretVersionPrototype model
         iam_credentials_secret_version_prototype_model_json = {}
-        iam_credentials_secret_version_prototype_model_json['custom_metadata'] = {'foo': 'bar'}
-        iam_credentials_secret_version_prototype_model_json['version_custom_metadata'] = {'foo': 'bar'}
+        iam_credentials_secret_version_prototype_model_json['custom_metadata'] = {'key': 'value'}
+        iam_credentials_secret_version_prototype_model_json['version_custom_metadata'] = {'key': 'value'}
 
         # Construct a model instance of IAMCredentialsSecretVersionPrototype by calling from_dict on the json representation
         iam_credentials_secret_version_prototype_model = IAMCredentialsSecretVersionPrototype.from_dict(iam_credentials_secret_version_prototype_model_json)
@@ -5633,7 +6371,8 @@ class TestModel_IAMCredentialsSecretVersionPrototype():
         iam_credentials_secret_version_prototype_model_json2 = iam_credentials_secret_version_prototype_model.to_dict()
         assert iam_credentials_secret_version_prototype_model_json2 == iam_credentials_secret_version_prototype_model_json
 
-class TestModel_ImportedCertificate():
+
+class TestModel_ImportedCertificate:
     """
     Test Class for ImportedCertificate
     """
@@ -5645,7 +6384,7 @@ class TestModel_ImportedCertificate():
 
         # Construct dict forms of any model objects needed in order to build this model.
 
-        certificate_validity_model = {} # CertificateValidity
+        certificate_validity_model = {}  # CertificateValidity
         certificate_validity_model['not_before'] = '2025-04-12T23:20:50Z'
         certificate_validity_model['not_after'] = '2025-04-12T23:20:50Z'
 
@@ -5654,7 +6393,7 @@ class TestModel_ImportedCertificate():
         imported_certificate_model_json['created_by'] = 'iam-ServiceId-e4a2f0a4-3c76-4bef-b1f2-fbeae11c0f21'
         imported_certificate_model_json['created_at'] = '2022-04-12T23:20:50.520000Z'
         imported_certificate_model_json['crn'] = 'testString'
-        imported_certificate_model_json['custom_metadata'] = {'foo': 'bar'}
+        imported_certificate_model_json['custom_metadata'] = {'key': 'value'}
         imported_certificate_model_json['description'] = 'Extended description for this secret.'
         imported_certificate_model_json['id'] = 'b49ad24d-81d4-5ebc-b9b9-b0937d1c84d5'
         imported_certificate_model_json['labels'] = ['my-label']
@@ -5690,7 +6429,8 @@ class TestModel_ImportedCertificate():
         imported_certificate_model_json2 = imported_certificate_model.to_dict()
         assert imported_certificate_model_json2 == imported_certificate_model_json
 
-class TestModel_ImportedCertificateMetadata():
+
+class TestModel_ImportedCertificateMetadata:
     """
     Test Class for ImportedCertificateMetadata
     """
@@ -5702,7 +6442,7 @@ class TestModel_ImportedCertificateMetadata():
 
         # Construct dict forms of any model objects needed in order to build this model.
 
-        certificate_validity_model = {} # CertificateValidity
+        certificate_validity_model = {}  # CertificateValidity
         certificate_validity_model['not_before'] = '2025-04-12T23:20:50Z'
         certificate_validity_model['not_after'] = '2025-04-12T23:20:50Z'
 
@@ -5711,7 +6451,7 @@ class TestModel_ImportedCertificateMetadata():
         imported_certificate_metadata_model_json['created_by'] = 'iam-ServiceId-e4a2f0a4-3c76-4bef-b1f2-fbeae11c0f21'
         imported_certificate_metadata_model_json['created_at'] = '2022-04-12T23:20:50.520000Z'
         imported_certificate_metadata_model_json['crn'] = 'testString'
-        imported_certificate_metadata_model_json['custom_metadata'] = {'foo': 'bar'}
+        imported_certificate_metadata_model_json['custom_metadata'] = {'key': 'value'}
         imported_certificate_metadata_model_json['description'] = 'Extended description for this secret.'
         imported_certificate_metadata_model_json['id'] = 'b49ad24d-81d4-5ebc-b9b9-b0937d1c84d5'
         imported_certificate_metadata_model_json['labels'] = ['my-label']
@@ -5744,7 +6484,8 @@ class TestModel_ImportedCertificateMetadata():
         imported_certificate_metadata_model_json2 = imported_certificate_metadata_model.to_dict()
         assert imported_certificate_metadata_model_json2 == imported_certificate_metadata_model_json
 
-class TestModel_ImportedCertificateMetadataPatch():
+
+class TestModel_ImportedCertificateMetadataPatch:
     """
     Test Class for ImportedCertificateMetadataPatch
     """
@@ -5759,7 +6500,7 @@ class TestModel_ImportedCertificateMetadataPatch():
         imported_certificate_metadata_patch_model_json['name'] = 'my-secret-example'
         imported_certificate_metadata_patch_model_json['description'] = 'Extended description for this secret.'
         imported_certificate_metadata_patch_model_json['labels'] = ['my-label']
-        imported_certificate_metadata_patch_model_json['custom_metadata'] = {'foo': 'bar'}
+        imported_certificate_metadata_patch_model_json['custom_metadata'] = {'key': 'value'}
 
         # Construct a model instance of ImportedCertificateMetadataPatch by calling from_dict on the json representation
         imported_certificate_metadata_patch_model = ImportedCertificateMetadataPatch.from_dict(imported_certificate_metadata_patch_model_json)
@@ -5776,7 +6517,8 @@ class TestModel_ImportedCertificateMetadataPatch():
         imported_certificate_metadata_patch_model_json2 = imported_certificate_metadata_patch_model.to_dict()
         assert imported_certificate_metadata_patch_model_json2 == imported_certificate_metadata_patch_model_json
 
-class TestModel_ImportedCertificatePrototype():
+
+class TestModel_ImportedCertificatePrototype:
     """
     Test Class for ImportedCertificatePrototype
     """
@@ -5796,8 +6538,8 @@ class TestModel_ImportedCertificatePrototype():
         imported_certificate_prototype_model_json['certificate'] = 'testString'
         imported_certificate_prototype_model_json['intermediate'] = 'testString'
         imported_certificate_prototype_model_json['private_key'] = 'testString'
-        imported_certificate_prototype_model_json['custom_metadata'] = {'foo': 'bar'}
-        imported_certificate_prototype_model_json['version_custom_metadata'] = {'foo': 'bar'}
+        imported_certificate_prototype_model_json['custom_metadata'] = {'key': 'value'}
+        imported_certificate_prototype_model_json['version_custom_metadata'] = {'key': 'value'}
 
         # Construct a model instance of ImportedCertificatePrototype by calling from_dict on the json representation
         imported_certificate_prototype_model = ImportedCertificatePrototype.from_dict(imported_certificate_prototype_model_json)
@@ -5814,7 +6556,8 @@ class TestModel_ImportedCertificatePrototype():
         imported_certificate_prototype_model_json2 = imported_certificate_prototype_model.to_dict()
         assert imported_certificate_prototype_model_json2 == imported_certificate_prototype_model_json
 
-class TestModel_ImportedCertificateVersion():
+
+class TestModel_ImportedCertificateVersion:
     """
     Test Class for ImportedCertificateVersion
     """
@@ -5826,7 +6569,7 @@ class TestModel_ImportedCertificateVersion():
 
         # Construct dict forms of any model objects needed in order to build this model.
 
-        certificate_validity_model = {} # CertificateValidity
+        certificate_validity_model = {}  # CertificateValidity
         certificate_validity_model['not_before'] = '2025-04-12T23:20:50Z'
         certificate_validity_model['not_after'] = '2025-04-12T23:20:50Z'
 
@@ -5840,7 +6583,7 @@ class TestModel_ImportedCertificateVersion():
         imported_certificate_version_model_json['secret_group_id'] = 'default'
         imported_certificate_version_model_json['payload_available'] = True
         imported_certificate_version_model_json['alias'] = 'current'
-        imported_certificate_version_model_json['version_custom_metadata'] = {'foo': 'bar'}
+        imported_certificate_version_model_json['version_custom_metadata'] = {'key': 'value'}
         imported_certificate_version_model_json['secret_id'] = 'b49ad24d-81d4-5ebc-b9b9-b0937d1c84d5'
         imported_certificate_version_model_json['expiration_date'] = '2033-04-12T23:20:50.520000Z'
         imported_certificate_version_model_json['serial_number'] = '38:eb:01:a3:22:e9:de:55:24:56:9b:14:cb:e2:f3:e3:e2:fb:f5:18'
@@ -5864,7 +6607,8 @@ class TestModel_ImportedCertificateVersion():
         imported_certificate_version_model_json2 = imported_certificate_version_model.to_dict()
         assert imported_certificate_version_model_json2 == imported_certificate_version_model_json
 
-class TestModel_ImportedCertificateVersionMetadata():
+
+class TestModel_ImportedCertificateVersionMetadata:
     """
     Test Class for ImportedCertificateVersionMetadata
     """
@@ -5876,7 +6620,7 @@ class TestModel_ImportedCertificateVersionMetadata():
 
         # Construct dict forms of any model objects needed in order to build this model.
 
-        certificate_validity_model = {} # CertificateValidity
+        certificate_validity_model = {}  # CertificateValidity
         certificate_validity_model['not_before'] = '2025-04-12T23:20:50Z'
         certificate_validity_model['not_after'] = '2025-04-12T23:20:50Z'
 
@@ -5890,7 +6634,7 @@ class TestModel_ImportedCertificateVersionMetadata():
         imported_certificate_version_metadata_model_json['secret_group_id'] = 'default'
         imported_certificate_version_metadata_model_json['payload_available'] = True
         imported_certificate_version_metadata_model_json['alias'] = 'current'
-        imported_certificate_version_metadata_model_json['version_custom_metadata'] = {'foo': 'bar'}
+        imported_certificate_version_metadata_model_json['version_custom_metadata'] = {'key': 'value'}
         imported_certificate_version_metadata_model_json['secret_id'] = 'b49ad24d-81d4-5ebc-b9b9-b0937d1c84d5'
         imported_certificate_version_metadata_model_json['expiration_date'] = '2033-04-12T23:20:50.520000Z'
         imported_certificate_version_metadata_model_json['serial_number'] = '38:eb:01:a3:22:e9:de:55:24:56:9b:14:cb:e2:f3:e3:e2:fb:f5:18'
@@ -5911,7 +6655,8 @@ class TestModel_ImportedCertificateVersionMetadata():
         imported_certificate_version_metadata_model_json2 = imported_certificate_version_metadata_model.to_dict()
         assert imported_certificate_version_metadata_model_json2 == imported_certificate_version_metadata_model_json
 
-class TestModel_ImportedCertificateVersionPrototype():
+
+class TestModel_ImportedCertificateVersionPrototype:
     """
     Test Class for ImportedCertificateVersionPrototype
     """
@@ -5926,8 +6671,8 @@ class TestModel_ImportedCertificateVersionPrototype():
         imported_certificate_version_prototype_model_json['certificate'] = 'testString'
         imported_certificate_version_prototype_model_json['intermediate'] = 'testString'
         imported_certificate_version_prototype_model_json['private_key'] = 'testString'
-        imported_certificate_version_prototype_model_json['custom_metadata'] = {'foo': 'bar'}
-        imported_certificate_version_prototype_model_json['version_custom_metadata'] = {'foo': 'bar'}
+        imported_certificate_version_prototype_model_json['custom_metadata'] = {'key': 'value'}
+        imported_certificate_version_prototype_model_json['version_custom_metadata'] = {'key': 'value'}
 
         # Construct a model instance of ImportedCertificateVersionPrototype by calling from_dict on the json representation
         imported_certificate_version_prototype_model = ImportedCertificateVersionPrototype.from_dict(imported_certificate_version_prototype_model_json)
@@ -5944,7 +6689,8 @@ class TestModel_ImportedCertificateVersionPrototype():
         imported_certificate_version_prototype_model_json2 = imported_certificate_version_prototype_model.to_dict()
         assert imported_certificate_version_prototype_model_json2 == imported_certificate_version_prototype_model_json
 
-class TestModel_KVSecret():
+
+class TestModel_KVSecret:
     """
     Test Class for KVSecret
     """
@@ -5959,7 +6705,7 @@ class TestModel_KVSecret():
         kv_secret_model_json['created_by'] = 'iam-ServiceId-e4a2f0a4-3c76-4bef-b1f2-fbeae11c0f21'
         kv_secret_model_json['created_at'] = '2022-04-12T23:20:50.520000Z'
         kv_secret_model_json['crn'] = 'testString'
-        kv_secret_model_json['custom_metadata'] = {'foo': 'bar'}
+        kv_secret_model_json['custom_metadata'] = {'key': 'value'}
         kv_secret_model_json['description'] = 'Extended description for this secret.'
         kv_secret_model_json['id'] = 'b49ad24d-81d4-5ebc-b9b9-b0937d1c84d5'
         kv_secret_model_json['labels'] = ['my-label']
@@ -5967,7 +6713,7 @@ class TestModel_KVSecret():
         kv_secret_model_json['secret_type'] = 'kv'
         kv_secret_model_json['updated_at'] = '2022-04-12T23:20:50.520000Z'
         kv_secret_model_json['versions_total'] = 0
-        kv_secret_model_json['data'] = {'foo': 'bar'}
+        kv_secret_model_json['data'] = {'key': 'value'}
 
         # Construct a model instance of KVSecret by calling from_dict on the json representation
         kv_secret_model = KVSecret.from_dict(kv_secret_model_json)
@@ -5984,7 +6730,8 @@ class TestModel_KVSecret():
         kv_secret_model_json2 = kv_secret_model.to_dict()
         assert kv_secret_model_json2 == kv_secret_model_json
 
-class TestModel_KVSecretMetadata():
+
+class TestModel_KVSecretMetadata:
     """
     Test Class for KVSecretMetadata
     """
@@ -5999,7 +6746,7 @@ class TestModel_KVSecretMetadata():
         kv_secret_metadata_model_json['created_by'] = 'iam-ServiceId-e4a2f0a4-3c76-4bef-b1f2-fbeae11c0f21'
         kv_secret_metadata_model_json['created_at'] = '2022-04-12T23:20:50.520000Z'
         kv_secret_metadata_model_json['crn'] = 'testString'
-        kv_secret_metadata_model_json['custom_metadata'] = {'foo': 'bar'}
+        kv_secret_metadata_model_json['custom_metadata'] = {'key': 'value'}
         kv_secret_metadata_model_json['description'] = 'Extended description for this secret.'
         kv_secret_metadata_model_json['id'] = 'b49ad24d-81d4-5ebc-b9b9-b0937d1c84d5'
         kv_secret_metadata_model_json['labels'] = ['my-label']
@@ -6023,7 +6770,8 @@ class TestModel_KVSecretMetadata():
         kv_secret_metadata_model_json2 = kv_secret_metadata_model.to_dict()
         assert kv_secret_metadata_model_json2 == kv_secret_metadata_model_json
 
-class TestModel_KVSecretMetadataPatch():
+
+class TestModel_KVSecretMetadataPatch:
     """
     Test Class for KVSecretMetadataPatch
     """
@@ -6038,7 +6786,7 @@ class TestModel_KVSecretMetadataPatch():
         kv_secret_metadata_patch_model_json['name'] = 'my-secret-example'
         kv_secret_metadata_patch_model_json['description'] = 'Extended description for this secret.'
         kv_secret_metadata_patch_model_json['labels'] = ['my-label']
-        kv_secret_metadata_patch_model_json['custom_metadata'] = {'foo': 'bar'}
+        kv_secret_metadata_patch_model_json['custom_metadata'] = {'key': 'value'}
 
         # Construct a model instance of KVSecretMetadataPatch by calling from_dict on the json representation
         kv_secret_metadata_patch_model = KVSecretMetadataPatch.from_dict(kv_secret_metadata_patch_model_json)
@@ -6055,7 +6803,8 @@ class TestModel_KVSecretMetadataPatch():
         kv_secret_metadata_patch_model_json2 = kv_secret_metadata_patch_model.to_dict()
         assert kv_secret_metadata_patch_model_json2 == kv_secret_metadata_patch_model_json
 
-class TestModel_KVSecretPrototype():
+
+class TestModel_KVSecretPrototype:
     """
     Test Class for KVSecretPrototype
     """
@@ -6072,9 +6821,9 @@ class TestModel_KVSecretPrototype():
         kv_secret_prototype_model_json['description'] = 'Extended description for this secret.'
         kv_secret_prototype_model_json['secret_group_id'] = 'default'
         kv_secret_prototype_model_json['labels'] = ['my-label']
-        kv_secret_prototype_model_json['data'] = {'foo': 'bar'}
-        kv_secret_prototype_model_json['custom_metadata'] = {'foo': 'bar'}
-        kv_secret_prototype_model_json['version_custom_metadata'] = {'foo': 'bar'}
+        kv_secret_prototype_model_json['data'] = {'key': 'value'}
+        kv_secret_prototype_model_json['custom_metadata'] = {'key': 'value'}
+        kv_secret_prototype_model_json['version_custom_metadata'] = {'key': 'value'}
 
         # Construct a model instance of KVSecretPrototype by calling from_dict on the json representation
         kv_secret_prototype_model = KVSecretPrototype.from_dict(kv_secret_prototype_model_json)
@@ -6091,7 +6840,8 @@ class TestModel_KVSecretPrototype():
         kv_secret_prototype_model_json2 = kv_secret_prototype_model.to_dict()
         assert kv_secret_prototype_model_json2 == kv_secret_prototype_model_json
 
-class TestModel_KVSecretVersion():
+
+class TestModel_KVSecretVersion:
     """
     Test Class for KVSecretVersion
     """
@@ -6111,9 +6861,9 @@ class TestModel_KVSecretVersion():
         kv_secret_version_model_json['secret_group_id'] = 'default'
         kv_secret_version_model_json['payload_available'] = True
         kv_secret_version_model_json['alias'] = 'current'
-        kv_secret_version_model_json['version_custom_metadata'] = {'foo': 'bar'}
+        kv_secret_version_model_json['version_custom_metadata'] = {'key': 'value'}
         kv_secret_version_model_json['secret_id'] = 'b49ad24d-81d4-5ebc-b9b9-b0937d1c84d5'
-        kv_secret_version_model_json['data'] = {'foo': 'bar'}
+        kv_secret_version_model_json['data'] = {'key': 'value'}
 
         # Construct a model instance of KVSecretVersion by calling from_dict on the json representation
         kv_secret_version_model = KVSecretVersion.from_dict(kv_secret_version_model_json)
@@ -6130,7 +6880,8 @@ class TestModel_KVSecretVersion():
         kv_secret_version_model_json2 = kv_secret_version_model.to_dict()
         assert kv_secret_version_model_json2 == kv_secret_version_model_json
 
-class TestModel_KVSecretVersionMetadata():
+
+class TestModel_KVSecretVersionMetadata:
     """
     Test Class for KVSecretVersionMetadata
     """
@@ -6150,7 +6901,7 @@ class TestModel_KVSecretVersionMetadata():
         kv_secret_version_metadata_model_json['secret_group_id'] = 'default'
         kv_secret_version_metadata_model_json['payload_available'] = True
         kv_secret_version_metadata_model_json['alias'] = 'current'
-        kv_secret_version_metadata_model_json['version_custom_metadata'] = {'foo': 'bar'}
+        kv_secret_version_metadata_model_json['version_custom_metadata'] = {'key': 'value'}
         kv_secret_version_metadata_model_json['secret_id'] = 'b49ad24d-81d4-5ebc-b9b9-b0937d1c84d5'
 
         # Construct a model instance of KVSecretVersionMetadata by calling from_dict on the json representation
@@ -6168,7 +6919,8 @@ class TestModel_KVSecretVersionMetadata():
         kv_secret_version_metadata_model_json2 = kv_secret_version_metadata_model.to_dict()
         assert kv_secret_version_metadata_model_json2 == kv_secret_version_metadata_model_json
 
-class TestModel_KVSecretVersionPrototype():
+
+class TestModel_KVSecretVersionPrototype:
     """
     Test Class for KVSecretVersionPrototype
     """
@@ -6180,9 +6932,9 @@ class TestModel_KVSecretVersionPrototype():
 
         # Construct a json representation of a KVSecretVersionPrototype model
         kv_secret_version_prototype_model_json = {}
-        kv_secret_version_prototype_model_json['data'] = {'foo': 'bar'}
-        kv_secret_version_prototype_model_json['custom_metadata'] = {'foo': 'bar'}
-        kv_secret_version_prototype_model_json['version_custom_metadata'] = {'foo': 'bar'}
+        kv_secret_version_prototype_model_json['data'] = {'key': 'value'}
+        kv_secret_version_prototype_model_json['custom_metadata'] = {'key': 'value'}
+        kv_secret_version_prototype_model_json['version_custom_metadata'] = {'key': 'value'}
 
         # Construct a model instance of KVSecretVersionPrototype by calling from_dict on the json representation
         kv_secret_version_prototype_model = KVSecretVersionPrototype.from_dict(kv_secret_version_prototype_model_json)
@@ -6199,7 +6951,8 @@ class TestModel_KVSecretVersionPrototype():
         kv_secret_version_prototype_model_json2 = kv_secret_version_prototype_model.to_dict()
         assert kv_secret_version_prototype_model_json2 == kv_secret_version_prototype_model_json
 
-class TestModel_PrivateCertificate():
+
+class TestModel_PrivateCertificate:
     """
     Test Class for PrivateCertificate
     """
@@ -6211,12 +6964,12 @@ class TestModel_PrivateCertificate():
 
         # Construct dict forms of any model objects needed in order to build this model.
 
-        rotation_policy_model = {} # CommonRotationPolicy
+        rotation_policy_model = {}  # CommonRotationPolicy
         rotation_policy_model['auto_rotate'] = True
         rotation_policy_model['interval'] = 1
         rotation_policy_model['unit'] = 'day'
 
-        certificate_validity_model = {} # CertificateValidity
+        certificate_validity_model = {}  # CertificateValidity
         certificate_validity_model['not_before'] = '2025-04-12T23:20:50Z'
         certificate_validity_model['not_after'] = '2025-04-12T23:20:50Z'
 
@@ -6225,7 +6978,7 @@ class TestModel_PrivateCertificate():
         private_certificate_model_json['created_by'] = 'iam-ServiceId-e4a2f0a4-3c76-4bef-b1f2-fbeae11c0f21'
         private_certificate_model_json['created_at'] = '2022-04-12T23:20:50.520000Z'
         private_certificate_model_json['crn'] = 'testString'
-        private_certificate_model_json['custom_metadata'] = {'foo': 'bar'}
+        private_certificate_model_json['custom_metadata'] = {'key': 'value'}
         private_certificate_model_json['description'] = 'Extended description for this secret.'
         private_certificate_model_json['id'] = 'b49ad24d-81d4-5ebc-b9b9-b0937d1c84d5'
         private_certificate_model_json['labels'] = ['my-label']
@@ -6260,7 +7013,8 @@ class TestModel_PrivateCertificate():
         private_certificate_model_json2 = private_certificate_model.to_dict()
         assert private_certificate_model_json2 == private_certificate_model_json
 
-class TestModel_PrivateCertificateActionRevoke():
+
+class TestModel_PrivateCertificateActionRevoke:
     """
     Test Class for PrivateCertificateActionRevoke
     """
@@ -6289,7 +7043,8 @@ class TestModel_PrivateCertificateActionRevoke():
         private_certificate_action_revoke_model_json2 = private_certificate_action_revoke_model.to_dict()
         assert private_certificate_action_revoke_model_json2 == private_certificate_action_revoke_model_json
 
-class TestModel_PrivateCertificateActionRevokePrototype():
+
+class TestModel_PrivateCertificateActionRevokePrototype:
     """
     Test Class for PrivateCertificateActionRevokePrototype
     """
@@ -6318,7 +7073,8 @@ class TestModel_PrivateCertificateActionRevokePrototype():
         private_certificate_action_revoke_prototype_model_json2 = private_certificate_action_revoke_prototype_model.to_dict()
         assert private_certificate_action_revoke_prototype_model_json2 == private_certificate_action_revoke_prototype_model_json
 
-class TestModel_PrivateCertificateConfigurationActionRevoke():
+
+class TestModel_PrivateCertificateConfigurationActionRevoke:
     """
     Test Class for PrivateCertificateConfigurationActionRevoke
     """
@@ -6347,7 +7103,8 @@ class TestModel_PrivateCertificateConfigurationActionRevoke():
         private_certificate_configuration_action_revoke_model_json2 = private_certificate_configuration_action_revoke_model.to_dict()
         assert private_certificate_configuration_action_revoke_model_json2 == private_certificate_configuration_action_revoke_model_json
 
-class TestModel_PrivateCertificateConfigurationActionRevokePrototype():
+
+class TestModel_PrivateCertificateConfigurationActionRevokePrototype:
     """
     Test Class for PrivateCertificateConfigurationActionRevokePrototype
     """
@@ -6376,7 +7133,8 @@ class TestModel_PrivateCertificateConfigurationActionRevokePrototype():
         private_certificate_configuration_action_revoke_prototype_model_json2 = private_certificate_configuration_action_revoke_prototype_model.to_dict()
         assert private_certificate_configuration_action_revoke_prototype_model_json2 == private_certificate_configuration_action_revoke_prototype_model_json
 
-class TestModel_PrivateCertificateConfigurationActionRotateCRL():
+
+class TestModel_PrivateCertificateConfigurationActionRotateCRL:
     """
     Test Class for PrivateCertificateConfigurationActionRotateCRL
     """
@@ -6406,7 +7164,8 @@ class TestModel_PrivateCertificateConfigurationActionRotateCRL():
         private_certificate_configuration_action_rotate_crl_model_json2 = private_certificate_configuration_action_rotate_crl_model.to_dict()
         assert private_certificate_configuration_action_rotate_crl_model_json2 == private_certificate_configuration_action_rotate_crl_model_json
 
-class TestModel_PrivateCertificateConfigurationActionRotateCRLPrototype():
+
+class TestModel_PrivateCertificateConfigurationActionRotateCRLPrototype:
     """
     Test Class for PrivateCertificateConfigurationActionRotateCRLPrototype
     """
@@ -6435,7 +7194,8 @@ class TestModel_PrivateCertificateConfigurationActionRotateCRLPrototype():
         private_certificate_configuration_action_rotate_crl_prototype_model_json2 = private_certificate_configuration_action_rotate_crl_prototype_model.to_dict()
         assert private_certificate_configuration_action_rotate_crl_prototype_model_json2 == private_certificate_configuration_action_rotate_crl_prototype_model_json
 
-class TestModel_PrivateCertificateConfigurationActionSetSigned():
+
+class TestModel_PrivateCertificateConfigurationActionSetSigned:
     """
     Test Class for PrivateCertificateConfigurationActionSetSigned
     """
@@ -6465,7 +7225,8 @@ class TestModel_PrivateCertificateConfigurationActionSetSigned():
         private_certificate_configuration_action_set_signed_model_json2 = private_certificate_configuration_action_set_signed_model.to_dict()
         assert private_certificate_configuration_action_set_signed_model_json2 == private_certificate_configuration_action_set_signed_model_json
 
-class TestModel_PrivateCertificateConfigurationActionSetSignedPrototype():
+
+class TestModel_PrivateCertificateConfigurationActionSetSignedPrototype:
     """
     Test Class for PrivateCertificateConfigurationActionSetSignedPrototype
     """
@@ -6495,7 +7256,8 @@ class TestModel_PrivateCertificateConfigurationActionSetSignedPrototype():
         private_certificate_configuration_action_set_signed_prototype_model_json2 = private_certificate_configuration_action_set_signed_prototype_model.to_dict()
         assert private_certificate_configuration_action_set_signed_prototype_model_json2 == private_certificate_configuration_action_set_signed_prototype_model_json
 
-class TestModel_PrivateCertificateConfigurationActionSignCSR():
+
+class TestModel_PrivateCertificateConfigurationActionSignCSR:
     """
     Test Class for PrivateCertificateConfigurationActionSignCSR
     """
@@ -6544,7 +7306,8 @@ class TestModel_PrivateCertificateConfigurationActionSignCSR():
         private_certificate_configuration_action_sign_csr_model_json2 = private_certificate_configuration_action_sign_csr_model.to_dict()
         assert private_certificate_configuration_action_sign_csr_model_json2 == private_certificate_configuration_action_sign_csr_model_json
 
-class TestModel_PrivateCertificateConfigurationActionSignCSRPrototype():
+
+class TestModel_PrivateCertificateConfigurationActionSignCSRPrototype:
     """
     Test Class for PrivateCertificateConfigurationActionSignCSRPrototype
     """
@@ -6593,7 +7356,8 @@ class TestModel_PrivateCertificateConfigurationActionSignCSRPrototype():
         private_certificate_configuration_action_sign_csr_prototype_model_json2 = private_certificate_configuration_action_sign_csr_prototype_model.to_dict()
         assert private_certificate_configuration_action_sign_csr_prototype_model_json2 == private_certificate_configuration_action_sign_csr_prototype_model_json
 
-class TestModel_PrivateCertificateConfigurationActionSignIntermediate():
+
+class TestModel_PrivateCertificateConfigurationActionSignIntermediate:
     """
     Test Class for PrivateCertificateConfigurationActionSignIntermediate
     """
@@ -6642,7 +7406,8 @@ class TestModel_PrivateCertificateConfigurationActionSignIntermediate():
         private_certificate_configuration_action_sign_intermediate_model_json2 = private_certificate_configuration_action_sign_intermediate_model.to_dict()
         assert private_certificate_configuration_action_sign_intermediate_model_json2 == private_certificate_configuration_action_sign_intermediate_model_json
 
-class TestModel_PrivateCertificateConfigurationActionSignIntermediatePrototype():
+
+class TestModel_PrivateCertificateConfigurationActionSignIntermediatePrototype:
     """
     Test Class for PrivateCertificateConfigurationActionSignIntermediatePrototype
     """
@@ -6691,7 +7456,8 @@ class TestModel_PrivateCertificateConfigurationActionSignIntermediatePrototype()
         private_certificate_configuration_action_sign_intermediate_prototype_model_json2 = private_certificate_configuration_action_sign_intermediate_prototype_model.to_dict()
         assert private_certificate_configuration_action_sign_intermediate_prototype_model_json2 == private_certificate_configuration_action_sign_intermediate_prototype_model_json
 
-class TestModel_PrivateCertificateConfigurationCACertificate():
+
+class TestModel_PrivateCertificateConfigurationCACertificate:
     """
     Test Class for PrivateCertificateConfigurationCACertificate
     """
@@ -6720,7 +7486,8 @@ class TestModel_PrivateCertificateConfigurationCACertificate():
         private_certificate_configuration_ca_certificate_model_json2 = private_certificate_configuration_ca_certificate_model.to_dict()
         assert private_certificate_configuration_ca_certificate_model_json2 == private_certificate_configuration_ca_certificate_model_json
 
-class TestModel_PrivateCertificateConfigurationIntermediateCA():
+
+class TestModel_PrivateCertificateConfigurationIntermediateCA:
     """
     Test Class for PrivateCertificateConfigurationIntermediateCA
     """
@@ -6732,7 +7499,7 @@ class TestModel_PrivateCertificateConfigurationIntermediateCA():
 
         # Construct dict forms of any model objects needed in order to build this model.
 
-        private_certificate_ca_data_model = {} # PrivateCertificateConfigurationIntermediateCACSR
+        private_certificate_ca_data_model = {}  # PrivateCertificateConfigurationIntermediateCACSR
         private_certificate_ca_data_model['csr'] = 'testString'
         private_certificate_ca_data_model['private_key'] = 'testString'
         private_certificate_ca_data_model['private_key_type'] = 'rsa'
@@ -6745,20 +7512,21 @@ class TestModel_PrivateCertificateConfigurationIntermediateCA():
         private_certificate_configuration_intermediate_ca_model_json['created_by'] = 'iam-ServiceId-e4a2f0a4-3c76-4bef-b1f2-fbeae11c0f21'
         private_certificate_configuration_intermediate_ca_model_json['created_at'] = '2022-04-12T23:20:50.520000Z'
         private_certificate_configuration_intermediate_ca_model_json['updated_at'] = '2022-04-12T23:20:50.520000Z'
-        private_certificate_configuration_intermediate_ca_model_json['signing_method'] = 'internal'
-        private_certificate_configuration_intermediate_ca_model_json['issuer'] = 'Lets Encrypt'
-        private_certificate_configuration_intermediate_ca_model_json['crl_disable'] = True
-        private_certificate_configuration_intermediate_ca_model_json['crl_distribution_points_encoded'] = True
-        private_certificate_configuration_intermediate_ca_model_json['issuing_certificates_urls_encoded'] = True
         private_certificate_configuration_intermediate_ca_model_json['common_name'] = 'localhost'
+        private_certificate_configuration_intermediate_ca_model_json['crl_distribution_points_encoded'] = True
+        private_certificate_configuration_intermediate_ca_model_json['expiration_date'] = '2033-04-12T23:20:50.520000Z'
+        private_certificate_configuration_intermediate_ca_model_json['issuer'] = 'Lets Encrypt'
+        private_certificate_configuration_intermediate_ca_model_json['key_type'] = 'rsa'
+        private_certificate_configuration_intermediate_ca_model_json['key_bits'] = 4096
+        private_certificate_configuration_intermediate_ca_model_json['signing_method'] = 'internal'
+        private_certificate_configuration_intermediate_ca_model_json['crl_disable'] = True
+        private_certificate_configuration_intermediate_ca_model_json['issuing_certificates_urls_encoded'] = True
         private_certificate_configuration_intermediate_ca_model_json['alt_names'] = ['s1.example.com', '*.s2.example.com']
         private_certificate_configuration_intermediate_ca_model_json['ip_sans'] = '1.1.1.1, 2.2.2.2'
         private_certificate_configuration_intermediate_ca_model_json['uri_sans'] = 'testString'
         private_certificate_configuration_intermediate_ca_model_json['other_sans'] = ['2.5.4.5;UTF8:*.example.com']
         private_certificate_configuration_intermediate_ca_model_json['format'] = 'pem'
         private_certificate_configuration_intermediate_ca_model_json['private_key_format'] = 'der'
-        private_certificate_configuration_intermediate_ca_model_json['key_type'] = 'rsa'
-        private_certificate_configuration_intermediate_ca_model_json['key_bits'] = 4096
         private_certificate_configuration_intermediate_ca_model_json['exclude_cn_from_sans'] = True
         private_certificate_configuration_intermediate_ca_model_json['ou'] = ['testString']
         private_certificate_configuration_intermediate_ca_model_json['organization'] = ['testString']
@@ -6767,8 +7535,7 @@ class TestModel_PrivateCertificateConfigurationIntermediateCA():
         private_certificate_configuration_intermediate_ca_model_json['province'] = ['testString']
         private_certificate_configuration_intermediate_ca_model_json['street_address'] = ['testString']
         private_certificate_configuration_intermediate_ca_model_json['postal_code'] = ['testString']
-        private_certificate_configuration_intermediate_ca_model_json['serial_number'] = 'd9:be:fe:35:ba:09:42:b5:35:ba:09:42:b5'
-        private_certificate_configuration_intermediate_ca_model_json['expiration_date'] = '2033-04-12T23:20:50.520000Z'
+        private_certificate_configuration_intermediate_ca_model_json['serial_number'] = '38:eb:01:a3:22:e9:de:55:24:56:9b:14:cb:e2:f3:e3:e2:fb:f5:18'
         private_certificate_configuration_intermediate_ca_model_json['data'] = private_certificate_ca_data_model
 
         # Construct a model instance of PrivateCertificateConfigurationIntermediateCA by calling from_dict on the json representation
@@ -6786,7 +7553,8 @@ class TestModel_PrivateCertificateConfigurationIntermediateCA():
         private_certificate_configuration_intermediate_ca_model_json2 = private_certificate_configuration_intermediate_ca_model.to_dict()
         assert private_certificate_configuration_intermediate_ca_model_json2 == private_certificate_configuration_intermediate_ca_model_json
 
-class TestModel_PrivateCertificateConfigurationIntermediateCACSR():
+
+class TestModel_PrivateCertificateConfigurationIntermediateCACSR:
     """
     Test Class for PrivateCertificateConfigurationIntermediateCACSR
     """
@@ -6817,7 +7585,8 @@ class TestModel_PrivateCertificateConfigurationIntermediateCACSR():
         private_certificate_configuration_intermediate_cacsr_model_json2 = private_certificate_configuration_intermediate_cacsr_model.to_dict()
         assert private_certificate_configuration_intermediate_cacsr_model_json2 == private_certificate_configuration_intermediate_cacsr_model_json
 
-class TestModel_PrivateCertificateConfigurationIntermediateCAMetadata():
+
+class TestModel_PrivateCertificateConfigurationIntermediateCAMetadata:
     """
     Test Class for PrivateCertificateConfigurationIntermediateCAMetadata
     """
@@ -6835,6 +7604,13 @@ class TestModel_PrivateCertificateConfigurationIntermediateCAMetadata():
         private_certificate_configuration_intermediate_ca_metadata_model_json['created_by'] = 'iam-ServiceId-e4a2f0a4-3c76-4bef-b1f2-fbeae11c0f21'
         private_certificate_configuration_intermediate_ca_metadata_model_json['created_at'] = '2022-04-12T23:20:50.520000Z'
         private_certificate_configuration_intermediate_ca_metadata_model_json['updated_at'] = '2022-04-12T23:20:50.520000Z'
+        private_certificate_configuration_intermediate_ca_metadata_model_json['common_name'] = 'localhost'
+        private_certificate_configuration_intermediate_ca_metadata_model_json['crl_distribution_points_encoded'] = True
+        private_certificate_configuration_intermediate_ca_metadata_model_json['expiration_date'] = '2033-04-12T23:20:50.520000Z'
+        private_certificate_configuration_intermediate_ca_metadata_model_json['issuer'] = 'Lets Encrypt'
+        private_certificate_configuration_intermediate_ca_metadata_model_json['key_type'] = 'rsa'
+        private_certificate_configuration_intermediate_ca_metadata_model_json['key_bits'] = 4096
+        private_certificate_configuration_intermediate_ca_metadata_model_json['signing_method'] = 'internal'
 
         # Construct a model instance of PrivateCertificateConfigurationIntermediateCAMetadata by calling from_dict on the json representation
         private_certificate_configuration_intermediate_ca_metadata_model = PrivateCertificateConfigurationIntermediateCAMetadata.from_dict(private_certificate_configuration_intermediate_ca_metadata_model_json)
@@ -6851,7 +7627,8 @@ class TestModel_PrivateCertificateConfigurationIntermediateCAMetadata():
         private_certificate_configuration_intermediate_ca_metadata_model_json2 = private_certificate_configuration_intermediate_ca_metadata_model.to_dict()
         assert private_certificate_configuration_intermediate_ca_metadata_model_json2 == private_certificate_configuration_intermediate_ca_metadata_model_json
 
-class TestModel_PrivateCertificateConfigurationIntermediateCAPatch():
+
+class TestModel_PrivateCertificateConfigurationIntermediateCAPatch:
     """
     Test Class for PrivateCertificateConfigurationIntermediateCAPatch
     """
@@ -6884,7 +7661,8 @@ class TestModel_PrivateCertificateConfigurationIntermediateCAPatch():
         private_certificate_configuration_intermediate_ca_patch_model_json2 = private_certificate_configuration_intermediate_ca_patch_model.to_dict()
         assert private_certificate_configuration_intermediate_ca_patch_model_json2 == private_certificate_configuration_intermediate_ca_patch_model_json
 
-class TestModel_PrivateCertificateConfigurationIntermediateCAPrototype():
+
+class TestModel_PrivateCertificateConfigurationIntermediateCAPrototype:
     """
     Test Class for PrivateCertificateConfigurationIntermediateCAPrototype
     """
@@ -6939,7 +7717,8 @@ class TestModel_PrivateCertificateConfigurationIntermediateCAPrototype():
         private_certificate_configuration_intermediate_ca_prototype_model_json2 = private_certificate_configuration_intermediate_ca_prototype_model.to_dict()
         assert private_certificate_configuration_intermediate_ca_prototype_model_json2 == private_certificate_configuration_intermediate_ca_prototype_model_json
 
-class TestModel_PrivateCertificateConfigurationRootCA():
+
+class TestModel_PrivateCertificateConfigurationRootCA:
     """
     Test Class for PrivateCertificateConfigurationRootCA
     """
@@ -6951,7 +7730,7 @@ class TestModel_PrivateCertificateConfigurationRootCA():
 
         # Construct dict forms of any model objects needed in order to build this model.
 
-        private_certificate_ca_data_model = {} # PrivateCertificateConfigurationIntermediateCACSR
+        private_certificate_ca_data_model = {}  # PrivateCertificateConfigurationIntermediateCACSR
         private_certificate_ca_data_model['csr'] = 'testString'
         private_certificate_ca_data_model['private_key'] = 'testString'
         private_certificate_ca_data_model['private_key_type'] = 'rsa'
@@ -6964,18 +7743,19 @@ class TestModel_PrivateCertificateConfigurationRootCA():
         private_certificate_configuration_root_ca_model_json['created_by'] = 'iam-ServiceId-e4a2f0a4-3c76-4bef-b1f2-fbeae11c0f21'
         private_certificate_configuration_root_ca_model_json['created_at'] = '2022-04-12T23:20:50.520000Z'
         private_certificate_configuration_root_ca_model_json['updated_at'] = '2022-04-12T23:20:50.520000Z'
-        private_certificate_configuration_root_ca_model_json['crl_disable'] = True
-        private_certificate_configuration_root_ca_model_json['crl_distribution_points_encoded'] = True
-        private_certificate_configuration_root_ca_model_json['issuing_certificates_urls_encoded'] = True
         private_certificate_configuration_root_ca_model_json['common_name'] = 'localhost'
+        private_certificate_configuration_root_ca_model_json['crl_distribution_points_encoded'] = True
+        private_certificate_configuration_root_ca_model_json['expiration_date'] = '2033-04-12T23:20:50.520000Z'
+        private_certificate_configuration_root_ca_model_json['key_type'] = 'rsa'
+        private_certificate_configuration_root_ca_model_json['key_bits'] = 4096
+        private_certificate_configuration_root_ca_model_json['crl_disable'] = True
+        private_certificate_configuration_root_ca_model_json['issuing_certificates_urls_encoded'] = True
         private_certificate_configuration_root_ca_model_json['alt_names'] = ['s1.example.com', '*.s2.example.com']
         private_certificate_configuration_root_ca_model_json['ip_sans'] = '1.1.1.1, 2.2.2.2'
         private_certificate_configuration_root_ca_model_json['uri_sans'] = 'testString'
         private_certificate_configuration_root_ca_model_json['other_sans'] = ['2.5.4.5;UTF8:*.example.com']
         private_certificate_configuration_root_ca_model_json['format'] = 'pem'
         private_certificate_configuration_root_ca_model_json['private_key_format'] = 'der'
-        private_certificate_configuration_root_ca_model_json['key_type'] = 'rsa'
-        private_certificate_configuration_root_ca_model_json['key_bits'] = 4096
         private_certificate_configuration_root_ca_model_json['max_path_length'] = 38
         private_certificate_configuration_root_ca_model_json['exclude_cn_from_sans'] = True
         private_certificate_configuration_root_ca_model_json['permitted_dns_domains'] = ['testString']
@@ -6986,8 +7766,7 @@ class TestModel_PrivateCertificateConfigurationRootCA():
         private_certificate_configuration_root_ca_model_json['province'] = ['testString']
         private_certificate_configuration_root_ca_model_json['street_address'] = ['testString']
         private_certificate_configuration_root_ca_model_json['postal_code'] = ['testString']
-        private_certificate_configuration_root_ca_model_json['serial_number'] = 'd9:be:fe:35:ba:09:42:b5:35:ba:09:42:b5'
-        private_certificate_configuration_root_ca_model_json['expiration_date'] = '2033-04-12T23:20:50.520000Z'
+        private_certificate_configuration_root_ca_model_json['serial_number'] = '38:eb:01:a3:22:e9:de:55:24:56:9b:14:cb:e2:f3:e3:e2:fb:f5:18'
         private_certificate_configuration_root_ca_model_json['data'] = private_certificate_ca_data_model
 
         # Construct a model instance of PrivateCertificateConfigurationRootCA by calling from_dict on the json representation
@@ -7005,7 +7784,8 @@ class TestModel_PrivateCertificateConfigurationRootCA():
         private_certificate_configuration_root_ca_model_json2 = private_certificate_configuration_root_ca_model.to_dict()
         assert private_certificate_configuration_root_ca_model_json2 == private_certificate_configuration_root_ca_model_json
 
-class TestModel_PrivateCertificateConfigurationRootCAMetadata():
+
+class TestModel_PrivateCertificateConfigurationRootCAMetadata:
     """
     Test Class for PrivateCertificateConfigurationRootCAMetadata
     """
@@ -7023,6 +7803,11 @@ class TestModel_PrivateCertificateConfigurationRootCAMetadata():
         private_certificate_configuration_root_ca_metadata_model_json['created_by'] = 'iam-ServiceId-e4a2f0a4-3c76-4bef-b1f2-fbeae11c0f21'
         private_certificate_configuration_root_ca_metadata_model_json['created_at'] = '2022-04-12T23:20:50.520000Z'
         private_certificate_configuration_root_ca_metadata_model_json['updated_at'] = '2022-04-12T23:20:50.520000Z'
+        private_certificate_configuration_root_ca_metadata_model_json['common_name'] = 'localhost'
+        private_certificate_configuration_root_ca_metadata_model_json['crl_distribution_points_encoded'] = True
+        private_certificate_configuration_root_ca_metadata_model_json['expiration_date'] = '2033-04-12T23:20:50.520000Z'
+        private_certificate_configuration_root_ca_metadata_model_json['key_type'] = 'rsa'
+        private_certificate_configuration_root_ca_metadata_model_json['key_bits'] = 4096
 
         # Construct a model instance of PrivateCertificateConfigurationRootCAMetadata by calling from_dict on the json representation
         private_certificate_configuration_root_ca_metadata_model = PrivateCertificateConfigurationRootCAMetadata.from_dict(private_certificate_configuration_root_ca_metadata_model_json)
@@ -7039,7 +7824,8 @@ class TestModel_PrivateCertificateConfigurationRootCAMetadata():
         private_certificate_configuration_root_ca_metadata_model_json2 = private_certificate_configuration_root_ca_metadata_model.to_dict()
         assert private_certificate_configuration_root_ca_metadata_model_json2 == private_certificate_configuration_root_ca_metadata_model_json
 
-class TestModel_PrivateCertificateConfigurationRootCAPatch():
+
+class TestModel_PrivateCertificateConfigurationRootCAPatch:
     """
     Test Class for PrivateCertificateConfigurationRootCAPatch
     """
@@ -7072,7 +7858,8 @@ class TestModel_PrivateCertificateConfigurationRootCAPatch():
         private_certificate_configuration_root_ca_patch_model_json2 = private_certificate_configuration_root_ca_patch_model.to_dict()
         assert private_certificate_configuration_root_ca_patch_model_json2 == private_certificate_configuration_root_ca_patch_model_json
 
-class TestModel_PrivateCertificateConfigurationRootCAPrototype():
+
+class TestModel_PrivateCertificateConfigurationRootCAPrototype:
     """
     Test Class for PrivateCertificateConfigurationRootCAPrototype
     """
@@ -7128,7 +7915,8 @@ class TestModel_PrivateCertificateConfigurationRootCAPrototype():
         private_certificate_configuration_root_ca_prototype_model_json2 = private_certificate_configuration_root_ca_prototype_model.to_dict()
         assert private_certificate_configuration_root_ca_prototype_model_json2 == private_certificate_configuration_root_ca_prototype_model_json
 
-class TestModel_PrivateCertificateConfigurationTemplate():
+
+class TestModel_PrivateCertificateConfigurationTemplate:
     """
     Test Class for PrivateCertificateConfigurationTemplate
     """
@@ -7197,7 +7985,8 @@ class TestModel_PrivateCertificateConfigurationTemplate():
         private_certificate_configuration_template_model_json2 = private_certificate_configuration_template_model.to_dict()
         assert private_certificate_configuration_template_model_json2 == private_certificate_configuration_template_model_json
 
-class TestModel_PrivateCertificateConfigurationTemplateMetadata():
+
+class TestModel_PrivateCertificateConfigurationTemplateMetadata:
     """
     Test Class for PrivateCertificateConfigurationTemplateMetadata
     """
@@ -7215,6 +8004,7 @@ class TestModel_PrivateCertificateConfigurationTemplateMetadata():
         private_certificate_configuration_template_metadata_model_json['created_by'] = 'iam-ServiceId-e4a2f0a4-3c76-4bef-b1f2-fbeae11c0f21'
         private_certificate_configuration_template_metadata_model_json['created_at'] = '2022-04-12T23:20:50.520000Z'
         private_certificate_configuration_template_metadata_model_json['updated_at'] = '2022-04-12T23:20:50.520000Z'
+        private_certificate_configuration_template_metadata_model_json['certificate_authority'] = 'testString'
 
         # Construct a model instance of PrivateCertificateConfigurationTemplateMetadata by calling from_dict on the json representation
         private_certificate_configuration_template_metadata_model = PrivateCertificateConfigurationTemplateMetadata.from_dict(private_certificate_configuration_template_metadata_model_json)
@@ -7231,7 +8021,8 @@ class TestModel_PrivateCertificateConfigurationTemplateMetadata():
         private_certificate_configuration_template_metadata_model_json2 = private_certificate_configuration_template_metadata_model.to_dict()
         assert private_certificate_configuration_template_metadata_model_json2 == private_certificate_configuration_template_metadata_model_json
 
-class TestModel_PrivateCertificateConfigurationTemplatePatch():
+
+class TestModel_PrivateCertificateConfigurationTemplatePatch:
     """
     Test Class for PrivateCertificateConfigurationTemplatePatch
     """
@@ -7296,7 +8087,8 @@ class TestModel_PrivateCertificateConfigurationTemplatePatch():
         private_certificate_configuration_template_patch_model_json2 = private_certificate_configuration_template_patch_model.to_dict()
         assert private_certificate_configuration_template_patch_model_json2 == private_certificate_configuration_template_patch_model_json
 
-class TestModel_PrivateCertificateConfigurationTemplatePrototype():
+
+class TestModel_PrivateCertificateConfigurationTemplatePrototype:
     """
     Test Class for PrivateCertificateConfigurationTemplatePrototype
     """
@@ -7365,7 +8157,8 @@ class TestModel_PrivateCertificateConfigurationTemplatePrototype():
         private_certificate_configuration_template_prototype_model_json2 = private_certificate_configuration_template_prototype_model.to_dict()
         assert private_certificate_configuration_template_prototype_model_json2 == private_certificate_configuration_template_prototype_model_json
 
-class TestModel_PrivateCertificateMetadata():
+
+class TestModel_PrivateCertificateMetadata:
     """
     Test Class for PrivateCertificateMetadata
     """
@@ -7377,12 +8170,12 @@ class TestModel_PrivateCertificateMetadata():
 
         # Construct dict forms of any model objects needed in order to build this model.
 
-        rotation_policy_model = {} # CommonRotationPolicy
+        rotation_policy_model = {}  # CommonRotationPolicy
         rotation_policy_model['auto_rotate'] = True
         rotation_policy_model['interval'] = 1
         rotation_policy_model['unit'] = 'day'
 
-        certificate_validity_model = {} # CertificateValidity
+        certificate_validity_model = {}  # CertificateValidity
         certificate_validity_model['not_before'] = '2025-04-12T23:20:50Z'
         certificate_validity_model['not_after'] = '2025-04-12T23:20:50Z'
 
@@ -7391,7 +8184,7 @@ class TestModel_PrivateCertificateMetadata():
         private_certificate_metadata_model_json['created_by'] = 'iam-ServiceId-e4a2f0a4-3c76-4bef-b1f2-fbeae11c0f21'
         private_certificate_metadata_model_json['created_at'] = '2022-04-12T23:20:50.520000Z'
         private_certificate_metadata_model_json['crn'] = 'testString'
-        private_certificate_metadata_model_json['custom_metadata'] = {'foo': 'bar'}
+        private_certificate_metadata_model_json['custom_metadata'] = {'key': 'value'}
         private_certificate_metadata_model_json['description'] = 'Extended description for this secret.'
         private_certificate_metadata_model_json['id'] = 'b49ad24d-81d4-5ebc-b9b9-b0937d1c84d5'
         private_certificate_metadata_model_json['labels'] = ['my-label']
@@ -7424,7 +8217,8 @@ class TestModel_PrivateCertificateMetadata():
         private_certificate_metadata_model_json2 = private_certificate_metadata_model.to_dict()
         assert private_certificate_metadata_model_json2 == private_certificate_metadata_model_json
 
-class TestModel_PrivateCertificateMetadataPatch():
+
+class TestModel_PrivateCertificateMetadataPatch:
     """
     Test Class for PrivateCertificateMetadataPatch
     """
@@ -7436,7 +8230,7 @@ class TestModel_PrivateCertificateMetadataPatch():
 
         # Construct dict forms of any model objects needed in order to build this model.
 
-        rotation_policy_model = {} # CommonRotationPolicy
+        rotation_policy_model = {}  # CommonRotationPolicy
         rotation_policy_model['auto_rotate'] = True
         rotation_policy_model['interval'] = 1
         rotation_policy_model['unit'] = 'day'
@@ -7446,7 +8240,7 @@ class TestModel_PrivateCertificateMetadataPatch():
         private_certificate_metadata_patch_model_json['name'] = 'my-secret-example'
         private_certificate_metadata_patch_model_json['description'] = 'Extended description for this secret.'
         private_certificate_metadata_patch_model_json['labels'] = ['my-label']
-        private_certificate_metadata_patch_model_json['custom_metadata'] = {'foo': 'bar'}
+        private_certificate_metadata_patch_model_json['custom_metadata'] = {'key': 'value'}
         private_certificate_metadata_patch_model_json['rotation'] = rotation_policy_model
 
         # Construct a model instance of PrivateCertificateMetadataPatch by calling from_dict on the json representation
@@ -7464,7 +8258,8 @@ class TestModel_PrivateCertificateMetadataPatch():
         private_certificate_metadata_patch_model_json2 = private_certificate_metadata_patch_model.to_dict()
         assert private_certificate_metadata_patch_model_json2 == private_certificate_metadata_patch_model_json
 
-class TestModel_PrivateCertificatePrototype():
+
+class TestModel_PrivateCertificatePrototype:
     """
     Test Class for PrivateCertificatePrototype
     """
@@ -7476,7 +8271,7 @@ class TestModel_PrivateCertificatePrototype():
 
         # Construct dict forms of any model objects needed in order to build this model.
 
-        rotation_policy_model = {} # CommonRotationPolicy
+        rotation_policy_model = {}  # CommonRotationPolicy
         rotation_policy_model['auto_rotate'] = True
         rotation_policy_model['interval'] = 1
         rotation_policy_model['unit'] = 'day'
@@ -7500,8 +8295,8 @@ class TestModel_PrivateCertificatePrototype():
         private_certificate_prototype_model_json['exclude_cn_from_sans'] = True
         private_certificate_prototype_model_json['ttl'] = '12h'
         private_certificate_prototype_model_json['rotation'] = rotation_policy_model
-        private_certificate_prototype_model_json['custom_metadata'] = {'foo': 'bar'}
-        private_certificate_prototype_model_json['version_custom_metadata'] = {'foo': 'bar'}
+        private_certificate_prototype_model_json['custom_metadata'] = {'key': 'value'}
+        private_certificate_prototype_model_json['version_custom_metadata'] = {'key': 'value'}
 
         # Construct a model instance of PrivateCertificatePrototype by calling from_dict on the json representation
         private_certificate_prototype_model = PrivateCertificatePrototype.from_dict(private_certificate_prototype_model_json)
@@ -7518,7 +8313,8 @@ class TestModel_PrivateCertificatePrototype():
         private_certificate_prototype_model_json2 = private_certificate_prototype_model.to_dict()
         assert private_certificate_prototype_model_json2 == private_certificate_prototype_model_json
 
-class TestModel_PrivateCertificateVersion():
+
+class TestModel_PrivateCertificateVersion:
     """
     Test Class for PrivateCertificateVersion
     """
@@ -7530,7 +8326,7 @@ class TestModel_PrivateCertificateVersion():
 
         # Construct dict forms of any model objects needed in order to build this model.
 
-        certificate_validity_model = {} # CertificateValidity
+        certificate_validity_model = {}  # CertificateValidity
         certificate_validity_model['not_before'] = '2025-04-12T23:20:50Z'
         certificate_validity_model['not_after'] = '2025-04-12T23:20:50Z'
 
@@ -7544,7 +8340,7 @@ class TestModel_PrivateCertificateVersion():
         private_certificate_version_model_json['secret_group_id'] = 'default'
         private_certificate_version_model_json['payload_available'] = True
         private_certificate_version_model_json['alias'] = 'current'
-        private_certificate_version_model_json['version_custom_metadata'] = {'foo': 'bar'}
+        private_certificate_version_model_json['version_custom_metadata'] = {'key': 'value'}
         private_certificate_version_model_json['secret_id'] = 'b49ad24d-81d4-5ebc-b9b9-b0937d1c84d5'
         private_certificate_version_model_json['expiration_date'] = '2033-04-12T23:20:50.520000Z'
         private_certificate_version_model_json['serial_number'] = '38:eb:01:a3:22:e9:de:55:24:56:9b:14:cb:e2:f3:e3:e2:fb:f5:18'
@@ -7567,7 +8363,8 @@ class TestModel_PrivateCertificateVersion():
         private_certificate_version_model_json2 = private_certificate_version_model.to_dict()
         assert private_certificate_version_model_json2 == private_certificate_version_model_json
 
-class TestModel_PrivateCertificateVersionActionRevoke():
+
+class TestModel_PrivateCertificateVersionActionRevoke:
     """
     Test Class for PrivateCertificateVersionActionRevoke
     """
@@ -7596,7 +8393,8 @@ class TestModel_PrivateCertificateVersionActionRevoke():
         private_certificate_version_action_revoke_model_json2 = private_certificate_version_action_revoke_model.to_dict()
         assert private_certificate_version_action_revoke_model_json2 == private_certificate_version_action_revoke_model_json
 
-class TestModel_PrivateCertificateVersionActionRevokePrototype():
+
+class TestModel_PrivateCertificateVersionActionRevokePrototype:
     """
     Test Class for PrivateCertificateVersionActionRevokePrototype
     """
@@ -7625,7 +8423,8 @@ class TestModel_PrivateCertificateVersionActionRevokePrototype():
         private_certificate_version_action_revoke_prototype_model_json2 = private_certificate_version_action_revoke_prototype_model.to_dict()
         assert private_certificate_version_action_revoke_prototype_model_json2 == private_certificate_version_action_revoke_prototype_model_json
 
-class TestModel_PrivateCertificateVersionMetadata():
+
+class TestModel_PrivateCertificateVersionMetadata:
     """
     Test Class for PrivateCertificateVersionMetadata
     """
@@ -7637,7 +8436,7 @@ class TestModel_PrivateCertificateVersionMetadata():
 
         # Construct dict forms of any model objects needed in order to build this model.
 
-        certificate_validity_model = {} # CertificateValidity
+        certificate_validity_model = {}  # CertificateValidity
         certificate_validity_model['not_before'] = '2025-04-12T23:20:50Z'
         certificate_validity_model['not_after'] = '2025-04-12T23:20:50Z'
 
@@ -7651,7 +8450,7 @@ class TestModel_PrivateCertificateVersionMetadata():
         private_certificate_version_metadata_model_json['secret_group_id'] = 'default'
         private_certificate_version_metadata_model_json['payload_available'] = True
         private_certificate_version_metadata_model_json['alias'] = 'current'
-        private_certificate_version_metadata_model_json['version_custom_metadata'] = {'foo': 'bar'}
+        private_certificate_version_metadata_model_json['version_custom_metadata'] = {'key': 'value'}
         private_certificate_version_metadata_model_json['secret_id'] = 'b49ad24d-81d4-5ebc-b9b9-b0937d1c84d5'
         private_certificate_version_metadata_model_json['expiration_date'] = '2033-04-12T23:20:50.520000Z'
         private_certificate_version_metadata_model_json['serial_number'] = '38:eb:01:a3:22:e9:de:55:24:56:9b:14:cb:e2:f3:e3:e2:fb:f5:18'
@@ -7672,7 +8471,8 @@ class TestModel_PrivateCertificateVersionMetadata():
         private_certificate_version_metadata_model_json2 = private_certificate_version_metadata_model.to_dict()
         assert private_certificate_version_metadata_model_json2 == private_certificate_version_metadata_model_json
 
-class TestModel_PrivateCertificateVersionPrototype():
+
+class TestModel_PrivateCertificateVersionPrototype:
     """
     Test Class for PrivateCertificateVersionPrototype
     """
@@ -7684,8 +8484,8 @@ class TestModel_PrivateCertificateVersionPrototype():
 
         # Construct a json representation of a PrivateCertificateVersionPrototype model
         private_certificate_version_prototype_model_json = {}
-        private_certificate_version_prototype_model_json['custom_metadata'] = {'foo': 'bar'}
-        private_certificate_version_prototype_model_json['version_custom_metadata'] = {'foo': 'bar'}
+        private_certificate_version_prototype_model_json['custom_metadata'] = {'key': 'value'}
+        private_certificate_version_prototype_model_json['version_custom_metadata'] = {'key': 'value'}
         private_certificate_version_prototype_model_json['csr'] = 'testString'
 
         # Construct a model instance of PrivateCertificateVersionPrototype by calling from_dict on the json representation
@@ -7703,7 +8503,8 @@ class TestModel_PrivateCertificateVersionPrototype():
         private_certificate_version_prototype_model_json2 = private_certificate_version_prototype_model.to_dict()
         assert private_certificate_version_prototype_model_json2 == private_certificate_version_prototype_model_json
 
-class TestModel_PublicCertificate():
+
+class TestModel_PublicCertificate:
     """
     Test Class for PublicCertificate
     """
@@ -7715,11 +8516,11 @@ class TestModel_PublicCertificate():
 
         # Construct dict forms of any model objects needed in order to build this model.
 
-        certificate_validity_model = {} # CertificateValidity
+        certificate_validity_model = {}  # CertificateValidity
         certificate_validity_model['not_before'] = '2025-04-12T23:20:50Z'
         certificate_validity_model['not_after'] = '2025-04-12T23:20:50Z'
 
-        rotation_policy_model = {} # CommonRotationPolicy
+        rotation_policy_model = {}  # CommonRotationPolicy
         rotation_policy_model['auto_rotate'] = True
         rotation_policy_model['interval'] = 1
         rotation_policy_model['unit'] = 'day'
@@ -7729,7 +8530,7 @@ class TestModel_PublicCertificate():
         public_certificate_model_json['created_by'] = 'iam-ServiceId-e4a2f0a4-3c76-4bef-b1f2-fbeae11c0f21'
         public_certificate_model_json['created_at'] = '2022-04-12T23:20:50.520000Z'
         public_certificate_model_json['crn'] = 'testString'
-        public_certificate_model_json['custom_metadata'] = {'foo': 'bar'}
+        public_certificate_model_json['custom_metadata'] = {'key': 'value'}
         public_certificate_model_json['description'] = 'Extended description for this secret.'
         public_certificate_model_json['id'] = 'b49ad24d-81d4-5ebc-b9b9-b0937d1c84d5'
         public_certificate_model_json['labels'] = ['my-label']
@@ -7765,7 +8566,8 @@ class TestModel_PublicCertificate():
         public_certificate_model_json2 = public_certificate_model.to_dict()
         assert public_certificate_model_json2 == public_certificate_model_json
 
-class TestModel_PublicCertificateActionValidateManualDNS():
+
+class TestModel_PublicCertificateActionValidateManualDNS:
     """
     Test Class for PublicCertificateActionValidateManualDNS
     """
@@ -7794,7 +8596,8 @@ class TestModel_PublicCertificateActionValidateManualDNS():
         public_certificate_action_validate_manual_dns_model_json2 = public_certificate_action_validate_manual_dns_model.to_dict()
         assert public_certificate_action_validate_manual_dns_model_json2 == public_certificate_action_validate_manual_dns_model_json
 
-class TestModel_PublicCertificateActionValidateManualDNSPrototype():
+
+class TestModel_PublicCertificateActionValidateManualDNSPrototype:
     """
     Test Class for PublicCertificateActionValidateManualDNSPrototype
     """
@@ -7823,7 +8626,8 @@ class TestModel_PublicCertificateActionValidateManualDNSPrototype():
         public_certificate_action_validate_manual_dns_prototype_model_json2 = public_certificate_action_validate_manual_dns_prototype_model.to_dict()
         assert public_certificate_action_validate_manual_dns_prototype_model_json2 == public_certificate_action_validate_manual_dns_prototype_model_json
 
-class TestModel_PublicCertificateConfigurationCALetsEncrypt():
+
+class TestModel_PublicCertificateConfigurationCALetsEncrypt:
     """
     Test Class for PublicCertificateConfigurationCALetsEncrypt
     """
@@ -7842,8 +8646,8 @@ class TestModel_PublicCertificateConfigurationCALetsEncrypt():
         public_certificate_configuration_ca_lets_encrypt_model_json['created_at'] = '2022-04-12T23:20:50.520000Z'
         public_certificate_configuration_ca_lets_encrypt_model_json['updated_at'] = '2022-04-12T23:20:50.520000Z'
         public_certificate_configuration_ca_lets_encrypt_model_json['lets_encrypt_environment'] = 'production'
-        public_certificate_configuration_ca_lets_encrypt_model_json['lets_encrypt_private_key'] = 'testString'
         public_certificate_configuration_ca_lets_encrypt_model_json['lets_encrypt_preferred_chain'] = 'testString'
+        public_certificate_configuration_ca_lets_encrypt_model_json['lets_encrypt_private_key'] = 'testString'
 
         # Construct a model instance of PublicCertificateConfigurationCALetsEncrypt by calling from_dict on the json representation
         public_certificate_configuration_ca_lets_encrypt_model = PublicCertificateConfigurationCALetsEncrypt.from_dict(public_certificate_configuration_ca_lets_encrypt_model_json)
@@ -7860,7 +8664,8 @@ class TestModel_PublicCertificateConfigurationCALetsEncrypt():
         public_certificate_configuration_ca_lets_encrypt_model_json2 = public_certificate_configuration_ca_lets_encrypt_model.to_dict()
         assert public_certificate_configuration_ca_lets_encrypt_model_json2 == public_certificate_configuration_ca_lets_encrypt_model_json
 
-class TestModel_PublicCertificateConfigurationCALetsEncryptMetadata():
+
+class TestModel_PublicCertificateConfigurationCALetsEncryptMetadata:
     """
     Test Class for PublicCertificateConfigurationCALetsEncryptMetadata
     """
@@ -7878,6 +8683,8 @@ class TestModel_PublicCertificateConfigurationCALetsEncryptMetadata():
         public_certificate_configuration_ca_lets_encrypt_metadata_model_json['created_by'] = 'iam-ServiceId-e4a2f0a4-3c76-4bef-b1f2-fbeae11c0f21'
         public_certificate_configuration_ca_lets_encrypt_metadata_model_json['created_at'] = '2022-04-12T23:20:50.520000Z'
         public_certificate_configuration_ca_lets_encrypt_metadata_model_json['updated_at'] = '2022-04-12T23:20:50.520000Z'
+        public_certificate_configuration_ca_lets_encrypt_metadata_model_json['lets_encrypt_environment'] = 'production'
+        public_certificate_configuration_ca_lets_encrypt_metadata_model_json['lets_encrypt_preferred_chain'] = 'testString'
 
         # Construct a model instance of PublicCertificateConfigurationCALetsEncryptMetadata by calling from_dict on the json representation
         public_certificate_configuration_ca_lets_encrypt_metadata_model = PublicCertificateConfigurationCALetsEncryptMetadata.from_dict(public_certificate_configuration_ca_lets_encrypt_metadata_model_json)
@@ -7894,7 +8701,8 @@ class TestModel_PublicCertificateConfigurationCALetsEncryptMetadata():
         public_certificate_configuration_ca_lets_encrypt_metadata_model_json2 = public_certificate_configuration_ca_lets_encrypt_metadata_model.to_dict()
         assert public_certificate_configuration_ca_lets_encrypt_metadata_model_json2 == public_certificate_configuration_ca_lets_encrypt_metadata_model_json
 
-class TestModel_PublicCertificateConfigurationCALetsEncryptPatch():
+
+class TestModel_PublicCertificateConfigurationCALetsEncryptPatch:
     """
     Test Class for PublicCertificateConfigurationCALetsEncryptPatch
     """
@@ -7925,7 +8733,8 @@ class TestModel_PublicCertificateConfigurationCALetsEncryptPatch():
         public_certificate_configuration_ca_lets_encrypt_patch_model_json2 = public_certificate_configuration_ca_lets_encrypt_patch_model.to_dict()
         assert public_certificate_configuration_ca_lets_encrypt_patch_model_json2 == public_certificate_configuration_ca_lets_encrypt_patch_model_json
 
-class TestModel_PublicCertificateConfigurationCALetsEncryptPrototype():
+
+class TestModel_PublicCertificateConfigurationCALetsEncryptPrototype:
     """
     Test Class for PublicCertificateConfigurationCALetsEncryptPrototype
     """
@@ -7958,7 +8767,8 @@ class TestModel_PublicCertificateConfigurationCALetsEncryptPrototype():
         public_certificate_configuration_ca_lets_encrypt_prototype_model_json2 = public_certificate_configuration_ca_lets_encrypt_prototype_model.to_dict()
         assert public_certificate_configuration_ca_lets_encrypt_prototype_model_json2 == public_certificate_configuration_ca_lets_encrypt_prototype_model_json
 
-class TestModel_PublicCertificateConfigurationDNSClassicInfrastructure():
+
+class TestModel_PublicCertificateConfigurationDNSClassicInfrastructure:
     """
     Test Class for PublicCertificateConfigurationDNSClassicInfrastructure
     """
@@ -7994,7 +8804,8 @@ class TestModel_PublicCertificateConfigurationDNSClassicInfrastructure():
         public_certificate_configuration_dns_classic_infrastructure_model_json2 = public_certificate_configuration_dns_classic_infrastructure_model.to_dict()
         assert public_certificate_configuration_dns_classic_infrastructure_model_json2 == public_certificate_configuration_dns_classic_infrastructure_model_json
 
-class TestModel_PublicCertificateConfigurationDNSClassicInfrastructureMetadata():
+
+class TestModel_PublicCertificateConfigurationDNSClassicInfrastructureMetadata:
     """
     Test Class for PublicCertificateConfigurationDNSClassicInfrastructureMetadata
     """
@@ -8028,7 +8839,8 @@ class TestModel_PublicCertificateConfigurationDNSClassicInfrastructureMetadata()
         public_certificate_configuration_dns_classic_infrastructure_metadata_model_json2 = public_certificate_configuration_dns_classic_infrastructure_metadata_model.to_dict()
         assert public_certificate_configuration_dns_classic_infrastructure_metadata_model_json2 == public_certificate_configuration_dns_classic_infrastructure_metadata_model_json
 
-class TestModel_PublicCertificateConfigurationDNSClassicInfrastructurePatch():
+
+class TestModel_PublicCertificateConfigurationDNSClassicInfrastructurePatch:
     """
     Test Class for PublicCertificateConfigurationDNSClassicInfrastructurePatch
     """
@@ -8058,7 +8870,8 @@ class TestModel_PublicCertificateConfigurationDNSClassicInfrastructurePatch():
         public_certificate_configuration_dns_classic_infrastructure_patch_model_json2 = public_certificate_configuration_dns_classic_infrastructure_patch_model.to_dict()
         assert public_certificate_configuration_dns_classic_infrastructure_patch_model_json2 == public_certificate_configuration_dns_classic_infrastructure_patch_model_json
 
-class TestModel_PublicCertificateConfigurationDNSClassicInfrastructurePrototype():
+
+class TestModel_PublicCertificateConfigurationDNSClassicInfrastructurePrototype:
     """
     Test Class for PublicCertificateConfigurationDNSClassicInfrastructurePrototype
     """
@@ -8090,7 +8903,8 @@ class TestModel_PublicCertificateConfigurationDNSClassicInfrastructurePrototype(
         public_certificate_configuration_dns_classic_infrastructure_prototype_model_json2 = public_certificate_configuration_dns_classic_infrastructure_prototype_model.to_dict()
         assert public_certificate_configuration_dns_classic_infrastructure_prototype_model_json2 == public_certificate_configuration_dns_classic_infrastructure_prototype_model_json
 
-class TestModel_PublicCertificateConfigurationDNSCloudInternetServices():
+
+class TestModel_PublicCertificateConfigurationDNSCloudInternetServices:
     """
     Test Class for PublicCertificateConfigurationDNSCloudInternetServices
     """
@@ -8126,7 +8940,8 @@ class TestModel_PublicCertificateConfigurationDNSCloudInternetServices():
         public_certificate_configuration_dns_cloud_internet_services_model_json2 = public_certificate_configuration_dns_cloud_internet_services_model.to_dict()
         assert public_certificate_configuration_dns_cloud_internet_services_model_json2 == public_certificate_configuration_dns_cloud_internet_services_model_json
 
-class TestModel_PublicCertificateConfigurationDNSCloudInternetServicesMetadata():
+
+class TestModel_PublicCertificateConfigurationDNSCloudInternetServicesMetadata:
     """
     Test Class for PublicCertificateConfigurationDNSCloudInternetServicesMetadata
     """
@@ -8160,7 +8975,8 @@ class TestModel_PublicCertificateConfigurationDNSCloudInternetServicesMetadata()
         public_certificate_configuration_dns_cloud_internet_services_metadata_model_json2 = public_certificate_configuration_dns_cloud_internet_services_metadata_model.to_dict()
         assert public_certificate_configuration_dns_cloud_internet_services_metadata_model_json2 == public_certificate_configuration_dns_cloud_internet_services_metadata_model_json
 
-class TestModel_PublicCertificateConfigurationDNSCloudInternetServicesPatch():
+
+class TestModel_PublicCertificateConfigurationDNSCloudInternetServicesPatch:
     """
     Test Class for PublicCertificateConfigurationDNSCloudInternetServicesPatch
     """
@@ -8190,7 +9006,8 @@ class TestModel_PublicCertificateConfigurationDNSCloudInternetServicesPatch():
         public_certificate_configuration_dns_cloud_internet_services_patch_model_json2 = public_certificate_configuration_dns_cloud_internet_services_patch_model.to_dict()
         assert public_certificate_configuration_dns_cloud_internet_services_patch_model_json2 == public_certificate_configuration_dns_cloud_internet_services_patch_model_json
 
-class TestModel_PublicCertificateConfigurationDNSCloudInternetServicesPrototype():
+
+class TestModel_PublicCertificateConfigurationDNSCloudInternetServicesPrototype:
     """
     Test Class for PublicCertificateConfigurationDNSCloudInternetServicesPrototype
     """
@@ -8222,7 +9039,8 @@ class TestModel_PublicCertificateConfigurationDNSCloudInternetServicesPrototype(
         public_certificate_configuration_dns_cloud_internet_services_prototype_model_json2 = public_certificate_configuration_dns_cloud_internet_services_prototype_model.to_dict()
         assert public_certificate_configuration_dns_cloud_internet_services_prototype_model_json2 == public_certificate_configuration_dns_cloud_internet_services_prototype_model_json
 
-class TestModel_PublicCertificateMetadata():
+
+class TestModel_PublicCertificateMetadata:
     """
     Test Class for PublicCertificateMetadata
     """
@@ -8234,11 +9052,11 @@ class TestModel_PublicCertificateMetadata():
 
         # Construct dict forms of any model objects needed in order to build this model.
 
-        certificate_validity_model = {} # CertificateValidity
+        certificate_validity_model = {}  # CertificateValidity
         certificate_validity_model['not_before'] = '2025-04-12T23:20:50Z'
         certificate_validity_model['not_after'] = '2025-04-12T23:20:50Z'
 
-        rotation_policy_model = {} # CommonRotationPolicy
+        rotation_policy_model = {}  # CommonRotationPolicy
         rotation_policy_model['auto_rotate'] = True
         rotation_policy_model['interval'] = 1
         rotation_policy_model['unit'] = 'day'
@@ -8248,7 +9066,7 @@ class TestModel_PublicCertificateMetadata():
         public_certificate_metadata_model_json['created_by'] = 'iam-ServiceId-e4a2f0a4-3c76-4bef-b1f2-fbeae11c0f21'
         public_certificate_metadata_model_json['created_at'] = '2022-04-12T23:20:50.520000Z'
         public_certificate_metadata_model_json['crn'] = 'testString'
-        public_certificate_metadata_model_json['custom_metadata'] = {'foo': 'bar'}
+        public_certificate_metadata_model_json['custom_metadata'] = {'key': 'value'}
         public_certificate_metadata_model_json['description'] = 'Extended description for this secret.'
         public_certificate_metadata_model_json['id'] = 'b49ad24d-81d4-5ebc-b9b9-b0937d1c84d5'
         public_certificate_metadata_model_json['labels'] = ['my-label']
@@ -8281,7 +9099,8 @@ class TestModel_PublicCertificateMetadata():
         public_certificate_metadata_model_json2 = public_certificate_metadata_model.to_dict()
         assert public_certificate_metadata_model_json2 == public_certificate_metadata_model_json
 
-class TestModel_PublicCertificateMetadataPatch():
+
+class TestModel_PublicCertificateMetadataPatch:
     """
     Test Class for PublicCertificateMetadataPatch
     """
@@ -8293,7 +9112,7 @@ class TestModel_PublicCertificateMetadataPatch():
 
         # Construct dict forms of any model objects needed in order to build this model.
 
-        rotation_policy_model = {} # CommonRotationPolicy
+        rotation_policy_model = {}  # CommonRotationPolicy
         rotation_policy_model['auto_rotate'] = True
         rotation_policy_model['interval'] = 1
         rotation_policy_model['unit'] = 'day'
@@ -8303,7 +9122,7 @@ class TestModel_PublicCertificateMetadataPatch():
         public_certificate_metadata_patch_model_json['name'] = 'my-secret-example'
         public_certificate_metadata_patch_model_json['description'] = 'Extended description for this secret.'
         public_certificate_metadata_patch_model_json['labels'] = ['my-label']
-        public_certificate_metadata_patch_model_json['custom_metadata'] = {'foo': 'bar'}
+        public_certificate_metadata_patch_model_json['custom_metadata'] = {'key': 'value'}
         public_certificate_metadata_patch_model_json['rotation'] = rotation_policy_model
 
         # Construct a model instance of PublicCertificateMetadataPatch by calling from_dict on the json representation
@@ -8321,7 +9140,8 @@ class TestModel_PublicCertificateMetadataPatch():
         public_certificate_metadata_patch_model_json2 = public_certificate_metadata_patch_model.to_dict()
         assert public_certificate_metadata_patch_model_json2 == public_certificate_metadata_patch_model_json
 
-class TestModel_PublicCertificatePrototype():
+
+class TestModel_PublicCertificatePrototype:
     """
     Test Class for PublicCertificatePrototype
     """
@@ -8333,9 +9153,10 @@ class TestModel_PublicCertificatePrototype():
 
         # Construct dict forms of any model objects needed in order to build this model.
 
-        public_certificate_rotation_policy_model = {} # PublicCertificateRotationPolicy
-        public_certificate_rotation_policy_model['auto_rotate'] = True
-        public_certificate_rotation_policy_model['rotate_keys'] = True
+        rotation_policy_model = {}  # CommonRotationPolicy
+        rotation_policy_model['auto_rotate'] = True
+        rotation_policy_model['interval'] = 1
+        rotation_policy_model['unit'] = 'day'
 
         # Construct a json representation of a PublicCertificatePrototype model
         public_certificate_prototype_model_json = {}
@@ -8347,12 +9168,12 @@ class TestModel_PublicCertificatePrototype():
         public_certificate_prototype_model_json['common_name'] = 'example.com'
         public_certificate_prototype_model_json['alt_names'] = ['s1.example.com', '*.s2.example.com']
         public_certificate_prototype_model_json['key_algorithm'] = 'RSA2048'
-        public_certificate_prototype_model_json['ca'] = 'my-example-engine-config'
-        public_certificate_prototype_model_json['dns'] = 'my-example-engine-config'
+        public_certificate_prototype_model_json['ca'] = 'my-ca-config'
+        public_certificate_prototype_model_json['dns'] = 'my-dns-config'
         public_certificate_prototype_model_json['bundle_certs'] = True
-        public_certificate_prototype_model_json['rotation'] = public_certificate_rotation_policy_model
-        public_certificate_prototype_model_json['custom_metadata'] = {'foo': 'bar'}
-        public_certificate_prototype_model_json['version_custom_metadata'] = {'foo': 'bar'}
+        public_certificate_prototype_model_json['rotation'] = rotation_policy_model
+        public_certificate_prototype_model_json['custom_metadata'] = {'key': 'value'}
+        public_certificate_prototype_model_json['version_custom_metadata'] = {'key': 'value'}
 
         # Construct a model instance of PublicCertificatePrototype by calling from_dict on the json representation
         public_certificate_prototype_model = PublicCertificatePrototype.from_dict(public_certificate_prototype_model_json)
@@ -8369,7 +9190,8 @@ class TestModel_PublicCertificatePrototype():
         public_certificate_prototype_model_json2 = public_certificate_prototype_model.to_dict()
         assert public_certificate_prototype_model_json2 == public_certificate_prototype_model_json
 
-class TestModel_PublicCertificateRotationPolicy():
+
+class TestModel_PublicCertificateRotationPolicy:
     """
     Test Class for PublicCertificateRotationPolicy
     """
@@ -8399,7 +9221,8 @@ class TestModel_PublicCertificateRotationPolicy():
         public_certificate_rotation_policy_model_json2 = public_certificate_rotation_policy_model.to_dict()
         assert public_certificate_rotation_policy_model_json2 == public_certificate_rotation_policy_model_json
 
-class TestModel_PublicCertificateVersion():
+
+class TestModel_PublicCertificateVersion:
     """
     Test Class for PublicCertificateVersion
     """
@@ -8411,7 +9234,7 @@ class TestModel_PublicCertificateVersion():
 
         # Construct dict forms of any model objects needed in order to build this model.
 
-        certificate_validity_model = {} # CertificateValidity
+        certificate_validity_model = {}  # CertificateValidity
         certificate_validity_model['not_before'] = '2025-04-12T23:20:50Z'
         certificate_validity_model['not_after'] = '2025-04-12T23:20:50Z'
 
@@ -8425,7 +9248,7 @@ class TestModel_PublicCertificateVersion():
         public_certificate_version_model_json['secret_group_id'] = 'default'
         public_certificate_version_model_json['payload_available'] = True
         public_certificate_version_model_json['alias'] = 'current'
-        public_certificate_version_model_json['version_custom_metadata'] = {'foo': 'bar'}
+        public_certificate_version_model_json['version_custom_metadata'] = {'key': 'value'}
         public_certificate_version_model_json['secret_id'] = 'b49ad24d-81d4-5ebc-b9b9-b0937d1c84d5'
         public_certificate_version_model_json['expiration_date'] = '2033-04-12T23:20:50.520000Z'
         public_certificate_version_model_json['serial_number'] = '38:eb:01:a3:22:e9:de:55:24:56:9b:14:cb:e2:f3:e3:e2:fb:f5:18'
@@ -8449,7 +9272,8 @@ class TestModel_PublicCertificateVersion():
         public_certificate_version_model_json2 = public_certificate_version_model.to_dict()
         assert public_certificate_version_model_json2 == public_certificate_version_model_json
 
-class TestModel_PublicCertificateVersionMetadata():
+
+class TestModel_PublicCertificateVersionMetadata:
     """
     Test Class for PublicCertificateVersionMetadata
     """
@@ -8461,7 +9285,7 @@ class TestModel_PublicCertificateVersionMetadata():
 
         # Construct dict forms of any model objects needed in order to build this model.
 
-        certificate_validity_model = {} # CertificateValidity
+        certificate_validity_model = {}  # CertificateValidity
         certificate_validity_model['not_before'] = '2025-04-12T23:20:50Z'
         certificate_validity_model['not_after'] = '2025-04-12T23:20:50Z'
 
@@ -8475,7 +9299,7 @@ class TestModel_PublicCertificateVersionMetadata():
         public_certificate_version_metadata_model_json['secret_group_id'] = 'default'
         public_certificate_version_metadata_model_json['payload_available'] = True
         public_certificate_version_metadata_model_json['alias'] = 'current'
-        public_certificate_version_metadata_model_json['version_custom_metadata'] = {'foo': 'bar'}
+        public_certificate_version_metadata_model_json['version_custom_metadata'] = {'key': 'value'}
         public_certificate_version_metadata_model_json['secret_id'] = 'b49ad24d-81d4-5ebc-b9b9-b0937d1c84d5'
         public_certificate_version_metadata_model_json['expiration_date'] = '2033-04-12T23:20:50.520000Z'
         public_certificate_version_metadata_model_json['serial_number'] = '38:eb:01:a3:22:e9:de:55:24:56:9b:14:cb:e2:f3:e3:e2:fb:f5:18'
@@ -8496,7 +9320,8 @@ class TestModel_PublicCertificateVersionMetadata():
         public_certificate_version_metadata_model_json2 = public_certificate_version_metadata_model.to_dict()
         assert public_certificate_version_metadata_model_json2 == public_certificate_version_metadata_model_json
 
-class TestModel_PublicCertificateVersionPrototype():
+
+class TestModel_PublicCertificateVersionPrototype:
     """
     Test Class for PublicCertificateVersionPrototype
     """
@@ -8508,14 +9333,14 @@ class TestModel_PublicCertificateVersionPrototype():
 
         # Construct dict forms of any model objects needed in order to build this model.
 
-        public_certificate_rotation_object_model = {} # PublicCertificateRotationObject
+        public_certificate_rotation_object_model = {}  # PublicCertificateRotationObject
         public_certificate_rotation_object_model['rotate_keys'] = True
 
         # Construct a json representation of a PublicCertificateVersionPrototype model
         public_certificate_version_prototype_model_json = {}
         public_certificate_version_prototype_model_json['rotation'] = public_certificate_rotation_object_model
-        public_certificate_version_prototype_model_json['custom_metadata'] = {'foo': 'bar'}
-        public_certificate_version_prototype_model_json['version_custom_metadata'] = {'foo': 'bar'}
+        public_certificate_version_prototype_model_json['custom_metadata'] = {'key': 'value'}
+        public_certificate_version_prototype_model_json['version_custom_metadata'] = {'key': 'value'}
 
         # Construct a model instance of PublicCertificateVersionPrototype by calling from_dict on the json representation
         public_certificate_version_prototype_model = PublicCertificateVersionPrototype.from_dict(public_certificate_version_prototype_model_json)
@@ -8532,7 +9357,419 @@ class TestModel_PublicCertificateVersionPrototype():
         public_certificate_version_prototype_model_json2 = public_certificate_version_prototype_model.to_dict()
         assert public_certificate_version_prototype_model_json2 == public_certificate_version_prototype_model_json
 
-class TestModel_UsernamePasswordSecret():
+
+class TestModel_ServiceCredentialsSecret:
+    """
+    Test Class for ServiceCredentialsSecret
+    """
+
+    def test_service_credentials_secret_serialization(self):
+        """
+        Test serialization/deserialization for ServiceCredentialsSecret
+        """
+
+        # Construct dict forms of any model objects needed in order to build this model.
+
+        rotation_policy_model = {}  # CommonRotationPolicy
+        rotation_policy_model['auto_rotate'] = True
+        rotation_policy_model['interval'] = 1
+        rotation_policy_model['unit'] = 'day'
+
+        service_credentials_source_service_instance_model = {}  # ServiceCredentialsSourceServiceInstance
+        service_credentials_source_service_instance_model['crn'] = 'testString'
+
+        service_credentials_source_service_parameters_model = {}  # ServiceCredentialsSourceServiceParameters
+        service_credentials_source_service_parameters_model['serviceid_crn'] = 'testString'
+        service_credentials_source_service_parameters_model['foo'] = 'testString'
+
+        service_credentials_source_service_role_model = {}  # ServiceCredentialsSourceServiceRole
+        service_credentials_source_service_role_model['crn'] = 'testString'
+
+        service_credentials_source_service_iam_apikey_model = {}  # ServiceCredentialsSourceServiceIamApikey
+
+        service_credentials_source_service_iam_role_model = {}  # ServiceCredentialsSourceServiceIamRole
+
+        service_credentials_source_service_iam_serviceid_model = {}  # ServiceCredentialsSourceServiceIamServiceid
+
+        service_credentials_source_service_iam_model = {}  # ServiceCredentialsSourceServiceIam
+        service_credentials_source_service_iam_model['apikey'] = service_credentials_source_service_iam_apikey_model
+        service_credentials_source_service_iam_model['role'] = service_credentials_source_service_iam_role_model
+        service_credentials_source_service_iam_model['serviceid'] = service_credentials_source_service_iam_serviceid_model
+
+        service_credentials_resource_key_model = {}  # ServiceCredentialsResourceKey
+
+        service_credentials_secret_source_service_model = {}  # ServiceCredentialsSecretSourceService
+        service_credentials_secret_source_service_model['instance'] = service_credentials_source_service_instance_model
+        service_credentials_secret_source_service_model['parameters'] = service_credentials_source_service_parameters_model
+        service_credentials_secret_source_service_model['role'] = service_credentials_source_service_role_model
+        service_credentials_secret_source_service_model['iam'] = service_credentials_source_service_iam_model
+        service_credentials_secret_source_service_model['resource_key'] = service_credentials_resource_key_model
+
+        cos_hmac_keys_model = {}  # CosHmacKeys
+
+        service_credentials_secret_credentials_model = {}  # ServiceCredentialsSecretCredentials
+        service_credentials_secret_credentials_model['cos_hmac_keys'] = cos_hmac_keys_model
+
+        # Construct a json representation of a ServiceCredentialsSecret model
+        service_credentials_secret_model_json = {}
+        service_credentials_secret_model_json['created_by'] = 'iam-ServiceId-e4a2f0a4-3c76-4bef-b1f2-fbeae11c0f21'
+        service_credentials_secret_model_json['created_at'] = '2022-04-12T23:20:50.520000Z'
+        service_credentials_secret_model_json['crn'] = 'testString'
+        service_credentials_secret_model_json['custom_metadata'] = {'key': 'value'}
+        service_credentials_secret_model_json['description'] = 'Extended description for this secret.'
+        service_credentials_secret_model_json['id'] = 'b49ad24d-81d4-5ebc-b9b9-b0937d1c84d5'
+        service_credentials_secret_model_json['labels'] = ['my-label']
+        service_credentials_secret_model_json['secret_group_id'] = 'default'
+        service_credentials_secret_model_json['secret_type'] = 'service_credentials'
+        service_credentials_secret_model_json['updated_at'] = '2022-04-12T23:20:50.520000Z'
+        service_credentials_secret_model_json['versions_total'] = 0
+        service_credentials_secret_model_json['rotation'] = rotation_policy_model
+        service_credentials_secret_model_json['ttl'] = '1d'
+        service_credentials_secret_model_json['source_service'] = service_credentials_secret_source_service_model
+        service_credentials_secret_model_json['credentials'] = service_credentials_secret_credentials_model
+
+        # Construct a model instance of ServiceCredentialsSecret by calling from_dict on the json representation
+        service_credentials_secret_model = ServiceCredentialsSecret.from_dict(service_credentials_secret_model_json)
+        assert service_credentials_secret_model != False
+
+        # Construct a model instance of ServiceCredentialsSecret by calling from_dict on the json representation
+        service_credentials_secret_model_dict = ServiceCredentialsSecret.from_dict(service_credentials_secret_model_json).__dict__
+        service_credentials_secret_model2 = ServiceCredentialsSecret(**service_credentials_secret_model_dict)
+
+        # Verify the model instances are equivalent
+        assert service_credentials_secret_model == service_credentials_secret_model2
+
+        # Convert model instance back to dict and verify no loss of data
+        service_credentials_secret_model_json2 = service_credentials_secret_model.to_dict()
+        assert service_credentials_secret_model_json2 == service_credentials_secret_model_json
+
+
+class TestModel_ServiceCredentialsSecretMetadata:
+    """
+    Test Class for ServiceCredentialsSecretMetadata
+    """
+
+    def test_service_credentials_secret_metadata_serialization(self):
+        """
+        Test serialization/deserialization for ServiceCredentialsSecretMetadata
+        """
+
+        # Construct dict forms of any model objects needed in order to build this model.
+
+        rotation_policy_model = {}  # CommonRotationPolicy
+        rotation_policy_model['auto_rotate'] = True
+        rotation_policy_model['interval'] = 1
+        rotation_policy_model['unit'] = 'day'
+
+        service_credentials_source_service_instance_model = {}  # ServiceCredentialsSourceServiceInstance
+        service_credentials_source_service_instance_model['crn'] = 'testString'
+
+        service_credentials_source_service_parameters_model = {}  # ServiceCredentialsSourceServiceParameters
+        service_credentials_source_service_parameters_model['serviceid_crn'] = 'testString'
+        service_credentials_source_service_parameters_model['foo'] = 'testString'
+
+        service_credentials_source_service_role_model = {}  # ServiceCredentialsSourceServiceRole
+        service_credentials_source_service_role_model['crn'] = 'testString'
+
+        service_credentials_source_service_iam_apikey_model = {}  # ServiceCredentialsSourceServiceIamApikey
+
+        service_credentials_source_service_iam_role_model = {}  # ServiceCredentialsSourceServiceIamRole
+
+        service_credentials_source_service_iam_serviceid_model = {}  # ServiceCredentialsSourceServiceIamServiceid
+
+        service_credentials_source_service_iam_model = {}  # ServiceCredentialsSourceServiceIam
+        service_credentials_source_service_iam_model['apikey'] = service_credentials_source_service_iam_apikey_model
+        service_credentials_source_service_iam_model['role'] = service_credentials_source_service_iam_role_model
+        service_credentials_source_service_iam_model['serviceid'] = service_credentials_source_service_iam_serviceid_model
+
+        service_credentials_resource_key_model = {}  # ServiceCredentialsResourceKey
+
+        service_credentials_secret_source_service_model = {}  # ServiceCredentialsSecretSourceService
+        service_credentials_secret_source_service_model['instance'] = service_credentials_source_service_instance_model
+        service_credentials_secret_source_service_model['parameters'] = service_credentials_source_service_parameters_model
+        service_credentials_secret_source_service_model['role'] = service_credentials_source_service_role_model
+        service_credentials_secret_source_service_model['iam'] = service_credentials_source_service_iam_model
+        service_credentials_secret_source_service_model['resource_key'] = service_credentials_resource_key_model
+
+        # Construct a json representation of a ServiceCredentialsSecretMetadata model
+        service_credentials_secret_metadata_model_json = {}
+        service_credentials_secret_metadata_model_json['created_by'] = 'iam-ServiceId-e4a2f0a4-3c76-4bef-b1f2-fbeae11c0f21'
+        service_credentials_secret_metadata_model_json['created_at'] = '2022-04-12T23:20:50.520000Z'
+        service_credentials_secret_metadata_model_json['crn'] = 'testString'
+        service_credentials_secret_metadata_model_json['custom_metadata'] = {'key': 'value'}
+        service_credentials_secret_metadata_model_json['description'] = 'Extended description for this secret.'
+        service_credentials_secret_metadata_model_json['id'] = 'b49ad24d-81d4-5ebc-b9b9-b0937d1c84d5'
+        service_credentials_secret_metadata_model_json['labels'] = ['my-label']
+        service_credentials_secret_metadata_model_json['secret_group_id'] = 'default'
+        service_credentials_secret_metadata_model_json['secret_type'] = 'service_credentials'
+        service_credentials_secret_metadata_model_json['updated_at'] = '2022-04-12T23:20:50.520000Z'
+        service_credentials_secret_metadata_model_json['versions_total'] = 0
+        service_credentials_secret_metadata_model_json['rotation'] = rotation_policy_model
+        service_credentials_secret_metadata_model_json['ttl'] = '1d'
+        service_credentials_secret_metadata_model_json['source_service'] = service_credentials_secret_source_service_model
+
+        # Construct a model instance of ServiceCredentialsSecretMetadata by calling from_dict on the json representation
+        service_credentials_secret_metadata_model = ServiceCredentialsSecretMetadata.from_dict(service_credentials_secret_metadata_model_json)
+        assert service_credentials_secret_metadata_model != False
+
+        # Construct a model instance of ServiceCredentialsSecretMetadata by calling from_dict on the json representation
+        service_credentials_secret_metadata_model_dict = ServiceCredentialsSecretMetadata.from_dict(service_credentials_secret_metadata_model_json).__dict__
+        service_credentials_secret_metadata_model2 = ServiceCredentialsSecretMetadata(**service_credentials_secret_metadata_model_dict)
+
+        # Verify the model instances are equivalent
+        assert service_credentials_secret_metadata_model == service_credentials_secret_metadata_model2
+
+        # Convert model instance back to dict and verify no loss of data
+        service_credentials_secret_metadata_model_json2 = service_credentials_secret_metadata_model.to_dict()
+        assert service_credentials_secret_metadata_model_json2 == service_credentials_secret_metadata_model_json
+
+
+class TestModel_ServiceCredentialsSecretMetadataPatch:
+    """
+    Test Class for ServiceCredentialsSecretMetadataPatch
+    """
+
+    def test_service_credentials_secret_metadata_patch_serialization(self):
+        """
+        Test serialization/deserialization for ServiceCredentialsSecretMetadataPatch
+        """
+
+        # Construct dict forms of any model objects needed in order to build this model.
+
+        rotation_policy_model = {}  # CommonRotationPolicy
+        rotation_policy_model['auto_rotate'] = True
+        rotation_policy_model['interval'] = 1
+        rotation_policy_model['unit'] = 'day'
+
+        # Construct a json representation of a ServiceCredentialsSecretMetadataPatch model
+        service_credentials_secret_metadata_patch_model_json = {}
+        service_credentials_secret_metadata_patch_model_json['custom_metadata'] = {'key': 'value'}
+        service_credentials_secret_metadata_patch_model_json['description'] = 'Extended description for this secret.'
+        service_credentials_secret_metadata_patch_model_json['labels'] = ['my-label']
+        service_credentials_secret_metadata_patch_model_json['name'] = 'my-secret-example'
+        service_credentials_secret_metadata_patch_model_json['rotation'] = rotation_policy_model
+        service_credentials_secret_metadata_patch_model_json['ttl'] = '1d'
+
+        # Construct a model instance of ServiceCredentialsSecretMetadataPatch by calling from_dict on the json representation
+        service_credentials_secret_metadata_patch_model = ServiceCredentialsSecretMetadataPatch.from_dict(service_credentials_secret_metadata_patch_model_json)
+        assert service_credentials_secret_metadata_patch_model != False
+
+        # Construct a model instance of ServiceCredentialsSecretMetadataPatch by calling from_dict on the json representation
+        service_credentials_secret_metadata_patch_model_dict = ServiceCredentialsSecretMetadataPatch.from_dict(service_credentials_secret_metadata_patch_model_json).__dict__
+        service_credentials_secret_metadata_patch_model2 = ServiceCredentialsSecretMetadataPatch(**service_credentials_secret_metadata_patch_model_dict)
+
+        # Verify the model instances are equivalent
+        assert service_credentials_secret_metadata_patch_model == service_credentials_secret_metadata_patch_model2
+
+        # Convert model instance back to dict and verify no loss of data
+        service_credentials_secret_metadata_patch_model_json2 = service_credentials_secret_metadata_patch_model.to_dict()
+        assert service_credentials_secret_metadata_patch_model_json2 == service_credentials_secret_metadata_patch_model_json
+
+
+class TestModel_ServiceCredentialsSecretPrototype:
+    """
+    Test Class for ServiceCredentialsSecretPrototype
+    """
+
+    def test_service_credentials_secret_prototype_serialization(self):
+        """
+        Test serialization/deserialization for ServiceCredentialsSecretPrototype
+        """
+
+        # Construct dict forms of any model objects needed in order to build this model.
+
+        rotation_policy_model = {}  # CommonRotationPolicy
+        rotation_policy_model['auto_rotate'] = True
+        rotation_policy_model['interval'] = 1
+        rotation_policy_model['unit'] = 'day'
+
+        service_credentials_source_service_instance_model = {}  # ServiceCredentialsSourceServiceInstance
+        service_credentials_source_service_instance_model['crn'] = 'testString'
+
+        service_credentials_source_service_parameters_model = {}  # ServiceCredentialsSourceServiceParameters
+        service_credentials_source_service_parameters_model['serviceid_crn'] = 'testString'
+        service_credentials_source_service_parameters_model['foo'] = 'testString'
+
+        service_credentials_source_service_role_model = {}  # ServiceCredentialsSourceServiceRole
+        service_credentials_source_service_role_model['crn'] = 'testString'
+
+        service_credentials_source_service_iam_apikey_model = {}  # ServiceCredentialsSourceServiceIamApikey
+
+        service_credentials_source_service_iam_role_model = {}  # ServiceCredentialsSourceServiceIamRole
+
+        service_credentials_source_service_iam_serviceid_model = {}  # ServiceCredentialsSourceServiceIamServiceid
+
+        service_credentials_source_service_iam_model = {}  # ServiceCredentialsSourceServiceIam
+        service_credentials_source_service_iam_model['apikey'] = service_credentials_source_service_iam_apikey_model
+        service_credentials_source_service_iam_model['role'] = service_credentials_source_service_iam_role_model
+        service_credentials_source_service_iam_model['serviceid'] = service_credentials_source_service_iam_serviceid_model
+
+        service_credentials_resource_key_model = {}  # ServiceCredentialsResourceKey
+
+        service_credentials_secret_source_service_model = {}  # ServiceCredentialsSecretSourceService
+        service_credentials_secret_source_service_model['instance'] = service_credentials_source_service_instance_model
+        service_credentials_secret_source_service_model['parameters'] = service_credentials_source_service_parameters_model
+        service_credentials_secret_source_service_model['role'] = service_credentials_source_service_role_model
+        service_credentials_secret_source_service_model['iam'] = service_credentials_source_service_iam_model
+        service_credentials_secret_source_service_model['resource_key'] = service_credentials_resource_key_model
+
+        # Construct a json representation of a ServiceCredentialsSecretPrototype model
+        service_credentials_secret_prototype_model_json = {}
+        service_credentials_secret_prototype_model_json['custom_metadata'] = {'key': 'value'}
+        service_credentials_secret_prototype_model_json['description'] = 'Extended description for this secret.'
+        service_credentials_secret_prototype_model_json['labels'] = ['my-label']
+        service_credentials_secret_prototype_model_json['name'] = 'my-secret-example'
+        service_credentials_secret_prototype_model_json['rotation'] = rotation_policy_model
+        service_credentials_secret_prototype_model_json['secret_group_id'] = 'default'
+        service_credentials_secret_prototype_model_json['secret_type'] = 'service_credentials'
+        service_credentials_secret_prototype_model_json['source_service'] = service_credentials_secret_source_service_model
+        service_credentials_secret_prototype_model_json['ttl'] = '1d'
+        service_credentials_secret_prototype_model_json['version_custom_metadata'] = {'key': 'value'}
+
+        # Construct a model instance of ServiceCredentialsSecretPrototype by calling from_dict on the json representation
+        service_credentials_secret_prototype_model = ServiceCredentialsSecretPrototype.from_dict(service_credentials_secret_prototype_model_json)
+        assert service_credentials_secret_prototype_model != False
+
+        # Construct a model instance of ServiceCredentialsSecretPrototype by calling from_dict on the json representation
+        service_credentials_secret_prototype_model_dict = ServiceCredentialsSecretPrototype.from_dict(service_credentials_secret_prototype_model_json).__dict__
+        service_credentials_secret_prototype_model2 = ServiceCredentialsSecretPrototype(**service_credentials_secret_prototype_model_dict)
+
+        # Verify the model instances are equivalent
+        assert service_credentials_secret_prototype_model == service_credentials_secret_prototype_model2
+
+        # Convert model instance back to dict and verify no loss of data
+        service_credentials_secret_prototype_model_json2 = service_credentials_secret_prototype_model.to_dict()
+        assert service_credentials_secret_prototype_model_json2 == service_credentials_secret_prototype_model_json
+
+
+class TestModel_ServiceCredentialsSecretVersion:
+    """
+    Test Class for ServiceCredentialsSecretVersion
+    """
+
+    def test_service_credentials_secret_version_serialization(self):
+        """
+        Test serialization/deserialization for ServiceCredentialsSecretVersion
+        """
+
+        # Construct dict forms of any model objects needed in order to build this model.
+
+        service_credentials_resource_key_model = {}  # ServiceCredentialsResourceKey
+
+        cos_hmac_keys_model = {}  # CosHmacKeys
+
+        service_credentials_secret_credentials_model = {}  # ServiceCredentialsSecretCredentials
+        service_credentials_secret_credentials_model['cos_hmac_keys'] = cos_hmac_keys_model
+
+        # Construct a json representation of a ServiceCredentialsSecretVersion model
+        service_credentials_secret_version_model_json = {}
+        service_credentials_secret_version_model_json['auto_rotated'] = True
+        service_credentials_secret_version_model_json['created_by'] = 'iam-ServiceId-e4a2f0a4-3c76-4bef-b1f2-fbeae11c0f21'
+        service_credentials_secret_version_model_json['created_at'] = '2022-04-12T23:20:50.520000Z'
+        service_credentials_secret_version_model_json['id'] = 'b49ad24d-81d4-5ebc-b9b9-b0937d1c84d5'
+        service_credentials_secret_version_model_json['secret_type'] = 'service_credentials'
+        service_credentials_secret_version_model_json['secret_group_id'] = 'default'
+        service_credentials_secret_version_model_json['payload_available'] = True
+        service_credentials_secret_version_model_json['alias'] = 'current'
+        service_credentials_secret_version_model_json['version_custom_metadata'] = {'key': 'value'}
+        service_credentials_secret_version_model_json['secret_id'] = 'b49ad24d-81d4-5ebc-b9b9-b0937d1c84d5'
+        service_credentials_secret_version_model_json['expiration_date'] = '2033-04-12T23:20:50.520000Z'
+        service_credentials_secret_version_model_json['resource_key'] = service_credentials_resource_key_model
+        service_credentials_secret_version_model_json['credentials'] = service_credentials_secret_credentials_model
+
+        # Construct a model instance of ServiceCredentialsSecretVersion by calling from_dict on the json representation
+        service_credentials_secret_version_model = ServiceCredentialsSecretVersion.from_dict(service_credentials_secret_version_model_json)
+        assert service_credentials_secret_version_model != False
+
+        # Construct a model instance of ServiceCredentialsSecretVersion by calling from_dict on the json representation
+        service_credentials_secret_version_model_dict = ServiceCredentialsSecretVersion.from_dict(service_credentials_secret_version_model_json).__dict__
+        service_credentials_secret_version_model2 = ServiceCredentialsSecretVersion(**service_credentials_secret_version_model_dict)
+
+        # Verify the model instances are equivalent
+        assert service_credentials_secret_version_model == service_credentials_secret_version_model2
+
+        # Convert model instance back to dict and verify no loss of data
+        service_credentials_secret_version_model_json2 = service_credentials_secret_version_model.to_dict()
+        assert service_credentials_secret_version_model_json2 == service_credentials_secret_version_model_json
+
+
+class TestModel_ServiceCredentialsSecretVersionMetadata:
+    """
+    Test Class for ServiceCredentialsSecretVersionMetadata
+    """
+
+    def test_service_credentials_secret_version_metadata_serialization(self):
+        """
+        Test serialization/deserialization for ServiceCredentialsSecretVersionMetadata
+        """
+
+        # Construct dict forms of any model objects needed in order to build this model.
+
+        service_credentials_resource_key_model = {}  # ServiceCredentialsResourceKey
+
+        # Construct a json representation of a ServiceCredentialsSecretVersionMetadata model
+        service_credentials_secret_version_metadata_model_json = {}
+        service_credentials_secret_version_metadata_model_json['auto_rotated'] = True
+        service_credentials_secret_version_metadata_model_json['created_by'] = 'iam-ServiceId-e4a2f0a4-3c76-4bef-b1f2-fbeae11c0f21'
+        service_credentials_secret_version_metadata_model_json['created_at'] = '2022-04-12T23:20:50.520000Z'
+        service_credentials_secret_version_metadata_model_json['id'] = 'b49ad24d-81d4-5ebc-b9b9-b0937d1c84d5'
+        service_credentials_secret_version_metadata_model_json['secret_type'] = 'service_credentials'
+        service_credentials_secret_version_metadata_model_json['secret_group_id'] = 'default'
+        service_credentials_secret_version_metadata_model_json['payload_available'] = True
+        service_credentials_secret_version_metadata_model_json['alias'] = 'current'
+        service_credentials_secret_version_metadata_model_json['version_custom_metadata'] = {'key': 'value'}
+        service_credentials_secret_version_metadata_model_json['secret_id'] = 'b49ad24d-81d4-5ebc-b9b9-b0937d1c84d5'
+        service_credentials_secret_version_metadata_model_json['expiration_date'] = '2033-04-12T23:20:50.520000Z'
+        service_credentials_secret_version_metadata_model_json['resource_key'] = service_credentials_resource_key_model
+
+        # Construct a model instance of ServiceCredentialsSecretVersionMetadata by calling from_dict on the json representation
+        service_credentials_secret_version_metadata_model = ServiceCredentialsSecretVersionMetadata.from_dict(service_credentials_secret_version_metadata_model_json)
+        assert service_credentials_secret_version_metadata_model != False
+
+        # Construct a model instance of ServiceCredentialsSecretVersionMetadata by calling from_dict on the json representation
+        service_credentials_secret_version_metadata_model_dict = ServiceCredentialsSecretVersionMetadata.from_dict(service_credentials_secret_version_metadata_model_json).__dict__
+        service_credentials_secret_version_metadata_model2 = ServiceCredentialsSecretVersionMetadata(**service_credentials_secret_version_metadata_model_dict)
+
+        # Verify the model instances are equivalent
+        assert service_credentials_secret_version_metadata_model == service_credentials_secret_version_metadata_model2
+
+        # Convert model instance back to dict and verify no loss of data
+        service_credentials_secret_version_metadata_model_json2 = service_credentials_secret_version_metadata_model.to_dict()
+        assert service_credentials_secret_version_metadata_model_json2 == service_credentials_secret_version_metadata_model_json
+
+
+class TestModel_ServiceCredentialsSecretVersionPrototype:
+    """
+    Test Class for ServiceCredentialsSecretVersionPrototype
+    """
+
+    def test_service_credentials_secret_version_prototype_serialization(self):
+        """
+        Test serialization/deserialization for ServiceCredentialsSecretVersionPrototype
+        """
+
+        # Construct a json representation of a ServiceCredentialsSecretVersionPrototype model
+        service_credentials_secret_version_prototype_model_json = {}
+        service_credentials_secret_version_prototype_model_json['custom_metadata'] = {'key': 'value'}
+        service_credentials_secret_version_prototype_model_json['version_custom_metadata'] = {'key': 'value'}
+
+        # Construct a model instance of ServiceCredentialsSecretVersionPrototype by calling from_dict on the json representation
+        service_credentials_secret_version_prototype_model = ServiceCredentialsSecretVersionPrototype.from_dict(service_credentials_secret_version_prototype_model_json)
+        assert service_credentials_secret_version_prototype_model != False
+
+        # Construct a model instance of ServiceCredentialsSecretVersionPrototype by calling from_dict on the json representation
+        service_credentials_secret_version_prototype_model_dict = ServiceCredentialsSecretVersionPrototype.from_dict(service_credentials_secret_version_prototype_model_json).__dict__
+        service_credentials_secret_version_prototype_model2 = ServiceCredentialsSecretVersionPrototype(**service_credentials_secret_version_prototype_model_dict)
+
+        # Verify the model instances are equivalent
+        assert service_credentials_secret_version_prototype_model == service_credentials_secret_version_prototype_model2
+
+        # Convert model instance back to dict and verify no loss of data
+        service_credentials_secret_version_prototype_model_json2 = service_credentials_secret_version_prototype_model.to_dict()
+        assert service_credentials_secret_version_prototype_model_json2 == service_credentials_secret_version_prototype_model_json
+
+
+class TestModel_UsernamePasswordSecret:
     """
     Test Class for UsernamePasswordSecret
     """
@@ -8544,7 +9781,7 @@ class TestModel_UsernamePasswordSecret():
 
         # Construct dict forms of any model objects needed in order to build this model.
 
-        rotation_policy_model = {} # CommonRotationPolicy
+        rotation_policy_model = {}  # CommonRotationPolicy
         rotation_policy_model['auto_rotate'] = True
         rotation_policy_model['interval'] = 1
         rotation_policy_model['unit'] = 'day'
@@ -8554,7 +9791,7 @@ class TestModel_UsernamePasswordSecret():
         username_password_secret_model_json['created_by'] = 'iam-ServiceId-e4a2f0a4-3c76-4bef-b1f2-fbeae11c0f21'
         username_password_secret_model_json['created_at'] = '2022-04-12T23:20:50.520000Z'
         username_password_secret_model_json['crn'] = 'testString'
-        username_password_secret_model_json['custom_metadata'] = {'foo': 'bar'}
+        username_password_secret_model_json['custom_metadata'] = {'key': 'value'}
         username_password_secret_model_json['description'] = 'Extended description for this secret.'
         username_password_secret_model_json['id'] = 'b49ad24d-81d4-5ebc-b9b9-b0937d1c84d5'
         username_password_secret_model_json['labels'] = ['my-label']
@@ -8582,7 +9819,8 @@ class TestModel_UsernamePasswordSecret():
         username_password_secret_model_json2 = username_password_secret_model.to_dict()
         assert username_password_secret_model_json2 == username_password_secret_model_json
 
-class TestModel_UsernamePasswordSecretMetadata():
+
+class TestModel_UsernamePasswordSecretMetadata:
     """
     Test Class for UsernamePasswordSecretMetadata
     """
@@ -8594,7 +9832,7 @@ class TestModel_UsernamePasswordSecretMetadata():
 
         # Construct dict forms of any model objects needed in order to build this model.
 
-        rotation_policy_model = {} # CommonRotationPolicy
+        rotation_policy_model = {}  # CommonRotationPolicy
         rotation_policy_model['auto_rotate'] = True
         rotation_policy_model['interval'] = 1
         rotation_policy_model['unit'] = 'day'
@@ -8604,7 +9842,7 @@ class TestModel_UsernamePasswordSecretMetadata():
         username_password_secret_metadata_model_json['created_by'] = 'iam-ServiceId-e4a2f0a4-3c76-4bef-b1f2-fbeae11c0f21'
         username_password_secret_metadata_model_json['created_at'] = '2022-04-12T23:20:50.520000Z'
         username_password_secret_metadata_model_json['crn'] = 'testString'
-        username_password_secret_metadata_model_json['custom_metadata'] = {'foo': 'bar'}
+        username_password_secret_metadata_model_json['custom_metadata'] = {'key': 'value'}
         username_password_secret_metadata_model_json['description'] = 'Extended description for this secret.'
         username_password_secret_metadata_model_json['id'] = 'b49ad24d-81d4-5ebc-b9b9-b0937d1c84d5'
         username_password_secret_metadata_model_json['labels'] = ['my-label']
@@ -8630,7 +9868,8 @@ class TestModel_UsernamePasswordSecretMetadata():
         username_password_secret_metadata_model_json2 = username_password_secret_metadata_model.to_dict()
         assert username_password_secret_metadata_model_json2 == username_password_secret_metadata_model_json
 
-class TestModel_UsernamePasswordSecretMetadataPatch():
+
+class TestModel_UsernamePasswordSecretMetadataPatch:
     """
     Test Class for UsernamePasswordSecretMetadataPatch
     """
@@ -8642,7 +9881,7 @@ class TestModel_UsernamePasswordSecretMetadataPatch():
 
         # Construct dict forms of any model objects needed in order to build this model.
 
-        rotation_policy_model = {} # CommonRotationPolicy
+        rotation_policy_model = {}  # CommonRotationPolicy
         rotation_policy_model['auto_rotate'] = True
         rotation_policy_model['interval'] = 1
         rotation_policy_model['unit'] = 'day'
@@ -8652,7 +9891,7 @@ class TestModel_UsernamePasswordSecretMetadataPatch():
         username_password_secret_metadata_patch_model_json['name'] = 'my-secret-example'
         username_password_secret_metadata_patch_model_json['description'] = 'Extended description for this secret.'
         username_password_secret_metadata_patch_model_json['labels'] = ['my-label']
-        username_password_secret_metadata_patch_model_json['custom_metadata'] = {'foo': 'bar'}
+        username_password_secret_metadata_patch_model_json['custom_metadata'] = {'key': 'value'}
         username_password_secret_metadata_patch_model_json['rotation'] = rotation_policy_model
         username_password_secret_metadata_patch_model_json['expiration_date'] = '2033-04-12T23:20:50.520000Z'
 
@@ -8671,7 +9910,8 @@ class TestModel_UsernamePasswordSecretMetadataPatch():
         username_password_secret_metadata_patch_model_json2 = username_password_secret_metadata_patch_model.to_dict()
         assert username_password_secret_metadata_patch_model_json2 == username_password_secret_metadata_patch_model_json
 
-class TestModel_UsernamePasswordSecretPrototype():
+
+class TestModel_UsernamePasswordSecretPrototype:
     """
     Test Class for UsernamePasswordSecretPrototype
     """
@@ -8683,7 +9923,7 @@ class TestModel_UsernamePasswordSecretPrototype():
 
         # Construct dict forms of any model objects needed in order to build this model.
 
-        rotation_policy_model = {} # CommonRotationPolicy
+        rotation_policy_model = {}  # CommonRotationPolicy
         rotation_policy_model['auto_rotate'] = True
         rotation_policy_model['interval'] = 1
         rotation_policy_model['unit'] = 'day'
@@ -8698,8 +9938,8 @@ class TestModel_UsernamePasswordSecretPrototype():
         username_password_secret_prototype_model_json['username'] = 'testString'
         username_password_secret_prototype_model_json['password'] = 'testString'
         username_password_secret_prototype_model_json['expiration_date'] = '2033-04-12T23:20:50.520000Z'
-        username_password_secret_prototype_model_json['custom_metadata'] = {'foo': 'bar'}
-        username_password_secret_prototype_model_json['version_custom_metadata'] = {'foo': 'bar'}
+        username_password_secret_prototype_model_json['custom_metadata'] = {'key': 'value'}
+        username_password_secret_prototype_model_json['version_custom_metadata'] = {'key': 'value'}
         username_password_secret_prototype_model_json['rotation'] = rotation_policy_model
 
         # Construct a model instance of UsernamePasswordSecretPrototype by calling from_dict on the json representation
@@ -8717,7 +9957,8 @@ class TestModel_UsernamePasswordSecretPrototype():
         username_password_secret_prototype_model_json2 = username_password_secret_prototype_model.to_dict()
         assert username_password_secret_prototype_model_json2 == username_password_secret_prototype_model_json
 
-class TestModel_UsernamePasswordSecretVersion():
+
+class TestModel_UsernamePasswordSecretVersion:
     """
     Test Class for UsernamePasswordSecretVersion
     """
@@ -8737,7 +9978,7 @@ class TestModel_UsernamePasswordSecretVersion():
         username_password_secret_version_model_json['secret_group_id'] = 'default'
         username_password_secret_version_model_json['payload_available'] = True
         username_password_secret_version_model_json['alias'] = 'current'
-        username_password_secret_version_model_json['version_custom_metadata'] = {'foo': 'bar'}
+        username_password_secret_version_model_json['version_custom_metadata'] = {'key': 'value'}
         username_password_secret_version_model_json['secret_id'] = 'b49ad24d-81d4-5ebc-b9b9-b0937d1c84d5'
         username_password_secret_version_model_json['username'] = 'testString'
         username_password_secret_version_model_json['password'] = 'testString'
@@ -8757,7 +9998,8 @@ class TestModel_UsernamePasswordSecretVersion():
         username_password_secret_version_model_json2 = username_password_secret_version_model.to_dict()
         assert username_password_secret_version_model_json2 == username_password_secret_version_model_json
 
-class TestModel_UsernamePasswordSecretVersionMetadata():
+
+class TestModel_UsernamePasswordSecretVersionMetadata:
     """
     Test Class for UsernamePasswordSecretVersionMetadata
     """
@@ -8777,7 +10019,7 @@ class TestModel_UsernamePasswordSecretVersionMetadata():
         username_password_secret_version_metadata_model_json['secret_group_id'] = 'default'
         username_password_secret_version_metadata_model_json['payload_available'] = True
         username_password_secret_version_metadata_model_json['alias'] = 'current'
-        username_password_secret_version_metadata_model_json['version_custom_metadata'] = {'foo': 'bar'}
+        username_password_secret_version_metadata_model_json['version_custom_metadata'] = {'key': 'value'}
         username_password_secret_version_metadata_model_json['secret_id'] = 'b49ad24d-81d4-5ebc-b9b9-b0937d1c84d5'
 
         # Construct a model instance of UsernamePasswordSecretVersionMetadata by calling from_dict on the json representation
@@ -8795,7 +10037,8 @@ class TestModel_UsernamePasswordSecretVersionMetadata():
         username_password_secret_version_metadata_model_json2 = username_password_secret_version_metadata_model.to_dict()
         assert username_password_secret_version_metadata_model_json2 == username_password_secret_version_metadata_model_json
 
-class TestModel_UsernamePasswordSecretVersionPrototype():
+
+class TestModel_UsernamePasswordSecretVersionPrototype:
     """
     Test Class for UsernamePasswordSecretVersionPrototype
     """
@@ -8808,8 +10051,8 @@ class TestModel_UsernamePasswordSecretVersionPrototype():
         # Construct a json representation of a UsernamePasswordSecretVersionPrototype model
         username_password_secret_version_prototype_model_json = {}
         username_password_secret_version_prototype_model_json['password'] = 'testString'
-        username_password_secret_version_prototype_model_json['custom_metadata'] = {'foo': 'bar'}
-        username_password_secret_version_prototype_model_json['version_custom_metadata'] = {'foo': 'bar'}
+        username_password_secret_version_prototype_model_json['custom_metadata'] = {'key': 'value'}
+        username_password_secret_version_prototype_model_json['version_custom_metadata'] = {'key': 'value'}
 
         # Construct a model instance of UsernamePasswordSecretVersionPrototype by calling from_dict on the json representation
         username_password_secret_version_prototype_model = UsernamePasswordSecretVersionPrototype.from_dict(username_password_secret_version_prototype_model_json)
