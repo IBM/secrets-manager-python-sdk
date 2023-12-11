@@ -98,7 +98,6 @@ class TestSecretsManagerV2Examples:
         create_secret_group request example
         """
         try:
-            global secret_group_id_for_get_secret_group_link
             print('\ncreate_secret_group() result:')
             # begin-create_secret_group
 
@@ -111,6 +110,7 @@ class TestSecretsManagerV2Examples:
 
             # end-create_secret_group
 
+            global secret_group_id_for_get_secret_group_link
             secret_group_id_for_get_secret_group_link = secret_group['id']
         except ApiException as e:
             pytest.fail(str(e))
@@ -121,13 +121,11 @@ class TestSecretsManagerV2Examples:
         create_secret request example
         """
         try:
-            global secret_id_for_get_secret_link
-            global secret_id_for_get_secret_version_link
             print('\ncreate_secret() result:')
             # begin-create_secret
 
             secret_prototype_model = {
-                'custom_metadata': {'metadata_custom_key':'metadata_custom_value'},
+                'custom_metadata': {'metadata_custom_key': 'metadata_custom_value'},
                 'description': 'Description of my arbitrary secret.',
                 'expiration_date': '2030-10-05T11:49:42Z',
                 'labels': ['dev', 'us-south'],
@@ -135,7 +133,7 @@ class TestSecretsManagerV2Examples:
                 'secret_group_id': 'default',
                 'secret_type': 'arbitrary',
                 'payload': 'secret-data',
-                'version_custom_metadata': {'custom_version_key':'custom_version_value'},
+                'version_custom_metadata': {'custom_version_key': 'custom_version_value'},
             }
 
             response = secrets_manager_service.create_secret(
@@ -147,7 +145,9 @@ class TestSecretsManagerV2Examples:
 
             # end-create_secret
 
+            global secret_id_for_get_secret_link
             secret_id_for_get_secret_link = secret['id']
+            global secret_id_for_get_secret_version_link
             secret_id_for_get_secret_version_link = secret['id']
         except ApiException as e:
             pytest.fail(str(e))
@@ -158,7 +158,6 @@ class TestSecretsManagerV2Examples:
         update_secret_metadata request example
         """
         try:
-            global secret_name_link
             print('\nupdate_secret_metadata() result:')
             # begin-update_secret_metadata
 
@@ -166,7 +165,7 @@ class TestSecretsManagerV2Examples:
                 'name': 'updated-arbitrary-secret-name-example',
                 'description': 'updated Arbitrary Secret description',
                 'labels': ['dev', 'us-south'],
-                'custom_metadata': {'metadata_custom_key':'metadata_custom_value'},
+                'custom_metadata': {'metadata_custom_key': 'metadata_custom_value'},
             }
 
             response = secrets_manager_service.update_secret_metadata(
@@ -179,6 +178,7 @@ class TestSecretsManagerV2Examples:
 
             # end-update_secret_metadata
 
+            global secret_name_link
             secret_name_link = secret_metadata['name']
         except ApiException as e:
             pytest.fail(str(e))
@@ -189,13 +189,6 @@ class TestSecretsManagerV2Examples:
         list_secret_versions request example
         """
         try:
-            global secret_version_id_for_get_secret_version_link
-            global secret_id_for_create_secret_version_link
-            global secret_version_id_for_get_secret_version_metadata_link
-            global secret_version_id_for_update_secret_version_metadata_link
-            global secret_id_for_create_secret_version_locks_link
-            global secret_version_id_for_create_secret_version_locks_link
-            global secret_version_id_for_delete_secret_version_locks_link
             print('\nlist_secret_versions() result:')
             # begin-list_secret_versions
 
@@ -208,12 +201,19 @@ class TestSecretsManagerV2Examples:
 
             # end-list_secret_versions
 
+            global secret_version_id_for_get_secret_version_link
             secret_version_id_for_get_secret_version_link = secret_version_metadata_collection['versions'][0]['id']
+            global secret_id_for_create_secret_version_link
             secret_id_for_create_secret_version_link = secret_version_metadata_collection['versions'][0]['secret_id']
+            global secret_version_id_for_get_secret_version_metadata_link
             secret_version_id_for_get_secret_version_metadata_link = secret_version_metadata_collection['versions'][0]['id']
+            global secret_version_id_for_update_secret_version_metadata_link
             secret_version_id_for_update_secret_version_metadata_link = secret_version_metadata_collection['versions'][0]['id']
+            global secret_id_for_create_secret_version_locks_link
             secret_id_for_create_secret_version_locks_link = secret_version_metadata_collection['versions'][0]['secret_id']
+            global secret_version_id_for_create_secret_version_locks_link
             secret_version_id_for_create_secret_version_locks_link = secret_version_metadata_collection['versions'][0]['id']
+            global secret_version_id_for_delete_secret_version_locks_link
             secret_version_id_for_delete_secret_version_locks_link = secret_version_metadata_collection['versions'][0]['id']
         except ApiException as e:
             pytest.fail(str(e))
@@ -224,16 +224,13 @@ class TestSecretsManagerV2Examples:
         create_secret_locks_bulk request example
         """
         try:
-            global secret_id_for_list_secret_locks_link
-            global secret_id_for_list_secret_version_locks_link
-            global secret_version_id_for_list_secret_version_locks_link
             print('\ncreate_secret_locks_bulk() result:')
             # begin-create_secret_locks_bulk
 
             secret_lock_prototype_model = {
                 'name': 'lock-example-1',
                 'description': 'lock for consumer 1',
-                'attributes': {'key':'value'},
+                'attributes': {'key': 'value'},
             }
 
             response = secrets_manager_service.create_secret_locks_bulk(
@@ -246,8 +243,11 @@ class TestSecretsManagerV2Examples:
 
             # end-create_secret_locks_bulk
 
+            global secret_id_for_list_secret_locks_link
             secret_id_for_list_secret_locks_link = secret_locks['secret_id']
+            global secret_id_for_list_secret_version_locks_link
             secret_id_for_list_secret_version_locks_link = secret_locks['secret_id']
+            global secret_version_id_for_list_secret_version_locks_link
             secret_version_id_for_list_secret_version_locks_link = secret_locks['versions'][0]['version_id']
         except ApiException as e:
             pytest.fail(str(e))
@@ -258,7 +258,6 @@ class TestSecretsManagerV2Examples:
         create_configuration request example
         """
         try:
-            global configuration_name_for_get_configuration_link
             print('\ncreate_configuration() result:')
             # begin-create_configuration
 
@@ -293,6 +292,7 @@ class TestSecretsManagerV2Examples:
 
             # end-create_configuration
 
+            global configuration_name_for_get_configuration_link
             configuration_name_for_get_configuration_link = configuration['name']
         except ApiException as e:
             pytest.fail(str(e))
@@ -492,8 +492,8 @@ class TestSecretsManagerV2Examples:
 
             secret_version_prototype_model = {
                 'payload': 'updated secret credentials',
-                'custom_metadata': {'metadata_custom_key':'metadata_custom_value'},
-                'version_custom_metadata': {'custom_version_key':'custom_version_value'},
+                'custom_metadata': {'metadata_custom_key': 'metadata_custom_value'},
+                'version_custom_metadata': {'custom_version_key': 'custom_version_value'},
             }
 
             response = secrets_manager_service.create_secret_version(
@@ -673,7 +673,7 @@ class TestSecretsManagerV2Examples:
             secret_lock_prototype_model = {
                 'name': 'lock-example-1',
                 'description': 'lock for consumer 1',
-                'attributes': {'key':'value'},
+                'attributes': {'key': 'value'},
             }
 
             response = secrets_manager_service.create_secret_version_locks_bulk(
