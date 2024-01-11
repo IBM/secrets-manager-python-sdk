@@ -123,7 +123,6 @@ response = secretsManager.get_secret(
 
 secretPayload = response.result['payload']
 print('The arbitrary secret payload is: ' + secretPayload)
-
 ```
 
 Replace the `apikey` and `set_service_url()` values. Then use the `python secrets_manager.py` command to run your
