@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# (C) Copyright IBM Corp. 2023.
+# (C) Copyright IBM Corp. 2024.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -4464,35 +4464,6 @@ class TestModel_ConfigurationMetadataPaginatedCollection:
         assert configuration_metadata_paginated_collection_model_json2 == configuration_metadata_paginated_collection_model_json
 
 
-class TestModel_CosHmacKeys:
-    """
-    Test Class for CosHmacKeys
-    """
-
-    def test_cos_hmac_keys_serialization(self):
-        """
-        Test serialization/deserialization for CosHmacKeys
-        """
-
-        # Construct a json representation of a CosHmacKeys model
-        cos_hmac_keys_model_json = {}
-
-        # Construct a model instance of CosHmacKeys by calling from_dict on the json representation
-        cos_hmac_keys_model = CosHmacKeys.from_dict(cos_hmac_keys_model_json)
-        assert cos_hmac_keys_model != False
-
-        # Construct a model instance of CosHmacKeys by calling from_dict on the json representation
-        cos_hmac_keys_model_dict = CosHmacKeys.from_dict(cos_hmac_keys_model_json).__dict__
-        cos_hmac_keys_model2 = CosHmacKeys(**cos_hmac_keys_model_dict)
-
-        # Verify the model instances are equivalent
-        assert cos_hmac_keys_model == cos_hmac_keys_model2
-
-        # Convert model instance back to dict and verify no loss of data
-        cos_hmac_keys_model_json2 = cos_hmac_keys_model.to_dict()
-        assert cos_hmac_keys_model_json2 == cos_hmac_keys_model_json
-
-
 class TestModel_NotificationsRegistration:
     """
     Test Class for NotificationsRegistration
@@ -4641,6 +4612,105 @@ class TestModel_PaginatedCollectionPrevious:
         # Convert model instance back to dict and verify no loss of data
         paginated_collection_previous_model_json2 = paginated_collection_previous_model.to_dict()
         assert paginated_collection_previous_model_json2 == paginated_collection_previous_model_json
+
+
+class TestModel_PasswordGenerationPolicy:
+    """
+    Test Class for PasswordGenerationPolicy
+    """
+
+    def test_password_generation_policy_serialization(self):
+        """
+        Test serialization/deserialization for PasswordGenerationPolicy
+        """
+
+        # Construct a json representation of a PasswordGenerationPolicy model
+        password_generation_policy_model_json = {}
+        password_generation_policy_model_json['length'] = 32
+        password_generation_policy_model_json['include_digits'] = True
+        password_generation_policy_model_json['include_symbols'] = True
+        password_generation_policy_model_json['include_uppercase'] = True
+
+        # Construct a model instance of PasswordGenerationPolicy by calling from_dict on the json representation
+        password_generation_policy_model = PasswordGenerationPolicy.from_dict(password_generation_policy_model_json)
+        assert password_generation_policy_model != False
+
+        # Construct a model instance of PasswordGenerationPolicy by calling from_dict on the json representation
+        password_generation_policy_model_dict = PasswordGenerationPolicy.from_dict(password_generation_policy_model_json).__dict__
+        password_generation_policy_model2 = PasswordGenerationPolicy(**password_generation_policy_model_dict)
+
+        # Verify the model instances are equivalent
+        assert password_generation_policy_model == password_generation_policy_model2
+
+        # Convert model instance back to dict and verify no loss of data
+        password_generation_policy_model_json2 = password_generation_policy_model.to_dict()
+        assert password_generation_policy_model_json2 == password_generation_policy_model_json
+
+
+class TestModel_PasswordGenerationPolicyPatch:
+    """
+    Test Class for PasswordGenerationPolicyPatch
+    """
+
+    def test_password_generation_policy_patch_serialization(self):
+        """
+        Test serialization/deserialization for PasswordGenerationPolicyPatch
+        """
+
+        # Construct a json representation of a PasswordGenerationPolicyPatch model
+        password_generation_policy_patch_model_json = {}
+        password_generation_policy_patch_model_json['length'] = 12
+        password_generation_policy_patch_model_json['include_digits'] = True
+        password_generation_policy_patch_model_json['include_symbols'] = True
+        password_generation_policy_patch_model_json['include_uppercase'] = True
+
+        # Construct a model instance of PasswordGenerationPolicyPatch by calling from_dict on the json representation
+        password_generation_policy_patch_model = PasswordGenerationPolicyPatch.from_dict(password_generation_policy_patch_model_json)
+        assert password_generation_policy_patch_model != False
+
+        # Construct a model instance of PasswordGenerationPolicyPatch by calling from_dict on the json representation
+        password_generation_policy_patch_model_dict = PasswordGenerationPolicyPatch.from_dict(password_generation_policy_patch_model_json).__dict__
+        password_generation_policy_patch_model2 = PasswordGenerationPolicyPatch(**password_generation_policy_patch_model_dict)
+
+        # Verify the model instances are equivalent
+        assert password_generation_policy_patch_model == password_generation_policy_patch_model2
+
+        # Convert model instance back to dict and verify no loss of data
+        password_generation_policy_patch_model_json2 = password_generation_policy_patch_model.to_dict()
+        assert password_generation_policy_patch_model_json2 == password_generation_policy_patch_model_json
+
+
+class TestModel_PasswordGenerationPolicyRO:
+    """
+    Test Class for PasswordGenerationPolicyRO
+    """
+
+    def test_password_generation_policy_ro_serialization(self):
+        """
+        Test serialization/deserialization for PasswordGenerationPolicyRO
+        """
+
+        # Construct a json representation of a PasswordGenerationPolicyRO model
+        password_generation_policy_ro_model_json = {}
+        password_generation_policy_ro_model_json['length'] = 12
+        password_generation_policy_ro_model_json['include_digits'] = True
+        password_generation_policy_ro_model_json['include_symbols'] = True
+        password_generation_policy_ro_model_json['include_uppercase'] = True
+
+        # Construct a model instance of PasswordGenerationPolicyRO by calling from_dict on the json representation
+        password_generation_policy_ro_model = PasswordGenerationPolicyRO.from_dict(password_generation_policy_ro_model_json)
+        assert password_generation_policy_ro_model != False
+
+        # Construct a model instance of PasswordGenerationPolicyRO by calling from_dict on the json representation
+        password_generation_policy_ro_model_dict = PasswordGenerationPolicyRO.from_dict(password_generation_policy_ro_model_json).__dict__
+        password_generation_policy_ro_model2 = PasswordGenerationPolicyRO(**password_generation_policy_ro_model_dict)
+
+        # Verify the model instances are equivalent
+        assert password_generation_policy_ro_model == password_generation_policy_ro_model2
+
+        # Convert model instance back to dict and verify no loss of data
+        password_generation_policy_ro_model_json2 = password_generation_policy_ro_model.to_dict()
+        assert password_generation_policy_ro_model_json2 == password_generation_policy_ro_model_json
 
 
 class TestModel_PublicCertificateRotationObject:
@@ -5292,13 +5362,9 @@ class TestModel_ServiceCredentialsSecretCredentials:
         Test serialization/deserialization for ServiceCredentialsSecretCredentials
         """
 
-        # Construct dict forms of any model objects needed in order to build this model.
-
-        cos_hmac_keys_model = {}  # CosHmacKeys
-
         # Construct a json representation of a ServiceCredentialsSecretCredentials model
         service_credentials_secret_credentials_model_json = {}
-        service_credentials_secret_credentials_model_json['cos_hmac_keys'] = cos_hmac_keys_model
+        service_credentials_secret_credentials_model_json['foo'] = 'testString'
 
         # Construct a model instance of ServiceCredentialsSecretCredentials by calling from_dict on the json representation
         service_credentials_secret_credentials_model = ServiceCredentialsSecretCredentials.from_dict(service_credentials_secret_credentials_model_json)
@@ -5315,6 +5381,16 @@ class TestModel_ServiceCredentialsSecretCredentials:
         service_credentials_secret_credentials_model_json2 = service_credentials_secret_credentials_model.to_dict()
         assert service_credentials_secret_credentials_model_json2 == service_credentials_secret_credentials_model_json
 
+        # Test get_properties and set_properties methods.
+        service_credentials_secret_credentials_model.set_properties({})
+        actual_dict = service_credentials_secret_credentials_model.get_properties()
+        assert actual_dict == {}
+
+        expected_dict = {'foo': 'testString'}
+        service_credentials_secret_credentials_model.set_properties(expected_dict)
+        actual_dict = service_credentials_secret_credentials_model.get_properties()
+        assert actual_dict == expected_dict
+
 
 class TestModel_ServiceCredentialsSecretSourceService:
     """
@@ -5324,6 +5400,50 @@ class TestModel_ServiceCredentialsSecretSourceService:
     def test_service_credentials_secret_source_service_serialization(self):
         """
         Test serialization/deserialization for ServiceCredentialsSecretSourceService
+        """
+
+        # Construct dict forms of any model objects needed in order to build this model.
+
+        service_credentials_source_service_instance_model = {}  # ServiceCredentialsSourceServiceInstance
+        service_credentials_source_service_instance_model['crn'] = 'testString'
+
+        service_credentials_source_service_parameters_model = {}  # ServiceCredentialsSourceServiceParameters
+        service_credentials_source_service_parameters_model['serviceid_crn'] = 'testString'
+        service_credentials_source_service_parameters_model['foo'] = 'testString'
+
+        service_credentials_source_service_role_model = {}  # ServiceCredentialsSourceServiceRole
+        service_credentials_source_service_role_model['crn'] = 'testString'
+
+        # Construct a json representation of a ServiceCredentialsSecretSourceService model
+        service_credentials_secret_source_service_model_json = {}
+        service_credentials_secret_source_service_model_json['instance'] = service_credentials_source_service_instance_model
+        service_credentials_secret_source_service_model_json['parameters'] = service_credentials_source_service_parameters_model
+        service_credentials_secret_source_service_model_json['role'] = service_credentials_source_service_role_model
+
+        # Construct a model instance of ServiceCredentialsSecretSourceService by calling from_dict on the json representation
+        service_credentials_secret_source_service_model = ServiceCredentialsSecretSourceService.from_dict(service_credentials_secret_source_service_model_json)
+        assert service_credentials_secret_source_service_model != False
+
+        # Construct a model instance of ServiceCredentialsSecretSourceService by calling from_dict on the json representation
+        service_credentials_secret_source_service_model_dict = ServiceCredentialsSecretSourceService.from_dict(service_credentials_secret_source_service_model_json).__dict__
+        service_credentials_secret_source_service_model2 = ServiceCredentialsSecretSourceService(**service_credentials_secret_source_service_model_dict)
+
+        # Verify the model instances are equivalent
+        assert service_credentials_secret_source_service_model == service_credentials_secret_source_service_model2
+
+        # Convert model instance back to dict and verify no loss of data
+        service_credentials_secret_source_service_model_json2 = service_credentials_secret_source_service_model.to_dict()
+        assert service_credentials_secret_source_service_model_json2 == service_credentials_secret_source_service_model_json
+
+
+class TestModel_ServiceCredentialsSecretSourceServiceRO:
+    """
+    Test Class for ServiceCredentialsSecretSourceServiceRO
+    """
+
+    def test_service_credentials_secret_source_service_ro_serialization(self):
+        """
+        Test serialization/deserialization for ServiceCredentialsSecretSourceServiceRO
         """
 
         # Construct dict forms of any model objects needed in order to build this model.
@@ -5351,28 +5471,28 @@ class TestModel_ServiceCredentialsSecretSourceService:
 
         service_credentials_resource_key_model = {}  # ServiceCredentialsResourceKey
 
-        # Construct a json representation of a ServiceCredentialsSecretSourceService model
-        service_credentials_secret_source_service_model_json = {}
-        service_credentials_secret_source_service_model_json['instance'] = service_credentials_source_service_instance_model
-        service_credentials_secret_source_service_model_json['parameters'] = service_credentials_source_service_parameters_model
-        service_credentials_secret_source_service_model_json['role'] = service_credentials_source_service_role_model
-        service_credentials_secret_source_service_model_json['iam'] = service_credentials_source_service_iam_model
-        service_credentials_secret_source_service_model_json['resource_key'] = service_credentials_resource_key_model
+        # Construct a json representation of a ServiceCredentialsSecretSourceServiceRO model
+        service_credentials_secret_source_service_ro_model_json = {}
+        service_credentials_secret_source_service_ro_model_json['instance'] = service_credentials_source_service_instance_model
+        service_credentials_secret_source_service_ro_model_json['parameters'] = service_credentials_source_service_parameters_model
+        service_credentials_secret_source_service_ro_model_json['role'] = service_credentials_source_service_role_model
+        service_credentials_secret_source_service_ro_model_json['iam'] = service_credentials_source_service_iam_model
+        service_credentials_secret_source_service_ro_model_json['resource_key'] = service_credentials_resource_key_model
 
-        # Construct a model instance of ServiceCredentialsSecretSourceService by calling from_dict on the json representation
-        service_credentials_secret_source_service_model = ServiceCredentialsSecretSourceService.from_dict(service_credentials_secret_source_service_model_json)
-        assert service_credentials_secret_source_service_model != False
+        # Construct a model instance of ServiceCredentialsSecretSourceServiceRO by calling from_dict on the json representation
+        service_credentials_secret_source_service_ro_model = ServiceCredentialsSecretSourceServiceRO.from_dict(service_credentials_secret_source_service_ro_model_json)
+        assert service_credentials_secret_source_service_ro_model != False
 
-        # Construct a model instance of ServiceCredentialsSecretSourceService by calling from_dict on the json representation
-        service_credentials_secret_source_service_model_dict = ServiceCredentialsSecretSourceService.from_dict(service_credentials_secret_source_service_model_json).__dict__
-        service_credentials_secret_source_service_model2 = ServiceCredentialsSecretSourceService(**service_credentials_secret_source_service_model_dict)
+        # Construct a model instance of ServiceCredentialsSecretSourceServiceRO by calling from_dict on the json representation
+        service_credentials_secret_source_service_ro_model_dict = ServiceCredentialsSecretSourceServiceRO.from_dict(service_credentials_secret_source_service_ro_model_json).__dict__
+        service_credentials_secret_source_service_ro_model2 = ServiceCredentialsSecretSourceServiceRO(**service_credentials_secret_source_service_ro_model_dict)
 
         # Verify the model instances are equivalent
-        assert service_credentials_secret_source_service_model == service_credentials_secret_source_service_model2
+        assert service_credentials_secret_source_service_ro_model == service_credentials_secret_source_service_ro_model2
 
         # Convert model instance back to dict and verify no loss of data
-        service_credentials_secret_source_service_model_json2 = service_credentials_secret_source_service_model.to_dict()
-        assert service_credentials_secret_source_service_model_json2 == service_credentials_secret_source_service_model_json
+        service_credentials_secret_source_service_ro_model_json2 = service_credentials_secret_source_service_ro_model.to_dict()
+        assert service_credentials_secret_source_service_ro_model_json2 == service_credentials_secret_source_service_ro_model_json
 
 
 class TestModel_ServiceCredentialsSourceServiceIam:
@@ -7389,7 +7509,7 @@ class TestModel_PrivateCertificateConfigurationActionSignIntermediate:
         private_certificate_configuration_action_sign_intermediate_model_json['postal_code'] = ['testString']
         private_certificate_configuration_action_sign_intermediate_model_json['serial_number'] = 'd9:be:fe:35:ba:09:42:b5:35:ba:09:42:b5'
         private_certificate_configuration_action_sign_intermediate_model_json['action_type'] = 'private_cert_configuration_action_sign_intermediate'
-        private_certificate_configuration_action_sign_intermediate_model_json['intermediate_certificate_authority'] = 'my-secret-engine-config'
+        private_certificate_configuration_action_sign_intermediate_model_json['intermediate_certificate_authority'] = 'example-intermediate-CA'
 
         # Construct a model instance of PrivateCertificateConfigurationActionSignIntermediate by calling from_dict on the json representation
         private_certificate_configuration_action_sign_intermediate_model = PrivateCertificateConfigurationActionSignIntermediate.from_dict(private_certificate_configuration_action_sign_intermediate_model_json)
@@ -7439,7 +7559,7 @@ class TestModel_PrivateCertificateConfigurationActionSignIntermediatePrototype:
         private_certificate_configuration_action_sign_intermediate_prototype_model_json['postal_code'] = ['testString']
         private_certificate_configuration_action_sign_intermediate_prototype_model_json['serial_number'] = 'd9:be:fe:35:ba:09:42:b5:35:ba:09:42:b5'
         private_certificate_configuration_action_sign_intermediate_prototype_model_json['action_type'] = 'private_cert_configuration_action_sign_intermediate'
-        private_certificate_configuration_action_sign_intermediate_prototype_model_json['intermediate_certificate_authority'] = 'my-secret-engine-config'
+        private_certificate_configuration_action_sign_intermediate_prototype_model_json['intermediate_certificate_authority'] = 'example-intermediate-CA'
 
         # Construct a model instance of PrivateCertificateConfigurationActionSignIntermediatePrototype by calling from_dict on the json representation
         private_certificate_configuration_action_sign_intermediate_prototype_model = PrivateCertificateConfigurationActionSignIntermediatePrototype.from_dict(private_certificate_configuration_action_sign_intermediate_prototype_model_json)
@@ -9398,17 +9518,15 @@ class TestModel_ServiceCredentialsSecret:
 
         service_credentials_resource_key_model = {}  # ServiceCredentialsResourceKey
 
-        service_credentials_secret_source_service_model = {}  # ServiceCredentialsSecretSourceService
-        service_credentials_secret_source_service_model['instance'] = service_credentials_source_service_instance_model
-        service_credentials_secret_source_service_model['parameters'] = service_credentials_source_service_parameters_model
-        service_credentials_secret_source_service_model['role'] = service_credentials_source_service_role_model
-        service_credentials_secret_source_service_model['iam'] = service_credentials_source_service_iam_model
-        service_credentials_secret_source_service_model['resource_key'] = service_credentials_resource_key_model
-
-        cos_hmac_keys_model = {}  # CosHmacKeys
+        service_credentials_secret_source_service_ro_model = {}  # ServiceCredentialsSecretSourceServiceRO
+        service_credentials_secret_source_service_ro_model['instance'] = service_credentials_source_service_instance_model
+        service_credentials_secret_source_service_ro_model['parameters'] = service_credentials_source_service_parameters_model
+        service_credentials_secret_source_service_ro_model['role'] = service_credentials_source_service_role_model
+        service_credentials_secret_source_service_ro_model['iam'] = service_credentials_source_service_iam_model
+        service_credentials_secret_source_service_ro_model['resource_key'] = service_credentials_resource_key_model
 
         service_credentials_secret_credentials_model = {}  # ServiceCredentialsSecretCredentials
-        service_credentials_secret_credentials_model['cos_hmac_keys'] = cos_hmac_keys_model
+        service_credentials_secret_credentials_model['foo'] = 'testString'
 
         # Construct a json representation of a ServiceCredentialsSecret model
         service_credentials_secret_model_json = {}
@@ -9425,7 +9543,7 @@ class TestModel_ServiceCredentialsSecret:
         service_credentials_secret_model_json['versions_total'] = 0
         service_credentials_secret_model_json['rotation'] = rotation_policy_model
         service_credentials_secret_model_json['ttl'] = '1d'
-        service_credentials_secret_model_json['source_service'] = service_credentials_secret_source_service_model
+        service_credentials_secret_model_json['source_service'] = service_credentials_secret_source_service_ro_model
         service_credentials_secret_model_json['credentials'] = service_credentials_secret_credentials_model
 
         # Construct a model instance of ServiceCredentialsSecret by calling from_dict on the json representation
@@ -9484,12 +9602,12 @@ class TestModel_ServiceCredentialsSecretMetadata:
 
         service_credentials_resource_key_model = {}  # ServiceCredentialsResourceKey
 
-        service_credentials_secret_source_service_model = {}  # ServiceCredentialsSecretSourceService
-        service_credentials_secret_source_service_model['instance'] = service_credentials_source_service_instance_model
-        service_credentials_secret_source_service_model['parameters'] = service_credentials_source_service_parameters_model
-        service_credentials_secret_source_service_model['role'] = service_credentials_source_service_role_model
-        service_credentials_secret_source_service_model['iam'] = service_credentials_source_service_iam_model
-        service_credentials_secret_source_service_model['resource_key'] = service_credentials_resource_key_model
+        service_credentials_secret_source_service_ro_model = {}  # ServiceCredentialsSecretSourceServiceRO
+        service_credentials_secret_source_service_ro_model['instance'] = service_credentials_source_service_instance_model
+        service_credentials_secret_source_service_ro_model['parameters'] = service_credentials_source_service_parameters_model
+        service_credentials_secret_source_service_ro_model['role'] = service_credentials_source_service_role_model
+        service_credentials_secret_source_service_ro_model['iam'] = service_credentials_source_service_iam_model
+        service_credentials_secret_source_service_ro_model['resource_key'] = service_credentials_resource_key_model
 
         # Construct a json representation of a ServiceCredentialsSecretMetadata model
         service_credentials_secret_metadata_model_json = {}
@@ -9506,7 +9624,7 @@ class TestModel_ServiceCredentialsSecretMetadata:
         service_credentials_secret_metadata_model_json['versions_total'] = 0
         service_credentials_secret_metadata_model_json['rotation'] = rotation_policy_model
         service_credentials_secret_metadata_model_json['ttl'] = '1d'
-        service_credentials_secret_metadata_model_json['source_service'] = service_credentials_secret_source_service_model
+        service_credentials_secret_metadata_model_json['source_service'] = service_credentials_secret_source_service_ro_model
 
         # Construct a model instance of ServiceCredentialsSecretMetadata by calling from_dict on the json representation
         service_credentials_secret_metadata_model = ServiceCredentialsSecretMetadata.from_dict(service_credentials_secret_metadata_model_json)
@@ -9593,25 +9711,10 @@ class TestModel_ServiceCredentialsSecretPrototype:
         service_credentials_source_service_role_model = {}  # ServiceCredentialsSourceServiceRole
         service_credentials_source_service_role_model['crn'] = 'testString'
 
-        service_credentials_source_service_iam_apikey_model = {}  # ServiceCredentialsSourceServiceIamApikey
-
-        service_credentials_source_service_iam_role_model = {}  # ServiceCredentialsSourceServiceIamRole
-
-        service_credentials_source_service_iam_serviceid_model = {}  # ServiceCredentialsSourceServiceIamServiceid
-
-        service_credentials_source_service_iam_model = {}  # ServiceCredentialsSourceServiceIam
-        service_credentials_source_service_iam_model['apikey'] = service_credentials_source_service_iam_apikey_model
-        service_credentials_source_service_iam_model['role'] = service_credentials_source_service_iam_role_model
-        service_credentials_source_service_iam_model['serviceid'] = service_credentials_source_service_iam_serviceid_model
-
-        service_credentials_resource_key_model = {}  # ServiceCredentialsResourceKey
-
         service_credentials_secret_source_service_model = {}  # ServiceCredentialsSecretSourceService
         service_credentials_secret_source_service_model['instance'] = service_credentials_source_service_instance_model
         service_credentials_secret_source_service_model['parameters'] = service_credentials_source_service_parameters_model
         service_credentials_secret_source_service_model['role'] = service_credentials_source_service_role_model
-        service_credentials_secret_source_service_model['iam'] = service_credentials_source_service_iam_model
-        service_credentials_secret_source_service_model['resource_key'] = service_credentials_resource_key_model
 
         # Construct a json representation of a ServiceCredentialsSecretPrototype model
         service_credentials_secret_prototype_model_json = {}
@@ -9656,10 +9759,8 @@ class TestModel_ServiceCredentialsSecretVersion:
 
         service_credentials_resource_key_model = {}  # ServiceCredentialsResourceKey
 
-        cos_hmac_keys_model = {}  # CosHmacKeys
-
         service_credentials_secret_credentials_model = {}  # ServiceCredentialsSecretCredentials
-        service_credentials_secret_credentials_model['cos_hmac_keys'] = cos_hmac_keys_model
+        service_credentials_secret_credentials_model['foo'] = 'testString'
 
         # Construct a json representation of a ServiceCredentialsSecretVersion model
         service_credentials_secret_version_model_json = {}
@@ -9786,6 +9887,12 @@ class TestModel_UsernamePasswordSecret:
         rotation_policy_model['interval'] = 1
         rotation_policy_model['unit'] = 'day'
 
+        password_generation_policy_ro_model = {}  # PasswordGenerationPolicyRO
+        password_generation_policy_ro_model['length'] = 12
+        password_generation_policy_ro_model['include_digits'] = True
+        password_generation_policy_ro_model['include_symbols'] = True
+        password_generation_policy_ro_model['include_uppercase'] = True
+
         # Construct a json representation of a UsernamePasswordSecret model
         username_password_secret_model_json = {}
         username_password_secret_model_json['created_by'] = 'iam-ServiceId-e4a2f0a4-3c76-4bef-b1f2-fbeae11c0f21'
@@ -9801,6 +9908,7 @@ class TestModel_UsernamePasswordSecret:
         username_password_secret_model_json['versions_total'] = 0
         username_password_secret_model_json['rotation'] = rotation_policy_model
         username_password_secret_model_json['expiration_date'] = '2033-04-12T23:20:50.520000Z'
+        username_password_secret_model_json['password_generation_policy'] = password_generation_policy_ro_model
         username_password_secret_model_json['username'] = 'testString'
         username_password_secret_model_json['password'] = 'testString'
 
@@ -9837,6 +9945,12 @@ class TestModel_UsernamePasswordSecretMetadata:
         rotation_policy_model['interval'] = 1
         rotation_policy_model['unit'] = 'day'
 
+        password_generation_policy_ro_model = {}  # PasswordGenerationPolicyRO
+        password_generation_policy_ro_model['length'] = 12
+        password_generation_policy_ro_model['include_digits'] = True
+        password_generation_policy_ro_model['include_symbols'] = True
+        password_generation_policy_ro_model['include_uppercase'] = True
+
         # Construct a json representation of a UsernamePasswordSecretMetadata model
         username_password_secret_metadata_model_json = {}
         username_password_secret_metadata_model_json['created_by'] = 'iam-ServiceId-e4a2f0a4-3c76-4bef-b1f2-fbeae11c0f21'
@@ -9852,6 +9966,7 @@ class TestModel_UsernamePasswordSecretMetadata:
         username_password_secret_metadata_model_json['versions_total'] = 0
         username_password_secret_metadata_model_json['rotation'] = rotation_policy_model
         username_password_secret_metadata_model_json['expiration_date'] = '2033-04-12T23:20:50.520000Z'
+        username_password_secret_metadata_model_json['password_generation_policy'] = password_generation_policy_ro_model
 
         # Construct a model instance of UsernamePasswordSecretMetadata by calling from_dict on the json representation
         username_password_secret_metadata_model = UsernamePasswordSecretMetadata.from_dict(username_password_secret_metadata_model_json)
@@ -9886,6 +10001,12 @@ class TestModel_UsernamePasswordSecretMetadataPatch:
         rotation_policy_model['interval'] = 1
         rotation_policy_model['unit'] = 'day'
 
+        password_generation_policy_patch_model = {}  # PasswordGenerationPolicyPatch
+        password_generation_policy_patch_model['length'] = 12
+        password_generation_policy_patch_model['include_digits'] = True
+        password_generation_policy_patch_model['include_symbols'] = True
+        password_generation_policy_patch_model['include_uppercase'] = True
+
         # Construct a json representation of a UsernamePasswordSecretMetadataPatch model
         username_password_secret_metadata_patch_model_json = {}
         username_password_secret_metadata_patch_model_json['name'] = 'my-secret-example'
@@ -9894,6 +10015,7 @@ class TestModel_UsernamePasswordSecretMetadataPatch:
         username_password_secret_metadata_patch_model_json['custom_metadata'] = {'key': 'value'}
         username_password_secret_metadata_patch_model_json['rotation'] = rotation_policy_model
         username_password_secret_metadata_patch_model_json['expiration_date'] = '2033-04-12T23:20:50.520000Z'
+        username_password_secret_metadata_patch_model_json['password_generation_policy'] = password_generation_policy_patch_model
 
         # Construct a model instance of UsernamePasswordSecretMetadataPatch by calling from_dict on the json representation
         username_password_secret_metadata_patch_model = UsernamePasswordSecretMetadataPatch.from_dict(username_password_secret_metadata_patch_model_json)
@@ -9928,6 +10050,12 @@ class TestModel_UsernamePasswordSecretPrototype:
         rotation_policy_model['interval'] = 1
         rotation_policy_model['unit'] = 'day'
 
+        password_generation_policy_model = {}  # PasswordGenerationPolicy
+        password_generation_policy_model['length'] = 32
+        password_generation_policy_model['include_digits'] = True
+        password_generation_policy_model['include_symbols'] = True
+        password_generation_policy_model['include_uppercase'] = True
+
         # Construct a json representation of a UsernamePasswordSecretPrototype model
         username_password_secret_prototype_model_json = {}
         username_password_secret_prototype_model_json['secret_type'] = 'username_password'
@@ -9941,6 +10069,7 @@ class TestModel_UsernamePasswordSecretPrototype:
         username_password_secret_prototype_model_json['custom_metadata'] = {'key': 'value'}
         username_password_secret_prototype_model_json['version_custom_metadata'] = {'key': 'value'}
         username_password_secret_prototype_model_json['rotation'] = rotation_policy_model
+        username_password_secret_prototype_model_json['password_generation_policy'] = password_generation_policy_model
 
         # Construct a model instance of UsernamePasswordSecretPrototype by calling from_dict on the json representation
         username_password_secret_prototype_model = UsernamePasswordSecretPrototype.from_dict(username_password_secret_prototype_model_json)

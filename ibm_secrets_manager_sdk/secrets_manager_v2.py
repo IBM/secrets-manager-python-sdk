@@ -1,6 +1,6 @@
 # coding: utf-8
 
-# (C) Copyright IBM Corp. 2023.
+# (C) Copyright IBM Corp. 2024.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -14,7 +14,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-# IBM OpenAPI SDK Code Generator Version: 3.82.1-2082d402-20231115-195014
+# IBM OpenAPI SDK Code Generator Version: 3.84.2-a032c73d-20240125-175315
 
 """
 With IBM Cloud® Secrets Manager, you can create, lease, and centrally manage secrets that
@@ -80,7 +80,7 @@ class SecretsManagerV2(BaseService):
 
         :param str instance_id: (optional) The Secrets Manager Instance ID assigned by the service provider
             (default 'provide-here-your-smgr-instanceuuid')
-        :param str region: (optional) The region where you provisioned your Secrets Manager Instance. Available values: us-south, us-east, au-syd, jp-osa, jp-tok, eu-de, eu-gb, ca-tor, br-sao
+        :param str region: (optional) The region where you provisioned your Secrets Manager Instance. Available values: us-south, us-east, au-syd, jp-osa, jp-tok, eu-de, eu-gb, eu-es, ca-tor, br-sao
             (default 'us-south')
         :return: The formatted URL with all variable placeholders replaced by values.
         :rtype: str
@@ -2484,22 +2484,22 @@ class CertificateIssuanceInfo:
     def from_dict(cls, _dict: Dict) -> 'CertificateIssuanceInfo':
         """Initialize a CertificateIssuanceInfo object from a json dictionary."""
         args = {}
-        if 'auto_rotated' in _dict:
-            args['auto_rotated'] = _dict.get('auto_rotated')
-        if 'challenges' in _dict:
-            args['challenges'] = [ChallengeResource.from_dict(v) for v in _dict.get('challenges')]
-        if 'dns_challenge_validation_time' in _dict:
-            args['dns_challenge_validation_time'] = string_to_datetime(_dict.get('dns_challenge_validation_time'))
-        if 'error_code' in _dict:
-            args['error_code'] = _dict.get('error_code')
-        if 'error_message' in _dict:
-            args['error_message'] = _dict.get('error_message')
-        if 'ordered_on' in _dict:
-            args['ordered_on'] = string_to_datetime(_dict.get('ordered_on'))
-        if 'state' in _dict:
-            args['state'] = _dict.get('state')
-        if 'state_description' in _dict:
-            args['state_description'] = _dict.get('state_description')
+        if (auto_rotated := _dict.get('auto_rotated')) is not None:
+            args['auto_rotated'] = auto_rotated
+        if (challenges := _dict.get('challenges')) is not None:
+            args['challenges'] = [ChallengeResource.from_dict(v) for v in challenges]
+        if (dns_challenge_validation_time := _dict.get('dns_challenge_validation_time')) is not None:
+            args['dns_challenge_validation_time'] = string_to_datetime(dns_challenge_validation_time)
+        if (error_code := _dict.get('error_code')) is not None:
+            args['error_code'] = error_code
+        if (error_message := _dict.get('error_message')) is not None:
+            args['error_message'] = error_message
+        if (ordered_on := _dict.get('ordered_on')) is not None:
+            args['ordered_on'] = string_to_datetime(ordered_on)
+        if (state := _dict.get('state')) is not None:
+            args['state'] = state
+        if (state_description := _dict.get('state_description')) is not None:
+            args['state_description'] = state_description
         return cls(**args)
 
     @classmethod
@@ -2591,12 +2591,12 @@ class CertificateValidity:
     def from_dict(cls, _dict: Dict) -> 'CertificateValidity':
         """Initialize a CertificateValidity object from a json dictionary."""
         args = {}
-        if 'not_before' in _dict:
-            args['not_before'] = string_to_datetime(_dict.get('not_before'))
+        if (not_before := _dict.get('not_before')) is not None:
+            args['not_before'] = string_to_datetime(not_before)
         else:
             raise ValueError('Required property \'not_before\' not present in CertificateValidity JSON')
-        if 'not_after' in _dict:
-            args['not_after'] = string_to_datetime(_dict.get('not_after'))
+        if (not_after := _dict.get('not_after')) is not None:
+            args['not_after'] = string_to_datetime(not_after)
         else:
             raise ValueError('Required property \'not_after\' not present in CertificateValidity JSON')
         return cls(**args)
@@ -2669,16 +2669,16 @@ class ChallengeResource:
     def from_dict(cls, _dict: Dict) -> 'ChallengeResource':
         """Initialize a ChallengeResource object from a json dictionary."""
         args = {}
-        if 'domain' in _dict:
-            args['domain'] = _dict.get('domain')
-        if 'expiration' in _dict:
-            args['expiration'] = string_to_datetime(_dict.get('expiration'))
-        if 'status' in _dict:
-            args['status'] = _dict.get('status')
-        if 'txt_record_name' in _dict:
-            args['txt_record_name'] = _dict.get('txt_record_name')
-        if 'txt_record_value' in _dict:
-            args['txt_record_value'] = _dict.get('txt_record_value')
+        if (domain := _dict.get('domain')) is not None:
+            args['domain'] = domain
+        if (expiration := _dict.get('expiration')) is not None:
+            args['expiration'] = string_to_datetime(expiration)
+        if (status := _dict.get('status')) is not None:
+            args['status'] = status
+        if (txt_record_name := _dict.get('txt_record_name')) is not None:
+            args['txt_record_name'] = txt_record_name
+        if (txt_record_value := _dict.get('txt_record_value')) is not None:
+            args['txt_record_value'] = txt_record_value
         return cls(**args)
 
     @classmethod
@@ -3005,32 +3005,32 @@ class ConfigurationMetadataPaginatedCollection:
     def from_dict(cls, _dict: Dict) -> 'ConfigurationMetadataPaginatedCollection':
         """Initialize a ConfigurationMetadataPaginatedCollection object from a json dictionary."""
         args = {}
-        if 'total_count' in _dict:
-            args['total_count'] = _dict.get('total_count')
+        if (total_count := _dict.get('total_count')) is not None:
+            args['total_count'] = total_count
         else:
             raise ValueError('Required property \'total_count\' not present in ConfigurationMetadataPaginatedCollection JSON')
-        if 'limit' in _dict:
-            args['limit'] = _dict.get('limit')
+        if (limit := _dict.get('limit')) is not None:
+            args['limit'] = limit
         else:
             raise ValueError('Required property \'limit\' not present in ConfigurationMetadataPaginatedCollection JSON')
-        if 'offset' in _dict:
-            args['offset'] = _dict.get('offset')
+        if (offset := _dict.get('offset')) is not None:
+            args['offset'] = offset
         else:
             raise ValueError('Required property \'offset\' not present in ConfigurationMetadataPaginatedCollection JSON')
-        if 'first' in _dict:
-            args['first'] = PaginatedCollectionFirst.from_dict(_dict.get('first'))
+        if (first := _dict.get('first')) is not None:
+            args['first'] = PaginatedCollectionFirst.from_dict(first)
         else:
             raise ValueError('Required property \'first\' not present in ConfigurationMetadataPaginatedCollection JSON')
-        if 'next' in _dict:
-            args['next'] = PaginatedCollectionNext.from_dict(_dict.get('next'))
-        if 'previous' in _dict:
-            args['previous'] = PaginatedCollectionPrevious.from_dict(_dict.get('previous'))
-        if 'last' in _dict:
-            args['last'] = PaginatedCollectionLast.from_dict(_dict.get('last'))
+        if (next := _dict.get('next')) is not None:
+            args['next'] = PaginatedCollectionNext.from_dict(next)
+        if (previous := _dict.get('previous')) is not None:
+            args['previous'] = PaginatedCollectionPrevious.from_dict(previous)
+        if (last := _dict.get('last')) is not None:
+            args['last'] = PaginatedCollectionLast.from_dict(last)
         else:
             raise ValueError('Required property \'last\' not present in ConfigurationMetadataPaginatedCollection JSON')
-        if 'configurations' in _dict:
-            args['configurations'] = [ConfigurationMetadata.from_dict(v) for v in _dict.get('configurations')]
+        if (configurations := _dict.get('configurations')) is not None:
+            args['configurations'] = [ConfigurationMetadata.from_dict(v) for v in configurations]
         else:
             raise ValueError('Required property \'configurations\' not present in ConfigurationMetadataPaginatedCollection JSON')
         return cls(**args)
@@ -3174,73 +3174,6 @@ class ConfigurationPrototype:
         raise TypeError('%s is not a discriminator class' % class_name)
 
 
-class CosHmacKeys:
-    """
-    The Cloud Object Storage HMAC keys that are returned after you create a service
-    credentials secret.
-
-    :param str access_key_id: (optional) The access key ID for Cloud Object Storage
-          HMAC credentials.
-    :param str secret_access_key: (optional) The secret access key ID for Cloud
-          Object Storage HMAC credentials.
-    """
-
-    def __init__(
-        self,
-        *,
-        access_key_id: Optional[str] = None,
-        secret_access_key: Optional[str] = None,
-    ) -> None:
-        """
-        Initialize a CosHmacKeys object.
-
-        """
-        self.access_key_id = access_key_id
-        self.secret_access_key = secret_access_key
-
-    @classmethod
-    def from_dict(cls, _dict: Dict) -> 'CosHmacKeys':
-        """Initialize a CosHmacKeys object from a json dictionary."""
-        args = {}
-        if 'access_key_id' in _dict:
-            args['access_key_id'] = _dict.get('access_key_id')
-        if 'secret_access_key' in _dict:
-            args['secret_access_key'] = _dict.get('secret_access_key')
-        return cls(**args)
-
-    @classmethod
-    def _from_dict(cls, _dict):
-        """Initialize a CosHmacKeys object from a json dictionary."""
-        return cls.from_dict(_dict)
-
-    def to_dict(self) -> Dict:
-        """Return a json dictionary representing this model."""
-        _dict = {}
-        if hasattr(self, 'access_key_id') and getattr(self, 'access_key_id') is not None:
-            _dict['access_key_id'] = getattr(self, 'access_key_id')
-        if hasattr(self, 'secret_access_key') and getattr(self, 'secret_access_key') is not None:
-            _dict['secret_access_key'] = getattr(self, 'secret_access_key')
-        return _dict
-
-    def _to_dict(self):
-        """Return a json dictionary representing this model."""
-        return self.to_dict()
-
-    def __str__(self) -> str:
-        """Return a `str` version of this CosHmacKeys object."""
-        return json.dumps(self.to_dict(), indent=2)
-
-    def __eq__(self, other: 'CosHmacKeys') -> bool:
-        """Return `true` when self and other are equal, false otherwise."""
-        if not isinstance(other, self.__class__):
-            return False
-        return self.__dict__ == other.__dict__
-
-    def __ne__(self, other: 'CosHmacKeys') -> bool:
-        """Return `true` when self and other are not equal, false otherwise."""
-        return not self == other
-
-
 class NotificationsRegistration:
     """
     The details of the Event Notifications registration.
@@ -3265,8 +3198,8 @@ class NotificationsRegistration:
     def from_dict(cls, _dict: Dict) -> 'NotificationsRegistration':
         """Initialize a NotificationsRegistration object from a json dictionary."""
         args = {}
-        if 'event_notifications_instance_crn' in _dict:
-            args['event_notifications_instance_crn'] = _dict.get('event_notifications_instance_crn')
+        if (event_notifications_instance_crn := _dict.get('event_notifications_instance_crn')) is not None:
+            args['event_notifications_instance_crn'] = event_notifications_instance_crn
         else:
             raise ValueError('Required property \'event_notifications_instance_crn\' not present in NotificationsRegistration JSON')
         return cls(**args)
@@ -3324,8 +3257,8 @@ class PaginatedCollectionFirst:
     def from_dict(cls, _dict: Dict) -> 'PaginatedCollectionFirst':
         """Initialize a PaginatedCollectionFirst object from a json dictionary."""
         args = {}
-        if 'href' in _dict:
-            args['href'] = _dict.get('href')
+        if (href := _dict.get('href')) is not None:
+            args['href'] = href
         else:
             raise ValueError('Required property \'href\' not present in PaginatedCollectionFirst JSON')
         return cls(**args)
@@ -3383,8 +3316,8 @@ class PaginatedCollectionLast:
     def from_dict(cls, _dict: Dict) -> 'PaginatedCollectionLast':
         """Initialize a PaginatedCollectionLast object from a json dictionary."""
         args = {}
-        if 'href' in _dict:
-            args['href'] = _dict.get('href')
+        if (href := _dict.get('href')) is not None:
+            args['href'] = href
         else:
             raise ValueError('Required property \'href\' not present in PaginatedCollectionLast JSON')
         return cls(**args)
@@ -3442,8 +3375,8 @@ class PaginatedCollectionNext:
     def from_dict(cls, _dict: Dict) -> 'PaginatedCollectionNext':
         """Initialize a PaginatedCollectionNext object from a json dictionary."""
         args = {}
-        if 'href' in _dict:
-            args['href'] = _dict.get('href')
+        if (href := _dict.get('href')) is not None:
+            args['href'] = href
         else:
             raise ValueError('Required property \'href\' not present in PaginatedCollectionNext JSON')
         return cls(**args)
@@ -3501,8 +3434,8 @@ class PaginatedCollectionPrevious:
     def from_dict(cls, _dict: Dict) -> 'PaginatedCollectionPrevious':
         """Initialize a PaginatedCollectionPrevious object from a json dictionary."""
         args = {}
-        if 'href' in _dict:
-            args['href'] = _dict.get('href')
+        if (href := _dict.get('href')) is not None:
+            args['href'] = href
         else:
             raise ValueError('Required property \'href\' not present in PaginatedCollectionPrevious JSON')
         return cls(**args)
@@ -3534,6 +3467,271 @@ class PaginatedCollectionPrevious:
         return self.__dict__ == other.__dict__
 
     def __ne__(self, other: 'PaginatedCollectionPrevious') -> bool:
+        """Return `true` when self and other are not equal, false otherwise."""
+        return not self == other
+
+
+class PasswordGenerationPolicy:
+    """
+    Policy for auto-generated passwords.
+
+    :param int length: (optional) The length of auto-generated passwords.
+    :param bool include_digits: (optional) Include digits in auto-generated
+          passwords.
+    :param bool include_symbols: (optional) Include symbols in auto-generated
+          passwords.
+    :param bool include_uppercase: (optional) Include uppercase letters in
+          auto-generated passwords.
+    """
+
+    def __init__(
+        self,
+        *,
+        length: Optional[int] = None,
+        include_digits: Optional[bool] = None,
+        include_symbols: Optional[bool] = None,
+        include_uppercase: Optional[bool] = None,
+    ) -> None:
+        """
+        Initialize a PasswordGenerationPolicy object.
+
+        :param int length: (optional) The length of auto-generated passwords.
+        :param bool include_digits: (optional) Include digits in auto-generated
+               passwords.
+        :param bool include_symbols: (optional) Include symbols in auto-generated
+               passwords.
+        :param bool include_uppercase: (optional) Include uppercase letters in
+               auto-generated passwords.
+        """
+        self.length = length
+        self.include_digits = include_digits
+        self.include_symbols = include_symbols
+        self.include_uppercase = include_uppercase
+
+    @classmethod
+    def from_dict(cls, _dict: Dict) -> 'PasswordGenerationPolicy':
+        """Initialize a PasswordGenerationPolicy object from a json dictionary."""
+        args = {}
+        if (length := _dict.get('length')) is not None:
+            args['length'] = length
+        if (include_digits := _dict.get('include_digits')) is not None:
+            args['include_digits'] = include_digits
+        if (include_symbols := _dict.get('include_symbols')) is not None:
+            args['include_symbols'] = include_symbols
+        if (include_uppercase := _dict.get('include_uppercase')) is not None:
+            args['include_uppercase'] = include_uppercase
+        return cls(**args)
+
+    @classmethod
+    def _from_dict(cls, _dict):
+        """Initialize a PasswordGenerationPolicy object from a json dictionary."""
+        return cls.from_dict(_dict)
+
+    def to_dict(self) -> Dict:
+        """Return a json dictionary representing this model."""
+        _dict = {}
+        if hasattr(self, 'length') and self.length is not None:
+            _dict['length'] = self.length
+        if hasattr(self, 'include_digits') and self.include_digits is not None:
+            _dict['include_digits'] = self.include_digits
+        if hasattr(self, 'include_symbols') and self.include_symbols is not None:
+            _dict['include_symbols'] = self.include_symbols
+        if hasattr(self, 'include_uppercase') and self.include_uppercase is not None:
+            _dict['include_uppercase'] = self.include_uppercase
+        return _dict
+
+    def _to_dict(self):
+        """Return a json dictionary representing this model."""
+        return self.to_dict()
+
+    def __str__(self) -> str:
+        """Return a `str` version of this PasswordGenerationPolicy object."""
+        return json.dumps(self.to_dict(), indent=2)
+
+    def __eq__(self, other: 'PasswordGenerationPolicy') -> bool:
+        """Return `true` when self and other are equal, false otherwise."""
+        if not isinstance(other, self.__class__):
+            return False
+        return self.__dict__ == other.__dict__
+
+    def __ne__(self, other: 'PasswordGenerationPolicy') -> bool:
+        """Return `true` when self and other are not equal, false otherwise."""
+        return not self == other
+
+
+class PasswordGenerationPolicyPatch:
+    """
+    Policy patch for auto-generated passwords. Policy properties that are included in the
+    patch are updated. Properties that are not included in the patch remain unchanged.
+
+    :param int length: (optional) The length of auto-generated passwords.
+    :param bool include_digits: (optional) Include digits in auto-generated
+          passwords.
+    :param bool include_symbols: (optional) Include symbols in auto-generated
+          passwords.
+    :param bool include_uppercase: (optional) Include uppercase letters in
+          auto-generated passwords.
+    """
+
+    def __init__(
+        self,
+        *,
+        length: Optional[int] = None,
+        include_digits: Optional[bool] = None,
+        include_symbols: Optional[bool] = None,
+        include_uppercase: Optional[bool] = None,
+    ) -> None:
+        """
+        Initialize a PasswordGenerationPolicyPatch object.
+
+        :param int length: (optional) The length of auto-generated passwords.
+        :param bool include_digits: (optional) Include digits in auto-generated
+               passwords.
+        :param bool include_symbols: (optional) Include symbols in auto-generated
+               passwords.
+        :param bool include_uppercase: (optional) Include uppercase letters in
+               auto-generated passwords.
+        """
+        self.length = length
+        self.include_digits = include_digits
+        self.include_symbols = include_symbols
+        self.include_uppercase = include_uppercase
+
+    @classmethod
+    def from_dict(cls, _dict: Dict) -> 'PasswordGenerationPolicyPatch':
+        """Initialize a PasswordGenerationPolicyPatch object from a json dictionary."""
+        args = {}
+        if (length := _dict.get('length')) is not None:
+            args['length'] = length
+        if (include_digits := _dict.get('include_digits')) is not None:
+            args['include_digits'] = include_digits
+        if (include_symbols := _dict.get('include_symbols')) is not None:
+            args['include_symbols'] = include_symbols
+        if (include_uppercase := _dict.get('include_uppercase')) is not None:
+            args['include_uppercase'] = include_uppercase
+        return cls(**args)
+
+    @classmethod
+    def _from_dict(cls, _dict):
+        """Initialize a PasswordGenerationPolicyPatch object from a json dictionary."""
+        return cls.from_dict(_dict)
+
+    def to_dict(self) -> Dict:
+        """Return a json dictionary representing this model."""
+        _dict = {}
+        if hasattr(self, 'length') and self.length is not None:
+            _dict['length'] = self.length
+        if hasattr(self, 'include_digits') and self.include_digits is not None:
+            _dict['include_digits'] = self.include_digits
+        if hasattr(self, 'include_symbols') and self.include_symbols is not None:
+            _dict['include_symbols'] = self.include_symbols
+        if hasattr(self, 'include_uppercase') and self.include_uppercase is not None:
+            _dict['include_uppercase'] = self.include_uppercase
+        return _dict
+
+    def _to_dict(self):
+        """Return a json dictionary representing this model."""
+        return self.to_dict()
+
+    def __str__(self) -> str:
+        """Return a `str` version of this PasswordGenerationPolicyPatch object."""
+        return json.dumps(self.to_dict(), indent=2)
+
+    def __eq__(self, other: 'PasswordGenerationPolicyPatch') -> bool:
+        """Return `true` when self and other are equal, false otherwise."""
+        if not isinstance(other, self.__class__):
+            return False
+        return self.__dict__ == other.__dict__
+
+    def __ne__(self, other: 'PasswordGenerationPolicyPatch') -> bool:
+        """Return `true` when self and other are not equal, false otherwise."""
+        return not self == other
+
+
+class PasswordGenerationPolicyRO:
+    """
+    Policy for auto-generated passwords.
+
+    :param int length: (optional) The length of auto-generated passwords.
+    :param bool include_digits: (optional) Include digits in auto-generated
+          passwords.
+    :param bool include_symbols: (optional) Include symbols in auto-generated
+          passwords.
+    :param bool include_uppercase: (optional) Include uppercase letters in
+          auto-generated passwords.
+    """
+
+    def __init__(
+        self,
+        *,
+        length: Optional[int] = None,
+        include_digits: Optional[bool] = None,
+        include_symbols: Optional[bool] = None,
+        include_uppercase: Optional[bool] = None,
+    ) -> None:
+        """
+        Initialize a PasswordGenerationPolicyRO object.
+
+        :param int length: (optional) The length of auto-generated passwords.
+        :param bool include_digits: (optional) Include digits in auto-generated
+               passwords.
+        :param bool include_symbols: (optional) Include symbols in auto-generated
+               passwords.
+        :param bool include_uppercase: (optional) Include uppercase letters in
+               auto-generated passwords.
+        """
+        self.length = length
+        self.include_digits = include_digits
+        self.include_symbols = include_symbols
+        self.include_uppercase = include_uppercase
+
+    @classmethod
+    def from_dict(cls, _dict: Dict) -> 'PasswordGenerationPolicyRO':
+        """Initialize a PasswordGenerationPolicyRO object from a json dictionary."""
+        args = {}
+        if (length := _dict.get('length')) is not None:
+            args['length'] = length
+        if (include_digits := _dict.get('include_digits')) is not None:
+            args['include_digits'] = include_digits
+        if (include_symbols := _dict.get('include_symbols')) is not None:
+            args['include_symbols'] = include_symbols
+        if (include_uppercase := _dict.get('include_uppercase')) is not None:
+            args['include_uppercase'] = include_uppercase
+        return cls(**args)
+
+    @classmethod
+    def _from_dict(cls, _dict):
+        """Initialize a PasswordGenerationPolicyRO object from a json dictionary."""
+        return cls.from_dict(_dict)
+
+    def to_dict(self) -> Dict:
+        """Return a json dictionary representing this model."""
+        _dict = {}
+        if hasattr(self, 'length') and self.length is not None:
+            _dict['length'] = self.length
+        if hasattr(self, 'include_digits') and self.include_digits is not None:
+            _dict['include_digits'] = self.include_digits
+        if hasattr(self, 'include_symbols') and self.include_symbols is not None:
+            _dict['include_symbols'] = self.include_symbols
+        if hasattr(self, 'include_uppercase') and self.include_uppercase is not None:
+            _dict['include_uppercase'] = self.include_uppercase
+        return _dict
+
+    def _to_dict(self):
+        """Return a json dictionary representing this model."""
+        return self.to_dict()
+
+    def __str__(self) -> str:
+        """Return a `str` version of this PasswordGenerationPolicyRO object."""
+        return json.dumps(self.to_dict(), indent=2)
+
+    def __eq__(self, other: 'PasswordGenerationPolicyRO') -> bool:
+        """Return `true` when self and other are equal, false otherwise."""
+        if not isinstance(other, self.__class__):
+            return False
+        return self.__dict__ == other.__dict__
+
+    def __ne__(self, other: 'PasswordGenerationPolicyRO') -> bool:
         """Return `true` when self and other are not equal, false otherwise."""
         return not self == other
 
@@ -3586,8 +3784,8 @@ class PublicCertificateRotationObject:
     def from_dict(cls, _dict: Dict) -> 'PublicCertificateRotationObject':
         """Initialize a PublicCertificateRotationObject object from a json dictionary."""
         args = {}
-        if 'rotate_keys' in _dict:
-            args['rotate_keys'] = _dict.get('rotate_keys')
+        if (rotate_keys := _dict.get('rotate_keys')) is not None:
+            args['rotate_keys'] = rotate_keys
         return cls(**args)
 
     @classmethod
@@ -3855,26 +4053,26 @@ class SecretGroup:
     def from_dict(cls, _dict: Dict) -> 'SecretGroup':
         """Initialize a SecretGroup object from a json dictionary."""
         args = {}
-        if 'id' in _dict:
-            args['id'] = _dict.get('id')
+        if (id := _dict.get('id')) is not None:
+            args['id'] = id
         else:
             raise ValueError('Required property \'id\' not present in SecretGroup JSON')
-        if 'name' in _dict:
-            args['name'] = _dict.get('name')
-        if 'description' in _dict:
-            args['description'] = _dict.get('description')
+        if (name := _dict.get('name')) is not None:
+            args['name'] = name
+        if (description := _dict.get('description')) is not None:
+            args['description'] = description
         else:
             raise ValueError('Required property \'description\' not present in SecretGroup JSON')
-        if 'created_at' in _dict:
-            args['created_at'] = string_to_datetime(_dict.get('created_at'))
+        if (created_at := _dict.get('created_at')) is not None:
+            args['created_at'] = string_to_datetime(created_at)
         else:
             raise ValueError('Required property \'created_at\' not present in SecretGroup JSON')
-        if 'created_by' in _dict:
-            args['created_by'] = _dict.get('created_by')
+        if (created_by := _dict.get('created_by')) is not None:
+            args['created_by'] = created_by
         else:
             raise ValueError('Required property \'created_by\' not present in SecretGroup JSON')
-        if 'updated_at' in _dict:
-            args['updated_at'] = string_to_datetime(_dict.get('updated_at'))
+        if (updated_at := _dict.get('updated_at')) is not None:
+            args['updated_at'] = string_to_datetime(updated_at)
         else:
             raise ValueError('Required property \'updated_at\' not present in SecretGroup JSON')
         return cls(**args)
@@ -3946,12 +4144,12 @@ class SecretGroupCollection:
     def from_dict(cls, _dict: Dict) -> 'SecretGroupCollection':
         """Initialize a SecretGroupCollection object from a json dictionary."""
         args = {}
-        if 'secret_groups' in _dict:
-            args['secret_groups'] = [SecretGroup.from_dict(v) for v in _dict.get('secret_groups')]
+        if (secret_groups := _dict.get('secret_groups')) is not None:
+            args['secret_groups'] = [SecretGroup.from_dict(v) for v in secret_groups]
         else:
             raise ValueError('Required property \'secret_groups\' not present in SecretGroupCollection JSON')
-        if 'total_count' in _dict:
-            args['total_count'] = _dict.get('total_count')
+        if (total_count := _dict.get('total_count')) is not None:
+            args['total_count'] = total_count
         else:
             raise ValueError('Required property \'total_count\' not present in SecretGroupCollection JSON')
         return cls(**args)
@@ -4027,10 +4225,10 @@ class SecretGroupPatch:
     def from_dict(cls, _dict: Dict) -> 'SecretGroupPatch':
         """Initialize a SecretGroupPatch object from a json dictionary."""
         args = {}
-        if 'name' in _dict:
-            args['name'] = _dict.get('name')
-        if 'description' in _dict:
-            args['description'] = _dict.get('description')
+        if (name := _dict.get('name')) is not None:
+            args['name'] = name
+        if (description := _dict.get('description')) is not None:
+            args['description'] = description
         return cls(**args)
 
     @classmethod
@@ -4148,40 +4346,40 @@ class SecretLock:
     def from_dict(cls, _dict: Dict) -> 'SecretLock':
         """Initialize a SecretLock object from a json dictionary."""
         args = {}
-        if 'name' in _dict:
-            args['name'] = _dict.get('name')
+        if (name := _dict.get('name')) is not None:
+            args['name'] = name
         else:
             raise ValueError('Required property \'name\' not present in SecretLock JSON')
-        if 'description' in _dict:
-            args['description'] = _dict.get('description')
-        if 'attributes' in _dict:
-            args['attributes'] = _dict.get('attributes')
-        if 'created_at' in _dict:
-            args['created_at'] = string_to_datetime(_dict.get('created_at'))
+        if (description := _dict.get('description')) is not None:
+            args['description'] = description
+        if (attributes := _dict.get('attributes')) is not None:
+            args['attributes'] = attributes
+        if (created_at := _dict.get('created_at')) is not None:
+            args['created_at'] = string_to_datetime(created_at)
         else:
             raise ValueError('Required property \'created_at\' not present in SecretLock JSON')
-        if 'updated_at' in _dict:
-            args['updated_at'] = string_to_datetime(_dict.get('updated_at'))
+        if (updated_at := _dict.get('updated_at')) is not None:
+            args['updated_at'] = string_to_datetime(updated_at)
         else:
             raise ValueError('Required property \'updated_at\' not present in SecretLock JSON')
-        if 'created_by' in _dict:
-            args['created_by'] = _dict.get('created_by')
+        if (created_by := _dict.get('created_by')) is not None:
+            args['created_by'] = created_by
         else:
             raise ValueError('Required property \'created_by\' not present in SecretLock JSON')
-        if 'secret_group_id' in _dict:
-            args['secret_group_id'] = _dict.get('secret_group_id')
+        if (secret_group_id := _dict.get('secret_group_id')) is not None:
+            args['secret_group_id'] = secret_group_id
         else:
             raise ValueError('Required property \'secret_group_id\' not present in SecretLock JSON')
-        if 'secret_id' in _dict:
-            args['secret_id'] = _dict.get('secret_id')
+        if (secret_id := _dict.get('secret_id')) is not None:
+            args['secret_id'] = secret_id
         else:
             raise ValueError('Required property \'secret_id\' not present in SecretLock JSON')
-        if 'secret_version_id' in _dict:
-            args['secret_version_id'] = _dict.get('secret_version_id')
+        if (secret_version_id := _dict.get('secret_version_id')) is not None:
+            args['secret_version_id'] = secret_version_id
         else:
             raise ValueError('Required property \'secret_version_id\' not present in SecretLock JSON')
-        if 'secret_version_alias' in _dict:
-            args['secret_version_alias'] = _dict.get('secret_version_alias')
+        if (secret_version_alias := _dict.get('secret_version_alias')) is not None:
+            args['secret_version_alias'] = secret_version_alias
         else:
             raise ValueError('Required property \'secret_version_alias\' not present in SecretLock JSON')
         return cls(**args)
@@ -4288,14 +4486,14 @@ class SecretLockPrototype:
     def from_dict(cls, _dict: Dict) -> 'SecretLockPrototype':
         """Initialize a SecretLockPrototype object from a json dictionary."""
         args = {}
-        if 'name' in _dict:
-            args['name'] = _dict.get('name')
+        if (name := _dict.get('name')) is not None:
+            args['name'] = name
         else:
             raise ValueError('Required property \'name\' not present in SecretLockPrototype JSON')
-        if 'description' in _dict:
-            args['description'] = _dict.get('description')
-        if 'attributes' in _dict:
-            args['attributes'] = _dict.get('attributes')
+        if (description := _dict.get('description')) is not None:
+            args['description'] = description
+        if (attributes := _dict.get('attributes')) is not None:
+            args['attributes'] = attributes
         return cls(**args)
 
     @classmethod
@@ -4379,20 +4577,20 @@ class SecretLocks:
     def from_dict(cls, _dict: Dict) -> 'SecretLocks':
         """Initialize a SecretLocks object from a json dictionary."""
         args = {}
-        if 'secret_id' in _dict:
-            args['secret_id'] = _dict.get('secret_id')
+        if (secret_id := _dict.get('secret_id')) is not None:
+            args['secret_id'] = secret_id
         else:
             raise ValueError('Required property \'secret_id\' not present in SecretLocks JSON')
-        if 'secret_group_id' in _dict:
-            args['secret_group_id'] = _dict.get('secret_group_id')
+        if (secret_group_id := _dict.get('secret_group_id')) is not None:
+            args['secret_group_id'] = secret_group_id
         else:
             raise ValueError('Required property \'secret_group_id\' not present in SecretLocks JSON')
-        if 'secret_type' in _dict:
-            args['secret_type'] = _dict.get('secret_type')
-        if 'secret_name' in _dict:
-            args['secret_name'] = _dict.get('secret_name')
-        if 'versions' in _dict:
-            args['versions'] = [SecretVersionLocks.from_dict(v) for v in _dict.get('versions')]
+        if (secret_type := _dict.get('secret_type')) is not None:
+            args['secret_type'] = secret_type
+        if (secret_name := _dict.get('secret_name')) is not None:
+            args['secret_name'] = secret_name
+        if (versions := _dict.get('versions')) is not None:
+            args['versions'] = [SecretVersionLocks.from_dict(v) for v in versions]
         else:
             raise ValueError('Required property \'versions\' not present in SecretLocks JSON')
         return cls(**args)
@@ -4517,32 +4715,32 @@ class SecretLocksPaginatedCollection:
     def from_dict(cls, _dict: Dict) -> 'SecretLocksPaginatedCollection':
         """Initialize a SecretLocksPaginatedCollection object from a json dictionary."""
         args = {}
-        if 'total_count' in _dict:
-            args['total_count'] = _dict.get('total_count')
+        if (total_count := _dict.get('total_count')) is not None:
+            args['total_count'] = total_count
         else:
             raise ValueError('Required property \'total_count\' not present in SecretLocksPaginatedCollection JSON')
-        if 'limit' in _dict:
-            args['limit'] = _dict.get('limit')
+        if (limit := _dict.get('limit')) is not None:
+            args['limit'] = limit
         else:
             raise ValueError('Required property \'limit\' not present in SecretLocksPaginatedCollection JSON')
-        if 'offset' in _dict:
-            args['offset'] = _dict.get('offset')
+        if (offset := _dict.get('offset')) is not None:
+            args['offset'] = offset
         else:
             raise ValueError('Required property \'offset\' not present in SecretLocksPaginatedCollection JSON')
-        if 'first' in _dict:
-            args['first'] = PaginatedCollectionFirst.from_dict(_dict.get('first'))
+        if (first := _dict.get('first')) is not None:
+            args['first'] = PaginatedCollectionFirst.from_dict(first)
         else:
             raise ValueError('Required property \'first\' not present in SecretLocksPaginatedCollection JSON')
-        if 'next' in _dict:
-            args['next'] = PaginatedCollectionNext.from_dict(_dict.get('next'))
-        if 'previous' in _dict:
-            args['previous'] = PaginatedCollectionPrevious.from_dict(_dict.get('previous'))
-        if 'last' in _dict:
-            args['last'] = PaginatedCollectionLast.from_dict(_dict.get('last'))
+        if (next := _dict.get('next')) is not None:
+            args['next'] = PaginatedCollectionNext.from_dict(next)
+        if (previous := _dict.get('previous')) is not None:
+            args['previous'] = PaginatedCollectionPrevious.from_dict(previous)
+        if (last := _dict.get('last')) is not None:
+            args['last'] = PaginatedCollectionLast.from_dict(last)
         else:
             raise ValueError('Required property \'last\' not present in SecretLocksPaginatedCollection JSON')
-        if 'locks' in _dict:
-            args['locks'] = [SecretLock.from_dict(v) for v in _dict.get('locks')]
+        if (locks := _dict.get('locks')) is not None:
+            args['locks'] = [SecretLock.from_dict(v) for v in locks]
         else:
             raise ValueError('Required property \'locks\' not present in SecretLocksPaginatedCollection JSON')
         return cls(**args)
@@ -4727,32 +4925,32 @@ class SecretMetadataPaginatedCollection:
     def from_dict(cls, _dict: Dict) -> 'SecretMetadataPaginatedCollection':
         """Initialize a SecretMetadataPaginatedCollection object from a json dictionary."""
         args = {}
-        if 'total_count' in _dict:
-            args['total_count'] = _dict.get('total_count')
+        if (total_count := _dict.get('total_count')) is not None:
+            args['total_count'] = total_count
         else:
             raise ValueError('Required property \'total_count\' not present in SecretMetadataPaginatedCollection JSON')
-        if 'limit' in _dict:
-            args['limit'] = _dict.get('limit')
+        if (limit := _dict.get('limit')) is not None:
+            args['limit'] = limit
         else:
             raise ValueError('Required property \'limit\' not present in SecretMetadataPaginatedCollection JSON')
-        if 'offset' in _dict:
-            args['offset'] = _dict.get('offset')
+        if (offset := _dict.get('offset')) is not None:
+            args['offset'] = offset
         else:
             raise ValueError('Required property \'offset\' not present in SecretMetadataPaginatedCollection JSON')
-        if 'first' in _dict:
-            args['first'] = PaginatedCollectionFirst.from_dict(_dict.get('first'))
+        if (first := _dict.get('first')) is not None:
+            args['first'] = PaginatedCollectionFirst.from_dict(first)
         else:
             raise ValueError('Required property \'first\' not present in SecretMetadataPaginatedCollection JSON')
-        if 'next' in _dict:
-            args['next'] = PaginatedCollectionNext.from_dict(_dict.get('next'))
-        if 'previous' in _dict:
-            args['previous'] = PaginatedCollectionPrevious.from_dict(_dict.get('previous'))
-        if 'last' in _dict:
-            args['last'] = PaginatedCollectionLast.from_dict(_dict.get('last'))
+        if (next := _dict.get('next')) is not None:
+            args['next'] = PaginatedCollectionNext.from_dict(next)
+        if (previous := _dict.get('previous')) is not None:
+            args['previous'] = PaginatedCollectionPrevious.from_dict(previous)
+        if (last := _dict.get('last')) is not None:
+            args['last'] = PaginatedCollectionLast.from_dict(last)
         else:
             raise ValueError('Required property \'last\' not present in SecretMetadataPaginatedCollection JSON')
-        if 'secrets' in _dict:
-            args['secrets'] = [SecretMetadata.from_dict(v) for v in _dict.get('secrets')]
+        if (secrets := _dict.get('secrets')) is not None:
+            args['secrets'] = [SecretMetadata.from_dict(v) for v in secrets]
         else:
             raise ValueError('Required property \'secrets\' not present in SecretMetadataPaginatedCollection JSON')
         return cls(**args)
@@ -5049,20 +5247,20 @@ class SecretVersionLocks:
     def from_dict(cls, _dict: Dict) -> 'SecretVersionLocks':
         """Initialize a SecretVersionLocks object from a json dictionary."""
         args = {}
-        if 'version_id' in _dict:
-            args['version_id'] = _dict.get('version_id')
+        if (version_id := _dict.get('version_id')) is not None:
+            args['version_id'] = version_id
         else:
             raise ValueError('Required property \'version_id\' not present in SecretVersionLocks JSON')
-        if 'version_alias' in _dict:
-            args['version_alias'] = _dict.get('version_alias')
+        if (version_alias := _dict.get('version_alias')) is not None:
+            args['version_alias'] = version_alias
         else:
             raise ValueError('Required property \'version_alias\' not present in SecretVersionLocks JSON')
-        if 'locks' in _dict:
-            args['locks'] = _dict.get('locks')
+        if (locks := _dict.get('locks')) is not None:
+            args['locks'] = locks
         else:
             raise ValueError('Required property \'locks\' not present in SecretVersionLocks JSON')
-        if 'payload_available' in _dict:
-            args['payload_available'] = _dict.get('payload_available')
+        if (payload_available := _dict.get('payload_available')) is not None:
+            args['payload_available'] = payload_available
         return cls(**args)
 
     @classmethod
@@ -5171,32 +5369,32 @@ class SecretVersionLocksPaginatedCollection:
     def from_dict(cls, _dict: Dict) -> 'SecretVersionLocksPaginatedCollection':
         """Initialize a SecretVersionLocksPaginatedCollection object from a json dictionary."""
         args = {}
-        if 'total_count' in _dict:
-            args['total_count'] = _dict.get('total_count')
+        if (total_count := _dict.get('total_count')) is not None:
+            args['total_count'] = total_count
         else:
             raise ValueError('Required property \'total_count\' not present in SecretVersionLocksPaginatedCollection JSON')
-        if 'limit' in _dict:
-            args['limit'] = _dict.get('limit')
+        if (limit := _dict.get('limit')) is not None:
+            args['limit'] = limit
         else:
             raise ValueError('Required property \'limit\' not present in SecretVersionLocksPaginatedCollection JSON')
-        if 'offset' in _dict:
-            args['offset'] = _dict.get('offset')
+        if (offset := _dict.get('offset')) is not None:
+            args['offset'] = offset
         else:
             raise ValueError('Required property \'offset\' not present in SecretVersionLocksPaginatedCollection JSON')
-        if 'first' in _dict:
-            args['first'] = PaginatedCollectionFirst.from_dict(_dict.get('first'))
+        if (first := _dict.get('first')) is not None:
+            args['first'] = PaginatedCollectionFirst.from_dict(first)
         else:
             raise ValueError('Required property \'first\' not present in SecretVersionLocksPaginatedCollection JSON')
-        if 'next' in _dict:
-            args['next'] = PaginatedCollectionNext.from_dict(_dict.get('next'))
-        if 'previous' in _dict:
-            args['previous'] = PaginatedCollectionPrevious.from_dict(_dict.get('previous'))
-        if 'last' in _dict:
-            args['last'] = PaginatedCollectionLast.from_dict(_dict.get('last'))
+        if (next := _dict.get('next')) is not None:
+            args['next'] = PaginatedCollectionNext.from_dict(next)
+        if (previous := _dict.get('previous')) is not None:
+            args['previous'] = PaginatedCollectionPrevious.from_dict(previous)
+        if (last := _dict.get('last')) is not None:
+            args['last'] = PaginatedCollectionLast.from_dict(last)
         else:
             raise ValueError('Required property \'last\' not present in SecretVersionLocksPaginatedCollection JSON')
-        if 'locks' in _dict:
-            args['locks'] = [SecretLock.from_dict(v) for v in _dict.get('locks')]
+        if (locks := _dict.get('locks')) is not None:
+            args['locks'] = [SecretLock.from_dict(v) for v in locks]
         else:
             raise ValueError('Required property \'locks\' not present in SecretVersionLocksPaginatedCollection JSON')
         return cls(**args)
@@ -5350,12 +5548,12 @@ class SecretVersionMetadataCollection:
     def from_dict(cls, _dict: Dict) -> 'SecretVersionMetadataCollection':
         """Initialize a SecretVersionMetadataCollection object from a json dictionary."""
         args = {}
-        if 'versions' in _dict:
-            args['versions'] = [SecretVersionMetadata.from_dict(v) for v in _dict.get('versions')]
+        if (versions := _dict.get('versions')) is not None:
+            args['versions'] = [SecretVersionMetadata.from_dict(v) for v in versions]
         else:
             raise ValueError('Required property \'versions\' not present in SecretVersionMetadataCollection JSON')
-        if 'total_count' in _dict:
-            args['total_count'] = _dict.get('total_count')
+        if (total_count := _dict.get('total_count')) is not None:
+            args['total_count'] = total_count
         else:
             raise ValueError('Required property \'total_count\' not present in SecretVersionMetadataCollection JSON')
         return cls(**args)
@@ -5424,8 +5622,8 @@ class SecretVersionMetadataPatch:
     def from_dict(cls, _dict: Dict) -> 'SecretVersionMetadataPatch':
         """Initialize a SecretVersionMetadataPatch object from a json dictionary."""
         args = {}
-        if 'version_custom_metadata' in _dict:
-            args['version_custom_metadata'] = _dict.get('version_custom_metadata')
+        if (version_custom_metadata := _dict.get('version_custom_metadata')) is not None:
+            args['version_custom_metadata'] = version_custom_metadata
         return cls(**args)
 
     @classmethod
@@ -5538,32 +5736,32 @@ class SecretsLocksPaginatedCollection:
     def from_dict(cls, _dict: Dict) -> 'SecretsLocksPaginatedCollection':
         """Initialize a SecretsLocksPaginatedCollection object from a json dictionary."""
         args = {}
-        if 'total_count' in _dict:
-            args['total_count'] = _dict.get('total_count')
+        if (total_count := _dict.get('total_count')) is not None:
+            args['total_count'] = total_count
         else:
             raise ValueError('Required property \'total_count\' not present in SecretsLocksPaginatedCollection JSON')
-        if 'limit' in _dict:
-            args['limit'] = _dict.get('limit')
+        if (limit := _dict.get('limit')) is not None:
+            args['limit'] = limit
         else:
             raise ValueError('Required property \'limit\' not present in SecretsLocksPaginatedCollection JSON')
-        if 'offset' in _dict:
-            args['offset'] = _dict.get('offset')
+        if (offset := _dict.get('offset')) is not None:
+            args['offset'] = offset
         else:
             raise ValueError('Required property \'offset\' not present in SecretsLocksPaginatedCollection JSON')
-        if 'first' in _dict:
-            args['first'] = PaginatedCollectionFirst.from_dict(_dict.get('first'))
+        if (first := _dict.get('first')) is not None:
+            args['first'] = PaginatedCollectionFirst.from_dict(first)
         else:
             raise ValueError('Required property \'first\' not present in SecretsLocksPaginatedCollection JSON')
-        if 'next' in _dict:
-            args['next'] = PaginatedCollectionNext.from_dict(_dict.get('next'))
-        if 'previous' in _dict:
-            args['previous'] = PaginatedCollectionPrevious.from_dict(_dict.get('previous'))
-        if 'last' in _dict:
-            args['last'] = PaginatedCollectionLast.from_dict(_dict.get('last'))
+        if (next := _dict.get('next')) is not None:
+            args['next'] = PaginatedCollectionNext.from_dict(next)
+        if (previous := _dict.get('previous')) is not None:
+            args['previous'] = PaginatedCollectionPrevious.from_dict(previous)
+        if (last := _dict.get('last')) is not None:
+            args['last'] = PaginatedCollectionLast.from_dict(last)
         else:
             raise ValueError('Required property \'last\' not present in SecretsLocksPaginatedCollection JSON')
-        if 'secrets_locks' in _dict:
-            args['secrets_locks'] = [SecretLocks.from_dict(v) for v in _dict.get('secrets_locks')]
+        if (secrets_locks := _dict.get('secrets_locks')) is not None:
+            args['secrets_locks'] = [SecretLocks.from_dict(v) for v in secrets_locks]
         else:
             raise ValueError('Required property \'secrets_locks\' not present in SecretsLocksPaginatedCollection JSON')
         return cls(**args)
@@ -5658,10 +5856,10 @@ class ServiceCredentialsResourceKey:
     def from_dict(cls, _dict: Dict) -> 'ServiceCredentialsResourceKey':
         """Initialize a ServiceCredentialsResourceKey object from a json dictionary."""
         args = {}
-        if 'crn' in _dict:
-            args['crn'] = _dict.get('crn')
-        if 'name' in _dict:
-            args['name'] = _dict.get('name')
+        if (crn := _dict.get('crn')) is not None:
+            args['crn'] = crn
+        if (name := _dict.get('name')) is not None:
+            args['name'] = name
         return cls(**args)
 
     @classmethod
@@ -5705,10 +5903,6 @@ class ServiceCredentialsSecretCredentials:
           After the secret reaches the end of its lease, the API key is deleted
           automatically. See the `time-to-live` field to understand the duration of the
           lease.
-    :param CosHmacKeys cos_hmac_keys: (optional) The Cloud Object Storage HMAC keys
-          that are returned after you create a service credentials secret.
-    :param str endpoints: (optional) The endpoints that are returned after you
-          create a service credentials secret.
     :param str iam_apikey_description: (optional) The IAM API key description for
           the generated service credentials.
     :param str iam_apikey_id: (optional) The IAM API key id for the generated
@@ -5718,61 +5912,53 @@ class ServiceCredentialsSecretCredentials:
     :param str iam_role_crn: (optional) The IAM role CRN assigned to the generated
           service credentials.
     :param str iam_serviceid_crn: (optional) The IAM Service ID CRN.
-    :param str resource_instance_id: (optional) The resource instance CRN that is
-          returned after you create a service credentials secret.
     """
+
+    # The set of defined properties for the class
+    _properties = frozenset(['apikey', 'iam_apikey_description', 'iam_apikey_id', 'iam_apikey_name', 'iam_role_crn', 'iam_serviceid_crn'])
 
     def __init__(
         self,
         *,
         apikey: Optional[str] = None,
-        cos_hmac_keys: Optional['CosHmacKeys'] = None,
-        endpoints: Optional[str] = None,
         iam_apikey_description: Optional[str] = None,
         iam_apikey_id: Optional[str] = None,
         iam_apikey_name: Optional[str] = None,
         iam_role_crn: Optional[str] = None,
         iam_serviceid_crn: Optional[str] = None,
-        resource_instance_id: Optional[str] = None,
+        **kwargs,
     ) -> None:
         """
         Initialize a ServiceCredentialsSecretCredentials object.
 
-        :param CosHmacKeys cos_hmac_keys: (optional) The Cloud Object Storage HMAC
-               keys that are returned after you create a service credentials secret.
+        :param **kwargs: (optional) Any additional properties.
         """
         self.apikey = apikey
-        self.cos_hmac_keys = cos_hmac_keys
-        self.endpoints = endpoints
         self.iam_apikey_description = iam_apikey_description
         self.iam_apikey_id = iam_apikey_id
         self.iam_apikey_name = iam_apikey_name
         self.iam_role_crn = iam_role_crn
         self.iam_serviceid_crn = iam_serviceid_crn
-        self.resource_instance_id = resource_instance_id
+        for _key, _value in kwargs.items():
+            setattr(self, _key, _value)
 
     @classmethod
     def from_dict(cls, _dict: Dict) -> 'ServiceCredentialsSecretCredentials':
         """Initialize a ServiceCredentialsSecretCredentials object from a json dictionary."""
         args = {}
-        if 'apikey' in _dict:
-            args['apikey'] = _dict.get('apikey')
-        if 'cos_hmac_keys' in _dict:
-            args['cos_hmac_keys'] = CosHmacKeys.from_dict(_dict.get('cos_hmac_keys'))
-        if 'endpoints' in _dict:
-            args['endpoints'] = _dict.get('endpoints')
-        if 'iam_apikey_description' in _dict:
-            args['iam_apikey_description'] = _dict.get('iam_apikey_description')
-        if 'iam_apikey_id' in _dict:
-            args['iam_apikey_id'] = _dict.get('iam_apikey_id')
-        if 'iam_apikey_name' in _dict:
-            args['iam_apikey_name'] = _dict.get('iam_apikey_name')
-        if 'iam_role_crn' in _dict:
-            args['iam_role_crn'] = _dict.get('iam_role_crn')
-        if 'iam_serviceid_crn' in _dict:
-            args['iam_serviceid_crn'] = _dict.get('iam_serviceid_crn')
-        if 'resource_instance_id' in _dict:
-            args['resource_instance_id'] = _dict.get('resource_instance_id')
+        if (apikey := _dict.get('apikey')) is not None:
+            args['apikey'] = apikey
+        if (iam_apikey_description := _dict.get('iam_apikey_description')) is not None:
+            args['iam_apikey_description'] = iam_apikey_description
+        if (iam_apikey_id := _dict.get('iam_apikey_id')) is not None:
+            args['iam_apikey_id'] = iam_apikey_id
+        if (iam_apikey_name := _dict.get('iam_apikey_name')) is not None:
+            args['iam_apikey_name'] = iam_apikey_name
+        if (iam_role_crn := _dict.get('iam_role_crn')) is not None:
+            args['iam_role_crn'] = iam_role_crn
+        if (iam_serviceid_crn := _dict.get('iam_serviceid_crn')) is not None:
+            args['iam_serviceid_crn'] = iam_serviceid_crn
+        args.update({k: v for (k, v) in _dict.items() if k not in cls._properties})
         return cls(**args)
 
     @classmethod
@@ -5785,13 +5971,6 @@ class ServiceCredentialsSecretCredentials:
         _dict = {}
         if hasattr(self, 'apikey') and getattr(self, 'apikey') is not None:
             _dict['apikey'] = getattr(self, 'apikey')
-        if hasattr(self, 'cos_hmac_keys') and self.cos_hmac_keys is not None:
-            if isinstance(self.cos_hmac_keys, dict):
-                _dict['cos_hmac_keys'] = self.cos_hmac_keys
-            else:
-                _dict['cos_hmac_keys'] = self.cos_hmac_keys.to_dict()
-        if hasattr(self, 'endpoints') and getattr(self, 'endpoints') is not None:
-            _dict['endpoints'] = getattr(self, 'endpoints')
         if hasattr(self, 'iam_apikey_description') and getattr(self, 'iam_apikey_description') is not None:
             _dict['iam_apikey_description'] = getattr(self, 'iam_apikey_description')
         if hasattr(self, 'iam_apikey_id') and getattr(self, 'iam_apikey_id') is not None:
@@ -5802,13 +5981,30 @@ class ServiceCredentialsSecretCredentials:
             _dict['iam_role_crn'] = getattr(self, 'iam_role_crn')
         if hasattr(self, 'iam_serviceid_crn') and getattr(self, 'iam_serviceid_crn') is not None:
             _dict['iam_serviceid_crn'] = getattr(self, 'iam_serviceid_crn')
-        if hasattr(self, 'resource_instance_id') and getattr(self, 'resource_instance_id') is not None:
-            _dict['resource_instance_id'] = getattr(self, 'resource_instance_id')
+        for _key in [k for k in vars(self).keys() if k not in ServiceCredentialsSecretCredentials._properties]:
+            _dict[_key] = getattr(self, _key)
         return _dict
 
     def _to_dict(self):
         """Return a json dictionary representing this model."""
         return self.to_dict()
+
+    def get_properties(self) -> Dict:
+        """Return a dictionary of arbitrary properties from this instance of ServiceCredentialsSecretCredentials"""
+        _dict = {}
+
+        for _key in [k for k in vars(self).keys() if k not in ServiceCredentialsSecretCredentials._properties]:
+            _dict[_key] = getattr(self, _key)
+        return _dict
+
+    def set_properties(self, _dict: dict):
+        """Set a dictionary of arbitrary properties to this instance of ServiceCredentialsSecretCredentials"""
+        for _key in [k for k in vars(self).keys() if k not in ServiceCredentialsSecretCredentials._properties]:
+            delattr(self, _key)
+
+        for _key, _value in _dict.items():
+            if _key not in ServiceCredentialsSecretCredentials._properties:
+                setattr(self, _key, _value)
 
     def __str__(self) -> str:
         """Return a `str` version of this ServiceCredentialsSecretCredentials object."""
@@ -5844,6 +6040,113 @@ class ServiceCredentialsSecretSourceService:
           service IDs that are autogenerated, will not have an assigned access policy and
           provided service IDs are not changed in any way.  Refer to the service
           documentation for supported roles.
+    """
+
+    def __init__(
+        self,
+        instance: 'ServiceCredentialsSourceServiceInstance',
+        *,
+        parameters: Optional['ServiceCredentialsSourceServiceParameters'] = None,
+        role: Optional['ServiceCredentialsSourceServiceRole'] = None,
+    ) -> None:
+        """
+        Initialize a ServiceCredentialsSecretSourceService object.
+
+        :param ServiceCredentialsSourceServiceInstance instance: The source service
+               instance identifier.
+        :param ServiceCredentialsSourceServiceParameters parameters: (optional)
+               Configuration options represented as key-value pairs. Service-defined
+               options are used in the generation of credentials for some services. For
+               example, Cloud Object Storage accepts the optional boolean parameter HMAC
+               for creating specific kind of credentials.
+        :param ServiceCredentialsSourceServiceRole role: (optional) The
+               service-specific custom role. CRN is accepted. The role is assigned as part
+               of an access policy to any auto-generated IAM service ID.  If you provide
+               an existing service ID, it is added to the access policy for that ID.  If a
+               role is not provided, any new service IDs that are autogenerated, will not
+               have an assigned access policy and provided service IDs are not changed in
+               any way.  Refer to the service documentation for supported roles.
+        """
+        self.instance = instance
+        self.parameters = parameters
+        self.role = role
+
+    @classmethod
+    def from_dict(cls, _dict: Dict) -> 'ServiceCredentialsSecretSourceService':
+        """Initialize a ServiceCredentialsSecretSourceService object from a json dictionary."""
+        args = {}
+        if (instance := _dict.get('instance')) is not None:
+            args['instance'] = ServiceCredentialsSourceServiceInstance.from_dict(instance)
+        else:
+            raise ValueError('Required property \'instance\' not present in ServiceCredentialsSecretSourceService JSON')
+        if (parameters := _dict.get('parameters')) is not None:
+            args['parameters'] = ServiceCredentialsSourceServiceParameters.from_dict(parameters)
+        if (role := _dict.get('role')) is not None:
+            args['role'] = ServiceCredentialsSourceServiceRole.from_dict(role)
+        return cls(**args)
+
+    @classmethod
+    def _from_dict(cls, _dict):
+        """Initialize a ServiceCredentialsSecretSourceService object from a json dictionary."""
+        return cls.from_dict(_dict)
+
+    def to_dict(self) -> Dict:
+        """Return a json dictionary representing this model."""
+        _dict = {}
+        if hasattr(self, 'instance') and self.instance is not None:
+            if isinstance(self.instance, dict):
+                _dict['instance'] = self.instance
+            else:
+                _dict['instance'] = self.instance.to_dict()
+        if hasattr(self, 'parameters') and self.parameters is not None:
+            if isinstance(self.parameters, dict):
+                _dict['parameters'] = self.parameters
+            else:
+                _dict['parameters'] = self.parameters.to_dict()
+        if hasattr(self, 'role') and self.role is not None:
+            if isinstance(self.role, dict):
+                _dict['role'] = self.role
+            else:
+                _dict['role'] = self.role.to_dict()
+        return _dict
+
+    def _to_dict(self):
+        """Return a json dictionary representing this model."""
+        return self.to_dict()
+
+    def __str__(self) -> str:
+        """Return a `str` version of this ServiceCredentialsSecretSourceService object."""
+        return json.dumps(self.to_dict(), indent=2)
+
+    def __eq__(self, other: 'ServiceCredentialsSecretSourceService') -> bool:
+        """Return `true` when self and other are equal, false otherwise."""
+        if not isinstance(other, self.__class__):
+            return False
+        return self.__dict__ == other.__dict__
+
+    def __ne__(self, other: 'ServiceCredentialsSecretSourceService') -> bool:
+        """Return `true` when self and other are not equal, false otherwise."""
+        return not self == other
+
+
+class ServiceCredentialsSecretSourceServiceRO:
+    """
+    The properties of the resource key that was created for this source service instance.
+
+    :param ServiceCredentialsSourceServiceInstance instance: The source service
+          instance identifier.
+    :param ServiceCredentialsSourceServiceParameters parameters: (optional)
+          Configuration options represented as key-value pairs. Service-defined options
+          are used in the generation of credentials for some services. For example, Cloud
+          Object Storage accepts the optional boolean parameter HMAC for creating specific
+          kind of credentials.
+    :param ServiceCredentialsSourceServiceRole role: (optional) The service-specific
+          custom role. CRN is accepted. The role is assigned as part of an access policy
+          to any auto-generated IAM service ID.  If you provide an existing service ID, it
+          is added to the access policy for that ID.  If a role is not provided, any new
+          service IDs that are autogenerated, will not have an assigned access policy and
+          provided service IDs are not changed in any way.  Refer to the service
+          documentation for supported roles.
     :param ServiceCredentialsSourceServiceIam iam: (optional) The source service IAM
           data is returned in case IAM credentials where created for this secret.
     :param ServiceCredentialsResourceKey resource_key: (optional) The source service
@@ -5860,7 +6163,7 @@ class ServiceCredentialsSecretSourceService:
         resource_key: Optional['ServiceCredentialsResourceKey'] = None,
     ) -> None:
         """
-        Initialize a ServiceCredentialsSecretSourceService object.
+        Initialize a ServiceCredentialsSecretSourceServiceRO object.
 
         :param ServiceCredentialsSourceServiceInstance instance: The source service
                instance identifier.
@@ -5889,26 +6192,26 @@ class ServiceCredentialsSecretSourceService:
         self.resource_key = resource_key
 
     @classmethod
-    def from_dict(cls, _dict: Dict) -> 'ServiceCredentialsSecretSourceService':
-        """Initialize a ServiceCredentialsSecretSourceService object from a json dictionary."""
+    def from_dict(cls, _dict: Dict) -> 'ServiceCredentialsSecretSourceServiceRO':
+        """Initialize a ServiceCredentialsSecretSourceServiceRO object from a json dictionary."""
         args = {}
-        if 'instance' in _dict:
-            args['instance'] = ServiceCredentialsSourceServiceInstance.from_dict(_dict.get('instance'))
+        if (instance := _dict.get('instance')) is not None:
+            args['instance'] = ServiceCredentialsSourceServiceInstance.from_dict(instance)
         else:
-            raise ValueError('Required property \'instance\' not present in ServiceCredentialsSecretSourceService JSON')
-        if 'parameters' in _dict:
-            args['parameters'] = ServiceCredentialsSourceServiceParameters.from_dict(_dict.get('parameters'))
-        if 'role' in _dict:
-            args['role'] = ServiceCredentialsSourceServiceRole.from_dict(_dict.get('role'))
-        if 'iam' in _dict:
-            args['iam'] = ServiceCredentialsSourceServiceIam.from_dict(_dict.get('iam'))
-        if 'resource_key' in _dict:
-            args['resource_key'] = ServiceCredentialsResourceKey.from_dict(_dict.get('resource_key'))
+            raise ValueError('Required property \'instance\' not present in ServiceCredentialsSecretSourceServiceRO JSON')
+        if (parameters := _dict.get('parameters')) is not None:
+            args['parameters'] = ServiceCredentialsSourceServiceParameters.from_dict(parameters)
+        if (role := _dict.get('role')) is not None:
+            args['role'] = ServiceCredentialsSourceServiceRole.from_dict(role)
+        if (iam := _dict.get('iam')) is not None:
+            args['iam'] = ServiceCredentialsSourceServiceIam.from_dict(iam)
+        if (resource_key := _dict.get('resource_key')) is not None:
+            args['resource_key'] = ServiceCredentialsResourceKey.from_dict(resource_key)
         return cls(**args)
 
     @classmethod
     def _from_dict(cls, _dict):
-        """Initialize a ServiceCredentialsSecretSourceService object from a json dictionary."""
+        """Initialize a ServiceCredentialsSecretSourceServiceRO object from a json dictionary."""
         return cls.from_dict(_dict)
 
     def to_dict(self) -> Dict:
@@ -5946,16 +6249,16 @@ class ServiceCredentialsSecretSourceService:
         return self.to_dict()
 
     def __str__(self) -> str:
-        """Return a `str` version of this ServiceCredentialsSecretSourceService object."""
+        """Return a `str` version of this ServiceCredentialsSecretSourceServiceRO object."""
         return json.dumps(self.to_dict(), indent=2)
 
-    def __eq__(self, other: 'ServiceCredentialsSecretSourceService') -> bool:
+    def __eq__(self, other: 'ServiceCredentialsSecretSourceServiceRO') -> bool:
         """Return `true` when self and other are equal, false otherwise."""
         if not isinstance(other, self.__class__):
             return False
         return self.__dict__ == other.__dict__
 
-    def __ne__(self, other: 'ServiceCredentialsSecretSourceService') -> bool:
+    def __ne__(self, other: 'ServiceCredentialsSecretSourceServiceRO') -> bool:
         """Return `true` when self and other are not equal, false otherwise."""
         return not self == other
 
@@ -5998,12 +6301,12 @@ class ServiceCredentialsSourceServiceIam:
     def from_dict(cls, _dict: Dict) -> 'ServiceCredentialsSourceServiceIam':
         """Initialize a ServiceCredentialsSourceServiceIam object from a json dictionary."""
         args = {}
-        if 'apikey' in _dict:
-            args['apikey'] = ServiceCredentialsSourceServiceIamApikey.from_dict(_dict.get('apikey'))
-        if 'role' in _dict:
-            args['role'] = ServiceCredentialsSourceServiceIamRole.from_dict(_dict.get('role'))
-        if 'serviceid' in _dict:
-            args['serviceid'] = ServiceCredentialsSourceServiceIamServiceid.from_dict(_dict.get('serviceid'))
+        if (apikey := _dict.get('apikey')) is not None:
+            args['apikey'] = ServiceCredentialsSourceServiceIamApikey.from_dict(apikey)
+        if (role := _dict.get('role')) is not None:
+            args['role'] = ServiceCredentialsSourceServiceIamRole.from_dict(role)
+        if (serviceid := _dict.get('serviceid')) is not None:
+            args['serviceid'] = ServiceCredentialsSourceServiceIamServiceid.from_dict(serviceid)
         return cls(**args)
 
     @classmethod
@@ -6081,12 +6384,12 @@ class ServiceCredentialsSourceServiceIamApikey:
     def from_dict(cls, _dict: Dict) -> 'ServiceCredentialsSourceServiceIamApikey':
         """Initialize a ServiceCredentialsSourceServiceIamApikey object from a json dictionary."""
         args = {}
-        if 'description' in _dict:
-            args['description'] = _dict.get('description')
-        if 'id' in _dict:
-            args['id'] = _dict.get('id')
-        if 'name' in _dict:
-            args['name'] = _dict.get('name')
+        if (description := _dict.get('description')) is not None:
+            args['description'] = description
+        if (id := _dict.get('id')) is not None:
+            args['id'] = id
+        if (name := _dict.get('name')) is not None:
+            args['name'] = name
         return cls(**args)
 
     @classmethod
@@ -6147,8 +6450,8 @@ class ServiceCredentialsSourceServiceIamRole:
     def from_dict(cls, _dict: Dict) -> 'ServiceCredentialsSourceServiceIamRole':
         """Initialize a ServiceCredentialsSourceServiceIamRole object from a json dictionary."""
         args = {}
-        if 'crn' in _dict:
-            args['crn'] = _dict.get('crn')
+        if (crn := _dict.get('crn')) is not None:
+            args['crn'] = crn
         return cls(**args)
 
     @classmethod
@@ -6204,8 +6507,8 @@ class ServiceCredentialsSourceServiceIamServiceid:
     def from_dict(cls, _dict: Dict) -> 'ServiceCredentialsSourceServiceIamServiceid':
         """Initialize a ServiceCredentialsSourceServiceIamServiceid object from a json dictionary."""
         args = {}
-        if 'crn' in _dict:
-            args['crn'] = _dict.get('crn')
+        if (crn := _dict.get('crn')) is not None:
+            args['crn'] = crn
         return cls(**args)
 
     @classmethod
@@ -6264,8 +6567,8 @@ class ServiceCredentialsSourceServiceInstance:
     def from_dict(cls, _dict: Dict) -> 'ServiceCredentialsSourceServiceInstance':
         """Initialize a ServiceCredentialsSourceServiceInstance object from a json dictionary."""
         args = {}
-        if 'crn' in _dict:
-            args['crn'] = _dict.get('crn')
+        if (crn := _dict.get('crn')) is not None:
+            args['crn'] = crn
         return cls(**args)
 
     @classmethod
@@ -6333,8 +6636,8 @@ class ServiceCredentialsSourceServiceParameters:
     def from_dict(cls, _dict: Dict) -> 'ServiceCredentialsSourceServiceParameters':
         """Initialize a ServiceCredentialsSourceServiceParameters object from a json dictionary."""
         args = {}
-        if 'serviceid_crn' in _dict:
-            args['serviceid_crn'] = _dict.get('serviceid_crn')
+        if (serviceid_crn := _dict.get('serviceid_crn')) is not None:
+            args['serviceid_crn'] = serviceid_crn
         args.update({k: v for (k, v) in _dict.items() if k not in cls._properties})
         return cls(**args)
 
@@ -6415,8 +6718,8 @@ class ServiceCredentialsSourceServiceRole:
     def from_dict(cls, _dict: Dict) -> 'ServiceCredentialsSourceServiceRole':
         """Initialize a ServiceCredentialsSourceServiceRole object from a json dictionary."""
         args = {}
-        if 'crn' in _dict:
-            args['crn'] = _dict.get('crn')
+        if (crn := _dict.get('crn')) is not None:
+            args['crn'] = crn
         else:
             raise ValueError('Required property \'crn\' not present in ServiceCredentialsSourceServiceRole JSON')
         return cls(**args)
@@ -6626,58 +6929,58 @@ class ArbitrarySecret(Secret):
     def from_dict(cls, _dict: Dict) -> 'ArbitrarySecret':
         """Initialize a ArbitrarySecret object from a json dictionary."""
         args = {}
-        if 'created_by' in _dict:
-            args['created_by'] = _dict.get('created_by')
+        if (created_by := _dict.get('created_by')) is not None:
+            args['created_by'] = created_by
         else:
             raise ValueError('Required property \'created_by\' not present in ArbitrarySecret JSON')
-        if 'created_at' in _dict:
-            args['created_at'] = string_to_datetime(_dict.get('created_at'))
+        if (created_at := _dict.get('created_at')) is not None:
+            args['created_at'] = string_to_datetime(created_at)
         else:
             raise ValueError('Required property \'created_at\' not present in ArbitrarySecret JSON')
-        if 'crn' in _dict:
-            args['crn'] = _dict.get('crn')
+        if (crn := _dict.get('crn')) is not None:
+            args['crn'] = crn
         else:
             raise ValueError('Required property \'crn\' not present in ArbitrarySecret JSON')
-        if 'custom_metadata' in _dict:
-            args['custom_metadata'] = _dict.get('custom_metadata')
-        if 'description' in _dict:
-            args['description'] = _dict.get('description')
-        if 'downloaded' in _dict:
-            args['downloaded'] = _dict.get('downloaded')
-        if 'id' in _dict:
-            args['id'] = _dict.get('id')
+        if (custom_metadata := _dict.get('custom_metadata')) is not None:
+            args['custom_metadata'] = custom_metadata
+        if (description := _dict.get('description')) is not None:
+            args['description'] = description
+        if (downloaded := _dict.get('downloaded')) is not None:
+            args['downloaded'] = downloaded
+        if (id := _dict.get('id')) is not None:
+            args['id'] = id
         else:
             raise ValueError('Required property \'id\' not present in ArbitrarySecret JSON')
-        if 'labels' in _dict:
-            args['labels'] = _dict.get('labels')
-        if 'locks_total' in _dict:
-            args['locks_total'] = _dict.get('locks_total')
-        if 'name' in _dict:
-            args['name'] = _dict.get('name')
-        if 'secret_group_id' in _dict:
-            args['secret_group_id'] = _dict.get('secret_group_id')
+        if (labels := _dict.get('labels')) is not None:
+            args['labels'] = labels
+        if (locks_total := _dict.get('locks_total')) is not None:
+            args['locks_total'] = locks_total
+        if (name := _dict.get('name')) is not None:
+            args['name'] = name
+        if (secret_group_id := _dict.get('secret_group_id')) is not None:
+            args['secret_group_id'] = secret_group_id
         else:
             raise ValueError('Required property \'secret_group_id\' not present in ArbitrarySecret JSON')
-        if 'secret_type' in _dict:
-            args['secret_type'] = _dict.get('secret_type')
+        if (secret_type := _dict.get('secret_type')) is not None:
+            args['secret_type'] = secret_type
         else:
             raise ValueError('Required property \'secret_type\' not present in ArbitrarySecret JSON')
-        if 'state' in _dict:
-            args['state'] = _dict.get('state')
-        if 'state_description' in _dict:
-            args['state_description'] = _dict.get('state_description')
-        if 'updated_at' in _dict:
-            args['updated_at'] = string_to_datetime(_dict.get('updated_at'))
+        if (state := _dict.get('state')) is not None:
+            args['state'] = state
+        if (state_description := _dict.get('state_description')) is not None:
+            args['state_description'] = state_description
+        if (updated_at := _dict.get('updated_at')) is not None:
+            args['updated_at'] = string_to_datetime(updated_at)
         else:
             raise ValueError('Required property \'updated_at\' not present in ArbitrarySecret JSON')
-        if 'versions_total' in _dict:
-            args['versions_total'] = _dict.get('versions_total')
+        if (versions_total := _dict.get('versions_total')) is not None:
+            args['versions_total'] = versions_total
         else:
             raise ValueError('Required property \'versions_total\' not present in ArbitrarySecret JSON')
-        if 'expiration_date' in _dict:
-            args['expiration_date'] = string_to_datetime(_dict.get('expiration_date'))
-        if 'payload' in _dict:
-            args['payload'] = _dict.get('payload')
+        if (expiration_date := _dict.get('expiration_date')) is not None:
+            args['expiration_date'] = string_to_datetime(expiration_date)
+        if (payload := _dict.get('payload')) is not None:
+            args['payload'] = payload
         return cls(**args)
 
     @classmethod
@@ -6890,56 +7193,56 @@ class ArbitrarySecretMetadata(SecretMetadata):
     def from_dict(cls, _dict: Dict) -> 'ArbitrarySecretMetadata':
         """Initialize a ArbitrarySecretMetadata object from a json dictionary."""
         args = {}
-        if 'created_by' in _dict:
-            args['created_by'] = _dict.get('created_by')
+        if (created_by := _dict.get('created_by')) is not None:
+            args['created_by'] = created_by
         else:
             raise ValueError('Required property \'created_by\' not present in ArbitrarySecretMetadata JSON')
-        if 'created_at' in _dict:
-            args['created_at'] = string_to_datetime(_dict.get('created_at'))
+        if (created_at := _dict.get('created_at')) is not None:
+            args['created_at'] = string_to_datetime(created_at)
         else:
             raise ValueError('Required property \'created_at\' not present in ArbitrarySecretMetadata JSON')
-        if 'crn' in _dict:
-            args['crn'] = _dict.get('crn')
+        if (crn := _dict.get('crn')) is not None:
+            args['crn'] = crn
         else:
             raise ValueError('Required property \'crn\' not present in ArbitrarySecretMetadata JSON')
-        if 'custom_metadata' in _dict:
-            args['custom_metadata'] = _dict.get('custom_metadata')
-        if 'description' in _dict:
-            args['description'] = _dict.get('description')
-        if 'downloaded' in _dict:
-            args['downloaded'] = _dict.get('downloaded')
-        if 'id' in _dict:
-            args['id'] = _dict.get('id')
+        if (custom_metadata := _dict.get('custom_metadata')) is not None:
+            args['custom_metadata'] = custom_metadata
+        if (description := _dict.get('description')) is not None:
+            args['description'] = description
+        if (downloaded := _dict.get('downloaded')) is not None:
+            args['downloaded'] = downloaded
+        if (id := _dict.get('id')) is not None:
+            args['id'] = id
         else:
             raise ValueError('Required property \'id\' not present in ArbitrarySecretMetadata JSON')
-        if 'labels' in _dict:
-            args['labels'] = _dict.get('labels')
-        if 'locks_total' in _dict:
-            args['locks_total'] = _dict.get('locks_total')
-        if 'name' in _dict:
-            args['name'] = _dict.get('name')
-        if 'secret_group_id' in _dict:
-            args['secret_group_id'] = _dict.get('secret_group_id')
+        if (labels := _dict.get('labels')) is not None:
+            args['labels'] = labels
+        if (locks_total := _dict.get('locks_total')) is not None:
+            args['locks_total'] = locks_total
+        if (name := _dict.get('name')) is not None:
+            args['name'] = name
+        if (secret_group_id := _dict.get('secret_group_id')) is not None:
+            args['secret_group_id'] = secret_group_id
         else:
             raise ValueError('Required property \'secret_group_id\' not present in ArbitrarySecretMetadata JSON')
-        if 'secret_type' in _dict:
-            args['secret_type'] = _dict.get('secret_type')
+        if (secret_type := _dict.get('secret_type')) is not None:
+            args['secret_type'] = secret_type
         else:
             raise ValueError('Required property \'secret_type\' not present in ArbitrarySecretMetadata JSON')
-        if 'state' in _dict:
-            args['state'] = _dict.get('state')
-        if 'state_description' in _dict:
-            args['state_description'] = _dict.get('state_description')
-        if 'updated_at' in _dict:
-            args['updated_at'] = string_to_datetime(_dict.get('updated_at'))
+        if (state := _dict.get('state')) is not None:
+            args['state'] = state
+        if (state_description := _dict.get('state_description')) is not None:
+            args['state_description'] = state_description
+        if (updated_at := _dict.get('updated_at')) is not None:
+            args['updated_at'] = string_to_datetime(updated_at)
         else:
             raise ValueError('Required property \'updated_at\' not present in ArbitrarySecretMetadata JSON')
-        if 'versions_total' in _dict:
-            args['versions_total'] = _dict.get('versions_total')
+        if (versions_total := _dict.get('versions_total')) is not None:
+            args['versions_total'] = versions_total
         else:
             raise ValueError('Required property \'versions_total\' not present in ArbitrarySecretMetadata JSON')
-        if 'expiration_date' in _dict:
-            args['expiration_date'] = string_to_datetime(_dict.get('expiration_date'))
+        if (expiration_date := _dict.get('expiration_date')) is not None:
+            args['expiration_date'] = string_to_datetime(expiration_date)
         return cls(**args)
 
     @classmethod
@@ -7095,16 +7398,16 @@ class ArbitrarySecretMetadataPatch(SecretMetadataPatch):
     def from_dict(cls, _dict: Dict) -> 'ArbitrarySecretMetadataPatch':
         """Initialize a ArbitrarySecretMetadataPatch object from a json dictionary."""
         args = {}
-        if 'name' in _dict:
-            args['name'] = _dict.get('name')
-        if 'description' in _dict:
-            args['description'] = _dict.get('description')
-        if 'labels' in _dict:
-            args['labels'] = _dict.get('labels')
-        if 'custom_metadata' in _dict:
-            args['custom_metadata'] = _dict.get('custom_metadata')
-        if 'expiration_date' in _dict:
-            args['expiration_date'] = string_to_datetime(_dict.get('expiration_date'))
+        if (name := _dict.get('name')) is not None:
+            args['name'] = name
+        if (description := _dict.get('description')) is not None:
+            args['description'] = description
+        if (labels := _dict.get('labels')) is not None:
+            args['labels'] = labels
+        if (custom_metadata := _dict.get('custom_metadata')) is not None:
+            args['custom_metadata'] = custom_metadata
+        if (expiration_date := _dict.get('expiration_date')) is not None:
+            args['expiration_date'] = string_to_datetime(expiration_date)
         return cls(**args)
 
     @classmethod
@@ -7233,30 +7536,30 @@ class ArbitrarySecretPrototype(SecretPrototype):
     def from_dict(cls, _dict: Dict) -> 'ArbitrarySecretPrototype':
         """Initialize a ArbitrarySecretPrototype object from a json dictionary."""
         args = {}
-        if 'custom_metadata' in _dict:
-            args['custom_metadata'] = _dict.get('custom_metadata')
-        if 'description' in _dict:
-            args['description'] = _dict.get('description')
-        if 'expiration_date' in _dict:
-            args['expiration_date'] = string_to_datetime(_dict.get('expiration_date'))
-        if 'labels' in _dict:
-            args['labels'] = _dict.get('labels')
-        if 'name' in _dict:
-            args['name'] = _dict.get('name')
+        if (custom_metadata := _dict.get('custom_metadata')) is not None:
+            args['custom_metadata'] = custom_metadata
+        if (description := _dict.get('description')) is not None:
+            args['description'] = description
+        if (expiration_date := _dict.get('expiration_date')) is not None:
+            args['expiration_date'] = string_to_datetime(expiration_date)
+        if (labels := _dict.get('labels')) is not None:
+            args['labels'] = labels
+        if (name := _dict.get('name')) is not None:
+            args['name'] = name
         else:
             raise ValueError('Required property \'name\' not present in ArbitrarySecretPrototype JSON')
-        if 'secret_group_id' in _dict:
-            args['secret_group_id'] = _dict.get('secret_group_id')
-        if 'secret_type' in _dict:
-            args['secret_type'] = _dict.get('secret_type')
+        if (secret_group_id := _dict.get('secret_group_id')) is not None:
+            args['secret_group_id'] = secret_group_id
+        if (secret_type := _dict.get('secret_type')) is not None:
+            args['secret_type'] = secret_type
         else:
             raise ValueError('Required property \'secret_type\' not present in ArbitrarySecretPrototype JSON')
-        if 'payload' in _dict:
-            args['payload'] = _dict.get('payload')
+        if (payload := _dict.get('payload')) is not None:
+            args['payload'] = payload
         else:
             raise ValueError('Required property \'payload\' not present in ArbitrarySecretPrototype JSON')
-        if 'version_custom_metadata' in _dict:
-            args['version_custom_metadata'] = _dict.get('version_custom_metadata')
+        if (version_custom_metadata := _dict.get('version_custom_metadata')) is not None:
+            args['version_custom_metadata'] = version_custom_metadata
         return cls(**args)
 
     @classmethod
@@ -7423,48 +7726,48 @@ class ArbitrarySecretVersion(SecretVersion):
     def from_dict(cls, _dict: Dict) -> 'ArbitrarySecretVersion':
         """Initialize a ArbitrarySecretVersion object from a json dictionary."""
         args = {}
-        if 'auto_rotated' in _dict:
-            args['auto_rotated'] = _dict.get('auto_rotated')
-        if 'created_by' in _dict:
-            args['created_by'] = _dict.get('created_by')
+        if (auto_rotated := _dict.get('auto_rotated')) is not None:
+            args['auto_rotated'] = auto_rotated
+        if (created_by := _dict.get('created_by')) is not None:
+            args['created_by'] = created_by
         else:
             raise ValueError('Required property \'created_by\' not present in ArbitrarySecretVersion JSON')
-        if 'created_at' in _dict:
-            args['created_at'] = string_to_datetime(_dict.get('created_at'))
+        if (created_at := _dict.get('created_at')) is not None:
+            args['created_at'] = string_to_datetime(created_at)
         else:
             raise ValueError('Required property \'created_at\' not present in ArbitrarySecretVersion JSON')
-        if 'downloaded' in _dict:
-            args['downloaded'] = _dict.get('downloaded')
-        if 'id' in _dict:
-            args['id'] = _dict.get('id')
+        if (downloaded := _dict.get('downloaded')) is not None:
+            args['downloaded'] = downloaded
+        if (id := _dict.get('id')) is not None:
+            args['id'] = id
         else:
             raise ValueError('Required property \'id\' not present in ArbitrarySecretVersion JSON')
-        if 'secret_name' in _dict:
-            args['secret_name'] = _dict.get('secret_name')
-        if 'secret_type' in _dict:
-            args['secret_type'] = _dict.get('secret_type')
+        if (secret_name := _dict.get('secret_name')) is not None:
+            args['secret_name'] = secret_name
+        if (secret_type := _dict.get('secret_type')) is not None:
+            args['secret_type'] = secret_type
         else:
             raise ValueError('Required property \'secret_type\' not present in ArbitrarySecretVersion JSON')
-        if 'secret_group_id' in _dict:
-            args['secret_group_id'] = _dict.get('secret_group_id')
+        if (secret_group_id := _dict.get('secret_group_id')) is not None:
+            args['secret_group_id'] = secret_group_id
         else:
             raise ValueError('Required property \'secret_group_id\' not present in ArbitrarySecretVersion JSON')
-        if 'payload_available' in _dict:
-            args['payload_available'] = _dict.get('payload_available')
+        if (payload_available := _dict.get('payload_available')) is not None:
+            args['payload_available'] = payload_available
         else:
             raise ValueError('Required property \'payload_available\' not present in ArbitrarySecretVersion JSON')
-        if 'alias' in _dict:
-            args['alias'] = _dict.get('alias')
-        if 'version_custom_metadata' in _dict:
-            args['version_custom_metadata'] = _dict.get('version_custom_metadata')
-        if 'secret_id' in _dict:
-            args['secret_id'] = _dict.get('secret_id')
+        if (alias := _dict.get('alias')) is not None:
+            args['alias'] = alias
+        if (version_custom_metadata := _dict.get('version_custom_metadata')) is not None:
+            args['version_custom_metadata'] = version_custom_metadata
+        if (secret_id := _dict.get('secret_id')) is not None:
+            args['secret_id'] = secret_id
         else:
             raise ValueError('Required property \'secret_id\' not present in ArbitrarySecretVersion JSON')
-        if 'expiration_date' in _dict:
-            args['expiration_date'] = string_to_datetime(_dict.get('expiration_date'))
-        if 'payload' in _dict:
-            args['payload'] = _dict.get('payload')
+        if (expiration_date := _dict.get('expiration_date')) is not None:
+            args['expiration_date'] = string_to_datetime(expiration_date)
+        if (payload := _dict.get('payload')) is not None:
+            args['payload'] = payload
         return cls(**args)
 
     @classmethod
@@ -7645,46 +7948,46 @@ class ArbitrarySecretVersionMetadata(SecretVersionMetadata):
     def from_dict(cls, _dict: Dict) -> 'ArbitrarySecretVersionMetadata':
         """Initialize a ArbitrarySecretVersionMetadata object from a json dictionary."""
         args = {}
-        if 'auto_rotated' in _dict:
-            args['auto_rotated'] = _dict.get('auto_rotated')
-        if 'created_by' in _dict:
-            args['created_by'] = _dict.get('created_by')
+        if (auto_rotated := _dict.get('auto_rotated')) is not None:
+            args['auto_rotated'] = auto_rotated
+        if (created_by := _dict.get('created_by')) is not None:
+            args['created_by'] = created_by
         else:
             raise ValueError('Required property \'created_by\' not present in ArbitrarySecretVersionMetadata JSON')
-        if 'created_at' in _dict:
-            args['created_at'] = string_to_datetime(_dict.get('created_at'))
+        if (created_at := _dict.get('created_at')) is not None:
+            args['created_at'] = string_to_datetime(created_at)
         else:
             raise ValueError('Required property \'created_at\' not present in ArbitrarySecretVersionMetadata JSON')
-        if 'downloaded' in _dict:
-            args['downloaded'] = _dict.get('downloaded')
-        if 'id' in _dict:
-            args['id'] = _dict.get('id')
+        if (downloaded := _dict.get('downloaded')) is not None:
+            args['downloaded'] = downloaded
+        if (id := _dict.get('id')) is not None:
+            args['id'] = id
         else:
             raise ValueError('Required property \'id\' not present in ArbitrarySecretVersionMetadata JSON')
-        if 'secret_name' in _dict:
-            args['secret_name'] = _dict.get('secret_name')
-        if 'secret_type' in _dict:
-            args['secret_type'] = _dict.get('secret_type')
+        if (secret_name := _dict.get('secret_name')) is not None:
+            args['secret_name'] = secret_name
+        if (secret_type := _dict.get('secret_type')) is not None:
+            args['secret_type'] = secret_type
         else:
             raise ValueError('Required property \'secret_type\' not present in ArbitrarySecretVersionMetadata JSON')
-        if 'secret_group_id' in _dict:
-            args['secret_group_id'] = _dict.get('secret_group_id')
+        if (secret_group_id := _dict.get('secret_group_id')) is not None:
+            args['secret_group_id'] = secret_group_id
         else:
             raise ValueError('Required property \'secret_group_id\' not present in ArbitrarySecretVersionMetadata JSON')
-        if 'payload_available' in _dict:
-            args['payload_available'] = _dict.get('payload_available')
+        if (payload_available := _dict.get('payload_available')) is not None:
+            args['payload_available'] = payload_available
         else:
             raise ValueError('Required property \'payload_available\' not present in ArbitrarySecretVersionMetadata JSON')
-        if 'alias' in _dict:
-            args['alias'] = _dict.get('alias')
-        if 'version_custom_metadata' in _dict:
-            args['version_custom_metadata'] = _dict.get('version_custom_metadata')
-        if 'secret_id' in _dict:
-            args['secret_id'] = _dict.get('secret_id')
+        if (alias := _dict.get('alias')) is not None:
+            args['alias'] = alias
+        if (version_custom_metadata := _dict.get('version_custom_metadata')) is not None:
+            args['version_custom_metadata'] = version_custom_metadata
+        if (secret_id := _dict.get('secret_id')) is not None:
+            args['secret_id'] = secret_id
         else:
             raise ValueError('Required property \'secret_id\' not present in ArbitrarySecretVersionMetadata JSON')
-        if 'expiration_date' in _dict:
-            args['expiration_date'] = string_to_datetime(_dict.get('expiration_date'))
+        if (expiration_date := _dict.get('expiration_date')) is not None:
+            args['expiration_date'] = string_to_datetime(expiration_date)
         return cls(**args)
 
     @classmethod
@@ -7805,14 +8108,14 @@ class ArbitrarySecretVersionPrototype(SecretVersionPrototype):
     def from_dict(cls, _dict: Dict) -> 'ArbitrarySecretVersionPrototype':
         """Initialize a ArbitrarySecretVersionPrototype object from a json dictionary."""
         args = {}
-        if 'payload' in _dict:
-            args['payload'] = _dict.get('payload')
+        if (payload := _dict.get('payload')) is not None:
+            args['payload'] = payload
         else:
             raise ValueError('Required property \'payload\' not present in ArbitrarySecretVersionPrototype JSON')
-        if 'custom_metadata' in _dict:
-            args['custom_metadata'] = _dict.get('custom_metadata')
-        if 'version_custom_metadata' in _dict:
-            args['version_custom_metadata'] = _dict.get('version_custom_metadata')
+        if (custom_metadata := _dict.get('custom_metadata')) is not None:
+            args['custom_metadata'] = custom_metadata
+        if (version_custom_metadata := _dict.get('version_custom_metadata')) is not None:
+            args['version_custom_metadata'] = version_custom_metadata
         return cls(**args)
 
     @classmethod
@@ -7890,14 +8193,14 @@ class CommonRotationPolicy(RotationPolicy):
     def from_dict(cls, _dict: Dict) -> 'CommonRotationPolicy':
         """Initialize a CommonRotationPolicy object from a json dictionary."""
         args = {}
-        if 'auto_rotate' in _dict:
-            args['auto_rotate'] = _dict.get('auto_rotate')
+        if (auto_rotate := _dict.get('auto_rotate')) is not None:
+            args['auto_rotate'] = auto_rotate
         else:
             raise ValueError('Required property \'auto_rotate\' not present in CommonRotationPolicy JSON')
-        if 'interval' in _dict:
-            args['interval'] = _dict.get('interval')
-        if 'unit' in _dict:
-            args['unit'] = _dict.get('unit')
+        if (interval := _dict.get('interval')) is not None:
+            args['interval'] = interval
+        if (unit := _dict.get('unit')) is not None:
+            args['unit'] = unit
         return cls(**args)
 
     @classmethod
@@ -8016,32 +8319,32 @@ class IAMCredentialsConfiguration(Configuration):
     def from_dict(cls, _dict: Dict) -> 'IAMCredentialsConfiguration':
         """Initialize a IAMCredentialsConfiguration object from a json dictionary."""
         args = {}
-        if 'config_type' in _dict:
-            args['config_type'] = _dict.get('config_type')
+        if (config_type := _dict.get('config_type')) is not None:
+            args['config_type'] = config_type
         else:
             raise ValueError('Required property \'config_type\' not present in IAMCredentialsConfiguration JSON')
-        if 'name' in _dict:
-            args['name'] = _dict.get('name')
+        if (name := _dict.get('name')) is not None:
+            args['name'] = name
         else:
             raise ValueError('Required property \'name\' not present in IAMCredentialsConfiguration JSON')
-        if 'secret_type' in _dict:
-            args['secret_type'] = _dict.get('secret_type')
+        if (secret_type := _dict.get('secret_type')) is not None:
+            args['secret_type'] = secret_type
         else:
             raise ValueError('Required property \'secret_type\' not present in IAMCredentialsConfiguration JSON')
-        if 'created_by' in _dict:
-            args['created_by'] = _dict.get('created_by')
+        if (created_by := _dict.get('created_by')) is not None:
+            args['created_by'] = created_by
         else:
             raise ValueError('Required property \'created_by\' not present in IAMCredentialsConfiguration JSON')
-        if 'created_at' in _dict:
-            args['created_at'] = string_to_datetime(_dict.get('created_at'))
+        if (created_at := _dict.get('created_at')) is not None:
+            args['created_at'] = string_to_datetime(created_at)
         else:
             raise ValueError('Required property \'created_at\' not present in IAMCredentialsConfiguration JSON')
-        if 'updated_at' in _dict:
-            args['updated_at'] = string_to_datetime(_dict.get('updated_at'))
+        if (updated_at := _dict.get('updated_at')) is not None:
+            args['updated_at'] = string_to_datetime(updated_at)
         else:
             raise ValueError('Required property \'updated_at\' not present in IAMCredentialsConfiguration JSON')
-        if 'api_key' in _dict:
-            args['api_key'] = _dict.get('api_key')
+        if (api_key := _dict.get('api_key')) is not None:
+            args['api_key'] = api_key
         return cls(**args)
 
     @classmethod
@@ -8186,28 +8489,28 @@ class IAMCredentialsConfigurationMetadata(ConfigurationMetadata):
     def from_dict(cls, _dict: Dict) -> 'IAMCredentialsConfigurationMetadata':
         """Initialize a IAMCredentialsConfigurationMetadata object from a json dictionary."""
         args = {}
-        if 'config_type' in _dict:
-            args['config_type'] = _dict.get('config_type')
+        if (config_type := _dict.get('config_type')) is not None:
+            args['config_type'] = config_type
         else:
             raise ValueError('Required property \'config_type\' not present in IAMCredentialsConfigurationMetadata JSON')
-        if 'name' in _dict:
-            args['name'] = _dict.get('name')
+        if (name := _dict.get('name')) is not None:
+            args['name'] = name
         else:
             raise ValueError('Required property \'name\' not present in IAMCredentialsConfigurationMetadata JSON')
-        if 'secret_type' in _dict:
-            args['secret_type'] = _dict.get('secret_type')
+        if (secret_type := _dict.get('secret_type')) is not None:
+            args['secret_type'] = secret_type
         else:
             raise ValueError('Required property \'secret_type\' not present in IAMCredentialsConfigurationMetadata JSON')
-        if 'created_by' in _dict:
-            args['created_by'] = _dict.get('created_by')
+        if (created_by := _dict.get('created_by')) is not None:
+            args['created_by'] = created_by
         else:
             raise ValueError('Required property \'created_by\' not present in IAMCredentialsConfigurationMetadata JSON')
-        if 'created_at' in _dict:
-            args['created_at'] = string_to_datetime(_dict.get('created_at'))
+        if (created_at := _dict.get('created_at')) is not None:
+            args['created_at'] = string_to_datetime(created_at)
         else:
             raise ValueError('Required property \'created_at\' not present in IAMCredentialsConfigurationMetadata JSON')
-        if 'updated_at' in _dict:
-            args['updated_at'] = string_to_datetime(_dict.get('updated_at'))
+        if (updated_at := _dict.get('updated_at')) is not None:
+            args['updated_at'] = string_to_datetime(updated_at)
         else:
             raise ValueError('Required property \'updated_at\' not present in IAMCredentialsConfigurationMetadata JSON')
         return cls(**args)
@@ -8319,8 +8622,8 @@ class IAMCredentialsConfigurationPatch(ConfigurationPatch):
     def from_dict(cls, _dict: Dict) -> 'IAMCredentialsConfigurationPatch':
         """Initialize a IAMCredentialsConfigurationPatch object from a json dictionary."""
         args = {}
-        if 'api_key' in _dict:
-            args['api_key'] = _dict.get('api_key')
+        if (api_key := _dict.get('api_key')) is not None:
+            args['api_key'] = api_key
         else:
             raise ValueError('Required property \'api_key\' not present in IAMCredentialsConfigurationPatch JSON')
         return cls(**args)
@@ -8404,16 +8707,16 @@ class IAMCredentialsConfigurationPrototype(ConfigurationPrototype):
     def from_dict(cls, _dict: Dict) -> 'IAMCredentialsConfigurationPrototype':
         """Initialize a IAMCredentialsConfigurationPrototype object from a json dictionary."""
         args = {}
-        if 'name' in _dict:
-            args['name'] = _dict.get('name')
+        if (name := _dict.get('name')) is not None:
+            args['name'] = name
         else:
             raise ValueError('Required property \'name\' not present in IAMCredentialsConfigurationPrototype JSON')
-        if 'config_type' in _dict:
-            args['config_type'] = _dict.get('config_type')
+        if (config_type := _dict.get('config_type')) is not None:
+            args['config_type'] = config_type
         else:
             raise ValueError('Required property \'config_type\' not present in IAMCredentialsConfigurationPrototype JSON')
-        if 'api_key' in _dict:
-            args['api_key'] = _dict.get('api_key')
+        if (api_key := _dict.get('api_key')) is not None:
+            args['api_key'] = api_key
         else:
             raise ValueError('Required property \'api_key\' not present in IAMCredentialsConfigurationPrototype JSON')
         return cls(**args)
@@ -8674,76 +8977,76 @@ class IAMCredentialsSecret(Secret):
     def from_dict(cls, _dict: Dict) -> 'IAMCredentialsSecret':
         """Initialize a IAMCredentialsSecret object from a json dictionary."""
         args = {}
-        if 'created_by' in _dict:
-            args['created_by'] = _dict.get('created_by')
+        if (created_by := _dict.get('created_by')) is not None:
+            args['created_by'] = created_by
         else:
             raise ValueError('Required property \'created_by\' not present in IAMCredentialsSecret JSON')
-        if 'created_at' in _dict:
-            args['created_at'] = string_to_datetime(_dict.get('created_at'))
+        if (created_at := _dict.get('created_at')) is not None:
+            args['created_at'] = string_to_datetime(created_at)
         else:
             raise ValueError('Required property \'created_at\' not present in IAMCredentialsSecret JSON')
-        if 'crn' in _dict:
-            args['crn'] = _dict.get('crn')
+        if (crn := _dict.get('crn')) is not None:
+            args['crn'] = crn
         else:
             raise ValueError('Required property \'crn\' not present in IAMCredentialsSecret JSON')
-        if 'custom_metadata' in _dict:
-            args['custom_metadata'] = _dict.get('custom_metadata')
-        if 'description' in _dict:
-            args['description'] = _dict.get('description')
-        if 'downloaded' in _dict:
-            args['downloaded'] = _dict.get('downloaded')
-        if 'id' in _dict:
-            args['id'] = _dict.get('id')
+        if (custom_metadata := _dict.get('custom_metadata')) is not None:
+            args['custom_metadata'] = custom_metadata
+        if (description := _dict.get('description')) is not None:
+            args['description'] = description
+        if (downloaded := _dict.get('downloaded')) is not None:
+            args['downloaded'] = downloaded
+        if (id := _dict.get('id')) is not None:
+            args['id'] = id
         else:
             raise ValueError('Required property \'id\' not present in IAMCredentialsSecret JSON')
-        if 'labels' in _dict:
-            args['labels'] = _dict.get('labels')
-        if 'locks_total' in _dict:
-            args['locks_total'] = _dict.get('locks_total')
-        if 'name' in _dict:
-            args['name'] = _dict.get('name')
-        if 'secret_group_id' in _dict:
-            args['secret_group_id'] = _dict.get('secret_group_id')
+        if (labels := _dict.get('labels')) is not None:
+            args['labels'] = labels
+        if (locks_total := _dict.get('locks_total')) is not None:
+            args['locks_total'] = locks_total
+        if (name := _dict.get('name')) is not None:
+            args['name'] = name
+        if (secret_group_id := _dict.get('secret_group_id')) is not None:
+            args['secret_group_id'] = secret_group_id
         else:
             raise ValueError('Required property \'secret_group_id\' not present in IAMCredentialsSecret JSON')
-        if 'secret_type' in _dict:
-            args['secret_type'] = _dict.get('secret_type')
+        if (secret_type := _dict.get('secret_type')) is not None:
+            args['secret_type'] = secret_type
         else:
             raise ValueError('Required property \'secret_type\' not present in IAMCredentialsSecret JSON')
-        if 'state' in _dict:
-            args['state'] = _dict.get('state')
-        if 'state_description' in _dict:
-            args['state_description'] = _dict.get('state_description')
-        if 'updated_at' in _dict:
-            args['updated_at'] = string_to_datetime(_dict.get('updated_at'))
+        if (state := _dict.get('state')) is not None:
+            args['state'] = state
+        if (state_description := _dict.get('state_description')) is not None:
+            args['state_description'] = state_description
+        if (updated_at := _dict.get('updated_at')) is not None:
+            args['updated_at'] = string_to_datetime(updated_at)
         else:
             raise ValueError('Required property \'updated_at\' not present in IAMCredentialsSecret JSON')
-        if 'versions_total' in _dict:
-            args['versions_total'] = _dict.get('versions_total')
+        if (versions_total := _dict.get('versions_total')) is not None:
+            args['versions_total'] = versions_total
         else:
             raise ValueError('Required property \'versions_total\' not present in IAMCredentialsSecret JSON')
-        if 'ttl' in _dict:
-            args['ttl'] = _dict.get('ttl')
+        if (ttl := _dict.get('ttl')) is not None:
+            args['ttl'] = ttl
         else:
             raise ValueError('Required property \'ttl\' not present in IAMCredentialsSecret JSON')
-        if 'access_groups' in _dict:
-            args['access_groups'] = _dict.get('access_groups')
-        if 'api_key_id' in _dict:
-            args['api_key_id'] = _dict.get('api_key_id')
-        if 'service_id' in _dict:
-            args['service_id'] = _dict.get('service_id')
-        if 'service_id_is_static' in _dict:
-            args['service_id_is_static'] = _dict.get('service_id_is_static')
-        if 'reuse_api_key' in _dict:
-            args['reuse_api_key'] = _dict.get('reuse_api_key')
+        if (access_groups := _dict.get('access_groups')) is not None:
+            args['access_groups'] = access_groups
+        if (api_key_id := _dict.get('api_key_id')) is not None:
+            args['api_key_id'] = api_key_id
+        if (service_id := _dict.get('service_id')) is not None:
+            args['service_id'] = service_id
+        if (service_id_is_static := _dict.get('service_id_is_static')) is not None:
+            args['service_id_is_static'] = service_id_is_static
+        if (reuse_api_key := _dict.get('reuse_api_key')) is not None:
+            args['reuse_api_key'] = reuse_api_key
         else:
             raise ValueError('Required property \'reuse_api_key\' not present in IAMCredentialsSecret JSON')
-        if 'rotation' in _dict:
-            args['rotation'] = _dict.get('rotation')
-        if 'next_rotation_date' in _dict:
-            args['next_rotation_date'] = string_to_datetime(_dict.get('next_rotation_date'))
-        if 'api_key' in _dict:
-            args['api_key'] = _dict.get('api_key')
+        if (rotation := _dict.get('rotation')) is not None:
+            args['rotation'] = rotation
+        if (next_rotation_date := _dict.get('next_rotation_date')) is not None:
+            args['next_rotation_date'] = string_to_datetime(next_rotation_date)
+        if (api_key := _dict.get('api_key')) is not None:
+            args['api_key'] = api_key
         return cls(**args)
 
     @classmethod
@@ -9051,74 +9354,74 @@ class IAMCredentialsSecretMetadata(SecretMetadata):
     def from_dict(cls, _dict: Dict) -> 'IAMCredentialsSecretMetadata':
         """Initialize a IAMCredentialsSecretMetadata object from a json dictionary."""
         args = {}
-        if 'created_by' in _dict:
-            args['created_by'] = _dict.get('created_by')
+        if (created_by := _dict.get('created_by')) is not None:
+            args['created_by'] = created_by
         else:
             raise ValueError('Required property \'created_by\' not present in IAMCredentialsSecretMetadata JSON')
-        if 'created_at' in _dict:
-            args['created_at'] = string_to_datetime(_dict.get('created_at'))
+        if (created_at := _dict.get('created_at')) is not None:
+            args['created_at'] = string_to_datetime(created_at)
         else:
             raise ValueError('Required property \'created_at\' not present in IAMCredentialsSecretMetadata JSON')
-        if 'crn' in _dict:
-            args['crn'] = _dict.get('crn')
+        if (crn := _dict.get('crn')) is not None:
+            args['crn'] = crn
         else:
             raise ValueError('Required property \'crn\' not present in IAMCredentialsSecretMetadata JSON')
-        if 'custom_metadata' in _dict:
-            args['custom_metadata'] = _dict.get('custom_metadata')
-        if 'description' in _dict:
-            args['description'] = _dict.get('description')
-        if 'downloaded' in _dict:
-            args['downloaded'] = _dict.get('downloaded')
-        if 'id' in _dict:
-            args['id'] = _dict.get('id')
+        if (custom_metadata := _dict.get('custom_metadata')) is not None:
+            args['custom_metadata'] = custom_metadata
+        if (description := _dict.get('description')) is not None:
+            args['description'] = description
+        if (downloaded := _dict.get('downloaded')) is not None:
+            args['downloaded'] = downloaded
+        if (id := _dict.get('id')) is not None:
+            args['id'] = id
         else:
             raise ValueError('Required property \'id\' not present in IAMCredentialsSecretMetadata JSON')
-        if 'labels' in _dict:
-            args['labels'] = _dict.get('labels')
-        if 'locks_total' in _dict:
-            args['locks_total'] = _dict.get('locks_total')
-        if 'name' in _dict:
-            args['name'] = _dict.get('name')
-        if 'secret_group_id' in _dict:
-            args['secret_group_id'] = _dict.get('secret_group_id')
+        if (labels := _dict.get('labels')) is not None:
+            args['labels'] = labels
+        if (locks_total := _dict.get('locks_total')) is not None:
+            args['locks_total'] = locks_total
+        if (name := _dict.get('name')) is not None:
+            args['name'] = name
+        if (secret_group_id := _dict.get('secret_group_id')) is not None:
+            args['secret_group_id'] = secret_group_id
         else:
             raise ValueError('Required property \'secret_group_id\' not present in IAMCredentialsSecretMetadata JSON')
-        if 'secret_type' in _dict:
-            args['secret_type'] = _dict.get('secret_type')
+        if (secret_type := _dict.get('secret_type')) is not None:
+            args['secret_type'] = secret_type
         else:
             raise ValueError('Required property \'secret_type\' not present in IAMCredentialsSecretMetadata JSON')
-        if 'state' in _dict:
-            args['state'] = _dict.get('state')
-        if 'state_description' in _dict:
-            args['state_description'] = _dict.get('state_description')
-        if 'updated_at' in _dict:
-            args['updated_at'] = string_to_datetime(_dict.get('updated_at'))
+        if (state := _dict.get('state')) is not None:
+            args['state'] = state
+        if (state_description := _dict.get('state_description')) is not None:
+            args['state_description'] = state_description
+        if (updated_at := _dict.get('updated_at')) is not None:
+            args['updated_at'] = string_to_datetime(updated_at)
         else:
             raise ValueError('Required property \'updated_at\' not present in IAMCredentialsSecretMetadata JSON')
-        if 'versions_total' in _dict:
-            args['versions_total'] = _dict.get('versions_total')
+        if (versions_total := _dict.get('versions_total')) is not None:
+            args['versions_total'] = versions_total
         else:
             raise ValueError('Required property \'versions_total\' not present in IAMCredentialsSecretMetadata JSON')
-        if 'ttl' in _dict:
-            args['ttl'] = _dict.get('ttl')
+        if (ttl := _dict.get('ttl')) is not None:
+            args['ttl'] = ttl
         else:
             raise ValueError('Required property \'ttl\' not present in IAMCredentialsSecretMetadata JSON')
-        if 'access_groups' in _dict:
-            args['access_groups'] = _dict.get('access_groups')
-        if 'api_key_id' in _dict:
-            args['api_key_id'] = _dict.get('api_key_id')
-        if 'service_id' in _dict:
-            args['service_id'] = _dict.get('service_id')
-        if 'service_id_is_static' in _dict:
-            args['service_id_is_static'] = _dict.get('service_id_is_static')
-        if 'reuse_api_key' in _dict:
-            args['reuse_api_key'] = _dict.get('reuse_api_key')
+        if (access_groups := _dict.get('access_groups')) is not None:
+            args['access_groups'] = access_groups
+        if (api_key_id := _dict.get('api_key_id')) is not None:
+            args['api_key_id'] = api_key_id
+        if (service_id := _dict.get('service_id')) is not None:
+            args['service_id'] = service_id
+        if (service_id_is_static := _dict.get('service_id_is_static')) is not None:
+            args['service_id_is_static'] = service_id_is_static
+        if (reuse_api_key := _dict.get('reuse_api_key')) is not None:
+            args['reuse_api_key'] = reuse_api_key
         else:
             raise ValueError('Required property \'reuse_api_key\' not present in IAMCredentialsSecretMetadata JSON')
-        if 'rotation' in _dict:
-            args['rotation'] = _dict.get('rotation')
-        if 'next_rotation_date' in _dict:
-            args['next_rotation_date'] = string_to_datetime(_dict.get('next_rotation_date'))
+        if (rotation := _dict.get('rotation')) is not None:
+            args['rotation'] = rotation
+        if (next_rotation_date := _dict.get('next_rotation_date')) is not None:
+            args['next_rotation_date'] = string_to_datetime(next_rotation_date)
         return cls(**args)
 
     @classmethod
@@ -9312,18 +9615,18 @@ class IAMCredentialsSecretMetadataPatch(SecretMetadataPatch):
     def from_dict(cls, _dict: Dict) -> 'IAMCredentialsSecretMetadataPatch':
         """Initialize a IAMCredentialsSecretMetadataPatch object from a json dictionary."""
         args = {}
-        if 'name' in _dict:
-            args['name'] = _dict.get('name')
-        if 'description' in _dict:
-            args['description'] = _dict.get('description')
-        if 'labels' in _dict:
-            args['labels'] = _dict.get('labels')
-        if 'custom_metadata' in _dict:
-            args['custom_metadata'] = _dict.get('custom_metadata')
-        if 'ttl' in _dict:
-            args['ttl'] = _dict.get('ttl')
-        if 'rotation' in _dict:
-            args['rotation'] = _dict.get('rotation')
+        if (name := _dict.get('name')) is not None:
+            args['name'] = name
+        if (description := _dict.get('description')) is not None:
+            args['description'] = description
+        if (labels := _dict.get('labels')) is not None:
+            args['labels'] = labels
+        if (custom_metadata := _dict.get('custom_metadata')) is not None:
+            args['custom_metadata'] = custom_metadata
+        if (ttl := _dict.get('ttl')) is not None:
+            args['ttl'] = ttl
+        if (rotation := _dict.get('rotation')) is not None:
+            args['rotation'] = rotation
         return cls(**args)
 
     @classmethod
@@ -9512,38 +9815,38 @@ class IAMCredentialsSecretPrototype(SecretPrototype):
     def from_dict(cls, _dict: Dict) -> 'IAMCredentialsSecretPrototype':
         """Initialize a IAMCredentialsSecretPrototype object from a json dictionary."""
         args = {}
-        if 'secret_type' in _dict:
-            args['secret_type'] = _dict.get('secret_type')
+        if (secret_type := _dict.get('secret_type')) is not None:
+            args['secret_type'] = secret_type
         else:
             raise ValueError('Required property \'secret_type\' not present in IAMCredentialsSecretPrototype JSON')
-        if 'name' in _dict:
-            args['name'] = _dict.get('name')
+        if (name := _dict.get('name')) is not None:
+            args['name'] = name
         else:
             raise ValueError('Required property \'name\' not present in IAMCredentialsSecretPrototype JSON')
-        if 'description' in _dict:
-            args['description'] = _dict.get('description')
-        if 'secret_group_id' in _dict:
-            args['secret_group_id'] = _dict.get('secret_group_id')
-        if 'labels' in _dict:
-            args['labels'] = _dict.get('labels')
-        if 'ttl' in _dict:
-            args['ttl'] = _dict.get('ttl')
+        if (description := _dict.get('description')) is not None:
+            args['description'] = description
+        if (secret_group_id := _dict.get('secret_group_id')) is not None:
+            args['secret_group_id'] = secret_group_id
+        if (labels := _dict.get('labels')) is not None:
+            args['labels'] = labels
+        if (ttl := _dict.get('ttl')) is not None:
+            args['ttl'] = ttl
         else:
             raise ValueError('Required property \'ttl\' not present in IAMCredentialsSecretPrototype JSON')
-        if 'access_groups' in _dict:
-            args['access_groups'] = _dict.get('access_groups')
-        if 'service_id' in _dict:
-            args['service_id'] = _dict.get('service_id')
-        if 'reuse_api_key' in _dict:
-            args['reuse_api_key'] = _dict.get('reuse_api_key')
+        if (access_groups := _dict.get('access_groups')) is not None:
+            args['access_groups'] = access_groups
+        if (service_id := _dict.get('service_id')) is not None:
+            args['service_id'] = service_id
+        if (reuse_api_key := _dict.get('reuse_api_key')) is not None:
+            args['reuse_api_key'] = reuse_api_key
         else:
             raise ValueError('Required property \'reuse_api_key\' not present in IAMCredentialsSecretPrototype JSON')
-        if 'rotation' in _dict:
-            args['rotation'] = _dict.get('rotation')
-        if 'custom_metadata' in _dict:
-            args['custom_metadata'] = _dict.get('custom_metadata')
-        if 'version_custom_metadata' in _dict:
-            args['version_custom_metadata'] = _dict.get('version_custom_metadata')
+        if (rotation := _dict.get('rotation')) is not None:
+            args['rotation'] = rotation
+        if (custom_metadata := _dict.get('custom_metadata')) is not None:
+            args['custom_metadata'] = custom_metadata
+        if (version_custom_metadata := _dict.get('version_custom_metadata')) is not None:
+            args['version_custom_metadata'] = version_custom_metadata
         return cls(**args)
 
     @classmethod
@@ -9656,14 +9959,14 @@ class IAMCredentialsSecretRestoreFromVersionPrototype(SecretVersionPrototype):
     def from_dict(cls, _dict: Dict) -> 'IAMCredentialsSecretRestoreFromVersionPrototype':
         """Initialize a IAMCredentialsSecretRestoreFromVersionPrototype object from a json dictionary."""
         args = {}
-        if 'restore_from_version' in _dict:
-            args['restore_from_version'] = _dict.get('restore_from_version')
+        if (restore_from_version := _dict.get('restore_from_version')) is not None:
+            args['restore_from_version'] = restore_from_version
         else:
             raise ValueError('Required property \'restore_from_version\' not present in IAMCredentialsSecretRestoreFromVersionPrototype JSON')
-        if 'custom_metadata' in _dict:
-            args['custom_metadata'] = _dict.get('custom_metadata')
-        if 'version_custom_metadata' in _dict:
-            args['version_custom_metadata'] = _dict.get('version_custom_metadata')
+        if (custom_metadata := _dict.get('custom_metadata')) is not None:
+            args['custom_metadata'] = custom_metadata
+        if (version_custom_metadata := _dict.get('version_custom_metadata')) is not None:
+            args['version_custom_metadata'] = version_custom_metadata
         return cls(**args)
 
     @classmethod
@@ -9818,50 +10121,50 @@ class IAMCredentialsSecretVersion(SecretVersion):
     def from_dict(cls, _dict: Dict) -> 'IAMCredentialsSecretVersion':
         """Initialize a IAMCredentialsSecretVersion object from a json dictionary."""
         args = {}
-        if 'auto_rotated' in _dict:
-            args['auto_rotated'] = _dict.get('auto_rotated')
-        if 'created_by' in _dict:
-            args['created_by'] = _dict.get('created_by')
+        if (auto_rotated := _dict.get('auto_rotated')) is not None:
+            args['auto_rotated'] = auto_rotated
+        if (created_by := _dict.get('created_by')) is not None:
+            args['created_by'] = created_by
         else:
             raise ValueError('Required property \'created_by\' not present in IAMCredentialsSecretVersion JSON')
-        if 'created_at' in _dict:
-            args['created_at'] = string_to_datetime(_dict.get('created_at'))
+        if (created_at := _dict.get('created_at')) is not None:
+            args['created_at'] = string_to_datetime(created_at)
         else:
             raise ValueError('Required property \'created_at\' not present in IAMCredentialsSecretVersion JSON')
-        if 'downloaded' in _dict:
-            args['downloaded'] = _dict.get('downloaded')
-        if 'id' in _dict:
-            args['id'] = _dict.get('id')
+        if (downloaded := _dict.get('downloaded')) is not None:
+            args['downloaded'] = downloaded
+        if (id := _dict.get('id')) is not None:
+            args['id'] = id
         else:
             raise ValueError('Required property \'id\' not present in IAMCredentialsSecretVersion JSON')
-        if 'secret_name' in _dict:
-            args['secret_name'] = _dict.get('secret_name')
-        if 'secret_type' in _dict:
-            args['secret_type'] = _dict.get('secret_type')
+        if (secret_name := _dict.get('secret_name')) is not None:
+            args['secret_name'] = secret_name
+        if (secret_type := _dict.get('secret_type')) is not None:
+            args['secret_type'] = secret_type
         else:
             raise ValueError('Required property \'secret_type\' not present in IAMCredentialsSecretVersion JSON')
-        if 'secret_group_id' in _dict:
-            args['secret_group_id'] = _dict.get('secret_group_id')
+        if (secret_group_id := _dict.get('secret_group_id')) is not None:
+            args['secret_group_id'] = secret_group_id
         else:
             raise ValueError('Required property \'secret_group_id\' not present in IAMCredentialsSecretVersion JSON')
-        if 'payload_available' in _dict:
-            args['payload_available'] = _dict.get('payload_available')
+        if (payload_available := _dict.get('payload_available')) is not None:
+            args['payload_available'] = payload_available
         else:
             raise ValueError('Required property \'payload_available\' not present in IAMCredentialsSecretVersion JSON')
-        if 'alias' in _dict:
-            args['alias'] = _dict.get('alias')
-        if 'version_custom_metadata' in _dict:
-            args['version_custom_metadata'] = _dict.get('version_custom_metadata')
-        if 'secret_id' in _dict:
-            args['secret_id'] = _dict.get('secret_id')
+        if (alias := _dict.get('alias')) is not None:
+            args['alias'] = alias
+        if (version_custom_metadata := _dict.get('version_custom_metadata')) is not None:
+            args['version_custom_metadata'] = version_custom_metadata
+        if (secret_id := _dict.get('secret_id')) is not None:
+            args['secret_id'] = secret_id
         else:
             raise ValueError('Required property \'secret_id\' not present in IAMCredentialsSecretVersion JSON')
-        if 'api_key_id' in _dict:
-            args['api_key_id'] = _dict.get('api_key_id')
-        if 'service_id' in _dict:
-            args['service_id'] = _dict.get('service_id')
-        if 'api_key' in _dict:
-            args['api_key'] = _dict.get('api_key')
+        if (api_key_id := _dict.get('api_key_id')) is not None:
+            args['api_key_id'] = api_key_id
+        if (service_id := _dict.get('service_id')) is not None:
+            args['service_id'] = service_id
+        if (api_key := _dict.get('api_key')) is not None:
+            args['api_key'] = api_key
         return cls(**args)
 
     @classmethod
@@ -10059,48 +10362,48 @@ class IAMCredentialsSecretVersionMetadata(SecretVersionMetadata):
     def from_dict(cls, _dict: Dict) -> 'IAMCredentialsSecretVersionMetadata':
         """Initialize a IAMCredentialsSecretVersionMetadata object from a json dictionary."""
         args = {}
-        if 'auto_rotated' in _dict:
-            args['auto_rotated'] = _dict.get('auto_rotated')
-        if 'created_by' in _dict:
-            args['created_by'] = _dict.get('created_by')
+        if (auto_rotated := _dict.get('auto_rotated')) is not None:
+            args['auto_rotated'] = auto_rotated
+        if (created_by := _dict.get('created_by')) is not None:
+            args['created_by'] = created_by
         else:
             raise ValueError('Required property \'created_by\' not present in IAMCredentialsSecretVersionMetadata JSON')
-        if 'created_at' in _dict:
-            args['created_at'] = string_to_datetime(_dict.get('created_at'))
+        if (created_at := _dict.get('created_at')) is not None:
+            args['created_at'] = string_to_datetime(created_at)
         else:
             raise ValueError('Required property \'created_at\' not present in IAMCredentialsSecretVersionMetadata JSON')
-        if 'downloaded' in _dict:
-            args['downloaded'] = _dict.get('downloaded')
-        if 'id' in _dict:
-            args['id'] = _dict.get('id')
+        if (downloaded := _dict.get('downloaded')) is not None:
+            args['downloaded'] = downloaded
+        if (id := _dict.get('id')) is not None:
+            args['id'] = id
         else:
             raise ValueError('Required property \'id\' not present in IAMCredentialsSecretVersionMetadata JSON')
-        if 'secret_name' in _dict:
-            args['secret_name'] = _dict.get('secret_name')
-        if 'secret_type' in _dict:
-            args['secret_type'] = _dict.get('secret_type')
+        if (secret_name := _dict.get('secret_name')) is not None:
+            args['secret_name'] = secret_name
+        if (secret_type := _dict.get('secret_type')) is not None:
+            args['secret_type'] = secret_type
         else:
             raise ValueError('Required property \'secret_type\' not present in IAMCredentialsSecretVersionMetadata JSON')
-        if 'secret_group_id' in _dict:
-            args['secret_group_id'] = _dict.get('secret_group_id')
+        if (secret_group_id := _dict.get('secret_group_id')) is not None:
+            args['secret_group_id'] = secret_group_id
         else:
             raise ValueError('Required property \'secret_group_id\' not present in IAMCredentialsSecretVersionMetadata JSON')
-        if 'payload_available' in _dict:
-            args['payload_available'] = _dict.get('payload_available')
+        if (payload_available := _dict.get('payload_available')) is not None:
+            args['payload_available'] = payload_available
         else:
             raise ValueError('Required property \'payload_available\' not present in IAMCredentialsSecretVersionMetadata JSON')
-        if 'alias' in _dict:
-            args['alias'] = _dict.get('alias')
-        if 'version_custom_metadata' in _dict:
-            args['version_custom_metadata'] = _dict.get('version_custom_metadata')
-        if 'secret_id' in _dict:
-            args['secret_id'] = _dict.get('secret_id')
+        if (alias := _dict.get('alias')) is not None:
+            args['alias'] = alias
+        if (version_custom_metadata := _dict.get('version_custom_metadata')) is not None:
+            args['version_custom_metadata'] = version_custom_metadata
+        if (secret_id := _dict.get('secret_id')) is not None:
+            args['secret_id'] = secret_id
         else:
             raise ValueError('Required property \'secret_id\' not present in IAMCredentialsSecretVersionMetadata JSON')
-        if 'api_key_id' in _dict:
-            args['api_key_id'] = _dict.get('api_key_id')
-        if 'service_id' in _dict:
-            args['service_id'] = _dict.get('service_id')
+        if (api_key_id := _dict.get('api_key_id')) is not None:
+            args['api_key_id'] = api_key_id
+        if (service_id := _dict.get('service_id')) is not None:
+            args['service_id'] = service_id
         return cls(**args)
 
     @classmethod
@@ -10218,10 +10521,10 @@ class IAMCredentialsSecretVersionPrototype(SecretVersionPrototype):
     def from_dict(cls, _dict: Dict) -> 'IAMCredentialsSecretVersionPrototype':
         """Initialize a IAMCredentialsSecretVersionPrototype object from a json dictionary."""
         args = {}
-        if 'custom_metadata' in _dict:
-            args['custom_metadata'] = _dict.get('custom_metadata')
-        if 'version_custom_metadata' in _dict:
-            args['version_custom_metadata'] = _dict.get('version_custom_metadata')
+        if (custom_metadata := _dict.get('custom_metadata')) is not None:
+            args['custom_metadata'] = custom_metadata
+        if (version_custom_metadata := _dict.get('version_custom_metadata')) is not None:
+            args['version_custom_metadata'] = version_custom_metadata
         return cls(**args)
 
     @classmethod
@@ -10452,96 +10755,96 @@ class ImportedCertificate(Secret):
     def from_dict(cls, _dict: Dict) -> 'ImportedCertificate':
         """Initialize a ImportedCertificate object from a json dictionary."""
         args = {}
-        if 'created_by' in _dict:
-            args['created_by'] = _dict.get('created_by')
+        if (created_by := _dict.get('created_by')) is not None:
+            args['created_by'] = created_by
         else:
             raise ValueError('Required property \'created_by\' not present in ImportedCertificate JSON')
-        if 'created_at' in _dict:
-            args['created_at'] = string_to_datetime(_dict.get('created_at'))
+        if (created_at := _dict.get('created_at')) is not None:
+            args['created_at'] = string_to_datetime(created_at)
         else:
             raise ValueError('Required property \'created_at\' not present in ImportedCertificate JSON')
-        if 'crn' in _dict:
-            args['crn'] = _dict.get('crn')
+        if (crn := _dict.get('crn')) is not None:
+            args['crn'] = crn
         else:
             raise ValueError('Required property \'crn\' not present in ImportedCertificate JSON')
-        if 'custom_metadata' in _dict:
-            args['custom_metadata'] = _dict.get('custom_metadata')
-        if 'description' in _dict:
-            args['description'] = _dict.get('description')
-        if 'downloaded' in _dict:
-            args['downloaded'] = _dict.get('downloaded')
-        if 'id' in _dict:
-            args['id'] = _dict.get('id')
+        if (custom_metadata := _dict.get('custom_metadata')) is not None:
+            args['custom_metadata'] = custom_metadata
+        if (description := _dict.get('description')) is not None:
+            args['description'] = description
+        if (downloaded := _dict.get('downloaded')) is not None:
+            args['downloaded'] = downloaded
+        if (id := _dict.get('id')) is not None:
+            args['id'] = id
         else:
             raise ValueError('Required property \'id\' not present in ImportedCertificate JSON')
-        if 'labels' in _dict:
-            args['labels'] = _dict.get('labels')
-        if 'locks_total' in _dict:
-            args['locks_total'] = _dict.get('locks_total')
-        if 'name' in _dict:
-            args['name'] = _dict.get('name')
-        if 'secret_group_id' in _dict:
-            args['secret_group_id'] = _dict.get('secret_group_id')
+        if (labels := _dict.get('labels')) is not None:
+            args['labels'] = labels
+        if (locks_total := _dict.get('locks_total')) is not None:
+            args['locks_total'] = locks_total
+        if (name := _dict.get('name')) is not None:
+            args['name'] = name
+        if (secret_group_id := _dict.get('secret_group_id')) is not None:
+            args['secret_group_id'] = secret_group_id
         else:
             raise ValueError('Required property \'secret_group_id\' not present in ImportedCertificate JSON')
-        if 'secret_type' in _dict:
-            args['secret_type'] = _dict.get('secret_type')
+        if (secret_type := _dict.get('secret_type')) is not None:
+            args['secret_type'] = secret_type
         else:
             raise ValueError('Required property \'secret_type\' not present in ImportedCertificate JSON')
-        if 'state' in _dict:
-            args['state'] = _dict.get('state')
-        if 'state_description' in _dict:
-            args['state_description'] = _dict.get('state_description')
-        if 'updated_at' in _dict:
-            args['updated_at'] = string_to_datetime(_dict.get('updated_at'))
+        if (state := _dict.get('state')) is not None:
+            args['state'] = state
+        if (state_description := _dict.get('state_description')) is not None:
+            args['state_description'] = state_description
+        if (updated_at := _dict.get('updated_at')) is not None:
+            args['updated_at'] = string_to_datetime(updated_at)
         else:
             raise ValueError('Required property \'updated_at\' not present in ImportedCertificate JSON')
-        if 'versions_total' in _dict:
-            args['versions_total'] = _dict.get('versions_total')
+        if (versions_total := _dict.get('versions_total')) is not None:
+            args['versions_total'] = versions_total
         else:
             raise ValueError('Required property \'versions_total\' not present in ImportedCertificate JSON')
-        if 'signing_algorithm' in _dict:
-            args['signing_algorithm'] = _dict.get('signing_algorithm')
+        if (signing_algorithm := _dict.get('signing_algorithm')) is not None:
+            args['signing_algorithm'] = signing_algorithm
         else:
             raise ValueError('Required property \'signing_algorithm\' not present in ImportedCertificate JSON')
-        if 'alt_names' in _dict:
-            args['alt_names'] = _dict.get('alt_names')
-        if 'common_name' in _dict:
-            args['common_name'] = _dict.get('common_name')
-        if 'expiration_date' in _dict:
-            args['expiration_date'] = string_to_datetime(_dict.get('expiration_date'))
+        if (alt_names := _dict.get('alt_names')) is not None:
+            args['alt_names'] = alt_names
+        if (common_name := _dict.get('common_name')) is not None:
+            args['common_name'] = common_name
+        if (expiration_date := _dict.get('expiration_date')) is not None:
+            args['expiration_date'] = string_to_datetime(expiration_date)
         else:
             raise ValueError('Required property \'expiration_date\' not present in ImportedCertificate JSON')
-        if 'intermediate_included' in _dict:
-            args['intermediate_included'] = _dict.get('intermediate_included')
+        if (intermediate_included := _dict.get('intermediate_included')) is not None:
+            args['intermediate_included'] = intermediate_included
         else:
             raise ValueError('Required property \'intermediate_included\' not present in ImportedCertificate JSON')
-        if 'issuer' in _dict:
-            args['issuer'] = _dict.get('issuer')
+        if (issuer := _dict.get('issuer')) is not None:
+            args['issuer'] = issuer
         else:
             raise ValueError('Required property \'issuer\' not present in ImportedCertificate JSON')
-        if 'key_algorithm' in _dict:
-            args['key_algorithm'] = _dict.get('key_algorithm')
-        if 'private_key_included' in _dict:
-            args['private_key_included'] = _dict.get('private_key_included')
+        if (key_algorithm := _dict.get('key_algorithm')) is not None:
+            args['key_algorithm'] = key_algorithm
+        if (private_key_included := _dict.get('private_key_included')) is not None:
+            args['private_key_included'] = private_key_included
         else:
             raise ValueError('Required property \'private_key_included\' not present in ImportedCertificate JSON')
-        if 'serial_number' in _dict:
-            args['serial_number'] = _dict.get('serial_number')
+        if (serial_number := _dict.get('serial_number')) is not None:
+            args['serial_number'] = serial_number
         else:
             raise ValueError('Required property \'serial_number\' not present in ImportedCertificate JSON')
-        if 'validity' in _dict:
-            args['validity'] = CertificateValidity.from_dict(_dict.get('validity'))
+        if (validity := _dict.get('validity')) is not None:
+            args['validity'] = CertificateValidity.from_dict(validity)
         else:
             raise ValueError('Required property \'validity\' not present in ImportedCertificate JSON')
-        if 'certificate' in _dict:
-            args['certificate'] = _dict.get('certificate')
+        if (certificate := _dict.get('certificate')) is not None:
+            args['certificate'] = certificate
         else:
             raise ValueError('Required property \'certificate\' not present in ImportedCertificate JSON')
-        if 'intermediate' in _dict:
-            args['intermediate'] = _dict.get('intermediate')
-        if 'private_key' in _dict:
-            args['private_key'] = _dict.get('private_key')
+        if (intermediate := _dict.get('intermediate')) is not None:
+            args['intermediate'] = intermediate
+        if (private_key := _dict.get('private_key')) is not None:
+            args['private_key'] = private_key
         return cls(**args)
 
     @classmethod
@@ -10835,86 +11138,86 @@ class ImportedCertificateMetadata(SecretMetadata):
     def from_dict(cls, _dict: Dict) -> 'ImportedCertificateMetadata':
         """Initialize a ImportedCertificateMetadata object from a json dictionary."""
         args = {}
-        if 'created_by' in _dict:
-            args['created_by'] = _dict.get('created_by')
+        if (created_by := _dict.get('created_by')) is not None:
+            args['created_by'] = created_by
         else:
             raise ValueError('Required property \'created_by\' not present in ImportedCertificateMetadata JSON')
-        if 'created_at' in _dict:
-            args['created_at'] = string_to_datetime(_dict.get('created_at'))
+        if (created_at := _dict.get('created_at')) is not None:
+            args['created_at'] = string_to_datetime(created_at)
         else:
             raise ValueError('Required property \'created_at\' not present in ImportedCertificateMetadata JSON')
-        if 'crn' in _dict:
-            args['crn'] = _dict.get('crn')
+        if (crn := _dict.get('crn')) is not None:
+            args['crn'] = crn
         else:
             raise ValueError('Required property \'crn\' not present in ImportedCertificateMetadata JSON')
-        if 'custom_metadata' in _dict:
-            args['custom_metadata'] = _dict.get('custom_metadata')
-        if 'description' in _dict:
-            args['description'] = _dict.get('description')
-        if 'downloaded' in _dict:
-            args['downloaded'] = _dict.get('downloaded')
-        if 'id' in _dict:
-            args['id'] = _dict.get('id')
+        if (custom_metadata := _dict.get('custom_metadata')) is not None:
+            args['custom_metadata'] = custom_metadata
+        if (description := _dict.get('description')) is not None:
+            args['description'] = description
+        if (downloaded := _dict.get('downloaded')) is not None:
+            args['downloaded'] = downloaded
+        if (id := _dict.get('id')) is not None:
+            args['id'] = id
         else:
             raise ValueError('Required property \'id\' not present in ImportedCertificateMetadata JSON')
-        if 'labels' in _dict:
-            args['labels'] = _dict.get('labels')
-        if 'locks_total' in _dict:
-            args['locks_total'] = _dict.get('locks_total')
-        if 'name' in _dict:
-            args['name'] = _dict.get('name')
-        if 'secret_group_id' in _dict:
-            args['secret_group_id'] = _dict.get('secret_group_id')
+        if (labels := _dict.get('labels')) is not None:
+            args['labels'] = labels
+        if (locks_total := _dict.get('locks_total')) is not None:
+            args['locks_total'] = locks_total
+        if (name := _dict.get('name')) is not None:
+            args['name'] = name
+        if (secret_group_id := _dict.get('secret_group_id')) is not None:
+            args['secret_group_id'] = secret_group_id
         else:
             raise ValueError('Required property \'secret_group_id\' not present in ImportedCertificateMetadata JSON')
-        if 'secret_type' in _dict:
-            args['secret_type'] = _dict.get('secret_type')
+        if (secret_type := _dict.get('secret_type')) is not None:
+            args['secret_type'] = secret_type
         else:
             raise ValueError('Required property \'secret_type\' not present in ImportedCertificateMetadata JSON')
-        if 'state' in _dict:
-            args['state'] = _dict.get('state')
-        if 'state_description' in _dict:
-            args['state_description'] = _dict.get('state_description')
-        if 'updated_at' in _dict:
-            args['updated_at'] = string_to_datetime(_dict.get('updated_at'))
+        if (state := _dict.get('state')) is not None:
+            args['state'] = state
+        if (state_description := _dict.get('state_description')) is not None:
+            args['state_description'] = state_description
+        if (updated_at := _dict.get('updated_at')) is not None:
+            args['updated_at'] = string_to_datetime(updated_at)
         else:
             raise ValueError('Required property \'updated_at\' not present in ImportedCertificateMetadata JSON')
-        if 'versions_total' in _dict:
-            args['versions_total'] = _dict.get('versions_total')
+        if (versions_total := _dict.get('versions_total')) is not None:
+            args['versions_total'] = versions_total
         else:
             raise ValueError('Required property \'versions_total\' not present in ImportedCertificateMetadata JSON')
-        if 'signing_algorithm' in _dict:
-            args['signing_algorithm'] = _dict.get('signing_algorithm')
+        if (signing_algorithm := _dict.get('signing_algorithm')) is not None:
+            args['signing_algorithm'] = signing_algorithm
         else:
             raise ValueError('Required property \'signing_algorithm\' not present in ImportedCertificateMetadata JSON')
-        if 'alt_names' in _dict:
-            args['alt_names'] = _dict.get('alt_names')
-        if 'common_name' in _dict:
-            args['common_name'] = _dict.get('common_name')
-        if 'expiration_date' in _dict:
-            args['expiration_date'] = string_to_datetime(_dict.get('expiration_date'))
+        if (alt_names := _dict.get('alt_names')) is not None:
+            args['alt_names'] = alt_names
+        if (common_name := _dict.get('common_name')) is not None:
+            args['common_name'] = common_name
+        if (expiration_date := _dict.get('expiration_date')) is not None:
+            args['expiration_date'] = string_to_datetime(expiration_date)
         else:
             raise ValueError('Required property \'expiration_date\' not present in ImportedCertificateMetadata JSON')
-        if 'intermediate_included' in _dict:
-            args['intermediate_included'] = _dict.get('intermediate_included')
+        if (intermediate_included := _dict.get('intermediate_included')) is not None:
+            args['intermediate_included'] = intermediate_included
         else:
             raise ValueError('Required property \'intermediate_included\' not present in ImportedCertificateMetadata JSON')
-        if 'issuer' in _dict:
-            args['issuer'] = _dict.get('issuer')
+        if (issuer := _dict.get('issuer')) is not None:
+            args['issuer'] = issuer
         else:
             raise ValueError('Required property \'issuer\' not present in ImportedCertificateMetadata JSON')
-        if 'key_algorithm' in _dict:
-            args['key_algorithm'] = _dict.get('key_algorithm')
-        if 'private_key_included' in _dict:
-            args['private_key_included'] = _dict.get('private_key_included')
+        if (key_algorithm := _dict.get('key_algorithm')) is not None:
+            args['key_algorithm'] = key_algorithm
+        if (private_key_included := _dict.get('private_key_included')) is not None:
+            args['private_key_included'] = private_key_included
         else:
             raise ValueError('Required property \'private_key_included\' not present in ImportedCertificateMetadata JSON')
-        if 'serial_number' in _dict:
-            args['serial_number'] = _dict.get('serial_number')
+        if (serial_number := _dict.get('serial_number')) is not None:
+            args['serial_number'] = serial_number
         else:
             raise ValueError('Required property \'serial_number\' not present in ImportedCertificateMetadata JSON')
-        if 'validity' in _dict:
-            args['validity'] = CertificateValidity.from_dict(_dict.get('validity'))
+        if (validity := _dict.get('validity')) is not None:
+            args['validity'] = CertificateValidity.from_dict(validity)
         else:
             raise ValueError('Required property \'validity\' not present in ImportedCertificateMetadata JSON')
         return cls(**args)
@@ -11085,14 +11388,14 @@ class ImportedCertificateMetadataPatch(SecretMetadataPatch):
     def from_dict(cls, _dict: Dict) -> 'ImportedCertificateMetadataPatch':
         """Initialize a ImportedCertificateMetadataPatch object from a json dictionary."""
         args = {}
-        if 'name' in _dict:
-            args['name'] = _dict.get('name')
-        if 'description' in _dict:
-            args['description'] = _dict.get('description')
-        if 'labels' in _dict:
-            args['labels'] = _dict.get('labels')
-        if 'custom_metadata' in _dict:
-            args['custom_metadata'] = _dict.get('custom_metadata')
+        if (name := _dict.get('name')) is not None:
+            args['name'] = name
+        if (description := _dict.get('description')) is not None:
+            args['description'] = description
+        if (labels := _dict.get('labels')) is not None:
+            args['labels'] = labels
+        if (custom_metadata := _dict.get('custom_metadata')) is not None:
+            args['custom_metadata'] = custom_metadata
         return cls(**args)
 
     @classmethod
@@ -11228,32 +11531,32 @@ class ImportedCertificatePrototype(SecretPrototype):
     def from_dict(cls, _dict: Dict) -> 'ImportedCertificatePrototype':
         """Initialize a ImportedCertificatePrototype object from a json dictionary."""
         args = {}
-        if 'secret_type' in _dict:
-            args['secret_type'] = _dict.get('secret_type')
+        if (secret_type := _dict.get('secret_type')) is not None:
+            args['secret_type'] = secret_type
         else:
             raise ValueError('Required property \'secret_type\' not present in ImportedCertificatePrototype JSON')
-        if 'name' in _dict:
-            args['name'] = _dict.get('name')
+        if (name := _dict.get('name')) is not None:
+            args['name'] = name
         else:
             raise ValueError('Required property \'name\' not present in ImportedCertificatePrototype JSON')
-        if 'description' in _dict:
-            args['description'] = _dict.get('description')
-        if 'secret_group_id' in _dict:
-            args['secret_group_id'] = _dict.get('secret_group_id')
-        if 'labels' in _dict:
-            args['labels'] = _dict.get('labels')
-        if 'certificate' in _dict:
-            args['certificate'] = _dict.get('certificate')
+        if (description := _dict.get('description')) is not None:
+            args['description'] = description
+        if (secret_group_id := _dict.get('secret_group_id')) is not None:
+            args['secret_group_id'] = secret_group_id
+        if (labels := _dict.get('labels')) is not None:
+            args['labels'] = labels
+        if (certificate := _dict.get('certificate')) is not None:
+            args['certificate'] = certificate
         else:
             raise ValueError('Required property \'certificate\' not present in ImportedCertificatePrototype JSON')
-        if 'intermediate' in _dict:
-            args['intermediate'] = _dict.get('intermediate')
-        if 'private_key' in _dict:
-            args['private_key'] = _dict.get('private_key')
-        if 'custom_metadata' in _dict:
-            args['custom_metadata'] = _dict.get('custom_metadata')
-        if 'version_custom_metadata' in _dict:
-            args['version_custom_metadata'] = _dict.get('version_custom_metadata')
+        if (intermediate := _dict.get('intermediate')) is not None:
+            args['intermediate'] = intermediate
+        if (private_key := _dict.get('private_key')) is not None:
+            args['private_key'] = private_key
+        if (custom_metadata := _dict.get('custom_metadata')) is not None:
+            args['custom_metadata'] = custom_metadata
+        if (version_custom_metadata := _dict.get('version_custom_metadata')) is not None:
+            args['version_custom_metadata'] = version_custom_metadata
         return cls(**args)
 
     @classmethod
@@ -11450,64 +11753,64 @@ class ImportedCertificateVersion(SecretVersion):
     def from_dict(cls, _dict: Dict) -> 'ImportedCertificateVersion':
         """Initialize a ImportedCertificateVersion object from a json dictionary."""
         args = {}
-        if 'auto_rotated' in _dict:
-            args['auto_rotated'] = _dict.get('auto_rotated')
-        if 'created_by' in _dict:
-            args['created_by'] = _dict.get('created_by')
+        if (auto_rotated := _dict.get('auto_rotated')) is not None:
+            args['auto_rotated'] = auto_rotated
+        if (created_by := _dict.get('created_by')) is not None:
+            args['created_by'] = created_by
         else:
             raise ValueError('Required property \'created_by\' not present in ImportedCertificateVersion JSON')
-        if 'created_at' in _dict:
-            args['created_at'] = string_to_datetime(_dict.get('created_at'))
+        if (created_at := _dict.get('created_at')) is not None:
+            args['created_at'] = string_to_datetime(created_at)
         else:
             raise ValueError('Required property \'created_at\' not present in ImportedCertificateVersion JSON')
-        if 'downloaded' in _dict:
-            args['downloaded'] = _dict.get('downloaded')
-        if 'id' in _dict:
-            args['id'] = _dict.get('id')
+        if (downloaded := _dict.get('downloaded')) is not None:
+            args['downloaded'] = downloaded
+        if (id := _dict.get('id')) is not None:
+            args['id'] = id
         else:
             raise ValueError('Required property \'id\' not present in ImportedCertificateVersion JSON')
-        if 'secret_name' in _dict:
-            args['secret_name'] = _dict.get('secret_name')
-        if 'secret_type' in _dict:
-            args['secret_type'] = _dict.get('secret_type')
+        if (secret_name := _dict.get('secret_name')) is not None:
+            args['secret_name'] = secret_name
+        if (secret_type := _dict.get('secret_type')) is not None:
+            args['secret_type'] = secret_type
         else:
             raise ValueError('Required property \'secret_type\' not present in ImportedCertificateVersion JSON')
-        if 'secret_group_id' in _dict:
-            args['secret_group_id'] = _dict.get('secret_group_id')
+        if (secret_group_id := _dict.get('secret_group_id')) is not None:
+            args['secret_group_id'] = secret_group_id
         else:
             raise ValueError('Required property \'secret_group_id\' not present in ImportedCertificateVersion JSON')
-        if 'payload_available' in _dict:
-            args['payload_available'] = _dict.get('payload_available')
+        if (payload_available := _dict.get('payload_available')) is not None:
+            args['payload_available'] = payload_available
         else:
             raise ValueError('Required property \'payload_available\' not present in ImportedCertificateVersion JSON')
-        if 'alias' in _dict:
-            args['alias'] = _dict.get('alias')
-        if 'version_custom_metadata' in _dict:
-            args['version_custom_metadata'] = _dict.get('version_custom_metadata')
-        if 'secret_id' in _dict:
-            args['secret_id'] = _dict.get('secret_id')
+        if (alias := _dict.get('alias')) is not None:
+            args['alias'] = alias
+        if (version_custom_metadata := _dict.get('version_custom_metadata')) is not None:
+            args['version_custom_metadata'] = version_custom_metadata
+        if (secret_id := _dict.get('secret_id')) is not None:
+            args['secret_id'] = secret_id
         else:
             raise ValueError('Required property \'secret_id\' not present in ImportedCertificateVersion JSON')
-        if 'expiration_date' in _dict:
-            args['expiration_date'] = string_to_datetime(_dict.get('expiration_date'))
+        if (expiration_date := _dict.get('expiration_date')) is not None:
+            args['expiration_date'] = string_to_datetime(expiration_date)
         else:
             raise ValueError('Required property \'expiration_date\' not present in ImportedCertificateVersion JSON')
-        if 'serial_number' in _dict:
-            args['serial_number'] = _dict.get('serial_number')
+        if (serial_number := _dict.get('serial_number')) is not None:
+            args['serial_number'] = serial_number
         else:
             raise ValueError('Required property \'serial_number\' not present in ImportedCertificateVersion JSON')
-        if 'validity' in _dict:
-            args['validity'] = CertificateValidity.from_dict(_dict.get('validity'))
+        if (validity := _dict.get('validity')) is not None:
+            args['validity'] = CertificateValidity.from_dict(validity)
         else:
             raise ValueError('Required property \'validity\' not present in ImportedCertificateVersion JSON')
-        if 'certificate' in _dict:
-            args['certificate'] = _dict.get('certificate')
+        if (certificate := _dict.get('certificate')) is not None:
+            args['certificate'] = certificate
         else:
             raise ValueError('Required property \'certificate\' not present in ImportedCertificateVersion JSON')
-        if 'intermediate' in _dict:
-            args['intermediate'] = _dict.get('intermediate')
-        if 'private_key' in _dict:
-            args['private_key'] = _dict.get('private_key')
+        if (intermediate := _dict.get('intermediate')) is not None:
+            args['intermediate'] = intermediate
+        if (private_key := _dict.get('private_key')) is not None:
+            args['private_key'] = private_key
         return cls(**args)
 
     @classmethod
@@ -11711,54 +12014,54 @@ class ImportedCertificateVersionMetadata(SecretVersionMetadata):
     def from_dict(cls, _dict: Dict) -> 'ImportedCertificateVersionMetadata':
         """Initialize a ImportedCertificateVersionMetadata object from a json dictionary."""
         args = {}
-        if 'auto_rotated' in _dict:
-            args['auto_rotated'] = _dict.get('auto_rotated')
-        if 'created_by' in _dict:
-            args['created_by'] = _dict.get('created_by')
+        if (auto_rotated := _dict.get('auto_rotated')) is not None:
+            args['auto_rotated'] = auto_rotated
+        if (created_by := _dict.get('created_by')) is not None:
+            args['created_by'] = created_by
         else:
             raise ValueError('Required property \'created_by\' not present in ImportedCertificateVersionMetadata JSON')
-        if 'created_at' in _dict:
-            args['created_at'] = string_to_datetime(_dict.get('created_at'))
+        if (created_at := _dict.get('created_at')) is not None:
+            args['created_at'] = string_to_datetime(created_at)
         else:
             raise ValueError('Required property \'created_at\' not present in ImportedCertificateVersionMetadata JSON')
-        if 'downloaded' in _dict:
-            args['downloaded'] = _dict.get('downloaded')
-        if 'id' in _dict:
-            args['id'] = _dict.get('id')
+        if (downloaded := _dict.get('downloaded')) is not None:
+            args['downloaded'] = downloaded
+        if (id := _dict.get('id')) is not None:
+            args['id'] = id
         else:
             raise ValueError('Required property \'id\' not present in ImportedCertificateVersionMetadata JSON')
-        if 'secret_name' in _dict:
-            args['secret_name'] = _dict.get('secret_name')
-        if 'secret_type' in _dict:
-            args['secret_type'] = _dict.get('secret_type')
+        if (secret_name := _dict.get('secret_name')) is not None:
+            args['secret_name'] = secret_name
+        if (secret_type := _dict.get('secret_type')) is not None:
+            args['secret_type'] = secret_type
         else:
             raise ValueError('Required property \'secret_type\' not present in ImportedCertificateVersionMetadata JSON')
-        if 'secret_group_id' in _dict:
-            args['secret_group_id'] = _dict.get('secret_group_id')
+        if (secret_group_id := _dict.get('secret_group_id')) is not None:
+            args['secret_group_id'] = secret_group_id
         else:
             raise ValueError('Required property \'secret_group_id\' not present in ImportedCertificateVersionMetadata JSON')
-        if 'payload_available' in _dict:
-            args['payload_available'] = _dict.get('payload_available')
+        if (payload_available := _dict.get('payload_available')) is not None:
+            args['payload_available'] = payload_available
         else:
             raise ValueError('Required property \'payload_available\' not present in ImportedCertificateVersionMetadata JSON')
-        if 'alias' in _dict:
-            args['alias'] = _dict.get('alias')
-        if 'version_custom_metadata' in _dict:
-            args['version_custom_metadata'] = _dict.get('version_custom_metadata')
-        if 'secret_id' in _dict:
-            args['secret_id'] = _dict.get('secret_id')
+        if (alias := _dict.get('alias')) is not None:
+            args['alias'] = alias
+        if (version_custom_metadata := _dict.get('version_custom_metadata')) is not None:
+            args['version_custom_metadata'] = version_custom_metadata
+        if (secret_id := _dict.get('secret_id')) is not None:
+            args['secret_id'] = secret_id
         else:
             raise ValueError('Required property \'secret_id\' not present in ImportedCertificateVersionMetadata JSON')
-        if 'expiration_date' in _dict:
-            args['expiration_date'] = string_to_datetime(_dict.get('expiration_date'))
+        if (expiration_date := _dict.get('expiration_date')) is not None:
+            args['expiration_date'] = string_to_datetime(expiration_date)
         else:
             raise ValueError('Required property \'expiration_date\' not present in ImportedCertificateVersionMetadata JSON')
-        if 'serial_number' in _dict:
-            args['serial_number'] = _dict.get('serial_number')
+        if (serial_number := _dict.get('serial_number')) is not None:
+            args['serial_number'] = serial_number
         else:
             raise ValueError('Required property \'serial_number\' not present in ImportedCertificateVersionMetadata JSON')
-        if 'validity' in _dict:
-            args['validity'] = CertificateValidity.from_dict(_dict.get('validity'))
+        if (validity := _dict.get('validity')) is not None:
+            args['validity'] = CertificateValidity.from_dict(validity)
         else:
             raise ValueError('Required property \'validity\' not present in ImportedCertificateVersionMetadata JSON')
         return cls(**args)
@@ -11905,18 +12208,18 @@ class ImportedCertificateVersionPrototype(SecretVersionPrototype):
     def from_dict(cls, _dict: Dict) -> 'ImportedCertificateVersionPrototype':
         """Initialize a ImportedCertificateVersionPrototype object from a json dictionary."""
         args = {}
-        if 'certificate' in _dict:
-            args['certificate'] = _dict.get('certificate')
+        if (certificate := _dict.get('certificate')) is not None:
+            args['certificate'] = certificate
         else:
             raise ValueError('Required property \'certificate\' not present in ImportedCertificateVersionPrototype JSON')
-        if 'intermediate' in _dict:
-            args['intermediate'] = _dict.get('intermediate')
-        if 'private_key' in _dict:
-            args['private_key'] = _dict.get('private_key')
-        if 'custom_metadata' in _dict:
-            args['custom_metadata'] = _dict.get('custom_metadata')
-        if 'version_custom_metadata' in _dict:
-            args['version_custom_metadata'] = _dict.get('version_custom_metadata')
+        if (intermediate := _dict.get('intermediate')) is not None:
+            args['intermediate'] = intermediate
+        if (private_key := _dict.get('private_key')) is not None:
+            args['private_key'] = private_key
+        if (custom_metadata := _dict.get('custom_metadata')) is not None:
+            args['custom_metadata'] = custom_metadata
+        if (version_custom_metadata := _dict.get('version_custom_metadata')) is not None:
+            args['version_custom_metadata'] = version_custom_metadata
         return cls(**args)
 
     @classmethod
@@ -12071,56 +12374,56 @@ class KVSecret(Secret):
     def from_dict(cls, _dict: Dict) -> 'KVSecret':
         """Initialize a KVSecret object from a json dictionary."""
         args = {}
-        if 'created_by' in _dict:
-            args['created_by'] = _dict.get('created_by')
+        if (created_by := _dict.get('created_by')) is not None:
+            args['created_by'] = created_by
         else:
             raise ValueError('Required property \'created_by\' not present in KVSecret JSON')
-        if 'created_at' in _dict:
-            args['created_at'] = string_to_datetime(_dict.get('created_at'))
+        if (created_at := _dict.get('created_at')) is not None:
+            args['created_at'] = string_to_datetime(created_at)
         else:
             raise ValueError('Required property \'created_at\' not present in KVSecret JSON')
-        if 'crn' in _dict:
-            args['crn'] = _dict.get('crn')
+        if (crn := _dict.get('crn')) is not None:
+            args['crn'] = crn
         else:
             raise ValueError('Required property \'crn\' not present in KVSecret JSON')
-        if 'custom_metadata' in _dict:
-            args['custom_metadata'] = _dict.get('custom_metadata')
-        if 'description' in _dict:
-            args['description'] = _dict.get('description')
-        if 'downloaded' in _dict:
-            args['downloaded'] = _dict.get('downloaded')
-        if 'id' in _dict:
-            args['id'] = _dict.get('id')
+        if (custom_metadata := _dict.get('custom_metadata')) is not None:
+            args['custom_metadata'] = custom_metadata
+        if (description := _dict.get('description')) is not None:
+            args['description'] = description
+        if (downloaded := _dict.get('downloaded')) is not None:
+            args['downloaded'] = downloaded
+        if (id := _dict.get('id')) is not None:
+            args['id'] = id
         else:
             raise ValueError('Required property \'id\' not present in KVSecret JSON')
-        if 'labels' in _dict:
-            args['labels'] = _dict.get('labels')
-        if 'locks_total' in _dict:
-            args['locks_total'] = _dict.get('locks_total')
-        if 'name' in _dict:
-            args['name'] = _dict.get('name')
-        if 'secret_group_id' in _dict:
-            args['secret_group_id'] = _dict.get('secret_group_id')
+        if (labels := _dict.get('labels')) is not None:
+            args['labels'] = labels
+        if (locks_total := _dict.get('locks_total')) is not None:
+            args['locks_total'] = locks_total
+        if (name := _dict.get('name')) is not None:
+            args['name'] = name
+        if (secret_group_id := _dict.get('secret_group_id')) is not None:
+            args['secret_group_id'] = secret_group_id
         else:
             raise ValueError('Required property \'secret_group_id\' not present in KVSecret JSON')
-        if 'secret_type' in _dict:
-            args['secret_type'] = _dict.get('secret_type')
+        if (secret_type := _dict.get('secret_type')) is not None:
+            args['secret_type'] = secret_type
         else:
             raise ValueError('Required property \'secret_type\' not present in KVSecret JSON')
-        if 'state' in _dict:
-            args['state'] = _dict.get('state')
-        if 'state_description' in _dict:
-            args['state_description'] = _dict.get('state_description')
-        if 'updated_at' in _dict:
-            args['updated_at'] = string_to_datetime(_dict.get('updated_at'))
+        if (state := _dict.get('state')) is not None:
+            args['state'] = state
+        if (state_description := _dict.get('state_description')) is not None:
+            args['state_description'] = state_description
+        if (updated_at := _dict.get('updated_at')) is not None:
+            args['updated_at'] = string_to_datetime(updated_at)
         else:
             raise ValueError('Required property \'updated_at\' not present in KVSecret JSON')
-        if 'versions_total' in _dict:
-            args['versions_total'] = _dict.get('versions_total')
+        if (versions_total := _dict.get('versions_total')) is not None:
+            args['versions_total'] = versions_total
         else:
             raise ValueError('Required property \'versions_total\' not present in KVSecret JSON')
-        if 'data' in _dict:
-            args['data'] = _dict.get('data')
+        if (data := _dict.get('data')) is not None:
+            args['data'] = data
         else:
             raise ValueError('Required property \'data\' not present in KVSecret JSON')
         return cls(**args)
@@ -12325,52 +12628,52 @@ class KVSecretMetadata(SecretMetadata):
     def from_dict(cls, _dict: Dict) -> 'KVSecretMetadata':
         """Initialize a KVSecretMetadata object from a json dictionary."""
         args = {}
-        if 'created_by' in _dict:
-            args['created_by'] = _dict.get('created_by')
+        if (created_by := _dict.get('created_by')) is not None:
+            args['created_by'] = created_by
         else:
             raise ValueError('Required property \'created_by\' not present in KVSecretMetadata JSON')
-        if 'created_at' in _dict:
-            args['created_at'] = string_to_datetime(_dict.get('created_at'))
+        if (created_at := _dict.get('created_at')) is not None:
+            args['created_at'] = string_to_datetime(created_at)
         else:
             raise ValueError('Required property \'created_at\' not present in KVSecretMetadata JSON')
-        if 'crn' in _dict:
-            args['crn'] = _dict.get('crn')
+        if (crn := _dict.get('crn')) is not None:
+            args['crn'] = crn
         else:
             raise ValueError('Required property \'crn\' not present in KVSecretMetadata JSON')
-        if 'custom_metadata' in _dict:
-            args['custom_metadata'] = _dict.get('custom_metadata')
-        if 'description' in _dict:
-            args['description'] = _dict.get('description')
-        if 'downloaded' in _dict:
-            args['downloaded'] = _dict.get('downloaded')
-        if 'id' in _dict:
-            args['id'] = _dict.get('id')
+        if (custom_metadata := _dict.get('custom_metadata')) is not None:
+            args['custom_metadata'] = custom_metadata
+        if (description := _dict.get('description')) is not None:
+            args['description'] = description
+        if (downloaded := _dict.get('downloaded')) is not None:
+            args['downloaded'] = downloaded
+        if (id := _dict.get('id')) is not None:
+            args['id'] = id
         else:
             raise ValueError('Required property \'id\' not present in KVSecretMetadata JSON')
-        if 'labels' in _dict:
-            args['labels'] = _dict.get('labels')
-        if 'locks_total' in _dict:
-            args['locks_total'] = _dict.get('locks_total')
-        if 'name' in _dict:
-            args['name'] = _dict.get('name')
-        if 'secret_group_id' in _dict:
-            args['secret_group_id'] = _dict.get('secret_group_id')
+        if (labels := _dict.get('labels')) is not None:
+            args['labels'] = labels
+        if (locks_total := _dict.get('locks_total')) is not None:
+            args['locks_total'] = locks_total
+        if (name := _dict.get('name')) is not None:
+            args['name'] = name
+        if (secret_group_id := _dict.get('secret_group_id')) is not None:
+            args['secret_group_id'] = secret_group_id
         else:
             raise ValueError('Required property \'secret_group_id\' not present in KVSecretMetadata JSON')
-        if 'secret_type' in _dict:
-            args['secret_type'] = _dict.get('secret_type')
+        if (secret_type := _dict.get('secret_type')) is not None:
+            args['secret_type'] = secret_type
         else:
             raise ValueError('Required property \'secret_type\' not present in KVSecretMetadata JSON')
-        if 'state' in _dict:
-            args['state'] = _dict.get('state')
-        if 'state_description' in _dict:
-            args['state_description'] = _dict.get('state_description')
-        if 'updated_at' in _dict:
-            args['updated_at'] = string_to_datetime(_dict.get('updated_at'))
+        if (state := _dict.get('state')) is not None:
+            args['state'] = state
+        if (state_description := _dict.get('state_description')) is not None:
+            args['state_description'] = state_description
+        if (updated_at := _dict.get('updated_at')) is not None:
+            args['updated_at'] = string_to_datetime(updated_at)
         else:
             raise ValueError('Required property \'updated_at\' not present in KVSecretMetadata JSON')
-        if 'versions_total' in _dict:
-            args['versions_total'] = _dict.get('versions_total')
+        if (versions_total := _dict.get('versions_total')) is not None:
+            args['versions_total'] = versions_total
         else:
             raise ValueError('Required property \'versions_total\' not present in KVSecretMetadata JSON')
         return cls(**args)
@@ -12518,14 +12821,14 @@ class KVSecretMetadataPatch(SecretMetadataPatch):
     def from_dict(cls, _dict: Dict) -> 'KVSecretMetadataPatch':
         """Initialize a KVSecretMetadataPatch object from a json dictionary."""
         args = {}
-        if 'name' in _dict:
-            args['name'] = _dict.get('name')
-        if 'description' in _dict:
-            args['description'] = _dict.get('description')
-        if 'labels' in _dict:
-            args['labels'] = _dict.get('labels')
-        if 'custom_metadata' in _dict:
-            args['custom_metadata'] = _dict.get('custom_metadata')
+        if (name := _dict.get('name')) is not None:
+            args['name'] = name
+        if (description := _dict.get('description')) is not None:
+            args['description'] = description
+        if (labels := _dict.get('labels')) is not None:
+            args['labels'] = labels
+        if (custom_metadata := _dict.get('custom_metadata')) is not None:
+            args['custom_metadata'] = custom_metadata
         return cls(**args)
 
     @classmethod
@@ -12643,28 +12946,28 @@ class KVSecretPrototype(SecretPrototype):
     def from_dict(cls, _dict: Dict) -> 'KVSecretPrototype':
         """Initialize a KVSecretPrototype object from a json dictionary."""
         args = {}
-        if 'secret_type' in _dict:
-            args['secret_type'] = _dict.get('secret_type')
+        if (secret_type := _dict.get('secret_type')) is not None:
+            args['secret_type'] = secret_type
         else:
             raise ValueError('Required property \'secret_type\' not present in KVSecretPrototype JSON')
-        if 'name' in _dict:
-            args['name'] = _dict.get('name')
+        if (name := _dict.get('name')) is not None:
+            args['name'] = name
         else:
             raise ValueError('Required property \'name\' not present in KVSecretPrototype JSON')
-        if 'description' in _dict:
-            args['description'] = _dict.get('description')
-        if 'secret_group_id' in _dict:
-            args['secret_group_id'] = _dict.get('secret_group_id')
-        if 'labels' in _dict:
-            args['labels'] = _dict.get('labels')
-        if 'data' in _dict:
-            args['data'] = _dict.get('data')
+        if (description := _dict.get('description')) is not None:
+            args['description'] = description
+        if (secret_group_id := _dict.get('secret_group_id')) is not None:
+            args['secret_group_id'] = secret_group_id
+        if (labels := _dict.get('labels')) is not None:
+            args['labels'] = labels
+        if (data := _dict.get('data')) is not None:
+            args['data'] = data
         else:
             raise ValueError('Required property \'data\' not present in KVSecretPrototype JSON')
-        if 'custom_metadata' in _dict:
-            args['custom_metadata'] = _dict.get('custom_metadata')
-        if 'version_custom_metadata' in _dict:
-            args['version_custom_metadata'] = _dict.get('version_custom_metadata')
+        if (custom_metadata := _dict.get('custom_metadata')) is not None:
+            args['custom_metadata'] = custom_metadata
+        if (version_custom_metadata := _dict.get('version_custom_metadata')) is not None:
+            args['version_custom_metadata'] = version_custom_metadata
         return cls(**args)
 
     @classmethod
@@ -12819,46 +13122,46 @@ class KVSecretVersion(SecretVersion):
     def from_dict(cls, _dict: Dict) -> 'KVSecretVersion':
         """Initialize a KVSecretVersion object from a json dictionary."""
         args = {}
-        if 'auto_rotated' in _dict:
-            args['auto_rotated'] = _dict.get('auto_rotated')
-        if 'created_by' in _dict:
-            args['created_by'] = _dict.get('created_by')
+        if (auto_rotated := _dict.get('auto_rotated')) is not None:
+            args['auto_rotated'] = auto_rotated
+        if (created_by := _dict.get('created_by')) is not None:
+            args['created_by'] = created_by
         else:
             raise ValueError('Required property \'created_by\' not present in KVSecretVersion JSON')
-        if 'created_at' in _dict:
-            args['created_at'] = string_to_datetime(_dict.get('created_at'))
+        if (created_at := _dict.get('created_at')) is not None:
+            args['created_at'] = string_to_datetime(created_at)
         else:
             raise ValueError('Required property \'created_at\' not present in KVSecretVersion JSON')
-        if 'downloaded' in _dict:
-            args['downloaded'] = _dict.get('downloaded')
-        if 'id' in _dict:
-            args['id'] = _dict.get('id')
+        if (downloaded := _dict.get('downloaded')) is not None:
+            args['downloaded'] = downloaded
+        if (id := _dict.get('id')) is not None:
+            args['id'] = id
         else:
             raise ValueError('Required property \'id\' not present in KVSecretVersion JSON')
-        if 'secret_name' in _dict:
-            args['secret_name'] = _dict.get('secret_name')
-        if 'secret_type' in _dict:
-            args['secret_type'] = _dict.get('secret_type')
+        if (secret_name := _dict.get('secret_name')) is not None:
+            args['secret_name'] = secret_name
+        if (secret_type := _dict.get('secret_type')) is not None:
+            args['secret_type'] = secret_type
         else:
             raise ValueError('Required property \'secret_type\' not present in KVSecretVersion JSON')
-        if 'secret_group_id' in _dict:
-            args['secret_group_id'] = _dict.get('secret_group_id')
+        if (secret_group_id := _dict.get('secret_group_id')) is not None:
+            args['secret_group_id'] = secret_group_id
         else:
             raise ValueError('Required property \'secret_group_id\' not present in KVSecretVersion JSON')
-        if 'payload_available' in _dict:
-            args['payload_available'] = _dict.get('payload_available')
+        if (payload_available := _dict.get('payload_available')) is not None:
+            args['payload_available'] = payload_available
         else:
             raise ValueError('Required property \'payload_available\' not present in KVSecretVersion JSON')
-        if 'alias' in _dict:
-            args['alias'] = _dict.get('alias')
-        if 'version_custom_metadata' in _dict:
-            args['version_custom_metadata'] = _dict.get('version_custom_metadata')
-        if 'secret_id' in _dict:
-            args['secret_id'] = _dict.get('secret_id')
+        if (alias := _dict.get('alias')) is not None:
+            args['alias'] = alias
+        if (version_custom_metadata := _dict.get('version_custom_metadata')) is not None:
+            args['version_custom_metadata'] = version_custom_metadata
+        if (secret_id := _dict.get('secret_id')) is not None:
+            args['secret_id'] = secret_id
         else:
             raise ValueError('Required property \'secret_id\' not present in KVSecretVersion JSON')
-        if 'data' in _dict:
-            args['data'] = _dict.get('data')
+        if (data := _dict.get('data')) is not None:
+            args['data'] = data
         else:
             raise ValueError('Required property \'data\' not present in KVSecretVersion JSON')
         return cls(**args)
@@ -13031,42 +13334,42 @@ class KVSecretVersionMetadata(SecretVersionMetadata):
     def from_dict(cls, _dict: Dict) -> 'KVSecretVersionMetadata':
         """Initialize a KVSecretVersionMetadata object from a json dictionary."""
         args = {}
-        if 'auto_rotated' in _dict:
-            args['auto_rotated'] = _dict.get('auto_rotated')
-        if 'created_by' in _dict:
-            args['created_by'] = _dict.get('created_by')
+        if (auto_rotated := _dict.get('auto_rotated')) is not None:
+            args['auto_rotated'] = auto_rotated
+        if (created_by := _dict.get('created_by')) is not None:
+            args['created_by'] = created_by
         else:
             raise ValueError('Required property \'created_by\' not present in KVSecretVersionMetadata JSON')
-        if 'created_at' in _dict:
-            args['created_at'] = string_to_datetime(_dict.get('created_at'))
+        if (created_at := _dict.get('created_at')) is not None:
+            args['created_at'] = string_to_datetime(created_at)
         else:
             raise ValueError('Required property \'created_at\' not present in KVSecretVersionMetadata JSON')
-        if 'downloaded' in _dict:
-            args['downloaded'] = _dict.get('downloaded')
-        if 'id' in _dict:
-            args['id'] = _dict.get('id')
+        if (downloaded := _dict.get('downloaded')) is not None:
+            args['downloaded'] = downloaded
+        if (id := _dict.get('id')) is not None:
+            args['id'] = id
         else:
             raise ValueError('Required property \'id\' not present in KVSecretVersionMetadata JSON')
-        if 'secret_name' in _dict:
-            args['secret_name'] = _dict.get('secret_name')
-        if 'secret_type' in _dict:
-            args['secret_type'] = _dict.get('secret_type')
+        if (secret_name := _dict.get('secret_name')) is not None:
+            args['secret_name'] = secret_name
+        if (secret_type := _dict.get('secret_type')) is not None:
+            args['secret_type'] = secret_type
         else:
             raise ValueError('Required property \'secret_type\' not present in KVSecretVersionMetadata JSON')
-        if 'secret_group_id' in _dict:
-            args['secret_group_id'] = _dict.get('secret_group_id')
+        if (secret_group_id := _dict.get('secret_group_id')) is not None:
+            args['secret_group_id'] = secret_group_id
         else:
             raise ValueError('Required property \'secret_group_id\' not present in KVSecretVersionMetadata JSON')
-        if 'payload_available' in _dict:
-            args['payload_available'] = _dict.get('payload_available')
+        if (payload_available := _dict.get('payload_available')) is not None:
+            args['payload_available'] = payload_available
         else:
             raise ValueError('Required property \'payload_available\' not present in KVSecretVersionMetadata JSON')
-        if 'alias' in _dict:
-            args['alias'] = _dict.get('alias')
-        if 'version_custom_metadata' in _dict:
-            args['version_custom_metadata'] = _dict.get('version_custom_metadata')
-        if 'secret_id' in _dict:
-            args['secret_id'] = _dict.get('secret_id')
+        if (alias := _dict.get('alias')) is not None:
+            args['alias'] = alias
+        if (version_custom_metadata := _dict.get('version_custom_metadata')) is not None:
+            args['version_custom_metadata'] = version_custom_metadata
+        if (secret_id := _dict.get('secret_id')) is not None:
+            args['secret_id'] = secret_id
         else:
             raise ValueError('Required property \'secret_id\' not present in KVSecretVersionMetadata JSON')
         return cls(**args)
@@ -13186,14 +13489,14 @@ class KVSecretVersionPrototype(SecretVersionPrototype):
     def from_dict(cls, _dict: Dict) -> 'KVSecretVersionPrototype':
         """Initialize a KVSecretVersionPrototype object from a json dictionary."""
         args = {}
-        if 'data' in _dict:
-            args['data'] = _dict.get('data')
+        if (data := _dict.get('data')) is not None:
+            args['data'] = data
         else:
             raise ValueError('Required property \'data\' not present in KVSecretVersionPrototype JSON')
-        if 'custom_metadata' in _dict:
-            args['custom_metadata'] = _dict.get('custom_metadata')
-        if 'version_custom_metadata' in _dict:
-            args['version_custom_metadata'] = _dict.get('version_custom_metadata')
+        if (custom_metadata := _dict.get('custom_metadata')) is not None:
+            args['custom_metadata'] = custom_metadata
+        if (version_custom_metadata := _dict.get('version_custom_metadata')) is not None:
+            args['version_custom_metadata'] = version_custom_metadata
         return cls(**args)
 
     @classmethod
@@ -13445,108 +13748,108 @@ class PrivateCertificate(Secret):
     def from_dict(cls, _dict: Dict) -> 'PrivateCertificate':
         """Initialize a PrivateCertificate object from a json dictionary."""
         args = {}
-        if 'created_by' in _dict:
-            args['created_by'] = _dict.get('created_by')
+        if (created_by := _dict.get('created_by')) is not None:
+            args['created_by'] = created_by
         else:
             raise ValueError('Required property \'created_by\' not present in PrivateCertificate JSON')
-        if 'created_at' in _dict:
-            args['created_at'] = string_to_datetime(_dict.get('created_at'))
+        if (created_at := _dict.get('created_at')) is not None:
+            args['created_at'] = string_to_datetime(created_at)
         else:
             raise ValueError('Required property \'created_at\' not present in PrivateCertificate JSON')
-        if 'crn' in _dict:
-            args['crn'] = _dict.get('crn')
+        if (crn := _dict.get('crn')) is not None:
+            args['crn'] = crn
         else:
             raise ValueError('Required property \'crn\' not present in PrivateCertificate JSON')
-        if 'custom_metadata' in _dict:
-            args['custom_metadata'] = _dict.get('custom_metadata')
-        if 'description' in _dict:
-            args['description'] = _dict.get('description')
-        if 'downloaded' in _dict:
-            args['downloaded'] = _dict.get('downloaded')
-        if 'id' in _dict:
-            args['id'] = _dict.get('id')
+        if (custom_metadata := _dict.get('custom_metadata')) is not None:
+            args['custom_metadata'] = custom_metadata
+        if (description := _dict.get('description')) is not None:
+            args['description'] = description
+        if (downloaded := _dict.get('downloaded')) is not None:
+            args['downloaded'] = downloaded
+        if (id := _dict.get('id')) is not None:
+            args['id'] = id
         else:
             raise ValueError('Required property \'id\' not present in PrivateCertificate JSON')
-        if 'labels' in _dict:
-            args['labels'] = _dict.get('labels')
-        if 'locks_total' in _dict:
-            args['locks_total'] = _dict.get('locks_total')
-        if 'name' in _dict:
-            args['name'] = _dict.get('name')
-        if 'secret_group_id' in _dict:
-            args['secret_group_id'] = _dict.get('secret_group_id')
+        if (labels := _dict.get('labels')) is not None:
+            args['labels'] = labels
+        if (locks_total := _dict.get('locks_total')) is not None:
+            args['locks_total'] = locks_total
+        if (name := _dict.get('name')) is not None:
+            args['name'] = name
+        if (secret_group_id := _dict.get('secret_group_id')) is not None:
+            args['secret_group_id'] = secret_group_id
         else:
             raise ValueError('Required property \'secret_group_id\' not present in PrivateCertificate JSON')
-        if 'secret_type' in _dict:
-            args['secret_type'] = _dict.get('secret_type')
+        if (secret_type := _dict.get('secret_type')) is not None:
+            args['secret_type'] = secret_type
         else:
             raise ValueError('Required property \'secret_type\' not present in PrivateCertificate JSON')
-        if 'state' in _dict:
-            args['state'] = _dict.get('state')
-        if 'state_description' in _dict:
-            args['state_description'] = _dict.get('state_description')
-        if 'updated_at' in _dict:
-            args['updated_at'] = string_to_datetime(_dict.get('updated_at'))
+        if (state := _dict.get('state')) is not None:
+            args['state'] = state
+        if (state_description := _dict.get('state_description')) is not None:
+            args['state_description'] = state_description
+        if (updated_at := _dict.get('updated_at')) is not None:
+            args['updated_at'] = string_to_datetime(updated_at)
         else:
             raise ValueError('Required property \'updated_at\' not present in PrivateCertificate JSON')
-        if 'versions_total' in _dict:
-            args['versions_total'] = _dict.get('versions_total')
+        if (versions_total := _dict.get('versions_total')) is not None:
+            args['versions_total'] = versions_total
         else:
             raise ValueError('Required property \'versions_total\' not present in PrivateCertificate JSON')
-        if 'signing_algorithm' in _dict:
-            args['signing_algorithm'] = _dict.get('signing_algorithm')
+        if (signing_algorithm := _dict.get('signing_algorithm')) is not None:
+            args['signing_algorithm'] = signing_algorithm
         else:
             raise ValueError('Required property \'signing_algorithm\' not present in PrivateCertificate JSON')
-        if 'alt_names' in _dict:
-            args['alt_names'] = _dict.get('alt_names')
-        if 'certificate_authority' in _dict:
-            args['certificate_authority'] = _dict.get('certificate_authority')
-        if 'certificate_template' in _dict:
-            args['certificate_template'] = _dict.get('certificate_template')
+        if (alt_names := _dict.get('alt_names')) is not None:
+            args['alt_names'] = alt_names
+        if (certificate_authority := _dict.get('certificate_authority')) is not None:
+            args['certificate_authority'] = certificate_authority
+        if (certificate_template := _dict.get('certificate_template')) is not None:
+            args['certificate_template'] = certificate_template
         else:
             raise ValueError('Required property \'certificate_template\' not present in PrivateCertificate JSON')
-        if 'common_name' in _dict:
-            args['common_name'] = _dict.get('common_name')
+        if (common_name := _dict.get('common_name')) is not None:
+            args['common_name'] = common_name
         else:
             raise ValueError('Required property \'common_name\' not present in PrivateCertificate JSON')
-        if 'expiration_date' in _dict:
-            args['expiration_date'] = string_to_datetime(_dict.get('expiration_date'))
+        if (expiration_date := _dict.get('expiration_date')) is not None:
+            args['expiration_date'] = string_to_datetime(expiration_date)
         else:
             raise ValueError('Required property \'expiration_date\' not present in PrivateCertificate JSON')
-        if 'issuer' in _dict:
-            args['issuer'] = _dict.get('issuer')
+        if (issuer := _dict.get('issuer')) is not None:
+            args['issuer'] = issuer
         else:
             raise ValueError('Required property \'issuer\' not present in PrivateCertificate JSON')
-        if 'key_algorithm' in _dict:
-            args['key_algorithm'] = _dict.get('key_algorithm')
-        if 'next_rotation_date' in _dict:
-            args['next_rotation_date'] = string_to_datetime(_dict.get('next_rotation_date'))
-        if 'rotation' in _dict:
-            args['rotation'] = _dict.get('rotation')
-        if 'serial_number' in _dict:
-            args['serial_number'] = _dict.get('serial_number')
+        if (key_algorithm := _dict.get('key_algorithm')) is not None:
+            args['key_algorithm'] = key_algorithm
+        if (next_rotation_date := _dict.get('next_rotation_date')) is not None:
+            args['next_rotation_date'] = string_to_datetime(next_rotation_date)
+        if (rotation := _dict.get('rotation')) is not None:
+            args['rotation'] = rotation
+        if (serial_number := _dict.get('serial_number')) is not None:
+            args['serial_number'] = serial_number
         else:
             raise ValueError('Required property \'serial_number\' not present in PrivateCertificate JSON')
-        if 'validity' in _dict:
-            args['validity'] = CertificateValidity.from_dict(_dict.get('validity'))
+        if (validity := _dict.get('validity')) is not None:
+            args['validity'] = CertificateValidity.from_dict(validity)
         else:
             raise ValueError('Required property \'validity\' not present in PrivateCertificate JSON')
-        if 'revocation_time_seconds' in _dict:
-            args['revocation_time_seconds'] = _dict.get('revocation_time_seconds')
-        if 'revocation_time_rfc3339' in _dict:
-            args['revocation_time_rfc3339'] = string_to_datetime(_dict.get('revocation_time_rfc3339'))
-        if 'certificate' in _dict:
-            args['certificate'] = _dict.get('certificate')
+        if (revocation_time_seconds := _dict.get('revocation_time_seconds')) is not None:
+            args['revocation_time_seconds'] = revocation_time_seconds
+        if (revocation_time_rfc3339 := _dict.get('revocation_time_rfc3339')) is not None:
+            args['revocation_time_rfc3339'] = string_to_datetime(revocation_time_rfc3339)
+        if (certificate := _dict.get('certificate')) is not None:
+            args['certificate'] = certificate
         else:
             raise ValueError('Required property \'certificate\' not present in PrivateCertificate JSON')
-        if 'private_key' in _dict:
-            args['private_key'] = _dict.get('private_key')
+        if (private_key := _dict.get('private_key')) is not None:
+            args['private_key'] = private_key
         else:
             raise ValueError('Required property \'private_key\' not present in PrivateCertificate JSON')
-        if 'issuing_ca' in _dict:
-            args['issuing_ca'] = _dict.get('issuing_ca')
-        if 'ca_chain' in _dict:
-            args['ca_chain'] = _dict.get('ca_chain')
+        if (issuing_ca := _dict.get('issuing_ca')) is not None:
+            args['issuing_ca'] = issuing_ca
+        if (ca_chain := _dict.get('ca_chain')) is not None:
+            args['ca_chain'] = ca_chain
         return cls(**args)
 
     @classmethod
@@ -13708,12 +14011,12 @@ class PrivateCertificateActionRevoke(SecretAction):
     def from_dict(cls, _dict: Dict) -> 'PrivateCertificateActionRevoke':
         """Initialize a PrivateCertificateActionRevoke object from a json dictionary."""
         args = {}
-        if 'action_type' in _dict:
-            args['action_type'] = _dict.get('action_type')
+        if (action_type := _dict.get('action_type')) is not None:
+            args['action_type'] = action_type
         else:
             raise ValueError('Required property \'action_type\' not present in PrivateCertificateActionRevoke JSON')
-        if 'revocation_time_seconds' in _dict:
-            args['revocation_time_seconds'] = _dict.get('revocation_time_seconds')
+        if (revocation_time_seconds := _dict.get('revocation_time_seconds')) is not None:
+            args['revocation_time_seconds'] = revocation_time_seconds
         return cls(**args)
 
     @classmethod
@@ -13782,8 +14085,8 @@ class PrivateCertificateActionRevokePrototype(SecretActionPrototype):
     def from_dict(cls, _dict: Dict) -> 'PrivateCertificateActionRevokePrototype':
         """Initialize a PrivateCertificateActionRevokePrototype object from a json dictionary."""
         args = {}
-        if 'action_type' in _dict:
-            args['action_type'] = _dict.get('action_type')
+        if (action_type := _dict.get('action_type')) is not None:
+            args['action_type'] = action_type
         else:
             raise ValueError('Required property \'action_type\' not present in PrivateCertificateActionRevokePrototype JSON')
         return cls(**args)
@@ -13857,12 +14160,12 @@ class PrivateCertificateConfigurationActionRevoke(ConfigurationAction):
     def from_dict(cls, _dict: Dict) -> 'PrivateCertificateConfigurationActionRevoke':
         """Initialize a PrivateCertificateConfigurationActionRevoke object from a json dictionary."""
         args = {}
-        if 'action_type' in _dict:
-            args['action_type'] = _dict.get('action_type')
+        if (action_type := _dict.get('action_type')) is not None:
+            args['action_type'] = action_type
         else:
             raise ValueError('Required property \'action_type\' not present in PrivateCertificateConfigurationActionRevoke JSON')
-        if 'revocation_time_seconds' in _dict:
-            args['revocation_time_seconds'] = _dict.get('revocation_time_seconds')
+        if (revocation_time_seconds := _dict.get('revocation_time_seconds')) is not None:
+            args['revocation_time_seconds'] = revocation_time_seconds
         return cls(**args)
 
     @classmethod
@@ -13934,8 +14237,8 @@ class PrivateCertificateConfigurationActionRevokePrototype(ConfigurationActionPr
     def from_dict(cls, _dict: Dict) -> 'PrivateCertificateConfigurationActionRevokePrototype':
         """Initialize a PrivateCertificateConfigurationActionRevokePrototype object from a json dictionary."""
         args = {}
-        if 'action_type' in _dict:
-            args['action_type'] = _dict.get('action_type')
+        if (action_type := _dict.get('action_type')) is not None:
+            args['action_type'] = action_type
         else:
             raise ValueError('Required property \'action_type\' not present in PrivateCertificateConfigurationActionRevokePrototype JSON')
         return cls(**args)
@@ -14013,12 +14316,12 @@ class PrivateCertificateConfigurationActionRotateCRL(ConfigurationAction):
     def from_dict(cls, _dict: Dict) -> 'PrivateCertificateConfigurationActionRotateCRL':
         """Initialize a PrivateCertificateConfigurationActionRotateCRL object from a json dictionary."""
         args = {}
-        if 'action_type' in _dict:
-            args['action_type'] = _dict.get('action_type')
+        if (action_type := _dict.get('action_type')) is not None:
+            args['action_type'] = action_type
         else:
             raise ValueError('Required property \'action_type\' not present in PrivateCertificateConfigurationActionRotateCRL JSON')
-        if 'success' in _dict:
-            args['success'] = _dict.get('success')
+        if (success := _dict.get('success')) is not None:
+            args['success'] = success
         else:
             raise ValueError('Required property \'success\' not present in PrivateCertificateConfigurationActionRotateCRL JSON')
         return cls(**args)
@@ -14092,8 +14395,8 @@ class PrivateCertificateConfigurationActionRotateCRLPrototype(ConfigurationActio
     def from_dict(cls, _dict: Dict) -> 'PrivateCertificateConfigurationActionRotateCRLPrototype':
         """Initialize a PrivateCertificateConfigurationActionRotateCRLPrototype object from a json dictionary."""
         args = {}
-        if 'action_type' in _dict:
-            args['action_type'] = _dict.get('action_type')
+        if (action_type := _dict.get('action_type')) is not None:
+            args['action_type'] = action_type
         else:
             raise ValueError('Required property \'action_type\' not present in PrivateCertificateConfigurationActionRotateCRLPrototype JSON')
         return cls(**args)
@@ -14171,12 +14474,12 @@ class PrivateCertificateConfigurationActionSetSigned(ConfigurationAction):
     def from_dict(cls, _dict: Dict) -> 'PrivateCertificateConfigurationActionSetSigned':
         """Initialize a PrivateCertificateConfigurationActionSetSigned object from a json dictionary."""
         args = {}
-        if 'action_type' in _dict:
-            args['action_type'] = _dict.get('action_type')
+        if (action_type := _dict.get('action_type')) is not None:
+            args['action_type'] = action_type
         else:
             raise ValueError('Required property \'action_type\' not present in PrivateCertificateConfigurationActionSetSigned JSON')
-        if 'certificate' in _dict:
-            args['certificate'] = _dict.get('certificate')
+        if (certificate := _dict.get('certificate')) is not None:
+            args['certificate'] = certificate
         else:
             raise ValueError('Required property \'certificate\' not present in PrivateCertificateConfigurationActionSetSigned JSON')
         return cls(**args)
@@ -14256,12 +14559,12 @@ class PrivateCertificateConfigurationActionSetSignedPrototype(ConfigurationActio
     def from_dict(cls, _dict: Dict) -> 'PrivateCertificateConfigurationActionSetSignedPrototype':
         """Initialize a PrivateCertificateConfigurationActionSetSignedPrototype object from a json dictionary."""
         args = {}
-        if 'action_type' in _dict:
-            args['action_type'] = _dict.get('action_type')
+        if (action_type := _dict.get('action_type')) is not None:
+            args['action_type'] = action_type
         else:
             raise ValueError('Required property \'action_type\' not present in PrivateCertificateConfigurationActionSetSignedPrototype JSON')
-        if 'certificate' in _dict:
-            args['certificate'] = _dict.get('certificate')
+        if (certificate := _dict.get('certificate')) is not None:
+            args['certificate'] = certificate
         else:
             raise ValueError('Required property \'certificate\' not present in PrivateCertificateConfigurationActionSetSignedPrototype JSON')
         return cls(**args)
@@ -14514,54 +14817,54 @@ class PrivateCertificateConfigurationActionSignCSR(ConfigurationAction):
     def from_dict(cls, _dict: Dict) -> 'PrivateCertificateConfigurationActionSignCSR':
         """Initialize a PrivateCertificateConfigurationActionSignCSR object from a json dictionary."""
         args = {}
-        if 'common_name' in _dict:
-            args['common_name'] = _dict.get('common_name')
-        if 'alt_names' in _dict:
-            args['alt_names'] = _dict.get('alt_names')
-        if 'ip_sans' in _dict:
-            args['ip_sans'] = _dict.get('ip_sans')
-        if 'uri_sans' in _dict:
-            args['uri_sans'] = _dict.get('uri_sans')
-        if 'other_sans' in _dict:
-            args['other_sans'] = _dict.get('other_sans')
-        if 'ttl' in _dict:
-            args['ttl'] = _dict.get('ttl')
-        if 'format' in _dict:
-            args['format'] = _dict.get('format')
-        if 'max_path_length' in _dict:
-            args['max_path_length'] = _dict.get('max_path_length')
-        if 'exclude_cn_from_sans' in _dict:
-            args['exclude_cn_from_sans'] = _dict.get('exclude_cn_from_sans')
-        if 'permitted_dns_domains' in _dict:
-            args['permitted_dns_domains'] = _dict.get('permitted_dns_domains')
-        if 'use_csr_values' in _dict:
-            args['use_csr_values'] = _dict.get('use_csr_values')
-        if 'ou' in _dict:
-            args['ou'] = _dict.get('ou')
-        if 'organization' in _dict:
-            args['organization'] = _dict.get('organization')
-        if 'country' in _dict:
-            args['country'] = _dict.get('country')
-        if 'locality' in _dict:
-            args['locality'] = _dict.get('locality')
-        if 'province' in _dict:
-            args['province'] = _dict.get('province')
-        if 'street_address' in _dict:
-            args['street_address'] = _dict.get('street_address')
-        if 'postal_code' in _dict:
-            args['postal_code'] = _dict.get('postal_code')
-        if 'serial_number' in _dict:
-            args['serial_number'] = _dict.get('serial_number')
-        if 'action_type' in _dict:
-            args['action_type'] = _dict.get('action_type')
+        if (common_name := _dict.get('common_name')) is not None:
+            args['common_name'] = common_name
+        if (alt_names := _dict.get('alt_names')) is not None:
+            args['alt_names'] = alt_names
+        if (ip_sans := _dict.get('ip_sans')) is not None:
+            args['ip_sans'] = ip_sans
+        if (uri_sans := _dict.get('uri_sans')) is not None:
+            args['uri_sans'] = uri_sans
+        if (other_sans := _dict.get('other_sans')) is not None:
+            args['other_sans'] = other_sans
+        if (ttl := _dict.get('ttl')) is not None:
+            args['ttl'] = ttl
+        if (format := _dict.get('format')) is not None:
+            args['format'] = format
+        if (max_path_length := _dict.get('max_path_length')) is not None:
+            args['max_path_length'] = max_path_length
+        if (exclude_cn_from_sans := _dict.get('exclude_cn_from_sans')) is not None:
+            args['exclude_cn_from_sans'] = exclude_cn_from_sans
+        if (permitted_dns_domains := _dict.get('permitted_dns_domains')) is not None:
+            args['permitted_dns_domains'] = permitted_dns_domains
+        if (use_csr_values := _dict.get('use_csr_values')) is not None:
+            args['use_csr_values'] = use_csr_values
+        if (ou := _dict.get('ou')) is not None:
+            args['ou'] = ou
+        if (organization := _dict.get('organization')) is not None:
+            args['organization'] = organization
+        if (country := _dict.get('country')) is not None:
+            args['country'] = country
+        if (locality := _dict.get('locality')) is not None:
+            args['locality'] = locality
+        if (province := _dict.get('province')) is not None:
+            args['province'] = province
+        if (street_address := _dict.get('street_address')) is not None:
+            args['street_address'] = street_address
+        if (postal_code := _dict.get('postal_code')) is not None:
+            args['postal_code'] = postal_code
+        if (serial_number := _dict.get('serial_number')) is not None:
+            args['serial_number'] = serial_number
+        if (action_type := _dict.get('action_type')) is not None:
+            args['action_type'] = action_type
         else:
             raise ValueError('Required property \'action_type\' not present in PrivateCertificateConfigurationActionSignCSR JSON')
-        if 'csr' in _dict:
-            args['csr'] = _dict.get('csr')
+        if (csr := _dict.get('csr')) is not None:
+            args['csr'] = csr
         else:
             raise ValueError('Required property \'csr\' not present in PrivateCertificateConfigurationActionSignCSR JSON')
-        if 'data' in _dict:
-            args['data'] = PrivateCertificateConfigurationCACertificate.from_dict(_dict.get('data'))
+        if (data := _dict.get('data')) is not None:
+            args['data'] = PrivateCertificateConfigurationCACertificate.from_dict(data)
         return cls(**args)
 
     @classmethod
@@ -14860,50 +15163,50 @@ class PrivateCertificateConfigurationActionSignCSRPrototype(ConfigurationActionP
     def from_dict(cls, _dict: Dict) -> 'PrivateCertificateConfigurationActionSignCSRPrototype':
         """Initialize a PrivateCertificateConfigurationActionSignCSRPrototype object from a json dictionary."""
         args = {}
-        if 'common_name' in _dict:
-            args['common_name'] = _dict.get('common_name')
-        if 'alt_names' in _dict:
-            args['alt_names'] = _dict.get('alt_names')
-        if 'ip_sans' in _dict:
-            args['ip_sans'] = _dict.get('ip_sans')
-        if 'uri_sans' in _dict:
-            args['uri_sans'] = _dict.get('uri_sans')
-        if 'other_sans' in _dict:
-            args['other_sans'] = _dict.get('other_sans')
-        if 'ttl' in _dict:
-            args['ttl'] = _dict.get('ttl')
-        if 'format' in _dict:
-            args['format'] = _dict.get('format')
-        if 'max_path_length' in _dict:
-            args['max_path_length'] = _dict.get('max_path_length')
-        if 'exclude_cn_from_sans' in _dict:
-            args['exclude_cn_from_sans'] = _dict.get('exclude_cn_from_sans')
-        if 'permitted_dns_domains' in _dict:
-            args['permitted_dns_domains'] = _dict.get('permitted_dns_domains')
-        if 'use_csr_values' in _dict:
-            args['use_csr_values'] = _dict.get('use_csr_values')
-        if 'ou' in _dict:
-            args['ou'] = _dict.get('ou')
-        if 'organization' in _dict:
-            args['organization'] = _dict.get('organization')
-        if 'country' in _dict:
-            args['country'] = _dict.get('country')
-        if 'locality' in _dict:
-            args['locality'] = _dict.get('locality')
-        if 'province' in _dict:
-            args['province'] = _dict.get('province')
-        if 'street_address' in _dict:
-            args['street_address'] = _dict.get('street_address')
-        if 'postal_code' in _dict:
-            args['postal_code'] = _dict.get('postal_code')
-        if 'serial_number' in _dict:
-            args['serial_number'] = _dict.get('serial_number')
-        if 'action_type' in _dict:
-            args['action_type'] = _dict.get('action_type')
+        if (common_name := _dict.get('common_name')) is not None:
+            args['common_name'] = common_name
+        if (alt_names := _dict.get('alt_names')) is not None:
+            args['alt_names'] = alt_names
+        if (ip_sans := _dict.get('ip_sans')) is not None:
+            args['ip_sans'] = ip_sans
+        if (uri_sans := _dict.get('uri_sans')) is not None:
+            args['uri_sans'] = uri_sans
+        if (other_sans := _dict.get('other_sans')) is not None:
+            args['other_sans'] = other_sans
+        if (ttl := _dict.get('ttl')) is not None:
+            args['ttl'] = ttl
+        if (format := _dict.get('format')) is not None:
+            args['format'] = format
+        if (max_path_length := _dict.get('max_path_length')) is not None:
+            args['max_path_length'] = max_path_length
+        if (exclude_cn_from_sans := _dict.get('exclude_cn_from_sans')) is not None:
+            args['exclude_cn_from_sans'] = exclude_cn_from_sans
+        if (permitted_dns_domains := _dict.get('permitted_dns_domains')) is not None:
+            args['permitted_dns_domains'] = permitted_dns_domains
+        if (use_csr_values := _dict.get('use_csr_values')) is not None:
+            args['use_csr_values'] = use_csr_values
+        if (ou := _dict.get('ou')) is not None:
+            args['ou'] = ou
+        if (organization := _dict.get('organization')) is not None:
+            args['organization'] = organization
+        if (country := _dict.get('country')) is not None:
+            args['country'] = country
+        if (locality := _dict.get('locality')) is not None:
+            args['locality'] = locality
+        if (province := _dict.get('province')) is not None:
+            args['province'] = province
+        if (street_address := _dict.get('street_address')) is not None:
+            args['street_address'] = street_address
+        if (postal_code := _dict.get('postal_code')) is not None:
+            args['postal_code'] = postal_code
+        if (serial_number := _dict.get('serial_number')) is not None:
+            args['serial_number'] = serial_number
+        if (action_type := _dict.get('action_type')) is not None:
+            args['action_type'] = action_type
         else:
             raise ValueError('Required property \'action_type\' not present in PrivateCertificateConfigurationActionSignCSRPrototype JSON')
-        if 'csr' in _dict:
-            args['csr'] = _dict.get('csr')
+        if (csr := _dict.get('csr')) is not None:
+            args['csr'] = csr
         else:
             raise ValueError('Required property \'csr\' not present in PrivateCertificateConfigurationActionSignCSRPrototype JSON')
         return cls(**args)
@@ -15072,8 +15375,8 @@ class PrivateCertificateConfigurationActionSignIntermediate(ConfigurationAction)
           returned in the API response. The `serial_number` field represents the
           certificate's randomly assigned serial number.
     :param str action_type: The type of configuration action.
-    :param str intermediate_certificate_authority: The unique name of your
-          configuration.
+    :param str intermediate_certificate_authority: The name of the intermediate
+          certificate authority configuration.
     """
 
     def __init__(
@@ -15105,8 +15408,8 @@ class PrivateCertificateConfigurationActionSignIntermediate(ConfigurationAction)
         Initialize a PrivateCertificateConfigurationActionSignIntermediate object.
 
         :param str action_type: The type of configuration action.
-        :param str intermediate_certificate_authority: The unique name of your
-               configuration.
+        :param str intermediate_certificate_authority: The name of the intermediate
+               certificate authority configuration.
         :param str common_name: (optional) The Common Name (CN) represents the
                server name that is protected by the SSL certificate.
         :param List[str] alt_names: (optional) With the Subject Alternative Name
@@ -15201,50 +15504,50 @@ class PrivateCertificateConfigurationActionSignIntermediate(ConfigurationAction)
     def from_dict(cls, _dict: Dict) -> 'PrivateCertificateConfigurationActionSignIntermediate':
         """Initialize a PrivateCertificateConfigurationActionSignIntermediate object from a json dictionary."""
         args = {}
-        if 'common_name' in _dict:
-            args['common_name'] = _dict.get('common_name')
-        if 'alt_names' in _dict:
-            args['alt_names'] = _dict.get('alt_names')
-        if 'ip_sans' in _dict:
-            args['ip_sans'] = _dict.get('ip_sans')
-        if 'uri_sans' in _dict:
-            args['uri_sans'] = _dict.get('uri_sans')
-        if 'other_sans' in _dict:
-            args['other_sans'] = _dict.get('other_sans')
-        if 'ttl' in _dict:
-            args['ttl'] = _dict.get('ttl')
-        if 'format' in _dict:
-            args['format'] = _dict.get('format')
-        if 'max_path_length' in _dict:
-            args['max_path_length'] = _dict.get('max_path_length')
-        if 'exclude_cn_from_sans' in _dict:
-            args['exclude_cn_from_sans'] = _dict.get('exclude_cn_from_sans')
-        if 'permitted_dns_domains' in _dict:
-            args['permitted_dns_domains'] = _dict.get('permitted_dns_domains')
-        if 'use_csr_values' in _dict:
-            args['use_csr_values'] = _dict.get('use_csr_values')
-        if 'ou' in _dict:
-            args['ou'] = _dict.get('ou')
-        if 'organization' in _dict:
-            args['organization'] = _dict.get('organization')
-        if 'country' in _dict:
-            args['country'] = _dict.get('country')
-        if 'locality' in _dict:
-            args['locality'] = _dict.get('locality')
-        if 'province' in _dict:
-            args['province'] = _dict.get('province')
-        if 'street_address' in _dict:
-            args['street_address'] = _dict.get('street_address')
-        if 'postal_code' in _dict:
-            args['postal_code'] = _dict.get('postal_code')
-        if 'serial_number' in _dict:
-            args['serial_number'] = _dict.get('serial_number')
-        if 'action_type' in _dict:
-            args['action_type'] = _dict.get('action_type')
+        if (common_name := _dict.get('common_name')) is not None:
+            args['common_name'] = common_name
+        if (alt_names := _dict.get('alt_names')) is not None:
+            args['alt_names'] = alt_names
+        if (ip_sans := _dict.get('ip_sans')) is not None:
+            args['ip_sans'] = ip_sans
+        if (uri_sans := _dict.get('uri_sans')) is not None:
+            args['uri_sans'] = uri_sans
+        if (other_sans := _dict.get('other_sans')) is not None:
+            args['other_sans'] = other_sans
+        if (ttl := _dict.get('ttl')) is not None:
+            args['ttl'] = ttl
+        if (format := _dict.get('format')) is not None:
+            args['format'] = format
+        if (max_path_length := _dict.get('max_path_length')) is not None:
+            args['max_path_length'] = max_path_length
+        if (exclude_cn_from_sans := _dict.get('exclude_cn_from_sans')) is not None:
+            args['exclude_cn_from_sans'] = exclude_cn_from_sans
+        if (permitted_dns_domains := _dict.get('permitted_dns_domains')) is not None:
+            args['permitted_dns_domains'] = permitted_dns_domains
+        if (use_csr_values := _dict.get('use_csr_values')) is not None:
+            args['use_csr_values'] = use_csr_values
+        if (ou := _dict.get('ou')) is not None:
+            args['ou'] = ou
+        if (organization := _dict.get('organization')) is not None:
+            args['organization'] = organization
+        if (country := _dict.get('country')) is not None:
+            args['country'] = country
+        if (locality := _dict.get('locality')) is not None:
+            args['locality'] = locality
+        if (province := _dict.get('province')) is not None:
+            args['province'] = province
+        if (street_address := _dict.get('street_address')) is not None:
+            args['street_address'] = street_address
+        if (postal_code := _dict.get('postal_code')) is not None:
+            args['postal_code'] = postal_code
+        if (serial_number := _dict.get('serial_number')) is not None:
+            args['serial_number'] = serial_number
+        if (action_type := _dict.get('action_type')) is not None:
+            args['action_type'] = action_type
         else:
             raise ValueError('Required property \'action_type\' not present in PrivateCertificateConfigurationActionSignIntermediate JSON')
-        if 'intermediate_certificate_authority' in _dict:
-            args['intermediate_certificate_authority'] = _dict.get('intermediate_certificate_authority')
+        if (intermediate_certificate_authority := _dict.get('intermediate_certificate_authority')) is not None:
+            args['intermediate_certificate_authority'] = intermediate_certificate_authority
         else:
             raise ValueError('Required property \'intermediate_certificate_authority\' not present in PrivateCertificateConfigurationActionSignIntermediate JSON')
         return cls(**args)
@@ -15413,8 +15716,8 @@ class PrivateCertificateConfigurationActionSignIntermediatePrototype(Configurati
           returned in the API response. The `serial_number` field represents the
           certificate's randomly assigned serial number.
     :param str action_type: The type of configuration action.
-    :param str intermediate_certificate_authority: The unique name of your
-          configuration.
+    :param str intermediate_certificate_authority: The name of the intermediate
+          certificate authority configuration.
     """
 
     def __init__(
@@ -15446,8 +15749,8 @@ class PrivateCertificateConfigurationActionSignIntermediatePrototype(Configurati
         Initialize a PrivateCertificateConfigurationActionSignIntermediatePrototype object.
 
         :param str action_type: The type of configuration action.
-        :param str intermediate_certificate_authority: The unique name of your
-               configuration.
+        :param str intermediate_certificate_authority: The name of the intermediate
+               certificate authority configuration.
         :param str common_name: (optional) The Common Name (CN) represents the
                server name that is protected by the SSL certificate.
         :param List[str] alt_names: (optional) With the Subject Alternative Name
@@ -15542,50 +15845,50 @@ class PrivateCertificateConfigurationActionSignIntermediatePrototype(Configurati
     def from_dict(cls, _dict: Dict) -> 'PrivateCertificateConfigurationActionSignIntermediatePrototype':
         """Initialize a PrivateCertificateConfigurationActionSignIntermediatePrototype object from a json dictionary."""
         args = {}
-        if 'common_name' in _dict:
-            args['common_name'] = _dict.get('common_name')
-        if 'alt_names' in _dict:
-            args['alt_names'] = _dict.get('alt_names')
-        if 'ip_sans' in _dict:
-            args['ip_sans'] = _dict.get('ip_sans')
-        if 'uri_sans' in _dict:
-            args['uri_sans'] = _dict.get('uri_sans')
-        if 'other_sans' in _dict:
-            args['other_sans'] = _dict.get('other_sans')
-        if 'ttl' in _dict:
-            args['ttl'] = _dict.get('ttl')
-        if 'format' in _dict:
-            args['format'] = _dict.get('format')
-        if 'max_path_length' in _dict:
-            args['max_path_length'] = _dict.get('max_path_length')
-        if 'exclude_cn_from_sans' in _dict:
-            args['exclude_cn_from_sans'] = _dict.get('exclude_cn_from_sans')
-        if 'permitted_dns_domains' in _dict:
-            args['permitted_dns_domains'] = _dict.get('permitted_dns_domains')
-        if 'use_csr_values' in _dict:
-            args['use_csr_values'] = _dict.get('use_csr_values')
-        if 'ou' in _dict:
-            args['ou'] = _dict.get('ou')
-        if 'organization' in _dict:
-            args['organization'] = _dict.get('organization')
-        if 'country' in _dict:
-            args['country'] = _dict.get('country')
-        if 'locality' in _dict:
-            args['locality'] = _dict.get('locality')
-        if 'province' in _dict:
-            args['province'] = _dict.get('province')
-        if 'street_address' in _dict:
-            args['street_address'] = _dict.get('street_address')
-        if 'postal_code' in _dict:
-            args['postal_code'] = _dict.get('postal_code')
-        if 'serial_number' in _dict:
-            args['serial_number'] = _dict.get('serial_number')
-        if 'action_type' in _dict:
-            args['action_type'] = _dict.get('action_type')
+        if (common_name := _dict.get('common_name')) is not None:
+            args['common_name'] = common_name
+        if (alt_names := _dict.get('alt_names')) is not None:
+            args['alt_names'] = alt_names
+        if (ip_sans := _dict.get('ip_sans')) is not None:
+            args['ip_sans'] = ip_sans
+        if (uri_sans := _dict.get('uri_sans')) is not None:
+            args['uri_sans'] = uri_sans
+        if (other_sans := _dict.get('other_sans')) is not None:
+            args['other_sans'] = other_sans
+        if (ttl := _dict.get('ttl')) is not None:
+            args['ttl'] = ttl
+        if (format := _dict.get('format')) is not None:
+            args['format'] = format
+        if (max_path_length := _dict.get('max_path_length')) is not None:
+            args['max_path_length'] = max_path_length
+        if (exclude_cn_from_sans := _dict.get('exclude_cn_from_sans')) is not None:
+            args['exclude_cn_from_sans'] = exclude_cn_from_sans
+        if (permitted_dns_domains := _dict.get('permitted_dns_domains')) is not None:
+            args['permitted_dns_domains'] = permitted_dns_domains
+        if (use_csr_values := _dict.get('use_csr_values')) is not None:
+            args['use_csr_values'] = use_csr_values
+        if (ou := _dict.get('ou')) is not None:
+            args['ou'] = ou
+        if (organization := _dict.get('organization')) is not None:
+            args['organization'] = organization
+        if (country := _dict.get('country')) is not None:
+            args['country'] = country
+        if (locality := _dict.get('locality')) is not None:
+            args['locality'] = locality
+        if (province := _dict.get('province')) is not None:
+            args['province'] = province
+        if (street_address := _dict.get('street_address')) is not None:
+            args['street_address'] = street_address
+        if (postal_code := _dict.get('postal_code')) is not None:
+            args['postal_code'] = postal_code
+        if (serial_number := _dict.get('serial_number')) is not None:
+            args['serial_number'] = serial_number
+        if (action_type := _dict.get('action_type')) is not None:
+            args['action_type'] = action_type
         else:
             raise ValueError('Required property \'action_type\' not present in PrivateCertificateConfigurationActionSignIntermediatePrototype JSON')
-        if 'intermediate_certificate_authority' in _dict:
-            args['intermediate_certificate_authority'] = _dict.get('intermediate_certificate_authority')
+        if (intermediate_certificate_authority := _dict.get('intermediate_certificate_authority')) is not None:
+            args['intermediate_certificate_authority'] = intermediate_certificate_authority
         else:
             raise ValueError('Required property \'intermediate_certificate_authority\' not present in PrivateCertificateConfigurationActionSignIntermediatePrototype JSON')
         return cls(**args)
@@ -15719,16 +16022,16 @@ class PrivateCertificateConfigurationCACertificate(PrivateCertificateCAData):
     def from_dict(cls, _dict: Dict) -> 'PrivateCertificateConfigurationCACertificate':
         """Initialize a PrivateCertificateConfigurationCACertificate object from a json dictionary."""
         args = {}
-        if 'certificate' in _dict:
-            args['certificate'] = _dict.get('certificate')
+        if (certificate := _dict.get('certificate')) is not None:
+            args['certificate'] = certificate
         else:
             raise ValueError('Required property \'certificate\' not present in PrivateCertificateConfigurationCACertificate JSON')
-        if 'issuing_ca' in _dict:
-            args['issuing_ca'] = _dict.get('issuing_ca')
-        if 'ca_chain' in _dict:
-            args['ca_chain'] = _dict.get('ca_chain')
-        if 'expiration' in _dict:
-            args['expiration'] = _dict.get('expiration')
+        if (issuing_ca := _dict.get('issuing_ca')) is not None:
+            args['issuing_ca'] = issuing_ca
+        if (ca_chain := _dict.get('ca_chain')) is not None:
+            args['ca_chain'] = ca_chain
+        if (expiration := _dict.get('expiration')) is not None:
+            args['expiration'] = expiration
         return cls(**args)
 
     @classmethod
@@ -16035,90 +16338,90 @@ class PrivateCertificateConfigurationIntermediateCA(Configuration):
     def from_dict(cls, _dict: Dict) -> 'PrivateCertificateConfigurationIntermediateCA':
         """Initialize a PrivateCertificateConfigurationIntermediateCA object from a json dictionary."""
         args = {}
-        if 'config_type' in _dict:
-            args['config_type'] = _dict.get('config_type')
+        if (config_type := _dict.get('config_type')) is not None:
+            args['config_type'] = config_type
         else:
             raise ValueError('Required property \'config_type\' not present in PrivateCertificateConfigurationIntermediateCA JSON')
-        if 'name' in _dict:
-            args['name'] = _dict.get('name')
+        if (name := _dict.get('name')) is not None:
+            args['name'] = name
         else:
             raise ValueError('Required property \'name\' not present in PrivateCertificateConfigurationIntermediateCA JSON')
-        if 'secret_type' in _dict:
-            args['secret_type'] = _dict.get('secret_type')
+        if (secret_type := _dict.get('secret_type')) is not None:
+            args['secret_type'] = secret_type
         else:
             raise ValueError('Required property \'secret_type\' not present in PrivateCertificateConfigurationIntermediateCA JSON')
-        if 'created_by' in _dict:
-            args['created_by'] = _dict.get('created_by')
+        if (created_by := _dict.get('created_by')) is not None:
+            args['created_by'] = created_by
         else:
             raise ValueError('Required property \'created_by\' not present in PrivateCertificateConfigurationIntermediateCA JSON')
-        if 'created_at' in _dict:
-            args['created_at'] = string_to_datetime(_dict.get('created_at'))
+        if (created_at := _dict.get('created_at')) is not None:
+            args['created_at'] = string_to_datetime(created_at)
         else:
             raise ValueError('Required property \'created_at\' not present in PrivateCertificateConfigurationIntermediateCA JSON')
-        if 'updated_at' in _dict:
-            args['updated_at'] = string_to_datetime(_dict.get('updated_at'))
+        if (updated_at := _dict.get('updated_at')) is not None:
+            args['updated_at'] = string_to_datetime(updated_at)
         else:
             raise ValueError('Required property \'updated_at\' not present in PrivateCertificateConfigurationIntermediateCA JSON')
-        if 'common_name' in _dict:
-            args['common_name'] = _dict.get('common_name')
+        if (common_name := _dict.get('common_name')) is not None:
+            args['common_name'] = common_name
         else:
             raise ValueError('Required property \'common_name\' not present in PrivateCertificateConfigurationIntermediateCA JSON')
-        if 'crl_distribution_points_encoded' in _dict:
-            args['crl_distribution_points_encoded'] = _dict.get('crl_distribution_points_encoded')
-        if 'expiration_date' in _dict:
-            args['expiration_date'] = string_to_datetime(_dict.get('expiration_date'))
-        if 'issuer' in _dict:
-            args['issuer'] = _dict.get('issuer')
-        if 'key_type' in _dict:
-            args['key_type'] = _dict.get('key_type')
-        if 'key_bits' in _dict:
-            args['key_bits'] = _dict.get('key_bits')
-        if 'signing_method' in _dict:
-            args['signing_method'] = _dict.get('signing_method')
+        if (crl_distribution_points_encoded := _dict.get('crl_distribution_points_encoded')) is not None:
+            args['crl_distribution_points_encoded'] = crl_distribution_points_encoded
+        if (expiration_date := _dict.get('expiration_date')) is not None:
+            args['expiration_date'] = string_to_datetime(expiration_date)
+        if (issuer := _dict.get('issuer')) is not None:
+            args['issuer'] = issuer
+        if (key_type := _dict.get('key_type')) is not None:
+            args['key_type'] = key_type
+        if (key_bits := _dict.get('key_bits')) is not None:
+            args['key_bits'] = key_bits
+        if (signing_method := _dict.get('signing_method')) is not None:
+            args['signing_method'] = signing_method
         else:
             raise ValueError('Required property \'signing_method\' not present in PrivateCertificateConfigurationIntermediateCA JSON')
-        if 'status' in _dict:
-            args['status'] = _dict.get('status')
-        if 'max_ttl_seconds' in _dict:
-            args['max_ttl_seconds'] = _dict.get('max_ttl_seconds')
-        if 'crl_expiry_seconds' in _dict:
-            args['crl_expiry_seconds'] = _dict.get('crl_expiry_seconds')
-        if 'crl_disable' in _dict:
-            args['crl_disable'] = _dict.get('crl_disable')
-        if 'issuing_certificates_urls_encoded' in _dict:
-            args['issuing_certificates_urls_encoded'] = _dict.get('issuing_certificates_urls_encoded')
-        if 'alt_names' in _dict:
-            args['alt_names'] = _dict.get('alt_names')
-        if 'ip_sans' in _dict:
-            args['ip_sans'] = _dict.get('ip_sans')
-        if 'uri_sans' in _dict:
-            args['uri_sans'] = _dict.get('uri_sans')
-        if 'other_sans' in _dict:
-            args['other_sans'] = _dict.get('other_sans')
-        if 'format' in _dict:
-            args['format'] = _dict.get('format')
-        if 'private_key_format' in _dict:
-            args['private_key_format'] = _dict.get('private_key_format')
-        if 'exclude_cn_from_sans' in _dict:
-            args['exclude_cn_from_sans'] = _dict.get('exclude_cn_from_sans')
-        if 'ou' in _dict:
-            args['ou'] = _dict.get('ou')
-        if 'organization' in _dict:
-            args['organization'] = _dict.get('organization')
-        if 'country' in _dict:
-            args['country'] = _dict.get('country')
-        if 'locality' in _dict:
-            args['locality'] = _dict.get('locality')
-        if 'province' in _dict:
-            args['province'] = _dict.get('province')
-        if 'street_address' in _dict:
-            args['street_address'] = _dict.get('street_address')
-        if 'postal_code' in _dict:
-            args['postal_code'] = _dict.get('postal_code')
-        if 'serial_number' in _dict:
-            args['serial_number'] = _dict.get('serial_number')
-        if 'data' in _dict:
-            args['data'] = _dict.get('data')
+        if (status := _dict.get('status')) is not None:
+            args['status'] = status
+        if (max_ttl_seconds := _dict.get('max_ttl_seconds')) is not None:
+            args['max_ttl_seconds'] = max_ttl_seconds
+        if (crl_expiry_seconds := _dict.get('crl_expiry_seconds')) is not None:
+            args['crl_expiry_seconds'] = crl_expiry_seconds
+        if (crl_disable := _dict.get('crl_disable')) is not None:
+            args['crl_disable'] = crl_disable
+        if (issuing_certificates_urls_encoded := _dict.get('issuing_certificates_urls_encoded')) is not None:
+            args['issuing_certificates_urls_encoded'] = issuing_certificates_urls_encoded
+        if (alt_names := _dict.get('alt_names')) is not None:
+            args['alt_names'] = alt_names
+        if (ip_sans := _dict.get('ip_sans')) is not None:
+            args['ip_sans'] = ip_sans
+        if (uri_sans := _dict.get('uri_sans')) is not None:
+            args['uri_sans'] = uri_sans
+        if (other_sans := _dict.get('other_sans')) is not None:
+            args['other_sans'] = other_sans
+        if (format := _dict.get('format')) is not None:
+            args['format'] = format
+        if (private_key_format := _dict.get('private_key_format')) is not None:
+            args['private_key_format'] = private_key_format
+        if (exclude_cn_from_sans := _dict.get('exclude_cn_from_sans')) is not None:
+            args['exclude_cn_from_sans'] = exclude_cn_from_sans
+        if (ou := _dict.get('ou')) is not None:
+            args['ou'] = ou
+        if (organization := _dict.get('organization')) is not None:
+            args['organization'] = organization
+        if (country := _dict.get('country')) is not None:
+            args['country'] = country
+        if (locality := _dict.get('locality')) is not None:
+            args['locality'] = locality
+        if (province := _dict.get('province')) is not None:
+            args['province'] = province
+        if (street_address := _dict.get('street_address')) is not None:
+            args['street_address'] = street_address
+        if (postal_code := _dict.get('postal_code')) is not None:
+            args['postal_code'] = postal_code
+        if (serial_number := _dict.get('serial_number')) is not None:
+            args['serial_number'] = serial_number
+        if (data := _dict.get('data')) is not None:
+            args['data'] = data
         return cls(**args)
 
     @classmethod
@@ -16353,14 +16656,14 @@ class PrivateCertificateConfigurationIntermediateCACSR(PrivateCertificateCAData)
     def from_dict(cls, _dict: Dict) -> 'PrivateCertificateConfigurationIntermediateCACSR':
         """Initialize a PrivateCertificateConfigurationIntermediateCACSR object from a json dictionary."""
         args = {}
-        if 'csr' in _dict:
-            args['csr'] = _dict.get('csr')
-        if 'private_key' in _dict:
-            args['private_key'] = _dict.get('private_key')
-        if 'private_key_type' in _dict:
-            args['private_key_type'] = _dict.get('private_key_type')
-        if 'expiration' in _dict:
-            args['expiration'] = _dict.get('expiration')
+        if (csr := _dict.get('csr')) is not None:
+            args['csr'] = csr
+        if (private_key := _dict.get('private_key')) is not None:
+            args['private_key'] = private_key
+        if (private_key_type := _dict.get('private_key_type')) is not None:
+            args['private_key_type'] = private_key_type
+        if (expiration := _dict.get('expiration')) is not None:
+            args['expiration'] = expiration
         return cls(**args)
 
     @classmethod
@@ -16540,50 +16843,50 @@ class PrivateCertificateConfigurationIntermediateCAMetadata(ConfigurationMetadat
     def from_dict(cls, _dict: Dict) -> 'PrivateCertificateConfigurationIntermediateCAMetadata':
         """Initialize a PrivateCertificateConfigurationIntermediateCAMetadata object from a json dictionary."""
         args = {}
-        if 'config_type' in _dict:
-            args['config_type'] = _dict.get('config_type')
+        if (config_type := _dict.get('config_type')) is not None:
+            args['config_type'] = config_type
         else:
             raise ValueError('Required property \'config_type\' not present in PrivateCertificateConfigurationIntermediateCAMetadata JSON')
-        if 'name' in _dict:
-            args['name'] = _dict.get('name')
+        if (name := _dict.get('name')) is not None:
+            args['name'] = name
         else:
             raise ValueError('Required property \'name\' not present in PrivateCertificateConfigurationIntermediateCAMetadata JSON')
-        if 'secret_type' in _dict:
-            args['secret_type'] = _dict.get('secret_type')
+        if (secret_type := _dict.get('secret_type')) is not None:
+            args['secret_type'] = secret_type
         else:
             raise ValueError('Required property \'secret_type\' not present in PrivateCertificateConfigurationIntermediateCAMetadata JSON')
-        if 'created_by' in _dict:
-            args['created_by'] = _dict.get('created_by')
+        if (created_by := _dict.get('created_by')) is not None:
+            args['created_by'] = created_by
         else:
             raise ValueError('Required property \'created_by\' not present in PrivateCertificateConfigurationIntermediateCAMetadata JSON')
-        if 'created_at' in _dict:
-            args['created_at'] = string_to_datetime(_dict.get('created_at'))
+        if (created_at := _dict.get('created_at')) is not None:
+            args['created_at'] = string_to_datetime(created_at)
         else:
             raise ValueError('Required property \'created_at\' not present in PrivateCertificateConfigurationIntermediateCAMetadata JSON')
-        if 'updated_at' in _dict:
-            args['updated_at'] = string_to_datetime(_dict.get('updated_at'))
+        if (updated_at := _dict.get('updated_at')) is not None:
+            args['updated_at'] = string_to_datetime(updated_at)
         else:
             raise ValueError('Required property \'updated_at\' not present in PrivateCertificateConfigurationIntermediateCAMetadata JSON')
-        if 'common_name' in _dict:
-            args['common_name'] = _dict.get('common_name')
+        if (common_name := _dict.get('common_name')) is not None:
+            args['common_name'] = common_name
         else:
             raise ValueError('Required property \'common_name\' not present in PrivateCertificateConfigurationIntermediateCAMetadata JSON')
-        if 'crl_distribution_points_encoded' in _dict:
-            args['crl_distribution_points_encoded'] = _dict.get('crl_distribution_points_encoded')
-        if 'expiration_date' in _dict:
-            args['expiration_date'] = string_to_datetime(_dict.get('expiration_date'))
-        if 'issuer' in _dict:
-            args['issuer'] = _dict.get('issuer')
-        if 'key_type' in _dict:
-            args['key_type'] = _dict.get('key_type')
-        if 'key_bits' in _dict:
-            args['key_bits'] = _dict.get('key_bits')
-        if 'signing_method' in _dict:
-            args['signing_method'] = _dict.get('signing_method')
+        if (crl_distribution_points_encoded := _dict.get('crl_distribution_points_encoded')) is not None:
+            args['crl_distribution_points_encoded'] = crl_distribution_points_encoded
+        if (expiration_date := _dict.get('expiration_date')) is not None:
+            args['expiration_date'] = string_to_datetime(expiration_date)
+        if (issuer := _dict.get('issuer')) is not None:
+            args['issuer'] = issuer
+        if (key_type := _dict.get('key_type')) is not None:
+            args['key_type'] = key_type
+        if (key_bits := _dict.get('key_bits')) is not None:
+            args['key_bits'] = key_bits
+        if (signing_method := _dict.get('signing_method')) is not None:
+            args['signing_method'] = signing_method
         else:
             raise ValueError('Required property \'signing_method\' not present in PrivateCertificateConfigurationIntermediateCAMetadata JSON')
-        if 'status' in _dict:
-            args['status'] = _dict.get('status')
+        if (status := _dict.get('status')) is not None:
+            args['status'] = status
         return cls(**args)
 
     @classmethod
@@ -16793,16 +17096,16 @@ class PrivateCertificateConfigurationIntermediateCAPatch(ConfigurationPatch):
     def from_dict(cls, _dict: Dict) -> 'PrivateCertificateConfigurationIntermediateCAPatch':
         """Initialize a PrivateCertificateConfigurationIntermediateCAPatch object from a json dictionary."""
         args = {}
-        if 'max_ttl' in _dict:
-            args['max_ttl'] = _dict.get('max_ttl')
-        if 'crl_expiry' in _dict:
-            args['crl_expiry'] = _dict.get('crl_expiry')
-        if 'crl_disable' in _dict:
-            args['crl_disable'] = _dict.get('crl_disable')
-        if 'crl_distribution_points_encoded' in _dict:
-            args['crl_distribution_points_encoded'] = _dict.get('crl_distribution_points_encoded')
-        if 'issuing_certificates_urls_encoded' in _dict:
-            args['issuing_certificates_urls_encoded'] = _dict.get('issuing_certificates_urls_encoded')
+        if (max_ttl := _dict.get('max_ttl')) is not None:
+            args['max_ttl'] = max_ttl
+        if (crl_expiry := _dict.get('crl_expiry')) is not None:
+            args['crl_expiry'] = crl_expiry
+        if (crl_disable := _dict.get('crl_disable')) is not None:
+            args['crl_disable'] = crl_disable
+        if (crl_distribution_points_encoded := _dict.get('crl_distribution_points_encoded')) is not None:
+            args['crl_distribution_points_encoded'] = crl_distribution_points_encoded
+        if (issuing_certificates_urls_encoded := _dict.get('issuing_certificates_urls_encoded')) is not None:
+            args['issuing_certificates_urls_encoded'] = issuing_certificates_urls_encoded
         return cls(**args)
 
     @classmethod
@@ -17096,70 +17399,70 @@ class PrivateCertificateConfigurationIntermediateCAPrototype(ConfigurationProtot
     def from_dict(cls, _dict: Dict) -> 'PrivateCertificateConfigurationIntermediateCAPrototype':
         """Initialize a PrivateCertificateConfigurationIntermediateCAPrototype object from a json dictionary."""
         args = {}
-        if 'config_type' in _dict:
-            args['config_type'] = _dict.get('config_type')
+        if (config_type := _dict.get('config_type')) is not None:
+            args['config_type'] = config_type
         else:
             raise ValueError('Required property \'config_type\' not present in PrivateCertificateConfigurationIntermediateCAPrototype JSON')
-        if 'name' in _dict:
-            args['name'] = _dict.get('name')
+        if (name := _dict.get('name')) is not None:
+            args['name'] = name
         else:
             raise ValueError('Required property \'name\' not present in PrivateCertificateConfigurationIntermediateCAPrototype JSON')
-        if 'max_ttl' in _dict:
-            args['max_ttl'] = _dict.get('max_ttl')
+        if (max_ttl := _dict.get('max_ttl')) is not None:
+            args['max_ttl'] = max_ttl
         else:
             raise ValueError('Required property \'max_ttl\' not present in PrivateCertificateConfigurationIntermediateCAPrototype JSON')
-        if 'signing_method' in _dict:
-            args['signing_method'] = _dict.get('signing_method')
+        if (signing_method := _dict.get('signing_method')) is not None:
+            args['signing_method'] = signing_method
         else:
             raise ValueError('Required property \'signing_method\' not present in PrivateCertificateConfigurationIntermediateCAPrototype JSON')
-        if 'issuer' in _dict:
-            args['issuer'] = _dict.get('issuer')
-        if 'crl_expiry' in _dict:
-            args['crl_expiry'] = _dict.get('crl_expiry')
-        if 'crl_disable' in _dict:
-            args['crl_disable'] = _dict.get('crl_disable')
-        if 'crl_distribution_points_encoded' in _dict:
-            args['crl_distribution_points_encoded'] = _dict.get('crl_distribution_points_encoded')
-        if 'issuing_certificates_urls_encoded' in _dict:
-            args['issuing_certificates_urls_encoded'] = _dict.get('issuing_certificates_urls_encoded')
-        if 'common_name' in _dict:
-            args['common_name'] = _dict.get('common_name')
+        if (issuer := _dict.get('issuer')) is not None:
+            args['issuer'] = issuer
+        if (crl_expiry := _dict.get('crl_expiry')) is not None:
+            args['crl_expiry'] = crl_expiry
+        if (crl_disable := _dict.get('crl_disable')) is not None:
+            args['crl_disable'] = crl_disable
+        if (crl_distribution_points_encoded := _dict.get('crl_distribution_points_encoded')) is not None:
+            args['crl_distribution_points_encoded'] = crl_distribution_points_encoded
+        if (issuing_certificates_urls_encoded := _dict.get('issuing_certificates_urls_encoded')) is not None:
+            args['issuing_certificates_urls_encoded'] = issuing_certificates_urls_encoded
+        if (common_name := _dict.get('common_name')) is not None:
+            args['common_name'] = common_name
         else:
             raise ValueError('Required property \'common_name\' not present in PrivateCertificateConfigurationIntermediateCAPrototype JSON')
-        if 'alt_names' in _dict:
-            args['alt_names'] = _dict.get('alt_names')
-        if 'ip_sans' in _dict:
-            args['ip_sans'] = _dict.get('ip_sans')
-        if 'uri_sans' in _dict:
-            args['uri_sans'] = _dict.get('uri_sans')
-        if 'other_sans' in _dict:
-            args['other_sans'] = _dict.get('other_sans')
-        if 'format' in _dict:
-            args['format'] = _dict.get('format')
-        if 'private_key_format' in _dict:
-            args['private_key_format'] = _dict.get('private_key_format')
-        if 'key_type' in _dict:
-            args['key_type'] = _dict.get('key_type')
-        if 'key_bits' in _dict:
-            args['key_bits'] = _dict.get('key_bits')
-        if 'exclude_cn_from_sans' in _dict:
-            args['exclude_cn_from_sans'] = _dict.get('exclude_cn_from_sans')
-        if 'ou' in _dict:
-            args['ou'] = _dict.get('ou')
-        if 'organization' in _dict:
-            args['organization'] = _dict.get('organization')
-        if 'country' in _dict:
-            args['country'] = _dict.get('country')
-        if 'locality' in _dict:
-            args['locality'] = _dict.get('locality')
-        if 'province' in _dict:
-            args['province'] = _dict.get('province')
-        if 'street_address' in _dict:
-            args['street_address'] = _dict.get('street_address')
-        if 'postal_code' in _dict:
-            args['postal_code'] = _dict.get('postal_code')
-        if 'serial_number' in _dict:
-            args['serial_number'] = _dict.get('serial_number')
+        if (alt_names := _dict.get('alt_names')) is not None:
+            args['alt_names'] = alt_names
+        if (ip_sans := _dict.get('ip_sans')) is not None:
+            args['ip_sans'] = ip_sans
+        if (uri_sans := _dict.get('uri_sans')) is not None:
+            args['uri_sans'] = uri_sans
+        if (other_sans := _dict.get('other_sans')) is not None:
+            args['other_sans'] = other_sans
+        if (format := _dict.get('format')) is not None:
+            args['format'] = format
+        if (private_key_format := _dict.get('private_key_format')) is not None:
+            args['private_key_format'] = private_key_format
+        if (key_type := _dict.get('key_type')) is not None:
+            args['key_type'] = key_type
+        if (key_bits := _dict.get('key_bits')) is not None:
+            args['key_bits'] = key_bits
+        if (exclude_cn_from_sans := _dict.get('exclude_cn_from_sans')) is not None:
+            args['exclude_cn_from_sans'] = exclude_cn_from_sans
+        if (ou := _dict.get('ou')) is not None:
+            args['ou'] = ou
+        if (organization := _dict.get('organization')) is not None:
+            args['organization'] = organization
+        if (country := _dict.get('country')) is not None:
+            args['country'] = country
+        if (locality := _dict.get('locality')) is not None:
+            args['locality'] = locality
+        if (province := _dict.get('province')) is not None:
+            args['province'] = province
+        if (street_address := _dict.get('street_address')) is not None:
+            args['street_address'] = street_address
+        if (postal_code := _dict.get('postal_code')) is not None:
+            args['postal_code'] = postal_code
+        if (serial_number := _dict.get('serial_number')) is not None:
+            args['serial_number'] = serial_number
         return cls(**args)
 
     @classmethod
@@ -17577,90 +17880,90 @@ class PrivateCertificateConfigurationRootCA(Configuration):
     def from_dict(cls, _dict: Dict) -> 'PrivateCertificateConfigurationRootCA':
         """Initialize a PrivateCertificateConfigurationRootCA object from a json dictionary."""
         args = {}
-        if 'config_type' in _dict:
-            args['config_type'] = _dict.get('config_type')
+        if (config_type := _dict.get('config_type')) is not None:
+            args['config_type'] = config_type
         else:
             raise ValueError('Required property \'config_type\' not present in PrivateCertificateConfigurationRootCA JSON')
-        if 'name' in _dict:
-            args['name'] = _dict.get('name')
+        if (name := _dict.get('name')) is not None:
+            args['name'] = name
         else:
             raise ValueError('Required property \'name\' not present in PrivateCertificateConfigurationRootCA JSON')
-        if 'secret_type' in _dict:
-            args['secret_type'] = _dict.get('secret_type')
+        if (secret_type := _dict.get('secret_type')) is not None:
+            args['secret_type'] = secret_type
         else:
             raise ValueError('Required property \'secret_type\' not present in PrivateCertificateConfigurationRootCA JSON')
-        if 'created_by' in _dict:
-            args['created_by'] = _dict.get('created_by')
+        if (created_by := _dict.get('created_by')) is not None:
+            args['created_by'] = created_by
         else:
             raise ValueError('Required property \'created_by\' not present in PrivateCertificateConfigurationRootCA JSON')
-        if 'created_at' in _dict:
-            args['created_at'] = string_to_datetime(_dict.get('created_at'))
+        if (created_at := _dict.get('created_at')) is not None:
+            args['created_at'] = string_to_datetime(created_at)
         else:
             raise ValueError('Required property \'created_at\' not present in PrivateCertificateConfigurationRootCA JSON')
-        if 'updated_at' in _dict:
-            args['updated_at'] = string_to_datetime(_dict.get('updated_at'))
+        if (updated_at := _dict.get('updated_at')) is not None:
+            args['updated_at'] = string_to_datetime(updated_at)
         else:
             raise ValueError('Required property \'updated_at\' not present in PrivateCertificateConfigurationRootCA JSON')
-        if 'common_name' in _dict:
-            args['common_name'] = _dict.get('common_name')
+        if (common_name := _dict.get('common_name')) is not None:
+            args['common_name'] = common_name
         else:
             raise ValueError('Required property \'common_name\' not present in PrivateCertificateConfigurationRootCA JSON')
-        if 'crl_distribution_points_encoded' in _dict:
-            args['crl_distribution_points_encoded'] = _dict.get('crl_distribution_points_encoded')
-        if 'expiration_date' in _dict:
-            args['expiration_date'] = string_to_datetime(_dict.get('expiration_date'))
-        if 'key_type' in _dict:
-            args['key_type'] = _dict.get('key_type')
-        if 'key_bits' in _dict:
-            args['key_bits'] = _dict.get('key_bits')
-        if 'status' in _dict:
-            args['status'] = _dict.get('status')
-        if 'max_ttl_seconds' in _dict:
-            args['max_ttl_seconds'] = _dict.get('max_ttl_seconds')
-        if 'crl_expiry_seconds' in _dict:
-            args['crl_expiry_seconds'] = _dict.get('crl_expiry_seconds')
-        if 'crl_disable' in _dict:
-            args['crl_disable'] = _dict.get('crl_disable')
-        if 'issuing_certificates_urls_encoded' in _dict:
-            args['issuing_certificates_urls_encoded'] = _dict.get('issuing_certificates_urls_encoded')
-        if 'alt_names' in _dict:
-            args['alt_names'] = _dict.get('alt_names')
-        if 'ip_sans' in _dict:
-            args['ip_sans'] = _dict.get('ip_sans')
-        if 'uri_sans' in _dict:
-            args['uri_sans'] = _dict.get('uri_sans')
-        if 'other_sans' in _dict:
-            args['other_sans'] = _dict.get('other_sans')
-        if 'ttl_seconds' in _dict:
-            args['ttl_seconds'] = _dict.get('ttl_seconds')
-        if 'format' in _dict:
-            args['format'] = _dict.get('format')
-        if 'private_key_format' in _dict:
-            args['private_key_format'] = _dict.get('private_key_format')
-        if 'max_path_length' in _dict:
-            args['max_path_length'] = _dict.get('max_path_length')
-        if 'exclude_cn_from_sans' in _dict:
-            args['exclude_cn_from_sans'] = _dict.get('exclude_cn_from_sans')
-        if 'permitted_dns_domains' in _dict:
-            args['permitted_dns_domains'] = _dict.get('permitted_dns_domains')
-        if 'ou' in _dict:
-            args['ou'] = _dict.get('ou')
-        if 'organization' in _dict:
-            args['organization'] = _dict.get('organization')
-        if 'country' in _dict:
-            args['country'] = _dict.get('country')
-        if 'locality' in _dict:
-            args['locality'] = _dict.get('locality')
-        if 'province' in _dict:
-            args['province'] = _dict.get('province')
-        if 'street_address' in _dict:
-            args['street_address'] = _dict.get('street_address')
-        if 'postal_code' in _dict:
-            args['postal_code'] = _dict.get('postal_code')
-        if 'serial_number' in _dict:
-            args['serial_number'] = _dict.get('serial_number')
-        if 'data' in _dict:
-            args['data'] = _dict.get('data')
+        if (crl_distribution_points_encoded := _dict.get('crl_distribution_points_encoded')) is not None:
+            args['crl_distribution_points_encoded'] = crl_distribution_points_encoded
+        if (expiration_date := _dict.get('expiration_date')) is not None:
+            args['expiration_date'] = string_to_datetime(expiration_date)
+        if (key_type := _dict.get('key_type')) is not None:
+            args['key_type'] = key_type
+        if (key_bits := _dict.get('key_bits')) is not None:
+            args['key_bits'] = key_bits
+        if (status := _dict.get('status')) is not None:
+            args['status'] = status
+        if (max_ttl_seconds := _dict.get('max_ttl_seconds')) is not None:
+            args['max_ttl_seconds'] = max_ttl_seconds
+        if (crl_expiry_seconds := _dict.get('crl_expiry_seconds')) is not None:
+            args['crl_expiry_seconds'] = crl_expiry_seconds
+        if (crl_disable := _dict.get('crl_disable')) is not None:
+            args['crl_disable'] = crl_disable
+        if (issuing_certificates_urls_encoded := _dict.get('issuing_certificates_urls_encoded')) is not None:
+            args['issuing_certificates_urls_encoded'] = issuing_certificates_urls_encoded
+        if (alt_names := _dict.get('alt_names')) is not None:
+            args['alt_names'] = alt_names
+        if (ip_sans := _dict.get('ip_sans')) is not None:
+            args['ip_sans'] = ip_sans
+        if (uri_sans := _dict.get('uri_sans')) is not None:
+            args['uri_sans'] = uri_sans
+        if (other_sans := _dict.get('other_sans')) is not None:
+            args['other_sans'] = other_sans
+        if (ttl_seconds := _dict.get('ttl_seconds')) is not None:
+            args['ttl_seconds'] = ttl_seconds
+        if (format := _dict.get('format')) is not None:
+            args['format'] = format
+        if (private_key_format := _dict.get('private_key_format')) is not None:
+            args['private_key_format'] = private_key_format
+        if (max_path_length := _dict.get('max_path_length')) is not None:
+            args['max_path_length'] = max_path_length
+        if (exclude_cn_from_sans := _dict.get('exclude_cn_from_sans')) is not None:
+            args['exclude_cn_from_sans'] = exclude_cn_from_sans
+        if (permitted_dns_domains := _dict.get('permitted_dns_domains')) is not None:
+            args['permitted_dns_domains'] = permitted_dns_domains
+        if (ou := _dict.get('ou')) is not None:
+            args['ou'] = ou
+        if (organization := _dict.get('organization')) is not None:
+            args['organization'] = organization
+        if (country := _dict.get('country')) is not None:
+            args['country'] = country
+        if (locality := _dict.get('locality')) is not None:
+            args['locality'] = locality
+        if (province := _dict.get('province')) is not None:
+            args['province'] = province
+        if (street_address := _dict.get('street_address')) is not None:
+            args['street_address'] = street_address
+        if (postal_code := _dict.get('postal_code')) is not None:
+            args['postal_code'] = postal_code
+        if (serial_number := _dict.get('serial_number')) is not None:
+            args['serial_number'] = serial_number
+        if (data := _dict.get('data')) is not None:
+            args['data'] = data
         return cls(**args)
 
     @classmethod
@@ -17956,44 +18259,44 @@ class PrivateCertificateConfigurationRootCAMetadata(ConfigurationMetadata):
     def from_dict(cls, _dict: Dict) -> 'PrivateCertificateConfigurationRootCAMetadata':
         """Initialize a PrivateCertificateConfigurationRootCAMetadata object from a json dictionary."""
         args = {}
-        if 'config_type' in _dict:
-            args['config_type'] = _dict.get('config_type')
+        if (config_type := _dict.get('config_type')) is not None:
+            args['config_type'] = config_type
         else:
             raise ValueError('Required property \'config_type\' not present in PrivateCertificateConfigurationRootCAMetadata JSON')
-        if 'name' in _dict:
-            args['name'] = _dict.get('name')
+        if (name := _dict.get('name')) is not None:
+            args['name'] = name
         else:
             raise ValueError('Required property \'name\' not present in PrivateCertificateConfigurationRootCAMetadata JSON')
-        if 'secret_type' in _dict:
-            args['secret_type'] = _dict.get('secret_type')
+        if (secret_type := _dict.get('secret_type')) is not None:
+            args['secret_type'] = secret_type
         else:
             raise ValueError('Required property \'secret_type\' not present in PrivateCertificateConfigurationRootCAMetadata JSON')
-        if 'created_by' in _dict:
-            args['created_by'] = _dict.get('created_by')
+        if (created_by := _dict.get('created_by')) is not None:
+            args['created_by'] = created_by
         else:
             raise ValueError('Required property \'created_by\' not present in PrivateCertificateConfigurationRootCAMetadata JSON')
-        if 'created_at' in _dict:
-            args['created_at'] = string_to_datetime(_dict.get('created_at'))
+        if (created_at := _dict.get('created_at')) is not None:
+            args['created_at'] = string_to_datetime(created_at)
         else:
             raise ValueError('Required property \'created_at\' not present in PrivateCertificateConfigurationRootCAMetadata JSON')
-        if 'updated_at' in _dict:
-            args['updated_at'] = string_to_datetime(_dict.get('updated_at'))
+        if (updated_at := _dict.get('updated_at')) is not None:
+            args['updated_at'] = string_to_datetime(updated_at)
         else:
             raise ValueError('Required property \'updated_at\' not present in PrivateCertificateConfigurationRootCAMetadata JSON')
-        if 'common_name' in _dict:
-            args['common_name'] = _dict.get('common_name')
+        if (common_name := _dict.get('common_name')) is not None:
+            args['common_name'] = common_name
         else:
             raise ValueError('Required property \'common_name\' not present in PrivateCertificateConfigurationRootCAMetadata JSON')
-        if 'crl_distribution_points_encoded' in _dict:
-            args['crl_distribution_points_encoded'] = _dict.get('crl_distribution_points_encoded')
-        if 'expiration_date' in _dict:
-            args['expiration_date'] = string_to_datetime(_dict.get('expiration_date'))
-        if 'key_type' in _dict:
-            args['key_type'] = _dict.get('key_type')
-        if 'key_bits' in _dict:
-            args['key_bits'] = _dict.get('key_bits')
-        if 'status' in _dict:
-            args['status'] = _dict.get('status')
+        if (crl_distribution_points_encoded := _dict.get('crl_distribution_points_encoded')) is not None:
+            args['crl_distribution_points_encoded'] = crl_distribution_points_encoded
+        if (expiration_date := _dict.get('expiration_date')) is not None:
+            args['expiration_date'] = string_to_datetime(expiration_date)
+        if (key_type := _dict.get('key_type')) is not None:
+            args['key_type'] = key_type
+        if (key_bits := _dict.get('key_bits')) is not None:
+            args['key_bits'] = key_bits
+        if (status := _dict.get('status')) is not None:
+            args['status'] = status
         return cls(**args)
 
     @classmethod
@@ -18186,16 +18489,16 @@ class PrivateCertificateConfigurationRootCAPatch(ConfigurationPatch):
     def from_dict(cls, _dict: Dict) -> 'PrivateCertificateConfigurationRootCAPatch':
         """Initialize a PrivateCertificateConfigurationRootCAPatch object from a json dictionary."""
         args = {}
-        if 'max_ttl' in _dict:
-            args['max_ttl'] = _dict.get('max_ttl')
-        if 'crl_expiry' in _dict:
-            args['crl_expiry'] = _dict.get('crl_expiry')
-        if 'crl_disable' in _dict:
-            args['crl_disable'] = _dict.get('crl_disable')
-        if 'crl_distribution_points_encoded' in _dict:
-            args['crl_distribution_points_encoded'] = _dict.get('crl_distribution_points_encoded')
-        if 'issuing_certificates_urls_encoded' in _dict:
-            args['issuing_certificates_urls_encoded'] = _dict.get('issuing_certificates_urls_encoded')
+        if (max_ttl := _dict.get('max_ttl')) is not None:
+            args['max_ttl'] = max_ttl
+        if (crl_expiry := _dict.get('crl_expiry')) is not None:
+            args['crl_expiry'] = crl_expiry
+        if (crl_disable := _dict.get('crl_disable')) is not None:
+            args['crl_disable'] = crl_disable
+        if (crl_distribution_points_encoded := _dict.get('crl_distribution_points_encoded')) is not None:
+            args['crl_distribution_points_encoded'] = crl_distribution_points_encoded
+        if (issuing_certificates_urls_encoded := _dict.get('issuing_certificates_urls_encoded')) is not None:
+            args['issuing_certificates_urls_encoded'] = issuing_certificates_urls_encoded
         return cls(**args)
 
     @classmethod
@@ -18505,70 +18808,70 @@ class PrivateCertificateConfigurationRootCAPrototype(ConfigurationPrototype):
     def from_dict(cls, _dict: Dict) -> 'PrivateCertificateConfigurationRootCAPrototype':
         """Initialize a PrivateCertificateConfigurationRootCAPrototype object from a json dictionary."""
         args = {}
-        if 'config_type' in _dict:
-            args['config_type'] = _dict.get('config_type')
+        if (config_type := _dict.get('config_type')) is not None:
+            args['config_type'] = config_type
         else:
             raise ValueError('Required property \'config_type\' not present in PrivateCertificateConfigurationRootCAPrototype JSON')
-        if 'name' in _dict:
-            args['name'] = _dict.get('name')
+        if (name := _dict.get('name')) is not None:
+            args['name'] = name
         else:
             raise ValueError('Required property \'name\' not present in PrivateCertificateConfigurationRootCAPrototype JSON')
-        if 'max_ttl' in _dict:
-            args['max_ttl'] = _dict.get('max_ttl')
+        if (max_ttl := _dict.get('max_ttl')) is not None:
+            args['max_ttl'] = max_ttl
         else:
             raise ValueError('Required property \'max_ttl\' not present in PrivateCertificateConfigurationRootCAPrototype JSON')
-        if 'crl_expiry' in _dict:
-            args['crl_expiry'] = _dict.get('crl_expiry')
-        if 'crl_disable' in _dict:
-            args['crl_disable'] = _dict.get('crl_disable')
-        if 'crl_distribution_points_encoded' in _dict:
-            args['crl_distribution_points_encoded'] = _dict.get('crl_distribution_points_encoded')
-        if 'issuing_certificates_urls_encoded' in _dict:
-            args['issuing_certificates_urls_encoded'] = _dict.get('issuing_certificates_urls_encoded')
-        if 'common_name' in _dict:
-            args['common_name'] = _dict.get('common_name')
+        if (crl_expiry := _dict.get('crl_expiry')) is not None:
+            args['crl_expiry'] = crl_expiry
+        if (crl_disable := _dict.get('crl_disable')) is not None:
+            args['crl_disable'] = crl_disable
+        if (crl_distribution_points_encoded := _dict.get('crl_distribution_points_encoded')) is not None:
+            args['crl_distribution_points_encoded'] = crl_distribution_points_encoded
+        if (issuing_certificates_urls_encoded := _dict.get('issuing_certificates_urls_encoded')) is not None:
+            args['issuing_certificates_urls_encoded'] = issuing_certificates_urls_encoded
+        if (common_name := _dict.get('common_name')) is not None:
+            args['common_name'] = common_name
         else:
             raise ValueError('Required property \'common_name\' not present in PrivateCertificateConfigurationRootCAPrototype JSON')
-        if 'alt_names' in _dict:
-            args['alt_names'] = _dict.get('alt_names')
-        if 'ip_sans' in _dict:
-            args['ip_sans'] = _dict.get('ip_sans')
-        if 'uri_sans' in _dict:
-            args['uri_sans'] = _dict.get('uri_sans')
-        if 'other_sans' in _dict:
-            args['other_sans'] = _dict.get('other_sans')
-        if 'ttl' in _dict:
-            args['ttl'] = _dict.get('ttl')
-        if 'format' in _dict:
-            args['format'] = _dict.get('format')
-        if 'private_key_format' in _dict:
-            args['private_key_format'] = _dict.get('private_key_format')
-        if 'key_type' in _dict:
-            args['key_type'] = _dict.get('key_type')
-        if 'key_bits' in _dict:
-            args['key_bits'] = _dict.get('key_bits')
-        if 'max_path_length' in _dict:
-            args['max_path_length'] = _dict.get('max_path_length')
-        if 'exclude_cn_from_sans' in _dict:
-            args['exclude_cn_from_sans'] = _dict.get('exclude_cn_from_sans')
-        if 'permitted_dns_domains' in _dict:
-            args['permitted_dns_domains'] = _dict.get('permitted_dns_domains')
-        if 'ou' in _dict:
-            args['ou'] = _dict.get('ou')
-        if 'organization' in _dict:
-            args['organization'] = _dict.get('organization')
-        if 'country' in _dict:
-            args['country'] = _dict.get('country')
-        if 'locality' in _dict:
-            args['locality'] = _dict.get('locality')
-        if 'province' in _dict:
-            args['province'] = _dict.get('province')
-        if 'street_address' in _dict:
-            args['street_address'] = _dict.get('street_address')
-        if 'postal_code' in _dict:
-            args['postal_code'] = _dict.get('postal_code')
-        if 'serial_number' in _dict:
-            args['serial_number'] = _dict.get('serial_number')
+        if (alt_names := _dict.get('alt_names')) is not None:
+            args['alt_names'] = alt_names
+        if (ip_sans := _dict.get('ip_sans')) is not None:
+            args['ip_sans'] = ip_sans
+        if (uri_sans := _dict.get('uri_sans')) is not None:
+            args['uri_sans'] = uri_sans
+        if (other_sans := _dict.get('other_sans')) is not None:
+            args['other_sans'] = other_sans
+        if (ttl := _dict.get('ttl')) is not None:
+            args['ttl'] = ttl
+        if (format := _dict.get('format')) is not None:
+            args['format'] = format
+        if (private_key_format := _dict.get('private_key_format')) is not None:
+            args['private_key_format'] = private_key_format
+        if (key_type := _dict.get('key_type')) is not None:
+            args['key_type'] = key_type
+        if (key_bits := _dict.get('key_bits')) is not None:
+            args['key_bits'] = key_bits
+        if (max_path_length := _dict.get('max_path_length')) is not None:
+            args['max_path_length'] = max_path_length
+        if (exclude_cn_from_sans := _dict.get('exclude_cn_from_sans')) is not None:
+            args['exclude_cn_from_sans'] = exclude_cn_from_sans
+        if (permitted_dns_domains := _dict.get('permitted_dns_domains')) is not None:
+            args['permitted_dns_domains'] = permitted_dns_domains
+        if (ou := _dict.get('ou')) is not None:
+            args['ou'] = ou
+        if (organization := _dict.get('organization')) is not None:
+            args['organization'] = organization
+        if (country := _dict.get('country')) is not None:
+            args['country'] = country
+        if (locality := _dict.get('locality')) is not None:
+            args['locality'] = locality
+        if (province := _dict.get('province')) is not None:
+            args['province'] = province
+        if (street_address := _dict.get('street_address')) is not None:
+            args['street_address'] = street_address
+        if (postal_code := _dict.get('postal_code')) is not None:
+            args['postal_code'] = postal_code
+        if (serial_number := _dict.get('serial_number')) is not None:
+            args['serial_number'] = serial_number
         return cls(**args)
 
     @classmethod
@@ -19084,108 +19387,108 @@ class PrivateCertificateConfigurationTemplate(Configuration):
     def from_dict(cls, _dict: Dict) -> 'PrivateCertificateConfigurationTemplate':
         """Initialize a PrivateCertificateConfigurationTemplate object from a json dictionary."""
         args = {}
-        if 'config_type' in _dict:
-            args['config_type'] = _dict.get('config_type')
+        if (config_type := _dict.get('config_type')) is not None:
+            args['config_type'] = config_type
         else:
             raise ValueError('Required property \'config_type\' not present in PrivateCertificateConfigurationTemplate JSON')
-        if 'name' in _dict:
-            args['name'] = _dict.get('name')
+        if (name := _dict.get('name')) is not None:
+            args['name'] = name
         else:
             raise ValueError('Required property \'name\' not present in PrivateCertificateConfigurationTemplate JSON')
-        if 'secret_type' in _dict:
-            args['secret_type'] = _dict.get('secret_type')
+        if (secret_type := _dict.get('secret_type')) is not None:
+            args['secret_type'] = secret_type
         else:
             raise ValueError('Required property \'secret_type\' not present in PrivateCertificateConfigurationTemplate JSON')
-        if 'created_by' in _dict:
-            args['created_by'] = _dict.get('created_by')
+        if (created_by := _dict.get('created_by')) is not None:
+            args['created_by'] = created_by
         else:
             raise ValueError('Required property \'created_by\' not present in PrivateCertificateConfigurationTemplate JSON')
-        if 'created_at' in _dict:
-            args['created_at'] = string_to_datetime(_dict.get('created_at'))
+        if (created_at := _dict.get('created_at')) is not None:
+            args['created_at'] = string_to_datetime(created_at)
         else:
             raise ValueError('Required property \'created_at\' not present in PrivateCertificateConfigurationTemplate JSON')
-        if 'updated_at' in _dict:
-            args['updated_at'] = string_to_datetime(_dict.get('updated_at'))
+        if (updated_at := _dict.get('updated_at')) is not None:
+            args['updated_at'] = string_to_datetime(updated_at)
         else:
             raise ValueError('Required property \'updated_at\' not present in PrivateCertificateConfigurationTemplate JSON')
-        if 'certificate_authority' in _dict:
-            args['certificate_authority'] = _dict.get('certificate_authority')
+        if (certificate_authority := _dict.get('certificate_authority')) is not None:
+            args['certificate_authority'] = certificate_authority
         else:
             raise ValueError('Required property \'certificate_authority\' not present in PrivateCertificateConfigurationTemplate JSON')
-        if 'allowed_secret_groups' in _dict:
-            args['allowed_secret_groups'] = _dict.get('allowed_secret_groups')
-        if 'max_ttl_seconds' in _dict:
-            args['max_ttl_seconds'] = _dict.get('max_ttl_seconds')
-        if 'ttl_seconds' in _dict:
-            args['ttl_seconds'] = _dict.get('ttl_seconds')
-        if 'allow_localhost' in _dict:
-            args['allow_localhost'] = _dict.get('allow_localhost')
-        if 'allowed_domains' in _dict:
-            args['allowed_domains'] = _dict.get('allowed_domains')
-        if 'allowed_domains_template' in _dict:
-            args['allowed_domains_template'] = _dict.get('allowed_domains_template')
-        if 'allow_bare_domains' in _dict:
-            args['allow_bare_domains'] = _dict.get('allow_bare_domains')
-        if 'allow_subdomains' in _dict:
-            args['allow_subdomains'] = _dict.get('allow_subdomains')
-        if 'allow_glob_domains' in _dict:
-            args['allow_glob_domains'] = _dict.get('allow_glob_domains')
-        if 'allow_any_name' in _dict:
-            args['allow_any_name'] = _dict.get('allow_any_name')
-        if 'enforce_hostnames' in _dict:
-            args['enforce_hostnames'] = _dict.get('enforce_hostnames')
-        if 'allow_ip_sans' in _dict:
-            args['allow_ip_sans'] = _dict.get('allow_ip_sans')
-        if 'allowed_uri_sans' in _dict:
-            args['allowed_uri_sans'] = _dict.get('allowed_uri_sans')
-        if 'allowed_other_sans' in _dict:
-            args['allowed_other_sans'] = _dict.get('allowed_other_sans')
-        if 'server_flag' in _dict:
-            args['server_flag'] = _dict.get('server_flag')
-        if 'client_flag' in _dict:
-            args['client_flag'] = _dict.get('client_flag')
-        if 'code_signing_flag' in _dict:
-            args['code_signing_flag'] = _dict.get('code_signing_flag')
-        if 'email_protection_flag' in _dict:
-            args['email_protection_flag'] = _dict.get('email_protection_flag')
-        if 'key_type' in _dict:
-            args['key_type'] = _dict.get('key_type')
-        if 'key_bits' in _dict:
-            args['key_bits'] = _dict.get('key_bits')
-        if 'key_usage' in _dict:
-            args['key_usage'] = _dict.get('key_usage')
-        if 'ext_key_usage' in _dict:
-            args['ext_key_usage'] = _dict.get('ext_key_usage')
-        if 'ext_key_usage_oids' in _dict:
-            args['ext_key_usage_oids'] = _dict.get('ext_key_usage_oids')
-        if 'use_csr_common_name' in _dict:
-            args['use_csr_common_name'] = _dict.get('use_csr_common_name')
-        if 'use_csr_sans' in _dict:
-            args['use_csr_sans'] = _dict.get('use_csr_sans')
-        if 'ou' in _dict:
-            args['ou'] = _dict.get('ou')
-        if 'organization' in _dict:
-            args['organization'] = _dict.get('organization')
-        if 'country' in _dict:
-            args['country'] = _dict.get('country')
-        if 'locality' in _dict:
-            args['locality'] = _dict.get('locality')
-        if 'province' in _dict:
-            args['province'] = _dict.get('province')
-        if 'street_address' in _dict:
-            args['street_address'] = _dict.get('street_address')
-        if 'postal_code' in _dict:
-            args['postal_code'] = _dict.get('postal_code')
-        if 'serial_number' in _dict:
-            args['serial_number'] = _dict.get('serial_number')
-        if 'require_cn' in _dict:
-            args['require_cn'] = _dict.get('require_cn')
-        if 'policy_identifiers' in _dict:
-            args['policy_identifiers'] = _dict.get('policy_identifiers')
-        if 'basic_constraints_valid_for_non_ca' in _dict:
-            args['basic_constraints_valid_for_non_ca'] = _dict.get('basic_constraints_valid_for_non_ca')
-        if 'not_before_duration_seconds' in _dict:
-            args['not_before_duration_seconds'] = _dict.get('not_before_duration_seconds')
+        if (allowed_secret_groups := _dict.get('allowed_secret_groups')) is not None:
+            args['allowed_secret_groups'] = allowed_secret_groups
+        if (max_ttl_seconds := _dict.get('max_ttl_seconds')) is not None:
+            args['max_ttl_seconds'] = max_ttl_seconds
+        if (ttl_seconds := _dict.get('ttl_seconds')) is not None:
+            args['ttl_seconds'] = ttl_seconds
+        if (allow_localhost := _dict.get('allow_localhost')) is not None:
+            args['allow_localhost'] = allow_localhost
+        if (allowed_domains := _dict.get('allowed_domains')) is not None:
+            args['allowed_domains'] = allowed_domains
+        if (allowed_domains_template := _dict.get('allowed_domains_template')) is not None:
+            args['allowed_domains_template'] = allowed_domains_template
+        if (allow_bare_domains := _dict.get('allow_bare_domains')) is not None:
+            args['allow_bare_domains'] = allow_bare_domains
+        if (allow_subdomains := _dict.get('allow_subdomains')) is not None:
+            args['allow_subdomains'] = allow_subdomains
+        if (allow_glob_domains := _dict.get('allow_glob_domains')) is not None:
+            args['allow_glob_domains'] = allow_glob_domains
+        if (allow_any_name := _dict.get('allow_any_name')) is not None:
+            args['allow_any_name'] = allow_any_name
+        if (enforce_hostnames := _dict.get('enforce_hostnames')) is not None:
+            args['enforce_hostnames'] = enforce_hostnames
+        if (allow_ip_sans := _dict.get('allow_ip_sans')) is not None:
+            args['allow_ip_sans'] = allow_ip_sans
+        if (allowed_uri_sans := _dict.get('allowed_uri_sans')) is not None:
+            args['allowed_uri_sans'] = allowed_uri_sans
+        if (allowed_other_sans := _dict.get('allowed_other_sans')) is not None:
+            args['allowed_other_sans'] = allowed_other_sans
+        if (server_flag := _dict.get('server_flag')) is not None:
+            args['server_flag'] = server_flag
+        if (client_flag := _dict.get('client_flag')) is not None:
+            args['client_flag'] = client_flag
+        if (code_signing_flag := _dict.get('code_signing_flag')) is not None:
+            args['code_signing_flag'] = code_signing_flag
+        if (email_protection_flag := _dict.get('email_protection_flag')) is not None:
+            args['email_protection_flag'] = email_protection_flag
+        if (key_type := _dict.get('key_type')) is not None:
+            args['key_type'] = key_type
+        if (key_bits := _dict.get('key_bits')) is not None:
+            args['key_bits'] = key_bits
+        if (key_usage := _dict.get('key_usage')) is not None:
+            args['key_usage'] = key_usage
+        if (ext_key_usage := _dict.get('ext_key_usage')) is not None:
+            args['ext_key_usage'] = ext_key_usage
+        if (ext_key_usage_oids := _dict.get('ext_key_usage_oids')) is not None:
+            args['ext_key_usage_oids'] = ext_key_usage_oids
+        if (use_csr_common_name := _dict.get('use_csr_common_name')) is not None:
+            args['use_csr_common_name'] = use_csr_common_name
+        if (use_csr_sans := _dict.get('use_csr_sans')) is not None:
+            args['use_csr_sans'] = use_csr_sans
+        if (ou := _dict.get('ou')) is not None:
+            args['ou'] = ou
+        if (organization := _dict.get('organization')) is not None:
+            args['organization'] = organization
+        if (country := _dict.get('country')) is not None:
+            args['country'] = country
+        if (locality := _dict.get('locality')) is not None:
+            args['locality'] = locality
+        if (province := _dict.get('province')) is not None:
+            args['province'] = province
+        if (street_address := _dict.get('street_address')) is not None:
+            args['street_address'] = street_address
+        if (postal_code := _dict.get('postal_code')) is not None:
+            args['postal_code'] = postal_code
+        if (serial_number := _dict.get('serial_number')) is not None:
+            args['serial_number'] = serial_number
+        if (require_cn := _dict.get('require_cn')) is not None:
+            args['require_cn'] = require_cn
+        if (policy_identifiers := _dict.get('policy_identifiers')) is not None:
+            args['policy_identifiers'] = policy_identifiers
+        if (basic_constraints_valid_for_non_ca := _dict.get('basic_constraints_valid_for_non_ca')) is not None:
+            args['basic_constraints_valid_for_non_ca'] = basic_constraints_valid_for_non_ca
+        if (not_before_duration_seconds := _dict.get('not_before_duration_seconds')) is not None:
+            args['not_before_duration_seconds'] = not_before_duration_seconds
         return cls(**args)
 
     @classmethod
@@ -19419,32 +19722,32 @@ class PrivateCertificateConfigurationTemplateMetadata(ConfigurationMetadata):
     def from_dict(cls, _dict: Dict) -> 'PrivateCertificateConfigurationTemplateMetadata':
         """Initialize a PrivateCertificateConfigurationTemplateMetadata object from a json dictionary."""
         args = {}
-        if 'config_type' in _dict:
-            args['config_type'] = _dict.get('config_type')
+        if (config_type := _dict.get('config_type')) is not None:
+            args['config_type'] = config_type
         else:
             raise ValueError('Required property \'config_type\' not present in PrivateCertificateConfigurationTemplateMetadata JSON')
-        if 'name' in _dict:
-            args['name'] = _dict.get('name')
+        if (name := _dict.get('name')) is not None:
+            args['name'] = name
         else:
             raise ValueError('Required property \'name\' not present in PrivateCertificateConfigurationTemplateMetadata JSON')
-        if 'secret_type' in _dict:
-            args['secret_type'] = _dict.get('secret_type')
+        if (secret_type := _dict.get('secret_type')) is not None:
+            args['secret_type'] = secret_type
         else:
             raise ValueError('Required property \'secret_type\' not present in PrivateCertificateConfigurationTemplateMetadata JSON')
-        if 'created_by' in _dict:
-            args['created_by'] = _dict.get('created_by')
+        if (created_by := _dict.get('created_by')) is not None:
+            args['created_by'] = created_by
         else:
             raise ValueError('Required property \'created_by\' not present in PrivateCertificateConfigurationTemplateMetadata JSON')
-        if 'created_at' in _dict:
-            args['created_at'] = string_to_datetime(_dict.get('created_at'))
+        if (created_at := _dict.get('created_at')) is not None:
+            args['created_at'] = string_to_datetime(created_at)
         else:
             raise ValueError('Required property \'created_at\' not present in PrivateCertificateConfigurationTemplateMetadata JSON')
-        if 'updated_at' in _dict:
-            args['updated_at'] = string_to_datetime(_dict.get('updated_at'))
+        if (updated_at := _dict.get('updated_at')) is not None:
+            args['updated_at'] = string_to_datetime(updated_at)
         else:
             raise ValueError('Required property \'updated_at\' not present in PrivateCertificateConfigurationTemplateMetadata JSON')
-        if 'certificate_authority' in _dict:
-            args['certificate_authority'] = _dict.get('certificate_authority')
+        if (certificate_authority := _dict.get('certificate_authority')) is not None:
+            args['certificate_authority'] = certificate_authority
         else:
             raise ValueError('Required property \'certificate_authority\' not present in PrivateCertificateConfigurationTemplateMetadata JSON')
         return cls(**args)
@@ -19887,80 +20190,80 @@ class PrivateCertificateConfigurationTemplatePatch(ConfigurationPatch):
     def from_dict(cls, _dict: Dict) -> 'PrivateCertificateConfigurationTemplatePatch':
         """Initialize a PrivateCertificateConfigurationTemplatePatch object from a json dictionary."""
         args = {}
-        if 'allowed_secret_groups' in _dict:
-            args['allowed_secret_groups'] = _dict.get('allowed_secret_groups')
-        if 'max_ttl' in _dict:
-            args['max_ttl'] = _dict.get('max_ttl')
-        if 'ttl' in _dict:
-            args['ttl'] = _dict.get('ttl')
-        if 'allow_localhost' in _dict:
-            args['allow_localhost'] = _dict.get('allow_localhost')
-        if 'allowed_domains' in _dict:
-            args['allowed_domains'] = _dict.get('allowed_domains')
-        if 'allowed_domains_template' in _dict:
-            args['allowed_domains_template'] = _dict.get('allowed_domains_template')
-        if 'allow_bare_domains' in _dict:
-            args['allow_bare_domains'] = _dict.get('allow_bare_domains')
-        if 'allow_subdomains' in _dict:
-            args['allow_subdomains'] = _dict.get('allow_subdomains')
-        if 'allow_glob_domains' in _dict:
-            args['allow_glob_domains'] = _dict.get('allow_glob_domains')
-        if 'allow_any_name' in _dict:
-            args['allow_any_name'] = _dict.get('allow_any_name')
-        if 'enforce_hostnames' in _dict:
-            args['enforce_hostnames'] = _dict.get('enforce_hostnames')
-        if 'allow_ip_sans' in _dict:
-            args['allow_ip_sans'] = _dict.get('allow_ip_sans')
-        if 'allowed_uri_sans' in _dict:
-            args['allowed_uri_sans'] = _dict.get('allowed_uri_sans')
-        if 'allowed_other_sans' in _dict:
-            args['allowed_other_sans'] = _dict.get('allowed_other_sans')
-        if 'server_flag' in _dict:
-            args['server_flag'] = _dict.get('server_flag')
-        if 'client_flag' in _dict:
-            args['client_flag'] = _dict.get('client_flag')
-        if 'code_signing_flag' in _dict:
-            args['code_signing_flag'] = _dict.get('code_signing_flag')
-        if 'email_protection_flag' in _dict:
-            args['email_protection_flag'] = _dict.get('email_protection_flag')
-        if 'key_type' in _dict:
-            args['key_type'] = _dict.get('key_type')
-        if 'key_bits' in _dict:
-            args['key_bits'] = _dict.get('key_bits')
-        if 'key_usage' in _dict:
-            args['key_usage'] = _dict.get('key_usage')
-        if 'ext_key_usage' in _dict:
-            args['ext_key_usage'] = _dict.get('ext_key_usage')
-        if 'ext_key_usage_oids' in _dict:
-            args['ext_key_usage_oids'] = _dict.get('ext_key_usage_oids')
-        if 'use_csr_common_name' in _dict:
-            args['use_csr_common_name'] = _dict.get('use_csr_common_name')
-        if 'use_csr_sans' in _dict:
-            args['use_csr_sans'] = _dict.get('use_csr_sans')
-        if 'ou' in _dict:
-            args['ou'] = _dict.get('ou')
-        if 'organization' in _dict:
-            args['organization'] = _dict.get('organization')
-        if 'country' in _dict:
-            args['country'] = _dict.get('country')
-        if 'locality' in _dict:
-            args['locality'] = _dict.get('locality')
-        if 'province' in _dict:
-            args['province'] = _dict.get('province')
-        if 'street_address' in _dict:
-            args['street_address'] = _dict.get('street_address')
-        if 'postal_code' in _dict:
-            args['postal_code'] = _dict.get('postal_code')
-        if 'serial_number' in _dict:
-            args['serial_number'] = _dict.get('serial_number')
-        if 'require_cn' in _dict:
-            args['require_cn'] = _dict.get('require_cn')
-        if 'policy_identifiers' in _dict:
-            args['policy_identifiers'] = _dict.get('policy_identifiers')
-        if 'basic_constraints_valid_for_non_ca' in _dict:
-            args['basic_constraints_valid_for_non_ca'] = _dict.get('basic_constraints_valid_for_non_ca')
-        if 'not_before_duration' in _dict:
-            args['not_before_duration'] = _dict.get('not_before_duration')
+        if (allowed_secret_groups := _dict.get('allowed_secret_groups')) is not None:
+            args['allowed_secret_groups'] = allowed_secret_groups
+        if (max_ttl := _dict.get('max_ttl')) is not None:
+            args['max_ttl'] = max_ttl
+        if (ttl := _dict.get('ttl')) is not None:
+            args['ttl'] = ttl
+        if (allow_localhost := _dict.get('allow_localhost')) is not None:
+            args['allow_localhost'] = allow_localhost
+        if (allowed_domains := _dict.get('allowed_domains')) is not None:
+            args['allowed_domains'] = allowed_domains
+        if (allowed_domains_template := _dict.get('allowed_domains_template')) is not None:
+            args['allowed_domains_template'] = allowed_domains_template
+        if (allow_bare_domains := _dict.get('allow_bare_domains')) is not None:
+            args['allow_bare_domains'] = allow_bare_domains
+        if (allow_subdomains := _dict.get('allow_subdomains')) is not None:
+            args['allow_subdomains'] = allow_subdomains
+        if (allow_glob_domains := _dict.get('allow_glob_domains')) is not None:
+            args['allow_glob_domains'] = allow_glob_domains
+        if (allow_any_name := _dict.get('allow_any_name')) is not None:
+            args['allow_any_name'] = allow_any_name
+        if (enforce_hostnames := _dict.get('enforce_hostnames')) is not None:
+            args['enforce_hostnames'] = enforce_hostnames
+        if (allow_ip_sans := _dict.get('allow_ip_sans')) is not None:
+            args['allow_ip_sans'] = allow_ip_sans
+        if (allowed_uri_sans := _dict.get('allowed_uri_sans')) is not None:
+            args['allowed_uri_sans'] = allowed_uri_sans
+        if (allowed_other_sans := _dict.get('allowed_other_sans')) is not None:
+            args['allowed_other_sans'] = allowed_other_sans
+        if (server_flag := _dict.get('server_flag')) is not None:
+            args['server_flag'] = server_flag
+        if (client_flag := _dict.get('client_flag')) is not None:
+            args['client_flag'] = client_flag
+        if (code_signing_flag := _dict.get('code_signing_flag')) is not None:
+            args['code_signing_flag'] = code_signing_flag
+        if (email_protection_flag := _dict.get('email_protection_flag')) is not None:
+            args['email_protection_flag'] = email_protection_flag
+        if (key_type := _dict.get('key_type')) is not None:
+            args['key_type'] = key_type
+        if (key_bits := _dict.get('key_bits')) is not None:
+            args['key_bits'] = key_bits
+        if (key_usage := _dict.get('key_usage')) is not None:
+            args['key_usage'] = key_usage
+        if (ext_key_usage := _dict.get('ext_key_usage')) is not None:
+            args['ext_key_usage'] = ext_key_usage
+        if (ext_key_usage_oids := _dict.get('ext_key_usage_oids')) is not None:
+            args['ext_key_usage_oids'] = ext_key_usage_oids
+        if (use_csr_common_name := _dict.get('use_csr_common_name')) is not None:
+            args['use_csr_common_name'] = use_csr_common_name
+        if (use_csr_sans := _dict.get('use_csr_sans')) is not None:
+            args['use_csr_sans'] = use_csr_sans
+        if (ou := _dict.get('ou')) is not None:
+            args['ou'] = ou
+        if (organization := _dict.get('organization')) is not None:
+            args['organization'] = organization
+        if (country := _dict.get('country')) is not None:
+            args['country'] = country
+        if (locality := _dict.get('locality')) is not None:
+            args['locality'] = locality
+        if (province := _dict.get('province')) is not None:
+            args['province'] = province
+        if (street_address := _dict.get('street_address')) is not None:
+            args['street_address'] = street_address
+        if (postal_code := _dict.get('postal_code')) is not None:
+            args['postal_code'] = postal_code
+        if (serial_number := _dict.get('serial_number')) is not None:
+            args['serial_number'] = serial_number
+        if (require_cn := _dict.get('require_cn')) is not None:
+            args['require_cn'] = require_cn
+        if (policy_identifiers := _dict.get('policy_identifiers')) is not None:
+            args['policy_identifiers'] = policy_identifiers
+        if (basic_constraints_valid_for_non_ca := _dict.get('basic_constraints_valid_for_non_ca')) is not None:
+            args['basic_constraints_valid_for_non_ca'] = basic_constraints_valid_for_non_ca
+        if (not_before_duration := _dict.get('not_before_duration')) is not None:
+            args['not_before_duration'] = not_before_duration
         return cls(**args)
 
     @classmethod
@@ -20476,94 +20779,94 @@ class PrivateCertificateConfigurationTemplatePrototype(ConfigurationPrototype):
     def from_dict(cls, _dict: Dict) -> 'PrivateCertificateConfigurationTemplatePrototype':
         """Initialize a PrivateCertificateConfigurationTemplatePrototype object from a json dictionary."""
         args = {}
-        if 'config_type' in _dict:
-            args['config_type'] = _dict.get('config_type')
+        if (config_type := _dict.get('config_type')) is not None:
+            args['config_type'] = config_type
         else:
             raise ValueError('Required property \'config_type\' not present in PrivateCertificateConfigurationTemplatePrototype JSON')
-        if 'name' in _dict:
-            args['name'] = _dict.get('name')
+        if (name := _dict.get('name')) is not None:
+            args['name'] = name
         else:
             raise ValueError('Required property \'name\' not present in PrivateCertificateConfigurationTemplatePrototype JSON')
-        if 'certificate_authority' in _dict:
-            args['certificate_authority'] = _dict.get('certificate_authority')
+        if (certificate_authority := _dict.get('certificate_authority')) is not None:
+            args['certificate_authority'] = certificate_authority
         else:
             raise ValueError('Required property \'certificate_authority\' not present in PrivateCertificateConfigurationTemplatePrototype JSON')
-        if 'allowed_secret_groups' in _dict:
-            args['allowed_secret_groups'] = _dict.get('allowed_secret_groups')
-        if 'max_ttl' in _dict:
-            args['max_ttl'] = _dict.get('max_ttl')
-        if 'ttl' in _dict:
-            args['ttl'] = _dict.get('ttl')
-        if 'allow_localhost' in _dict:
-            args['allow_localhost'] = _dict.get('allow_localhost')
-        if 'allowed_domains' in _dict:
-            args['allowed_domains'] = _dict.get('allowed_domains')
-        if 'allowed_domains_template' in _dict:
-            args['allowed_domains_template'] = _dict.get('allowed_domains_template')
-        if 'allow_bare_domains' in _dict:
-            args['allow_bare_domains'] = _dict.get('allow_bare_domains')
-        if 'allow_subdomains' in _dict:
-            args['allow_subdomains'] = _dict.get('allow_subdomains')
-        if 'allow_glob_domains' in _dict:
-            args['allow_glob_domains'] = _dict.get('allow_glob_domains')
-        if 'allow_wildcard_certificates' in _dict:
-            args['allow_wildcard_certificates'] = _dict.get('allow_wildcard_certificates')
-        if 'allow_any_name' in _dict:
-            args['allow_any_name'] = _dict.get('allow_any_name')
-        if 'enforce_hostnames' in _dict:
-            args['enforce_hostnames'] = _dict.get('enforce_hostnames')
-        if 'allow_ip_sans' in _dict:
-            args['allow_ip_sans'] = _dict.get('allow_ip_sans')
-        if 'allowed_uri_sans' in _dict:
-            args['allowed_uri_sans'] = _dict.get('allowed_uri_sans')
-        if 'allowed_other_sans' in _dict:
-            args['allowed_other_sans'] = _dict.get('allowed_other_sans')
-        if 'server_flag' in _dict:
-            args['server_flag'] = _dict.get('server_flag')
-        if 'client_flag' in _dict:
-            args['client_flag'] = _dict.get('client_flag')
-        if 'code_signing_flag' in _dict:
-            args['code_signing_flag'] = _dict.get('code_signing_flag')
-        if 'email_protection_flag' in _dict:
-            args['email_protection_flag'] = _dict.get('email_protection_flag')
-        if 'key_type' in _dict:
-            args['key_type'] = _dict.get('key_type')
-        if 'key_bits' in _dict:
-            args['key_bits'] = _dict.get('key_bits')
-        if 'key_usage' in _dict:
-            args['key_usage'] = _dict.get('key_usage')
-        if 'ext_key_usage' in _dict:
-            args['ext_key_usage'] = _dict.get('ext_key_usage')
-        if 'ext_key_usage_oids' in _dict:
-            args['ext_key_usage_oids'] = _dict.get('ext_key_usage_oids')
-        if 'use_csr_common_name' in _dict:
-            args['use_csr_common_name'] = _dict.get('use_csr_common_name')
-        if 'use_csr_sans' in _dict:
-            args['use_csr_sans'] = _dict.get('use_csr_sans')
-        if 'ou' in _dict:
-            args['ou'] = _dict.get('ou')
-        if 'organization' in _dict:
-            args['organization'] = _dict.get('organization')
-        if 'country' in _dict:
-            args['country'] = _dict.get('country')
-        if 'locality' in _dict:
-            args['locality'] = _dict.get('locality')
-        if 'province' in _dict:
-            args['province'] = _dict.get('province')
-        if 'street_address' in _dict:
-            args['street_address'] = _dict.get('street_address')
-        if 'postal_code' in _dict:
-            args['postal_code'] = _dict.get('postal_code')
-        if 'serial_number' in _dict:
-            args['serial_number'] = _dict.get('serial_number')
-        if 'require_cn' in _dict:
-            args['require_cn'] = _dict.get('require_cn')
-        if 'policy_identifiers' in _dict:
-            args['policy_identifiers'] = _dict.get('policy_identifiers')
-        if 'basic_constraints_valid_for_non_ca' in _dict:
-            args['basic_constraints_valid_for_non_ca'] = _dict.get('basic_constraints_valid_for_non_ca')
-        if 'not_before_duration' in _dict:
-            args['not_before_duration'] = _dict.get('not_before_duration')
+        if (allowed_secret_groups := _dict.get('allowed_secret_groups')) is not None:
+            args['allowed_secret_groups'] = allowed_secret_groups
+        if (max_ttl := _dict.get('max_ttl')) is not None:
+            args['max_ttl'] = max_ttl
+        if (ttl := _dict.get('ttl')) is not None:
+            args['ttl'] = ttl
+        if (allow_localhost := _dict.get('allow_localhost')) is not None:
+            args['allow_localhost'] = allow_localhost
+        if (allowed_domains := _dict.get('allowed_domains')) is not None:
+            args['allowed_domains'] = allowed_domains
+        if (allowed_domains_template := _dict.get('allowed_domains_template')) is not None:
+            args['allowed_domains_template'] = allowed_domains_template
+        if (allow_bare_domains := _dict.get('allow_bare_domains')) is not None:
+            args['allow_bare_domains'] = allow_bare_domains
+        if (allow_subdomains := _dict.get('allow_subdomains')) is not None:
+            args['allow_subdomains'] = allow_subdomains
+        if (allow_glob_domains := _dict.get('allow_glob_domains')) is not None:
+            args['allow_glob_domains'] = allow_glob_domains
+        if (allow_wildcard_certificates := _dict.get('allow_wildcard_certificates')) is not None:
+            args['allow_wildcard_certificates'] = allow_wildcard_certificates
+        if (allow_any_name := _dict.get('allow_any_name')) is not None:
+            args['allow_any_name'] = allow_any_name
+        if (enforce_hostnames := _dict.get('enforce_hostnames')) is not None:
+            args['enforce_hostnames'] = enforce_hostnames
+        if (allow_ip_sans := _dict.get('allow_ip_sans')) is not None:
+            args['allow_ip_sans'] = allow_ip_sans
+        if (allowed_uri_sans := _dict.get('allowed_uri_sans')) is not None:
+            args['allowed_uri_sans'] = allowed_uri_sans
+        if (allowed_other_sans := _dict.get('allowed_other_sans')) is not None:
+            args['allowed_other_sans'] = allowed_other_sans
+        if (server_flag := _dict.get('server_flag')) is not None:
+            args['server_flag'] = server_flag
+        if (client_flag := _dict.get('client_flag')) is not None:
+            args['client_flag'] = client_flag
+        if (code_signing_flag := _dict.get('code_signing_flag')) is not None:
+            args['code_signing_flag'] = code_signing_flag
+        if (email_protection_flag := _dict.get('email_protection_flag')) is not None:
+            args['email_protection_flag'] = email_protection_flag
+        if (key_type := _dict.get('key_type')) is not None:
+            args['key_type'] = key_type
+        if (key_bits := _dict.get('key_bits')) is not None:
+            args['key_bits'] = key_bits
+        if (key_usage := _dict.get('key_usage')) is not None:
+            args['key_usage'] = key_usage
+        if (ext_key_usage := _dict.get('ext_key_usage')) is not None:
+            args['ext_key_usage'] = ext_key_usage
+        if (ext_key_usage_oids := _dict.get('ext_key_usage_oids')) is not None:
+            args['ext_key_usage_oids'] = ext_key_usage_oids
+        if (use_csr_common_name := _dict.get('use_csr_common_name')) is not None:
+            args['use_csr_common_name'] = use_csr_common_name
+        if (use_csr_sans := _dict.get('use_csr_sans')) is not None:
+            args['use_csr_sans'] = use_csr_sans
+        if (ou := _dict.get('ou')) is not None:
+            args['ou'] = ou
+        if (organization := _dict.get('organization')) is not None:
+            args['organization'] = organization
+        if (country := _dict.get('country')) is not None:
+            args['country'] = country
+        if (locality := _dict.get('locality')) is not None:
+            args['locality'] = locality
+        if (province := _dict.get('province')) is not None:
+            args['province'] = province
+        if (street_address := _dict.get('street_address')) is not None:
+            args['street_address'] = street_address
+        if (postal_code := _dict.get('postal_code')) is not None:
+            args['postal_code'] = postal_code
+        if (serial_number := _dict.get('serial_number')) is not None:
+            args['serial_number'] = serial_number
+        if (require_cn := _dict.get('require_cn')) is not None:
+            args['require_cn'] = require_cn
+        if (policy_identifiers := _dict.get('policy_identifiers')) is not None:
+            args['policy_identifiers'] = policy_identifiers
+        if (basic_constraints_valid_for_non_ca := _dict.get('basic_constraints_valid_for_non_ca')) is not None:
+            args['basic_constraints_valid_for_non_ca'] = basic_constraints_valid_for_non_ca
+        if (not_before_duration := _dict.get('not_before_duration')) is not None:
+            args['not_before_duration'] = not_before_duration
         return cls(**args)
 
     @classmethod
@@ -20897,96 +21200,96 @@ class PrivateCertificateMetadata(SecretMetadata):
     def from_dict(cls, _dict: Dict) -> 'PrivateCertificateMetadata':
         """Initialize a PrivateCertificateMetadata object from a json dictionary."""
         args = {}
-        if 'created_by' in _dict:
-            args['created_by'] = _dict.get('created_by')
+        if (created_by := _dict.get('created_by')) is not None:
+            args['created_by'] = created_by
         else:
             raise ValueError('Required property \'created_by\' not present in PrivateCertificateMetadata JSON')
-        if 'created_at' in _dict:
-            args['created_at'] = string_to_datetime(_dict.get('created_at'))
+        if (created_at := _dict.get('created_at')) is not None:
+            args['created_at'] = string_to_datetime(created_at)
         else:
             raise ValueError('Required property \'created_at\' not present in PrivateCertificateMetadata JSON')
-        if 'crn' in _dict:
-            args['crn'] = _dict.get('crn')
+        if (crn := _dict.get('crn')) is not None:
+            args['crn'] = crn
         else:
             raise ValueError('Required property \'crn\' not present in PrivateCertificateMetadata JSON')
-        if 'custom_metadata' in _dict:
-            args['custom_metadata'] = _dict.get('custom_metadata')
-        if 'description' in _dict:
-            args['description'] = _dict.get('description')
-        if 'downloaded' in _dict:
-            args['downloaded'] = _dict.get('downloaded')
-        if 'id' in _dict:
-            args['id'] = _dict.get('id')
+        if (custom_metadata := _dict.get('custom_metadata')) is not None:
+            args['custom_metadata'] = custom_metadata
+        if (description := _dict.get('description')) is not None:
+            args['description'] = description
+        if (downloaded := _dict.get('downloaded')) is not None:
+            args['downloaded'] = downloaded
+        if (id := _dict.get('id')) is not None:
+            args['id'] = id
         else:
             raise ValueError('Required property \'id\' not present in PrivateCertificateMetadata JSON')
-        if 'labels' in _dict:
-            args['labels'] = _dict.get('labels')
-        if 'locks_total' in _dict:
-            args['locks_total'] = _dict.get('locks_total')
-        if 'name' in _dict:
-            args['name'] = _dict.get('name')
-        if 'secret_group_id' in _dict:
-            args['secret_group_id'] = _dict.get('secret_group_id')
+        if (labels := _dict.get('labels')) is not None:
+            args['labels'] = labels
+        if (locks_total := _dict.get('locks_total')) is not None:
+            args['locks_total'] = locks_total
+        if (name := _dict.get('name')) is not None:
+            args['name'] = name
+        if (secret_group_id := _dict.get('secret_group_id')) is not None:
+            args['secret_group_id'] = secret_group_id
         else:
             raise ValueError('Required property \'secret_group_id\' not present in PrivateCertificateMetadata JSON')
-        if 'secret_type' in _dict:
-            args['secret_type'] = _dict.get('secret_type')
+        if (secret_type := _dict.get('secret_type')) is not None:
+            args['secret_type'] = secret_type
         else:
             raise ValueError('Required property \'secret_type\' not present in PrivateCertificateMetadata JSON')
-        if 'state' in _dict:
-            args['state'] = _dict.get('state')
-        if 'state_description' in _dict:
-            args['state_description'] = _dict.get('state_description')
-        if 'updated_at' in _dict:
-            args['updated_at'] = string_to_datetime(_dict.get('updated_at'))
+        if (state := _dict.get('state')) is not None:
+            args['state'] = state
+        if (state_description := _dict.get('state_description')) is not None:
+            args['state_description'] = state_description
+        if (updated_at := _dict.get('updated_at')) is not None:
+            args['updated_at'] = string_to_datetime(updated_at)
         else:
             raise ValueError('Required property \'updated_at\' not present in PrivateCertificateMetadata JSON')
-        if 'versions_total' in _dict:
-            args['versions_total'] = _dict.get('versions_total')
+        if (versions_total := _dict.get('versions_total')) is not None:
+            args['versions_total'] = versions_total
         else:
             raise ValueError('Required property \'versions_total\' not present in PrivateCertificateMetadata JSON')
-        if 'signing_algorithm' in _dict:
-            args['signing_algorithm'] = _dict.get('signing_algorithm')
+        if (signing_algorithm := _dict.get('signing_algorithm')) is not None:
+            args['signing_algorithm'] = signing_algorithm
         else:
             raise ValueError('Required property \'signing_algorithm\' not present in PrivateCertificateMetadata JSON')
-        if 'alt_names' in _dict:
-            args['alt_names'] = _dict.get('alt_names')
-        if 'certificate_authority' in _dict:
-            args['certificate_authority'] = _dict.get('certificate_authority')
-        if 'certificate_template' in _dict:
-            args['certificate_template'] = _dict.get('certificate_template')
+        if (alt_names := _dict.get('alt_names')) is not None:
+            args['alt_names'] = alt_names
+        if (certificate_authority := _dict.get('certificate_authority')) is not None:
+            args['certificate_authority'] = certificate_authority
+        if (certificate_template := _dict.get('certificate_template')) is not None:
+            args['certificate_template'] = certificate_template
         else:
             raise ValueError('Required property \'certificate_template\' not present in PrivateCertificateMetadata JSON')
-        if 'common_name' in _dict:
-            args['common_name'] = _dict.get('common_name')
+        if (common_name := _dict.get('common_name')) is not None:
+            args['common_name'] = common_name
         else:
             raise ValueError('Required property \'common_name\' not present in PrivateCertificateMetadata JSON')
-        if 'expiration_date' in _dict:
-            args['expiration_date'] = string_to_datetime(_dict.get('expiration_date'))
+        if (expiration_date := _dict.get('expiration_date')) is not None:
+            args['expiration_date'] = string_to_datetime(expiration_date)
         else:
             raise ValueError('Required property \'expiration_date\' not present in PrivateCertificateMetadata JSON')
-        if 'issuer' in _dict:
-            args['issuer'] = _dict.get('issuer')
+        if (issuer := _dict.get('issuer')) is not None:
+            args['issuer'] = issuer
         else:
             raise ValueError('Required property \'issuer\' not present in PrivateCertificateMetadata JSON')
-        if 'key_algorithm' in _dict:
-            args['key_algorithm'] = _dict.get('key_algorithm')
-        if 'next_rotation_date' in _dict:
-            args['next_rotation_date'] = string_to_datetime(_dict.get('next_rotation_date'))
-        if 'rotation' in _dict:
-            args['rotation'] = _dict.get('rotation')
-        if 'serial_number' in _dict:
-            args['serial_number'] = _dict.get('serial_number')
+        if (key_algorithm := _dict.get('key_algorithm')) is not None:
+            args['key_algorithm'] = key_algorithm
+        if (next_rotation_date := _dict.get('next_rotation_date')) is not None:
+            args['next_rotation_date'] = string_to_datetime(next_rotation_date)
+        if (rotation := _dict.get('rotation')) is not None:
+            args['rotation'] = rotation
+        if (serial_number := _dict.get('serial_number')) is not None:
+            args['serial_number'] = serial_number
         else:
             raise ValueError('Required property \'serial_number\' not present in PrivateCertificateMetadata JSON')
-        if 'validity' in _dict:
-            args['validity'] = CertificateValidity.from_dict(_dict.get('validity'))
+        if (validity := _dict.get('validity')) is not None:
+            args['validity'] = CertificateValidity.from_dict(validity)
         else:
             raise ValueError('Required property \'validity\' not present in PrivateCertificateMetadata JSON')
-        if 'revocation_time_seconds' in _dict:
-            args['revocation_time_seconds'] = _dict.get('revocation_time_seconds')
-        if 'revocation_time_rfc3339' in _dict:
-            args['revocation_time_rfc3339'] = string_to_datetime(_dict.get('revocation_time_rfc3339'))
+        if (revocation_time_seconds := _dict.get('revocation_time_seconds')) is not None:
+            args['revocation_time_seconds'] = revocation_time_seconds
+        if (revocation_time_rfc3339 := _dict.get('revocation_time_rfc3339')) is not None:
+            args['revocation_time_rfc3339'] = string_to_datetime(revocation_time_rfc3339)
         return cls(**args)
 
     @classmethod
@@ -21174,16 +21477,16 @@ class PrivateCertificateMetadataPatch(SecretMetadataPatch):
     def from_dict(cls, _dict: Dict) -> 'PrivateCertificateMetadataPatch':
         """Initialize a PrivateCertificateMetadataPatch object from a json dictionary."""
         args = {}
-        if 'name' in _dict:
-            args['name'] = _dict.get('name')
-        if 'description' in _dict:
-            args['description'] = _dict.get('description')
-        if 'labels' in _dict:
-            args['labels'] = _dict.get('labels')
-        if 'custom_metadata' in _dict:
-            args['custom_metadata'] = _dict.get('custom_metadata')
-        if 'rotation' in _dict:
-            args['rotation'] = _dict.get('rotation')
+        if (name := _dict.get('name')) is not None:
+            args['name'] = name
+        if (description := _dict.get('description')) is not None:
+            args['description'] = description
+        if (labels := _dict.get('labels')) is not None:
+            args['labels'] = labels
+        if (custom_metadata := _dict.get('custom_metadata')) is not None:
+            args['custom_metadata'] = custom_metadata
+        if (rotation := _dict.get('rotation')) is not None:
+            args['rotation'] = rotation
         return cls(**args)
 
     @classmethod
@@ -21392,52 +21695,52 @@ class PrivateCertificatePrototype(SecretPrototype):
     def from_dict(cls, _dict: Dict) -> 'PrivateCertificatePrototype':
         """Initialize a PrivateCertificatePrototype object from a json dictionary."""
         args = {}
-        if 'secret_type' in _dict:
-            args['secret_type'] = _dict.get('secret_type')
+        if (secret_type := _dict.get('secret_type')) is not None:
+            args['secret_type'] = secret_type
         else:
             raise ValueError('Required property \'secret_type\' not present in PrivateCertificatePrototype JSON')
-        if 'name' in _dict:
-            args['name'] = _dict.get('name')
+        if (name := _dict.get('name')) is not None:
+            args['name'] = name
         else:
             raise ValueError('Required property \'name\' not present in PrivateCertificatePrototype JSON')
-        if 'description' in _dict:
-            args['description'] = _dict.get('description')
-        if 'secret_group_id' in _dict:
-            args['secret_group_id'] = _dict.get('secret_group_id')
-        if 'labels' in _dict:
-            args['labels'] = _dict.get('labels')
-        if 'certificate_template' in _dict:
-            args['certificate_template'] = _dict.get('certificate_template')
+        if (description := _dict.get('description')) is not None:
+            args['description'] = description
+        if (secret_group_id := _dict.get('secret_group_id')) is not None:
+            args['secret_group_id'] = secret_group_id
+        if (labels := _dict.get('labels')) is not None:
+            args['labels'] = labels
+        if (certificate_template := _dict.get('certificate_template')) is not None:
+            args['certificate_template'] = certificate_template
         else:
             raise ValueError('Required property \'certificate_template\' not present in PrivateCertificatePrototype JSON')
-        if 'common_name' in _dict:
-            args['common_name'] = _dict.get('common_name')
+        if (common_name := _dict.get('common_name')) is not None:
+            args['common_name'] = common_name
         else:
             raise ValueError('Required property \'common_name\' not present in PrivateCertificatePrototype JSON')
-        if 'alt_names' in _dict:
-            args['alt_names'] = _dict.get('alt_names')
-        if 'ip_sans' in _dict:
-            args['ip_sans'] = _dict.get('ip_sans')
-        if 'uri_sans' in _dict:
-            args['uri_sans'] = _dict.get('uri_sans')
-        if 'other_sans' in _dict:
-            args['other_sans'] = _dict.get('other_sans')
-        if 'csr' in _dict:
-            args['csr'] = _dict.get('csr')
-        if 'format' in _dict:
-            args['format'] = _dict.get('format')
-        if 'private_key_format' in _dict:
-            args['private_key_format'] = _dict.get('private_key_format')
-        if 'exclude_cn_from_sans' in _dict:
-            args['exclude_cn_from_sans'] = _dict.get('exclude_cn_from_sans')
-        if 'ttl' in _dict:
-            args['ttl'] = _dict.get('ttl')
-        if 'rotation' in _dict:
-            args['rotation'] = _dict.get('rotation')
-        if 'custom_metadata' in _dict:
-            args['custom_metadata'] = _dict.get('custom_metadata')
-        if 'version_custom_metadata' in _dict:
-            args['version_custom_metadata'] = _dict.get('version_custom_metadata')
+        if (alt_names := _dict.get('alt_names')) is not None:
+            args['alt_names'] = alt_names
+        if (ip_sans := _dict.get('ip_sans')) is not None:
+            args['ip_sans'] = ip_sans
+        if (uri_sans := _dict.get('uri_sans')) is not None:
+            args['uri_sans'] = uri_sans
+        if (other_sans := _dict.get('other_sans')) is not None:
+            args['other_sans'] = other_sans
+        if (csr := _dict.get('csr')) is not None:
+            args['csr'] = csr
+        if (format := _dict.get('format')) is not None:
+            args['format'] = format
+        if (private_key_format := _dict.get('private_key_format')) is not None:
+            args['private_key_format'] = private_key_format
+        if (exclude_cn_from_sans := _dict.get('exclude_cn_from_sans')) is not None:
+            args['exclude_cn_from_sans'] = exclude_cn_from_sans
+        if (ttl := _dict.get('ttl')) is not None:
+            args['ttl'] = ttl
+        if (rotation := _dict.get('rotation')) is not None:
+            args['rotation'] = rotation
+        if (custom_metadata := _dict.get('custom_metadata')) is not None:
+            args['custom_metadata'] = custom_metadata
+        if (version_custom_metadata := _dict.get('version_custom_metadata')) is not None:
+            args['version_custom_metadata'] = version_custom_metadata
         return cls(**args)
 
     @classmethod
@@ -21673,68 +21976,68 @@ class PrivateCertificateVersion(SecretVersion):
     def from_dict(cls, _dict: Dict) -> 'PrivateCertificateVersion':
         """Initialize a PrivateCertificateVersion object from a json dictionary."""
         args = {}
-        if 'auto_rotated' in _dict:
-            args['auto_rotated'] = _dict.get('auto_rotated')
-        if 'created_by' in _dict:
-            args['created_by'] = _dict.get('created_by')
+        if (auto_rotated := _dict.get('auto_rotated')) is not None:
+            args['auto_rotated'] = auto_rotated
+        if (created_by := _dict.get('created_by')) is not None:
+            args['created_by'] = created_by
         else:
             raise ValueError('Required property \'created_by\' not present in PrivateCertificateVersion JSON')
-        if 'created_at' in _dict:
-            args['created_at'] = string_to_datetime(_dict.get('created_at'))
+        if (created_at := _dict.get('created_at')) is not None:
+            args['created_at'] = string_to_datetime(created_at)
         else:
             raise ValueError('Required property \'created_at\' not present in PrivateCertificateVersion JSON')
-        if 'downloaded' in _dict:
-            args['downloaded'] = _dict.get('downloaded')
-        if 'id' in _dict:
-            args['id'] = _dict.get('id')
+        if (downloaded := _dict.get('downloaded')) is not None:
+            args['downloaded'] = downloaded
+        if (id := _dict.get('id')) is not None:
+            args['id'] = id
         else:
             raise ValueError('Required property \'id\' not present in PrivateCertificateVersion JSON')
-        if 'secret_name' in _dict:
-            args['secret_name'] = _dict.get('secret_name')
-        if 'secret_type' in _dict:
-            args['secret_type'] = _dict.get('secret_type')
+        if (secret_name := _dict.get('secret_name')) is not None:
+            args['secret_name'] = secret_name
+        if (secret_type := _dict.get('secret_type')) is not None:
+            args['secret_type'] = secret_type
         else:
             raise ValueError('Required property \'secret_type\' not present in PrivateCertificateVersion JSON')
-        if 'secret_group_id' in _dict:
-            args['secret_group_id'] = _dict.get('secret_group_id')
+        if (secret_group_id := _dict.get('secret_group_id')) is not None:
+            args['secret_group_id'] = secret_group_id
         else:
             raise ValueError('Required property \'secret_group_id\' not present in PrivateCertificateVersion JSON')
-        if 'payload_available' in _dict:
-            args['payload_available'] = _dict.get('payload_available')
+        if (payload_available := _dict.get('payload_available')) is not None:
+            args['payload_available'] = payload_available
         else:
             raise ValueError('Required property \'payload_available\' not present in PrivateCertificateVersion JSON')
-        if 'alias' in _dict:
-            args['alias'] = _dict.get('alias')
-        if 'version_custom_metadata' in _dict:
-            args['version_custom_metadata'] = _dict.get('version_custom_metadata')
-        if 'secret_id' in _dict:
-            args['secret_id'] = _dict.get('secret_id')
+        if (alias := _dict.get('alias')) is not None:
+            args['alias'] = alias
+        if (version_custom_metadata := _dict.get('version_custom_metadata')) is not None:
+            args['version_custom_metadata'] = version_custom_metadata
+        if (secret_id := _dict.get('secret_id')) is not None:
+            args['secret_id'] = secret_id
         else:
             raise ValueError('Required property \'secret_id\' not present in PrivateCertificateVersion JSON')
-        if 'expiration_date' in _dict:
-            args['expiration_date'] = string_to_datetime(_dict.get('expiration_date'))
+        if (expiration_date := _dict.get('expiration_date')) is not None:
+            args['expiration_date'] = string_to_datetime(expiration_date)
         else:
             raise ValueError('Required property \'expiration_date\' not present in PrivateCertificateVersion JSON')
-        if 'serial_number' in _dict:
-            args['serial_number'] = _dict.get('serial_number')
+        if (serial_number := _dict.get('serial_number')) is not None:
+            args['serial_number'] = serial_number
         else:
             raise ValueError('Required property \'serial_number\' not present in PrivateCertificateVersion JSON')
-        if 'validity' in _dict:
-            args['validity'] = CertificateValidity.from_dict(_dict.get('validity'))
+        if (validity := _dict.get('validity')) is not None:
+            args['validity'] = CertificateValidity.from_dict(validity)
         else:
             raise ValueError('Required property \'validity\' not present in PrivateCertificateVersion JSON')
-        if 'certificate' in _dict:
-            args['certificate'] = _dict.get('certificate')
+        if (certificate := _dict.get('certificate')) is not None:
+            args['certificate'] = certificate
         else:
             raise ValueError('Required property \'certificate\' not present in PrivateCertificateVersion JSON')
-        if 'private_key' in _dict:
-            args['private_key'] = _dict.get('private_key')
+        if (private_key := _dict.get('private_key')) is not None:
+            args['private_key'] = private_key
         else:
             raise ValueError('Required property \'private_key\' not present in PrivateCertificateVersion JSON')
-        if 'issuing_ca' in _dict:
-            args['issuing_ca'] = _dict.get('issuing_ca')
-        if 'ca_chain' in _dict:
-            args['ca_chain'] = _dict.get('ca_chain')
+        if (issuing_ca := _dict.get('issuing_ca')) is not None:
+            args['issuing_ca'] = issuing_ca
+        if (ca_chain := _dict.get('ca_chain')) is not None:
+            args['ca_chain'] = ca_chain
         return cls(**args)
 
     @classmethod
@@ -21862,12 +22165,12 @@ class PrivateCertificateVersionActionRevoke(VersionAction):
     def from_dict(cls, _dict: Dict) -> 'PrivateCertificateVersionActionRevoke':
         """Initialize a PrivateCertificateVersionActionRevoke object from a json dictionary."""
         args = {}
-        if 'action_type' in _dict:
-            args['action_type'] = _dict.get('action_type')
+        if (action_type := _dict.get('action_type')) is not None:
+            args['action_type'] = action_type
         else:
             raise ValueError('Required property \'action_type\' not present in PrivateCertificateVersionActionRevoke JSON')
-        if 'revocation_time_seconds' in _dict:
-            args['revocation_time_seconds'] = _dict.get('revocation_time_seconds')
+        if (revocation_time_seconds := _dict.get('revocation_time_seconds')) is not None:
+            args['revocation_time_seconds'] = revocation_time_seconds
         return cls(**args)
 
     @classmethod
@@ -21935,8 +22238,8 @@ class PrivateCertificateVersionActionRevokePrototype(SecretVersionActionPrototyp
     def from_dict(cls, _dict: Dict) -> 'PrivateCertificateVersionActionRevokePrototype':
         """Initialize a PrivateCertificateVersionActionRevokePrototype object from a json dictionary."""
         args = {}
-        if 'action_type' in _dict:
-            args['action_type'] = _dict.get('action_type')
+        if (action_type := _dict.get('action_type')) is not None:
+            args['action_type'] = action_type
         else:
             raise ValueError('Required property \'action_type\' not present in PrivateCertificateVersionActionRevokePrototype JSON')
         return cls(**args)
@@ -22087,54 +22390,54 @@ class PrivateCertificateVersionMetadata(SecretVersionMetadata):
     def from_dict(cls, _dict: Dict) -> 'PrivateCertificateVersionMetadata':
         """Initialize a PrivateCertificateVersionMetadata object from a json dictionary."""
         args = {}
-        if 'auto_rotated' in _dict:
-            args['auto_rotated'] = _dict.get('auto_rotated')
-        if 'created_by' in _dict:
-            args['created_by'] = _dict.get('created_by')
+        if (auto_rotated := _dict.get('auto_rotated')) is not None:
+            args['auto_rotated'] = auto_rotated
+        if (created_by := _dict.get('created_by')) is not None:
+            args['created_by'] = created_by
         else:
             raise ValueError('Required property \'created_by\' not present in PrivateCertificateVersionMetadata JSON')
-        if 'created_at' in _dict:
-            args['created_at'] = string_to_datetime(_dict.get('created_at'))
+        if (created_at := _dict.get('created_at')) is not None:
+            args['created_at'] = string_to_datetime(created_at)
         else:
             raise ValueError('Required property \'created_at\' not present in PrivateCertificateVersionMetadata JSON')
-        if 'downloaded' in _dict:
-            args['downloaded'] = _dict.get('downloaded')
-        if 'id' in _dict:
-            args['id'] = _dict.get('id')
+        if (downloaded := _dict.get('downloaded')) is not None:
+            args['downloaded'] = downloaded
+        if (id := _dict.get('id')) is not None:
+            args['id'] = id
         else:
             raise ValueError('Required property \'id\' not present in PrivateCertificateVersionMetadata JSON')
-        if 'secret_name' in _dict:
-            args['secret_name'] = _dict.get('secret_name')
-        if 'secret_type' in _dict:
-            args['secret_type'] = _dict.get('secret_type')
+        if (secret_name := _dict.get('secret_name')) is not None:
+            args['secret_name'] = secret_name
+        if (secret_type := _dict.get('secret_type')) is not None:
+            args['secret_type'] = secret_type
         else:
             raise ValueError('Required property \'secret_type\' not present in PrivateCertificateVersionMetadata JSON')
-        if 'secret_group_id' in _dict:
-            args['secret_group_id'] = _dict.get('secret_group_id')
+        if (secret_group_id := _dict.get('secret_group_id')) is not None:
+            args['secret_group_id'] = secret_group_id
         else:
             raise ValueError('Required property \'secret_group_id\' not present in PrivateCertificateVersionMetadata JSON')
-        if 'payload_available' in _dict:
-            args['payload_available'] = _dict.get('payload_available')
+        if (payload_available := _dict.get('payload_available')) is not None:
+            args['payload_available'] = payload_available
         else:
             raise ValueError('Required property \'payload_available\' not present in PrivateCertificateVersionMetadata JSON')
-        if 'alias' in _dict:
-            args['alias'] = _dict.get('alias')
-        if 'version_custom_metadata' in _dict:
-            args['version_custom_metadata'] = _dict.get('version_custom_metadata')
-        if 'secret_id' in _dict:
-            args['secret_id'] = _dict.get('secret_id')
+        if (alias := _dict.get('alias')) is not None:
+            args['alias'] = alias
+        if (version_custom_metadata := _dict.get('version_custom_metadata')) is not None:
+            args['version_custom_metadata'] = version_custom_metadata
+        if (secret_id := _dict.get('secret_id')) is not None:
+            args['secret_id'] = secret_id
         else:
             raise ValueError('Required property \'secret_id\' not present in PrivateCertificateVersionMetadata JSON')
-        if 'expiration_date' in _dict:
-            args['expiration_date'] = string_to_datetime(_dict.get('expiration_date'))
+        if (expiration_date := _dict.get('expiration_date')) is not None:
+            args['expiration_date'] = string_to_datetime(expiration_date)
         else:
             raise ValueError('Required property \'expiration_date\' not present in PrivateCertificateVersionMetadata JSON')
-        if 'serial_number' in _dict:
-            args['serial_number'] = _dict.get('serial_number')
+        if (serial_number := _dict.get('serial_number')) is not None:
+            args['serial_number'] = serial_number
         else:
             raise ValueError('Required property \'serial_number\' not present in PrivateCertificateVersionMetadata JSON')
-        if 'validity' in _dict:
-            args['validity'] = CertificateValidity.from_dict(_dict.get('validity'))
+        if (validity := _dict.get('validity')) is not None:
+            args['validity'] = CertificateValidity.from_dict(validity)
         else:
             raise ValueError('Required property \'validity\' not present in PrivateCertificateVersionMetadata JSON')
         return cls(**args)
@@ -22263,12 +22566,12 @@ class PrivateCertificateVersionPrototype(SecretVersionPrototype):
     def from_dict(cls, _dict: Dict) -> 'PrivateCertificateVersionPrototype':
         """Initialize a PrivateCertificateVersionPrototype object from a json dictionary."""
         args = {}
-        if 'custom_metadata' in _dict:
-            args['custom_metadata'] = _dict.get('custom_metadata')
-        if 'version_custom_metadata' in _dict:
-            args['version_custom_metadata'] = _dict.get('version_custom_metadata')
-        if 'csr' in _dict:
-            args['csr'] = _dict.get('csr')
+        if (custom_metadata := _dict.get('custom_metadata')) is not None:
+            args['custom_metadata'] = custom_metadata
+        if (version_custom_metadata := _dict.get('version_custom_metadata')) is not None:
+            args['version_custom_metadata'] = version_custom_metadata
+        if (csr := _dict.get('csr')) is not None:
+            args['csr'] = csr
         return cls(**args)
 
     @classmethod
@@ -22524,92 +22827,92 @@ class PublicCertificate(Secret):
     def from_dict(cls, _dict: Dict) -> 'PublicCertificate':
         """Initialize a PublicCertificate object from a json dictionary."""
         args = {}
-        if 'created_by' in _dict:
-            args['created_by'] = _dict.get('created_by')
+        if (created_by := _dict.get('created_by')) is not None:
+            args['created_by'] = created_by
         else:
             raise ValueError('Required property \'created_by\' not present in PublicCertificate JSON')
-        if 'created_at' in _dict:
-            args['created_at'] = string_to_datetime(_dict.get('created_at'))
+        if (created_at := _dict.get('created_at')) is not None:
+            args['created_at'] = string_to_datetime(created_at)
         else:
             raise ValueError('Required property \'created_at\' not present in PublicCertificate JSON')
-        if 'crn' in _dict:
-            args['crn'] = _dict.get('crn')
+        if (crn := _dict.get('crn')) is not None:
+            args['crn'] = crn
         else:
             raise ValueError('Required property \'crn\' not present in PublicCertificate JSON')
-        if 'custom_metadata' in _dict:
-            args['custom_metadata'] = _dict.get('custom_metadata')
-        if 'description' in _dict:
-            args['description'] = _dict.get('description')
-        if 'downloaded' in _dict:
-            args['downloaded'] = _dict.get('downloaded')
-        if 'id' in _dict:
-            args['id'] = _dict.get('id')
+        if (custom_metadata := _dict.get('custom_metadata')) is not None:
+            args['custom_metadata'] = custom_metadata
+        if (description := _dict.get('description')) is not None:
+            args['description'] = description
+        if (downloaded := _dict.get('downloaded')) is not None:
+            args['downloaded'] = downloaded
+        if (id := _dict.get('id')) is not None:
+            args['id'] = id
         else:
             raise ValueError('Required property \'id\' not present in PublicCertificate JSON')
-        if 'labels' in _dict:
-            args['labels'] = _dict.get('labels')
-        if 'locks_total' in _dict:
-            args['locks_total'] = _dict.get('locks_total')
-        if 'name' in _dict:
-            args['name'] = _dict.get('name')
-        if 'secret_group_id' in _dict:
-            args['secret_group_id'] = _dict.get('secret_group_id')
+        if (labels := _dict.get('labels')) is not None:
+            args['labels'] = labels
+        if (locks_total := _dict.get('locks_total')) is not None:
+            args['locks_total'] = locks_total
+        if (name := _dict.get('name')) is not None:
+            args['name'] = name
+        if (secret_group_id := _dict.get('secret_group_id')) is not None:
+            args['secret_group_id'] = secret_group_id
         else:
             raise ValueError('Required property \'secret_group_id\' not present in PublicCertificate JSON')
-        if 'secret_type' in _dict:
-            args['secret_type'] = _dict.get('secret_type')
+        if (secret_type := _dict.get('secret_type')) is not None:
+            args['secret_type'] = secret_type
         else:
             raise ValueError('Required property \'secret_type\' not present in PublicCertificate JSON')
-        if 'state' in _dict:
-            args['state'] = _dict.get('state')
-        if 'state_description' in _dict:
-            args['state_description'] = _dict.get('state_description')
-        if 'updated_at' in _dict:
-            args['updated_at'] = string_to_datetime(_dict.get('updated_at'))
+        if (state := _dict.get('state')) is not None:
+            args['state'] = state
+        if (state_description := _dict.get('state_description')) is not None:
+            args['state_description'] = state_description
+        if (updated_at := _dict.get('updated_at')) is not None:
+            args['updated_at'] = string_to_datetime(updated_at)
         else:
             raise ValueError('Required property \'updated_at\' not present in PublicCertificate JSON')
-        if 'versions_total' in _dict:
-            args['versions_total'] = _dict.get('versions_total')
+        if (versions_total := _dict.get('versions_total')) is not None:
+            args['versions_total'] = versions_total
         else:
             raise ValueError('Required property \'versions_total\' not present in PublicCertificate JSON')
-        if 'signing_algorithm' in _dict:
-            args['signing_algorithm'] = _dict.get('signing_algorithm')
-        if 'alt_names' in _dict:
-            args['alt_names'] = _dict.get('alt_names')
-        if 'common_name' in _dict:
-            args['common_name'] = _dict.get('common_name')
+        if (signing_algorithm := _dict.get('signing_algorithm')) is not None:
+            args['signing_algorithm'] = signing_algorithm
+        if (alt_names := _dict.get('alt_names')) is not None:
+            args['alt_names'] = alt_names
+        if (common_name := _dict.get('common_name')) is not None:
+            args['common_name'] = common_name
         else:
             raise ValueError('Required property \'common_name\' not present in PublicCertificate JSON')
-        if 'expiration_date' in _dict:
-            args['expiration_date'] = string_to_datetime(_dict.get('expiration_date'))
-        if 'issuance_info' in _dict:
-            args['issuance_info'] = CertificateIssuanceInfo.from_dict(_dict.get('issuance_info'))
-        if 'issuer' in _dict:
-            args['issuer'] = _dict.get('issuer')
-        if 'key_algorithm' in _dict:
-            args['key_algorithm'] = _dict.get('key_algorithm')
+        if (expiration_date := _dict.get('expiration_date')) is not None:
+            args['expiration_date'] = string_to_datetime(expiration_date)
+        if (issuance_info := _dict.get('issuance_info')) is not None:
+            args['issuance_info'] = CertificateIssuanceInfo.from_dict(issuance_info)
+        if (issuer := _dict.get('issuer')) is not None:
+            args['issuer'] = issuer
+        if (key_algorithm := _dict.get('key_algorithm')) is not None:
+            args['key_algorithm'] = key_algorithm
         else:
             raise ValueError('Required property \'key_algorithm\' not present in PublicCertificate JSON')
-        if 'serial_number' in _dict:
-            args['serial_number'] = _dict.get('serial_number')
-        if 'validity' in _dict:
-            args['validity'] = CertificateValidity.from_dict(_dict.get('validity'))
-        if 'rotation' in _dict:
-            args['rotation'] = _dict.get('rotation')
+        if (serial_number := _dict.get('serial_number')) is not None:
+            args['serial_number'] = serial_number
+        if (validity := _dict.get('validity')) is not None:
+            args['validity'] = CertificateValidity.from_dict(validity)
+        if (rotation := _dict.get('rotation')) is not None:
+            args['rotation'] = rotation
         else:
             raise ValueError('Required property \'rotation\' not present in PublicCertificate JSON')
-        if 'bundle_certs' in _dict:
-            args['bundle_certs'] = _dict.get('bundle_certs')
-        if 'ca' in _dict:
-            args['ca'] = _dict.get('ca')
-        if 'dns' in _dict:
-            args['dns'] = _dict.get('dns')
-        if 'certificate' in _dict:
-            args['certificate'] = _dict.get('certificate')
-        if 'intermediate' in _dict:
-            args['intermediate'] = _dict.get('intermediate')
-        if 'private_key' in _dict:
-            args['private_key'] = _dict.get('private_key')
+        if (bundle_certs := _dict.get('bundle_certs')) is not None:
+            args['bundle_certs'] = bundle_certs
+        if (ca := _dict.get('ca')) is not None:
+            args['ca'] = ca
+        if (dns := _dict.get('dns')) is not None:
+            args['dns'] = dns
+        if (certificate := _dict.get('certificate')) is not None:
+            args['certificate'] = certificate
+        if (intermediate := _dict.get('intermediate')) is not None:
+            args['intermediate'] = intermediate
+        if (private_key := _dict.get('private_key')) is not None:
+            args['private_key'] = private_key
         return cls(**args)
 
     @classmethod
@@ -22766,8 +23069,8 @@ class PublicCertificateActionValidateManualDNS(SecretAction):
     def from_dict(cls, _dict: Dict) -> 'PublicCertificateActionValidateManualDNS':
         """Initialize a PublicCertificateActionValidateManualDNS object from a json dictionary."""
         args = {}
-        if 'action_type' in _dict:
-            args['action_type'] = _dict.get('action_type')
+        if (action_type := _dict.get('action_type')) is not None:
+            args['action_type'] = action_type
         else:
             raise ValueError('Required property \'action_type\' not present in PublicCertificateActionValidateManualDNS JSON')
         return cls(**args)
@@ -22836,8 +23139,8 @@ class PublicCertificateActionValidateManualDNSPrototype(SecretActionPrototype):
     def from_dict(cls, _dict: Dict) -> 'PublicCertificateActionValidateManualDNSPrototype':
         """Initialize a PublicCertificateActionValidateManualDNSPrototype object from a json dictionary."""
         args = {}
-        if 'action_type' in _dict:
-            args['action_type'] = _dict.get('action_type')
+        if (action_type := _dict.get('action_type')) is not None:
+            args['action_type'] = action_type
         else:
             raise ValueError('Required property \'action_type\' not present in PublicCertificateActionValidateManualDNSPrototype JSON')
         return cls(**args)
@@ -22904,9 +23207,10 @@ class PublicCertificateConfigurationCALetsEncrypt(Configuration):
           format follows `RFC 3339`.
     :param str lets_encrypt_environment: The configuration of the Let's Encrypt CA
           environment.
-    :param str lets_encrypt_preferred_chain: (optional) If the CA offers multiple
-          certificate chains, prefer the chain with an issuer matching this Subject Common
-          Name. If no match, the default offered chain will be used.
+    :param str lets_encrypt_preferred_chain: (optional) This field supports only the
+          chains that Let's Encrypt provides. Keep empty to use the default or supply a
+          valid Let's Encrypt-provided value. For a list of supported chains, see:
+          https://letsencrypt.org/certificates/.
     :param str lets_encrypt_private_key: The PEM-encoded private key of your Let's
           Encrypt account. The data must be formatted on a single line with embedded
           newline characters.
@@ -22950,9 +23254,10 @@ class PublicCertificateConfigurationCALetsEncrypt(Configuration):
         :param str lets_encrypt_private_key: The PEM-encoded private key of your
                Let's Encrypt account. The data must be formatted on a single line with
                embedded newline characters.
-        :param str lets_encrypt_preferred_chain: (optional) If the CA offers
-               multiple certificate chains, prefer the chain with an issuer matching this
-               Subject Common Name. If no match, the default offered chain will be used.
+        :param str lets_encrypt_preferred_chain: (optional) This field supports
+               only the chains that Let's Encrypt provides. Keep empty to use the default
+               or supply a valid Let's Encrypt-provided value. For a list of supported
+               chains, see: https://letsencrypt.org/certificates/.
         """
         # pylint: disable=super-init-not-called
         self.config_type = config_type
@@ -22969,38 +23274,38 @@ class PublicCertificateConfigurationCALetsEncrypt(Configuration):
     def from_dict(cls, _dict: Dict) -> 'PublicCertificateConfigurationCALetsEncrypt':
         """Initialize a PublicCertificateConfigurationCALetsEncrypt object from a json dictionary."""
         args = {}
-        if 'config_type' in _dict:
-            args['config_type'] = _dict.get('config_type')
+        if (config_type := _dict.get('config_type')) is not None:
+            args['config_type'] = config_type
         else:
             raise ValueError('Required property \'config_type\' not present in PublicCertificateConfigurationCALetsEncrypt JSON')
-        if 'name' in _dict:
-            args['name'] = _dict.get('name')
+        if (name := _dict.get('name')) is not None:
+            args['name'] = name
         else:
             raise ValueError('Required property \'name\' not present in PublicCertificateConfigurationCALetsEncrypt JSON')
-        if 'secret_type' in _dict:
-            args['secret_type'] = _dict.get('secret_type')
+        if (secret_type := _dict.get('secret_type')) is not None:
+            args['secret_type'] = secret_type
         else:
             raise ValueError('Required property \'secret_type\' not present in PublicCertificateConfigurationCALetsEncrypt JSON')
-        if 'created_by' in _dict:
-            args['created_by'] = _dict.get('created_by')
+        if (created_by := _dict.get('created_by')) is not None:
+            args['created_by'] = created_by
         else:
             raise ValueError('Required property \'created_by\' not present in PublicCertificateConfigurationCALetsEncrypt JSON')
-        if 'created_at' in _dict:
-            args['created_at'] = string_to_datetime(_dict.get('created_at'))
+        if (created_at := _dict.get('created_at')) is not None:
+            args['created_at'] = string_to_datetime(created_at)
         else:
             raise ValueError('Required property \'created_at\' not present in PublicCertificateConfigurationCALetsEncrypt JSON')
-        if 'updated_at' in _dict:
-            args['updated_at'] = string_to_datetime(_dict.get('updated_at'))
+        if (updated_at := _dict.get('updated_at')) is not None:
+            args['updated_at'] = string_to_datetime(updated_at)
         else:
             raise ValueError('Required property \'updated_at\' not present in PublicCertificateConfigurationCALetsEncrypt JSON')
-        if 'lets_encrypt_environment' in _dict:
-            args['lets_encrypt_environment'] = _dict.get('lets_encrypt_environment')
+        if (lets_encrypt_environment := _dict.get('lets_encrypt_environment')) is not None:
+            args['lets_encrypt_environment'] = lets_encrypt_environment
         else:
             raise ValueError('Required property \'lets_encrypt_environment\' not present in PublicCertificateConfigurationCALetsEncrypt JSON')
-        if 'lets_encrypt_preferred_chain' in _dict:
-            args['lets_encrypt_preferred_chain'] = _dict.get('lets_encrypt_preferred_chain')
-        if 'lets_encrypt_private_key' in _dict:
-            args['lets_encrypt_private_key'] = _dict.get('lets_encrypt_private_key')
+        if (lets_encrypt_preferred_chain := _dict.get('lets_encrypt_preferred_chain')) is not None:
+            args['lets_encrypt_preferred_chain'] = lets_encrypt_preferred_chain
+        if (lets_encrypt_private_key := _dict.get('lets_encrypt_private_key')) is not None:
+            args['lets_encrypt_private_key'] = lets_encrypt_private_key
         else:
             raise ValueError('Required property \'lets_encrypt_private_key\' not present in PublicCertificateConfigurationCALetsEncrypt JSON')
         return cls(**args)
@@ -23118,9 +23423,10 @@ class PublicCertificateConfigurationCALetsEncryptMetadata(ConfigurationMetadata)
           format follows `RFC 3339`.
     :param str lets_encrypt_environment: The configuration of the Let's Encrypt CA
           environment.
-    :param str lets_encrypt_preferred_chain: (optional) If the CA offers multiple
-          certificate chains, prefer the chain with an issuer matching this Subject Common
-          Name. If no match, the default offered chain will be used.
+    :param str lets_encrypt_preferred_chain: (optional) This field supports only the
+          chains that Let's Encrypt provides. Keep empty to use the default or supply a
+          valid Let's Encrypt-provided value. For a list of supported chains, see:
+          https://letsencrypt.org/certificates/.
     """
 
     def __init__(
@@ -23157,9 +23463,10 @@ class PublicCertificateConfigurationCALetsEncryptMetadata(ConfigurationMetadata)
                format follows `RFC 3339`.
         :param str lets_encrypt_environment: The configuration of the Let's Encrypt
                CA environment.
-        :param str lets_encrypt_preferred_chain: (optional) If the CA offers
-               multiple certificate chains, prefer the chain with an issuer matching this
-               Subject Common Name. If no match, the default offered chain will be used.
+        :param str lets_encrypt_preferred_chain: (optional) This field supports
+               only the chains that Let's Encrypt provides. Keep empty to use the default
+               or supply a valid Let's Encrypt-provided value. For a list of supported
+               chains, see: https://letsencrypt.org/certificates/.
         """
         # pylint: disable=super-init-not-called
         self.config_type = config_type
@@ -23175,36 +23482,36 @@ class PublicCertificateConfigurationCALetsEncryptMetadata(ConfigurationMetadata)
     def from_dict(cls, _dict: Dict) -> 'PublicCertificateConfigurationCALetsEncryptMetadata':
         """Initialize a PublicCertificateConfigurationCALetsEncryptMetadata object from a json dictionary."""
         args = {}
-        if 'config_type' in _dict:
-            args['config_type'] = _dict.get('config_type')
+        if (config_type := _dict.get('config_type')) is not None:
+            args['config_type'] = config_type
         else:
             raise ValueError('Required property \'config_type\' not present in PublicCertificateConfigurationCALetsEncryptMetadata JSON')
-        if 'name' in _dict:
-            args['name'] = _dict.get('name')
+        if (name := _dict.get('name')) is not None:
+            args['name'] = name
         else:
             raise ValueError('Required property \'name\' not present in PublicCertificateConfigurationCALetsEncryptMetadata JSON')
-        if 'secret_type' in _dict:
-            args['secret_type'] = _dict.get('secret_type')
+        if (secret_type := _dict.get('secret_type')) is not None:
+            args['secret_type'] = secret_type
         else:
             raise ValueError('Required property \'secret_type\' not present in PublicCertificateConfigurationCALetsEncryptMetadata JSON')
-        if 'created_by' in _dict:
-            args['created_by'] = _dict.get('created_by')
+        if (created_by := _dict.get('created_by')) is not None:
+            args['created_by'] = created_by
         else:
             raise ValueError('Required property \'created_by\' not present in PublicCertificateConfigurationCALetsEncryptMetadata JSON')
-        if 'created_at' in _dict:
-            args['created_at'] = string_to_datetime(_dict.get('created_at'))
+        if (created_at := _dict.get('created_at')) is not None:
+            args['created_at'] = string_to_datetime(created_at)
         else:
             raise ValueError('Required property \'created_at\' not present in PublicCertificateConfigurationCALetsEncryptMetadata JSON')
-        if 'updated_at' in _dict:
-            args['updated_at'] = string_to_datetime(_dict.get('updated_at'))
+        if (updated_at := _dict.get('updated_at')) is not None:
+            args['updated_at'] = string_to_datetime(updated_at)
         else:
             raise ValueError('Required property \'updated_at\' not present in PublicCertificateConfigurationCALetsEncryptMetadata JSON')
-        if 'lets_encrypt_environment' in _dict:
-            args['lets_encrypt_environment'] = _dict.get('lets_encrypt_environment')
+        if (lets_encrypt_environment := _dict.get('lets_encrypt_environment')) is not None:
+            args['lets_encrypt_environment'] = lets_encrypt_environment
         else:
             raise ValueError('Required property \'lets_encrypt_environment\' not present in PublicCertificateConfigurationCALetsEncryptMetadata JSON')
-        if 'lets_encrypt_preferred_chain' in _dict:
-            args['lets_encrypt_preferred_chain'] = _dict.get('lets_encrypt_preferred_chain')
+        if (lets_encrypt_preferred_chain := _dict.get('lets_encrypt_preferred_chain')) is not None:
+            args['lets_encrypt_preferred_chain'] = lets_encrypt_preferred_chain
         return cls(**args)
 
     @classmethod
@@ -23305,9 +23612,10 @@ class PublicCertificateConfigurationCALetsEncryptPatch(ConfigurationPatch):
     :param str lets_encrypt_private_key: (optional) The PEM-encoded private key of
           your Let's Encrypt account. The data must be formatted on a single line with
           embedded newline characters.
-    :param str lets_encrypt_preferred_chain: (optional) If the CA offers multiple
-          certificate chains, prefer the chain with an issuer matching this Subject Common
-          Name. If no match, the default offered chain will be used.
+    :param str lets_encrypt_preferred_chain: (optional) This field supports only the
+          chains that Let's Encrypt provides. Keep empty to use the default or supply a
+          valid Let's Encrypt-provided value. For a list of supported chains, see:
+          https://letsencrypt.org/certificates/.
     """
 
     def __init__(
@@ -23325,9 +23633,10 @@ class PublicCertificateConfigurationCALetsEncryptPatch(ConfigurationPatch):
         :param str lets_encrypt_private_key: (optional) The PEM-encoded private key
                of your Let's Encrypt account. The data must be formatted on a single line
                with embedded newline characters.
-        :param str lets_encrypt_preferred_chain: (optional) If the CA offers
-               multiple certificate chains, prefer the chain with an issuer matching this
-               Subject Common Name. If no match, the default offered chain will be used.
+        :param str lets_encrypt_preferred_chain: (optional) This field supports
+               only the chains that Let's Encrypt provides. Keep empty to use the default
+               or supply a valid Let's Encrypt-provided value. For a list of supported
+               chains, see: https://letsencrypt.org/certificates/.
         """
         # pylint: disable=super-init-not-called
         self.lets_encrypt_environment = lets_encrypt_environment
@@ -23338,14 +23647,14 @@ class PublicCertificateConfigurationCALetsEncryptPatch(ConfigurationPatch):
     def from_dict(cls, _dict: Dict) -> 'PublicCertificateConfigurationCALetsEncryptPatch':
         """Initialize a PublicCertificateConfigurationCALetsEncryptPatch object from a json dictionary."""
         args = {}
-        if 'lets_encrypt_environment' in _dict:
-            args['lets_encrypt_environment'] = _dict.get('lets_encrypt_environment')
+        if (lets_encrypt_environment := _dict.get('lets_encrypt_environment')) is not None:
+            args['lets_encrypt_environment'] = lets_encrypt_environment
         else:
             raise ValueError('Required property \'lets_encrypt_environment\' not present in PublicCertificateConfigurationCALetsEncryptPatch JSON')
-        if 'lets_encrypt_private_key' in _dict:
-            args['lets_encrypt_private_key'] = _dict.get('lets_encrypt_private_key')
-        if 'lets_encrypt_preferred_chain' in _dict:
-            args['lets_encrypt_preferred_chain'] = _dict.get('lets_encrypt_preferred_chain')
+        if (lets_encrypt_private_key := _dict.get('lets_encrypt_private_key')) is not None:
+            args['lets_encrypt_private_key'] = lets_encrypt_private_key
+        if (lets_encrypt_preferred_chain := _dict.get('lets_encrypt_preferred_chain')) is not None:
+            args['lets_encrypt_preferred_chain'] = lets_encrypt_preferred_chain
         return cls(**args)
 
     @classmethod
@@ -23410,9 +23719,10 @@ class PublicCertificateConfigurationCALetsEncryptPrototype(ConfigurationPrototyp
     :param str lets_encrypt_private_key: The PEM-encoded private key of your Let's
           Encrypt account. The data must be formatted on a single line with embedded
           newline characters.
-    :param str lets_encrypt_preferred_chain: (optional) If the CA offers multiple
-          certificate chains, prefer the chain with an issuer matching this Subject Common
-          Name. If no match, the default offered chain will be used.
+    :param str lets_encrypt_preferred_chain: (optional) This field supports only the
+          chains that Let's Encrypt provides. Keep empty to use the default or supply a
+          valid Let's Encrypt-provided value. For a list of supported chains, see:
+          https://letsencrypt.org/certificates/.
     """
 
     def __init__(
@@ -23443,9 +23753,10 @@ class PublicCertificateConfigurationCALetsEncryptPrototype(ConfigurationPrototyp
         :param str lets_encrypt_private_key: The PEM-encoded private key of your
                Let's Encrypt account. The data must be formatted on a single line with
                embedded newline characters.
-        :param str lets_encrypt_preferred_chain: (optional) If the CA offers
-               multiple certificate chains, prefer the chain with an issuer matching this
-               Subject Common Name. If no match, the default offered chain will be used.
+        :param str lets_encrypt_preferred_chain: (optional) This field supports
+               only the chains that Let's Encrypt provides. Keep empty to use the default
+               or supply a valid Let's Encrypt-provided value. For a list of supported
+               chains, see: https://letsencrypt.org/certificates/.
         """
         # pylint: disable=super-init-not-called
         self.config_type = config_type
@@ -23458,24 +23769,24 @@ class PublicCertificateConfigurationCALetsEncryptPrototype(ConfigurationPrototyp
     def from_dict(cls, _dict: Dict) -> 'PublicCertificateConfigurationCALetsEncryptPrototype':
         """Initialize a PublicCertificateConfigurationCALetsEncryptPrototype object from a json dictionary."""
         args = {}
-        if 'config_type' in _dict:
-            args['config_type'] = _dict.get('config_type')
+        if (config_type := _dict.get('config_type')) is not None:
+            args['config_type'] = config_type
         else:
             raise ValueError('Required property \'config_type\' not present in PublicCertificateConfigurationCALetsEncryptPrototype JSON')
-        if 'name' in _dict:
-            args['name'] = _dict.get('name')
+        if (name := _dict.get('name')) is not None:
+            args['name'] = name
         else:
             raise ValueError('Required property \'name\' not present in PublicCertificateConfigurationCALetsEncryptPrototype JSON')
-        if 'lets_encrypt_environment' in _dict:
-            args['lets_encrypt_environment'] = _dict.get('lets_encrypt_environment')
+        if (lets_encrypt_environment := _dict.get('lets_encrypt_environment')) is not None:
+            args['lets_encrypt_environment'] = lets_encrypt_environment
         else:
             raise ValueError('Required property \'lets_encrypt_environment\' not present in PublicCertificateConfigurationCALetsEncryptPrototype JSON')
-        if 'lets_encrypt_private_key' in _dict:
-            args['lets_encrypt_private_key'] = _dict.get('lets_encrypt_private_key')
+        if (lets_encrypt_private_key := _dict.get('lets_encrypt_private_key')) is not None:
+            args['lets_encrypt_private_key'] = lets_encrypt_private_key
         else:
             raise ValueError('Required property \'lets_encrypt_private_key\' not present in PublicCertificateConfigurationCALetsEncryptPrototype JSON')
-        if 'lets_encrypt_preferred_chain' in _dict:
-            args['lets_encrypt_preferred_chain'] = _dict.get('lets_encrypt_preferred_chain')
+        if (lets_encrypt_preferred_chain := _dict.get('lets_encrypt_preferred_chain')) is not None:
+            args['lets_encrypt_preferred_chain'] = lets_encrypt_preferred_chain
         return cls(**args)
 
     @classmethod
@@ -23631,36 +23942,36 @@ class PublicCertificateConfigurationDNSClassicInfrastructure(Configuration):
     def from_dict(cls, _dict: Dict) -> 'PublicCertificateConfigurationDNSClassicInfrastructure':
         """Initialize a PublicCertificateConfigurationDNSClassicInfrastructure object from a json dictionary."""
         args = {}
-        if 'config_type' in _dict:
-            args['config_type'] = _dict.get('config_type')
+        if (config_type := _dict.get('config_type')) is not None:
+            args['config_type'] = config_type
         else:
             raise ValueError('Required property \'config_type\' not present in PublicCertificateConfigurationDNSClassicInfrastructure JSON')
-        if 'name' in _dict:
-            args['name'] = _dict.get('name')
+        if (name := _dict.get('name')) is not None:
+            args['name'] = name
         else:
             raise ValueError('Required property \'name\' not present in PublicCertificateConfigurationDNSClassicInfrastructure JSON')
-        if 'secret_type' in _dict:
-            args['secret_type'] = _dict.get('secret_type')
+        if (secret_type := _dict.get('secret_type')) is not None:
+            args['secret_type'] = secret_type
         else:
             raise ValueError('Required property \'secret_type\' not present in PublicCertificateConfigurationDNSClassicInfrastructure JSON')
-        if 'created_by' in _dict:
-            args['created_by'] = _dict.get('created_by')
+        if (created_by := _dict.get('created_by')) is not None:
+            args['created_by'] = created_by
         else:
             raise ValueError('Required property \'created_by\' not present in PublicCertificateConfigurationDNSClassicInfrastructure JSON')
-        if 'created_at' in _dict:
-            args['created_at'] = string_to_datetime(_dict.get('created_at'))
+        if (created_at := _dict.get('created_at')) is not None:
+            args['created_at'] = string_to_datetime(created_at)
         else:
             raise ValueError('Required property \'created_at\' not present in PublicCertificateConfigurationDNSClassicInfrastructure JSON')
-        if 'updated_at' in _dict:
-            args['updated_at'] = string_to_datetime(_dict.get('updated_at'))
+        if (updated_at := _dict.get('updated_at')) is not None:
+            args['updated_at'] = string_to_datetime(updated_at)
         else:
             raise ValueError('Required property \'updated_at\' not present in PublicCertificateConfigurationDNSClassicInfrastructure JSON')
-        if 'classic_infrastructure_username' in _dict:
-            args['classic_infrastructure_username'] = _dict.get('classic_infrastructure_username')
+        if (classic_infrastructure_username := _dict.get('classic_infrastructure_username')) is not None:
+            args['classic_infrastructure_username'] = classic_infrastructure_username
         else:
             raise ValueError('Required property \'classic_infrastructure_username\' not present in PublicCertificateConfigurationDNSClassicInfrastructure JSON')
-        if 'classic_infrastructure_password' in _dict:
-            args['classic_infrastructure_password'] = _dict.get('classic_infrastructure_password')
+        if (classic_infrastructure_password := _dict.get('classic_infrastructure_password')) is not None:
+            args['classic_infrastructure_password'] = classic_infrastructure_password
         else:
             raise ValueError('Required property \'classic_infrastructure_password\' not present in PublicCertificateConfigurationDNSClassicInfrastructure JSON')
         return cls(**args)
@@ -23809,28 +24120,28 @@ class PublicCertificateConfigurationDNSClassicInfrastructureMetadata(Configurati
     def from_dict(cls, _dict: Dict) -> 'PublicCertificateConfigurationDNSClassicInfrastructureMetadata':
         """Initialize a PublicCertificateConfigurationDNSClassicInfrastructureMetadata object from a json dictionary."""
         args = {}
-        if 'config_type' in _dict:
-            args['config_type'] = _dict.get('config_type')
+        if (config_type := _dict.get('config_type')) is not None:
+            args['config_type'] = config_type
         else:
             raise ValueError('Required property \'config_type\' not present in PublicCertificateConfigurationDNSClassicInfrastructureMetadata JSON')
-        if 'name' in _dict:
-            args['name'] = _dict.get('name')
+        if (name := _dict.get('name')) is not None:
+            args['name'] = name
         else:
             raise ValueError('Required property \'name\' not present in PublicCertificateConfigurationDNSClassicInfrastructureMetadata JSON')
-        if 'secret_type' in _dict:
-            args['secret_type'] = _dict.get('secret_type')
+        if (secret_type := _dict.get('secret_type')) is not None:
+            args['secret_type'] = secret_type
         else:
             raise ValueError('Required property \'secret_type\' not present in PublicCertificateConfigurationDNSClassicInfrastructureMetadata JSON')
-        if 'created_by' in _dict:
-            args['created_by'] = _dict.get('created_by')
+        if (created_by := _dict.get('created_by')) is not None:
+            args['created_by'] = created_by
         else:
             raise ValueError('Required property \'created_by\' not present in PublicCertificateConfigurationDNSClassicInfrastructureMetadata JSON')
-        if 'created_at' in _dict:
-            args['created_at'] = string_to_datetime(_dict.get('created_at'))
+        if (created_at := _dict.get('created_at')) is not None:
+            args['created_at'] = string_to_datetime(created_at)
         else:
             raise ValueError('Required property \'created_at\' not present in PublicCertificateConfigurationDNSClassicInfrastructureMetadata JSON')
-        if 'updated_at' in _dict:
-            args['updated_at'] = string_to_datetime(_dict.get('updated_at'))
+        if (updated_at := _dict.get('updated_at')) is not None:
+            args['updated_at'] = string_to_datetime(updated_at)
         else:
             raise ValueError('Required property \'updated_at\' not present in PublicCertificateConfigurationDNSClassicInfrastructureMetadata JSON')
         return cls(**args)
@@ -23955,10 +24266,10 @@ class PublicCertificateConfigurationDNSClassicInfrastructurePatch(ConfigurationP
     def from_dict(cls, _dict: Dict) -> 'PublicCertificateConfigurationDNSClassicInfrastructurePatch':
         """Initialize a PublicCertificateConfigurationDNSClassicInfrastructurePatch object from a json dictionary."""
         args = {}
-        if 'classic_infrastructure_username' in _dict:
-            args['classic_infrastructure_username'] = _dict.get('classic_infrastructure_username')
-        if 'classic_infrastructure_password' in _dict:
-            args['classic_infrastructure_password'] = _dict.get('classic_infrastructure_password')
+        if (classic_infrastructure_username := _dict.get('classic_infrastructure_username')) is not None:
+            args['classic_infrastructure_username'] = classic_infrastructure_username
+        if (classic_infrastructure_password := _dict.get('classic_infrastructure_password')) is not None:
+            args['classic_infrastructure_password'] = classic_infrastructure_password
         return cls(**args)
 
     @classmethod
@@ -24059,20 +24370,20 @@ class PublicCertificateConfigurationDNSClassicInfrastructurePrototype(Configurat
     def from_dict(cls, _dict: Dict) -> 'PublicCertificateConfigurationDNSClassicInfrastructurePrototype':
         """Initialize a PublicCertificateConfigurationDNSClassicInfrastructurePrototype object from a json dictionary."""
         args = {}
-        if 'config_type' in _dict:
-            args['config_type'] = _dict.get('config_type')
+        if (config_type := _dict.get('config_type')) is not None:
+            args['config_type'] = config_type
         else:
             raise ValueError('Required property \'config_type\' not present in PublicCertificateConfigurationDNSClassicInfrastructurePrototype JSON')
-        if 'name' in _dict:
-            args['name'] = _dict.get('name')
+        if (name := _dict.get('name')) is not None:
+            args['name'] = name
         else:
             raise ValueError('Required property \'name\' not present in PublicCertificateConfigurationDNSClassicInfrastructurePrototype JSON')
-        if 'classic_infrastructure_username' in _dict:
-            args['classic_infrastructure_username'] = _dict.get('classic_infrastructure_username')
+        if (classic_infrastructure_username := _dict.get('classic_infrastructure_username')) is not None:
+            args['classic_infrastructure_username'] = classic_infrastructure_username
         else:
             raise ValueError('Required property \'classic_infrastructure_username\' not present in PublicCertificateConfigurationDNSClassicInfrastructurePrototype JSON')
-        if 'classic_infrastructure_password' in _dict:
-            args['classic_infrastructure_password'] = _dict.get('classic_infrastructure_password')
+        if (classic_infrastructure_password := _dict.get('classic_infrastructure_password')) is not None:
+            args['classic_infrastructure_password'] = classic_infrastructure_password
         else:
             raise ValueError('Required property \'classic_infrastructure_password\' not present in PublicCertificateConfigurationDNSClassicInfrastructurePrototype JSON')
         return cls(**args)
@@ -24154,17 +24465,21 @@ class PublicCertificateConfigurationDNSCloudInternetServices(Configuration):
     :param datetime updated_at: The date when a resource was modified. The date
           format follows `RFC 3339`.
     :param str cloud_internet_services_apikey: (optional) An IBM Cloud API key that
-          can to list domains in your Cloud Internet Services instance.
+          can list domains in your Cloud Internet Services instance and add DNS records.
           To grant Secrets Manager the ability to view the Cloud Internet Services
           instance and all of its domains, the API key must be assigned the Reader service
-          role on Internet Services (`internet-svcs`).
-          If you need to manage specific domains, you can assign the Manager role. For
-          production environments, it is recommended that you assign the Reader access
-          role, and then use the
+          role on Internet Services (`internet-svcs`). In order to add DNS records you
+          need to assign the Manager role.
+          If you want to manage specific domains, you can assign the Manager role for this
+          specific domain.  For production environments, it is recommended that you assign
+          the Reader access role, and then use the
           [IAM Policy Management
           API](https://cloud.ibm.com/apidocs/iam-policy-management#create-policy) to
-          control specific domains. For more information, see the
-          [docs](https://cloud.ibm.com/docs/secrets-manager?topic=secrets-manager-prepare-order-certificates#authorize-specific-domains).
+          control specific domains.
+          If an IBM Cloud API key value is empty Secrets Manager tries to access your
+          Cloud Internet Services instance  with service-to-service authorization.
+          For more information, see the
+          [docs](https://cloud.ibm.com/docs/secrets-manager?topic=secrets-manager-prepare-order-certificates#authorize-cis).
     :param str cloud_internet_services_crn: A CRN that uniquely identifies an IBM
           Cloud resource.
     """
@@ -24204,17 +24519,22 @@ class PublicCertificateConfigurationDNSCloudInternetServices(Configuration):
         :param str cloud_internet_services_crn: A CRN that uniquely identifies an
                IBM Cloud resource.
         :param str cloud_internet_services_apikey: (optional) An IBM Cloud API key
-               that can to list domains in your Cloud Internet Services instance.
+               that can list domains in your Cloud Internet Services instance and add DNS
+               records.
                To grant Secrets Manager the ability to view the Cloud Internet Services
                instance and all of its domains, the API key must be assigned the Reader
-               service role on Internet Services (`internet-svcs`).
-               If you need to manage specific domains, you can assign the Manager role.
-               For production environments, it is recommended that you assign the Reader
-               access role, and then use the
+               service role on Internet Services (`internet-svcs`). In order to add DNS
+               records you need to assign the Manager role.
+               If you want to manage specific domains, you can assign the Manager role for
+               this specific domain.  For production environments, it is recommended that
+               you assign the Reader access role, and then use the
                [IAM Policy Management
                API](https://cloud.ibm.com/apidocs/iam-policy-management#create-policy) to
-               control specific domains. For more information, see the
-               [docs](https://cloud.ibm.com/docs/secrets-manager?topic=secrets-manager-prepare-order-certificates#authorize-specific-domains).
+               control specific domains.
+               If an IBM Cloud API key value is empty Secrets Manager tries to access your
+               Cloud Internet Services instance  with service-to-service authorization.
+               For more information, see the
+               [docs](https://cloud.ibm.com/docs/secrets-manager?topic=secrets-manager-prepare-order-certificates#authorize-cis).
         """
         # pylint: disable=super-init-not-called
         self.config_type = config_type
@@ -24230,34 +24550,34 @@ class PublicCertificateConfigurationDNSCloudInternetServices(Configuration):
     def from_dict(cls, _dict: Dict) -> 'PublicCertificateConfigurationDNSCloudInternetServices':
         """Initialize a PublicCertificateConfigurationDNSCloudInternetServices object from a json dictionary."""
         args = {}
-        if 'config_type' in _dict:
-            args['config_type'] = _dict.get('config_type')
+        if (config_type := _dict.get('config_type')) is not None:
+            args['config_type'] = config_type
         else:
             raise ValueError('Required property \'config_type\' not present in PublicCertificateConfigurationDNSCloudInternetServices JSON')
-        if 'name' in _dict:
-            args['name'] = _dict.get('name')
+        if (name := _dict.get('name')) is not None:
+            args['name'] = name
         else:
             raise ValueError('Required property \'name\' not present in PublicCertificateConfigurationDNSCloudInternetServices JSON')
-        if 'secret_type' in _dict:
-            args['secret_type'] = _dict.get('secret_type')
+        if (secret_type := _dict.get('secret_type')) is not None:
+            args['secret_type'] = secret_type
         else:
             raise ValueError('Required property \'secret_type\' not present in PublicCertificateConfigurationDNSCloudInternetServices JSON')
-        if 'created_by' in _dict:
-            args['created_by'] = _dict.get('created_by')
+        if (created_by := _dict.get('created_by')) is not None:
+            args['created_by'] = created_by
         else:
             raise ValueError('Required property \'created_by\' not present in PublicCertificateConfigurationDNSCloudInternetServices JSON')
-        if 'created_at' in _dict:
-            args['created_at'] = string_to_datetime(_dict.get('created_at'))
+        if (created_at := _dict.get('created_at')) is not None:
+            args['created_at'] = string_to_datetime(created_at)
         else:
             raise ValueError('Required property \'created_at\' not present in PublicCertificateConfigurationDNSCloudInternetServices JSON')
-        if 'updated_at' in _dict:
-            args['updated_at'] = string_to_datetime(_dict.get('updated_at'))
+        if (updated_at := _dict.get('updated_at')) is not None:
+            args['updated_at'] = string_to_datetime(updated_at)
         else:
             raise ValueError('Required property \'updated_at\' not present in PublicCertificateConfigurationDNSCloudInternetServices JSON')
-        if 'cloud_internet_services_apikey' in _dict:
-            args['cloud_internet_services_apikey'] = _dict.get('cloud_internet_services_apikey')
-        if 'cloud_internet_services_crn' in _dict:
-            args['cloud_internet_services_crn'] = _dict.get('cloud_internet_services_crn')
+        if (cloud_internet_services_apikey := _dict.get('cloud_internet_services_apikey')) is not None:
+            args['cloud_internet_services_apikey'] = cloud_internet_services_apikey
+        if (cloud_internet_services_crn := _dict.get('cloud_internet_services_crn')) is not None:
+            args['cloud_internet_services_crn'] = cloud_internet_services_crn
         else:
             raise ValueError('Required property \'cloud_internet_services_crn\' not present in PublicCertificateConfigurationDNSCloudInternetServices JSON')
         return cls(**args)
@@ -24406,28 +24726,28 @@ class PublicCertificateConfigurationDNSCloudInternetServicesMetadata(Configurati
     def from_dict(cls, _dict: Dict) -> 'PublicCertificateConfigurationDNSCloudInternetServicesMetadata':
         """Initialize a PublicCertificateConfigurationDNSCloudInternetServicesMetadata object from a json dictionary."""
         args = {}
-        if 'config_type' in _dict:
-            args['config_type'] = _dict.get('config_type')
+        if (config_type := _dict.get('config_type')) is not None:
+            args['config_type'] = config_type
         else:
             raise ValueError('Required property \'config_type\' not present in PublicCertificateConfigurationDNSCloudInternetServicesMetadata JSON')
-        if 'name' in _dict:
-            args['name'] = _dict.get('name')
+        if (name := _dict.get('name')) is not None:
+            args['name'] = name
         else:
             raise ValueError('Required property \'name\' not present in PublicCertificateConfigurationDNSCloudInternetServicesMetadata JSON')
-        if 'secret_type' in _dict:
-            args['secret_type'] = _dict.get('secret_type')
+        if (secret_type := _dict.get('secret_type')) is not None:
+            args['secret_type'] = secret_type
         else:
             raise ValueError('Required property \'secret_type\' not present in PublicCertificateConfigurationDNSCloudInternetServicesMetadata JSON')
-        if 'created_by' in _dict:
-            args['created_by'] = _dict.get('created_by')
+        if (created_by := _dict.get('created_by')) is not None:
+            args['created_by'] = created_by
         else:
             raise ValueError('Required property \'created_by\' not present in PublicCertificateConfigurationDNSCloudInternetServicesMetadata JSON')
-        if 'created_at' in _dict:
-            args['created_at'] = string_to_datetime(_dict.get('created_at'))
+        if (created_at := _dict.get('created_at')) is not None:
+            args['created_at'] = string_to_datetime(created_at)
         else:
             raise ValueError('Required property \'created_at\' not present in PublicCertificateConfigurationDNSCloudInternetServicesMetadata JSON')
-        if 'updated_at' in _dict:
-            args['updated_at'] = string_to_datetime(_dict.get('updated_at'))
+        if (updated_at := _dict.get('updated_at')) is not None:
+            args['updated_at'] = string_to_datetime(updated_at)
         else:
             raise ValueError('Required property \'updated_at\' not present in PublicCertificateConfigurationDNSCloudInternetServicesMetadata JSON')
         return cls(**args)
@@ -24512,18 +24832,22 @@ class PublicCertificateConfigurationDNSCloudInternetServicesPatch(ConfigurationP
     """
     The configuration update of the Cloud Internet Services DNS.
 
-    :param str cloud_internet_services_apikey: An IBM Cloud API key that can to list
-          domains in your Cloud Internet Services instance.
+    :param str cloud_internet_services_apikey: An IBM Cloud API key that can list
+          domains in your Cloud Internet Services instance and add DNS records.
           To grant Secrets Manager the ability to view the Cloud Internet Services
           instance and all of its domains, the API key must be assigned the Reader service
-          role on Internet Services (`internet-svcs`).
-          If you need to manage specific domains, you can assign the Manager role. For
-          production environments, it is recommended that you assign the Reader access
-          role, and then use the
+          role on Internet Services (`internet-svcs`). In order to add DNS records you
+          need to assign the Manager role.
+          If you want to manage specific domains, you can assign the Manager role for this
+          specific domain.  For production environments, it is recommended that you assign
+          the Reader access role, and then use the
           [IAM Policy Management
           API](https://cloud.ibm.com/apidocs/iam-policy-management#create-policy) to
-          control specific domains. For more information, see the
-          [docs](https://cloud.ibm.com/docs/secrets-manager?topic=secrets-manager-prepare-order-certificates#authorize-specific-domains).
+          control specific domains.
+          If an IBM Cloud API key value is empty Secrets Manager tries to access your
+          Cloud Internet Services instance  with service-to-service authorization.
+          For more information, see the
+          [docs](https://cloud.ibm.com/docs/secrets-manager?topic=secrets-manager-prepare-order-certificates#authorize-cis).
     :param str cloud_internet_services_crn: (optional) A CRN that uniquely
           identifies an IBM Cloud resource.
     """
@@ -24537,18 +24861,22 @@ class PublicCertificateConfigurationDNSCloudInternetServicesPatch(ConfigurationP
         """
         Initialize a PublicCertificateConfigurationDNSCloudInternetServicesPatch object.
 
-        :param str cloud_internet_services_apikey: An IBM Cloud API key that can to
-               list domains in your Cloud Internet Services instance.
+        :param str cloud_internet_services_apikey: An IBM Cloud API key that can
+               list domains in your Cloud Internet Services instance and add DNS records.
                To grant Secrets Manager the ability to view the Cloud Internet Services
                instance and all of its domains, the API key must be assigned the Reader
-               service role on Internet Services (`internet-svcs`).
-               If you need to manage specific domains, you can assign the Manager role.
-               For production environments, it is recommended that you assign the Reader
-               access role, and then use the
+               service role on Internet Services (`internet-svcs`). In order to add DNS
+               records you need to assign the Manager role.
+               If you want to manage specific domains, you can assign the Manager role for
+               this specific domain.  For production environments, it is recommended that
+               you assign the Reader access role, and then use the
                [IAM Policy Management
                API](https://cloud.ibm.com/apidocs/iam-policy-management#create-policy) to
-               control specific domains. For more information, see the
-               [docs](https://cloud.ibm.com/docs/secrets-manager?topic=secrets-manager-prepare-order-certificates#authorize-specific-domains).
+               control specific domains.
+               If an IBM Cloud API key value is empty Secrets Manager tries to access your
+               Cloud Internet Services instance  with service-to-service authorization.
+               For more information, see the
+               [docs](https://cloud.ibm.com/docs/secrets-manager?topic=secrets-manager-prepare-order-certificates#authorize-cis).
         :param str cloud_internet_services_crn: (optional) A CRN that uniquely
                identifies an IBM Cloud resource.
         """
@@ -24560,12 +24888,12 @@ class PublicCertificateConfigurationDNSCloudInternetServicesPatch(ConfigurationP
     def from_dict(cls, _dict: Dict) -> 'PublicCertificateConfigurationDNSCloudInternetServicesPatch':
         """Initialize a PublicCertificateConfigurationDNSCloudInternetServicesPatch object from a json dictionary."""
         args = {}
-        if 'cloud_internet_services_apikey' in _dict:
-            args['cloud_internet_services_apikey'] = _dict.get('cloud_internet_services_apikey')
+        if (cloud_internet_services_apikey := _dict.get('cloud_internet_services_apikey')) is not None:
+            args['cloud_internet_services_apikey'] = cloud_internet_services_apikey
         else:
             raise ValueError('Required property \'cloud_internet_services_apikey\' not present in PublicCertificateConfigurationDNSCloudInternetServicesPatch JSON')
-        if 'cloud_internet_services_crn' in _dict:
-            args['cloud_internet_services_crn'] = _dict.get('cloud_internet_services_crn')
+        if (cloud_internet_services_crn := _dict.get('cloud_internet_services_crn')) is not None:
+            args['cloud_internet_services_crn'] = cloud_internet_services_crn
         return cls(**args)
 
     @classmethod
@@ -24615,17 +24943,21 @@ class PublicCertificateConfigurationDNSCloudInternetServicesPrototype(Configurat
           To protect your privacy, do not use personal data, such as your name or
           location, as an name for your secret.
     :param str cloud_internet_services_apikey: (optional) An IBM Cloud API key that
-          can to list domains in your Cloud Internet Services instance.
+          can list domains in your Cloud Internet Services instance and add DNS records.
           To grant Secrets Manager the ability to view the Cloud Internet Services
           instance and all of its domains, the API key must be assigned the Reader service
-          role on Internet Services (`internet-svcs`).
-          If you need to manage specific domains, you can assign the Manager role. For
-          production environments, it is recommended that you assign the Reader access
-          role, and then use the
+          role on Internet Services (`internet-svcs`). In order to add DNS records you
+          need to assign the Manager role.
+          If you want to manage specific domains, you can assign the Manager role for this
+          specific domain.  For production environments, it is recommended that you assign
+          the Reader access role, and then use the
           [IAM Policy Management
           API](https://cloud.ibm.com/apidocs/iam-policy-management#create-policy) to
-          control specific domains. For more information, see the
-          [docs](https://cloud.ibm.com/docs/secrets-manager?topic=secrets-manager-prepare-order-certificates#authorize-specific-domains).
+          control specific domains.
+          If an IBM Cloud API key value is empty Secrets Manager tries to access your
+          Cloud Internet Services instance  with service-to-service authorization.
+          For more information, see the
+          [docs](https://cloud.ibm.com/docs/secrets-manager?topic=secrets-manager-prepare-order-certificates#authorize-cis).
     :param str cloud_internet_services_crn: A CRN that uniquely identifies an IBM
           Cloud resource.
     """
@@ -24655,17 +24987,22 @@ class PublicCertificateConfigurationDNSCloudInternetServicesPrototype(Configurat
         :param str cloud_internet_services_crn: A CRN that uniquely identifies an
                IBM Cloud resource.
         :param str cloud_internet_services_apikey: (optional) An IBM Cloud API key
-               that can to list domains in your Cloud Internet Services instance.
+               that can list domains in your Cloud Internet Services instance and add DNS
+               records.
                To grant Secrets Manager the ability to view the Cloud Internet Services
                instance and all of its domains, the API key must be assigned the Reader
-               service role on Internet Services (`internet-svcs`).
-               If you need to manage specific domains, you can assign the Manager role.
-               For production environments, it is recommended that you assign the Reader
-               access role, and then use the
+               service role on Internet Services (`internet-svcs`). In order to add DNS
+               records you need to assign the Manager role.
+               If you want to manage specific domains, you can assign the Manager role for
+               this specific domain.  For production environments, it is recommended that
+               you assign the Reader access role, and then use the
                [IAM Policy Management
                API](https://cloud.ibm.com/apidocs/iam-policy-management#create-policy) to
-               control specific domains. For more information, see the
-               [docs](https://cloud.ibm.com/docs/secrets-manager?topic=secrets-manager-prepare-order-certificates#authorize-specific-domains).
+               control specific domains.
+               If an IBM Cloud API key value is empty Secrets Manager tries to access your
+               Cloud Internet Services instance  with service-to-service authorization.
+               For more information, see the
+               [docs](https://cloud.ibm.com/docs/secrets-manager?topic=secrets-manager-prepare-order-certificates#authorize-cis).
         """
         # pylint: disable=super-init-not-called
         self.config_type = config_type
@@ -24677,18 +25014,18 @@ class PublicCertificateConfigurationDNSCloudInternetServicesPrototype(Configurat
     def from_dict(cls, _dict: Dict) -> 'PublicCertificateConfigurationDNSCloudInternetServicesPrototype':
         """Initialize a PublicCertificateConfigurationDNSCloudInternetServicesPrototype object from a json dictionary."""
         args = {}
-        if 'config_type' in _dict:
-            args['config_type'] = _dict.get('config_type')
+        if (config_type := _dict.get('config_type')) is not None:
+            args['config_type'] = config_type
         else:
             raise ValueError('Required property \'config_type\' not present in PublicCertificateConfigurationDNSCloudInternetServicesPrototype JSON')
-        if 'name' in _dict:
-            args['name'] = _dict.get('name')
+        if (name := _dict.get('name')) is not None:
+            args['name'] = name
         else:
             raise ValueError('Required property \'name\' not present in PublicCertificateConfigurationDNSCloudInternetServicesPrototype JSON')
-        if 'cloud_internet_services_apikey' in _dict:
-            args['cloud_internet_services_apikey'] = _dict.get('cloud_internet_services_apikey')
-        if 'cloud_internet_services_crn' in _dict:
-            args['cloud_internet_services_crn'] = _dict.get('cloud_internet_services_crn')
+        if (cloud_internet_services_apikey := _dict.get('cloud_internet_services_apikey')) is not None:
+            args['cloud_internet_services_apikey'] = cloud_internet_services_apikey
+        if (cloud_internet_services_crn := _dict.get('cloud_internet_services_crn')) is not None:
+            args['cloud_internet_services_crn'] = cloud_internet_services_crn
         else:
             raise ValueError('Required property \'cloud_internet_services_crn\' not present in PublicCertificateConfigurationDNSCloudInternetServicesPrototype JSON')
         return cls(**args)
@@ -24945,86 +25282,86 @@ class PublicCertificateMetadata(SecretMetadata):
     def from_dict(cls, _dict: Dict) -> 'PublicCertificateMetadata':
         """Initialize a PublicCertificateMetadata object from a json dictionary."""
         args = {}
-        if 'created_by' in _dict:
-            args['created_by'] = _dict.get('created_by')
+        if (created_by := _dict.get('created_by')) is not None:
+            args['created_by'] = created_by
         else:
             raise ValueError('Required property \'created_by\' not present in PublicCertificateMetadata JSON')
-        if 'created_at' in _dict:
-            args['created_at'] = string_to_datetime(_dict.get('created_at'))
+        if (created_at := _dict.get('created_at')) is not None:
+            args['created_at'] = string_to_datetime(created_at)
         else:
             raise ValueError('Required property \'created_at\' not present in PublicCertificateMetadata JSON')
-        if 'crn' in _dict:
-            args['crn'] = _dict.get('crn')
+        if (crn := _dict.get('crn')) is not None:
+            args['crn'] = crn
         else:
             raise ValueError('Required property \'crn\' not present in PublicCertificateMetadata JSON')
-        if 'custom_metadata' in _dict:
-            args['custom_metadata'] = _dict.get('custom_metadata')
-        if 'description' in _dict:
-            args['description'] = _dict.get('description')
-        if 'downloaded' in _dict:
-            args['downloaded'] = _dict.get('downloaded')
-        if 'id' in _dict:
-            args['id'] = _dict.get('id')
+        if (custom_metadata := _dict.get('custom_metadata')) is not None:
+            args['custom_metadata'] = custom_metadata
+        if (description := _dict.get('description')) is not None:
+            args['description'] = description
+        if (downloaded := _dict.get('downloaded')) is not None:
+            args['downloaded'] = downloaded
+        if (id := _dict.get('id')) is not None:
+            args['id'] = id
         else:
             raise ValueError('Required property \'id\' not present in PublicCertificateMetadata JSON')
-        if 'labels' in _dict:
-            args['labels'] = _dict.get('labels')
-        if 'locks_total' in _dict:
-            args['locks_total'] = _dict.get('locks_total')
-        if 'name' in _dict:
-            args['name'] = _dict.get('name')
-        if 'secret_group_id' in _dict:
-            args['secret_group_id'] = _dict.get('secret_group_id')
+        if (labels := _dict.get('labels')) is not None:
+            args['labels'] = labels
+        if (locks_total := _dict.get('locks_total')) is not None:
+            args['locks_total'] = locks_total
+        if (name := _dict.get('name')) is not None:
+            args['name'] = name
+        if (secret_group_id := _dict.get('secret_group_id')) is not None:
+            args['secret_group_id'] = secret_group_id
         else:
             raise ValueError('Required property \'secret_group_id\' not present in PublicCertificateMetadata JSON')
-        if 'secret_type' in _dict:
-            args['secret_type'] = _dict.get('secret_type')
+        if (secret_type := _dict.get('secret_type')) is not None:
+            args['secret_type'] = secret_type
         else:
             raise ValueError('Required property \'secret_type\' not present in PublicCertificateMetadata JSON')
-        if 'state' in _dict:
-            args['state'] = _dict.get('state')
-        if 'state_description' in _dict:
-            args['state_description'] = _dict.get('state_description')
-        if 'updated_at' in _dict:
-            args['updated_at'] = string_to_datetime(_dict.get('updated_at'))
+        if (state := _dict.get('state')) is not None:
+            args['state'] = state
+        if (state_description := _dict.get('state_description')) is not None:
+            args['state_description'] = state_description
+        if (updated_at := _dict.get('updated_at')) is not None:
+            args['updated_at'] = string_to_datetime(updated_at)
         else:
             raise ValueError('Required property \'updated_at\' not present in PublicCertificateMetadata JSON')
-        if 'versions_total' in _dict:
-            args['versions_total'] = _dict.get('versions_total')
+        if (versions_total := _dict.get('versions_total')) is not None:
+            args['versions_total'] = versions_total
         else:
             raise ValueError('Required property \'versions_total\' not present in PublicCertificateMetadata JSON')
-        if 'signing_algorithm' in _dict:
-            args['signing_algorithm'] = _dict.get('signing_algorithm')
-        if 'alt_names' in _dict:
-            args['alt_names'] = _dict.get('alt_names')
-        if 'common_name' in _dict:
-            args['common_name'] = _dict.get('common_name')
+        if (signing_algorithm := _dict.get('signing_algorithm')) is not None:
+            args['signing_algorithm'] = signing_algorithm
+        if (alt_names := _dict.get('alt_names')) is not None:
+            args['alt_names'] = alt_names
+        if (common_name := _dict.get('common_name')) is not None:
+            args['common_name'] = common_name
         else:
             raise ValueError('Required property \'common_name\' not present in PublicCertificateMetadata JSON')
-        if 'expiration_date' in _dict:
-            args['expiration_date'] = string_to_datetime(_dict.get('expiration_date'))
-        if 'issuance_info' in _dict:
-            args['issuance_info'] = CertificateIssuanceInfo.from_dict(_dict.get('issuance_info'))
-        if 'issuer' in _dict:
-            args['issuer'] = _dict.get('issuer')
-        if 'key_algorithm' in _dict:
-            args['key_algorithm'] = _dict.get('key_algorithm')
+        if (expiration_date := _dict.get('expiration_date')) is not None:
+            args['expiration_date'] = string_to_datetime(expiration_date)
+        if (issuance_info := _dict.get('issuance_info')) is not None:
+            args['issuance_info'] = CertificateIssuanceInfo.from_dict(issuance_info)
+        if (issuer := _dict.get('issuer')) is not None:
+            args['issuer'] = issuer
+        if (key_algorithm := _dict.get('key_algorithm')) is not None:
+            args['key_algorithm'] = key_algorithm
         else:
             raise ValueError('Required property \'key_algorithm\' not present in PublicCertificateMetadata JSON')
-        if 'serial_number' in _dict:
-            args['serial_number'] = _dict.get('serial_number')
-        if 'validity' in _dict:
-            args['validity'] = CertificateValidity.from_dict(_dict.get('validity'))
-        if 'rotation' in _dict:
-            args['rotation'] = _dict.get('rotation')
+        if (serial_number := _dict.get('serial_number')) is not None:
+            args['serial_number'] = serial_number
+        if (validity := _dict.get('validity')) is not None:
+            args['validity'] = CertificateValidity.from_dict(validity)
+        if (rotation := _dict.get('rotation')) is not None:
+            args['rotation'] = rotation
         else:
             raise ValueError('Required property \'rotation\' not present in PublicCertificateMetadata JSON')
-        if 'bundle_certs' in _dict:
-            args['bundle_certs'] = _dict.get('bundle_certs')
-        if 'ca' in _dict:
-            args['ca'] = _dict.get('ca')
-        if 'dns' in _dict:
-            args['dns'] = _dict.get('dns')
+        if (bundle_certs := _dict.get('bundle_certs')) is not None:
+            args['bundle_certs'] = bundle_certs
+        if (ca := _dict.get('ca')) is not None:
+            args['ca'] = ca
+        if (dns := _dict.get('dns')) is not None:
+            args['dns'] = dns
         return cls(**args)
 
     @classmethod
@@ -25213,16 +25550,16 @@ class PublicCertificateMetadataPatch(SecretMetadataPatch):
     def from_dict(cls, _dict: Dict) -> 'PublicCertificateMetadataPatch':
         """Initialize a PublicCertificateMetadataPatch object from a json dictionary."""
         args = {}
-        if 'name' in _dict:
-            args['name'] = _dict.get('name')
-        if 'description' in _dict:
-            args['description'] = _dict.get('description')
-        if 'labels' in _dict:
-            args['labels'] = _dict.get('labels')
-        if 'custom_metadata' in _dict:
-            args['custom_metadata'] = _dict.get('custom_metadata')
-        if 'rotation' in _dict:
-            args['rotation'] = _dict.get('rotation')
+        if (name := _dict.get('name')) is not None:
+            args['name'] = name
+        if (description := _dict.get('description')) is not None:
+            args['description'] = description
+        if (labels := _dict.get('labels')) is not None:
+            args['labels'] = labels
+        if (custom_metadata := _dict.get('custom_metadata')) is not None:
+            args['custom_metadata'] = custom_metadata
+        if (rotation := _dict.get('rotation')) is not None:
+            args['rotation'] = rotation
         return cls(**args)
 
     @classmethod
@@ -25397,44 +25734,44 @@ class PublicCertificatePrototype(SecretPrototype):
     def from_dict(cls, _dict: Dict) -> 'PublicCertificatePrototype':
         """Initialize a PublicCertificatePrototype object from a json dictionary."""
         args = {}
-        if 'secret_type' in _dict:
-            args['secret_type'] = _dict.get('secret_type')
+        if (secret_type := _dict.get('secret_type')) is not None:
+            args['secret_type'] = secret_type
         else:
             raise ValueError('Required property \'secret_type\' not present in PublicCertificatePrototype JSON')
-        if 'name' in _dict:
-            args['name'] = _dict.get('name')
+        if (name := _dict.get('name')) is not None:
+            args['name'] = name
         else:
             raise ValueError('Required property \'name\' not present in PublicCertificatePrototype JSON')
-        if 'description' in _dict:
-            args['description'] = _dict.get('description')
-        if 'secret_group_id' in _dict:
-            args['secret_group_id'] = _dict.get('secret_group_id')
-        if 'labels' in _dict:
-            args['labels'] = _dict.get('labels')
-        if 'common_name' in _dict:
-            args['common_name'] = _dict.get('common_name')
+        if (description := _dict.get('description')) is not None:
+            args['description'] = description
+        if (secret_group_id := _dict.get('secret_group_id')) is not None:
+            args['secret_group_id'] = secret_group_id
+        if (labels := _dict.get('labels')) is not None:
+            args['labels'] = labels
+        if (common_name := _dict.get('common_name')) is not None:
+            args['common_name'] = common_name
         else:
             raise ValueError('Required property \'common_name\' not present in PublicCertificatePrototype JSON')
-        if 'alt_names' in _dict:
-            args['alt_names'] = _dict.get('alt_names')
-        if 'key_algorithm' in _dict:
-            args['key_algorithm'] = _dict.get('key_algorithm')
-        if 'ca' in _dict:
-            args['ca'] = _dict.get('ca')
+        if (alt_names := _dict.get('alt_names')) is not None:
+            args['alt_names'] = alt_names
+        if (key_algorithm := _dict.get('key_algorithm')) is not None:
+            args['key_algorithm'] = key_algorithm
+        if (ca := _dict.get('ca')) is not None:
+            args['ca'] = ca
         else:
             raise ValueError('Required property \'ca\' not present in PublicCertificatePrototype JSON')
-        if 'dns' in _dict:
-            args['dns'] = _dict.get('dns')
+        if (dns := _dict.get('dns')) is not None:
+            args['dns'] = dns
         else:
             raise ValueError('Required property \'dns\' not present in PublicCertificatePrototype JSON')
-        if 'bundle_certs' in _dict:
-            args['bundle_certs'] = _dict.get('bundle_certs')
-        if 'rotation' in _dict:
-            args['rotation'] = _dict.get('rotation')
-        if 'custom_metadata' in _dict:
-            args['custom_metadata'] = _dict.get('custom_metadata')
-        if 'version_custom_metadata' in _dict:
-            args['version_custom_metadata'] = _dict.get('version_custom_metadata')
+        if (bundle_certs := _dict.get('bundle_certs')) is not None:
+            args['bundle_certs'] = bundle_certs
+        if (rotation := _dict.get('rotation')) is not None:
+            args['rotation'] = rotation
+        if (custom_metadata := _dict.get('custom_metadata')) is not None:
+            args['custom_metadata'] = custom_metadata
+        if (version_custom_metadata := _dict.get('version_custom_metadata')) is not None:
+            args['version_custom_metadata'] = version_custom_metadata
         return cls(**args)
 
     @classmethod
@@ -25554,12 +25891,12 @@ class PublicCertificateRotationPolicy(RotationPolicy):
     def from_dict(cls, _dict: Dict) -> 'PublicCertificateRotationPolicy':
         """Initialize a PublicCertificateRotationPolicy object from a json dictionary."""
         args = {}
-        if 'auto_rotate' in _dict:
-            args['auto_rotate'] = _dict.get('auto_rotate')
+        if (auto_rotate := _dict.get('auto_rotate')) is not None:
+            args['auto_rotate'] = auto_rotate
         else:
             raise ValueError('Required property \'auto_rotate\' not present in PublicCertificateRotationPolicy JSON')
-        if 'rotate_keys' in _dict:
-            args['rotate_keys'] = _dict.get('rotate_keys')
+        if (rotate_keys := _dict.get('rotate_keys')) is not None:
+            args['rotate_keys'] = rotate_keys
         else:
             raise ValueError('Required property \'rotate_keys\' not present in PublicCertificateRotationPolicy JSON')
         return cls(**args)
@@ -25726,56 +26063,56 @@ class PublicCertificateVersion(SecretVersion):
     def from_dict(cls, _dict: Dict) -> 'PublicCertificateVersion':
         """Initialize a PublicCertificateVersion object from a json dictionary."""
         args = {}
-        if 'auto_rotated' in _dict:
-            args['auto_rotated'] = _dict.get('auto_rotated')
-        if 'created_by' in _dict:
-            args['created_by'] = _dict.get('created_by')
+        if (auto_rotated := _dict.get('auto_rotated')) is not None:
+            args['auto_rotated'] = auto_rotated
+        if (created_by := _dict.get('created_by')) is not None:
+            args['created_by'] = created_by
         else:
             raise ValueError('Required property \'created_by\' not present in PublicCertificateVersion JSON')
-        if 'created_at' in _dict:
-            args['created_at'] = string_to_datetime(_dict.get('created_at'))
+        if (created_at := _dict.get('created_at')) is not None:
+            args['created_at'] = string_to_datetime(created_at)
         else:
             raise ValueError('Required property \'created_at\' not present in PublicCertificateVersion JSON')
-        if 'downloaded' in _dict:
-            args['downloaded'] = _dict.get('downloaded')
-        if 'id' in _dict:
-            args['id'] = _dict.get('id')
+        if (downloaded := _dict.get('downloaded')) is not None:
+            args['downloaded'] = downloaded
+        if (id := _dict.get('id')) is not None:
+            args['id'] = id
         else:
             raise ValueError('Required property \'id\' not present in PublicCertificateVersion JSON')
-        if 'secret_name' in _dict:
-            args['secret_name'] = _dict.get('secret_name')
-        if 'secret_type' in _dict:
-            args['secret_type'] = _dict.get('secret_type')
+        if (secret_name := _dict.get('secret_name')) is not None:
+            args['secret_name'] = secret_name
+        if (secret_type := _dict.get('secret_type')) is not None:
+            args['secret_type'] = secret_type
         else:
             raise ValueError('Required property \'secret_type\' not present in PublicCertificateVersion JSON')
-        if 'secret_group_id' in _dict:
-            args['secret_group_id'] = _dict.get('secret_group_id')
+        if (secret_group_id := _dict.get('secret_group_id')) is not None:
+            args['secret_group_id'] = secret_group_id
         else:
             raise ValueError('Required property \'secret_group_id\' not present in PublicCertificateVersion JSON')
-        if 'payload_available' in _dict:
-            args['payload_available'] = _dict.get('payload_available')
+        if (payload_available := _dict.get('payload_available')) is not None:
+            args['payload_available'] = payload_available
         else:
             raise ValueError('Required property \'payload_available\' not present in PublicCertificateVersion JSON')
-        if 'alias' in _dict:
-            args['alias'] = _dict.get('alias')
-        if 'version_custom_metadata' in _dict:
-            args['version_custom_metadata'] = _dict.get('version_custom_metadata')
-        if 'secret_id' in _dict:
-            args['secret_id'] = _dict.get('secret_id')
+        if (alias := _dict.get('alias')) is not None:
+            args['alias'] = alias
+        if (version_custom_metadata := _dict.get('version_custom_metadata')) is not None:
+            args['version_custom_metadata'] = version_custom_metadata
+        if (secret_id := _dict.get('secret_id')) is not None:
+            args['secret_id'] = secret_id
         else:
             raise ValueError('Required property \'secret_id\' not present in PublicCertificateVersion JSON')
-        if 'expiration_date' in _dict:
-            args['expiration_date'] = string_to_datetime(_dict.get('expiration_date'))
-        if 'serial_number' in _dict:
-            args['serial_number'] = _dict.get('serial_number')
-        if 'validity' in _dict:
-            args['validity'] = CertificateValidity.from_dict(_dict.get('validity'))
-        if 'certificate' in _dict:
-            args['certificate'] = _dict.get('certificate')
-        if 'intermediate' in _dict:
-            args['intermediate'] = _dict.get('intermediate')
-        if 'private_key' in _dict:
-            args['private_key'] = _dict.get('private_key')
+        if (expiration_date := _dict.get('expiration_date')) is not None:
+            args['expiration_date'] = string_to_datetime(expiration_date)
+        if (serial_number := _dict.get('serial_number')) is not None:
+            args['serial_number'] = serial_number
+        if (validity := _dict.get('validity')) is not None:
+            args['validity'] = CertificateValidity.from_dict(validity)
+        if (certificate := _dict.get('certificate')) is not None:
+            args['certificate'] = certificate
+        if (intermediate := _dict.get('intermediate')) is not None:
+            args['intermediate'] = intermediate
+        if (private_key := _dict.get('private_key')) is not None:
+            args['private_key'] = private_key
         return cls(**args)
 
     @classmethod
@@ -25979,50 +26316,50 @@ class PublicCertificateVersionMetadata(SecretVersionMetadata):
     def from_dict(cls, _dict: Dict) -> 'PublicCertificateVersionMetadata':
         """Initialize a PublicCertificateVersionMetadata object from a json dictionary."""
         args = {}
-        if 'auto_rotated' in _dict:
-            args['auto_rotated'] = _dict.get('auto_rotated')
-        if 'created_by' in _dict:
-            args['created_by'] = _dict.get('created_by')
+        if (auto_rotated := _dict.get('auto_rotated')) is not None:
+            args['auto_rotated'] = auto_rotated
+        if (created_by := _dict.get('created_by')) is not None:
+            args['created_by'] = created_by
         else:
             raise ValueError('Required property \'created_by\' not present in PublicCertificateVersionMetadata JSON')
-        if 'created_at' in _dict:
-            args['created_at'] = string_to_datetime(_dict.get('created_at'))
+        if (created_at := _dict.get('created_at')) is not None:
+            args['created_at'] = string_to_datetime(created_at)
         else:
             raise ValueError('Required property \'created_at\' not present in PublicCertificateVersionMetadata JSON')
-        if 'downloaded' in _dict:
-            args['downloaded'] = _dict.get('downloaded')
-        if 'id' in _dict:
-            args['id'] = _dict.get('id')
+        if (downloaded := _dict.get('downloaded')) is not None:
+            args['downloaded'] = downloaded
+        if (id := _dict.get('id')) is not None:
+            args['id'] = id
         else:
             raise ValueError('Required property \'id\' not present in PublicCertificateVersionMetadata JSON')
-        if 'secret_name' in _dict:
-            args['secret_name'] = _dict.get('secret_name')
-        if 'secret_type' in _dict:
-            args['secret_type'] = _dict.get('secret_type')
+        if (secret_name := _dict.get('secret_name')) is not None:
+            args['secret_name'] = secret_name
+        if (secret_type := _dict.get('secret_type')) is not None:
+            args['secret_type'] = secret_type
         else:
             raise ValueError('Required property \'secret_type\' not present in PublicCertificateVersionMetadata JSON')
-        if 'secret_group_id' in _dict:
-            args['secret_group_id'] = _dict.get('secret_group_id')
+        if (secret_group_id := _dict.get('secret_group_id')) is not None:
+            args['secret_group_id'] = secret_group_id
         else:
             raise ValueError('Required property \'secret_group_id\' not present in PublicCertificateVersionMetadata JSON')
-        if 'payload_available' in _dict:
-            args['payload_available'] = _dict.get('payload_available')
+        if (payload_available := _dict.get('payload_available')) is not None:
+            args['payload_available'] = payload_available
         else:
             raise ValueError('Required property \'payload_available\' not present in PublicCertificateVersionMetadata JSON')
-        if 'alias' in _dict:
-            args['alias'] = _dict.get('alias')
-        if 'version_custom_metadata' in _dict:
-            args['version_custom_metadata'] = _dict.get('version_custom_metadata')
-        if 'secret_id' in _dict:
-            args['secret_id'] = _dict.get('secret_id')
+        if (alias := _dict.get('alias')) is not None:
+            args['alias'] = alias
+        if (version_custom_metadata := _dict.get('version_custom_metadata')) is not None:
+            args['version_custom_metadata'] = version_custom_metadata
+        if (secret_id := _dict.get('secret_id')) is not None:
+            args['secret_id'] = secret_id
         else:
             raise ValueError('Required property \'secret_id\' not present in PublicCertificateVersionMetadata JSON')
-        if 'expiration_date' in _dict:
-            args['expiration_date'] = string_to_datetime(_dict.get('expiration_date'))
-        if 'serial_number' in _dict:
-            args['serial_number'] = _dict.get('serial_number')
-        if 'validity' in _dict:
-            args['validity'] = CertificateValidity.from_dict(_dict.get('validity'))
+        if (expiration_date := _dict.get('expiration_date')) is not None:
+            args['expiration_date'] = string_to_datetime(expiration_date)
+        if (serial_number := _dict.get('serial_number')) is not None:
+            args['serial_number'] = serial_number
+        if (validity := _dict.get('validity')) is not None:
+            args['validity'] = CertificateValidity.from_dict(validity)
         return cls(**args)
 
     @classmethod
@@ -26151,14 +26488,14 @@ class PublicCertificateVersionPrototype(SecretVersionPrototype):
     def from_dict(cls, _dict: Dict) -> 'PublicCertificateVersionPrototype':
         """Initialize a PublicCertificateVersionPrototype object from a json dictionary."""
         args = {}
-        if 'rotation' in _dict:
-            args['rotation'] = PublicCertificateRotationObject.from_dict(_dict.get('rotation'))
+        if (rotation := _dict.get('rotation')) is not None:
+            args['rotation'] = PublicCertificateRotationObject.from_dict(rotation)
         else:
             raise ValueError('Required property \'rotation\' not present in PublicCertificateVersionPrototype JSON')
-        if 'custom_metadata' in _dict:
-            args['custom_metadata'] = _dict.get('custom_metadata')
-        if 'version_custom_metadata' in _dict:
-            args['version_custom_metadata'] = _dict.get('version_custom_metadata')
+        if (custom_metadata := _dict.get('custom_metadata')) is not None:
+            args['custom_metadata'] = custom_metadata
+        if (version_custom_metadata := _dict.get('version_custom_metadata')) is not None:
+            args['version_custom_metadata'] = version_custom_metadata
         return cls(**args)
 
     @classmethod
@@ -26253,9 +26590,8 @@ class ServiceCredentialsSecret(Secret):
           1 minute. The maximum is 90 days. For the service_credentials secret type, the
           TTL field is optional. If it is set the minimum duration is 1 day. The maximum
           is 90 days. By default, the TTL is set to 0.
-    :param ServiceCredentialsSecretSourceService source_service: The properties that
-          are required to create the service credentials for the specified source service
-          instance.
+    :param ServiceCredentialsSecretSourceServiceRO source_service: The properties of
+          the resource key that was created for this source service instance.
     :param ServiceCredentialsSecretCredentials credentials: The properties of the
           service credentials secret payload.
     """
@@ -26270,7 +26606,7 @@ class ServiceCredentialsSecret(Secret):
         secret_type: str,
         updated_at: datetime,
         versions_total: int,
-        source_service: 'ServiceCredentialsSecretSourceService',
+        source_service: 'ServiceCredentialsSecretSourceServiceRO',
         credentials: 'ServiceCredentialsSecretCredentials',
         *,
         custom_metadata: Optional[dict] = None,
@@ -26302,9 +26638,9 @@ class ServiceCredentialsSecret(Secret):
         :param datetime updated_at: The date when a resource was modified. The date
                format follows `RFC 3339`.
         :param int versions_total: The number of versions of your secret.
-        :param ServiceCredentialsSecretSourceService source_service: The properties
-               that are required to create the service credentials for the specified
-               source service instance.
+        :param ServiceCredentialsSecretSourceServiceRO source_service: The
+               properties of the resource key that was created for this source service
+               instance.
         :param ServiceCredentialsSecretCredentials credentials: The properties of
                the service credentials secret payload.
         :param dict custom_metadata: (optional) The secret metadata that a user can
@@ -26358,66 +26694,66 @@ class ServiceCredentialsSecret(Secret):
     def from_dict(cls, _dict: Dict) -> 'ServiceCredentialsSecret':
         """Initialize a ServiceCredentialsSecret object from a json dictionary."""
         args = {}
-        if 'created_by' in _dict:
-            args['created_by'] = _dict.get('created_by')
+        if (created_by := _dict.get('created_by')) is not None:
+            args['created_by'] = created_by
         else:
             raise ValueError('Required property \'created_by\' not present in ServiceCredentialsSecret JSON')
-        if 'created_at' in _dict:
-            args['created_at'] = string_to_datetime(_dict.get('created_at'))
+        if (created_at := _dict.get('created_at')) is not None:
+            args['created_at'] = string_to_datetime(created_at)
         else:
             raise ValueError('Required property \'created_at\' not present in ServiceCredentialsSecret JSON')
-        if 'crn' in _dict:
-            args['crn'] = _dict.get('crn')
+        if (crn := _dict.get('crn')) is not None:
+            args['crn'] = crn
         else:
             raise ValueError('Required property \'crn\' not present in ServiceCredentialsSecret JSON')
-        if 'custom_metadata' in _dict:
-            args['custom_metadata'] = _dict.get('custom_metadata')
-        if 'description' in _dict:
-            args['description'] = _dict.get('description')
-        if 'downloaded' in _dict:
-            args['downloaded'] = _dict.get('downloaded')
-        if 'id' in _dict:
-            args['id'] = _dict.get('id')
+        if (custom_metadata := _dict.get('custom_metadata')) is not None:
+            args['custom_metadata'] = custom_metadata
+        if (description := _dict.get('description')) is not None:
+            args['description'] = description
+        if (downloaded := _dict.get('downloaded')) is not None:
+            args['downloaded'] = downloaded
+        if (id := _dict.get('id')) is not None:
+            args['id'] = id
         else:
             raise ValueError('Required property \'id\' not present in ServiceCredentialsSecret JSON')
-        if 'labels' in _dict:
-            args['labels'] = _dict.get('labels')
-        if 'locks_total' in _dict:
-            args['locks_total'] = _dict.get('locks_total')
-        if 'name' in _dict:
-            args['name'] = _dict.get('name')
-        if 'secret_group_id' in _dict:
-            args['secret_group_id'] = _dict.get('secret_group_id')
+        if (labels := _dict.get('labels')) is not None:
+            args['labels'] = labels
+        if (locks_total := _dict.get('locks_total')) is not None:
+            args['locks_total'] = locks_total
+        if (name := _dict.get('name')) is not None:
+            args['name'] = name
+        if (secret_group_id := _dict.get('secret_group_id')) is not None:
+            args['secret_group_id'] = secret_group_id
         else:
             raise ValueError('Required property \'secret_group_id\' not present in ServiceCredentialsSecret JSON')
-        if 'secret_type' in _dict:
-            args['secret_type'] = _dict.get('secret_type')
+        if (secret_type := _dict.get('secret_type')) is not None:
+            args['secret_type'] = secret_type
         else:
             raise ValueError('Required property \'secret_type\' not present in ServiceCredentialsSecret JSON')
-        if 'state' in _dict:
-            args['state'] = _dict.get('state')
-        if 'state_description' in _dict:
-            args['state_description'] = _dict.get('state_description')
-        if 'updated_at' in _dict:
-            args['updated_at'] = string_to_datetime(_dict.get('updated_at'))
+        if (state := _dict.get('state')) is not None:
+            args['state'] = state
+        if (state_description := _dict.get('state_description')) is not None:
+            args['state_description'] = state_description
+        if (updated_at := _dict.get('updated_at')) is not None:
+            args['updated_at'] = string_to_datetime(updated_at)
         else:
             raise ValueError('Required property \'updated_at\' not present in ServiceCredentialsSecret JSON')
-        if 'versions_total' in _dict:
-            args['versions_total'] = _dict.get('versions_total')
+        if (versions_total := _dict.get('versions_total')) is not None:
+            args['versions_total'] = versions_total
         else:
             raise ValueError('Required property \'versions_total\' not present in ServiceCredentialsSecret JSON')
-        if 'next_rotation_date' in _dict:
-            args['next_rotation_date'] = string_to_datetime(_dict.get('next_rotation_date'))
-        if 'rotation' in _dict:
-            args['rotation'] = _dict.get('rotation')
-        if 'ttl' in _dict:
-            args['ttl'] = _dict.get('ttl')
-        if 'source_service' in _dict:
-            args['source_service'] = ServiceCredentialsSecretSourceService.from_dict(_dict.get('source_service'))
+        if (next_rotation_date := _dict.get('next_rotation_date')) is not None:
+            args['next_rotation_date'] = string_to_datetime(next_rotation_date)
+        if (rotation := _dict.get('rotation')) is not None:
+            args['rotation'] = rotation
+        if (ttl := _dict.get('ttl')) is not None:
+            args['ttl'] = ttl
+        if (source_service := _dict.get('source_service')) is not None:
+            args['source_service'] = ServiceCredentialsSecretSourceServiceRO.from_dict(source_service)
         else:
             raise ValueError('Required property \'source_service\' not present in ServiceCredentialsSecret JSON')
-        if 'credentials' in _dict:
-            args['credentials'] = ServiceCredentialsSecretCredentials.from_dict(_dict.get('credentials'))
+        if (credentials := _dict.get('credentials')) is not None:
+            args['credentials'] = ServiceCredentialsSecretCredentials.from_dict(credentials)
         else:
             raise ValueError('Required property \'credentials\' not present in ServiceCredentialsSecret JSON')
         return cls(**args)
@@ -26584,9 +26920,8 @@ class ServiceCredentialsSecretMetadata(SecretMetadata):
           1 minute. The maximum is 90 days. For the service_credentials secret type, the
           TTL field is optional. If it is set the minimum duration is 1 day. The maximum
           is 90 days. By default, the TTL is set to 0.
-    :param ServiceCredentialsSecretSourceService source_service: The properties that
-          are required to create the service credentials for the specified source service
-          instance.
+    :param ServiceCredentialsSecretSourceServiceRO source_service: The properties of
+          the resource key that was created for this source service instance.
     """
 
     def __init__(
@@ -26599,7 +26934,7 @@ class ServiceCredentialsSecretMetadata(SecretMetadata):
         secret_type: str,
         updated_at: datetime,
         versions_total: int,
-        source_service: 'ServiceCredentialsSecretSourceService',
+        source_service: 'ServiceCredentialsSecretSourceServiceRO',
         *,
         custom_metadata: Optional[dict] = None,
         description: Optional[str] = None,
@@ -26630,9 +26965,9 @@ class ServiceCredentialsSecretMetadata(SecretMetadata):
         :param datetime updated_at: The date when a resource was modified. The date
                format follows `RFC 3339`.
         :param int versions_total: The number of versions of your secret.
-        :param ServiceCredentialsSecretSourceService source_service: The properties
-               that are required to create the service credentials for the specified
-               source service instance.
+        :param ServiceCredentialsSecretSourceServiceRO source_service: The
+               properties of the resource key that was created for this source service
+               instance.
         :param dict custom_metadata: (optional) The secret metadata that a user can
                customize.
         :param str description: (optional) An extended description of your secret.
@@ -26683,62 +27018,62 @@ class ServiceCredentialsSecretMetadata(SecretMetadata):
     def from_dict(cls, _dict: Dict) -> 'ServiceCredentialsSecretMetadata':
         """Initialize a ServiceCredentialsSecretMetadata object from a json dictionary."""
         args = {}
-        if 'created_by' in _dict:
-            args['created_by'] = _dict.get('created_by')
+        if (created_by := _dict.get('created_by')) is not None:
+            args['created_by'] = created_by
         else:
             raise ValueError('Required property \'created_by\' not present in ServiceCredentialsSecretMetadata JSON')
-        if 'created_at' in _dict:
-            args['created_at'] = string_to_datetime(_dict.get('created_at'))
+        if (created_at := _dict.get('created_at')) is not None:
+            args['created_at'] = string_to_datetime(created_at)
         else:
             raise ValueError('Required property \'created_at\' not present in ServiceCredentialsSecretMetadata JSON')
-        if 'crn' in _dict:
-            args['crn'] = _dict.get('crn')
+        if (crn := _dict.get('crn')) is not None:
+            args['crn'] = crn
         else:
             raise ValueError('Required property \'crn\' not present in ServiceCredentialsSecretMetadata JSON')
-        if 'custom_metadata' in _dict:
-            args['custom_metadata'] = _dict.get('custom_metadata')
-        if 'description' in _dict:
-            args['description'] = _dict.get('description')
-        if 'downloaded' in _dict:
-            args['downloaded'] = _dict.get('downloaded')
-        if 'id' in _dict:
-            args['id'] = _dict.get('id')
+        if (custom_metadata := _dict.get('custom_metadata')) is not None:
+            args['custom_metadata'] = custom_metadata
+        if (description := _dict.get('description')) is not None:
+            args['description'] = description
+        if (downloaded := _dict.get('downloaded')) is not None:
+            args['downloaded'] = downloaded
+        if (id := _dict.get('id')) is not None:
+            args['id'] = id
         else:
             raise ValueError('Required property \'id\' not present in ServiceCredentialsSecretMetadata JSON')
-        if 'labels' in _dict:
-            args['labels'] = _dict.get('labels')
-        if 'locks_total' in _dict:
-            args['locks_total'] = _dict.get('locks_total')
-        if 'name' in _dict:
-            args['name'] = _dict.get('name')
-        if 'secret_group_id' in _dict:
-            args['secret_group_id'] = _dict.get('secret_group_id')
+        if (labels := _dict.get('labels')) is not None:
+            args['labels'] = labels
+        if (locks_total := _dict.get('locks_total')) is not None:
+            args['locks_total'] = locks_total
+        if (name := _dict.get('name')) is not None:
+            args['name'] = name
+        if (secret_group_id := _dict.get('secret_group_id')) is not None:
+            args['secret_group_id'] = secret_group_id
         else:
             raise ValueError('Required property \'secret_group_id\' not present in ServiceCredentialsSecretMetadata JSON')
-        if 'secret_type' in _dict:
-            args['secret_type'] = _dict.get('secret_type')
+        if (secret_type := _dict.get('secret_type')) is not None:
+            args['secret_type'] = secret_type
         else:
             raise ValueError('Required property \'secret_type\' not present in ServiceCredentialsSecretMetadata JSON')
-        if 'state' in _dict:
-            args['state'] = _dict.get('state')
-        if 'state_description' in _dict:
-            args['state_description'] = _dict.get('state_description')
-        if 'updated_at' in _dict:
-            args['updated_at'] = string_to_datetime(_dict.get('updated_at'))
+        if (state := _dict.get('state')) is not None:
+            args['state'] = state
+        if (state_description := _dict.get('state_description')) is not None:
+            args['state_description'] = state_description
+        if (updated_at := _dict.get('updated_at')) is not None:
+            args['updated_at'] = string_to_datetime(updated_at)
         else:
             raise ValueError('Required property \'updated_at\' not present in ServiceCredentialsSecretMetadata JSON')
-        if 'versions_total' in _dict:
-            args['versions_total'] = _dict.get('versions_total')
+        if (versions_total := _dict.get('versions_total')) is not None:
+            args['versions_total'] = versions_total
         else:
             raise ValueError('Required property \'versions_total\' not present in ServiceCredentialsSecretMetadata JSON')
-        if 'next_rotation_date' in _dict:
-            args['next_rotation_date'] = string_to_datetime(_dict.get('next_rotation_date'))
-        if 'rotation' in _dict:
-            args['rotation'] = _dict.get('rotation')
-        if 'ttl' in _dict:
-            args['ttl'] = _dict.get('ttl')
-        if 'source_service' in _dict:
-            args['source_service'] = ServiceCredentialsSecretSourceService.from_dict(_dict.get('source_service'))
+        if (next_rotation_date := _dict.get('next_rotation_date')) is not None:
+            args['next_rotation_date'] = string_to_datetime(next_rotation_date)
+        if (rotation := _dict.get('rotation')) is not None:
+            args['rotation'] = rotation
+        if (ttl := _dict.get('ttl')) is not None:
+            args['ttl'] = ttl
+        if (source_service := _dict.get('source_service')) is not None:
+            args['source_service'] = ServiceCredentialsSecretSourceServiceRO.from_dict(source_service)
         else:
             raise ValueError('Required property \'source_service\' not present in ServiceCredentialsSecretMetadata JSON')
         return cls(**args)
@@ -26929,18 +27264,18 @@ class ServiceCredentialsSecretMetadataPatch(SecretMetadataPatch):
     def from_dict(cls, _dict: Dict) -> 'ServiceCredentialsSecretMetadataPatch':
         """Initialize a ServiceCredentialsSecretMetadataPatch object from a json dictionary."""
         args = {}
-        if 'custom_metadata' in _dict:
-            args['custom_metadata'] = _dict.get('custom_metadata')
-        if 'description' in _dict:
-            args['description'] = _dict.get('description')
-        if 'labels' in _dict:
-            args['labels'] = _dict.get('labels')
-        if 'name' in _dict:
-            args['name'] = _dict.get('name')
-        if 'rotation' in _dict:
-            args['rotation'] = _dict.get('rotation')
-        if 'ttl' in _dict:
-            args['ttl'] = _dict.get('ttl')
+        if (custom_metadata := _dict.get('custom_metadata')) is not None:
+            args['custom_metadata'] = custom_metadata
+        if (description := _dict.get('description')) is not None:
+            args['description'] = description
+        if (labels := _dict.get('labels')) is not None:
+            args['labels'] = labels
+        if (name := _dict.get('name')) is not None:
+            args['name'] = name
+        if (rotation := _dict.get('rotation')) is not None:
+            args['rotation'] = rotation
+        if (ttl := _dict.get('ttl')) is not None:
+            args['ttl'] = ttl
         return cls(**args)
 
     @classmethod
@@ -27098,32 +27433,32 @@ class ServiceCredentialsSecretPrototype(SecretPrototype):
     def from_dict(cls, _dict: Dict) -> 'ServiceCredentialsSecretPrototype':
         """Initialize a ServiceCredentialsSecretPrototype object from a json dictionary."""
         args = {}
-        if 'custom_metadata' in _dict:
-            args['custom_metadata'] = _dict.get('custom_metadata')
-        if 'description' in _dict:
-            args['description'] = _dict.get('description')
-        if 'labels' in _dict:
-            args['labels'] = _dict.get('labels')
-        if 'name' in _dict:
-            args['name'] = _dict.get('name')
+        if (custom_metadata := _dict.get('custom_metadata')) is not None:
+            args['custom_metadata'] = custom_metadata
+        if (description := _dict.get('description')) is not None:
+            args['description'] = description
+        if (labels := _dict.get('labels')) is not None:
+            args['labels'] = labels
+        if (name := _dict.get('name')) is not None:
+            args['name'] = name
         else:
             raise ValueError('Required property \'name\' not present in ServiceCredentialsSecretPrototype JSON')
-        if 'rotation' in _dict:
-            args['rotation'] = _dict.get('rotation')
-        if 'secret_group_id' in _dict:
-            args['secret_group_id'] = _dict.get('secret_group_id')
-        if 'secret_type' in _dict:
-            args['secret_type'] = _dict.get('secret_type')
+        if (rotation := _dict.get('rotation')) is not None:
+            args['rotation'] = rotation
+        if (secret_group_id := _dict.get('secret_group_id')) is not None:
+            args['secret_group_id'] = secret_group_id
+        if (secret_type := _dict.get('secret_type')) is not None:
+            args['secret_type'] = secret_type
         else:
             raise ValueError('Required property \'secret_type\' not present in ServiceCredentialsSecretPrototype JSON')
-        if 'source_service' in _dict:
-            args['source_service'] = ServiceCredentialsSecretSourceService.from_dict(_dict.get('source_service'))
+        if (source_service := _dict.get('source_service')) is not None:
+            args['source_service'] = ServiceCredentialsSecretSourceService.from_dict(source_service)
         else:
             raise ValueError('Required property \'source_service\' not present in ServiceCredentialsSecretPrototype JSON')
-        if 'ttl' in _dict:
-            args['ttl'] = _dict.get('ttl')
-        if 'version_custom_metadata' in _dict:
-            args['version_custom_metadata'] = _dict.get('version_custom_metadata')
+        if (ttl := _dict.get('ttl')) is not None:
+            args['ttl'] = ttl
+        if (version_custom_metadata := _dict.get('version_custom_metadata')) is not None:
+            args['version_custom_metadata'] = version_custom_metadata
         return cls(**args)
 
     @classmethod
@@ -27304,50 +27639,50 @@ class ServiceCredentialsSecretVersion(SecretVersion):
     def from_dict(cls, _dict: Dict) -> 'ServiceCredentialsSecretVersion':
         """Initialize a ServiceCredentialsSecretVersion object from a json dictionary."""
         args = {}
-        if 'auto_rotated' in _dict:
-            args['auto_rotated'] = _dict.get('auto_rotated')
-        if 'created_by' in _dict:
-            args['created_by'] = _dict.get('created_by')
+        if (auto_rotated := _dict.get('auto_rotated')) is not None:
+            args['auto_rotated'] = auto_rotated
+        if (created_by := _dict.get('created_by')) is not None:
+            args['created_by'] = created_by
         else:
             raise ValueError('Required property \'created_by\' not present in ServiceCredentialsSecretVersion JSON')
-        if 'created_at' in _dict:
-            args['created_at'] = string_to_datetime(_dict.get('created_at'))
+        if (created_at := _dict.get('created_at')) is not None:
+            args['created_at'] = string_to_datetime(created_at)
         else:
             raise ValueError('Required property \'created_at\' not present in ServiceCredentialsSecretVersion JSON')
-        if 'downloaded' in _dict:
-            args['downloaded'] = _dict.get('downloaded')
-        if 'id' in _dict:
-            args['id'] = _dict.get('id')
+        if (downloaded := _dict.get('downloaded')) is not None:
+            args['downloaded'] = downloaded
+        if (id := _dict.get('id')) is not None:
+            args['id'] = id
         else:
             raise ValueError('Required property \'id\' not present in ServiceCredentialsSecretVersion JSON')
-        if 'secret_name' in _dict:
-            args['secret_name'] = _dict.get('secret_name')
-        if 'secret_type' in _dict:
-            args['secret_type'] = _dict.get('secret_type')
+        if (secret_name := _dict.get('secret_name')) is not None:
+            args['secret_name'] = secret_name
+        if (secret_type := _dict.get('secret_type')) is not None:
+            args['secret_type'] = secret_type
         else:
             raise ValueError('Required property \'secret_type\' not present in ServiceCredentialsSecretVersion JSON')
-        if 'secret_group_id' in _dict:
-            args['secret_group_id'] = _dict.get('secret_group_id')
+        if (secret_group_id := _dict.get('secret_group_id')) is not None:
+            args['secret_group_id'] = secret_group_id
         else:
             raise ValueError('Required property \'secret_group_id\' not present in ServiceCredentialsSecretVersion JSON')
-        if 'payload_available' in _dict:
-            args['payload_available'] = _dict.get('payload_available')
+        if (payload_available := _dict.get('payload_available')) is not None:
+            args['payload_available'] = payload_available
         else:
             raise ValueError('Required property \'payload_available\' not present in ServiceCredentialsSecretVersion JSON')
-        if 'alias' in _dict:
-            args['alias'] = _dict.get('alias')
-        if 'version_custom_metadata' in _dict:
-            args['version_custom_metadata'] = _dict.get('version_custom_metadata')
-        if 'secret_id' in _dict:
-            args['secret_id'] = _dict.get('secret_id')
+        if (alias := _dict.get('alias')) is not None:
+            args['alias'] = alias
+        if (version_custom_metadata := _dict.get('version_custom_metadata')) is not None:
+            args['version_custom_metadata'] = version_custom_metadata
+        if (secret_id := _dict.get('secret_id')) is not None:
+            args['secret_id'] = secret_id
         else:
             raise ValueError('Required property \'secret_id\' not present in ServiceCredentialsSecretVersion JSON')
-        if 'expiration_date' in _dict:
-            args['expiration_date'] = string_to_datetime(_dict.get('expiration_date'))
-        if 'resource_key' in _dict:
-            args['resource_key'] = ServiceCredentialsResourceKey.from_dict(_dict.get('resource_key'))
-        if 'credentials' in _dict:
-            args['credentials'] = ServiceCredentialsSecretCredentials.from_dict(_dict.get('credentials'))
+        if (expiration_date := _dict.get('expiration_date')) is not None:
+            args['expiration_date'] = string_to_datetime(expiration_date)
+        if (resource_key := _dict.get('resource_key')) is not None:
+            args['resource_key'] = ServiceCredentialsResourceKey.from_dict(resource_key)
+        if (credentials := _dict.get('credentials')) is not None:
+            args['credentials'] = ServiceCredentialsSecretCredentials.from_dict(credentials)
         else:
             raise ValueError('Required property \'credentials\' not present in ServiceCredentialsSecretVersion JSON')
         return cls(**args)
@@ -27544,48 +27879,48 @@ class ServiceCredentialsSecretVersionMetadata(SecretVersionMetadata):
     def from_dict(cls, _dict: Dict) -> 'ServiceCredentialsSecretVersionMetadata':
         """Initialize a ServiceCredentialsSecretVersionMetadata object from a json dictionary."""
         args = {}
-        if 'auto_rotated' in _dict:
-            args['auto_rotated'] = _dict.get('auto_rotated')
-        if 'created_by' in _dict:
-            args['created_by'] = _dict.get('created_by')
+        if (auto_rotated := _dict.get('auto_rotated')) is not None:
+            args['auto_rotated'] = auto_rotated
+        if (created_by := _dict.get('created_by')) is not None:
+            args['created_by'] = created_by
         else:
             raise ValueError('Required property \'created_by\' not present in ServiceCredentialsSecretVersionMetadata JSON')
-        if 'created_at' in _dict:
-            args['created_at'] = string_to_datetime(_dict.get('created_at'))
+        if (created_at := _dict.get('created_at')) is not None:
+            args['created_at'] = string_to_datetime(created_at)
         else:
             raise ValueError('Required property \'created_at\' not present in ServiceCredentialsSecretVersionMetadata JSON')
-        if 'downloaded' in _dict:
-            args['downloaded'] = _dict.get('downloaded')
-        if 'id' in _dict:
-            args['id'] = _dict.get('id')
+        if (downloaded := _dict.get('downloaded')) is not None:
+            args['downloaded'] = downloaded
+        if (id := _dict.get('id')) is not None:
+            args['id'] = id
         else:
             raise ValueError('Required property \'id\' not present in ServiceCredentialsSecretVersionMetadata JSON')
-        if 'secret_name' in _dict:
-            args['secret_name'] = _dict.get('secret_name')
-        if 'secret_type' in _dict:
-            args['secret_type'] = _dict.get('secret_type')
+        if (secret_name := _dict.get('secret_name')) is not None:
+            args['secret_name'] = secret_name
+        if (secret_type := _dict.get('secret_type')) is not None:
+            args['secret_type'] = secret_type
         else:
             raise ValueError('Required property \'secret_type\' not present in ServiceCredentialsSecretVersionMetadata JSON')
-        if 'secret_group_id' in _dict:
-            args['secret_group_id'] = _dict.get('secret_group_id')
+        if (secret_group_id := _dict.get('secret_group_id')) is not None:
+            args['secret_group_id'] = secret_group_id
         else:
             raise ValueError('Required property \'secret_group_id\' not present in ServiceCredentialsSecretVersionMetadata JSON')
-        if 'payload_available' in _dict:
-            args['payload_available'] = _dict.get('payload_available')
+        if (payload_available := _dict.get('payload_available')) is not None:
+            args['payload_available'] = payload_available
         else:
             raise ValueError('Required property \'payload_available\' not present in ServiceCredentialsSecretVersionMetadata JSON')
-        if 'alias' in _dict:
-            args['alias'] = _dict.get('alias')
-        if 'version_custom_metadata' in _dict:
-            args['version_custom_metadata'] = _dict.get('version_custom_metadata')
-        if 'secret_id' in _dict:
-            args['secret_id'] = _dict.get('secret_id')
+        if (alias := _dict.get('alias')) is not None:
+            args['alias'] = alias
+        if (version_custom_metadata := _dict.get('version_custom_metadata')) is not None:
+            args['version_custom_metadata'] = version_custom_metadata
+        if (secret_id := _dict.get('secret_id')) is not None:
+            args['secret_id'] = secret_id
         else:
             raise ValueError('Required property \'secret_id\' not present in ServiceCredentialsSecretVersionMetadata JSON')
-        if 'expiration_date' in _dict:
-            args['expiration_date'] = string_to_datetime(_dict.get('expiration_date'))
-        if 'resource_key' in _dict:
-            args['resource_key'] = ServiceCredentialsResourceKey.from_dict(_dict.get('resource_key'))
+        if (expiration_date := _dict.get('expiration_date')) is not None:
+            args['expiration_date'] = string_to_datetime(expiration_date)
+        if (resource_key := _dict.get('resource_key')) is not None:
+            args['resource_key'] = ServiceCredentialsResourceKey.from_dict(resource_key)
         return cls(**args)
 
     @classmethod
@@ -27706,10 +28041,10 @@ class ServiceCredentialsSecretVersionPrototype(SecretVersionPrototype):
     def from_dict(cls, _dict: Dict) -> 'ServiceCredentialsSecretVersionPrototype':
         """Initialize a ServiceCredentialsSecretVersionPrototype object from a json dictionary."""
         args = {}
-        if 'custom_metadata' in _dict:
-            args['custom_metadata'] = _dict.get('custom_metadata')
-        if 'version_custom_metadata' in _dict:
-            args['version_custom_metadata'] = _dict.get('version_custom_metadata')
+        if (custom_metadata := _dict.get('custom_metadata')) is not None:
+            args['custom_metadata'] = custom_metadata
+        if (version_custom_metadata := _dict.get('version_custom_metadata')) is not None:
+            args['version_custom_metadata'] = version_custom_metadata
         return cls(**args)
 
     @classmethod
@@ -27793,6 +28128,8 @@ class UsernamePasswordSecret(Secret):
           The service automatically creates a new version of the secret on its next
           rotation date. This field exists only for secrets that can be auto-rotated and
           an existing rotation policy.
+    :param PasswordGenerationPolicyRO password_generation_policy: (optional) Policy
+          for auto-generated passwords.
     :param str username: The username that is assigned to an `username_password`
           secret.
     :param str password: The password that is assigned to an `username_password`
@@ -27823,6 +28160,7 @@ class UsernamePasswordSecret(Secret):
         state_description: Optional[str] = None,
         expiration_date: Optional[datetime] = None,
         next_rotation_date: Optional[datetime] = None,
+        password_generation_policy: Optional['PasswordGenerationPolicyRO'] = None,
     ) -> None:
         """
         Initialize a UsernamePasswordSecret object.
@@ -27861,6 +28199,8 @@ class UsernamePasswordSecret(Secret):
         :param datetime expiration_date: (optional) The date when the secret
                material expires. The date format follows the `RFC 3339` format. Supported
                secret types: Arbitrary, username_password.
+        :param PasswordGenerationPolicyRO password_generation_policy: (optional)
+               Policy for auto-generated passwords.
         """
         # pylint: disable=super-init-not-called
         self.created_by = created_by
@@ -27882,6 +28222,7 @@ class UsernamePasswordSecret(Secret):
         self.rotation = rotation
         self.expiration_date = expiration_date
         self.next_rotation_date = next_rotation_date
+        self.password_generation_policy = password_generation_policy
         self.username = username
         self.password = password
 
@@ -27889,68 +28230,70 @@ class UsernamePasswordSecret(Secret):
     def from_dict(cls, _dict: Dict) -> 'UsernamePasswordSecret':
         """Initialize a UsernamePasswordSecret object from a json dictionary."""
         args = {}
-        if 'created_by' in _dict:
-            args['created_by'] = _dict.get('created_by')
+        if (created_by := _dict.get('created_by')) is not None:
+            args['created_by'] = created_by
         else:
             raise ValueError('Required property \'created_by\' not present in UsernamePasswordSecret JSON')
-        if 'created_at' in _dict:
-            args['created_at'] = string_to_datetime(_dict.get('created_at'))
+        if (created_at := _dict.get('created_at')) is not None:
+            args['created_at'] = string_to_datetime(created_at)
         else:
             raise ValueError('Required property \'created_at\' not present in UsernamePasswordSecret JSON')
-        if 'crn' in _dict:
-            args['crn'] = _dict.get('crn')
+        if (crn := _dict.get('crn')) is not None:
+            args['crn'] = crn
         else:
             raise ValueError('Required property \'crn\' not present in UsernamePasswordSecret JSON')
-        if 'custom_metadata' in _dict:
-            args['custom_metadata'] = _dict.get('custom_metadata')
-        if 'description' in _dict:
-            args['description'] = _dict.get('description')
-        if 'downloaded' in _dict:
-            args['downloaded'] = _dict.get('downloaded')
-        if 'id' in _dict:
-            args['id'] = _dict.get('id')
+        if (custom_metadata := _dict.get('custom_metadata')) is not None:
+            args['custom_metadata'] = custom_metadata
+        if (description := _dict.get('description')) is not None:
+            args['description'] = description
+        if (downloaded := _dict.get('downloaded')) is not None:
+            args['downloaded'] = downloaded
+        if (id := _dict.get('id')) is not None:
+            args['id'] = id
         else:
             raise ValueError('Required property \'id\' not present in UsernamePasswordSecret JSON')
-        if 'labels' in _dict:
-            args['labels'] = _dict.get('labels')
-        if 'locks_total' in _dict:
-            args['locks_total'] = _dict.get('locks_total')
-        if 'name' in _dict:
-            args['name'] = _dict.get('name')
-        if 'secret_group_id' in _dict:
-            args['secret_group_id'] = _dict.get('secret_group_id')
+        if (labels := _dict.get('labels')) is not None:
+            args['labels'] = labels
+        if (locks_total := _dict.get('locks_total')) is not None:
+            args['locks_total'] = locks_total
+        if (name := _dict.get('name')) is not None:
+            args['name'] = name
+        if (secret_group_id := _dict.get('secret_group_id')) is not None:
+            args['secret_group_id'] = secret_group_id
         else:
             raise ValueError('Required property \'secret_group_id\' not present in UsernamePasswordSecret JSON')
-        if 'secret_type' in _dict:
-            args['secret_type'] = _dict.get('secret_type')
+        if (secret_type := _dict.get('secret_type')) is not None:
+            args['secret_type'] = secret_type
         else:
             raise ValueError('Required property \'secret_type\' not present in UsernamePasswordSecret JSON')
-        if 'state' in _dict:
-            args['state'] = _dict.get('state')
-        if 'state_description' in _dict:
-            args['state_description'] = _dict.get('state_description')
-        if 'updated_at' in _dict:
-            args['updated_at'] = string_to_datetime(_dict.get('updated_at'))
+        if (state := _dict.get('state')) is not None:
+            args['state'] = state
+        if (state_description := _dict.get('state_description')) is not None:
+            args['state_description'] = state_description
+        if (updated_at := _dict.get('updated_at')) is not None:
+            args['updated_at'] = string_to_datetime(updated_at)
         else:
             raise ValueError('Required property \'updated_at\' not present in UsernamePasswordSecret JSON')
-        if 'versions_total' in _dict:
-            args['versions_total'] = _dict.get('versions_total')
+        if (versions_total := _dict.get('versions_total')) is not None:
+            args['versions_total'] = versions_total
         else:
             raise ValueError('Required property \'versions_total\' not present in UsernamePasswordSecret JSON')
-        if 'rotation' in _dict:
-            args['rotation'] = _dict.get('rotation')
+        if (rotation := _dict.get('rotation')) is not None:
+            args['rotation'] = rotation
         else:
             raise ValueError('Required property \'rotation\' not present in UsernamePasswordSecret JSON')
-        if 'expiration_date' in _dict:
-            args['expiration_date'] = string_to_datetime(_dict.get('expiration_date'))
-        if 'next_rotation_date' in _dict:
-            args['next_rotation_date'] = string_to_datetime(_dict.get('next_rotation_date'))
-        if 'username' in _dict:
-            args['username'] = _dict.get('username')
+        if (expiration_date := _dict.get('expiration_date')) is not None:
+            args['expiration_date'] = string_to_datetime(expiration_date)
+        if (next_rotation_date := _dict.get('next_rotation_date')) is not None:
+            args['next_rotation_date'] = string_to_datetime(next_rotation_date)
+        if (password_generation_policy := _dict.get('password_generation_policy')) is not None:
+            args['password_generation_policy'] = PasswordGenerationPolicyRO.from_dict(password_generation_policy)
+        if (username := _dict.get('username')) is not None:
+            args['username'] = username
         else:
             raise ValueError('Required property \'username\' not present in UsernamePasswordSecret JSON')
-        if 'password' in _dict:
-            args['password'] = _dict.get('password')
+        if (password := _dict.get('password')) is not None:
+            args['password'] = password
         else:
             raise ValueError('Required property \'password\' not present in UsernamePasswordSecret JSON')
         return cls(**args)
@@ -28004,6 +28347,11 @@ class UsernamePasswordSecret(Secret):
             _dict['expiration_date'] = datetime_to_string(self.expiration_date)
         if hasattr(self, 'next_rotation_date') and getattr(self, 'next_rotation_date') is not None:
             _dict['next_rotation_date'] = datetime_to_string(getattr(self, 'next_rotation_date'))
+        if hasattr(self, 'password_generation_policy') and self.password_generation_policy is not None:
+            if isinstance(self.password_generation_policy, dict):
+                _dict['password_generation_policy'] = self.password_generation_policy
+            else:
+                _dict['password_generation_policy'] = self.password_generation_policy.to_dict()
         if hasattr(self, 'username') and self.username is not None:
             _dict['username'] = self.username
         if hasattr(self, 'password') and self.password is not None:
@@ -28105,6 +28453,8 @@ class UsernamePasswordSecretMetadata(SecretMetadata):
           The service automatically creates a new version of the secret on its next
           rotation date. This field exists only for secrets that can be auto-rotated and
           an existing rotation policy.
+    :param PasswordGenerationPolicyRO password_generation_policy: (optional) Policy
+          for auto-generated passwords.
     """
 
     def __init__(
@@ -28129,6 +28479,7 @@ class UsernamePasswordSecretMetadata(SecretMetadata):
         state_description: Optional[str] = None,
         expiration_date: Optional[datetime] = None,
         next_rotation_date: Optional[datetime] = None,
+        password_generation_policy: Optional['PasswordGenerationPolicyRO'] = None,
     ) -> None:
         """
         Initialize a UsernamePasswordSecretMetadata object.
@@ -28163,6 +28514,8 @@ class UsernamePasswordSecretMetadata(SecretMetadata):
         :param datetime expiration_date: (optional) The date when the secret
                material expires. The date format follows the `RFC 3339` format. Supported
                secret types: Arbitrary, username_password.
+        :param PasswordGenerationPolicyRO password_generation_policy: (optional)
+               Policy for auto-generated passwords.
         """
         # pylint: disable=super-init-not-called
         self.created_by = created_by
@@ -28184,67 +28537,70 @@ class UsernamePasswordSecretMetadata(SecretMetadata):
         self.rotation = rotation
         self.expiration_date = expiration_date
         self.next_rotation_date = next_rotation_date
+        self.password_generation_policy = password_generation_policy
 
     @classmethod
     def from_dict(cls, _dict: Dict) -> 'UsernamePasswordSecretMetadata':
         """Initialize a UsernamePasswordSecretMetadata object from a json dictionary."""
         args = {}
-        if 'created_by' in _dict:
-            args['created_by'] = _dict.get('created_by')
+        if (created_by := _dict.get('created_by')) is not None:
+            args['created_by'] = created_by
         else:
             raise ValueError('Required property \'created_by\' not present in UsernamePasswordSecretMetadata JSON')
-        if 'created_at' in _dict:
-            args['created_at'] = string_to_datetime(_dict.get('created_at'))
+        if (created_at := _dict.get('created_at')) is not None:
+            args['created_at'] = string_to_datetime(created_at)
         else:
             raise ValueError('Required property \'created_at\' not present in UsernamePasswordSecretMetadata JSON')
-        if 'crn' in _dict:
-            args['crn'] = _dict.get('crn')
+        if (crn := _dict.get('crn')) is not None:
+            args['crn'] = crn
         else:
             raise ValueError('Required property \'crn\' not present in UsernamePasswordSecretMetadata JSON')
-        if 'custom_metadata' in _dict:
-            args['custom_metadata'] = _dict.get('custom_metadata')
-        if 'description' in _dict:
-            args['description'] = _dict.get('description')
-        if 'downloaded' in _dict:
-            args['downloaded'] = _dict.get('downloaded')
-        if 'id' in _dict:
-            args['id'] = _dict.get('id')
+        if (custom_metadata := _dict.get('custom_metadata')) is not None:
+            args['custom_metadata'] = custom_metadata
+        if (description := _dict.get('description')) is not None:
+            args['description'] = description
+        if (downloaded := _dict.get('downloaded')) is not None:
+            args['downloaded'] = downloaded
+        if (id := _dict.get('id')) is not None:
+            args['id'] = id
         else:
             raise ValueError('Required property \'id\' not present in UsernamePasswordSecretMetadata JSON')
-        if 'labels' in _dict:
-            args['labels'] = _dict.get('labels')
-        if 'locks_total' in _dict:
-            args['locks_total'] = _dict.get('locks_total')
-        if 'name' in _dict:
-            args['name'] = _dict.get('name')
-        if 'secret_group_id' in _dict:
-            args['secret_group_id'] = _dict.get('secret_group_id')
+        if (labels := _dict.get('labels')) is not None:
+            args['labels'] = labels
+        if (locks_total := _dict.get('locks_total')) is not None:
+            args['locks_total'] = locks_total
+        if (name := _dict.get('name')) is not None:
+            args['name'] = name
+        if (secret_group_id := _dict.get('secret_group_id')) is not None:
+            args['secret_group_id'] = secret_group_id
         else:
             raise ValueError('Required property \'secret_group_id\' not present in UsernamePasswordSecretMetadata JSON')
-        if 'secret_type' in _dict:
-            args['secret_type'] = _dict.get('secret_type')
+        if (secret_type := _dict.get('secret_type')) is not None:
+            args['secret_type'] = secret_type
         else:
             raise ValueError('Required property \'secret_type\' not present in UsernamePasswordSecretMetadata JSON')
-        if 'state' in _dict:
-            args['state'] = _dict.get('state')
-        if 'state_description' in _dict:
-            args['state_description'] = _dict.get('state_description')
-        if 'updated_at' in _dict:
-            args['updated_at'] = string_to_datetime(_dict.get('updated_at'))
+        if (state := _dict.get('state')) is not None:
+            args['state'] = state
+        if (state_description := _dict.get('state_description')) is not None:
+            args['state_description'] = state_description
+        if (updated_at := _dict.get('updated_at')) is not None:
+            args['updated_at'] = string_to_datetime(updated_at)
         else:
             raise ValueError('Required property \'updated_at\' not present in UsernamePasswordSecretMetadata JSON')
-        if 'versions_total' in _dict:
-            args['versions_total'] = _dict.get('versions_total')
+        if (versions_total := _dict.get('versions_total')) is not None:
+            args['versions_total'] = versions_total
         else:
             raise ValueError('Required property \'versions_total\' not present in UsernamePasswordSecretMetadata JSON')
-        if 'rotation' in _dict:
-            args['rotation'] = _dict.get('rotation')
+        if (rotation := _dict.get('rotation')) is not None:
+            args['rotation'] = rotation
         else:
             raise ValueError('Required property \'rotation\' not present in UsernamePasswordSecretMetadata JSON')
-        if 'expiration_date' in _dict:
-            args['expiration_date'] = string_to_datetime(_dict.get('expiration_date'))
-        if 'next_rotation_date' in _dict:
-            args['next_rotation_date'] = string_to_datetime(_dict.get('next_rotation_date'))
+        if (expiration_date := _dict.get('expiration_date')) is not None:
+            args['expiration_date'] = string_to_datetime(expiration_date)
+        if (next_rotation_date := _dict.get('next_rotation_date')) is not None:
+            args['next_rotation_date'] = string_to_datetime(next_rotation_date)
+        if (password_generation_policy := _dict.get('password_generation_policy')) is not None:
+            args['password_generation_policy'] = PasswordGenerationPolicyRO.from_dict(password_generation_policy)
         return cls(**args)
 
     @classmethod
@@ -28296,6 +28652,11 @@ class UsernamePasswordSecretMetadata(SecretMetadata):
             _dict['expiration_date'] = datetime_to_string(self.expiration_date)
         if hasattr(self, 'next_rotation_date') and getattr(self, 'next_rotation_date') is not None:
             _dict['next_rotation_date'] = datetime_to_string(getattr(self, 'next_rotation_date'))
+        if hasattr(self, 'password_generation_policy') and self.password_generation_policy is not None:
+            if isinstance(self.password_generation_policy, dict):
+                _dict['password_generation_policy'] = self.password_generation_policy
+            else:
+                _dict['password_generation_policy'] = self.password_generation_policy.to_dict()
         return _dict
 
     def _to_dict(self):
@@ -28368,6 +28729,10 @@ class UsernamePasswordSecretMetadataPatch(SecretMetadataPatch):
     :param datetime expiration_date: (optional) The date when the secret material
           expires. The date format follows the `RFC 3339` format. Supported secret types:
           Arbitrary, username_password.
+    :param PasswordGenerationPolicyPatch password_generation_policy: (optional)
+          Policy patch for auto-generated passwords. Policy properties that are included
+          in the patch are updated.
+          Properties that are not included in the patch remain unchanged.
     """
 
     def __init__(
@@ -28379,6 +28744,7 @@ class UsernamePasswordSecretMetadataPatch(SecretMetadataPatch):
         custom_metadata: Optional[dict] = None,
         rotation: Optional['RotationPolicy'] = None,
         expiration_date: Optional[datetime] = None,
+        password_generation_policy: Optional['PasswordGenerationPolicyPatch'] = None,
     ) -> None:
         """
         Initialize a UsernamePasswordSecretMetadataPatch object.
@@ -28402,6 +28768,10 @@ class UsernamePasswordSecretMetadataPatch(SecretMetadataPatch):
         :param datetime expiration_date: (optional) The date when the secret
                material expires. The date format follows the `RFC 3339` format. Supported
                secret types: Arbitrary, username_password.
+        :param PasswordGenerationPolicyPatch password_generation_policy: (optional)
+               Policy patch for auto-generated passwords. Policy properties that are
+               included in the patch are updated.
+               Properties that are not included in the patch remain unchanged.
         """
         # pylint: disable=super-init-not-called
         self.name = name
@@ -28410,23 +28780,26 @@ class UsernamePasswordSecretMetadataPatch(SecretMetadataPatch):
         self.custom_metadata = custom_metadata
         self.rotation = rotation
         self.expiration_date = expiration_date
+        self.password_generation_policy = password_generation_policy
 
     @classmethod
     def from_dict(cls, _dict: Dict) -> 'UsernamePasswordSecretMetadataPatch':
         """Initialize a UsernamePasswordSecretMetadataPatch object from a json dictionary."""
         args = {}
-        if 'name' in _dict:
-            args['name'] = _dict.get('name')
-        if 'description' in _dict:
-            args['description'] = _dict.get('description')
-        if 'labels' in _dict:
-            args['labels'] = _dict.get('labels')
-        if 'custom_metadata' in _dict:
-            args['custom_metadata'] = _dict.get('custom_metadata')
-        if 'rotation' in _dict:
-            args['rotation'] = _dict.get('rotation')
-        if 'expiration_date' in _dict:
-            args['expiration_date'] = string_to_datetime(_dict.get('expiration_date'))
+        if (name := _dict.get('name')) is not None:
+            args['name'] = name
+        if (description := _dict.get('description')) is not None:
+            args['description'] = description
+        if (labels := _dict.get('labels')) is not None:
+            args['labels'] = labels
+        if (custom_metadata := _dict.get('custom_metadata')) is not None:
+            args['custom_metadata'] = custom_metadata
+        if (rotation := _dict.get('rotation')) is not None:
+            args['rotation'] = rotation
+        if (expiration_date := _dict.get('expiration_date')) is not None:
+            args['expiration_date'] = string_to_datetime(expiration_date)
+        if (password_generation_policy := _dict.get('password_generation_policy')) is not None:
+            args['password_generation_policy'] = PasswordGenerationPolicyPatch.from_dict(password_generation_policy)
         return cls(**args)
 
     @classmethod
@@ -28452,6 +28825,11 @@ class UsernamePasswordSecretMetadataPatch(SecretMetadataPatch):
                 _dict['rotation'] = self.rotation.to_dict()
         if hasattr(self, 'expiration_date') and self.expiration_date is not None:
             _dict['expiration_date'] = datetime_to_string(self.expiration_date)
+        if hasattr(self, 'password_generation_policy') and self.password_generation_policy is not None:
+            if isinstance(self.password_generation_policy, dict):
+                _dict['password_generation_policy'] = self.password_generation_policy
+            else:
+                _dict['password_generation_policy'] = self.password_generation_policy.to_dict()
         return _dict
 
     def _to_dict(self):
@@ -28495,8 +28873,9 @@ class UsernamePasswordSecretPrototype(SecretPrototype):
           location, as a label for your secret.
     :param str username: The username that is assigned to an `username_password`
           secret.
-    :param str password: The password that is assigned to an `username_password`
-          secret.
+    :param str password: (optional) The password that is assigned to an
+          `username_password` secret. If you omit this parameter, Secrets Manager
+          generates a new random password for your secret.
     :param datetime expiration_date: (optional) The date when the secret material
           expires. The date format follows the `RFC 3339` format. Supported secret types:
           Arbitrary, username_password.
@@ -28507,6 +28886,8 @@ class UsernamePasswordSecretPrototype(SecretPrototype):
     :param RotationPolicy rotation: (optional) This field indicates whether Secrets
           Manager rotates your secrets automatically. Supported secret types:
           username_password, private_cert, public_cert, iam_credentials.
+    :param PasswordGenerationPolicy password_generation_policy: (optional) Policy
+          for auto-generated passwords.
     """
 
     def __init__(
@@ -28514,15 +28895,16 @@ class UsernamePasswordSecretPrototype(SecretPrototype):
         secret_type: str,
         name: str,
         username: str,
-        password: str,
         *,
         description: Optional[str] = None,
         secret_group_id: Optional[str] = None,
         labels: Optional[List[str]] = None,
+        password: Optional[str] = None,
         expiration_date: Optional[datetime] = None,
         custom_metadata: Optional[dict] = None,
         version_custom_metadata: Optional[dict] = None,
         rotation: Optional['RotationPolicy'] = None,
+        password_generation_policy: Optional['PasswordGenerationPolicy'] = None,
     ) -> None:
         """
         Initialize a UsernamePasswordSecretPrototype object.
@@ -28535,8 +28917,6 @@ class UsernamePasswordSecretPrototype(SecretPrototype):
                location, as a name for your secret.
         :param str username: The username that is assigned to an
                `username_password` secret.
-        :param str password: The password that is assigned to an
-               `username_password` secret.
         :param str description: (optional) An extended description of your secret.
                To protect your privacy, do not use personal data, such as your name or
                location, as a description for your secret group.
@@ -28547,6 +28927,9 @@ class UsernamePasswordSecretPrototype(SecretPrototype):
                Label can be between 2-30 characters, including spaces.
                To protect your privacy, do not use personal data, such as your name or
                location, as a label for your secret.
+        :param str password: (optional) The password that is assigned to an
+               `username_password` secret. If you omit this parameter, Secrets Manager
+               generates a new random password for your secret.
         :param datetime expiration_date: (optional) The date when the secret
                material expires. The date format follows the `RFC 3339` format. Supported
                secret types: Arbitrary, username_password.
@@ -28557,6 +28940,8 @@ class UsernamePasswordSecretPrototype(SecretPrototype):
         :param RotationPolicy rotation: (optional) This field indicates whether
                Secrets Manager rotates your secrets automatically. Supported secret types:
                username_password, private_cert, public_cert, iam_credentials.
+        :param PasswordGenerationPolicy password_generation_policy: (optional)
+               Policy for auto-generated passwords.
         """
         # pylint: disable=super-init-not-called
         self.secret_type = secret_type
@@ -28570,41 +28955,42 @@ class UsernamePasswordSecretPrototype(SecretPrototype):
         self.custom_metadata = custom_metadata
         self.version_custom_metadata = version_custom_metadata
         self.rotation = rotation
+        self.password_generation_policy = password_generation_policy
 
     @classmethod
     def from_dict(cls, _dict: Dict) -> 'UsernamePasswordSecretPrototype':
         """Initialize a UsernamePasswordSecretPrototype object from a json dictionary."""
         args = {}
-        if 'secret_type' in _dict:
-            args['secret_type'] = _dict.get('secret_type')
+        if (secret_type := _dict.get('secret_type')) is not None:
+            args['secret_type'] = secret_type
         else:
             raise ValueError('Required property \'secret_type\' not present in UsernamePasswordSecretPrototype JSON')
-        if 'name' in _dict:
-            args['name'] = _dict.get('name')
+        if (name := _dict.get('name')) is not None:
+            args['name'] = name
         else:
             raise ValueError('Required property \'name\' not present in UsernamePasswordSecretPrototype JSON')
-        if 'description' in _dict:
-            args['description'] = _dict.get('description')
-        if 'secret_group_id' in _dict:
-            args['secret_group_id'] = _dict.get('secret_group_id')
-        if 'labels' in _dict:
-            args['labels'] = _dict.get('labels')
-        if 'username' in _dict:
-            args['username'] = _dict.get('username')
+        if (description := _dict.get('description')) is not None:
+            args['description'] = description
+        if (secret_group_id := _dict.get('secret_group_id')) is not None:
+            args['secret_group_id'] = secret_group_id
+        if (labels := _dict.get('labels')) is not None:
+            args['labels'] = labels
+        if (username := _dict.get('username')) is not None:
+            args['username'] = username
         else:
             raise ValueError('Required property \'username\' not present in UsernamePasswordSecretPrototype JSON')
-        if 'password' in _dict:
-            args['password'] = _dict.get('password')
-        else:
-            raise ValueError('Required property \'password\' not present in UsernamePasswordSecretPrototype JSON')
-        if 'expiration_date' in _dict:
-            args['expiration_date'] = string_to_datetime(_dict.get('expiration_date'))
-        if 'custom_metadata' in _dict:
-            args['custom_metadata'] = _dict.get('custom_metadata')
-        if 'version_custom_metadata' in _dict:
-            args['version_custom_metadata'] = _dict.get('version_custom_metadata')
-        if 'rotation' in _dict:
-            args['rotation'] = _dict.get('rotation')
+        if (password := _dict.get('password')) is not None:
+            args['password'] = password
+        if (expiration_date := _dict.get('expiration_date')) is not None:
+            args['expiration_date'] = string_to_datetime(expiration_date)
+        if (custom_metadata := _dict.get('custom_metadata')) is not None:
+            args['custom_metadata'] = custom_metadata
+        if (version_custom_metadata := _dict.get('version_custom_metadata')) is not None:
+            args['version_custom_metadata'] = version_custom_metadata
+        if (rotation := _dict.get('rotation')) is not None:
+            args['rotation'] = rotation
+        if (password_generation_policy := _dict.get('password_generation_policy')) is not None:
+            args['password_generation_policy'] = PasswordGenerationPolicy.from_dict(password_generation_policy)
         return cls(**args)
 
     @classmethod
@@ -28640,6 +29026,11 @@ class UsernamePasswordSecretPrototype(SecretPrototype):
                 _dict['rotation'] = self.rotation
             else:
                 _dict['rotation'] = self.rotation.to_dict()
+        if hasattr(self, 'password_generation_policy') and self.password_generation_policy is not None:
+            if isinstance(self.password_generation_policy, dict):
+                _dict['password_generation_policy'] = self.password_generation_policy
+            else:
+                _dict['password_generation_policy'] = self.password_generation_policy.to_dict()
         return _dict
 
     def _to_dict(self):
@@ -28776,50 +29167,50 @@ class UsernamePasswordSecretVersion(SecretVersion):
     def from_dict(cls, _dict: Dict) -> 'UsernamePasswordSecretVersion':
         """Initialize a UsernamePasswordSecretVersion object from a json dictionary."""
         args = {}
-        if 'auto_rotated' in _dict:
-            args['auto_rotated'] = _dict.get('auto_rotated')
-        if 'created_by' in _dict:
-            args['created_by'] = _dict.get('created_by')
+        if (auto_rotated := _dict.get('auto_rotated')) is not None:
+            args['auto_rotated'] = auto_rotated
+        if (created_by := _dict.get('created_by')) is not None:
+            args['created_by'] = created_by
         else:
             raise ValueError('Required property \'created_by\' not present in UsernamePasswordSecretVersion JSON')
-        if 'created_at' in _dict:
-            args['created_at'] = string_to_datetime(_dict.get('created_at'))
+        if (created_at := _dict.get('created_at')) is not None:
+            args['created_at'] = string_to_datetime(created_at)
         else:
             raise ValueError('Required property \'created_at\' not present in UsernamePasswordSecretVersion JSON')
-        if 'downloaded' in _dict:
-            args['downloaded'] = _dict.get('downloaded')
-        if 'id' in _dict:
-            args['id'] = _dict.get('id')
+        if (downloaded := _dict.get('downloaded')) is not None:
+            args['downloaded'] = downloaded
+        if (id := _dict.get('id')) is not None:
+            args['id'] = id
         else:
             raise ValueError('Required property \'id\' not present in UsernamePasswordSecretVersion JSON')
-        if 'secret_name' in _dict:
-            args['secret_name'] = _dict.get('secret_name')
-        if 'secret_type' in _dict:
-            args['secret_type'] = _dict.get('secret_type')
+        if (secret_name := _dict.get('secret_name')) is not None:
+            args['secret_name'] = secret_name
+        if (secret_type := _dict.get('secret_type')) is not None:
+            args['secret_type'] = secret_type
         else:
             raise ValueError('Required property \'secret_type\' not present in UsernamePasswordSecretVersion JSON')
-        if 'secret_group_id' in _dict:
-            args['secret_group_id'] = _dict.get('secret_group_id')
+        if (secret_group_id := _dict.get('secret_group_id')) is not None:
+            args['secret_group_id'] = secret_group_id
         else:
             raise ValueError('Required property \'secret_group_id\' not present in UsernamePasswordSecretVersion JSON')
-        if 'payload_available' in _dict:
-            args['payload_available'] = _dict.get('payload_available')
+        if (payload_available := _dict.get('payload_available')) is not None:
+            args['payload_available'] = payload_available
         else:
             raise ValueError('Required property \'payload_available\' not present in UsernamePasswordSecretVersion JSON')
-        if 'alias' in _dict:
-            args['alias'] = _dict.get('alias')
-        if 'version_custom_metadata' in _dict:
-            args['version_custom_metadata'] = _dict.get('version_custom_metadata')
-        if 'secret_id' in _dict:
-            args['secret_id'] = _dict.get('secret_id')
+        if (alias := _dict.get('alias')) is not None:
+            args['alias'] = alias
+        if (version_custom_metadata := _dict.get('version_custom_metadata')) is not None:
+            args['version_custom_metadata'] = version_custom_metadata
+        if (secret_id := _dict.get('secret_id')) is not None:
+            args['secret_id'] = secret_id
         else:
             raise ValueError('Required property \'secret_id\' not present in UsernamePasswordSecretVersion JSON')
-        if 'username' in _dict:
-            args['username'] = _dict.get('username')
+        if (username := _dict.get('username')) is not None:
+            args['username'] = username
         else:
             raise ValueError('Required property \'username\' not present in UsernamePasswordSecretVersion JSON')
-        if 'password' in _dict:
-            args['password'] = _dict.get('password')
+        if (password := _dict.get('password')) is not None:
+            args['password'] = password
         else:
             raise ValueError('Required property \'password\' not present in UsernamePasswordSecretVersion JSON')
         return cls(**args)
@@ -28994,42 +29385,42 @@ class UsernamePasswordSecretVersionMetadata(SecretVersionMetadata):
     def from_dict(cls, _dict: Dict) -> 'UsernamePasswordSecretVersionMetadata':
         """Initialize a UsernamePasswordSecretVersionMetadata object from a json dictionary."""
         args = {}
-        if 'auto_rotated' in _dict:
-            args['auto_rotated'] = _dict.get('auto_rotated')
-        if 'created_by' in _dict:
-            args['created_by'] = _dict.get('created_by')
+        if (auto_rotated := _dict.get('auto_rotated')) is not None:
+            args['auto_rotated'] = auto_rotated
+        if (created_by := _dict.get('created_by')) is not None:
+            args['created_by'] = created_by
         else:
             raise ValueError('Required property \'created_by\' not present in UsernamePasswordSecretVersionMetadata JSON')
-        if 'created_at' in _dict:
-            args['created_at'] = string_to_datetime(_dict.get('created_at'))
+        if (created_at := _dict.get('created_at')) is not None:
+            args['created_at'] = string_to_datetime(created_at)
         else:
             raise ValueError('Required property \'created_at\' not present in UsernamePasswordSecretVersionMetadata JSON')
-        if 'downloaded' in _dict:
-            args['downloaded'] = _dict.get('downloaded')
-        if 'id' in _dict:
-            args['id'] = _dict.get('id')
+        if (downloaded := _dict.get('downloaded')) is not None:
+            args['downloaded'] = downloaded
+        if (id := _dict.get('id')) is not None:
+            args['id'] = id
         else:
             raise ValueError('Required property \'id\' not present in UsernamePasswordSecretVersionMetadata JSON')
-        if 'secret_name' in _dict:
-            args['secret_name'] = _dict.get('secret_name')
-        if 'secret_type' in _dict:
-            args['secret_type'] = _dict.get('secret_type')
+        if (secret_name := _dict.get('secret_name')) is not None:
+            args['secret_name'] = secret_name
+        if (secret_type := _dict.get('secret_type')) is not None:
+            args['secret_type'] = secret_type
         else:
             raise ValueError('Required property \'secret_type\' not present in UsernamePasswordSecretVersionMetadata JSON')
-        if 'secret_group_id' in _dict:
-            args['secret_group_id'] = _dict.get('secret_group_id')
+        if (secret_group_id := _dict.get('secret_group_id')) is not None:
+            args['secret_group_id'] = secret_group_id
         else:
             raise ValueError('Required property \'secret_group_id\' not present in UsernamePasswordSecretVersionMetadata JSON')
-        if 'payload_available' in _dict:
-            args['payload_available'] = _dict.get('payload_available')
+        if (payload_available := _dict.get('payload_available')) is not None:
+            args['payload_available'] = payload_available
         else:
             raise ValueError('Required property \'payload_available\' not present in UsernamePasswordSecretVersionMetadata JSON')
-        if 'alias' in _dict:
-            args['alias'] = _dict.get('alias')
-        if 'version_custom_metadata' in _dict:
-            args['version_custom_metadata'] = _dict.get('version_custom_metadata')
-        if 'secret_id' in _dict:
-            args['secret_id'] = _dict.get('secret_id')
+        if (alias := _dict.get('alias')) is not None:
+            args['alias'] = alias
+        if (version_custom_metadata := _dict.get('version_custom_metadata')) is not None:
+            args['version_custom_metadata'] = version_custom_metadata
+        if (secret_id := _dict.get('secret_id')) is not None:
+            args['secret_id'] = secret_id
         else:
             raise ValueError('Required property \'secret_id\' not present in UsernamePasswordSecretVersionMetadata JSON')
         return cls(**args)
@@ -29118,7 +29509,8 @@ class UsernamePasswordSecretVersionPrototype(SecretVersionPrototype):
     UsernamePasswordSecretVersionPrototype.
 
     :param str password: (optional) The password that is assigned to an
-          `username_password` secret.
+          `username_password` secret. If you omit this parameter, Secrets Manager
+          generates a new random password for your secret.
     :param dict custom_metadata: (optional) The secret metadata that a user can
           customize.
     :param dict version_custom_metadata: (optional) The secret version metadata that
@@ -29136,7 +29528,8 @@ class UsernamePasswordSecretVersionPrototype(SecretVersionPrototype):
         Initialize a UsernamePasswordSecretVersionPrototype object.
 
         :param str password: (optional) The password that is assigned to an
-               `username_password` secret.
+               `username_password` secret. If you omit this parameter, Secrets Manager
+               generates a new random password for your secret.
         :param dict custom_metadata: (optional) The secret metadata that a user can
                customize.
         :param dict version_custom_metadata: (optional) The secret version metadata
@@ -29151,12 +29544,12 @@ class UsernamePasswordSecretVersionPrototype(SecretVersionPrototype):
     def from_dict(cls, _dict: Dict) -> 'UsernamePasswordSecretVersionPrototype':
         """Initialize a UsernamePasswordSecretVersionPrototype object from a json dictionary."""
         args = {}
-        if 'password' in _dict:
-            args['password'] = _dict.get('password')
-        if 'custom_metadata' in _dict:
-            args['custom_metadata'] = _dict.get('custom_metadata')
-        if 'version_custom_metadata' in _dict:
-            args['version_custom_metadata'] = _dict.get('version_custom_metadata')
+        if (password := _dict.get('password')) is not None:
+            args['password'] = password
+        if (custom_metadata := _dict.get('custom_metadata')) is not None:
+            args['custom_metadata'] = custom_metadata
+        if (version_custom_metadata := _dict.get('version_custom_metadata')) is not None:
+            args['version_custom_metadata'] = version_custom_metadata
         return cls(**args)
 
     @classmethod
