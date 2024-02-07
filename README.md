@@ -71,8 +71,7 @@ secretsManager = SecretsManagerV2(
 )
 ```
 
-To learn more about IAM authenticators and how to use them in your Python application, see
-the [IBM Python SDK Core documentation](https://github.com/IBM/python-sdk-core/blob/master/Authentication.md).
+To learn more about IAM authenticators and how to use them in your Python application, see the [IBM Python SDK Core documentation](https://github.com/IBM/python-sdk-core/blob/master/Authentication.md).
 
 ## Using the SDK
 
