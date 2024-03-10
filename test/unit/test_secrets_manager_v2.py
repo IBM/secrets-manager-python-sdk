@@ -660,6 +660,8 @@ class TestListSecrets:
         sort = 'created_at'
         search = 'example'
         groups = ['default', 'cac40995-c37a-4dcb-9506-472869077634']
+        secret_types = ['arbitrary', 'kv']
+        match_all_labels = ['dev', 'us-south']
 
         # Invoke method
         response = _service.list_secrets(
@@ -668,6 +670,8 @@ class TestListSecrets:
             sort=sort,
             search=search,
             groups=groups,
+            secret_types=secret_types,
+            match_all_labels=match_all_labels,
             headers={},
         )
 
@@ -682,6 +686,8 @@ class TestListSecrets:
         assert 'sort={}'.format(sort) in query_string
         assert 'search={}'.format(search) in query_string
         assert 'groups={}'.format(','.join(groups)) in query_string
+        assert 'secret_types={}'.format(','.join(secret_types)) in query_string
+        assert 'match_all_labels={}'.format(','.join(match_all_labels)) in query_string
 
     def test_list_secrets_all_params_with_retries(self):
         # Enable retries and run test_list_secrets_all_params.
@@ -756,6 +762,8 @@ class TestListSecrets:
             sort='created_at',
             search='example',
             groups=['default', 'cac40995-c37a-4dcb-9506-472869077634'],
+            secret_types=['arbitrary', 'kv'],
+            match_all_labels=['dev', 'us-south'],
         )
         while pager.has_next():
             next_page = pager.get_next()
@@ -794,6 +802,8 @@ class TestListSecrets:
             sort='created_at',
             search='example',
             groups=['default', 'cac40995-c37a-4dcb-9506-472869077634'],
+            secret_types=['arbitrary', 'kv'],
+            match_all_labels=['dev', 'us-south'],
         )
         all_results = pager.get_all()
         assert all_results is not None
@@ -6190,6 +6200,7 @@ class TestModel_IAMCredentialsSecret:
         iam_credentials_secret_model_json['service_id'] = 'ServiceId-bb4ccc31-bd31-493a-bb58-52ec399800be'
         iam_credentials_secret_model_json['reuse_api_key'] = True
         iam_credentials_secret_model_json['rotation'] = rotation_policy_model
+        iam_credentials_secret_model_json['expiration_date'] = '2033-04-12T23:20:50.520000Z'
 
         # Construct a model instance of IAMCredentialsSecret by calling from_dict on the json representation
         iam_credentials_secret_model = IAMCredentialsSecret.from_dict(iam_credentials_secret_model_json)
@@ -6242,6 +6253,7 @@ class TestModel_IAMCredentialsSecretMetadata:
         iam_credentials_secret_metadata_model_json['service_id'] = 'ServiceId-bb4ccc31-bd31-493a-bb58-52ec399800be'
         iam_credentials_secret_metadata_model_json['reuse_api_key'] = True
         iam_credentials_secret_metadata_model_json['rotation'] = rotation_policy_model
+        iam_credentials_secret_metadata_model_json['expiration_date'] = '2033-04-12T23:20:50.520000Z'
 
         # Construct a model instance of IAMCredentialsSecretMetadata by calling from_dict on the json representation
         iam_credentials_secret_metadata_model = IAMCredentialsSecretMetadata.from_dict(iam_credentials_secret_metadata_model_json)
@@ -9543,6 +9555,7 @@ class TestModel_ServiceCredentialsSecret:
         service_credentials_secret_model_json['versions_total'] = 0
         service_credentials_secret_model_json['rotation'] = rotation_policy_model
         service_credentials_secret_model_json['ttl'] = '1d'
+        service_credentials_secret_model_json['expiration_date'] = '2033-04-12T23:20:50.520000Z'
         service_credentials_secret_model_json['source_service'] = service_credentials_secret_source_service_ro_model
         service_credentials_secret_model_json['credentials'] = service_credentials_secret_credentials_model
 
@@ -9624,6 +9637,7 @@ class TestModel_ServiceCredentialsSecretMetadata:
         service_credentials_secret_metadata_model_json['versions_total'] = 0
         service_credentials_secret_metadata_model_json['rotation'] = rotation_policy_model
         service_credentials_secret_metadata_model_json['ttl'] = '1d'
+        service_credentials_secret_metadata_model_json['expiration_date'] = '2033-04-12T23:20:50.520000Z'
         service_credentials_secret_metadata_model_json['source_service'] = service_credentials_secret_source_service_ro_model
 
         # Construct a model instance of ServiceCredentialsSecretMetadata by calling from_dict on the json representation
