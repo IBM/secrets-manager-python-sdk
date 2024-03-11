@@ -70,6 +70,8 @@ class TestSecretsManagerV2:
 
     @needscredentials
     def test_create_secret_group(self):
+        global secret_group_id_for_get_secret_group_link
+
         response = self.secrets_manager_service.create_secret_group(
             name='my-secret-group',
             description='Extended description for this group.',
@@ -79,11 +81,13 @@ class TestSecretsManagerV2:
         secret_group = response.get_result()
         assert secret_group is not None
 
-        global secret_group_id_for_get_secret_group_link
         secret_group_id_for_get_secret_group_link = secret_group['id']
 
     @needscredentials
     def test_create_secret(self):
+        global secret_id_for_get_secret_link
+        global secret_id_for_get_secret_version_link
+
         # Construct a dict representation of a ArbitrarySecretPrototype model
         secret_prototype_model = {
             'custom_metadata': {'metadata_custom_key': 'metadata_custom_value'},
@@ -105,13 +109,13 @@ class TestSecretsManagerV2:
         secret = response.get_result()
         assert secret is not None
 
-        global secret_id_for_get_secret_link
         secret_id_for_get_secret_link = secret['id']
-        global secret_id_for_get_secret_version_link
         secret_id_for_get_secret_version_link = secret['id']
 
     @needscredentials
     def test_update_secret_metadata(self):
+        global secret_name_link
+
         # Construct a dict representation of a ArbitrarySecretMetadataPatch model
         secret_metadata_patch_model = {
             'name': 'updated-arbitrary-secret-name-example',
@@ -130,11 +134,18 @@ class TestSecretsManagerV2:
         secret_metadata = response.get_result()
         assert secret_metadata is not None
 
-        global secret_name_link
         secret_name_link = secret_metadata['name']
 
     @needscredentials
     def test_list_secret_versions(self):
+        global secret_version_id_for_get_secret_version_link
+        global secret_id_for_create_secret_version_link
+        global secret_version_id_for_get_secret_version_metadata_link
+        global secret_version_id_for_update_secret_version_metadata_link
+        global secret_id_for_create_secret_version_locks_link
+        global secret_version_id_for_create_secret_version_locks_link
+        global secret_version_id_for_delete_secret_version_locks_link
+
         response = self.secrets_manager_service.list_secret_versions(
             secret_id=secret_id_for_get_secret_link,
         )
@@ -143,23 +154,20 @@ class TestSecretsManagerV2:
         secret_version_metadata_collection = response.get_result()
         assert secret_version_metadata_collection is not None
 
-        global secret_version_id_for_get_secret_version_link
         secret_version_id_for_get_secret_version_link = secret_version_metadata_collection['versions'][0]['id']
-        global secret_id_for_create_secret_version_link
         secret_id_for_create_secret_version_link = secret_version_metadata_collection['versions'][0]['secret_id']
-        global secret_version_id_for_get_secret_version_metadata_link
         secret_version_id_for_get_secret_version_metadata_link = secret_version_metadata_collection['versions'][0]['id']
-        global secret_version_id_for_update_secret_version_metadata_link
         secret_version_id_for_update_secret_version_metadata_link = secret_version_metadata_collection['versions'][0]['id']
-        global secret_id_for_create_secret_version_locks_link
         secret_id_for_create_secret_version_locks_link = secret_version_metadata_collection['versions'][0]['secret_id']
-        global secret_version_id_for_create_secret_version_locks_link
         secret_version_id_for_create_secret_version_locks_link = secret_version_metadata_collection['versions'][0]['id']
-        global secret_version_id_for_delete_secret_version_locks_link
         secret_version_id_for_delete_secret_version_locks_link = secret_version_metadata_collection['versions'][0]['id']
 
     @needscredentials
     def test_create_secret_locks_bulk(self):
+        global secret_id_for_list_secret_locks_link
+        global secret_id_for_list_secret_version_locks_link
+        global secret_version_id_for_list_secret_version_locks_link
+
         # Construct a dict representation of a SecretLockPrototype model
         secret_lock_prototype_model = {
             'name': 'lock-example-1',
@@ -177,15 +185,14 @@ class TestSecretsManagerV2:
         secret_locks = response.get_result()
         assert secret_locks is not None
 
-        global secret_id_for_list_secret_locks_link
         secret_id_for_list_secret_locks_link = secret_locks['secret_id']
-        global secret_id_for_list_secret_version_locks_link
         secret_id_for_list_secret_version_locks_link = secret_locks['secret_id']
-        global secret_version_id_for_list_secret_version_locks_link
         secret_version_id_for_list_secret_version_locks_link = secret_locks['versions'][0]['version_id']
 
     @needscredentials
     def test_create_configuration(self):
+        global configuration_name_for_get_configuration_link
+
         # Construct a dict representation of a PrivateCertificateConfigurationRootCAPrototype model
         configuration_prototype_model = {
             'config_type': 'private_cert_configuration_root_ca',
@@ -226,7 +233,6 @@ class TestSecretsManagerV2:
         configuration = response.get_result()
         assert configuration is not None
 
-        global configuration_name_for_get_configuration_link
         configuration_name_for_get_configuration_link = configuration['name']
 
     @needscredentials
@@ -272,6 +278,8 @@ class TestSecretsManagerV2:
             sort='created_at',
             search='example',
             groups=['default', 'cac40995-c37a-4dcb-9506-472869077634'],
+            secret_types=['arbitrary', 'kv'],
+            match_all_labels=['dev', 'us-south'],
         )
 
         assert response.get_status_code() == 200
@@ -289,6 +297,8 @@ class TestSecretsManagerV2:
             sort='created_at',
             search='example',
             groups=['default', 'cac40995-c37a-4dcb-9506-472869077634'],
+            secret_types=['arbitrary', 'kv'],
+            match_all_labels=['dev', 'us-south'],
         )
         while pager.has_next():
             next_page = pager.get_next()
@@ -302,6 +312,8 @@ class TestSecretsManagerV2:
             sort='created_at',
             search='example',
             groups=['default', 'cac40995-c37a-4dcb-9506-472869077634'],
+            secret_types=['arbitrary', 'kv'],
+            match_all_labels=['dev', 'us-south'],
         )
         all_items = pager.get_all()
         assert all_items is not None

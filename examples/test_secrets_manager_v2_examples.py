@@ -98,7 +98,10 @@ class TestSecretsManagerV2Examples:
         create_secret_group request example
         """
         try:
+            global secret_group_id_for_get_secret_group_link
+
             print('\ncreate_secret_group() result:')
+
             # begin-create_secret_group
 
             response = secrets_manager_service.create_secret_group(
@@ -110,7 +113,6 @@ class TestSecretsManagerV2Examples:
 
             # end-create_secret_group
 
-            global secret_group_id_for_get_secret_group_link
             secret_group_id_for_get_secret_group_link = secret_group['id']
         except ApiException as e:
             pytest.fail(str(e))
@@ -121,7 +123,11 @@ class TestSecretsManagerV2Examples:
         create_secret request example
         """
         try:
+            global secret_id_for_get_secret_link
+            global secret_id_for_get_secret_version_link
+
             print('\ncreate_secret() result:')
+
             # begin-create_secret
 
             secret_prototype_model = {
@@ -145,9 +151,7 @@ class TestSecretsManagerV2Examples:
 
             # end-create_secret
 
-            global secret_id_for_get_secret_link
             secret_id_for_get_secret_link = secret['id']
-            global secret_id_for_get_secret_version_link
             secret_id_for_get_secret_version_link = secret['id']
         except ApiException as e:
             pytest.fail(str(e))
@@ -158,7 +162,10 @@ class TestSecretsManagerV2Examples:
         update_secret_metadata request example
         """
         try:
+            global secret_name_link
+
             print('\nupdate_secret_metadata() result:')
+
             # begin-update_secret_metadata
 
             secret_metadata_patch_model = {
@@ -178,7 +185,6 @@ class TestSecretsManagerV2Examples:
 
             # end-update_secret_metadata
 
-            global secret_name_link
             secret_name_link = secret_metadata['name']
         except ApiException as e:
             pytest.fail(str(e))
@@ -189,7 +195,16 @@ class TestSecretsManagerV2Examples:
         list_secret_versions request example
         """
         try:
+            global secret_version_id_for_get_secret_version_link
+            global secret_id_for_create_secret_version_link
+            global secret_version_id_for_get_secret_version_metadata_link
+            global secret_version_id_for_update_secret_version_metadata_link
+            global secret_id_for_create_secret_version_locks_link
+            global secret_version_id_for_create_secret_version_locks_link
+            global secret_version_id_for_delete_secret_version_locks_link
+
             print('\nlist_secret_versions() result:')
+
             # begin-list_secret_versions
 
             response = secrets_manager_service.list_secret_versions(
@@ -201,19 +216,12 @@ class TestSecretsManagerV2Examples:
 
             # end-list_secret_versions
 
-            global secret_version_id_for_get_secret_version_link
             secret_version_id_for_get_secret_version_link = secret_version_metadata_collection['versions'][0]['id']
-            global secret_id_for_create_secret_version_link
             secret_id_for_create_secret_version_link = secret_version_metadata_collection['versions'][0]['secret_id']
-            global secret_version_id_for_get_secret_version_metadata_link
             secret_version_id_for_get_secret_version_metadata_link = secret_version_metadata_collection['versions'][0]['id']
-            global secret_version_id_for_update_secret_version_metadata_link
             secret_version_id_for_update_secret_version_metadata_link = secret_version_metadata_collection['versions'][0]['id']
-            global secret_id_for_create_secret_version_locks_link
             secret_id_for_create_secret_version_locks_link = secret_version_metadata_collection['versions'][0]['secret_id']
-            global secret_version_id_for_create_secret_version_locks_link
             secret_version_id_for_create_secret_version_locks_link = secret_version_metadata_collection['versions'][0]['id']
-            global secret_version_id_for_delete_secret_version_locks_link
             secret_version_id_for_delete_secret_version_locks_link = secret_version_metadata_collection['versions'][0]['id']
         except ApiException as e:
             pytest.fail(str(e))
@@ -224,7 +232,12 @@ class TestSecretsManagerV2Examples:
         create_secret_locks_bulk request example
         """
         try:
+            global secret_id_for_list_secret_locks_link
+            global secret_id_for_list_secret_version_locks_link
+            global secret_version_id_for_list_secret_version_locks_link
+
             print('\ncreate_secret_locks_bulk() result:')
+
             # begin-create_secret_locks_bulk
 
             secret_lock_prototype_model = {
@@ -243,11 +256,8 @@ class TestSecretsManagerV2Examples:
 
             # end-create_secret_locks_bulk
 
-            global secret_id_for_list_secret_locks_link
             secret_id_for_list_secret_locks_link = secret_locks['secret_id']
-            global secret_id_for_list_secret_version_locks_link
             secret_id_for_list_secret_version_locks_link = secret_locks['secret_id']
-            global secret_version_id_for_list_secret_version_locks_link
             secret_version_id_for_list_secret_version_locks_link = secret_locks['versions'][0]['version_id']
         except ApiException as e:
             pytest.fail(str(e))
@@ -258,7 +268,10 @@ class TestSecretsManagerV2Examples:
         create_configuration request example
         """
         try:
+            global configuration_name_for_get_configuration_link
+
             print('\ncreate_configuration() result:')
+
             # begin-create_configuration
 
             configuration_prototype_model = {
@@ -292,7 +305,6 @@ class TestSecretsManagerV2Examples:
 
             # end-create_configuration
 
-            global configuration_name_for_get_configuration_link
             configuration_name_for_get_configuration_link = configuration['name']
         except ApiException as e:
             pytest.fail(str(e))
@@ -304,6 +316,7 @@ class TestSecretsManagerV2Examples:
         """
         try:
             print('\nlist_secret_groups() result:')
+
             # begin-list_secret_groups
 
             response = secrets_manager_service.list_secret_groups()
@@ -323,6 +336,7 @@ class TestSecretsManagerV2Examples:
         """
         try:
             print('\nget_secret_group() result:')
+
             # begin-get_secret_group
 
             response = secrets_manager_service.get_secret_group(
@@ -344,6 +358,7 @@ class TestSecretsManagerV2Examples:
         """
         try:
             print('\nupdate_secret_group() result:')
+
             # begin-update_secret_group
 
             secret_group_patch_model = {
@@ -369,6 +384,7 @@ class TestSecretsManagerV2Examples:
         """
         try:
             print('\nlist_secrets() result:')
+
             # begin-list_secrets
 
             all_results = []
@@ -378,6 +394,8 @@ class TestSecretsManagerV2Examples:
                 sort='created_at',
                 search='example',
                 groups=['default', 'cac40995-c37a-4dcb-9506-472869077634'],
+                secret_types=['arbitrary', 'kv'],
+                match_all_labels=['dev', 'us-south'],
             )
             while pager.has_next():
                 next_page = pager.get_next()
@@ -397,6 +415,7 @@ class TestSecretsManagerV2Examples:
         """
         try:
             print('\nget_secret() result:')
+
             # begin-get_secret
 
             response = secrets_manager_service.get_secret(
@@ -418,6 +437,7 @@ class TestSecretsManagerV2Examples:
         """
         try:
             print('\nget_secret_metadata() result:')
+
             # begin-get_secret_metadata
 
             response = secrets_manager_service.get_secret_metadata(
@@ -439,6 +459,7 @@ class TestSecretsManagerV2Examples:
         """
         try:
             print('\ncreate_secret_action() result:')
+
             # begin-create_secret_action
 
             secret_action_prototype_model = {
@@ -465,6 +486,7 @@ class TestSecretsManagerV2Examples:
         """
         try:
             print('\nget_secret_by_name_type() result:')
+
             # begin-get_secret_by_name_type
 
             response = secrets_manager_service.get_secret_by_name_type(
@@ -488,6 +510,7 @@ class TestSecretsManagerV2Examples:
         """
         try:
             print('\ncreate_secret_version() result:')
+
             # begin-create_secret_version
 
             secret_version_prototype_model = {
@@ -516,6 +539,7 @@ class TestSecretsManagerV2Examples:
         """
         try:
             print('\nget_secret_version() result:')
+
             # begin-get_secret_version
 
             response = secrets_manager_service.get_secret_version(
@@ -538,6 +562,7 @@ class TestSecretsManagerV2Examples:
         """
         try:
             print('\nget_secret_version_metadata() result:')
+
             # begin-get_secret_version_metadata
 
             response = secrets_manager_service.get_secret_version_metadata(
@@ -560,6 +585,7 @@ class TestSecretsManagerV2Examples:
         """
         try:
             print('\nupdate_secret_version_metadata() result:')
+
             # begin-update_secret_version_metadata
 
             secret_version_metadata_patch_model = {
@@ -586,6 +612,7 @@ class TestSecretsManagerV2Examples:
         """
         try:
             print('\ncreate_secret_version_action() result:')
+
             # begin-create_secret_version_action
 
             secret_version_action_prototype_model = {
@@ -613,6 +640,7 @@ class TestSecretsManagerV2Examples:
         """
         try:
             print('\nlist_secrets_locks() result:')
+
             # begin-list_secrets_locks
 
             all_results = []
@@ -640,6 +668,7 @@ class TestSecretsManagerV2Examples:
         """
         try:
             print('\nlist_secret_locks() result:')
+
             # begin-list_secret_locks
 
             all_results = []
@@ -668,6 +697,7 @@ class TestSecretsManagerV2Examples:
         """
         try:
             print('\ncreate_secret_version_locks_bulk() result:')
+
             # begin-create_secret_version_locks_bulk
 
             secret_lock_prototype_model = {
@@ -697,6 +727,7 @@ class TestSecretsManagerV2Examples:
         """
         try:
             print('\nlist_secret_version_locks() result:')
+
             # begin-list_secret_version_locks
 
             all_results = []
@@ -726,6 +757,7 @@ class TestSecretsManagerV2Examples:
         """
         try:
             print('\nlist_configurations() result:')
+
             # begin-list_configurations
 
             all_results = []
@@ -753,6 +785,7 @@ class TestSecretsManagerV2Examples:
         """
         try:
             print('\nget_configuration() result:')
+
             # begin-get_configuration
 
             response = secrets_manager_service.get_configuration(
@@ -775,6 +808,7 @@ class TestSecretsManagerV2Examples:
         """
         try:
             print('\nupdate_configuration() result:')
+
             # begin-update_configuration
 
             configuration_patch_model = {
@@ -802,6 +836,7 @@ class TestSecretsManagerV2Examples:
         """
         try:
             print('\ncreate_configuration_action() result:')
+
             # begin-create_configuration_action
 
             configuration_action_prototype_model = {
@@ -829,6 +864,7 @@ class TestSecretsManagerV2Examples:
         """
         try:
             print('\ncreate_notifications_registration() result:')
+
             # begin-create_notifications_registration
 
             response = secrets_manager_service.create_notifications_registration(
@@ -852,6 +888,7 @@ class TestSecretsManagerV2Examples:
         """
         try:
             print('\nget_notifications_registration() result:')
+
             # begin-get_notifications_registration
 
             response = secrets_manager_service.get_notifications_registration()
@@ -924,6 +961,7 @@ class TestSecretsManagerV2Examples:
         """
         try:
             print('\ndelete_secret_locks_bulk() result:')
+
             # begin-delete_secret_locks_bulk
 
             response = secrets_manager_service.delete_secret_locks_bulk(
@@ -946,6 +984,7 @@ class TestSecretsManagerV2Examples:
         """
         try:
             print('\ndelete_secret_version_locks_bulk() result:')
+
             # begin-delete_secret_version_locks_bulk
 
             response = secrets_manager_service.delete_secret_version_locks_bulk(

@@ -14,7 +14,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-# IBM OpenAPI SDK Code Generator Version: 3.84.2-a032c73d-20240125-175315
+# IBM OpenAPI SDK Code Generator Version: 3.86.1-c3d7bcef-20240308-215042
 
 """
 With IBM Cloud® Secrets Manager, you can create, lease, and centrally manage secrets that
@@ -418,6 +418,8 @@ class SecretsManagerV2(BaseService):
         sort: Optional[str] = None,
         search: Optional[str] = None,
         groups: Optional[List[str]] = None,
+        secret_types: Optional[List[str]] = None,
+        match_all_labels: Optional[List[str]] = None,
         **kwargs,
     ) -> DetailedResponse:
         """
@@ -458,6 +460,17 @@ class SecretsManagerV2(BaseService):
                **Usage:** To retrieve a list of secrets that are associated with an
                existing secret group or the default group, use
                `..?groups={secret_group_ID},default`.
+        :param List[str] secret_types: (optional) Filter secrets by types.
+               You can apply multiple filters by using a comma-separated list of secret
+               types.
+               **Usage:** To retrieve a list of imported certificates and public
+               certificates use `..?secret_types=imported_cert,public_cert`.
+        :param List[str] match_all_labels: (optional) Filter secrets by labels.
+               You can use a comma-separated list of labels to filter secrets that include
+               all of the labels in the list.
+               **Usage:** To retrieve a list of secrets that include both the label "dev"
+               and the label "us-south" in their list of labels, use
+               `..?labels=dev,us-south`.
         :param dict headers: A `dict` containing the request headers
         :return: A `DetailedResponse` containing the result, headers and HTTP status code.
         :rtype: DetailedResponse with `dict` result representing a `SecretMetadataPaginatedCollection` object
@@ -477,6 +490,8 @@ class SecretsManagerV2(BaseService):
             'sort': sort,
             'search': search,
             'groups': convert_list(groups),
+            'secret_types': convert_list(secret_types),
+            'match_all_labels': convert_list(match_all_labels),
         }
 
         if 'headers' in kwargs:
@@ -2282,6 +2297,29 @@ class SecretsManagerV2(BaseService):
 
         response = self.send(request, **kwargs)
         return response
+
+
+class ListSecretsEnums:
+    """
+    Enums for list_secrets parameters.
+    """
+
+    class SecretTypes(str, Enum):
+        """
+        Filter secrets by types.
+        You can apply multiple filters by using a comma-separated list of secret types.
+        **Usage:** To retrieve a list of imported certificates and public certificates use
+        `..?secret_types=imported_cert,public_cert`.
+        """
+
+        ARBITRARY = 'arbitrary'
+        IAM_CREDENTIALS = 'iam_credentials'
+        IMPORTED_CERT = 'imported_cert'
+        KV = 'kv'
+        PRIVATE_CERT = 'private_cert'
+        PUBLIC_CERT = 'public_cert'
+        SERVICE_CREDENTIALS = 'service_credentials'
+        USERNAME_PASSWORD = 'username_password'
 
 
 class GetSecretByNameTypeEnums:
@@ -6826,7 +6864,7 @@ class ArbitrarySecret(Secret):
     :param str id: A v4 UUID identifier.
     :param List[str] labels: (optional) Labels that you can use to search secrets in
           your instance. Only 30 labels can be created.
-          Label can be between 2-30 characters, including spaces.
+          Label can be between 2-64 characters, including spaces.
           To protect your privacy, do not use personal data, such as your name or
           location, as a label for your secret.
     :param int locks_total: (optional) The number of locks of the secret.
@@ -6896,7 +6934,7 @@ class ArbitrarySecret(Secret):
                location, as a description for your secret group.
         :param List[str] labels: (optional) Labels that you can use to search
                secrets in your instance. Only 30 labels can be created.
-               Label can be between 2-30 characters, including spaces.
+               Label can be between 2-64 characters, including spaces.
                To protect your privacy, do not use personal data, such as your name or
                location, as a label for your secret.
         :param datetime expiration_date: (optional) The date when the secret
@@ -7096,7 +7134,7 @@ class ArbitrarySecretMetadata(SecretMetadata):
     :param str id: A v4 UUID identifier.
     :param List[str] labels: (optional) Labels that you can use to search secrets in
           your instance. Only 30 labels can be created.
-          Label can be between 2-30 characters, including spaces.
+          Label can be between 2-64 characters, including spaces.
           To protect your privacy, do not use personal data, such as your name or
           location, as a label for your secret.
     :param int locks_total: (optional) The number of locks of the secret.
@@ -7163,7 +7201,7 @@ class ArbitrarySecretMetadata(SecretMetadata):
                location, as a description for your secret group.
         :param List[str] labels: (optional) Labels that you can use to search
                secrets in your instance. Only 30 labels can be created.
-               Label can be between 2-30 characters, including spaces.
+               Label can be between 2-64 characters, including spaces.
                To protect your privacy, do not use personal data, such as your name or
                location, as a label for your secret.
         :param datetime expiration_date: (optional) The date when the secret
@@ -7348,7 +7386,7 @@ class ArbitrarySecretMetadataPatch(SecretMetadataPatch):
           location, as a description for your secret group.
     :param List[str] labels: (optional) Labels that you can use to search secrets in
           your instance. Only 30 labels can be created.
-          Label can be between 2-30 characters, including spaces.
+          Label can be between 2-64 characters, including spaces.
           To protect your privacy, do not use personal data, such as your name or
           location, as a label for your secret.
     :param dict custom_metadata: (optional) The secret metadata that a user can
@@ -7378,7 +7416,7 @@ class ArbitrarySecretMetadataPatch(SecretMetadataPatch):
                location, as a description for your secret group.
         :param List[str] labels: (optional) Labels that you can use to search
                secrets in your instance. Only 30 labels can be created.
-               Label can be between 2-30 characters, including spaces.
+               Label can be between 2-64 characters, including spaces.
                To protect your privacy, do not use personal data, such as your name or
                location, as a label for your secret.
         :param dict custom_metadata: (optional) The secret metadata that a user can
@@ -7463,7 +7501,7 @@ class ArbitrarySecretPrototype(SecretPrototype):
           Arbitrary, username_password.
     :param List[str] labels: (optional) Labels that you can use to search secrets in
           your instance. Only 30 labels can be created.
-          Label can be between 2-30 characters, including spaces.
+          Label can be between 2-64 characters, including spaces.
           To protect your privacy, do not use personal data, such as your name or
           location, as a label for your secret.
     :param str name: A human-readable name to assign to your secret.
@@ -7513,7 +7551,7 @@ class ArbitrarySecretPrototype(SecretPrototype):
                secret types: Arbitrary, username_password.
         :param List[str] labels: (optional) Labels that you can use to search
                secrets in your instance. Only 30 labels can be created.
-               Label can be between 2-30 characters, including spaces.
+               Label can be between 2-64 characters, including spaces.
                To protect your privacy, do not use personal data, such as your name or
                location, as a label for your secret.
         :param str secret_group_id: (optional) A v4 UUID identifier, or `default`
@@ -8795,7 +8833,7 @@ class IAMCredentialsSecret(Secret):
     :param str id: A v4 UUID identifier.
     :param List[str] labels: (optional) Labels that you can use to search secrets in
           your instance. Only 30 labels can be created.
-          Label can be between 2-30 characters, including spaces.
+          Label can be between 2-64 characters, including spaces.
           To protect your privacy, do not use personal data, such as your name or
           location, as a label for your secret.
     :param int locks_total: (optional) The number of locks of the secret.
@@ -8852,6 +8890,9 @@ class IAMCredentialsSecret(Secret):
           The service automatically creates a new version of the secret on its next
           rotation date. This field exists only for secrets that can be auto-rotated and
           an existing rotation policy.
+    :param datetime expiration_date: (optional) The date when the secret material
+          expires. The date format follows the `RFC 3339` format. Supported secret types:
+          Arbitrary, username_password.
     :param str api_key: (optional) The API key that is generated for this secret.
           After the secret reaches the end of its lease, the API key is deleted
           automatically. See the `time-to-live` field to understand the duration of the
@@ -8886,6 +8927,7 @@ class IAMCredentialsSecret(Secret):
         service_id_is_static: Optional[bool] = None,
         rotation: Optional['RotationPolicy'] = None,
         next_rotation_date: Optional[datetime] = None,
+        expiration_date: Optional[datetime] = None,
         api_key: Optional[str] = None,
     ) -> None:
         """
@@ -8927,7 +8969,7 @@ class IAMCredentialsSecret(Secret):
                location, as a description for your secret group.
         :param List[str] labels: (optional) Labels that you can use to search
                secrets in your instance. Only 30 labels can be created.
-               Label can be between 2-30 characters, including spaces.
+               Label can be between 2-64 characters, including spaces.
                To protect your privacy, do not use personal data, such as your name or
                location, as a label for your secret.
         :param List[str] access_groups: (optional) Access Groups that you can use
@@ -8945,6 +8987,9 @@ class IAMCredentialsSecret(Secret):
         :param RotationPolicy rotation: (optional) This field indicates whether
                Secrets Manager rotates your secrets automatically. Supported secret types:
                username_password, private_cert, public_cert, iam_credentials.
+        :param datetime expiration_date: (optional) The date when the secret
+               material expires. The date format follows the `RFC 3339` format. Supported
+               secret types: Arbitrary, username_password.
         """
         # pylint: disable=super-init-not-called
         self.created_by = created_by
@@ -8971,6 +9016,7 @@ class IAMCredentialsSecret(Secret):
         self.reuse_api_key = reuse_api_key
         self.rotation = rotation
         self.next_rotation_date = next_rotation_date
+        self.expiration_date = expiration_date
         self.api_key = api_key
 
     @classmethod
@@ -9045,6 +9091,8 @@ class IAMCredentialsSecret(Secret):
             args['rotation'] = rotation
         if (next_rotation_date := _dict.get('next_rotation_date')) is not None:
             args['next_rotation_date'] = string_to_datetime(next_rotation_date)
+        if (expiration_date := _dict.get('expiration_date')) is not None:
+            args['expiration_date'] = string_to_datetime(expiration_date)
         if (api_key := _dict.get('api_key')) is not None:
             args['api_key'] = api_key
         return cls(**args)
@@ -9108,6 +9156,8 @@ class IAMCredentialsSecret(Secret):
                 _dict['rotation'] = self.rotation.to_dict()
         if hasattr(self, 'next_rotation_date') and getattr(self, 'next_rotation_date') is not None:
             _dict['next_rotation_date'] = datetime_to_string(getattr(self, 'next_rotation_date'))
+        if hasattr(self, 'expiration_date') and self.expiration_date is not None:
+            _dict['expiration_date'] = datetime_to_string(self.expiration_date)
         if hasattr(self, 'api_key') and getattr(self, 'api_key') is not None:
             _dict['api_key'] = getattr(self, 'api_key')
         return _dict
@@ -9179,7 +9229,7 @@ class IAMCredentialsSecretMetadata(SecretMetadata):
     :param str id: A v4 UUID identifier.
     :param List[str] labels: (optional) Labels that you can use to search secrets in
           your instance. Only 30 labels can be created.
-          Label can be between 2-30 characters, including spaces.
+          Label can be between 2-64 characters, including spaces.
           To protect your privacy, do not use personal data, such as your name or
           location, as a label for your secret.
     :param int locks_total: (optional) The number of locks of the secret.
@@ -9236,6 +9286,9 @@ class IAMCredentialsSecretMetadata(SecretMetadata):
           The service automatically creates a new version of the secret on its next
           rotation date. This field exists only for secrets that can be auto-rotated and
           an existing rotation policy.
+    :param datetime expiration_date: (optional) The date when the secret material
+          expires. The date format follows the `RFC 3339` format. Supported secret types:
+          Arbitrary, username_password.
     """
 
     def __init__(
@@ -9265,6 +9318,7 @@ class IAMCredentialsSecretMetadata(SecretMetadata):
         service_id_is_static: Optional[bool] = None,
         rotation: Optional['RotationPolicy'] = None,
         next_rotation_date: Optional[datetime] = None,
+        expiration_date: Optional[datetime] = None,
     ) -> None:
         """
         Initialize a IAMCredentialsSecretMetadata object.
@@ -9305,7 +9359,7 @@ class IAMCredentialsSecretMetadata(SecretMetadata):
                location, as a description for your secret group.
         :param List[str] labels: (optional) Labels that you can use to search
                secrets in your instance. Only 30 labels can be created.
-               Label can be between 2-30 characters, including spaces.
+               Label can be between 2-64 characters, including spaces.
                To protect your privacy, do not use personal data, such as your name or
                location, as a label for your secret.
         :param List[str] access_groups: (optional) Access Groups that you can use
@@ -9323,6 +9377,9 @@ class IAMCredentialsSecretMetadata(SecretMetadata):
         :param RotationPolicy rotation: (optional) This field indicates whether
                Secrets Manager rotates your secrets automatically. Supported secret types:
                username_password, private_cert, public_cert, iam_credentials.
+        :param datetime expiration_date: (optional) The date when the secret
+               material expires. The date format follows the `RFC 3339` format. Supported
+               secret types: Arbitrary, username_password.
         """
         # pylint: disable=super-init-not-called
         self.created_by = created_by
@@ -9349,6 +9406,7 @@ class IAMCredentialsSecretMetadata(SecretMetadata):
         self.reuse_api_key = reuse_api_key
         self.rotation = rotation
         self.next_rotation_date = next_rotation_date
+        self.expiration_date = expiration_date
 
     @classmethod
     def from_dict(cls, _dict: Dict) -> 'IAMCredentialsSecretMetadata':
@@ -9422,6 +9480,8 @@ class IAMCredentialsSecretMetadata(SecretMetadata):
             args['rotation'] = rotation
         if (next_rotation_date := _dict.get('next_rotation_date')) is not None:
             args['next_rotation_date'] = string_to_datetime(next_rotation_date)
+        if (expiration_date := _dict.get('expiration_date')) is not None:
+            args['expiration_date'] = string_to_datetime(expiration_date)
         return cls(**args)
 
     @classmethod
@@ -9483,6 +9543,8 @@ class IAMCredentialsSecretMetadata(SecretMetadata):
                 _dict['rotation'] = self.rotation.to_dict()
         if hasattr(self, 'next_rotation_date') and getattr(self, 'next_rotation_date') is not None:
             _dict['next_rotation_date'] = datetime_to_string(getattr(self, 'next_rotation_date'))
+        if hasattr(self, 'expiration_date') and self.expiration_date is not None:
+            _dict['expiration_date'] = datetime_to_string(self.expiration_date)
         return _dict
 
     def _to_dict(self):
@@ -9544,7 +9606,7 @@ class IAMCredentialsSecretMetadataPatch(SecretMetadataPatch):
           location, as a description for your secret group.
     :param List[str] labels: (optional) Labels that you can use to search secrets in
           your instance. Only 30 labels can be created.
-          Label can be between 2-30 characters, including spaces.
+          Label can be between 2-64 characters, including spaces.
           To protect your privacy, do not use personal data, such as your name or
           location, as a label for your secret.
     :param dict custom_metadata: (optional) The secret metadata that a user can
@@ -9584,7 +9646,7 @@ class IAMCredentialsSecretMetadataPatch(SecretMetadataPatch):
                location, as a description for your secret group.
         :param List[str] labels: (optional) Labels that you can use to search
                secrets in your instance. Only 30 labels can be created.
-               Label can be between 2-30 characters, including spaces.
+               Label can be between 2-64 characters, including spaces.
                To protect your privacy, do not use personal data, such as your name or
                location, as a label for your secret.
         :param dict custom_metadata: (optional) The secret metadata that a user can
@@ -9690,7 +9752,7 @@ class IAMCredentialsSecretPrototype(SecretPrototype):
           group.
     :param List[str] labels: (optional) Labels that you can use to search secrets in
           your instance. Only 30 labels can be created.
-          Label can be between 2-30 characters, including spaces.
+          Label can be between 2-64 characters, including spaces.
           To protect your privacy, do not use personal data, such as your name or
           location, as a label for your secret.
     :param str ttl: The time-to-live (TTL) or lease duration to assign to
@@ -9774,7 +9836,7 @@ class IAMCredentialsSecretPrototype(SecretPrototype):
                secret group.
         :param List[str] labels: (optional) Labels that you can use to search
                secrets in your instance. Only 30 labels can be created.
-               Label can be between 2-30 characters, including spaces.
+               Label can be between 2-64 characters, including spaces.
                To protect your privacy, do not use personal data, such as your name or
                location, as a label for your secret.
         :param List[str] access_groups: (optional) Access Groups that you can use
@@ -10580,7 +10642,7 @@ class ImportedCertificate(Secret):
     :param str id: A v4 UUID identifier.
     :param List[str] labels: (optional) Labels that you can use to search secrets in
           your instance. Only 30 labels can be created.
-          Label can be between 2-30 characters, including spaces.
+          Label can be between 2-64 characters, including spaces.
           To protect your privacy, do not use personal data, such as your name or
           location, as a label for your secret.
     :param int locks_total: (optional) The number of locks of the secret.
@@ -10705,7 +10767,7 @@ class ImportedCertificate(Secret):
                location, as a description for your secret group.
         :param List[str] labels: (optional) Labels that you can use to search
                secrets in your instance. Only 30 labels can be created.
-               Label can be between 2-30 characters, including spaces.
+               Label can be between 2-64 characters, including spaces.
                To protect your privacy, do not use personal data, such as your name or
                location, as a label for your secret.
         :param List[str] alt_names: (optional) With the Subject Alternative Name
@@ -10985,7 +11047,7 @@ class ImportedCertificateMetadata(SecretMetadata):
     :param str id: A v4 UUID identifier.
     :param List[str] labels: (optional) Labels that you can use to search secrets in
           your instance. Only 30 labels can be created.
-          Label can be between 2-30 characters, including spaces.
+          Label can be between 2-64 characters, including spaces.
           To protect your privacy, do not use personal data, such as your name or
           location, as a label for your secret.
     :param int locks_total: (optional) The number of locks of the secret.
@@ -11097,7 +11159,7 @@ class ImportedCertificateMetadata(SecretMetadata):
                location, as a description for your secret group.
         :param List[str] labels: (optional) Labels that you can use to search
                secrets in your instance. Only 30 labels can be created.
-               Label can be between 2-30 characters, including spaces.
+               Label can be between 2-64 characters, including spaces.
                To protect your privacy, do not use personal data, such as your name or
                location, as a label for your secret.
         :param List[str] alt_names: (optional) With the Subject Alternative Name
@@ -11346,7 +11408,7 @@ class ImportedCertificateMetadataPatch(SecretMetadataPatch):
           location, as a description for your secret group.
     :param List[str] labels: (optional) Labels that you can use to search secrets in
           your instance. Only 30 labels can be created.
-          Label can be between 2-30 characters, including spaces.
+          Label can be between 2-64 characters, including spaces.
           To protect your privacy, do not use personal data, such as your name or
           location, as a label for your secret.
     :param dict custom_metadata: (optional) The secret metadata that a user can
@@ -11372,7 +11434,7 @@ class ImportedCertificateMetadataPatch(SecretMetadataPatch):
                location, as a description for your secret group.
         :param List[str] labels: (optional) Labels that you can use to search
                secrets in your instance. Only 30 labels can be created.
-               Label can be between 2-30 characters, including spaces.
+               Label can be between 2-64 characters, including spaces.
                To protect your privacy, do not use personal data, such as your name or
                location, as a label for your secret.
         :param dict custom_metadata: (optional) The secret metadata that a user can
@@ -11452,7 +11514,7 @@ class ImportedCertificatePrototype(SecretPrototype):
           group.
     :param List[str] labels: (optional) Labels that you can use to search secrets in
           your instance. Only 30 labels can be created.
-          Label can be between 2-30 characters, including spaces.
+          Label can be between 2-64 characters, including spaces.
           To protect your privacy, do not use personal data, such as your name or
           location, as a label for your secret.
     :param str certificate: Your PEM-encoded certificate. The data must be formatted
@@ -11501,7 +11563,7 @@ class ImportedCertificatePrototype(SecretPrototype):
                secret group.
         :param List[str] labels: (optional) Labels that you can use to search
                secrets in your instance. Only 30 labels can be created.
-               Label can be between 2-30 characters, including spaces.
+               Label can be between 2-64 characters, including spaces.
                To protect your privacy, do not use personal data, such as your name or
                location, as a label for your secret.
         :param str intermediate: (optional) The PEM-encoded intermediate
@@ -12281,7 +12343,7 @@ class KVSecret(Secret):
     :param str id: A v4 UUID identifier.
     :param List[str] labels: (optional) Labels that you can use to search secrets in
           your instance. Only 30 labels can be created.
-          Label can be between 2-30 characters, including spaces.
+          Label can be between 2-64 characters, including spaces.
           To protect your privacy, do not use personal data, such as your name or
           location, as a label for your secret.
     :param int locks_total: (optional) The number of locks of the secret.
@@ -12347,7 +12409,7 @@ class KVSecret(Secret):
                location, as a description for your secret group.
         :param List[str] labels: (optional) Labels that you can use to search
                secrets in your instance. Only 30 labels can be created.
-               Label can be between 2-30 characters, including spaces.
+               Label can be between 2-64 characters, including spaces.
                To protect your privacy, do not use personal data, such as your name or
                location, as a label for your secret.
         """
@@ -12539,7 +12601,7 @@ class KVSecretMetadata(SecretMetadata):
     :param str id: A v4 UUID identifier.
     :param List[str] labels: (optional) Labels that you can use to search secrets in
           your instance. Only 30 labels can be created.
-          Label can be between 2-30 characters, including spaces.
+          Label can be between 2-64 characters, including spaces.
           To protect your privacy, do not use personal data, such as your name or
           location, as a label for your secret.
     :param int locks_total: (optional) The number of locks of the secret.
@@ -12602,7 +12664,7 @@ class KVSecretMetadata(SecretMetadata):
                location, as a description for your secret group.
         :param List[str] labels: (optional) Labels that you can use to search
                secrets in your instance. Only 30 labels can be created.
-               Label can be between 2-30 characters, including spaces.
+               Label can be between 2-64 characters, including spaces.
                To protect your privacy, do not use personal data, such as your name or
                location, as a label for your secret.
         """
@@ -12779,7 +12841,7 @@ class KVSecretMetadataPatch(SecretMetadataPatch):
           location, as a description for your secret group.
     :param List[str] labels: (optional) Labels that you can use to search secrets in
           your instance. Only 30 labels can be created.
-          Label can be between 2-30 characters, including spaces.
+          Label can be between 2-64 characters, including spaces.
           To protect your privacy, do not use personal data, such as your name or
           location, as a label for your secret.
     :param dict custom_metadata: (optional) The secret metadata that a user can
@@ -12805,7 +12867,7 @@ class KVSecretMetadataPatch(SecretMetadataPatch):
                location, as a description for your secret group.
         :param List[str] labels: (optional) Labels that you can use to search
                secrets in your instance. Only 30 labels can be created.
-               Label can be between 2-30 characters, including spaces.
+               Label can be between 2-64 characters, including spaces.
                To protect your privacy, do not use personal data, such as your name or
                location, as a label for your secret.
         :param dict custom_metadata: (optional) The secret metadata that a user can
@@ -12885,7 +12947,7 @@ class KVSecretPrototype(SecretPrototype):
           group.
     :param List[str] labels: (optional) Labels that you can use to search secrets in
           your instance. Only 30 labels can be created.
-          Label can be between 2-30 characters, including spaces.
+          Label can be between 2-64 characters, including spaces.
           To protect your privacy, do not use personal data, such as your name or
           location, as a label for your secret.
     :param dict data: The payload data of a key-value secret.
@@ -12924,7 +12986,7 @@ class KVSecretPrototype(SecretPrototype):
                secret group.
         :param List[str] labels: (optional) Labels that you can use to search
                secrets in your instance. Only 30 labels can be created.
-               Label can be between 2-30 characters, including spaces.
+               Label can be between 2-64 characters, including spaces.
                To protect your privacy, do not use personal data, such as your name or
                location, as a label for your secret.
         :param dict custom_metadata: (optional) The secret metadata that a user can
@@ -13554,7 +13616,7 @@ class PrivateCertificate(Secret):
     :param str id: A v4 UUID identifier.
     :param List[str] labels: (optional) Labels that you can use to search secrets in
           your instance. Only 30 labels can be created.
-          Label can be between 2-30 characters, including spaces.
+          Label can be between 2-64 characters, including spaces.
           To protect your privacy, do not use personal data, such as your name or
           location, as a label for your secret.
     :param int locks_total: (optional) The number of locks of the secret.
@@ -13698,7 +13760,7 @@ class PrivateCertificate(Secret):
                location, as a description for your secret group.
         :param List[str] labels: (optional) Labels that you can use to search
                secrets in your instance. Only 30 labels can be created.
-               Label can be between 2-30 characters, including spaces.
+               Label can be between 2-64 characters, including spaces.
                To protect your privacy, do not use personal data, such as your name or
                location, as a label for your secret.
         :param List[str] alt_names: (optional) With the Subject Alternative Name
@@ -21028,7 +21090,7 @@ class PrivateCertificateMetadata(SecretMetadata):
     :param str id: A v4 UUID identifier.
     :param List[str] labels: (optional) Labels that you can use to search secrets in
           your instance. Only 30 labels can be created.
-          Label can be between 2-30 characters, including spaces.
+          Label can be between 2-64 characters, including spaces.
           To protect your privacy, do not use personal data, such as your name or
           location, as a label for your secret.
     :param int locks_total: (optional) The number of locks of the secret.
@@ -21154,7 +21216,7 @@ class PrivateCertificateMetadata(SecretMetadata):
                location, as a description for your secret group.
         :param List[str] labels: (optional) Labels that you can use to search
                secrets in your instance. Only 30 labels can be created.
-               Label can be between 2-30 characters, including spaces.
+               Label can be between 2-64 characters, including spaces.
                To protect your privacy, do not use personal data, such as your name or
                location, as a label for your secret.
         :param List[str] alt_names: (optional) With the Subject Alternative Name
@@ -21427,7 +21489,7 @@ class PrivateCertificateMetadataPatch(SecretMetadataPatch):
           location, as a description for your secret group.
     :param List[str] labels: (optional) Labels that you can use to search secrets in
           your instance. Only 30 labels can be created.
-          Label can be between 2-30 characters, including spaces.
+          Label can be between 2-64 characters, including spaces.
           To protect your privacy, do not use personal data, such as your name or
           location, as a label for your secret.
     :param dict custom_metadata: (optional) The secret metadata that a user can
@@ -21457,7 +21519,7 @@ class PrivateCertificateMetadataPatch(SecretMetadataPatch):
                location, as a description for your secret group.
         :param List[str] labels: (optional) Labels that you can use to search
                secrets in your instance. Only 30 labels can be created.
-               Label can be between 2-30 characters, including spaces.
+               Label can be between 2-64 characters, including spaces.
                To protect your privacy, do not use personal data, such as your name or
                location, as a label for your secret.
         :param dict custom_metadata: (optional) The secret metadata that a user can
@@ -21548,7 +21610,7 @@ class PrivateCertificatePrototype(SecretPrototype):
           group.
     :param List[str] labels: (optional) Labels that you can use to search secrets in
           your instance. Only 30 labels can be created.
-          Label can be between 2-30 characters, including spaces.
+          Label can be between 2-64 characters, including spaces.
           To protect your privacy, do not use personal data, such as your name or
           location, as a label for your secret.
     :param str certificate_template: The name of the certificate template.
@@ -21632,7 +21694,7 @@ class PrivateCertificatePrototype(SecretPrototype):
                secret group.
         :param List[str] labels: (optional) Labels that you can use to search
                secrets in your instance. Only 30 labels can be created.
-               Label can be between 2-30 characters, including spaces.
+               Label can be between 2-64 characters, including spaces.
                To protect your privacy, do not use personal data, such as your name or
                location, as a label for your secret.
         :param List[str] alt_names: (optional) With the Subject Alternative Name
@@ -22629,7 +22691,7 @@ class PublicCertificate(Secret):
     :param str id: A v4 UUID identifier.
     :param List[str] labels: (optional) Labels that you can use to search secrets in
           your instance. Only 30 labels can be created.
-          Label can be between 2-30 characters, including spaces.
+          Label can be between 2-64 characters, including spaces.
           To protect your privacy, do not use personal data, such as your name or
           location, as a label for your secret.
     :param int locks_total: (optional) The number of locks of the secret.
@@ -22762,7 +22824,7 @@ class PublicCertificate(Secret):
                location, as a description for your secret group.
         :param List[str] labels: (optional) Labels that you can use to search
                secrets in your instance. Only 30 labels can be created.
-               Label can be between 2-30 characters, including spaces.
+               Label can be between 2-64 characters, including spaces.
                To protect your privacy, do not use personal data, such as your name or
                location, as a label for your secret.
         :param str signing_algorithm: (optional) The identifier for the
@@ -25106,7 +25168,7 @@ class PublicCertificateMetadata(SecretMetadata):
     :param str id: A v4 UUID identifier.
     :param List[str] labels: (optional) Labels that you can use to search secrets in
           your instance. Only 30 labels can be created.
-          Label can be between 2-30 characters, including spaces.
+          Label can be between 2-64 characters, including spaces.
           To protect your privacy, do not use personal data, such as your name or
           location, as a label for your secret.
     :param int locks_total: (optional) The number of locks of the secret.
@@ -25228,7 +25290,7 @@ class PublicCertificateMetadata(SecretMetadata):
                location, as a description for your secret group.
         :param List[str] labels: (optional) Labels that you can use to search
                secrets in your instance. Only 30 labels can be created.
-               Label can be between 2-30 characters, including spaces.
+               Label can be between 2-64 characters, including spaces.
                To protect your privacy, do not use personal data, such as your name or
                location, as a label for your secret.
         :param str signing_algorithm: (optional) The identifier for the
@@ -25500,7 +25562,7 @@ class PublicCertificateMetadataPatch(SecretMetadataPatch):
           location, as a description for your secret group.
     :param List[str] labels: (optional) Labels that you can use to search secrets in
           your instance. Only 30 labels can be created.
-          Label can be between 2-30 characters, including spaces.
+          Label can be between 2-64 characters, including spaces.
           To protect your privacy, do not use personal data, such as your name or
           location, as a label for your secret.
     :param dict custom_metadata: (optional) The secret metadata that a user can
@@ -25530,7 +25592,7 @@ class PublicCertificateMetadataPatch(SecretMetadataPatch):
                location, as a description for your secret group.
         :param List[str] labels: (optional) Labels that you can use to search
                secrets in your instance. Only 30 labels can be created.
-               Label can be between 2-30 characters, including spaces.
+               Label can be between 2-64 characters, including spaces.
                To protect your privacy, do not use personal data, such as your name or
                location, as a label for your secret.
         :param dict custom_metadata: (optional) The secret metadata that a user can
@@ -25621,7 +25683,7 @@ class PublicCertificatePrototype(SecretPrototype):
           group.
     :param List[str] labels: (optional) Labels that you can use to search secrets in
           your instance. Only 30 labels can be created.
-          Label can be between 2-30 characters, including spaces.
+          Label can be between 2-64 characters, including spaces.
           To protect your privacy, do not use personal data, such as your name or
           location, as a label for your secret.
     :param str common_name: The Common Name (CN) represents the server name
@@ -25689,7 +25751,7 @@ class PublicCertificatePrototype(SecretPrototype):
                secret group.
         :param List[str] labels: (optional) Labels that you can use to search
                secrets in your instance. Only 30 labels can be created.
-               Label can be between 2-30 characters, including spaces.
+               Label can be between 2-64 characters, including spaces.
                To protect your privacy, do not use personal data, such as your name or
                location, as a label for your secret.
         :param List[str] alt_names: (optional) With the Subject Alternative Name
@@ -26556,7 +26618,7 @@ class ServiceCredentialsSecret(Secret):
     :param str id: A v4 UUID identifier.
     :param List[str] labels: (optional) Labels that you can use to search secrets in
           your instance. Only 30 labels can be created.
-          Label can be between 2-30 characters, including spaces.
+          Label can be between 2-64 characters, including spaces.
           To protect your privacy, do not use personal data, such as your name or
           location, as a label for your secret.
     :param int locks_total: (optional) The number of locks of the secret.
@@ -26590,6 +26652,9 @@ class ServiceCredentialsSecret(Secret):
           1 minute. The maximum is 90 days. For the service_credentials secret type, the
           TTL field is optional. If it is set the minimum duration is 1 day. The maximum
           is 90 days. By default, the TTL is set to 0.
+    :param datetime expiration_date: (optional) The date when the secret material
+          expires. The date format follows the `RFC 3339` format. Supported secret types:
+          Arbitrary, username_password.
     :param ServiceCredentialsSecretSourceServiceRO source_service: The properties of
           the resource key that was created for this source service instance.
     :param ServiceCredentialsSecretCredentials credentials: The properties of the
@@ -26620,6 +26685,7 @@ class ServiceCredentialsSecret(Secret):
         next_rotation_date: Optional[datetime] = None,
         rotation: Optional['RotationPolicy'] = None,
         ttl: Optional[str] = None,
+        expiration_date: Optional[datetime] = None,
     ) -> None:
         """
         Initialize a ServiceCredentialsSecret object.
@@ -26650,7 +26716,7 @@ class ServiceCredentialsSecret(Secret):
                location, as a description for your secret group.
         :param List[str] labels: (optional) Labels that you can use to search
                secrets in your instance. Only 30 labels can be created.
-               Label can be between 2-30 characters, including spaces.
+               Label can be between 2-64 characters, including spaces.
                To protect your privacy, do not use personal data, such as your name or
                location, as a label for your secret.
         :param RotationPolicy rotation: (optional) This field indicates whether
@@ -26666,6 +26732,9 @@ class ServiceCredentialsSecret(Secret):
                the service_credentials secret type, the TTL field is optional. If it is
                set the minimum duration is 1 day. The maximum is 90 days. By default, the
                TTL is set to 0.
+        :param datetime expiration_date: (optional) The date when the secret
+               material expires. The date format follows the `RFC 3339` format. Supported
+               secret types: Arbitrary, username_password.
         """
         # pylint: disable=super-init-not-called
         self.created_by = created_by
@@ -26687,6 +26756,7 @@ class ServiceCredentialsSecret(Secret):
         self.next_rotation_date = next_rotation_date
         self.rotation = rotation
         self.ttl = ttl
+        self.expiration_date = expiration_date
         self.source_service = source_service
         self.credentials = credentials
 
@@ -26748,6 +26818,8 @@ class ServiceCredentialsSecret(Secret):
             args['rotation'] = rotation
         if (ttl := _dict.get('ttl')) is not None:
             args['ttl'] = ttl
+        if (expiration_date := _dict.get('expiration_date')) is not None:
+            args['expiration_date'] = string_to_datetime(expiration_date)
         if (source_service := _dict.get('source_service')) is not None:
             args['source_service'] = ServiceCredentialsSecretSourceServiceRO.from_dict(source_service)
         else:
@@ -26807,6 +26879,8 @@ class ServiceCredentialsSecret(Secret):
                 _dict['rotation'] = self.rotation.to_dict()
         if hasattr(self, 'ttl') and self.ttl is not None:
             _dict['ttl'] = self.ttl
+        if hasattr(self, 'expiration_date') and self.expiration_date is not None:
+            _dict['expiration_date'] = datetime_to_string(self.expiration_date)
         if hasattr(self, 'source_service') and self.source_service is not None:
             if isinstance(self.source_service, dict):
                 _dict['source_service'] = self.source_service
@@ -26886,7 +26960,7 @@ class ServiceCredentialsSecretMetadata(SecretMetadata):
     :param str id: A v4 UUID identifier.
     :param List[str] labels: (optional) Labels that you can use to search secrets in
           your instance. Only 30 labels can be created.
-          Label can be between 2-30 characters, including spaces.
+          Label can be between 2-64 characters, including spaces.
           To protect your privacy, do not use personal data, such as your name or
           location, as a label for your secret.
     :param int locks_total: (optional) The number of locks of the secret.
@@ -26920,6 +26994,9 @@ class ServiceCredentialsSecretMetadata(SecretMetadata):
           1 minute. The maximum is 90 days. For the service_credentials secret type, the
           TTL field is optional. If it is set the minimum duration is 1 day. The maximum
           is 90 days. By default, the TTL is set to 0.
+    :param datetime expiration_date: (optional) The date when the secret material
+          expires. The date format follows the `RFC 3339` format. Supported secret types:
+          Arbitrary, username_password.
     :param ServiceCredentialsSecretSourceServiceRO source_service: The properties of
           the resource key that was created for this source service instance.
     """
@@ -26947,6 +27024,7 @@ class ServiceCredentialsSecretMetadata(SecretMetadata):
         next_rotation_date: Optional[datetime] = None,
         rotation: Optional['RotationPolicy'] = None,
         ttl: Optional[str] = None,
+        expiration_date: Optional[datetime] = None,
     ) -> None:
         """
         Initialize a ServiceCredentialsSecretMetadata object.
@@ -26975,7 +27053,7 @@ class ServiceCredentialsSecretMetadata(SecretMetadata):
                location, as a description for your secret group.
         :param List[str] labels: (optional) Labels that you can use to search
                secrets in your instance. Only 30 labels can be created.
-               Label can be between 2-30 characters, including spaces.
+               Label can be between 2-64 characters, including spaces.
                To protect your privacy, do not use personal data, such as your name or
                location, as a label for your secret.
         :param RotationPolicy rotation: (optional) This field indicates whether
@@ -26991,6 +27069,9 @@ class ServiceCredentialsSecretMetadata(SecretMetadata):
                the service_credentials secret type, the TTL field is optional. If it is
                set the minimum duration is 1 day. The maximum is 90 days. By default, the
                TTL is set to 0.
+        :param datetime expiration_date: (optional) The date when the secret
+               material expires. The date format follows the `RFC 3339` format. Supported
+               secret types: Arbitrary, username_password.
         """
         # pylint: disable=super-init-not-called
         self.created_by = created_by
@@ -27012,6 +27093,7 @@ class ServiceCredentialsSecretMetadata(SecretMetadata):
         self.next_rotation_date = next_rotation_date
         self.rotation = rotation
         self.ttl = ttl
+        self.expiration_date = expiration_date
         self.source_service = source_service
 
     @classmethod
@@ -27072,6 +27154,8 @@ class ServiceCredentialsSecretMetadata(SecretMetadata):
             args['rotation'] = rotation
         if (ttl := _dict.get('ttl')) is not None:
             args['ttl'] = ttl
+        if (expiration_date := _dict.get('expiration_date')) is not None:
+            args['expiration_date'] = string_to_datetime(expiration_date)
         if (source_service := _dict.get('source_service')) is not None:
             args['source_service'] = ServiceCredentialsSecretSourceServiceRO.from_dict(source_service)
         else:
@@ -27127,6 +27211,8 @@ class ServiceCredentialsSecretMetadata(SecretMetadata):
                 _dict['rotation'] = self.rotation.to_dict()
         if hasattr(self, 'ttl') and self.ttl is not None:
             _dict['ttl'] = self.ttl
+        if hasattr(self, 'expiration_date') and self.expiration_date is not None:
+            _dict['expiration_date'] = datetime_to_string(self.expiration_date)
         if hasattr(self, 'source_service') and self.source_service is not None:
             if isinstance(self.source_service, dict):
                 _dict['source_service'] = self.source_service
@@ -27192,7 +27278,7 @@ class ServiceCredentialsSecretMetadataPatch(SecretMetadataPatch):
           location, as a description for your secret group.
     :param List[str] labels: (optional) Labels that you can use to search secrets in
           your instance. Only 30 labels can be created.
-          Label can be between 2-30 characters, including spaces.
+          Label can be between 2-64 characters, including spaces.
           To protect your privacy, do not use personal data, such as your name or
           location, as a label for your secret.
     :param str name: (optional) A human-readable name to assign to your secret.
@@ -27232,7 +27318,7 @@ class ServiceCredentialsSecretMetadataPatch(SecretMetadataPatch):
                location, as a description for your secret group.
         :param List[str] labels: (optional) Labels that you can use to search
                secrets in your instance. Only 30 labels can be created.
-               Label can be between 2-30 characters, including spaces.
+               Label can be between 2-64 characters, including spaces.
                To protect your privacy, do not use personal data, such as your name or
                location, as a label for your secret.
         :param str name: (optional) A human-readable name to assign to your secret.
@@ -27333,7 +27419,7 @@ class ServiceCredentialsSecretPrototype(SecretPrototype):
           location, as a description for your secret group.
     :param List[str] labels: (optional) Labels that you can use to search secrets in
           your instance. Only 30 labels can be created.
-          Label can be between 2-30 characters, including spaces.
+          Label can be between 2-64 characters, including spaces.
           To protect your privacy, do not use personal data, such as your name or
           location, as a label for your secret.
     :param str name: A human-readable name to assign to your secret.
@@ -27396,7 +27482,7 @@ class ServiceCredentialsSecretPrototype(SecretPrototype):
                location, as a description for your secret group.
         :param List[str] labels: (optional) Labels that you can use to search
                secrets in your instance. Only 30 labels can be created.
-               Label can be between 2-30 characters, including spaces.
+               Label can be between 2-64 characters, including spaces.
                To protect your privacy, do not use personal data, such as your name or
                location, as a label for your secret.
         :param RotationPolicy rotation: (optional) This field indicates whether
@@ -28100,7 +28186,7 @@ class UsernamePasswordSecret(Secret):
     :param str id: A v4 UUID identifier.
     :param List[str] labels: (optional) Labels that you can use to search secrets in
           your instance. Only 30 labels can be created.
-          Label can be between 2-30 characters, including spaces.
+          Label can be between 2-64 characters, including spaces.
           To protect your privacy, do not use personal data, such as your name or
           location, as a label for your secret.
     :param int locks_total: (optional) The number of locks of the secret.
@@ -28193,7 +28279,7 @@ class UsernamePasswordSecret(Secret):
                location, as a description for your secret group.
         :param List[str] labels: (optional) Labels that you can use to search
                secrets in your instance. Only 30 labels can be created.
-               Label can be between 2-30 characters, including spaces.
+               Label can be between 2-64 characters, including spaces.
                To protect your privacy, do not use personal data, such as your name or
                location, as a label for your secret.
         :param datetime expiration_date: (optional) The date when the secret
@@ -28425,7 +28511,7 @@ class UsernamePasswordSecretMetadata(SecretMetadata):
     :param str id: A v4 UUID identifier.
     :param List[str] labels: (optional) Labels that you can use to search secrets in
           your instance. Only 30 labels can be created.
-          Label can be between 2-30 characters, including spaces.
+          Label can be between 2-64 characters, including spaces.
           To protect your privacy, do not use personal data, such as your name or
           location, as a label for your secret.
     :param int locks_total: (optional) The number of locks of the secret.
@@ -28508,7 +28594,7 @@ class UsernamePasswordSecretMetadata(SecretMetadata):
                location, as a description for your secret group.
         :param List[str] labels: (optional) Labels that you can use to search
                secrets in your instance. Only 30 labels can be created.
-               Label can be between 2-30 characters, including spaces.
+               Label can be between 2-64 characters, including spaces.
                To protect your privacy, do not use personal data, such as your name or
                location, as a label for your secret.
         :param datetime expiration_date: (optional) The date when the secret
@@ -28718,7 +28804,7 @@ class UsernamePasswordSecretMetadataPatch(SecretMetadataPatch):
           location, as a description for your secret group.
     :param List[str] labels: (optional) Labels that you can use to search secrets in
           your instance. Only 30 labels can be created.
-          Label can be between 2-30 characters, including spaces.
+          Label can be between 2-64 characters, including spaces.
           To protect your privacy, do not use personal data, such as your name or
           location, as a label for your secret.
     :param dict custom_metadata: (optional) The secret metadata that a user can
@@ -28757,7 +28843,7 @@ class UsernamePasswordSecretMetadataPatch(SecretMetadataPatch):
                location, as a description for your secret group.
         :param List[str] labels: (optional) Labels that you can use to search
                secrets in your instance. Only 30 labels can be created.
-               Label can be between 2-30 characters, including spaces.
+               Label can be between 2-64 characters, including spaces.
                To protect your privacy, do not use personal data, such as your name or
                location, as a label for your secret.
         :param dict custom_metadata: (optional) The secret metadata that a user can
@@ -28868,7 +28954,7 @@ class UsernamePasswordSecretPrototype(SecretPrototype):
           group.
     :param List[str] labels: (optional) Labels that you can use to search secrets in
           your instance. Only 30 labels can be created.
-          Label can be between 2-30 characters, including spaces.
+          Label can be between 2-64 characters, including spaces.
           To protect your privacy, do not use personal data, such as your name or
           location, as a label for your secret.
     :param str username: The username that is assigned to an `username_password`
@@ -28924,7 +29010,7 @@ class UsernamePasswordSecretPrototype(SecretPrototype):
                secret group.
         :param List[str] labels: (optional) Labels that you can use to search
                secrets in your instance. Only 30 labels can be created.
-               Label can be between 2-30 characters, including spaces.
+               Label can be between 2-64 characters, including spaces.
                To protect your privacy, do not use personal data, such as your name or
                location, as a label for your secret.
         :param str password: (optional) The password that is assigned to an
@@ -29604,6 +29690,8 @@ class SecretsPager:
         sort: str = None,
         search: str = None,
         groups: List[str] = None,
+        secret_types: List[str] = None,
+        match_all_labels: List[str] = None,
     ) -> None:
         """
         Initialize a SecretsPager object.
@@ -29634,6 +29722,17 @@ class SecretsPager:
                **Usage:** To retrieve a list of secrets that are associated with an
                existing secret group or the default group, use
                `..?groups={secret_group_ID},default`.
+        :param List[str] secret_types: (optional) Filter secrets by types.
+               You can apply multiple filters by using a comma-separated list of secret
+               types.
+               **Usage:** To retrieve a list of imported certificates and public
+               certificates use `..?secret_types=imported_cert,public_cert`.
+        :param List[str] match_all_labels: (optional) Filter secrets by labels.
+               You can use a comma-separated list of labels to filter secrets that include
+               all of the labels in the list.
+               **Usage:** To retrieve a list of secrets that include both the label "dev"
+               and the label "us-south" in their list of labels, use
+               `..?labels=dev,us-south`.
         """
         self._has_next = True
         self._client = client
@@ -29642,6 +29741,8 @@ class SecretsPager:
         self._sort = sort
         self._search = search
         self._groups = groups
+        self._secret_types = secret_types
+        self._match_all_labels = match_all_labels
 
     def has_next(self) -> bool:
         """
@@ -29663,6 +29764,8 @@ class SecretsPager:
             sort=self._sort,
             search=self._search,
             groups=self._groups,
+            secret_types=self._secret_types,
+            match_all_labels=self._match_all_labels,
             offset=self._page_context.get('next'),
         ).get_result()
 
