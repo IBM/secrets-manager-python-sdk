@@ -1,3 +1,5 @@
+## [2.1.4](https://github.com/IBM/secrets-manager-python-sdk/compare/v2.1.3...v2.1.4) (2024-03-11)
+
 ## [2.1.3](https://github.com/IBM/secrets-manager-python-sdk/compare/v2.1.2...v2.1.3) (2024-02-07)
 
 ## [2.1.2](https://github.com/IBM/secrets-manager-python-sdk/compare/v2.1.1...v2.1.2) (2024-01-11)
