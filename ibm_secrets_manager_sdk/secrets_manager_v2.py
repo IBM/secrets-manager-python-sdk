@@ -14,7 +14,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-# IBM OpenAPI SDK Code Generator Version: 3.86.1-c3d7bcef-20240308-215042
+# IBM OpenAPI SDK Code Generator Version: 3.92.1-44330004-20240620-143510
 
 """
 With IBM Cloud® Secrets Manager, you can create, lease, and centrally manage secrets that
@@ -8858,7 +8858,8 @@ class IAMCredentialsSecret(Secret):
           iam_credentials secret type, the TTL field is mandatory. The minimum duration is
           1 minute. The maximum is 90 days. For the service_credentials secret type, the
           TTL field is optional. If it is set the minimum duration is 1 day. The maximum
-          is 90 days. By default, the TTL is set to 0.
+          is 90 days. By default, the TTL is set to 0. After the TTL is modified, it will
+          be applied only on the next secret rotation.
     :param List[str] access_groups: (optional) Access Groups that you can use for an
           `iam_credentials` secret.
           Up to 10 Access Groups can be used for each secret.
@@ -8956,7 +8957,8 @@ class IAMCredentialsSecret(Secret):
                minimum duration is 1 minute. The maximum is 90 days. For the
                service_credentials secret type, the TTL field is optional. If it is set
                the minimum duration is 1 day. The maximum is 90 days. By default, the TTL
-               is set to 0.
+               is set to 0. After the TTL is modified, it will be applied only on the next
+               secret rotation.
         :param bool reuse_api_key: (IAM credentials) This parameter indicates
                whether to reuse the service ID and API key for future read operations.
                If it is set to `true`, the service reuses the current credentials. If it
@@ -9254,7 +9256,8 @@ class IAMCredentialsSecretMetadata(SecretMetadata):
           iam_credentials secret type, the TTL field is mandatory. The minimum duration is
           1 minute. The maximum is 90 days. For the service_credentials secret type, the
           TTL field is optional. If it is set the minimum duration is 1 day. The maximum
-          is 90 days. By default, the TTL is set to 0.
+          is 90 days. By default, the TTL is set to 0. After the TTL is modified, it will
+          be applied only on the next secret rotation.
     :param List[str] access_groups: (optional) Access Groups that you can use for an
           `iam_credentials` secret.
           Up to 10 Access Groups can be used for each secret.
@@ -9346,7 +9349,8 @@ class IAMCredentialsSecretMetadata(SecretMetadata):
                minimum duration is 1 minute. The maximum is 90 days. For the
                service_credentials secret type, the TTL field is optional. If it is set
                the minimum duration is 1 day. The maximum is 90 days. By default, the TTL
-               is set to 0.
+               is set to 0. After the TTL is modified, it will be applied only on the next
+               secret rotation.
         :param bool reuse_api_key: (IAM credentials) This parameter indicates
                whether to reuse the service ID and API key for future read operations.
                If it is set to `true`, the service reuses the current credentials. If it
@@ -9619,7 +9623,8 @@ class IAMCredentialsSecretMetadataPatch(SecretMetadataPatch):
           iam_credentials secret type, the TTL field is mandatory. The minimum duration is
           1 minute. The maximum is 90 days. For the service_credentials secret type, the
           TTL field is optional. If it is set the minimum duration is 1 day. The maximum
-          is 90 days. By default, the TTL is set to 0.
+          is 90 days. By default, the TTL is set to 0. After the TTL is modified, it will
+          be applied only on the next secret rotation.
     :param RotationPolicy rotation: (optional) This field indicates whether Secrets
           Manager rotates your secrets automatically. Supported secret types:
           username_password, private_cert, public_cert, iam_credentials.
@@ -9660,7 +9665,8 @@ class IAMCredentialsSecretMetadataPatch(SecretMetadataPatch):
                mandatory. The minimum duration is 1 minute. The maximum is 90 days. For
                the service_credentials secret type, the TTL field is optional. If it is
                set the minimum duration is 1 day. The maximum is 90 days. By default, the
-               TTL is set to 0.
+               TTL is set to 0. After the TTL is modified, it will be applied only on the
+               next secret rotation.
         :param RotationPolicy rotation: (optional) This field indicates whether
                Secrets Manager rotates your secrets automatically. Supported secret types:
                username_password, private_cert, public_cert, iam_credentials.
@@ -9763,7 +9769,8 @@ class IAMCredentialsSecretPrototype(SecretPrototype):
           iam_credentials secret type, the TTL field is mandatory. The minimum duration is
           1 minute. The maximum is 90 days. For the service_credentials secret type, the
           TTL field is optional. If it is set the minimum duration is 1 day. The maximum
-          is 90 days. By default, the TTL is set to 0.
+          is 90 days. By default, the TTL is set to 0. After the TTL is modified, it will
+          be applied only on the next secret rotation.
     :param List[str] access_groups: (optional) Access Groups that you can use for an
           `iam_credentials` secret.
           Up to 10 Access Groups can be used for each secret.
@@ -9823,7 +9830,8 @@ class IAMCredentialsSecretPrototype(SecretPrototype):
                minimum duration is 1 minute. The maximum is 90 days. For the
                service_credentials secret type, the TTL field is optional. If it is set
                the minimum duration is 1 day. The maximum is 90 days. By default, the TTL
-               is set to 0.
+               is set to 0. After the TTL is modified, it will be applied only on the next
+               secret rotation.
         :param bool reuse_api_key: (IAM credentials) This parameter indicates
                whether to reuse the service ID and API key for future read operations.
                If it is set to `true`, the service reuses the current credentials. If it
@@ -26651,7 +26659,8 @@ class ServiceCredentialsSecret(Secret):
           iam_credentials secret type, the TTL field is mandatory. The minimum duration is
           1 minute. The maximum is 90 days. For the service_credentials secret type, the
           TTL field is optional. If it is set the minimum duration is 1 day. The maximum
-          is 90 days. By default, the TTL is set to 0.
+          is 90 days. By default, the TTL is set to 0. After the TTL is modified, it will
+          be applied only on the next secret rotation.
     :param datetime expiration_date: (optional) The date when the secret material
           expires. The date format follows the `RFC 3339` format. Supported secret types:
           Arbitrary, username_password.
@@ -26731,7 +26740,8 @@ class ServiceCredentialsSecret(Secret):
                mandatory. The minimum duration is 1 minute. The maximum is 90 days. For
                the service_credentials secret type, the TTL field is optional. If it is
                set the minimum duration is 1 day. The maximum is 90 days. By default, the
-               TTL is set to 0.
+               TTL is set to 0. After the TTL is modified, it will be applied only on the
+               next secret rotation.
         :param datetime expiration_date: (optional) The date when the secret
                material expires. The date format follows the `RFC 3339` format. Supported
                secret types: Arbitrary, username_password.
@@ -26993,7 +27003,8 @@ class ServiceCredentialsSecretMetadata(SecretMetadata):
           iam_credentials secret type, the TTL field is mandatory. The minimum duration is
           1 minute. The maximum is 90 days. For the service_credentials secret type, the
           TTL field is optional. If it is set the minimum duration is 1 day. The maximum
-          is 90 days. By default, the TTL is set to 0.
+          is 90 days. By default, the TTL is set to 0. After the TTL is modified, it will
+          be applied only on the next secret rotation.
     :param datetime expiration_date: (optional) The date when the secret material
           expires. The date format follows the `RFC 3339` format. Supported secret types:
           Arbitrary, username_password.
@@ -27068,7 +27079,8 @@ class ServiceCredentialsSecretMetadata(SecretMetadata):
                mandatory. The minimum duration is 1 minute. The maximum is 90 days. For
                the service_credentials secret type, the TTL field is optional. If it is
                set the minimum duration is 1 day. The maximum is 90 days. By default, the
-               TTL is set to 0.
+               TTL is set to 0. After the TTL is modified, it will be applied only on the
+               next secret rotation.
         :param datetime expiration_date: (optional) The date when the secret
                material expires. The date format follows the `RFC 3339` format. Supported
                secret types: Arbitrary, username_password.
@@ -27295,7 +27307,8 @@ class ServiceCredentialsSecretMetadataPatch(SecretMetadataPatch):
           iam_credentials secret type, the TTL field is mandatory. The minimum duration is
           1 minute. The maximum is 90 days. For the service_credentials secret type, the
           TTL field is optional. If it is set the minimum duration is 1 day. The maximum
-          is 90 days. By default, the TTL is set to 0.
+          is 90 days. By default, the TTL is set to 0. After the TTL is modified, it will
+          be applied only on the next secret rotation.
     """
 
     def __init__(
@@ -27336,7 +27349,8 @@ class ServiceCredentialsSecretMetadataPatch(SecretMetadataPatch):
                mandatory. The minimum duration is 1 minute. The maximum is 90 days. For
                the service_credentials secret type, the TTL field is optional. If it is
                set the minimum duration is 1 day. The maximum is 90 days. By default, the
-               TTL is set to 0.
+               TTL is set to 0. After the TTL is modified, it will be applied only on the
+               next secret rotation.
         """
         # pylint: disable=super-init-not-called
         self.custom_metadata = custom_metadata
@@ -27444,7 +27458,8 @@ class ServiceCredentialsSecretPrototype(SecretPrototype):
           iam_credentials secret type, the TTL field is mandatory. The minimum duration is
           1 minute. The maximum is 90 days. For the service_credentials secret type, the
           TTL field is optional. If it is set the minimum duration is 1 day. The maximum
-          is 90 days. By default, the TTL is set to 0.
+          is 90 days. By default, the TTL is set to 0. After the TTL is modified, it will
+          be applied only on the next secret rotation.
     :param dict version_custom_metadata: (optional) The secret version metadata that
           a user can customize.
     """
@@ -27499,7 +27514,8 @@ class ServiceCredentialsSecretPrototype(SecretPrototype):
                mandatory. The minimum duration is 1 minute. The maximum is 90 days. For
                the service_credentials secret type, the TTL field is optional. If it is
                set the minimum duration is 1 day. The maximum is 90 days. By default, the
-               TTL is set to 0.
+               TTL is set to 0. After the TTL is modified, it will be applied only on the
+               next secret rotation.
         :param dict version_custom_metadata: (optional) The secret version metadata
                that a user can customize.
         """
