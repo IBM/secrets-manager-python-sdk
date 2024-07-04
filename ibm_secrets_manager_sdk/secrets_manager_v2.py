@@ -14,7 +14,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-# IBM OpenAPI SDK Code Generator Version: 3.86.1-c3d7bcef-20240308-215042
+# IBM OpenAPI SDK Code Generator Version: 3.92.1-44330004-20240620-143510
 
 """
 With IBM Cloud® Secrets Manager, you can create, lease, and centrally manage secrets that
@@ -2392,13 +2392,13 @@ class GetConfigurationEnums:
         error responses.
         """
 
-        PUBLIC_CERT_CONFIGURATION_CA_LETS_ENCRYPT = 'public_cert_configuration_ca_lets_encrypt'
-        PUBLIC_CERT_CONFIGURATION_DNS_CLASSIC_INFRASTRUCTURE = 'public_cert_configuration_dns_classic_infrastructure'
         PUBLIC_CERT_CONFIGURATION_DNS_CLOUD_INTERNET_SERVICES = 'public_cert_configuration_dns_cloud_internet_services'
-        IAM_CREDENTIALS_CONFIGURATION = 'iam_credentials_configuration'
+        PUBLIC_CERT_CONFIGURATION_DNS_CLASSIC_INFRASTRUCTURE = 'public_cert_configuration_dns_classic_infrastructure'
+        PUBLIC_CERT_CONFIGURATION_CA_LETS_ENCRYPT = 'public_cert_configuration_ca_lets_encrypt'
         PRIVATE_CERT_CONFIGURATION_ROOT_CA = 'private_cert_configuration_root_ca'
         PRIVATE_CERT_CONFIGURATION_INTERMEDIATE_CA = 'private_cert_configuration_intermediate_ca'
         PRIVATE_CERT_CONFIGURATION_TEMPLATE = 'private_cert_configuration_template'
+        IAM_CREDENTIALS_CONFIGURATION = 'iam_credentials_configuration'
 
 
 class UpdateConfigurationEnums:
@@ -2412,13 +2412,13 @@ class UpdateConfigurationEnums:
         error responses.
         """
 
-        PUBLIC_CERT_CONFIGURATION_CA_LETS_ENCRYPT = 'public_cert_configuration_ca_lets_encrypt'
-        PUBLIC_CERT_CONFIGURATION_DNS_CLASSIC_INFRASTRUCTURE = 'public_cert_configuration_dns_classic_infrastructure'
         PUBLIC_CERT_CONFIGURATION_DNS_CLOUD_INTERNET_SERVICES = 'public_cert_configuration_dns_cloud_internet_services'
-        IAM_CREDENTIALS_CONFIGURATION = 'iam_credentials_configuration'
+        PUBLIC_CERT_CONFIGURATION_DNS_CLASSIC_INFRASTRUCTURE = 'public_cert_configuration_dns_classic_infrastructure'
+        PUBLIC_CERT_CONFIGURATION_CA_LETS_ENCRYPT = 'public_cert_configuration_ca_lets_encrypt'
         PRIVATE_CERT_CONFIGURATION_ROOT_CA = 'private_cert_configuration_root_ca'
         PRIVATE_CERT_CONFIGURATION_INTERMEDIATE_CA = 'private_cert_configuration_intermediate_ca'
         PRIVATE_CERT_CONFIGURATION_TEMPLATE = 'private_cert_configuration_template'
+        IAM_CREDENTIALS_CONFIGURATION = 'iam_credentials_configuration'
 
 
 class DeleteConfigurationEnums:
@@ -2432,13 +2432,13 @@ class DeleteConfigurationEnums:
         error responses.
         """
 
-        PUBLIC_CERT_CONFIGURATION_CA_LETS_ENCRYPT = 'public_cert_configuration_ca_lets_encrypt'
-        PUBLIC_CERT_CONFIGURATION_DNS_CLASSIC_INFRASTRUCTURE = 'public_cert_configuration_dns_classic_infrastructure'
         PUBLIC_CERT_CONFIGURATION_DNS_CLOUD_INTERNET_SERVICES = 'public_cert_configuration_dns_cloud_internet_services'
-        IAM_CREDENTIALS_CONFIGURATION = 'iam_credentials_configuration'
+        PUBLIC_CERT_CONFIGURATION_DNS_CLASSIC_INFRASTRUCTURE = 'public_cert_configuration_dns_classic_infrastructure'
+        PUBLIC_CERT_CONFIGURATION_CA_LETS_ENCRYPT = 'public_cert_configuration_ca_lets_encrypt'
         PRIVATE_CERT_CONFIGURATION_ROOT_CA = 'private_cert_configuration_root_ca'
         PRIVATE_CERT_CONFIGURATION_INTERMEDIATE_CA = 'private_cert_configuration_intermediate_ca'
         PRIVATE_CERT_CONFIGURATION_TEMPLATE = 'private_cert_configuration_template'
+        IAM_CREDENTIALS_CONFIGURATION = 'iam_credentials_configuration'
 
 
 class CreateConfigurationActionEnums:
@@ -2452,13 +2452,13 @@ class CreateConfigurationActionEnums:
         error responses.
         """
 
-        PUBLIC_CERT_CONFIGURATION_CA_LETS_ENCRYPT = 'public_cert_configuration_ca_lets_encrypt'
-        PUBLIC_CERT_CONFIGURATION_DNS_CLASSIC_INFRASTRUCTURE = 'public_cert_configuration_dns_classic_infrastructure'
         PUBLIC_CERT_CONFIGURATION_DNS_CLOUD_INTERNET_SERVICES = 'public_cert_configuration_dns_cloud_internet_services'
-        IAM_CREDENTIALS_CONFIGURATION = 'iam_credentials_configuration'
+        PUBLIC_CERT_CONFIGURATION_DNS_CLASSIC_INFRASTRUCTURE = 'public_cert_configuration_dns_classic_infrastructure'
+        PUBLIC_CERT_CONFIGURATION_CA_LETS_ENCRYPT = 'public_cert_configuration_ca_lets_encrypt'
         PRIVATE_CERT_CONFIGURATION_ROOT_CA = 'private_cert_configuration_root_ca'
         PRIVATE_CERT_CONFIGURATION_INTERMEDIATE_CA = 'private_cert_configuration_intermediate_ca'
         PRIVATE_CERT_CONFIGURATION_TEMPLATE = 'private_cert_configuration_template'
+        IAM_CREDENTIALS_CONFIGURATION = 'iam_credentials_configuration'
 
 
 ##############################################################################
@@ -2795,9 +2795,9 @@ class Configuration:
     @classmethod
     def _get_class_by_discriminator(cls, _dict: Dict) -> object:
         mapping = {}
-        mapping['public_cert_configuration_ca_lets_encrypt'] = 'PublicCertificateConfigurationCALetsEncrypt'
         mapping['public_cert_configuration_dns_cloud_internet_services'] = 'PublicCertificateConfigurationDNSCloudInternetServices'
         mapping['public_cert_configuration_dns_classic_infrastructure'] = 'PublicCertificateConfigurationDNSClassicInfrastructure'
+        mapping['public_cert_configuration_ca_lets_encrypt'] = 'PublicCertificateConfigurationCALetsEncrypt'
         mapping['iam_credentials_configuration'] = 'IAMCredentialsConfiguration'
         mapping['private_cert_configuration_root_ca'] = 'PrivateCertificateConfigurationRootCA'
         mapping['private_cert_configuration_intermediate_ca'] = 'PrivateCertificateConfigurationIntermediateCA'
@@ -2962,13 +2962,13 @@ class ConfigurationMetadata:
     @classmethod
     def _get_class_by_discriminator(cls, _dict: Dict) -> object:
         mapping = {}
-        mapping['iam_credentials_configuration'] = 'IAMCredentialsConfigurationMetadata'
-        mapping['public_cert_configuration_ca_lets_encrypt'] = 'PublicCertificateConfigurationCALetsEncryptMetadata'
         mapping['public_cert_configuration_dns_cloud_internet_services'] = 'PublicCertificateConfigurationDNSCloudInternetServicesMetadata'
         mapping['public_cert_configuration_dns_classic_infrastructure'] = 'PublicCertificateConfigurationDNSClassicInfrastructureMetadata'
+        mapping['public_cert_configuration_ca_lets_encrypt'] = 'PublicCertificateConfigurationCALetsEncryptMetadata'
         mapping['private_cert_configuration_root_ca'] = 'PrivateCertificateConfigurationRootCAMetadata'
         mapping['private_cert_configuration_intermediate_ca'] = 'PrivateCertificateConfigurationIntermediateCAMetadata'
         mapping['private_cert_configuration_template'] = 'PrivateCertificateConfigurationTemplateMetadata'
+        mapping['iam_credentials_configuration'] = 'IAMCredentialsConfigurationMetadata'
         disc_value = _dict.get('config_type')
         if disc_value is None:
             raise ValueError('Discriminator property \'config_type\' not found in ConfigurationMetadata JSON')
@@ -3169,7 +3169,7 @@ class ConfigurationPrototype:
 
         """
         msg = "Cannot instantiate base class. Instead, instantiate one of the defined subclasses: {0}".format(
-            ", ".join(['PrivateCertificateConfigurationRootCAPrototype', 'PrivateCertificateConfigurationIntermediateCAPrototype', 'PrivateCertificateConfigurationTemplatePrototype', 'PublicCertificateConfigurationCALetsEncryptPrototype', 'PublicCertificateConfigurationDNSCloudInternetServicesPrototype', 'PublicCertificateConfigurationDNSClassicInfrastructurePrototype', 'IAMCredentialsConfigurationPrototype'])
+            ", ".join(['PublicCertificateConfigurationDNSCloudInternetServicesPrototype', 'PublicCertificateConfigurationDNSClassicInfrastructurePrototype', 'PublicCertificateConfigurationCALetsEncryptPrototype', 'PrivateCertificateConfigurationRootCAPrototype', 'PrivateCertificateConfigurationIntermediateCAPrototype', 'PrivateCertificateConfigurationTemplatePrototype', 'IAMCredentialsConfigurationPrototype'])
         )
         raise Exception(msg)
 
@@ -3180,7 +3180,7 @@ class ConfigurationPrototype:
         if disc_class != cls:
             return disc_class.from_dict(_dict)
         msg = "Cannot convert dictionary into an instance of base class 'ConfigurationPrototype'. The discriminator value should map to a valid subclass: {1}".format(
-            ", ".join(['PrivateCertificateConfigurationRootCAPrototype', 'PrivateCertificateConfigurationIntermediateCAPrototype', 'PrivateCertificateConfigurationTemplatePrototype', 'PublicCertificateConfigurationCALetsEncryptPrototype', 'PublicCertificateConfigurationDNSCloudInternetServicesPrototype', 'PublicCertificateConfigurationDNSClassicInfrastructurePrototype', 'IAMCredentialsConfigurationPrototype'])
+            ", ".join(['PublicCertificateConfigurationDNSCloudInternetServicesPrototype', 'PublicCertificateConfigurationDNSClassicInfrastructurePrototype', 'PublicCertificateConfigurationCALetsEncryptPrototype', 'PrivateCertificateConfigurationRootCAPrototype', 'PrivateCertificateConfigurationIntermediateCAPrototype', 'PrivateCertificateConfigurationTemplatePrototype', 'IAMCredentialsConfigurationPrototype'])
         )
         raise Exception(msg)
 
@@ -3192,12 +3192,12 @@ class ConfigurationPrototype:
     @classmethod
     def _get_class_by_discriminator(cls, _dict: Dict) -> object:
         mapping = {}
+        mapping['public_cert_configuration_dns_cloud_internet_services'] = 'PublicCertificateConfigurationDNSCloudInternetServicesPrototype'
+        mapping['public_cert_configuration_dns_classic_infrastructure'] = 'PublicCertificateConfigurationDNSClassicInfrastructurePrototype'
+        mapping['public_cert_configuration_ca_lets_encrypt'] = 'PublicCertificateConfigurationCALetsEncryptPrototype'
         mapping['private_cert_configuration_root_ca'] = 'PrivateCertificateConfigurationRootCAPrototype'
         mapping['private_cert_configuration_intermediate_ca'] = 'PrivateCertificateConfigurationIntermediateCAPrototype'
         mapping['private_cert_configuration_template'] = 'PrivateCertificateConfigurationTemplatePrototype'
-        mapping['public_cert_configuration_ca_lets_encrypt'] = 'PublicCertificateConfigurationCALetsEncryptPrototype'
-        mapping['public_cert_configuration_dns_cloud_internet_services'] = 'PublicCertificateConfigurationDNSCloudInternetServicesPrototype'
-        mapping['public_cert_configuration_dns_classic_infrastructure'] = 'PublicCertificateConfigurationDNSClassicInfrastructurePrototype'
         mapping['iam_credentials_configuration'] = 'IAMCredentialsConfigurationPrototype'
         disc_value = _dict.get('config_type')
         if disc_value is None:
@@ -3791,6 +3791,164 @@ class PrivateCertificateCAData:
             ", ".join(['PrivateCertificateConfigurationIntermediateCACSR', 'PrivateCertificateConfigurationCACertificate'])
         )
         raise Exception(msg)
+
+
+class PrivateCertificateCryptoKey:
+    """
+    The data that is associated with a cryptographic key.
+
+    :param str id: (optional) The id of a PKCS#11 key to use. If the key does not
+          exist and generation is enabled, this is the ID that will  be given to the
+          generated key. If the key exists, and generation is disabled, then this id will
+          be used to look up the key. This value and/or crypto_key_label must be
+          specified.
+    :param str label: (optional) The label of the key to use. If the key does not
+          exist and generation is enabled, this is the label that will  be given to the
+          generated key. If the key exists, and generation is disabled, then this label
+          will be used to  look up the key. This value and/or crypto_key_id must be
+          specified.
+    :param bool allow_generate_key: (optional) Indicates whether a new key is
+          generated by the crypto peovider if the given key name cannot be found.
+    :param PrivateCertificateCryptoProvider provider: The data that is associated
+          with a cryptographic provider.
+    """
+
+    def __init__(
+        self,
+        provider: 'PrivateCertificateCryptoProvider',
+        *,
+        id: Optional[str] = None,
+        label: Optional[str] = None,
+        allow_generate_key: Optional[bool] = None,
+    ) -> None:
+        """
+        Initialize a PrivateCertificateCryptoKey object.
+
+        :param PrivateCertificateCryptoProvider provider: The data that is
+               associated with a cryptographic provider.
+        :param str id: (optional) The id of a PKCS#11 key to use. If the key does
+               not exist and generation is enabled, this is the ID that will  be given to
+               the generated key. If the key exists, and generation is disabled, then this
+               id will be used to look up the key. This value and/or crypto_key_label must
+               be specified.
+        :param str label: (optional) The label of the key to use. If the key does
+               not exist and generation is enabled, this is the label that will  be given
+               to the generated key. If the key exists, and generation is disabled, then
+               this label will be used to  look up the key. This value and/or
+               crypto_key_id must be specified.
+        :param bool allow_generate_key: (optional) Indicates whether a new key is
+               generated by the crypto peovider if the given key name cannot be found.
+        """
+        self.id = id
+        self.label = label
+        self.allow_generate_key = allow_generate_key
+        self.provider = provider
+
+    @classmethod
+    def from_dict(cls, _dict: Dict) -> 'PrivateCertificateCryptoKey':
+        """Initialize a PrivateCertificateCryptoKey object from a json dictionary."""
+        args = {}
+        if (id := _dict.get('id')) is not None:
+            args['id'] = id
+        if (label := _dict.get('label')) is not None:
+            args['label'] = label
+        if (allow_generate_key := _dict.get('allow_generate_key')) is not None:
+            args['allow_generate_key'] = allow_generate_key
+        if (provider := _dict.get('provider')) is not None:
+            args['provider'] = PrivateCertificateCryptoProvider.from_dict(provider)
+        else:
+            raise ValueError('Required property \'provider\' not present in PrivateCertificateCryptoKey JSON')
+        return cls(**args)
+
+    @classmethod
+    def _from_dict(cls, _dict):
+        """Initialize a PrivateCertificateCryptoKey object from a json dictionary."""
+        return cls.from_dict(_dict)
+
+    def to_dict(self) -> Dict:
+        """Return a json dictionary representing this model."""
+        _dict = {}
+        if hasattr(self, 'id') and self.id is not None:
+            _dict['id'] = self.id
+        if hasattr(self, 'label') and self.label is not None:
+            _dict['label'] = self.label
+        if hasattr(self, 'allow_generate_key') and self.allow_generate_key is not None:
+            _dict['allow_generate_key'] = self.allow_generate_key
+        if hasattr(self, 'provider') and self.provider is not None:
+            if isinstance(self.provider, dict):
+                _dict['provider'] = self.provider
+            else:
+                _dict['provider'] = self.provider.to_dict()
+        return _dict
+
+    def _to_dict(self):
+        """Return a json dictionary representing this model."""
+        return self.to_dict()
+
+    def __str__(self) -> str:
+        """Return a `str` version of this PrivateCertificateCryptoKey object."""
+        return json.dumps(self.to_dict(), indent=2)
+
+    def __eq__(self, other: 'PrivateCertificateCryptoKey') -> bool:
+        """Return `true` when self and other are equal, false otherwise."""
+        if not isinstance(other, self.__class__):
+            return False
+        return self.__dict__ == other.__dict__
+
+    def __ne__(self, other: 'PrivateCertificateCryptoKey') -> bool:
+        """Return `true` when self and other are not equal, false otherwise."""
+        return not self == other
+
+
+class PrivateCertificateCryptoProvider:
+    """
+    The data that is associated with a cryptographic provider.
+
+    """
+
+    def __init__(
+        self,
+    ) -> None:
+        """
+        Initialize a PrivateCertificateCryptoProvider object.
+
+        """
+        msg = "Cannot instantiate base class. Instead, instantiate one of the defined subclasses: {0}".format(
+            ", ".join(['PrivateCertificateCryptoProviderHPCS'])
+        )
+        raise Exception(msg)
+
+    @classmethod
+    def from_dict(cls, _dict: Dict) -> 'PrivateCertificateCryptoProvider':
+        """Initialize a PrivateCertificateCryptoProvider object from a json dictionary."""
+        disc_class = cls._get_class_by_discriminator(_dict)
+        if disc_class != cls:
+            return disc_class.from_dict(_dict)
+        msg = "Cannot convert dictionary into an instance of base class 'PrivateCertificateCryptoProvider'. The discriminator value should map to a valid subclass: {1}".format(
+            ", ".join(['PrivateCertificateCryptoProviderHPCS'])
+        )
+        raise Exception(msg)
+
+    @classmethod
+    def _from_dict(cls, _dict: Dict):
+        """Initialize a PrivateCertificateCryptoProvider object from a json dictionary."""
+        return cls.from_dict(_dict)
+
+    @classmethod
+    def _get_class_by_discriminator(cls, _dict: Dict) -> object:
+        mapping = {}
+        mapping['hyper_protect_crypto_services'] = 'PrivateCertificateCryptoProviderHPCS'
+        disc_value = _dict.get('type')
+        if disc_value is None:
+            raise ValueError('Discriminator property \'type\' not found in PrivateCertificateCryptoProvider JSON')
+        class_name = mapping.get(disc_value, disc_value)
+        try:
+            disc_class = getattr(sys.modules[__name__], class_name)
+        except AttributeError:
+            disc_class = cls
+        if isinstance(disc_class, object):
+            return disc_class
+        raise TypeError('%s is not a discriminator class' % class_name)
 
 
 class PublicCertificateRotationObject:
@@ -6881,6 +7039,8 @@ class ArbitrarySecret(Secret):
     :param datetime updated_at: The date when a resource was modified. The date
           format follows `RFC 3339`.
     :param int versions_total: The number of versions of your secret.
+    :param List[str] referenced_by: (optional) List of configurations that have
+          reference to the secret.
     :param datetime expiration_date: (optional) The date when the secret material
           expires. The date format follows the `RFC 3339` format. Supported secret types:
           Arbitrary, username_password.
@@ -6907,6 +7067,7 @@ class ArbitrarySecret(Secret):
         name: Optional[str] = None,
         state: Optional[int] = None,
         state_description: Optional[str] = None,
+        referenced_by: Optional[List[str]] = None,
         expiration_date: Optional[datetime] = None,
         payload: Optional[str] = None,
     ) -> None:
@@ -6960,6 +7121,7 @@ class ArbitrarySecret(Secret):
         self.state_description = state_description
         self.updated_at = updated_at
         self.versions_total = versions_total
+        self.referenced_by = referenced_by
         self.expiration_date = expiration_date
         self.payload = payload
 
@@ -7015,6 +7177,8 @@ class ArbitrarySecret(Secret):
             args['versions_total'] = versions_total
         else:
             raise ValueError('Required property \'versions_total\' not present in ArbitrarySecret JSON')
+        if (referenced_by := _dict.get('referenced_by')) is not None:
+            args['referenced_by'] = referenced_by
         if (expiration_date := _dict.get('expiration_date')) is not None:
             args['expiration_date'] = string_to_datetime(expiration_date)
         if (payload := _dict.get('payload')) is not None:
@@ -7061,6 +7225,8 @@ class ArbitrarySecret(Secret):
             _dict['updated_at'] = datetime_to_string(self.updated_at)
         if hasattr(self, 'versions_total') and self.versions_total is not None:
             _dict['versions_total'] = self.versions_total
+        if hasattr(self, 'referenced_by') and getattr(self, 'referenced_by') is not None:
+            _dict['referenced_by'] = getattr(self, 'referenced_by')
         if hasattr(self, 'expiration_date') and self.expiration_date is not None:
             _dict['expiration_date'] = datetime_to_string(self.expiration_date)
         if hasattr(self, 'payload') and self.payload is not None:
@@ -7151,6 +7317,8 @@ class ArbitrarySecretMetadata(SecretMetadata):
     :param datetime updated_at: The date when a resource was modified. The date
           format follows `RFC 3339`.
     :param int versions_total: The number of versions of your secret.
+    :param List[str] referenced_by: (optional) List of configurations that have
+          reference to the secret.
     :param datetime expiration_date: (optional) The date when the secret material
           expires. The date format follows the `RFC 3339` format. Supported secret types:
           Arbitrary, username_password.
@@ -7175,6 +7343,7 @@ class ArbitrarySecretMetadata(SecretMetadata):
         name: Optional[str] = None,
         state: Optional[int] = None,
         state_description: Optional[str] = None,
+        referenced_by: Optional[List[str]] = None,
         expiration_date: Optional[datetime] = None,
     ) -> None:
         """
@@ -7225,6 +7394,7 @@ class ArbitrarySecretMetadata(SecretMetadata):
         self.state_description = state_description
         self.updated_at = updated_at
         self.versions_total = versions_total
+        self.referenced_by = referenced_by
         self.expiration_date = expiration_date
 
     @classmethod
@@ -7279,6 +7449,8 @@ class ArbitrarySecretMetadata(SecretMetadata):
             args['versions_total'] = versions_total
         else:
             raise ValueError('Required property \'versions_total\' not present in ArbitrarySecretMetadata JSON')
+        if (referenced_by := _dict.get('referenced_by')) is not None:
+            args['referenced_by'] = referenced_by
         if (expiration_date := _dict.get('expiration_date')) is not None:
             args['expiration_date'] = string_to_datetime(expiration_date)
         return cls(**args)
@@ -7323,6 +7495,8 @@ class ArbitrarySecretMetadata(SecretMetadata):
             _dict['updated_at'] = datetime_to_string(self.updated_at)
         if hasattr(self, 'versions_total') and self.versions_total is not None:
             _dict['versions_total'] = self.versions_total
+        if hasattr(self, 'referenced_by') and getattr(self, 'referenced_by') is not None:
+            _dict['referenced_by'] = getattr(self, 'referenced_by')
         if hasattr(self, 'expiration_date') and self.expiration_date is not None:
             _dict['expiration_date'] = datetime_to_string(self.expiration_date)
         return _dict
@@ -8437,13 +8611,13 @@ class IAMCredentialsConfiguration(Configuration):
         private_cert_configuration_template.
         """
 
-        PUBLIC_CERT_CONFIGURATION_CA_LETS_ENCRYPT = 'public_cert_configuration_ca_lets_encrypt'
-        PUBLIC_CERT_CONFIGURATION_DNS_CLASSIC_INFRASTRUCTURE = 'public_cert_configuration_dns_classic_infrastructure'
         PUBLIC_CERT_CONFIGURATION_DNS_CLOUD_INTERNET_SERVICES = 'public_cert_configuration_dns_cloud_internet_services'
-        IAM_CREDENTIALS_CONFIGURATION = 'iam_credentials_configuration'
+        PUBLIC_CERT_CONFIGURATION_DNS_CLASSIC_INFRASTRUCTURE = 'public_cert_configuration_dns_classic_infrastructure'
+        PUBLIC_CERT_CONFIGURATION_CA_LETS_ENCRYPT = 'public_cert_configuration_ca_lets_encrypt'
         PRIVATE_CERT_CONFIGURATION_ROOT_CA = 'private_cert_configuration_root_ca'
         PRIVATE_CERT_CONFIGURATION_INTERMEDIATE_CA = 'private_cert_configuration_intermediate_ca'
         PRIVATE_CERT_CONFIGURATION_TEMPLATE = 'private_cert_configuration_template'
+        IAM_CREDENTIALS_CONFIGURATION = 'iam_credentials_configuration'
 
 
     class SecretTypeEnum(str, Enum):
@@ -8603,13 +8777,13 @@ class IAMCredentialsConfigurationMetadata(ConfigurationMetadata):
         private_cert_configuration_template.
         """
 
-        PUBLIC_CERT_CONFIGURATION_CA_LETS_ENCRYPT = 'public_cert_configuration_ca_lets_encrypt'
-        PUBLIC_CERT_CONFIGURATION_DNS_CLASSIC_INFRASTRUCTURE = 'public_cert_configuration_dns_classic_infrastructure'
         PUBLIC_CERT_CONFIGURATION_DNS_CLOUD_INTERNET_SERVICES = 'public_cert_configuration_dns_cloud_internet_services'
-        IAM_CREDENTIALS_CONFIGURATION = 'iam_credentials_configuration'
+        PUBLIC_CERT_CONFIGURATION_DNS_CLASSIC_INFRASTRUCTURE = 'public_cert_configuration_dns_classic_infrastructure'
+        PUBLIC_CERT_CONFIGURATION_CA_LETS_ENCRYPT = 'public_cert_configuration_ca_lets_encrypt'
         PRIVATE_CERT_CONFIGURATION_ROOT_CA = 'private_cert_configuration_root_ca'
         PRIVATE_CERT_CONFIGURATION_INTERMEDIATE_CA = 'private_cert_configuration_intermediate_ca'
         PRIVATE_CERT_CONFIGURATION_TEMPLATE = 'private_cert_configuration_template'
+        IAM_CREDENTIALS_CONFIGURATION = 'iam_credentials_configuration'
 
 
     class SecretTypeEnum(str, Enum):
@@ -8803,13 +8977,13 @@ class IAMCredentialsConfigurationPrototype(ConfigurationPrototype):
         private_cert_configuration_template.
         """
 
-        PUBLIC_CERT_CONFIGURATION_CA_LETS_ENCRYPT = 'public_cert_configuration_ca_lets_encrypt'
-        PUBLIC_CERT_CONFIGURATION_DNS_CLASSIC_INFRASTRUCTURE = 'public_cert_configuration_dns_classic_infrastructure'
         PUBLIC_CERT_CONFIGURATION_DNS_CLOUD_INTERNET_SERVICES = 'public_cert_configuration_dns_cloud_internet_services'
-        IAM_CREDENTIALS_CONFIGURATION = 'iam_credentials_configuration'
+        PUBLIC_CERT_CONFIGURATION_DNS_CLASSIC_INFRASTRUCTURE = 'public_cert_configuration_dns_classic_infrastructure'
+        PUBLIC_CERT_CONFIGURATION_CA_LETS_ENCRYPT = 'public_cert_configuration_ca_lets_encrypt'
         PRIVATE_CERT_CONFIGURATION_ROOT_CA = 'private_cert_configuration_root_ca'
         PRIVATE_CERT_CONFIGURATION_INTERMEDIATE_CA = 'private_cert_configuration_intermediate_ca'
         PRIVATE_CERT_CONFIGURATION_TEMPLATE = 'private_cert_configuration_template'
+        IAM_CREDENTIALS_CONFIGURATION = 'iam_credentials_configuration'
 
 
 
@@ -8850,6 +9024,8 @@ class IAMCredentialsSecret(Secret):
     :param datetime updated_at: The date when a resource was modified. The date
           format follows `RFC 3339`.
     :param int versions_total: The number of versions of your secret.
+    :param List[str] referenced_by: (optional) List of configurations that have
+          reference to the secret.
     :param str ttl: The time-to-live (TTL) or lease duration to assign to
           credentials that are generated. Supported secret types: iam_credentials,
           service_credentials. The TTL defines how long generated credentials remain
@@ -8858,7 +9034,8 @@ class IAMCredentialsSecret(Secret):
           iam_credentials secret type, the TTL field is mandatory. The minimum duration is
           1 minute. The maximum is 90 days. For the service_credentials secret type, the
           TTL field is optional. If it is set the minimum duration is 1 day. The maximum
-          is 90 days. By default, the TTL is set to 0.
+          is 90 days. By default, the TTL is set to 0. After the TTL is modified, it will
+          be applied only on the next secret rotation.
     :param List[str] access_groups: (optional) Access Groups that you can use for an
           `iam_credentials` secret.
           Up to 10 Access Groups can be used for each secret.
@@ -8921,6 +9098,7 @@ class IAMCredentialsSecret(Secret):
         name: Optional[str] = None,
         state: Optional[int] = None,
         state_description: Optional[str] = None,
+        referenced_by: Optional[List[str]] = None,
         access_groups: Optional[List[str]] = None,
         api_key_id: Optional[str] = None,
         service_id: Optional[str] = None,
@@ -8956,7 +9134,8 @@ class IAMCredentialsSecret(Secret):
                minimum duration is 1 minute. The maximum is 90 days. For the
                service_credentials secret type, the TTL field is optional. If it is set
                the minimum duration is 1 day. The maximum is 90 days. By default, the TTL
-               is set to 0.
+               is set to 0. After the TTL is modified, it will be applied only on the next
+               secret rotation.
         :param bool reuse_api_key: (IAM credentials) This parameter indicates
                whether to reuse the service ID and API key for future read operations.
                If it is set to `true`, the service reuses the current credentials. If it
@@ -9008,6 +9187,7 @@ class IAMCredentialsSecret(Secret):
         self.state_description = state_description
         self.updated_at = updated_at
         self.versions_total = versions_total
+        self.referenced_by = referenced_by
         self.ttl = ttl
         self.access_groups = access_groups
         self.api_key_id = api_key_id
@@ -9071,6 +9251,8 @@ class IAMCredentialsSecret(Secret):
             args['versions_total'] = versions_total
         else:
             raise ValueError('Required property \'versions_total\' not present in IAMCredentialsSecret JSON')
+        if (referenced_by := _dict.get('referenced_by')) is not None:
+            args['referenced_by'] = referenced_by
         if (ttl := _dict.get('ttl')) is not None:
             args['ttl'] = ttl
         else:
@@ -9137,6 +9319,8 @@ class IAMCredentialsSecret(Secret):
             _dict['updated_at'] = datetime_to_string(self.updated_at)
         if hasattr(self, 'versions_total') and self.versions_total is not None:
             _dict['versions_total'] = self.versions_total
+        if hasattr(self, 'referenced_by') and getattr(self, 'referenced_by') is not None:
+            _dict['referenced_by'] = getattr(self, 'referenced_by')
         if hasattr(self, 'ttl') and self.ttl is not None:
             _dict['ttl'] = self.ttl
         if hasattr(self, 'access_groups') and self.access_groups is not None:
@@ -9246,6 +9430,8 @@ class IAMCredentialsSecretMetadata(SecretMetadata):
     :param datetime updated_at: The date when a resource was modified. The date
           format follows `RFC 3339`.
     :param int versions_total: The number of versions of your secret.
+    :param List[str] referenced_by: (optional) List of configurations that have
+          reference to the secret.
     :param str ttl: The time-to-live (TTL) or lease duration to assign to
           credentials that are generated. Supported secret types: iam_credentials,
           service_credentials. The TTL defines how long generated credentials remain
@@ -9254,7 +9440,8 @@ class IAMCredentialsSecretMetadata(SecretMetadata):
           iam_credentials secret type, the TTL field is mandatory. The minimum duration is
           1 minute. The maximum is 90 days. For the service_credentials secret type, the
           TTL field is optional. If it is set the minimum duration is 1 day. The maximum
-          is 90 days. By default, the TTL is set to 0.
+          is 90 days. By default, the TTL is set to 0. After the TTL is modified, it will
+          be applied only on the next secret rotation.
     :param List[str] access_groups: (optional) Access Groups that you can use for an
           `iam_credentials` secret.
           Up to 10 Access Groups can be used for each secret.
@@ -9312,6 +9499,7 @@ class IAMCredentialsSecretMetadata(SecretMetadata):
         name: Optional[str] = None,
         state: Optional[int] = None,
         state_description: Optional[str] = None,
+        referenced_by: Optional[List[str]] = None,
         access_groups: Optional[List[str]] = None,
         api_key_id: Optional[str] = None,
         service_id: Optional[str] = None,
@@ -9346,7 +9534,8 @@ class IAMCredentialsSecretMetadata(SecretMetadata):
                minimum duration is 1 minute. The maximum is 90 days. For the
                service_credentials secret type, the TTL field is optional. If it is set
                the minimum duration is 1 day. The maximum is 90 days. By default, the TTL
-               is set to 0.
+               is set to 0. After the TTL is modified, it will be applied only on the next
+               secret rotation.
         :param bool reuse_api_key: (IAM credentials) This parameter indicates
                whether to reuse the service ID and API key for future read operations.
                If it is set to `true`, the service reuses the current credentials. If it
@@ -9398,6 +9587,7 @@ class IAMCredentialsSecretMetadata(SecretMetadata):
         self.state_description = state_description
         self.updated_at = updated_at
         self.versions_total = versions_total
+        self.referenced_by = referenced_by
         self.ttl = ttl
         self.access_groups = access_groups
         self.api_key_id = api_key_id
@@ -9460,6 +9650,8 @@ class IAMCredentialsSecretMetadata(SecretMetadata):
             args['versions_total'] = versions_total
         else:
             raise ValueError('Required property \'versions_total\' not present in IAMCredentialsSecretMetadata JSON')
+        if (referenced_by := _dict.get('referenced_by')) is not None:
+            args['referenced_by'] = referenced_by
         if (ttl := _dict.get('ttl')) is not None:
             args['ttl'] = ttl
         else:
@@ -9524,6 +9716,8 @@ class IAMCredentialsSecretMetadata(SecretMetadata):
             _dict['updated_at'] = datetime_to_string(self.updated_at)
         if hasattr(self, 'versions_total') and self.versions_total is not None:
             _dict['versions_total'] = self.versions_total
+        if hasattr(self, 'referenced_by') and getattr(self, 'referenced_by') is not None:
+            _dict['referenced_by'] = getattr(self, 'referenced_by')
         if hasattr(self, 'ttl') and self.ttl is not None:
             _dict['ttl'] = self.ttl
         if hasattr(self, 'access_groups') and self.access_groups is not None:
@@ -9619,7 +9813,8 @@ class IAMCredentialsSecretMetadataPatch(SecretMetadataPatch):
           iam_credentials secret type, the TTL field is mandatory. The minimum duration is
           1 minute. The maximum is 90 days. For the service_credentials secret type, the
           TTL field is optional. If it is set the minimum duration is 1 day. The maximum
-          is 90 days. By default, the TTL is set to 0.
+          is 90 days. By default, the TTL is set to 0. After the TTL is modified, it will
+          be applied only on the next secret rotation.
     :param RotationPolicy rotation: (optional) This field indicates whether Secrets
           Manager rotates your secrets automatically. Supported secret types:
           username_password, private_cert, public_cert, iam_credentials.
@@ -9660,7 +9855,8 @@ class IAMCredentialsSecretMetadataPatch(SecretMetadataPatch):
                mandatory. The minimum duration is 1 minute. The maximum is 90 days. For
                the service_credentials secret type, the TTL field is optional. If it is
                set the minimum duration is 1 day. The maximum is 90 days. By default, the
-               TTL is set to 0.
+               TTL is set to 0. After the TTL is modified, it will be applied only on the
+               next secret rotation.
         :param RotationPolicy rotation: (optional) This field indicates whether
                Secrets Manager rotates your secrets automatically. Supported secret types:
                username_password, private_cert, public_cert, iam_credentials.
@@ -9763,7 +9959,8 @@ class IAMCredentialsSecretPrototype(SecretPrototype):
           iam_credentials secret type, the TTL field is mandatory. The minimum duration is
           1 minute. The maximum is 90 days. For the service_credentials secret type, the
           TTL field is optional. If it is set the minimum duration is 1 day. The maximum
-          is 90 days. By default, the TTL is set to 0.
+          is 90 days. By default, the TTL is set to 0. After the TTL is modified, it will
+          be applied only on the next secret rotation.
     :param List[str] access_groups: (optional) Access Groups that you can use for an
           `iam_credentials` secret.
           Up to 10 Access Groups can be used for each secret.
@@ -9823,7 +10020,8 @@ class IAMCredentialsSecretPrototype(SecretPrototype):
                minimum duration is 1 minute. The maximum is 90 days. For the
                service_credentials secret type, the TTL field is optional. If it is set
                the minimum duration is 1 day. The maximum is 90 days. By default, the TTL
-               is set to 0.
+               is set to 0. After the TTL is modified, it will be applied only on the next
+               secret rotation.
         :param bool reuse_api_key: (IAM credentials) This parameter indicates
                whether to reuse the service ID and API key for future read operations.
                If it is set to `true`, the service reuses the current credentials. If it
@@ -10659,6 +10857,8 @@ class ImportedCertificate(Secret):
     :param datetime updated_at: The date when a resource was modified. The date
           format follows `RFC 3339`.
     :param int versions_total: The number of versions of your secret.
+    :param List[str] referenced_by: (optional) List of configurations that have
+          reference to the secret.
     :param str signing_algorithm: The identifier for the cryptographic algorithm
           that is used by the issuing certificate authority to sign a certificate.
     :param List[str] alt_names: (optional) With the Subject Alternative Name field,
@@ -10719,6 +10919,7 @@ class ImportedCertificate(Secret):
         name: Optional[str] = None,
         state: Optional[int] = None,
         state_description: Optional[str] = None,
+        referenced_by: Optional[List[str]] = None,
         alt_names: Optional[List[str]] = None,
         common_name: Optional[str] = None,
         key_algorithm: Optional[str] = None,
@@ -10799,6 +11000,7 @@ class ImportedCertificate(Secret):
         self.state_description = state_description
         self.updated_at = updated_at
         self.versions_total = versions_total
+        self.referenced_by = referenced_by
         self.signing_algorithm = signing_algorithm
         self.alt_names = alt_names
         self.common_name = common_name
@@ -10865,6 +11067,8 @@ class ImportedCertificate(Secret):
             args['versions_total'] = versions_total
         else:
             raise ValueError('Required property \'versions_total\' not present in ImportedCertificate JSON')
+        if (referenced_by := _dict.get('referenced_by')) is not None:
+            args['referenced_by'] = referenced_by
         if (signing_algorithm := _dict.get('signing_algorithm')) is not None:
             args['signing_algorithm'] = signing_algorithm
         else:
@@ -10949,6 +11153,8 @@ class ImportedCertificate(Secret):
             _dict['updated_at'] = datetime_to_string(self.updated_at)
         if hasattr(self, 'versions_total') and self.versions_total is not None:
             _dict['versions_total'] = self.versions_total
+        if hasattr(self, 'referenced_by') and getattr(self, 'referenced_by') is not None:
+            _dict['referenced_by'] = getattr(self, 'referenced_by')
         if hasattr(self, 'signing_algorithm') and self.signing_algorithm is not None:
             _dict['signing_algorithm'] = self.signing_algorithm
         if hasattr(self, 'alt_names') and self.alt_names is not None:
@@ -11064,6 +11270,8 @@ class ImportedCertificateMetadata(SecretMetadata):
     :param datetime updated_at: The date when a resource was modified. The date
           format follows `RFC 3339`.
     :param int versions_total: The number of versions of your secret.
+    :param List[str] referenced_by: (optional) List of configurations that have
+          reference to the secret.
     :param str signing_algorithm: The identifier for the cryptographic algorithm
           that is used by the issuing certificate authority to sign a certificate.
     :param List[str] alt_names: (optional) With the Subject Alternative Name field,
@@ -11115,6 +11323,7 @@ class ImportedCertificateMetadata(SecretMetadata):
         name: Optional[str] = None,
         state: Optional[int] = None,
         state_description: Optional[str] = None,
+        referenced_by: Optional[List[str]] = None,
         alt_names: Optional[List[str]] = None,
         common_name: Optional[str] = None,
         key_algorithm: Optional[str] = None,
@@ -11185,6 +11394,7 @@ class ImportedCertificateMetadata(SecretMetadata):
         self.state_description = state_description
         self.updated_at = updated_at
         self.versions_total = versions_total
+        self.referenced_by = referenced_by
         self.signing_algorithm = signing_algorithm
         self.alt_names = alt_names
         self.common_name = common_name
@@ -11248,6 +11458,8 @@ class ImportedCertificateMetadata(SecretMetadata):
             args['versions_total'] = versions_total
         else:
             raise ValueError('Required property \'versions_total\' not present in ImportedCertificateMetadata JSON')
+        if (referenced_by := _dict.get('referenced_by')) is not None:
+            args['referenced_by'] = referenced_by
         if (signing_algorithm := _dict.get('signing_algorithm')) is not None:
             args['signing_algorithm'] = signing_algorithm
         else:
@@ -11324,6 +11536,8 @@ class ImportedCertificateMetadata(SecretMetadata):
             _dict['updated_at'] = datetime_to_string(self.updated_at)
         if hasattr(self, 'versions_total') and self.versions_total is not None:
             _dict['versions_total'] = self.versions_total
+        if hasattr(self, 'referenced_by') and getattr(self, 'referenced_by') is not None:
+            _dict['referenced_by'] = getattr(self, 'referenced_by')
         if hasattr(self, 'signing_algorithm') and self.signing_algorithm is not None:
             _dict['signing_algorithm'] = self.signing_algorithm
         if hasattr(self, 'alt_names') and self.alt_names is not None:
@@ -12360,6 +12574,8 @@ class KVSecret(Secret):
     :param datetime updated_at: The date when a resource was modified. The date
           format follows `RFC 3339`.
     :param int versions_total: The number of versions of your secret.
+    :param List[str] referenced_by: (optional) List of configurations that have
+          reference to the secret.
     :param dict data: The payload data of a key-value secret.
     """
 
@@ -12383,6 +12599,7 @@ class KVSecret(Secret):
         name: Optional[str] = None,
         state: Optional[int] = None,
         state_description: Optional[str] = None,
+        referenced_by: Optional[List[str]] = None,
     ) -> None:
         """
         Initialize a KVSecret object.
@@ -12430,6 +12647,7 @@ class KVSecret(Secret):
         self.state_description = state_description
         self.updated_at = updated_at
         self.versions_total = versions_total
+        self.referenced_by = referenced_by
         self.data = data
 
     @classmethod
@@ -12484,6 +12702,8 @@ class KVSecret(Secret):
             args['versions_total'] = versions_total
         else:
             raise ValueError('Required property \'versions_total\' not present in KVSecret JSON')
+        if (referenced_by := _dict.get('referenced_by')) is not None:
+            args['referenced_by'] = referenced_by
         if (data := _dict.get('data')) is not None:
             args['data'] = data
         else:
@@ -12530,6 +12750,8 @@ class KVSecret(Secret):
             _dict['updated_at'] = datetime_to_string(self.updated_at)
         if hasattr(self, 'versions_total') and self.versions_total is not None:
             _dict['versions_total'] = self.versions_total
+        if hasattr(self, 'referenced_by') and getattr(self, 'referenced_by') is not None:
+            _dict['referenced_by'] = getattr(self, 'referenced_by')
         if hasattr(self, 'data') and self.data is not None:
             _dict['data'] = self.data
         return _dict
@@ -12618,6 +12840,8 @@ class KVSecretMetadata(SecretMetadata):
     :param datetime updated_at: The date when a resource was modified. The date
           format follows `RFC 3339`.
     :param int versions_total: The number of versions of your secret.
+    :param List[str] referenced_by: (optional) List of configurations that have
+          reference to the secret.
     """
 
     def __init__(
@@ -12639,6 +12863,7 @@ class KVSecretMetadata(SecretMetadata):
         name: Optional[str] = None,
         state: Optional[int] = None,
         state_description: Optional[str] = None,
+        referenced_by: Optional[List[str]] = None,
     ) -> None:
         """
         Initialize a KVSecretMetadata object.
@@ -12685,6 +12910,7 @@ class KVSecretMetadata(SecretMetadata):
         self.state_description = state_description
         self.updated_at = updated_at
         self.versions_total = versions_total
+        self.referenced_by = referenced_by
 
     @classmethod
     def from_dict(cls, _dict: Dict) -> 'KVSecretMetadata':
@@ -12738,6 +12964,8 @@ class KVSecretMetadata(SecretMetadata):
             args['versions_total'] = versions_total
         else:
             raise ValueError('Required property \'versions_total\' not present in KVSecretMetadata JSON')
+        if (referenced_by := _dict.get('referenced_by')) is not None:
+            args['referenced_by'] = referenced_by
         return cls(**args)
 
     @classmethod
@@ -12780,6 +13008,8 @@ class KVSecretMetadata(SecretMetadata):
             _dict['updated_at'] = datetime_to_string(self.updated_at)
         if hasattr(self, 'versions_total') and self.versions_total is not None:
             _dict['versions_total'] = self.versions_total
+        if hasattr(self, 'referenced_by') and getattr(self, 'referenced_by') is not None:
+            _dict['referenced_by'] = getattr(self, 'referenced_by')
         return _dict
 
     def _to_dict(self):
@@ -13633,6 +13863,8 @@ class PrivateCertificate(Secret):
     :param datetime updated_at: The date when a resource was modified. The date
           format follows `RFC 3339`.
     :param int versions_total: The number of versions of your secret.
+    :param List[str] referenced_by: (optional) List of configurations that have
+          reference to the secret.
     :param str signing_algorithm: The identifier for the cryptographic algorithm
           that is used by the issuing certificate authority to sign a certificate.
     :param List[str] alt_names: (optional) With the Subject Alternative Name field,
@@ -13706,6 +13938,7 @@ class PrivateCertificate(Secret):
         name: Optional[str] = None,
         state: Optional[int] = None,
         state_description: Optional[str] = None,
+        referenced_by: Optional[List[str]] = None,
         alt_names: Optional[List[str]] = None,
         certificate_authority: Optional[str] = None,
         key_algorithm: Optional[str] = None,
@@ -13787,6 +14020,7 @@ class PrivateCertificate(Secret):
         self.state_description = state_description
         self.updated_at = updated_at
         self.versions_total = versions_total
+        self.referenced_by = referenced_by
         self.signing_algorithm = signing_algorithm
         self.alt_names = alt_names
         self.certificate_authority = certificate_authority
@@ -13858,6 +14092,8 @@ class PrivateCertificate(Secret):
             args['versions_total'] = versions_total
         else:
             raise ValueError('Required property \'versions_total\' not present in PrivateCertificate JSON')
+        if (referenced_by := _dict.get('referenced_by')) is not None:
+            args['referenced_by'] = referenced_by
         if (signing_algorithm := _dict.get('signing_algorithm')) is not None:
             args['signing_algorithm'] = signing_algorithm
         else:
@@ -13954,6 +14190,8 @@ class PrivateCertificate(Secret):
             _dict['updated_at'] = datetime_to_string(self.updated_at)
         if hasattr(self, 'versions_total') and self.versions_total is not None:
             _dict['versions_total'] = self.versions_total
+        if hasattr(self, 'referenced_by') and getattr(self, 'referenced_by') is not None:
+            _dict['referenced_by'] = getattr(self, 'referenced_by')
         if hasattr(self, 'signing_algorithm') and self.signing_algorithm is not None:
             _dict['signing_algorithm'] = self.signing_algorithm
         if hasattr(self, 'alt_names') and self.alt_names is not None:
@@ -16180,6 +16418,8 @@ class PrivateCertificateConfigurationIntermediateCA(Configuration):
           `signing_required`,
           `signed_certificate_required`, `certificate_template_required`, `configured`,
           `expired` or `revoked`.
+    :param PrivateCertificateCryptoKey crypto_key: (optional) The data that is
+          associated with a cryptographic key.
     :param int max_ttl_seconds: (optional) The maximum time-to-live (TTL) for
           certificates that are created by this CA in seconds.
     :param int crl_expiry_seconds: (optional) The time until the certificate
@@ -16249,6 +16489,7 @@ class PrivateCertificateConfigurationIntermediateCA(Configuration):
         key_type: Optional[str] = None,
         key_bits: Optional[int] = None,
         status: Optional[str] = None,
+        crypto_key: Optional['PrivateCertificateCryptoKey'] = None,
         max_ttl_seconds: Optional[int] = None,
         crl_expiry_seconds: Optional[int] = None,
         crl_disable: Optional[bool] = None,
@@ -16312,6 +16553,8 @@ class PrivateCertificateConfigurationIntermediateCA(Configuration):
                Allowable values for RSA keys are: `2048` and `4096`. Allowable values for
                EC keys are: `224`, `256`, `384`, and `521`. The default for RSA keys is
                `2048`. The default for EC keys is `256`.
+        :param PrivateCertificateCryptoKey crypto_key: (optional) The data that is
+               associated with a cryptographic key.
         :param bool crl_disable: (optional) This field disables or enables
                certificate revocation list (CRL) building.
                If CRL building is disabled, a signed but zero-length CRL is returned when
@@ -16375,6 +16618,7 @@ class PrivateCertificateConfigurationIntermediateCA(Configuration):
         self.key_bits = key_bits
         self.signing_method = signing_method
         self.status = status
+        self.crypto_key = crypto_key
         self.max_ttl_seconds = max_ttl_seconds
         self.crl_expiry_seconds = crl_expiry_seconds
         self.crl_disable = crl_disable
@@ -16444,6 +16688,8 @@ class PrivateCertificateConfigurationIntermediateCA(Configuration):
             raise ValueError('Required property \'signing_method\' not present in PrivateCertificateConfigurationIntermediateCA JSON')
         if (status := _dict.get('status')) is not None:
             args['status'] = status
+        if (crypto_key := _dict.get('crypto_key')) is not None:
+            args['crypto_key'] = PrivateCertificateCryptoKey.from_dict(crypto_key)
         if (max_ttl_seconds := _dict.get('max_ttl_seconds')) is not None:
             args['max_ttl_seconds'] = max_ttl_seconds
         if (crl_expiry_seconds := _dict.get('crl_expiry_seconds')) is not None:
@@ -16522,6 +16768,11 @@ class PrivateCertificateConfigurationIntermediateCA(Configuration):
             _dict['signing_method'] = self.signing_method
         if hasattr(self, 'status') and getattr(self, 'status') is not None:
             _dict['status'] = getattr(self, 'status')
+        if hasattr(self, 'crypto_key') and self.crypto_key is not None:
+            if isinstance(self.crypto_key, dict):
+                _dict['crypto_key'] = self.crypto_key
+            else:
+                _dict['crypto_key'] = self.crypto_key.to_dict()
         if hasattr(self, 'max_ttl_seconds') and getattr(self, 'max_ttl_seconds') is not None:
             _dict['max_ttl_seconds'] = getattr(self, 'max_ttl_seconds')
         if hasattr(self, 'crl_expiry_seconds') and getattr(self, 'crl_expiry_seconds') is not None:
@@ -16595,13 +16846,13 @@ class PrivateCertificateConfigurationIntermediateCA(Configuration):
         private_cert_configuration_template.
         """
 
-        PUBLIC_CERT_CONFIGURATION_CA_LETS_ENCRYPT = 'public_cert_configuration_ca_lets_encrypt'
-        PUBLIC_CERT_CONFIGURATION_DNS_CLASSIC_INFRASTRUCTURE = 'public_cert_configuration_dns_classic_infrastructure'
         PUBLIC_CERT_CONFIGURATION_DNS_CLOUD_INTERNET_SERVICES = 'public_cert_configuration_dns_cloud_internet_services'
-        IAM_CREDENTIALS_CONFIGURATION = 'iam_credentials_configuration'
+        PUBLIC_CERT_CONFIGURATION_DNS_CLASSIC_INFRASTRUCTURE = 'public_cert_configuration_dns_classic_infrastructure'
+        PUBLIC_CERT_CONFIGURATION_CA_LETS_ENCRYPT = 'public_cert_configuration_ca_lets_encrypt'
         PRIVATE_CERT_CONFIGURATION_ROOT_CA = 'private_cert_configuration_root_ca'
         PRIVATE_CERT_CONFIGURATION_INTERMEDIATE_CA = 'private_cert_configuration_intermediate_ca'
         PRIVATE_CERT_CONFIGURATION_TEMPLATE = 'private_cert_configuration_template'
+        IAM_CREDENTIALS_CONFIGURATION = 'iam_credentials_configuration'
 
 
     class SecretTypeEnum(str, Enum):
@@ -16822,6 +17073,8 @@ class PrivateCertificateConfigurationIntermediateCAMetadata(ConfigurationMetadat
           `signing_required`,
           `signed_certificate_required`, `certificate_template_required`, `configured`,
           `expired` or `revoked`.
+    :param PrivateCertificateCryptoKey crypto_key: (optional) The data that is
+          associated with a cryptographic key.
     """
 
     def __init__(
@@ -16841,6 +17094,7 @@ class PrivateCertificateConfigurationIntermediateCAMetadata(ConfigurationMetadat
         key_type: Optional[str] = None,
         key_bits: Optional[int] = None,
         status: Optional[str] = None,
+        crypto_key: Optional['PrivateCertificateCryptoKey'] = None,
     ) -> None:
         """
         Initialize a PrivateCertificateConfigurationIntermediateCAMetadata object.
@@ -16884,6 +17138,8 @@ class PrivateCertificateConfigurationIntermediateCAMetadata(ConfigurationMetadat
                Allowable values for RSA keys are: `2048` and `4096`. Allowable values for
                EC keys are: `224`, `256`, `384`, and `521`. The default for RSA keys is
                `2048`. The default for EC keys is `256`.
+        :param PrivateCertificateCryptoKey crypto_key: (optional) The data that is
+               associated with a cryptographic key.
         """
         # pylint: disable=super-init-not-called
         self.config_type = config_type
@@ -16900,6 +17156,7 @@ class PrivateCertificateConfigurationIntermediateCAMetadata(ConfigurationMetadat
         self.key_bits = key_bits
         self.signing_method = signing_method
         self.status = status
+        self.crypto_key = crypto_key
 
     @classmethod
     def from_dict(cls, _dict: Dict) -> 'PrivateCertificateConfigurationIntermediateCAMetadata':
@@ -16949,6 +17206,8 @@ class PrivateCertificateConfigurationIntermediateCAMetadata(ConfigurationMetadat
             raise ValueError('Required property \'signing_method\' not present in PrivateCertificateConfigurationIntermediateCAMetadata JSON')
         if (status := _dict.get('status')) is not None:
             args['status'] = status
+        if (crypto_key := _dict.get('crypto_key')) is not None:
+            args['crypto_key'] = PrivateCertificateCryptoKey.from_dict(crypto_key)
         return cls(**args)
 
     @classmethod
@@ -16987,6 +17246,11 @@ class PrivateCertificateConfigurationIntermediateCAMetadata(ConfigurationMetadat
             _dict['signing_method'] = self.signing_method
         if hasattr(self, 'status') and getattr(self, 'status') is not None:
             _dict['status'] = getattr(self, 'status')
+        if hasattr(self, 'crypto_key') and self.crypto_key is not None:
+            if isinstance(self.crypto_key, dict):
+                _dict['crypto_key'] = self.crypto_key
+            else:
+                _dict['crypto_key'] = self.crypto_key.to_dict()
         return _dict
 
     def _to_dict(self):
@@ -17017,13 +17281,13 @@ class PrivateCertificateConfigurationIntermediateCAMetadata(ConfigurationMetadat
         private_cert_configuration_template.
         """
 
-        PUBLIC_CERT_CONFIGURATION_CA_LETS_ENCRYPT = 'public_cert_configuration_ca_lets_encrypt'
-        PUBLIC_CERT_CONFIGURATION_DNS_CLASSIC_INFRASTRUCTURE = 'public_cert_configuration_dns_classic_infrastructure'
         PUBLIC_CERT_CONFIGURATION_DNS_CLOUD_INTERNET_SERVICES = 'public_cert_configuration_dns_cloud_internet_services'
-        IAM_CREDENTIALS_CONFIGURATION = 'iam_credentials_configuration'
+        PUBLIC_CERT_CONFIGURATION_DNS_CLASSIC_INFRASTRUCTURE = 'public_cert_configuration_dns_classic_infrastructure'
+        PUBLIC_CERT_CONFIGURATION_CA_LETS_ENCRYPT = 'public_cert_configuration_ca_lets_encrypt'
         PRIVATE_CERT_CONFIGURATION_ROOT_CA = 'private_cert_configuration_root_ca'
         PRIVATE_CERT_CONFIGURATION_INTERMEDIATE_CA = 'private_cert_configuration_intermediate_ca'
         PRIVATE_CERT_CONFIGURATION_TEMPLATE = 'private_cert_configuration_template'
+        IAM_CREDENTIALS_CONFIGURATION = 'iam_credentials_configuration'
 
 
     class SecretTypeEnum(str, Enum):
@@ -17222,6 +17486,8 @@ class PrivateCertificateConfigurationIntermediateCAPrototype(ConfigurationProtot
     :param str name: A human-readable unique name to assign to your configuration.
           To protect your privacy, do not use personal data, such as your name or
           location, as an name for your secret.
+    :param PrivateCertificateCryptoKey crypto_key: (optional) The data that is
+          associated with a cryptographic key.
     :param str max_ttl: The maximum time-to-live (TTL) for certificates that are
           created by this CA.
           The value can be supplied as a string representation of a duration in hours, for
@@ -17310,6 +17576,7 @@ class PrivateCertificateConfigurationIntermediateCAPrototype(ConfigurationProtot
         signing_method: str,
         common_name: str,
         *,
+        crypto_key: Optional['PrivateCertificateCryptoKey'] = None,
         issuer: Optional[str] = None,
         crl_expiry: Optional[str] = None,
         crl_disable: Optional[bool] = None,
@@ -17360,6 +17627,8 @@ class PrivateCertificateConfigurationIntermediateCAPrototype(ConfigurationProtot
                [docs](https://cloud.ibm.com/docs/secrets-manager?topic=secrets-manager-intermediate-certificate-authorities).
         :param str common_name: The Common Name (CN) represents the server name
                that is protected by the SSL certificate.
+        :param PrivateCertificateCryptoKey crypto_key: (optional) The data that is
+               associated with a cryptographic key.
         :param str issuer: (optional) The distinguished name that identifies the
                entity that signed and issued the certificate.
         :param str crl_expiry: (optional) The time until the certificate revocation
@@ -17431,6 +17700,7 @@ class PrivateCertificateConfigurationIntermediateCAPrototype(ConfigurationProtot
         # pylint: disable=super-init-not-called
         self.config_type = config_type
         self.name = name
+        self.crypto_key = crypto_key
         self.max_ttl = max_ttl
         self.signing_method = signing_method
         self.issuer = issuer
@@ -17469,6 +17739,8 @@ class PrivateCertificateConfigurationIntermediateCAPrototype(ConfigurationProtot
             args['name'] = name
         else:
             raise ValueError('Required property \'name\' not present in PrivateCertificateConfigurationIntermediateCAPrototype JSON')
+        if (crypto_key := _dict.get('crypto_key')) is not None:
+            args['crypto_key'] = PrivateCertificateCryptoKey.from_dict(crypto_key)
         if (max_ttl := _dict.get('max_ttl')) is not None:
             args['max_ttl'] = max_ttl
         else:
@@ -17539,6 +17811,11 @@ class PrivateCertificateConfigurationIntermediateCAPrototype(ConfigurationProtot
             _dict['config_type'] = self.config_type
         if hasattr(self, 'name') and self.name is not None:
             _dict['name'] = self.name
+        if hasattr(self, 'crypto_key') and self.crypto_key is not None:
+            if isinstance(self.crypto_key, dict):
+                _dict['crypto_key'] = self.crypto_key
+            else:
+                _dict['crypto_key'] = self.crypto_key.to_dict()
         if hasattr(self, 'max_ttl') and self.max_ttl is not None:
             _dict['max_ttl'] = self.max_ttl
         if hasattr(self, 'signing_method') and self.signing_method is not None:
@@ -17619,13 +17896,13 @@ class PrivateCertificateConfigurationIntermediateCAPrototype(ConfigurationProtot
         private_cert_configuration_template.
         """
 
-        PUBLIC_CERT_CONFIGURATION_CA_LETS_ENCRYPT = 'public_cert_configuration_ca_lets_encrypt'
-        PUBLIC_CERT_CONFIGURATION_DNS_CLASSIC_INFRASTRUCTURE = 'public_cert_configuration_dns_classic_infrastructure'
         PUBLIC_CERT_CONFIGURATION_DNS_CLOUD_INTERNET_SERVICES = 'public_cert_configuration_dns_cloud_internet_services'
-        IAM_CREDENTIALS_CONFIGURATION = 'iam_credentials_configuration'
+        PUBLIC_CERT_CONFIGURATION_DNS_CLASSIC_INFRASTRUCTURE = 'public_cert_configuration_dns_classic_infrastructure'
+        PUBLIC_CERT_CONFIGURATION_CA_LETS_ENCRYPT = 'public_cert_configuration_ca_lets_encrypt'
         PRIVATE_CERT_CONFIGURATION_ROOT_CA = 'private_cert_configuration_root_ca'
         PRIVATE_CERT_CONFIGURATION_INTERMEDIATE_CA = 'private_cert_configuration_intermediate_ca'
         PRIVATE_CERT_CONFIGURATION_TEMPLATE = 'private_cert_configuration_template'
+        IAM_CREDENTIALS_CONFIGURATION = 'iam_credentials_configuration'
 
 
     class SigningMethodEnum(str, Enum):
@@ -17709,6 +17986,8 @@ class PrivateCertificateConfigurationRootCA(Configuration):
           `signing_required`,
           `signed_certificate_required`, `certificate_template_required`, `configured`,
           `expired` or `revoked`.
+    :param PrivateCertificateCryptoKey crypto_key: (optional) The data that is
+          associated with a cryptographic key.
     :param int max_ttl_seconds: (optional) The maximum time-to-live (TTL) for
           certificates that are created by this CA in seconds.
     :param int crl_expiry_seconds: (optional) The time until the certificate
@@ -17786,6 +18065,7 @@ class PrivateCertificateConfigurationRootCA(Configuration):
         key_type: Optional[str] = None,
         key_bits: Optional[int] = None,
         status: Optional[str] = None,
+        crypto_key: Optional['PrivateCertificateCryptoKey'] = None,
         max_ttl_seconds: Optional[int] = None,
         crl_expiry_seconds: Optional[int] = None,
         crl_disable: Optional[bool] = None,
@@ -17845,6 +18125,8 @@ class PrivateCertificateConfigurationRootCA(Configuration):
                Allowable values for RSA keys are: `2048` and `4096`. Allowable values for
                EC keys are: `224`, `256`, `384`, and `521`. The default for RSA keys is
                `2048`. The default for EC keys is `256`.
+        :param PrivateCertificateCryptoKey crypto_key: (optional) The data that is
+               associated with a cryptographic key.
         :param bool crl_disable: (optional) This field disables or enables
                certificate revocation list (CRL) building.
                If CRL building is disabled, a signed but zero-length CRL is returned when
@@ -17914,6 +18196,7 @@ class PrivateCertificateConfigurationRootCA(Configuration):
         self.key_type = key_type
         self.key_bits = key_bits
         self.status = status
+        self.crypto_key = crypto_key
         self.max_ttl_seconds = max_ttl_seconds
         self.crl_expiry_seconds = crl_expiry_seconds
         self.crl_disable = crl_disable
@@ -17980,6 +18263,8 @@ class PrivateCertificateConfigurationRootCA(Configuration):
             args['key_bits'] = key_bits
         if (status := _dict.get('status')) is not None:
             args['status'] = status
+        if (crypto_key := _dict.get('crypto_key')) is not None:
+            args['crypto_key'] = PrivateCertificateCryptoKey.from_dict(crypto_key)
         if (max_ttl_seconds := _dict.get('max_ttl_seconds')) is not None:
             args['max_ttl_seconds'] = max_ttl_seconds
         if (crl_expiry_seconds := _dict.get('crl_expiry_seconds')) is not None:
@@ -18060,6 +18345,11 @@ class PrivateCertificateConfigurationRootCA(Configuration):
             _dict['key_bits'] = self.key_bits
         if hasattr(self, 'status') and getattr(self, 'status') is not None:
             _dict['status'] = getattr(self, 'status')
+        if hasattr(self, 'crypto_key') and self.crypto_key is not None:
+            if isinstance(self.crypto_key, dict):
+                _dict['crypto_key'] = self.crypto_key
+            else:
+                _dict['crypto_key'] = self.crypto_key.to_dict()
         if hasattr(self, 'max_ttl_seconds') and getattr(self, 'max_ttl_seconds') is not None:
             _dict['max_ttl_seconds'] = getattr(self, 'max_ttl_seconds')
         if hasattr(self, 'crl_expiry_seconds') and getattr(self, 'crl_expiry_seconds') is not None:
@@ -18139,13 +18429,13 @@ class PrivateCertificateConfigurationRootCA(Configuration):
         private_cert_configuration_template.
         """
 
-        PUBLIC_CERT_CONFIGURATION_CA_LETS_ENCRYPT = 'public_cert_configuration_ca_lets_encrypt'
-        PUBLIC_CERT_CONFIGURATION_DNS_CLASSIC_INFRASTRUCTURE = 'public_cert_configuration_dns_classic_infrastructure'
         PUBLIC_CERT_CONFIGURATION_DNS_CLOUD_INTERNET_SERVICES = 'public_cert_configuration_dns_cloud_internet_services'
-        IAM_CREDENTIALS_CONFIGURATION = 'iam_credentials_configuration'
+        PUBLIC_CERT_CONFIGURATION_DNS_CLASSIC_INFRASTRUCTURE = 'public_cert_configuration_dns_classic_infrastructure'
+        PUBLIC_CERT_CONFIGURATION_CA_LETS_ENCRYPT = 'public_cert_configuration_ca_lets_encrypt'
         PRIVATE_CERT_CONFIGURATION_ROOT_CA = 'private_cert_configuration_root_ca'
         PRIVATE_CERT_CONFIGURATION_INTERMEDIATE_CA = 'private_cert_configuration_intermediate_ca'
         PRIVATE_CERT_CONFIGURATION_TEMPLATE = 'private_cert_configuration_template'
+        IAM_CREDENTIALS_CONFIGURATION = 'iam_credentials_configuration'
 
 
     class SecretTypeEnum(str, Enum):
@@ -18249,6 +18539,8 @@ class PrivateCertificateConfigurationRootCAMetadata(ConfigurationMetadata):
           `signing_required`,
           `signed_certificate_required`, `certificate_template_required`, `configured`,
           `expired` or `revoked`.
+    :param PrivateCertificateCryptoKey crypto_key: (optional) The data that is
+          associated with a cryptographic key.
     """
 
     def __init__(
@@ -18266,6 +18558,7 @@ class PrivateCertificateConfigurationRootCAMetadata(ConfigurationMetadata):
         key_type: Optional[str] = None,
         key_bits: Optional[int] = None,
         status: Optional[str] = None,
+        crypto_key: Optional['PrivateCertificateCryptoKey'] = None,
     ) -> None:
         """
         Initialize a PrivateCertificateConfigurationRootCAMetadata object.
@@ -18302,6 +18595,8 @@ class PrivateCertificateConfigurationRootCAMetadata(ConfigurationMetadata):
                Allowable values for RSA keys are: `2048` and `4096`. Allowable values for
                EC keys are: `224`, `256`, `384`, and `521`. The default for RSA keys is
                `2048`. The default for EC keys is `256`.
+        :param PrivateCertificateCryptoKey crypto_key: (optional) The data that is
+               associated with a cryptographic key.
         """
         # pylint: disable=super-init-not-called
         self.config_type = config_type
@@ -18316,6 +18611,7 @@ class PrivateCertificateConfigurationRootCAMetadata(ConfigurationMetadata):
         self.key_type = key_type
         self.key_bits = key_bits
         self.status = status
+        self.crypto_key = crypto_key
 
     @classmethod
     def from_dict(cls, _dict: Dict) -> 'PrivateCertificateConfigurationRootCAMetadata':
@@ -18359,6 +18655,8 @@ class PrivateCertificateConfigurationRootCAMetadata(ConfigurationMetadata):
             args['key_bits'] = key_bits
         if (status := _dict.get('status')) is not None:
             args['status'] = status
+        if (crypto_key := _dict.get('crypto_key')) is not None:
+            args['crypto_key'] = PrivateCertificateCryptoKey.from_dict(crypto_key)
         return cls(**args)
 
     @classmethod
@@ -18393,6 +18691,11 @@ class PrivateCertificateConfigurationRootCAMetadata(ConfigurationMetadata):
             _dict['key_bits'] = self.key_bits
         if hasattr(self, 'status') and getattr(self, 'status') is not None:
             _dict['status'] = getattr(self, 'status')
+        if hasattr(self, 'crypto_key') and self.crypto_key is not None:
+            if isinstance(self.crypto_key, dict):
+                _dict['crypto_key'] = self.crypto_key
+            else:
+                _dict['crypto_key'] = self.crypto_key.to_dict()
         return _dict
 
     def _to_dict(self):
@@ -18423,13 +18726,13 @@ class PrivateCertificateConfigurationRootCAMetadata(ConfigurationMetadata):
         private_cert_configuration_template.
         """
 
-        PUBLIC_CERT_CONFIGURATION_CA_LETS_ENCRYPT = 'public_cert_configuration_ca_lets_encrypt'
-        PUBLIC_CERT_CONFIGURATION_DNS_CLASSIC_INFRASTRUCTURE = 'public_cert_configuration_dns_classic_infrastructure'
         PUBLIC_CERT_CONFIGURATION_DNS_CLOUD_INTERNET_SERVICES = 'public_cert_configuration_dns_cloud_internet_services'
-        IAM_CREDENTIALS_CONFIGURATION = 'iam_credentials_configuration'
+        PUBLIC_CERT_CONFIGURATION_DNS_CLASSIC_INFRASTRUCTURE = 'public_cert_configuration_dns_classic_infrastructure'
+        PUBLIC_CERT_CONFIGURATION_CA_LETS_ENCRYPT = 'public_cert_configuration_ca_lets_encrypt'
         PRIVATE_CERT_CONFIGURATION_ROOT_CA = 'private_cert_configuration_root_ca'
         PRIVATE_CERT_CONFIGURATION_INTERMEDIATE_CA = 'private_cert_configuration_intermediate_ca'
         PRIVATE_CERT_CONFIGURATION_TEMPLATE = 'private_cert_configuration_template'
+        IAM_CREDENTIALS_CONFIGURATION = 'iam_credentials_configuration'
 
 
     class SecretTypeEnum(str, Enum):
@@ -18615,6 +18918,8 @@ class PrivateCertificateConfigurationRootCAPrototype(ConfigurationPrototype):
     :param str name: A human-readable unique name to assign to your configuration.
           To protect your privacy, do not use personal data, such as your name or
           location, as an name for your secret.
+    :param PrivateCertificateCryptoKey crypto_key: (optional) The data that is
+          associated with a cryptographic key.
     :param str max_ttl: The maximum time-to-live (TTL) for certificates that are
           created by this CA.
           The value can be supplied as a string representation of a duration in hours, for
@@ -18709,6 +19014,7 @@ class PrivateCertificateConfigurationRootCAPrototype(ConfigurationPrototype):
         max_ttl: str,
         common_name: str,
         *,
+        crypto_key: Optional['PrivateCertificateCryptoKey'] = None,
         crl_expiry: Optional[str] = None,
         crl_disable: Optional[bool] = None,
         crl_distribution_points_encoded: Optional[bool] = None,
@@ -18756,6 +19062,8 @@ class PrivateCertificateConfigurationRootCAPrototype(ConfigurationPrototype):
                Minimum value is one hour (`1h`). Maximum value is 100 years (`876000h`).
         :param str common_name: The Common Name (CN) represents the server name
                that is protected by the SSL certificate.
+        :param PrivateCertificateCryptoKey crypto_key: (optional) The data that is
+               associated with a cryptographic key.
         :param str crl_expiry: (optional) The time until the certificate revocation
                list (CRL) expires.
                The value can be supplied as a string representation of a duration in
@@ -18839,6 +19147,7 @@ class PrivateCertificateConfigurationRootCAPrototype(ConfigurationPrototype):
         # pylint: disable=super-init-not-called
         self.config_type = config_type
         self.name = name
+        self.crypto_key = crypto_key
         self.max_ttl = max_ttl
         self.crl_expiry = crl_expiry
         self.crl_disable = crl_disable
@@ -18878,6 +19187,8 @@ class PrivateCertificateConfigurationRootCAPrototype(ConfigurationPrototype):
             args['name'] = name
         else:
             raise ValueError('Required property \'name\' not present in PrivateCertificateConfigurationRootCAPrototype JSON')
+        if (crypto_key := _dict.get('crypto_key')) is not None:
+            args['crypto_key'] = PrivateCertificateCryptoKey.from_dict(crypto_key)
         if (max_ttl := _dict.get('max_ttl')) is not None:
             args['max_ttl'] = max_ttl
         else:
@@ -18948,6 +19259,11 @@ class PrivateCertificateConfigurationRootCAPrototype(ConfigurationPrototype):
             _dict['config_type'] = self.config_type
         if hasattr(self, 'name') and self.name is not None:
             _dict['name'] = self.name
+        if hasattr(self, 'crypto_key') and self.crypto_key is not None:
+            if isinstance(self.crypto_key, dict):
+                _dict['crypto_key'] = self.crypto_key
+            else:
+                _dict['crypto_key'] = self.crypto_key.to_dict()
         if hasattr(self, 'max_ttl') and self.max_ttl is not None:
             _dict['max_ttl'] = self.max_ttl
         if hasattr(self, 'crl_expiry') and self.crl_expiry is not None:
@@ -19030,13 +19346,13 @@ class PrivateCertificateConfigurationRootCAPrototype(ConfigurationPrototype):
         private_cert_configuration_template.
         """
 
-        PUBLIC_CERT_CONFIGURATION_CA_LETS_ENCRYPT = 'public_cert_configuration_ca_lets_encrypt'
-        PUBLIC_CERT_CONFIGURATION_DNS_CLASSIC_INFRASTRUCTURE = 'public_cert_configuration_dns_classic_infrastructure'
         PUBLIC_CERT_CONFIGURATION_DNS_CLOUD_INTERNET_SERVICES = 'public_cert_configuration_dns_cloud_internet_services'
-        IAM_CREDENTIALS_CONFIGURATION = 'iam_credentials_configuration'
+        PUBLIC_CERT_CONFIGURATION_DNS_CLASSIC_INFRASTRUCTURE = 'public_cert_configuration_dns_classic_infrastructure'
+        PUBLIC_CERT_CONFIGURATION_CA_LETS_ENCRYPT = 'public_cert_configuration_ca_lets_encrypt'
         PRIVATE_CERT_CONFIGURATION_ROOT_CA = 'private_cert_configuration_root_ca'
         PRIVATE_CERT_CONFIGURATION_INTERMEDIATE_CA = 'private_cert_configuration_intermediate_ca'
         PRIVATE_CERT_CONFIGURATION_TEMPLATE = 'private_cert_configuration_template'
+        IAM_CREDENTIALS_CONFIGURATION = 'iam_credentials_configuration'
 
 
     class FormatEnum(str, Enum):
@@ -19679,13 +19995,13 @@ class PrivateCertificateConfigurationTemplate(Configuration):
         private_cert_configuration_template.
         """
 
-        PUBLIC_CERT_CONFIGURATION_CA_LETS_ENCRYPT = 'public_cert_configuration_ca_lets_encrypt'
-        PUBLIC_CERT_CONFIGURATION_DNS_CLASSIC_INFRASTRUCTURE = 'public_cert_configuration_dns_classic_infrastructure'
         PUBLIC_CERT_CONFIGURATION_DNS_CLOUD_INTERNET_SERVICES = 'public_cert_configuration_dns_cloud_internet_services'
-        IAM_CREDENTIALS_CONFIGURATION = 'iam_credentials_configuration'
+        PUBLIC_CERT_CONFIGURATION_DNS_CLASSIC_INFRASTRUCTURE = 'public_cert_configuration_dns_classic_infrastructure'
+        PUBLIC_CERT_CONFIGURATION_CA_LETS_ENCRYPT = 'public_cert_configuration_ca_lets_encrypt'
         PRIVATE_CERT_CONFIGURATION_ROOT_CA = 'private_cert_configuration_root_ca'
         PRIVATE_CERT_CONFIGURATION_INTERMEDIATE_CA = 'private_cert_configuration_intermediate_ca'
         PRIVATE_CERT_CONFIGURATION_TEMPLATE = 'private_cert_configuration_template'
+        IAM_CREDENTIALS_CONFIGURATION = 'iam_credentials_configuration'
 
 
     class SecretTypeEnum(str, Enum):
@@ -19866,13 +20182,13 @@ class PrivateCertificateConfigurationTemplateMetadata(ConfigurationMetadata):
         private_cert_configuration_template.
         """
 
-        PUBLIC_CERT_CONFIGURATION_CA_LETS_ENCRYPT = 'public_cert_configuration_ca_lets_encrypt'
-        PUBLIC_CERT_CONFIGURATION_DNS_CLASSIC_INFRASTRUCTURE = 'public_cert_configuration_dns_classic_infrastructure'
         PUBLIC_CERT_CONFIGURATION_DNS_CLOUD_INTERNET_SERVICES = 'public_cert_configuration_dns_cloud_internet_services'
-        IAM_CREDENTIALS_CONFIGURATION = 'iam_credentials_configuration'
+        PUBLIC_CERT_CONFIGURATION_DNS_CLASSIC_INFRASTRUCTURE = 'public_cert_configuration_dns_classic_infrastructure'
+        PUBLIC_CERT_CONFIGURATION_CA_LETS_ENCRYPT = 'public_cert_configuration_ca_lets_encrypt'
         PRIVATE_CERT_CONFIGURATION_ROOT_CA = 'private_cert_configuration_root_ca'
         PRIVATE_CERT_CONFIGURATION_INTERMEDIATE_CA = 'private_cert_configuration_intermediate_ca'
         PRIVATE_CERT_CONFIGURATION_TEMPLATE = 'private_cert_configuration_template'
+        IAM_CREDENTIALS_CONFIGURATION = 'iam_credentials_configuration'
 
 
     class SecretTypeEnum(str, Enum):
@@ -21051,13 +21367,13 @@ class PrivateCertificateConfigurationTemplatePrototype(ConfigurationPrototype):
         private_cert_configuration_template.
         """
 
-        PUBLIC_CERT_CONFIGURATION_CA_LETS_ENCRYPT = 'public_cert_configuration_ca_lets_encrypt'
-        PUBLIC_CERT_CONFIGURATION_DNS_CLASSIC_INFRASTRUCTURE = 'public_cert_configuration_dns_classic_infrastructure'
         PUBLIC_CERT_CONFIGURATION_DNS_CLOUD_INTERNET_SERVICES = 'public_cert_configuration_dns_cloud_internet_services'
-        IAM_CREDENTIALS_CONFIGURATION = 'iam_credentials_configuration'
+        PUBLIC_CERT_CONFIGURATION_DNS_CLASSIC_INFRASTRUCTURE = 'public_cert_configuration_dns_classic_infrastructure'
+        PUBLIC_CERT_CONFIGURATION_CA_LETS_ENCRYPT = 'public_cert_configuration_ca_lets_encrypt'
         PRIVATE_CERT_CONFIGURATION_ROOT_CA = 'private_cert_configuration_root_ca'
         PRIVATE_CERT_CONFIGURATION_INTERMEDIATE_CA = 'private_cert_configuration_intermediate_ca'
         PRIVATE_CERT_CONFIGURATION_TEMPLATE = 'private_cert_configuration_template'
+        IAM_CREDENTIALS_CONFIGURATION = 'iam_credentials_configuration'
 
 
     class KeyTypeEnum(str, Enum):
@@ -21067,6 +21383,107 @@ class PrivateCertificateConfigurationTemplatePrototype(ConfigurationPrototype):
 
         RSA = 'rsa'
         EC = 'ec'
+
+
+
+class PrivateCertificateCryptoProviderHPCS(PrivateCertificateCryptoProvider):
+    """
+    The data that is associated with Hyper Protect Crypto Services as the cryptographic
+    provider.
+
+    :param str type: The type of cryptographic provider.
+    :param str instance_crn: The HPCS instance CRN.
+    :param str pin_iam_credentials_secret_id: The secret Id of iam credentials with
+          api key to access HPCS instance.
+    :param str private_keystore_id: The HPCS private key store space id.
+    """
+
+    def __init__(
+        self,
+        type: str,
+        instance_crn: str,
+        pin_iam_credentials_secret_id: str,
+        private_keystore_id: str,
+    ) -> None:
+        """
+        Initialize a PrivateCertificateCryptoProviderHPCS object.
+
+        :param str type: The type of cryptographic provider.
+        :param str instance_crn: The HPCS instance CRN.
+        :param str pin_iam_credentials_secret_id: The secret Id of iam credentials
+               with api key to access HPCS instance.
+        :param str private_keystore_id: The HPCS private key store space id.
+        """
+        # pylint: disable=super-init-not-called
+        self.type = type
+        self.instance_crn = instance_crn
+        self.pin_iam_credentials_secret_id = pin_iam_credentials_secret_id
+        self.private_keystore_id = private_keystore_id
+
+    @classmethod
+    def from_dict(cls, _dict: Dict) -> 'PrivateCertificateCryptoProviderHPCS':
+        """Initialize a PrivateCertificateCryptoProviderHPCS object from a json dictionary."""
+        args = {}
+        if (type := _dict.get('type')) is not None:
+            args['type'] = type
+        else:
+            raise ValueError('Required property \'type\' not present in PrivateCertificateCryptoProviderHPCS JSON')
+        if (instance_crn := _dict.get('instance_crn')) is not None:
+            args['instance_crn'] = instance_crn
+        else:
+            raise ValueError('Required property \'instance_crn\' not present in PrivateCertificateCryptoProviderHPCS JSON')
+        if (pin_iam_credentials_secret_id := _dict.get('pin_iam_credentials_secret_id')) is not None:
+            args['pin_iam_credentials_secret_id'] = pin_iam_credentials_secret_id
+        else:
+            raise ValueError('Required property \'pin_iam_credentials_secret_id\' not present in PrivateCertificateCryptoProviderHPCS JSON')
+        if (private_keystore_id := _dict.get('private_keystore_id')) is not None:
+            args['private_keystore_id'] = private_keystore_id
+        else:
+            raise ValueError('Required property \'private_keystore_id\' not present in PrivateCertificateCryptoProviderHPCS JSON')
+        return cls(**args)
+
+    @classmethod
+    def _from_dict(cls, _dict):
+        """Initialize a PrivateCertificateCryptoProviderHPCS object from a json dictionary."""
+        return cls.from_dict(_dict)
+
+    def to_dict(self) -> Dict:
+        """Return a json dictionary representing this model."""
+        _dict = {}
+        if hasattr(self, 'type') and self.type is not None:
+            _dict['type'] = self.type
+        if hasattr(self, 'instance_crn') and self.instance_crn is not None:
+            _dict['instance_crn'] = self.instance_crn
+        if hasattr(self, 'pin_iam_credentials_secret_id') and self.pin_iam_credentials_secret_id is not None:
+            _dict['pin_iam_credentials_secret_id'] = self.pin_iam_credentials_secret_id
+        if hasattr(self, 'private_keystore_id') and self.private_keystore_id is not None:
+            _dict['private_keystore_id'] = self.private_keystore_id
+        return _dict
+
+    def _to_dict(self):
+        """Return a json dictionary representing this model."""
+        return self.to_dict()
+
+    def __str__(self) -> str:
+        """Return a `str` version of this PrivateCertificateCryptoProviderHPCS object."""
+        return json.dumps(self.to_dict(), indent=2)
+
+    def __eq__(self, other: 'PrivateCertificateCryptoProviderHPCS') -> bool:
+        """Return `true` when self and other are equal, false otherwise."""
+        if not isinstance(other, self.__class__):
+            return False
+        return self.__dict__ == other.__dict__
+
+    def __ne__(self, other: 'PrivateCertificateCryptoProviderHPCS') -> bool:
+        """Return `true` when self and other are not equal, false otherwise."""
+        return not self == other
+
+    class TypeEnum(str, Enum):
+        """
+        The type of cryptographic provider.
+        """
+
+        HYPER_PROTECT_CRYPTO_SERVICES = 'hyper_protect_crypto_services'
 
 
 
@@ -21107,6 +21524,8 @@ class PrivateCertificateMetadata(SecretMetadata):
     :param datetime updated_at: The date when a resource was modified. The date
           format follows `RFC 3339`.
     :param int versions_total: The number of versions of your secret.
+    :param List[str] referenced_by: (optional) List of configurations that have
+          reference to the secret.
     :param str signing_algorithm: The identifier for the cryptographic algorithm
           that is used by the issuing certificate authority to sign a certificate.
     :param List[str] alt_names: (optional) With the Subject Alternative Name field,
@@ -21169,6 +21588,7 @@ class PrivateCertificateMetadata(SecretMetadata):
         name: Optional[str] = None,
         state: Optional[int] = None,
         state_description: Optional[str] = None,
+        referenced_by: Optional[List[str]] = None,
         alt_names: Optional[List[str]] = None,
         certificate_authority: Optional[str] = None,
         key_algorithm: Optional[str] = None,
@@ -21243,6 +21663,7 @@ class PrivateCertificateMetadata(SecretMetadata):
         self.state_description = state_description
         self.updated_at = updated_at
         self.versions_total = versions_total
+        self.referenced_by = referenced_by
         self.signing_algorithm = signing_algorithm
         self.alt_names = alt_names
         self.certificate_authority = certificate_authority
@@ -21310,6 +21731,8 @@ class PrivateCertificateMetadata(SecretMetadata):
             args['versions_total'] = versions_total
         else:
             raise ValueError('Required property \'versions_total\' not present in PrivateCertificateMetadata JSON')
+        if (referenced_by := _dict.get('referenced_by')) is not None:
+            args['referenced_by'] = referenced_by
         if (signing_algorithm := _dict.get('signing_algorithm')) is not None:
             args['signing_algorithm'] = signing_algorithm
         else:
@@ -21394,6 +21817,8 @@ class PrivateCertificateMetadata(SecretMetadata):
             _dict['updated_at'] = datetime_to_string(self.updated_at)
         if hasattr(self, 'versions_total') and self.versions_total is not None:
             _dict['versions_total'] = self.versions_total
+        if hasattr(self, 'referenced_by') and getattr(self, 'referenced_by') is not None:
+            _dict['referenced_by'] = getattr(self, 'referenced_by')
         if hasattr(self, 'signing_algorithm') and self.signing_algorithm is not None:
             _dict['signing_algorithm'] = self.signing_algorithm
         if hasattr(self, 'alt_names') and self.alt_names is not None:
@@ -22708,6 +23133,8 @@ class PublicCertificate(Secret):
     :param datetime updated_at: The date when a resource was modified. The date
           format follows `RFC 3339`.
     :param int versions_total: The number of versions of your secret.
+    :param List[str] referenced_by: (optional) List of configurations that have
+          reference to the secret.
     :param str signing_algorithm: (optional) The identifier for the cryptographic
           algorithm that is used by the issuing certificate authority to sign a
           certificate.
@@ -22773,6 +23200,7 @@ class PublicCertificate(Secret):
         name: Optional[str] = None,
         state: Optional[int] = None,
         state_description: Optional[str] = None,
+        referenced_by: Optional[List[str]] = None,
         signing_algorithm: Optional[str] = None,
         alt_names: Optional[List[str]] = None,
         expiration_date: Optional[datetime] = None,
@@ -22868,6 +23296,7 @@ class PublicCertificate(Secret):
         self.state_description = state_description
         self.updated_at = updated_at
         self.versions_total = versions_total
+        self.referenced_by = referenced_by
         self.signing_algorithm = signing_algorithm
         self.alt_names = alt_names
         self.common_name = common_name
@@ -22937,6 +23366,8 @@ class PublicCertificate(Secret):
             args['versions_total'] = versions_total
         else:
             raise ValueError('Required property \'versions_total\' not present in PublicCertificate JSON')
+        if (referenced_by := _dict.get('referenced_by')) is not None:
+            args['referenced_by'] = referenced_by
         if (signing_algorithm := _dict.get('signing_algorithm')) is not None:
             args['signing_algorithm'] = signing_algorithm
         if (alt_names := _dict.get('alt_names')) is not None:
@@ -23017,6 +23448,8 @@ class PublicCertificate(Secret):
             _dict['updated_at'] = datetime_to_string(self.updated_at)
         if hasattr(self, 'versions_total') and self.versions_total is not None:
             _dict['versions_total'] = self.versions_total
+        if hasattr(self, 'referenced_by') and getattr(self, 'referenced_by') is not None:
+            _dict['referenced_by'] = getattr(self, 'referenced_by')
         if hasattr(self, 'signing_algorithm') and self.signing_algorithm is not None:
             _dict['signing_algorithm'] = self.signing_algorithm
         if hasattr(self, 'alt_names') and self.alt_names is not None:
@@ -23428,13 +23861,13 @@ class PublicCertificateConfigurationCALetsEncrypt(Configuration):
         private_cert_configuration_template.
         """
 
-        PUBLIC_CERT_CONFIGURATION_CA_LETS_ENCRYPT = 'public_cert_configuration_ca_lets_encrypt'
-        PUBLIC_CERT_CONFIGURATION_DNS_CLASSIC_INFRASTRUCTURE = 'public_cert_configuration_dns_classic_infrastructure'
         PUBLIC_CERT_CONFIGURATION_DNS_CLOUD_INTERNET_SERVICES = 'public_cert_configuration_dns_cloud_internet_services'
-        IAM_CREDENTIALS_CONFIGURATION = 'iam_credentials_configuration'
+        PUBLIC_CERT_CONFIGURATION_DNS_CLASSIC_INFRASTRUCTURE = 'public_cert_configuration_dns_classic_infrastructure'
+        PUBLIC_CERT_CONFIGURATION_CA_LETS_ENCRYPT = 'public_cert_configuration_ca_lets_encrypt'
         PRIVATE_CERT_CONFIGURATION_ROOT_CA = 'private_cert_configuration_root_ca'
         PRIVATE_CERT_CONFIGURATION_INTERMEDIATE_CA = 'private_cert_configuration_intermediate_ca'
         PRIVATE_CERT_CONFIGURATION_TEMPLATE = 'private_cert_configuration_template'
+        IAM_CREDENTIALS_CONFIGURATION = 'iam_credentials_configuration'
 
 
     class SecretTypeEnum(str, Enum):
@@ -23630,13 +24063,13 @@ class PublicCertificateConfigurationCALetsEncryptMetadata(ConfigurationMetadata)
         private_cert_configuration_template.
         """
 
-        PUBLIC_CERT_CONFIGURATION_CA_LETS_ENCRYPT = 'public_cert_configuration_ca_lets_encrypt'
-        PUBLIC_CERT_CONFIGURATION_DNS_CLASSIC_INFRASTRUCTURE = 'public_cert_configuration_dns_classic_infrastructure'
         PUBLIC_CERT_CONFIGURATION_DNS_CLOUD_INTERNET_SERVICES = 'public_cert_configuration_dns_cloud_internet_services'
-        IAM_CREDENTIALS_CONFIGURATION = 'iam_credentials_configuration'
+        PUBLIC_CERT_CONFIGURATION_DNS_CLASSIC_INFRASTRUCTURE = 'public_cert_configuration_dns_classic_infrastructure'
+        PUBLIC_CERT_CONFIGURATION_CA_LETS_ENCRYPT = 'public_cert_configuration_ca_lets_encrypt'
         PRIVATE_CERT_CONFIGURATION_ROOT_CA = 'private_cert_configuration_root_ca'
         PRIVATE_CERT_CONFIGURATION_INTERMEDIATE_CA = 'private_cert_configuration_intermediate_ca'
         PRIVATE_CERT_CONFIGURATION_TEMPLATE = 'private_cert_configuration_template'
+        IAM_CREDENTIALS_CONFIGURATION = 'iam_credentials_configuration'
 
 
     class SecretTypeEnum(str, Enum):
@@ -23899,13 +24332,13 @@ class PublicCertificateConfigurationCALetsEncryptPrototype(ConfigurationPrototyp
         private_cert_configuration_template.
         """
 
-        PUBLIC_CERT_CONFIGURATION_CA_LETS_ENCRYPT = 'public_cert_configuration_ca_lets_encrypt'
-        PUBLIC_CERT_CONFIGURATION_DNS_CLASSIC_INFRASTRUCTURE = 'public_cert_configuration_dns_classic_infrastructure'
         PUBLIC_CERT_CONFIGURATION_DNS_CLOUD_INTERNET_SERVICES = 'public_cert_configuration_dns_cloud_internet_services'
-        IAM_CREDENTIALS_CONFIGURATION = 'iam_credentials_configuration'
+        PUBLIC_CERT_CONFIGURATION_DNS_CLASSIC_INFRASTRUCTURE = 'public_cert_configuration_dns_classic_infrastructure'
+        PUBLIC_CERT_CONFIGURATION_CA_LETS_ENCRYPT = 'public_cert_configuration_ca_lets_encrypt'
         PRIVATE_CERT_CONFIGURATION_ROOT_CA = 'private_cert_configuration_root_ca'
         PRIVATE_CERT_CONFIGURATION_INTERMEDIATE_CA = 'private_cert_configuration_intermediate_ca'
         PRIVATE_CERT_CONFIGURATION_TEMPLATE = 'private_cert_configuration_template'
+        IAM_CREDENTIALS_CONFIGURATION = 'iam_credentials_configuration'
 
 
     class LetsEncryptEnvironmentEnum(str, Enum):
@@ -24092,13 +24525,13 @@ class PublicCertificateConfigurationDNSClassicInfrastructure(Configuration):
         private_cert_configuration_template.
         """
 
-        PUBLIC_CERT_CONFIGURATION_CA_LETS_ENCRYPT = 'public_cert_configuration_ca_lets_encrypt'
-        PUBLIC_CERT_CONFIGURATION_DNS_CLASSIC_INFRASTRUCTURE = 'public_cert_configuration_dns_classic_infrastructure'
         PUBLIC_CERT_CONFIGURATION_DNS_CLOUD_INTERNET_SERVICES = 'public_cert_configuration_dns_cloud_internet_services'
-        IAM_CREDENTIALS_CONFIGURATION = 'iam_credentials_configuration'
+        PUBLIC_CERT_CONFIGURATION_DNS_CLASSIC_INFRASTRUCTURE = 'public_cert_configuration_dns_classic_infrastructure'
+        PUBLIC_CERT_CONFIGURATION_CA_LETS_ENCRYPT = 'public_cert_configuration_ca_lets_encrypt'
         PRIVATE_CERT_CONFIGURATION_ROOT_CA = 'private_cert_configuration_root_ca'
         PRIVATE_CERT_CONFIGURATION_INTERMEDIATE_CA = 'private_cert_configuration_intermediate_ca'
         PRIVATE_CERT_CONFIGURATION_TEMPLATE = 'private_cert_configuration_template'
+        IAM_CREDENTIALS_CONFIGURATION = 'iam_credentials_configuration'
 
 
     class SecretTypeEnum(str, Enum):
@@ -24258,13 +24691,13 @@ class PublicCertificateConfigurationDNSClassicInfrastructureMetadata(Configurati
         private_cert_configuration_template.
         """
 
-        PUBLIC_CERT_CONFIGURATION_CA_LETS_ENCRYPT = 'public_cert_configuration_ca_lets_encrypt'
-        PUBLIC_CERT_CONFIGURATION_DNS_CLASSIC_INFRASTRUCTURE = 'public_cert_configuration_dns_classic_infrastructure'
         PUBLIC_CERT_CONFIGURATION_DNS_CLOUD_INTERNET_SERVICES = 'public_cert_configuration_dns_cloud_internet_services'
-        IAM_CREDENTIALS_CONFIGURATION = 'iam_credentials_configuration'
+        PUBLIC_CERT_CONFIGURATION_DNS_CLASSIC_INFRASTRUCTURE = 'public_cert_configuration_dns_classic_infrastructure'
+        PUBLIC_CERT_CONFIGURATION_CA_LETS_ENCRYPT = 'public_cert_configuration_ca_lets_encrypt'
         PRIVATE_CERT_CONFIGURATION_ROOT_CA = 'private_cert_configuration_root_ca'
         PRIVATE_CERT_CONFIGURATION_INTERMEDIATE_CA = 'private_cert_configuration_intermediate_ca'
         PRIVATE_CERT_CONFIGURATION_TEMPLATE = 'private_cert_configuration_template'
+        IAM_CREDENTIALS_CONFIGURATION = 'iam_credentials_configuration'
 
 
     class SecretTypeEnum(str, Enum):
@@ -24496,13 +24929,13 @@ class PublicCertificateConfigurationDNSClassicInfrastructurePrototype(Configurat
         private_cert_configuration_template.
         """
 
-        PUBLIC_CERT_CONFIGURATION_CA_LETS_ENCRYPT = 'public_cert_configuration_ca_lets_encrypt'
-        PUBLIC_CERT_CONFIGURATION_DNS_CLASSIC_INFRASTRUCTURE = 'public_cert_configuration_dns_classic_infrastructure'
         PUBLIC_CERT_CONFIGURATION_DNS_CLOUD_INTERNET_SERVICES = 'public_cert_configuration_dns_cloud_internet_services'
-        IAM_CREDENTIALS_CONFIGURATION = 'iam_credentials_configuration'
+        PUBLIC_CERT_CONFIGURATION_DNS_CLASSIC_INFRASTRUCTURE = 'public_cert_configuration_dns_classic_infrastructure'
+        PUBLIC_CERT_CONFIGURATION_CA_LETS_ENCRYPT = 'public_cert_configuration_ca_lets_encrypt'
         PRIVATE_CERT_CONFIGURATION_ROOT_CA = 'private_cert_configuration_root_ca'
         PRIVATE_CERT_CONFIGURATION_INTERMEDIATE_CA = 'private_cert_configuration_intermediate_ca'
         PRIVATE_CERT_CONFIGURATION_TEMPLATE = 'private_cert_configuration_template'
+        IAM_CREDENTIALS_CONFIGURATION = 'iam_credentials_configuration'
 
 
 
@@ -24698,13 +25131,13 @@ class PublicCertificateConfigurationDNSCloudInternetServices(Configuration):
         private_cert_configuration_template.
         """
 
-        PUBLIC_CERT_CONFIGURATION_CA_LETS_ENCRYPT = 'public_cert_configuration_ca_lets_encrypt'
-        PUBLIC_CERT_CONFIGURATION_DNS_CLASSIC_INFRASTRUCTURE = 'public_cert_configuration_dns_classic_infrastructure'
         PUBLIC_CERT_CONFIGURATION_DNS_CLOUD_INTERNET_SERVICES = 'public_cert_configuration_dns_cloud_internet_services'
-        IAM_CREDENTIALS_CONFIGURATION = 'iam_credentials_configuration'
+        PUBLIC_CERT_CONFIGURATION_DNS_CLASSIC_INFRASTRUCTURE = 'public_cert_configuration_dns_classic_infrastructure'
+        PUBLIC_CERT_CONFIGURATION_CA_LETS_ENCRYPT = 'public_cert_configuration_ca_lets_encrypt'
         PRIVATE_CERT_CONFIGURATION_ROOT_CA = 'private_cert_configuration_root_ca'
         PRIVATE_CERT_CONFIGURATION_INTERMEDIATE_CA = 'private_cert_configuration_intermediate_ca'
         PRIVATE_CERT_CONFIGURATION_TEMPLATE = 'private_cert_configuration_template'
+        IAM_CREDENTIALS_CONFIGURATION = 'iam_credentials_configuration'
 
 
     class SecretTypeEnum(str, Enum):
@@ -24864,13 +25297,13 @@ class PublicCertificateConfigurationDNSCloudInternetServicesMetadata(Configurati
         private_cert_configuration_template.
         """
 
-        PUBLIC_CERT_CONFIGURATION_CA_LETS_ENCRYPT = 'public_cert_configuration_ca_lets_encrypt'
-        PUBLIC_CERT_CONFIGURATION_DNS_CLASSIC_INFRASTRUCTURE = 'public_cert_configuration_dns_classic_infrastructure'
         PUBLIC_CERT_CONFIGURATION_DNS_CLOUD_INTERNET_SERVICES = 'public_cert_configuration_dns_cloud_internet_services'
-        IAM_CREDENTIALS_CONFIGURATION = 'iam_credentials_configuration'
+        PUBLIC_CERT_CONFIGURATION_DNS_CLASSIC_INFRASTRUCTURE = 'public_cert_configuration_dns_classic_infrastructure'
+        PUBLIC_CERT_CONFIGURATION_CA_LETS_ENCRYPT = 'public_cert_configuration_ca_lets_encrypt'
         PRIVATE_CERT_CONFIGURATION_ROOT_CA = 'private_cert_configuration_root_ca'
         PRIVATE_CERT_CONFIGURATION_INTERMEDIATE_CA = 'private_cert_configuration_intermediate_ca'
         PRIVATE_CERT_CONFIGURATION_TEMPLATE = 'private_cert_configuration_template'
+        IAM_CREDENTIALS_CONFIGURATION = 'iam_credentials_configuration'
 
 
     class SecretTypeEnum(str, Enum):
@@ -25138,13 +25571,13 @@ class PublicCertificateConfigurationDNSCloudInternetServicesPrototype(Configurat
         private_cert_configuration_template.
         """
 
-        PUBLIC_CERT_CONFIGURATION_CA_LETS_ENCRYPT = 'public_cert_configuration_ca_lets_encrypt'
-        PUBLIC_CERT_CONFIGURATION_DNS_CLASSIC_INFRASTRUCTURE = 'public_cert_configuration_dns_classic_infrastructure'
         PUBLIC_CERT_CONFIGURATION_DNS_CLOUD_INTERNET_SERVICES = 'public_cert_configuration_dns_cloud_internet_services'
-        IAM_CREDENTIALS_CONFIGURATION = 'iam_credentials_configuration'
+        PUBLIC_CERT_CONFIGURATION_DNS_CLASSIC_INFRASTRUCTURE = 'public_cert_configuration_dns_classic_infrastructure'
+        PUBLIC_CERT_CONFIGURATION_CA_LETS_ENCRYPT = 'public_cert_configuration_ca_lets_encrypt'
         PRIVATE_CERT_CONFIGURATION_ROOT_CA = 'private_cert_configuration_root_ca'
         PRIVATE_CERT_CONFIGURATION_INTERMEDIATE_CA = 'private_cert_configuration_intermediate_ca'
         PRIVATE_CERT_CONFIGURATION_TEMPLATE = 'private_cert_configuration_template'
+        IAM_CREDENTIALS_CONFIGURATION = 'iam_credentials_configuration'
 
 
 
@@ -25185,6 +25618,8 @@ class PublicCertificateMetadata(SecretMetadata):
     :param datetime updated_at: The date when a resource was modified. The date
           format follows `RFC 3339`.
     :param int versions_total: The number of versions of your secret.
+    :param List[str] referenced_by: (optional) List of configurations that have
+          reference to the secret.
     :param str signing_algorithm: (optional) The identifier for the cryptographic
           algorithm that is used by the issuing certificate authority to sign a
           certificate.
@@ -25242,6 +25677,7 @@ class PublicCertificateMetadata(SecretMetadata):
         name: Optional[str] = None,
         state: Optional[int] = None,
         state_description: Optional[str] = None,
+        referenced_by: Optional[List[str]] = None,
         signing_algorithm: Optional[str] = None,
         alt_names: Optional[List[str]] = None,
         expiration_date: Optional[datetime] = None,
@@ -25326,6 +25762,7 @@ class PublicCertificateMetadata(SecretMetadata):
         self.state_description = state_description
         self.updated_at = updated_at
         self.versions_total = versions_total
+        self.referenced_by = referenced_by
         self.signing_algorithm = signing_algorithm
         self.alt_names = alt_names
         self.common_name = common_name
@@ -25392,6 +25829,8 @@ class PublicCertificateMetadata(SecretMetadata):
             args['versions_total'] = versions_total
         else:
             raise ValueError('Required property \'versions_total\' not present in PublicCertificateMetadata JSON')
+        if (referenced_by := _dict.get('referenced_by')) is not None:
+            args['referenced_by'] = referenced_by
         if (signing_algorithm := _dict.get('signing_algorithm')) is not None:
             args['signing_algorithm'] = signing_algorithm
         if (alt_names := _dict.get('alt_names')) is not None:
@@ -25466,6 +25905,8 @@ class PublicCertificateMetadata(SecretMetadata):
             _dict['updated_at'] = datetime_to_string(self.updated_at)
         if hasattr(self, 'versions_total') and self.versions_total is not None:
             _dict['versions_total'] = self.versions_total
+        if hasattr(self, 'referenced_by') and getattr(self, 'referenced_by') is not None:
+            _dict['referenced_by'] = getattr(self, 'referenced_by')
         if hasattr(self, 'signing_algorithm') and self.signing_algorithm is not None:
             _dict['signing_algorithm'] = self.signing_algorithm
         if hasattr(self, 'alt_names') and self.alt_names is not None:
@@ -26635,6 +27076,8 @@ class ServiceCredentialsSecret(Secret):
     :param datetime updated_at: The date when a resource was modified. The date
           format follows `RFC 3339`.
     :param int versions_total: The number of versions of your secret.
+    :param List[str] referenced_by: (optional) List of configurations that have
+          reference to the secret.
     :param datetime next_rotation_date: (optional) The date that the secret is
           scheduled for automatic rotation.
           The service automatically creates a new version of the secret on its next
@@ -26651,7 +27094,8 @@ class ServiceCredentialsSecret(Secret):
           iam_credentials secret type, the TTL field is mandatory. The minimum duration is
           1 minute. The maximum is 90 days. For the service_credentials secret type, the
           TTL field is optional. If it is set the minimum duration is 1 day. The maximum
-          is 90 days. By default, the TTL is set to 0.
+          is 90 days. By default, the TTL is set to 0. After the TTL is modified, it will
+          be applied only on the next secret rotation.
     :param datetime expiration_date: (optional) The date when the secret material
           expires. The date format follows the `RFC 3339` format. Supported secret types:
           Arbitrary, username_password.
@@ -26682,6 +27126,7 @@ class ServiceCredentialsSecret(Secret):
         name: Optional[str] = None,
         state: Optional[int] = None,
         state_description: Optional[str] = None,
+        referenced_by: Optional[List[str]] = None,
         next_rotation_date: Optional[datetime] = None,
         rotation: Optional['RotationPolicy'] = None,
         ttl: Optional[str] = None,
@@ -26731,7 +27176,8 @@ class ServiceCredentialsSecret(Secret):
                mandatory. The minimum duration is 1 minute. The maximum is 90 days. For
                the service_credentials secret type, the TTL field is optional. If it is
                set the minimum duration is 1 day. The maximum is 90 days. By default, the
-               TTL is set to 0.
+               TTL is set to 0. After the TTL is modified, it will be applied only on the
+               next secret rotation.
         :param datetime expiration_date: (optional) The date when the secret
                material expires. The date format follows the `RFC 3339` format. Supported
                secret types: Arbitrary, username_password.
@@ -26753,6 +27199,7 @@ class ServiceCredentialsSecret(Secret):
         self.state_description = state_description
         self.updated_at = updated_at
         self.versions_total = versions_total
+        self.referenced_by = referenced_by
         self.next_rotation_date = next_rotation_date
         self.rotation = rotation
         self.ttl = ttl
@@ -26812,6 +27259,8 @@ class ServiceCredentialsSecret(Secret):
             args['versions_total'] = versions_total
         else:
             raise ValueError('Required property \'versions_total\' not present in ServiceCredentialsSecret JSON')
+        if (referenced_by := _dict.get('referenced_by')) is not None:
+            args['referenced_by'] = referenced_by
         if (next_rotation_date := _dict.get('next_rotation_date')) is not None:
             args['next_rotation_date'] = string_to_datetime(next_rotation_date)
         if (rotation := _dict.get('rotation')) is not None:
@@ -26870,6 +27319,8 @@ class ServiceCredentialsSecret(Secret):
             _dict['updated_at'] = datetime_to_string(self.updated_at)
         if hasattr(self, 'versions_total') and self.versions_total is not None:
             _dict['versions_total'] = self.versions_total
+        if hasattr(self, 'referenced_by') and getattr(self, 'referenced_by') is not None:
+            _dict['referenced_by'] = getattr(self, 'referenced_by')
         if hasattr(self, 'next_rotation_date') and getattr(self, 'next_rotation_date') is not None:
             _dict['next_rotation_date'] = datetime_to_string(getattr(self, 'next_rotation_date'))
         if hasattr(self, 'rotation') and self.rotation is not None:
@@ -26977,6 +27428,8 @@ class ServiceCredentialsSecretMetadata(SecretMetadata):
     :param datetime updated_at: The date when a resource was modified. The date
           format follows `RFC 3339`.
     :param int versions_total: The number of versions of your secret.
+    :param List[str] referenced_by: (optional) List of configurations that have
+          reference to the secret.
     :param datetime next_rotation_date: (optional) The date that the secret is
           scheduled for automatic rotation.
           The service automatically creates a new version of the secret on its next
@@ -26993,7 +27446,8 @@ class ServiceCredentialsSecretMetadata(SecretMetadata):
           iam_credentials secret type, the TTL field is mandatory. The minimum duration is
           1 minute. The maximum is 90 days. For the service_credentials secret type, the
           TTL field is optional. If it is set the minimum duration is 1 day. The maximum
-          is 90 days. By default, the TTL is set to 0.
+          is 90 days. By default, the TTL is set to 0. After the TTL is modified, it will
+          be applied only on the next secret rotation.
     :param datetime expiration_date: (optional) The date when the secret material
           expires. The date format follows the `RFC 3339` format. Supported secret types:
           Arbitrary, username_password.
@@ -27021,6 +27475,7 @@ class ServiceCredentialsSecretMetadata(SecretMetadata):
         name: Optional[str] = None,
         state: Optional[int] = None,
         state_description: Optional[str] = None,
+        referenced_by: Optional[List[str]] = None,
         next_rotation_date: Optional[datetime] = None,
         rotation: Optional['RotationPolicy'] = None,
         ttl: Optional[str] = None,
@@ -27068,7 +27523,8 @@ class ServiceCredentialsSecretMetadata(SecretMetadata):
                mandatory. The minimum duration is 1 minute. The maximum is 90 days. For
                the service_credentials secret type, the TTL field is optional. If it is
                set the minimum duration is 1 day. The maximum is 90 days. By default, the
-               TTL is set to 0.
+               TTL is set to 0. After the TTL is modified, it will be applied only on the
+               next secret rotation.
         :param datetime expiration_date: (optional) The date when the secret
                material expires. The date format follows the `RFC 3339` format. Supported
                secret types: Arbitrary, username_password.
@@ -27090,6 +27546,7 @@ class ServiceCredentialsSecretMetadata(SecretMetadata):
         self.state_description = state_description
         self.updated_at = updated_at
         self.versions_total = versions_total
+        self.referenced_by = referenced_by
         self.next_rotation_date = next_rotation_date
         self.rotation = rotation
         self.ttl = ttl
@@ -27148,6 +27605,8 @@ class ServiceCredentialsSecretMetadata(SecretMetadata):
             args['versions_total'] = versions_total
         else:
             raise ValueError('Required property \'versions_total\' not present in ServiceCredentialsSecretMetadata JSON')
+        if (referenced_by := _dict.get('referenced_by')) is not None:
+            args['referenced_by'] = referenced_by
         if (next_rotation_date := _dict.get('next_rotation_date')) is not None:
             args['next_rotation_date'] = string_to_datetime(next_rotation_date)
         if (rotation := _dict.get('rotation')) is not None:
@@ -27202,6 +27661,8 @@ class ServiceCredentialsSecretMetadata(SecretMetadata):
             _dict['updated_at'] = datetime_to_string(self.updated_at)
         if hasattr(self, 'versions_total') and self.versions_total is not None:
             _dict['versions_total'] = self.versions_total
+        if hasattr(self, 'referenced_by') and getattr(self, 'referenced_by') is not None:
+            _dict['referenced_by'] = getattr(self, 'referenced_by')
         if hasattr(self, 'next_rotation_date') and getattr(self, 'next_rotation_date') is not None:
             _dict['next_rotation_date'] = datetime_to_string(getattr(self, 'next_rotation_date'))
         if hasattr(self, 'rotation') and self.rotation is not None:
@@ -27295,7 +27756,8 @@ class ServiceCredentialsSecretMetadataPatch(SecretMetadataPatch):
           iam_credentials secret type, the TTL field is mandatory. The minimum duration is
           1 minute. The maximum is 90 days. For the service_credentials secret type, the
           TTL field is optional. If it is set the minimum duration is 1 day. The maximum
-          is 90 days. By default, the TTL is set to 0.
+          is 90 days. By default, the TTL is set to 0. After the TTL is modified, it will
+          be applied only on the next secret rotation.
     """
 
     def __init__(
@@ -27336,7 +27798,8 @@ class ServiceCredentialsSecretMetadataPatch(SecretMetadataPatch):
                mandatory. The minimum duration is 1 minute. The maximum is 90 days. For
                the service_credentials secret type, the TTL field is optional. If it is
                set the minimum duration is 1 day. The maximum is 90 days. By default, the
-               TTL is set to 0.
+               TTL is set to 0. After the TTL is modified, it will be applied only on the
+               next secret rotation.
         """
         # pylint: disable=super-init-not-called
         self.custom_metadata = custom_metadata
@@ -27444,7 +27907,8 @@ class ServiceCredentialsSecretPrototype(SecretPrototype):
           iam_credentials secret type, the TTL field is mandatory. The minimum duration is
           1 minute. The maximum is 90 days. For the service_credentials secret type, the
           TTL field is optional. If it is set the minimum duration is 1 day. The maximum
-          is 90 days. By default, the TTL is set to 0.
+          is 90 days. By default, the TTL is set to 0. After the TTL is modified, it will
+          be applied only on the next secret rotation.
     :param dict version_custom_metadata: (optional) The secret version metadata that
           a user can customize.
     """
@@ -27499,7 +27963,8 @@ class ServiceCredentialsSecretPrototype(SecretPrototype):
                mandatory. The minimum duration is 1 minute. The maximum is 90 days. For
                the service_credentials secret type, the TTL field is optional. If it is
                set the minimum duration is 1 day. The maximum is 90 days. By default, the
-               TTL is set to 0.
+               TTL is set to 0. After the TTL is modified, it will be applied only on the
+               next secret rotation.
         :param dict version_custom_metadata: (optional) The secret version metadata
                that a user can customize.
         """
@@ -28203,6 +28668,8 @@ class UsernamePasswordSecret(Secret):
     :param datetime updated_at: The date when a resource was modified. The date
           format follows `RFC 3339`.
     :param int versions_total: The number of versions of your secret.
+    :param List[str] referenced_by: (optional) List of configurations that have
+          reference to the secret.
     :param RotationPolicy rotation: This field indicates whether Secrets Manager
           rotates your secrets automatically. Supported secret types: username_password,
           private_cert, public_cert, iam_credentials.
@@ -28244,6 +28711,7 @@ class UsernamePasswordSecret(Secret):
         name: Optional[str] = None,
         state: Optional[int] = None,
         state_description: Optional[str] = None,
+        referenced_by: Optional[List[str]] = None,
         expiration_date: Optional[datetime] = None,
         next_rotation_date: Optional[datetime] = None,
         password_generation_policy: Optional['PasswordGenerationPolicyRO'] = None,
@@ -28305,6 +28773,7 @@ class UsernamePasswordSecret(Secret):
         self.state_description = state_description
         self.updated_at = updated_at
         self.versions_total = versions_total
+        self.referenced_by = referenced_by
         self.rotation = rotation
         self.expiration_date = expiration_date
         self.next_rotation_date = next_rotation_date
@@ -28364,6 +28833,8 @@ class UsernamePasswordSecret(Secret):
             args['versions_total'] = versions_total
         else:
             raise ValueError('Required property \'versions_total\' not present in UsernamePasswordSecret JSON')
+        if (referenced_by := _dict.get('referenced_by')) is not None:
+            args['referenced_by'] = referenced_by
         if (rotation := _dict.get('rotation')) is not None:
             args['rotation'] = rotation
         else:
@@ -28424,6 +28895,8 @@ class UsernamePasswordSecret(Secret):
             _dict['updated_at'] = datetime_to_string(self.updated_at)
         if hasattr(self, 'versions_total') and self.versions_total is not None:
             _dict['versions_total'] = self.versions_total
+        if hasattr(self, 'referenced_by') and getattr(self, 'referenced_by') is not None:
+            _dict['referenced_by'] = getattr(self, 'referenced_by')
         if hasattr(self, 'rotation') and self.rotation is not None:
             if isinstance(self.rotation, dict):
                 _dict['rotation'] = self.rotation
@@ -28528,6 +29001,8 @@ class UsernamePasswordSecretMetadata(SecretMetadata):
     :param datetime updated_at: The date when a resource was modified. The date
           format follows `RFC 3339`.
     :param int versions_total: The number of versions of your secret.
+    :param List[str] referenced_by: (optional) List of configurations that have
+          reference to the secret.
     :param RotationPolicy rotation: This field indicates whether Secrets Manager
           rotates your secrets automatically. Supported secret types: username_password,
           private_cert, public_cert, iam_credentials.
@@ -28563,6 +29038,7 @@ class UsernamePasswordSecretMetadata(SecretMetadata):
         name: Optional[str] = None,
         state: Optional[int] = None,
         state_description: Optional[str] = None,
+        referenced_by: Optional[List[str]] = None,
         expiration_date: Optional[datetime] = None,
         next_rotation_date: Optional[datetime] = None,
         password_generation_policy: Optional['PasswordGenerationPolicyRO'] = None,
@@ -28620,6 +29096,7 @@ class UsernamePasswordSecretMetadata(SecretMetadata):
         self.state_description = state_description
         self.updated_at = updated_at
         self.versions_total = versions_total
+        self.referenced_by = referenced_by
         self.rotation = rotation
         self.expiration_date = expiration_date
         self.next_rotation_date = next_rotation_date
@@ -28677,6 +29154,8 @@ class UsernamePasswordSecretMetadata(SecretMetadata):
             args['versions_total'] = versions_total
         else:
             raise ValueError('Required property \'versions_total\' not present in UsernamePasswordSecretMetadata JSON')
+        if (referenced_by := _dict.get('referenced_by')) is not None:
+            args['referenced_by'] = referenced_by
         if (rotation := _dict.get('rotation')) is not None:
             args['rotation'] = rotation
         else:
@@ -28729,6 +29208,8 @@ class UsernamePasswordSecretMetadata(SecretMetadata):
             _dict['updated_at'] = datetime_to_string(self.updated_at)
         if hasattr(self, 'versions_total') and self.versions_total is not None:
             _dict['versions_total'] = self.versions_total
+        if hasattr(self, 'referenced_by') and getattr(self, 'referenced_by') is not None:
+            _dict['referenced_by'] = getattr(self, 'referenced_by')
         if hasattr(self, 'rotation') and self.rotation is not None:
             if isinstance(self.rotation, dict):
                 _dict['rotation'] = self.rotation

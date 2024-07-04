@@ -275,25 +275,10 @@ class TestSecretsManagerV2Examples:
             # begin-create_configuration
 
             configuration_prototype_model = {
-                'config_type': 'private_cert_configuration_root_ca',
-                'name': 'example-root-CA',
-                'max_ttl': '43830h',
-                'crl_expiry': '72h',
-                'crl_disable': False,
-                'crl_distribution_points_encoded': True,
-                'issuing_certificates_urls_encoded': True,
-                'common_name': 'example.com',
-                'alt_names': ['alt-name-1', 'alt-name-2'],
-                'ip_sans': '127.0.0.1',
-                'uri_sans': 'https://www.example.com/test',
-                'other_sans': ['1.2.3.5.4.3.201.10.4.3;utf8:test@example.com'],
-                'ttl': '2190h',
-                'format': 'pem',
-                'private_key_format': 'der',
-                'key_type': 'rsa',
-                'key_bits': 4096,
-                'max_path_length': -1,
-                'exclude_cn_from_sans': False,
+                'config_type': 'public_cert_configuration_dns_cloud_internet_services',
+                'name': 'example-cloud-internet-services-config',
+                'cloud_internet_services_apikey': '5ipu_ykv0PMp2MhxQnDMn7VzrkSlBwi3BOI8uthi_EXZ',
+                'cloud_internet_services_crn': 'crn:v1:bluemix:public:internet-svcs:global:a/128e84fcca45c1224aae525d31ef2b52:009a0357-1460-42b4-b903-10580aba7dd8::',
             }
 
             response = secrets_manager_service.create_configuration(
@@ -790,7 +775,7 @@ class TestSecretsManagerV2Examples:
 
             response = secrets_manager_service.get_configuration(
                 name=configuration_name_for_get_configuration_link,
-                x_sm_accept_configuration_type='private_cert_configuration_root_ca',
+                x_sm_accept_configuration_type='public_cert_configuration_dns_cloud_internet_services',
             )
             configuration = response.get_result()
 
@@ -812,13 +797,14 @@ class TestSecretsManagerV2Examples:
             # begin-update_configuration
 
             configuration_patch_model = {
-                'api_key': 'RmnPBn6n1dzoo0v3kyznKEpg0WzdTpW9lW7FtKa017_u',
+                'cloud_internet_services_apikey': '5ipu_ykv0PMp2MhxQnDMn7VzrkSlBwi3BOI8uthi_EXZ',
+                'cloud_internet_services_crn': 'crn:v1:bluemix:public:internet-svcs:global:a/128e84fcca45c1224aae525d31ef2b52:009a0357-1460-42b4-b903-10580aba7dd8::',
             }
 
             response = secrets_manager_service.update_configuration(
                 name=configuration_name_for_get_configuration_link,
                 configuration_patch=configuration_patch_model,
-                x_sm_accept_configuration_type='private_cert_configuration_root_ca',
+                x_sm_accept_configuration_type='public_cert_configuration_dns_cloud_internet_services',
             )
             configuration = response.get_result()
 
@@ -846,7 +832,7 @@ class TestSecretsManagerV2Examples:
             response = secrets_manager_service.create_configuration_action(
                 name=configuration_name_for_get_configuration_link,
                 config_action_prototype=configuration_action_prototype_model,
-                x_sm_accept_configuration_type='private_cert_configuration_root_ca',
+                x_sm_accept_configuration_type='public_cert_configuration_dns_cloud_internet_services',
             )
             configuration_action = response.get_result()
 
@@ -1029,7 +1015,7 @@ class TestSecretsManagerV2Examples:
 
             response = secrets_manager_service.delete_configuration(
                 name=configuration_name_for_get_configuration_link,
-                x_sm_accept_configuration_type='private_cert_configuration_root_ca',
+                x_sm_accept_configuration_type='public_cert_configuration_dns_cloud_internet_services',
             )
 
             # end-delete_configuration
