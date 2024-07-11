@@ -558,6 +558,7 @@ class TestSecretsManagerV2:
             limit=200,
             sort='config_type',
             search='example',
+            secret_types=['iam_credentials', 'public_cert', 'private_cert'],
         )
 
         assert response.get_status_code() == 200
@@ -574,6 +575,7 @@ class TestSecretsManagerV2:
             limit=10,
             sort='config_type',
             search='example',
+            secret_types=['iam_credentials', 'public_cert', 'private_cert'],
         )
         while pager.has_next():
             next_page = pager.get_next()
@@ -586,6 +588,7 @@ class TestSecretsManagerV2:
             limit=10,
             sort='config_type',
             search='example',
+            secret_types=['iam_credentials', 'public_cert', 'private_cert'],
         )
         all_items = pager.get_all()
         assert all_items is not None

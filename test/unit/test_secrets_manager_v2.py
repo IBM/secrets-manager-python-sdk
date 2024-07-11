@@ -3360,6 +3360,7 @@ class TestListConfigurations:
         limit = 200
         sort = 'config_type'
         search = 'example'
+        secret_types = ['iam_credentials', 'public_cert', 'private_cert']
 
         # Invoke method
         response = _service.list_configurations(
@@ -3367,6 +3368,7 @@ class TestListConfigurations:
             limit=limit,
             sort=sort,
             search=search,
+            secret_types=secret_types,
             headers={},
         )
 
@@ -3380,6 +3382,7 @@ class TestListConfigurations:
         assert 'limit={}'.format(limit) in query_string
         assert 'sort={}'.format(sort) in query_string
         assert 'search={}'.format(search) in query_string
+        assert 'secret_types={}'.format(','.join(secret_types)) in query_string
 
     def test_list_configurations_all_params_with_retries(self):
         # Enable retries and run test_list_configurations_all_params.
@@ -3453,6 +3456,7 @@ class TestListConfigurations:
             limit=10,
             sort='config_type',
             search='example',
+            secret_types=['iam_credentials', 'public_cert', 'private_cert'],
         )
         while pager.has_next():
             next_page = pager.get_next()
@@ -3490,6 +3494,7 @@ class TestListConfigurations:
             limit=10,
             sort='config_type',
             search='example',
+            secret_types=['iam_credentials', 'public_cert', 'private_cert'],
         )
         all_results = pager.get_all()
         assert all_results is not None

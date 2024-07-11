@@ -751,6 +751,7 @@ class TestSecretsManagerV2Examples:
                 limit=10,
                 sort='config_type',
                 search='example',
+                secret_types=['iam_credentials', 'public_cert', 'private_cert'],
             )
             while pager.has_next():
                 next_page = pager.get_next()
