@@ -14,7 +14,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-# IBM OpenAPI SDK Code Generator Version: 3.92.1-44330004-20240620-143510
+# IBM OpenAPI SDK Code Generator Version: 3.92.2-3f2a0533-20240712-183330
 
 """
 With IBM Cloud® Secrets Manager, you can create, lease, and centrally manage secrets that
