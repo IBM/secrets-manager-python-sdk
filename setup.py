@@ -14,6 +14,7 @@
 # limitations under the License.
 
 from setuptools import setup
+from setuptools.command.test import test as TestCommand
 import os
 import sys
 import pkg_resources
@@ -36,6 +37,17 @@ if sys.argv[-1] == 'publish':
     os.system('python setup.py register -r pypi')
     os.system('python setup.py sdist upload -r pypi')
     sys.exit()
+
+class PyTest(TestCommand):
+    def finalize_options(self):
+        TestCommand.finalize_options(self)
+        self.test_args = ['--strict', '--verbose', '--tb=long', 'test']
+        self.test_suite = True
+
+    def run_tests(self):
+        import pytest
+        errcode = pytest.main(self.test_args)
+        sys.exit(errcode)
 
 class PyTestUnit(PyTest):
     def finalize_options(self):
