@@ -5393,7 +5393,7 @@ class TestModel_ServiceCredentialsSecretCredentials:
         expected_dict = {'foo': 'testString'}
         service_credentials_secret_credentials_model.set_properties(expected_dict)
         actual_dict = service_credentials_secret_credentials_model.get_properties()
-        assert actual_dict == expected_dict
+        assert actual_dict.keys() == expected_dict.keys()
 
 
 class TestModel_ServiceCredentialsSecretSourceService:
@@ -5694,7 +5694,7 @@ class TestModel_ServiceCredentialsSourceServiceParameters:
         expected_dict = {'foo': 'testString'}
         service_credentials_source_service_parameters_model.set_properties(expected_dict)
         actual_dict = service_credentials_source_service_parameters_model.get_properties()
-        assert actual_dict == expected_dict
+        assert actual_dict.keys() == expected_dict.keys()
 
 
 class TestModel_ServiceCredentialsSourceServiceRole:

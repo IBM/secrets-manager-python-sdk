@@ -14,7 +14,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-# IBM OpenAPI SDK Code Generator Version: 3.92.2-3f2a0533-20240712-183330
+# IBM OpenAPI SDK Code Generator Version: 3.93.0-c40121e6-20240729-182103
 
 """
 With IBM Cloud® Secrets Manager, you can create, lease, and centrally manage secrets that
@@ -6134,6 +6134,8 @@ class ServiceCredentialsSecretCredentials:
     :param str iam_role_crn: (optional) The IAM role CRN assigned to the generated
           service credentials.
     :param str iam_serviceid_crn: (optional) The IAM Service ID CRN.
+
+    This type supports additional properties of type object.
     """
 
     # The set of defined properties for the class
@@ -6148,12 +6150,12 @@ class ServiceCredentialsSecretCredentials:
         iam_apikey_name: Optional[str] = None,
         iam_role_crn: Optional[str] = None,
         iam_serviceid_crn: Optional[str] = None,
-        **kwargs,
+        **kwargs: Optional[object],
     ) -> None:
         """
         Initialize a ServiceCredentialsSecretCredentials object.
 
-        :param **kwargs: (optional) Any additional properties.
+        :param object **kwargs: (optional) Additional properties of type object
         """
         self.apikey = apikey
         self.iam_apikey_description = iam_apikey_description
@@ -6161,8 +6163,13 @@ class ServiceCredentialsSecretCredentials:
         self.iam_apikey_name = iam_apikey_name
         self.iam_role_crn = iam_role_crn
         self.iam_serviceid_crn = iam_serviceid_crn
-        for _key, _value in kwargs.items():
-            setattr(self, _key, _value)
+        for k, v in kwargs.items():
+            if k not in ServiceCredentialsSecretCredentials._properties:
+                if not isinstance(v, object):
+                    raise ValueError('Value for additional property {} must be of type object'.format(k))
+                setattr(self, k, v)
+            else:
+                raise ValueError('Property {} cannot be specified as an additional property'.format(k))
 
     @classmethod
     def from_dict(cls, _dict: Dict) -> 'ServiceCredentialsSecretCredentials':
@@ -6180,7 +6187,11 @@ class ServiceCredentialsSecretCredentials:
             args['iam_role_crn'] = iam_role_crn
         if (iam_serviceid_crn := _dict.get('iam_serviceid_crn')) is not None:
             args['iam_serviceid_crn'] = iam_serviceid_crn
-        args.update({k: v for (k, v) in _dict.items() if k not in cls._properties})
+        for k, v in _dict.items():
+            if k not in cls._properties:
+                    if not isinstance(v, object):
+                        raise ValueError('Value for additional property {} must be of type object'.format(k))
+                    args[k] = v
         return cls(**args)
 
     @classmethod
@@ -6203,8 +6214,8 @@ class ServiceCredentialsSecretCredentials:
             _dict['iam_role_crn'] = getattr(self, 'iam_role_crn')
         if hasattr(self, 'iam_serviceid_crn') and getattr(self, 'iam_serviceid_crn') is not None:
             _dict['iam_serviceid_crn'] = getattr(self, 'iam_serviceid_crn')
-        for _key in [k for k in vars(self).keys() if k not in ServiceCredentialsSecretCredentials._properties]:
-            _dict[_key] = getattr(self, _key)
+        for k in [_k for _k in vars(self).keys() if _k not in ServiceCredentialsSecretCredentials._properties]:
+            _dict[k] = getattr(self, k)
         return _dict
 
     def _to_dict(self):
@@ -6212,21 +6223,23 @@ class ServiceCredentialsSecretCredentials:
         return self.to_dict()
 
     def get_properties(self) -> Dict:
-        """Return a dictionary of arbitrary properties from this instance of ServiceCredentialsSecretCredentials"""
+        """Return the additional properties from this instance of ServiceCredentialsSecretCredentials in the form of a dict."""
         _dict = {}
-
-        for _key in [k for k in vars(self).keys() if k not in ServiceCredentialsSecretCredentials._properties]:
-            _dict[_key] = getattr(self, _key)
+        for k in [_k for _k in vars(self).keys() if _k not in ServiceCredentialsSecretCredentials._properties]:
+            _dict[k] = getattr(self, k)
         return _dict
 
     def set_properties(self, _dict: dict):
-        """Set a dictionary of arbitrary properties to this instance of ServiceCredentialsSecretCredentials"""
-        for _key in [k for k in vars(self).keys() if k not in ServiceCredentialsSecretCredentials._properties]:
-            delattr(self, _key)
-
-        for _key, _value in _dict.items():
-            if _key not in ServiceCredentialsSecretCredentials._properties:
-                setattr(self, _key, _value)
+        """Set a dictionary of additional properties in this instance of ServiceCredentialsSecretCredentials"""
+        for k in [_k for _k in vars(self).keys() if _k not in ServiceCredentialsSecretCredentials._properties]:
+            delattr(self, k)
+        for k, v in _dict.items():
+            if k not in ServiceCredentialsSecretCredentials._properties:
+                if not isinstance(v, object):
+                    raise ValueError('Value for additional property {} must be of type object'.format(k))
+                setattr(self, k, v)
+            else:
+                raise ValueError('Property {} cannot be specified as an additional property'.format(_key))
 
     def __str__(self) -> str:
         """Return a `str` version of this ServiceCredentialsSecretCredentials object."""
@@ -6832,6 +6845,8 @@ class ServiceCredentialsSourceServiceParameters:
 
     :param str serviceid_crn: (optional) An optional platform defined option to
           reuse an existing IAM Service ID for the role assignment.
+
+    This type supports additional properties of type object.
     """
 
     # The set of defined properties for the class
@@ -6841,18 +6856,23 @@ class ServiceCredentialsSourceServiceParameters:
         self,
         *,
         serviceid_crn: Optional[str] = None,
-        **kwargs,
+        **kwargs: Optional[object],
     ) -> None:
         """
         Initialize a ServiceCredentialsSourceServiceParameters object.
 
         :param str serviceid_crn: (optional) An optional platform defined option to
                reuse an existing IAM Service ID for the role assignment.
-        :param **kwargs: (optional) Any additional properties.
+        :param object **kwargs: (optional) Additional properties of type object
         """
         self.serviceid_crn = serviceid_crn
-        for _key, _value in kwargs.items():
-            setattr(self, _key, _value)
+        for k, v in kwargs.items():
+            if k not in ServiceCredentialsSourceServiceParameters._properties:
+                if not isinstance(v, object):
+                    raise ValueError('Value for additional property {} must be of type object'.format(k))
+                setattr(self, k, v)
+            else:
+                raise ValueError('Property {} cannot be specified as an additional property'.format(k))
 
     @classmethod
     def from_dict(cls, _dict: Dict) -> 'ServiceCredentialsSourceServiceParameters':
@@ -6860,7 +6880,11 @@ class ServiceCredentialsSourceServiceParameters:
         args = {}
         if (serviceid_crn := _dict.get('serviceid_crn')) is not None:
             args['serviceid_crn'] = serviceid_crn
-        args.update({k: v for (k, v) in _dict.items() if k not in cls._properties})
+        for k, v in _dict.items():
+            if k not in cls._properties:
+                    if not isinstance(v, object):
+                        raise ValueError('Value for additional property {} must be of type object'.format(k))
+                    args[k] = v
         return cls(**args)
 
     @classmethod
@@ -6873,8 +6897,8 @@ class ServiceCredentialsSourceServiceParameters:
         _dict = {}
         if hasattr(self, 'serviceid_crn') and self.serviceid_crn is not None:
             _dict['serviceid_crn'] = self.serviceid_crn
-        for _key in [k for k in vars(self).keys() if k not in ServiceCredentialsSourceServiceParameters._properties]:
-            _dict[_key] = getattr(self, _key)
+        for k in [_k for _k in vars(self).keys() if _k not in ServiceCredentialsSourceServiceParameters._properties]:
+            _dict[k] = getattr(self, k)
         return _dict
 
     def _to_dict(self):
@@ -6882,21 +6906,23 @@ class ServiceCredentialsSourceServiceParameters:
         return self.to_dict()
 
     def get_properties(self) -> Dict:
-        """Return a dictionary of arbitrary properties from this instance of ServiceCredentialsSourceServiceParameters"""
+        """Return the additional properties from this instance of ServiceCredentialsSourceServiceParameters in the form of a dict."""
         _dict = {}
-
-        for _key in [k for k in vars(self).keys() if k not in ServiceCredentialsSourceServiceParameters._properties]:
-            _dict[_key] = getattr(self, _key)
+        for k in [_k for _k in vars(self).keys() if _k not in ServiceCredentialsSourceServiceParameters._properties]:
+            _dict[k] = getattr(self, k)
         return _dict
 
     def set_properties(self, _dict: dict):
-        """Set a dictionary of arbitrary properties to this instance of ServiceCredentialsSourceServiceParameters"""
-        for _key in [k for k in vars(self).keys() if k not in ServiceCredentialsSourceServiceParameters._properties]:
-            delattr(self, _key)
-
-        for _key, _value in _dict.items():
-            if _key not in ServiceCredentialsSourceServiceParameters._properties:
-                setattr(self, _key, _value)
+        """Set a dictionary of additional properties in this instance of ServiceCredentialsSourceServiceParameters"""
+        for k in [_k for _k in vars(self).keys() if _k not in ServiceCredentialsSourceServiceParameters._properties]:
+            delattr(self, k)
+        for k, v in _dict.items():
+            if k not in ServiceCredentialsSourceServiceParameters._properties:
+                if not isinstance(v, object):
+                    raise ValueError('Value for additional property {} must be of type object'.format(k))
+                setattr(self, k, v)
+            else:
+                raise ValueError('Property {} cannot be specified as an additional property'.format(_key))
 
     def __str__(self) -> str:
         """Return a `str` version of this ServiceCredentialsSourceServiceParameters object."""
