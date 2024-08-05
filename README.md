@@ -19,8 +19,7 @@ A Python client library to interact with the [IBM Cloud® Secrets Manager APIs](
 
 ## Overview
 
-The IBM Cloud Secrets Manager Python SDK allows developers to programmatically interact with the following IBM Cloud
-services:
+The IBM Cloud Secrets Manager Python SDK allows developers to programmatically interact with the following IBM Cloud services:
 
 | Service name                                                     | Imported class name  |
 |------------------------------------------------------------------|----------------------|
@@ -51,13 +50,9 @@ easy_install --upgrade "ibm-secrets-manager-sdk"
 
 Secrets Manager uses token-based Identity and Access Management (IAM) authentication.
 
-With IAM authentication, you supply an API key that is used to generate an access token. Then, the access token is
-included in each API request to Secrets Manager. Access tokens are valid for a limited amount of time and must be
-regenerated.
+With IAM authentication, you supply an API key that is used to generate an access token. Then, the access token is included in each API request to Secrets Manager. Access tokens are valid for a limited amount of time and must be regenerated.
 
-Authentication for this SDK is accomplished by
-using [IAM authenticators](https://github.com/IBM/ibm-cloud-sdk-common/blob/master/README.md#authentication). Import
-authenticators from `ibm_cloud_sdk_core.authenticators`.
+Authentication for this SDK is accomplished by using [IAM authenticators](https://github.com/IBM/ibm-cloud-sdk-common/blob/master/README.md#authentication). Import authenticators from `ibm_cloud_sdk_core.authenticators`.
 
 ### Examples
 
