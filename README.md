@@ -27,7 +27,7 @@ services:
 | [Secrets Manager](https://cloud.ibm.com/apidocs/secrets-manager) | SecretsManagerV2     |
 
 ## Prerequisites
-
+   
 - An [IBM Cloud account](https://cloud.ibm.com/registration).
 - A [Secrets Manager service instance](https://cloud.ibm.com/catalog/services/secrets-manager).
 - An [IBM Cloud API key](https://cloud.ibm.com/iam/apikeys) that allows the SDK to access your account.
