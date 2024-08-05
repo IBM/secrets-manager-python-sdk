@@ -14,7 +14,7 @@
 # limitations under the License.
 
 from setuptools import setup
-from setuptools.command.test import test as TestCommand
+
 import os
 import sys
 import pkg_resources
@@ -38,29 +38,6 @@ if sys.argv[-1] == 'publish':
     os.system('python setup.py sdist upload -r pypi')
     sys.exit()
 
-
-class PyTest(TestCommand):
-    def finalize_options(self):
-        TestCommand.finalize_options(self)
-        self.test_args = ['--strict', '--verbose', '--tb=long', 'test']
-        self.test_suite = True
-
-    def run_tests(self):
-        import pytest
-        errcode = pytest.main(self.test_args)
-        sys.exit(errcode)
-
-
-class PyTestUnit(PyTest):
-    def finalize_options(self):
-        self.test_args = ['--strict', '--verbose', '--tb=long', 'test/unit']
-
-
-class PyTestIntegration(PyTest):
-    def finalize_options(self):
-        self.test_args = ['--strict', '--verbose', '--tb=long', 'test/integration']
-
-
 with open("README.md", "r") as fh:
     readme = fh.read()
 
@@ -70,7 +47,6 @@ setup(name=PACKAGE_NAME.replace('_', '-'),
       license='Apache 2.0',
       install_requires=install_requires,
       tests_require=tests_require,
-      cmdclass={'test': PyTest, 'test_unit': PyTestUnit, 'test_integration': PyTestIntegration},
       author='IBM',
       long_description=readme,
       long_description_content_type='text/markdown',

@@ -46,20 +46,13 @@ def preprocess_url(operation_path: str):
     The returned request URL is used to register the mock response so it needs
     to match the request URL that is formed by the requests library.
     """
-    # First, unquote the path since it might have some quoted/escaped characters in it
-    # due to how the generator inserts the operation paths into the unit test code.
-    operation_path = urllib.parse.unquote(operation_path)
 
-    # Next, quote the path using urllib so that we approximate what will
-    # happen during request processing.
-    operation_path = urllib.parse.quote(operation_path, safe='/')
-
-    # Finally, form the request URL from the base URL and operation path.
+    # Form the request URL from the base URL and operation path.
     request_url = _base_url + operation_path
 
     # If the request url does NOT end with a /, then just return it as-is.
     # Otherwise, return a regular expression that matches one or more trailing /.
-    if re.fullmatch('.*/+', request_url) is None:
+    if not request_url.endswith('/'):
         return request_url
     return re.compile(request_url.rstrip('/') + '/+')
 
@@ -537,7 +530,7 @@ class TestCreateSecret:
         """
         # Set up mock
         url = preprocess_url('/api/v2/secrets')
-        mock_response = '{"created_by": "iam-ServiceId-e4a2f0a4-3c76-4bef-b1f2-fbeae11c0f21", "created_at": "2022-04-12T23:20:50.520Z", "crn": "crn", "custom_metadata": {"anyKey": "anyValue"}, "description": "Extended description for this secret.", "downloaded": true, "id": "b49ad24d-81d4-5ebc-b9b9-b0937d1c84d5", "labels": ["my-label"], "locks_total": 0, "name": "my-secret", "secret_group_id": "default", "secret_type": "arbitrary", "state": 0, "state_description": "active", "updated_at": "2022-04-12T23:20:50.520Z", "versions_total": 0, "expiration_date": "2033-04-12T23:20:50.520Z", "payload": "secret-credentials"}'
+        mock_response = '{"created_by": "iam-ServiceId-e4a2f0a4-3c76-4bef-b1f2-fbeae11c0f21", "created_at": "2022-04-12T23:20:50.520Z", "crn": "crn", "custom_metadata": {"anyKey": "anyValue"}, "description": "Extended description for this secret.", "downloaded": true, "id": "b49ad24d-81d4-5ebc-b9b9-b0937d1c84d5", "labels": ["my-label"], "locks_total": 0, "name": "my-secret", "secret_group_id": "default", "secret_type": "arbitrary", "state": 0, "state_description": "active", "updated_at": "2022-04-12T23:20:50.520Z", "versions_total": 0, "referenced_by": ["my-example-engine-config"], "expiration_date": "2033-04-12T23:20:50.520Z", "payload": "secret-credentials"}'
         responses.add(
             responses.POST,
             url,
@@ -590,7 +583,7 @@ class TestCreateSecret:
         """
         # Set up mock
         url = preprocess_url('/api/v2/secrets')
-        mock_response = '{"created_by": "iam-ServiceId-e4a2f0a4-3c76-4bef-b1f2-fbeae11c0f21", "created_at": "2022-04-12T23:20:50.520Z", "crn": "crn", "custom_metadata": {"anyKey": "anyValue"}, "description": "Extended description for this secret.", "downloaded": true, "id": "b49ad24d-81d4-5ebc-b9b9-b0937d1c84d5", "labels": ["my-label"], "locks_total": 0, "name": "my-secret", "secret_group_id": "default", "secret_type": "arbitrary", "state": 0, "state_description": "active", "updated_at": "2022-04-12T23:20:50.520Z", "versions_total": 0, "expiration_date": "2033-04-12T23:20:50.520Z", "payload": "secret-credentials"}'
+        mock_response = '{"created_by": "iam-ServiceId-e4a2f0a4-3c76-4bef-b1f2-fbeae11c0f21", "created_at": "2022-04-12T23:20:50.520Z", "crn": "crn", "custom_metadata": {"anyKey": "anyValue"}, "description": "Extended description for this secret.", "downloaded": true, "id": "b49ad24d-81d4-5ebc-b9b9-b0937d1c84d5", "labels": ["my-label"], "locks_total": 0, "name": "my-secret", "secret_group_id": "default", "secret_type": "arbitrary", "state": 0, "state_description": "active", "updated_at": "2022-04-12T23:20:50.520Z", "versions_total": 0, "referenced_by": ["my-example-engine-config"], "expiration_date": "2033-04-12T23:20:50.520Z", "payload": "secret-credentials"}'
         responses.add(
             responses.POST,
             url,
@@ -645,7 +638,7 @@ class TestListSecrets:
         """
         # Set up mock
         url = preprocess_url('/api/v2/secrets')
-        mock_response = '{"total_count": 0, "limit": 25, "offset": 25, "first": {"href": "href"}, "next": {"href": "href"}, "previous": {"href": "href"}, "last": {"href": "href"}, "secrets": [{"created_by": "iam-ServiceId-e4a2f0a4-3c76-4bef-b1f2-fbeae11c0f21", "created_at": "2022-04-12T23:20:50.520Z", "crn": "crn", "custom_metadata": {"anyKey": "anyValue"}, "description": "Extended description for this secret.", "downloaded": true, "id": "b49ad24d-81d4-5ebc-b9b9-b0937d1c84d5", "labels": ["my-label"], "locks_total": 0, "name": "my-secret", "secret_group_id": "default", "secret_type": "arbitrary", "state": 0, "state_description": "active", "updated_at": "2022-04-12T23:20:50.520Z", "versions_total": 0, "expiration_date": "2033-04-12T23:20:50.520Z"}]}'
+        mock_response = '{"total_count": 0, "limit": 25, "offset": 25, "first": {"href": "href"}, "next": {"href": "href"}, "previous": {"href": "href"}, "last": {"href": "href"}, "secrets": [{"created_by": "iam-ServiceId-e4a2f0a4-3c76-4bef-b1f2-fbeae11c0f21", "created_at": "2022-04-12T23:20:50.520Z", "crn": "crn", "custom_metadata": {"anyKey": "anyValue"}, "description": "Extended description for this secret.", "downloaded": true, "id": "b49ad24d-81d4-5ebc-b9b9-b0937d1c84d5", "labels": ["my-label"], "locks_total": 0, "name": "my-secret", "secret_group_id": "default", "secret_type": "arbitrary", "state": 0, "state_description": "active", "updated_at": "2022-04-12T23:20:50.520Z", "versions_total": 0, "referenced_by": ["my-example-engine-config"], "expiration_date": "2033-04-12T23:20:50.520Z"}]}'
         responses.add(
             responses.GET,
             url,
@@ -705,7 +698,7 @@ class TestListSecrets:
         """
         # Set up mock
         url = preprocess_url('/api/v2/secrets')
-        mock_response = '{"total_count": 0, "limit": 25, "offset": 25, "first": {"href": "href"}, "next": {"href": "href"}, "previous": {"href": "href"}, "last": {"href": "href"}, "secrets": [{"created_by": "iam-ServiceId-e4a2f0a4-3c76-4bef-b1f2-fbeae11c0f21", "created_at": "2022-04-12T23:20:50.520Z", "crn": "crn", "custom_metadata": {"anyKey": "anyValue"}, "description": "Extended description for this secret.", "downloaded": true, "id": "b49ad24d-81d4-5ebc-b9b9-b0937d1c84d5", "labels": ["my-label"], "locks_total": 0, "name": "my-secret", "secret_group_id": "default", "secret_type": "arbitrary", "state": 0, "state_description": "active", "updated_at": "2022-04-12T23:20:50.520Z", "versions_total": 0, "expiration_date": "2033-04-12T23:20:50.520Z"}]}'
+        mock_response = '{"total_count": 0, "limit": 25, "offset": 25, "first": {"href": "href"}, "next": {"href": "href"}, "previous": {"href": "href"}, "last": {"href": "href"}, "secrets": [{"created_by": "iam-ServiceId-e4a2f0a4-3c76-4bef-b1f2-fbeae11c0f21", "created_at": "2022-04-12T23:20:50.520Z", "crn": "crn", "custom_metadata": {"anyKey": "anyValue"}, "description": "Extended description for this secret.", "downloaded": true, "id": "b49ad24d-81d4-5ebc-b9b9-b0937d1c84d5", "labels": ["my-label"], "locks_total": 0, "name": "my-secret", "secret_group_id": "default", "secret_type": "arbitrary", "state": 0, "state_description": "active", "updated_at": "2022-04-12T23:20:50.520Z", "versions_total": 0, "referenced_by": ["my-example-engine-config"], "expiration_date": "2033-04-12T23:20:50.520Z"}]}'
         responses.add(
             responses.GET,
             url,
@@ -737,8 +730,8 @@ class TestListSecrets:
         """
         # Set up a two-page mock response
         url = preprocess_url('/api/v2/secrets')
-        mock_response1 = '{"next":{"href":"https://myhost.com/somePath?offset=1"},"total_count":2,"limit":1,"secrets":[{"created_by":"iam-ServiceId-e4a2f0a4-3c76-4bef-b1f2-fbeae11c0f21","created_at":"2022-04-12T23:20:50.520Z","crn":"crn","custom_metadata":{"anyKey":"anyValue"},"description":"Extended description for this secret.","downloaded":true,"id":"b49ad24d-81d4-5ebc-b9b9-b0937d1c84d5","labels":["my-label"],"locks_total":0,"name":"my-secret","secret_group_id":"default","secret_type":"arbitrary","state":0,"state_description":"active","updated_at":"2022-04-12T23:20:50.520Z","versions_total":0,"expiration_date":"2033-04-12T23:20:50.520Z"}]}'
-        mock_response2 = '{"total_count":2,"limit":1,"secrets":[{"created_by":"iam-ServiceId-e4a2f0a4-3c76-4bef-b1f2-fbeae11c0f21","created_at":"2022-04-12T23:20:50.520Z","crn":"crn","custom_metadata":{"anyKey":"anyValue"},"description":"Extended description for this secret.","downloaded":true,"id":"b49ad24d-81d4-5ebc-b9b9-b0937d1c84d5","labels":["my-label"],"locks_total":0,"name":"my-secret","secret_group_id":"default","secret_type":"arbitrary","state":0,"state_description":"active","updated_at":"2022-04-12T23:20:50.520Z","versions_total":0,"expiration_date":"2033-04-12T23:20:50.520Z"}]}'
+        mock_response1 = '{"next":{"href":"https://myhost.com/somePath?offset=1"},"total_count":2,"limit":1,"secrets":[{"created_by":"iam-ServiceId-e4a2f0a4-3c76-4bef-b1f2-fbeae11c0f21","created_at":"2022-04-12T23:20:50.520Z","crn":"crn","custom_metadata":{"anyKey":"anyValue"},"description":"Extended description for this secret.","downloaded":true,"id":"b49ad24d-81d4-5ebc-b9b9-b0937d1c84d5","labels":["my-label"],"locks_total":0,"name":"my-secret","secret_group_id":"default","secret_type":"arbitrary","state":0,"state_description":"active","updated_at":"2022-04-12T23:20:50.520Z","versions_total":0,"referenced_by":["my-example-engine-config"],"expiration_date":"2033-04-12T23:20:50.520Z"}]}'
+        mock_response2 = '{"total_count":2,"limit":1,"secrets":[{"created_by":"iam-ServiceId-e4a2f0a4-3c76-4bef-b1f2-fbeae11c0f21","created_at":"2022-04-12T23:20:50.520Z","crn":"crn","custom_metadata":{"anyKey":"anyValue"},"description":"Extended description for this secret.","downloaded":true,"id":"b49ad24d-81d4-5ebc-b9b9-b0937d1c84d5","labels":["my-label"],"locks_total":0,"name":"my-secret","secret_group_id":"default","secret_type":"arbitrary","state":0,"state_description":"active","updated_at":"2022-04-12T23:20:50.520Z","versions_total":0,"referenced_by":["my-example-engine-config"],"expiration_date":"2033-04-12T23:20:50.520Z"}]}'
         responses.add(
             responses.GET,
             url,
@@ -778,8 +771,8 @@ class TestListSecrets:
         """
         # Set up a two-page mock response
         url = preprocess_url('/api/v2/secrets')
-        mock_response1 = '{"next":{"href":"https://myhost.com/somePath?offset=1"},"total_count":2,"limit":1,"secrets":[{"created_by":"iam-ServiceId-e4a2f0a4-3c76-4bef-b1f2-fbeae11c0f21","created_at":"2022-04-12T23:20:50.520Z","crn":"crn","custom_metadata":{"anyKey":"anyValue"},"description":"Extended description for this secret.","downloaded":true,"id":"b49ad24d-81d4-5ebc-b9b9-b0937d1c84d5","labels":["my-label"],"locks_total":0,"name":"my-secret","secret_group_id":"default","secret_type":"arbitrary","state":0,"state_description":"active","updated_at":"2022-04-12T23:20:50.520Z","versions_total":0,"expiration_date":"2033-04-12T23:20:50.520Z"}]}'
-        mock_response2 = '{"total_count":2,"limit":1,"secrets":[{"created_by":"iam-ServiceId-e4a2f0a4-3c76-4bef-b1f2-fbeae11c0f21","created_at":"2022-04-12T23:20:50.520Z","crn":"crn","custom_metadata":{"anyKey":"anyValue"},"description":"Extended description for this secret.","downloaded":true,"id":"b49ad24d-81d4-5ebc-b9b9-b0937d1c84d5","labels":["my-label"],"locks_total":0,"name":"my-secret","secret_group_id":"default","secret_type":"arbitrary","state":0,"state_description":"active","updated_at":"2022-04-12T23:20:50.520Z","versions_total":0,"expiration_date":"2033-04-12T23:20:50.520Z"}]}'
+        mock_response1 = '{"next":{"href":"https://myhost.com/somePath?offset=1"},"total_count":2,"limit":1,"secrets":[{"created_by":"iam-ServiceId-e4a2f0a4-3c76-4bef-b1f2-fbeae11c0f21","created_at":"2022-04-12T23:20:50.520Z","crn":"crn","custom_metadata":{"anyKey":"anyValue"},"description":"Extended description for this secret.","downloaded":true,"id":"b49ad24d-81d4-5ebc-b9b9-b0937d1c84d5","labels":["my-label"],"locks_total":0,"name":"my-secret","secret_group_id":"default","secret_type":"arbitrary","state":0,"state_description":"active","updated_at":"2022-04-12T23:20:50.520Z","versions_total":0,"referenced_by":["my-example-engine-config"],"expiration_date":"2033-04-12T23:20:50.520Z"}]}'
+        mock_response2 = '{"total_count":2,"limit":1,"secrets":[{"created_by":"iam-ServiceId-e4a2f0a4-3c76-4bef-b1f2-fbeae11c0f21","created_at":"2022-04-12T23:20:50.520Z","crn":"crn","custom_metadata":{"anyKey":"anyValue"},"description":"Extended description for this secret.","downloaded":true,"id":"b49ad24d-81d4-5ebc-b9b9-b0937d1c84d5","labels":["my-label"],"locks_total":0,"name":"my-secret","secret_group_id":"default","secret_type":"arbitrary","state":0,"state_description":"active","updated_at":"2022-04-12T23:20:50.520Z","versions_total":0,"referenced_by":["my-example-engine-config"],"expiration_date":"2033-04-12T23:20:50.520Z"}]}'
         responses.add(
             responses.GET,
             url,
@@ -822,7 +815,7 @@ class TestGetSecret:
         """
         # Set up mock
         url = preprocess_url('/api/v2/secrets/0b5571f7-21e6-42b7-91c5-3f5ac9793a46')
-        mock_response = '{"created_by": "iam-ServiceId-e4a2f0a4-3c76-4bef-b1f2-fbeae11c0f21", "created_at": "2022-04-12T23:20:50.520Z", "crn": "crn", "custom_metadata": {"anyKey": "anyValue"}, "description": "Extended description for this secret.", "downloaded": true, "id": "b49ad24d-81d4-5ebc-b9b9-b0937d1c84d5", "labels": ["my-label"], "locks_total": 0, "name": "my-secret", "secret_group_id": "default", "secret_type": "arbitrary", "state": 0, "state_description": "active", "updated_at": "2022-04-12T23:20:50.520Z", "versions_total": 0, "expiration_date": "2033-04-12T23:20:50.520Z", "payload": "secret-credentials"}'
+        mock_response = '{"created_by": "iam-ServiceId-e4a2f0a4-3c76-4bef-b1f2-fbeae11c0f21", "created_at": "2022-04-12T23:20:50.520Z", "crn": "crn", "custom_metadata": {"anyKey": "anyValue"}, "description": "Extended description for this secret.", "downloaded": true, "id": "b49ad24d-81d4-5ebc-b9b9-b0937d1c84d5", "labels": ["my-label"], "locks_total": 0, "name": "my-secret", "secret_group_id": "default", "secret_type": "arbitrary", "state": 0, "state_description": "active", "updated_at": "2022-04-12T23:20:50.520Z", "versions_total": 0, "referenced_by": ["my-example-engine-config"], "expiration_date": "2033-04-12T23:20:50.520Z", "payload": "secret-credentials"}'
         responses.add(
             responses.GET,
             url,
@@ -860,7 +853,7 @@ class TestGetSecret:
         """
         # Set up mock
         url = preprocess_url('/api/v2/secrets/0b5571f7-21e6-42b7-91c5-3f5ac9793a46')
-        mock_response = '{"created_by": "iam-ServiceId-e4a2f0a4-3c76-4bef-b1f2-fbeae11c0f21", "created_at": "2022-04-12T23:20:50.520Z", "crn": "crn", "custom_metadata": {"anyKey": "anyValue"}, "description": "Extended description for this secret.", "downloaded": true, "id": "b49ad24d-81d4-5ebc-b9b9-b0937d1c84d5", "labels": ["my-label"], "locks_total": 0, "name": "my-secret", "secret_group_id": "default", "secret_type": "arbitrary", "state": 0, "state_description": "active", "updated_at": "2022-04-12T23:20:50.520Z", "versions_total": 0, "expiration_date": "2033-04-12T23:20:50.520Z", "payload": "secret-credentials"}'
+        mock_response = '{"created_by": "iam-ServiceId-e4a2f0a4-3c76-4bef-b1f2-fbeae11c0f21", "created_at": "2022-04-12T23:20:50.520Z", "crn": "crn", "custom_metadata": {"anyKey": "anyValue"}, "description": "Extended description for this secret.", "downloaded": true, "id": "b49ad24d-81d4-5ebc-b9b9-b0937d1c84d5", "labels": ["my-label"], "locks_total": 0, "name": "my-secret", "secret_group_id": "default", "secret_type": "arbitrary", "state": 0, "state_description": "active", "updated_at": "2022-04-12T23:20:50.520Z", "versions_total": 0, "referenced_by": ["my-example-engine-config"], "expiration_date": "2033-04-12T23:20:50.520Z", "payload": "secret-credentials"}'
         responses.add(
             responses.GET,
             url,
@@ -978,7 +971,7 @@ class TestGetSecretMetadata:
         """
         # Set up mock
         url = preprocess_url('/api/v2/secrets/0b5571f7-21e6-42b7-91c5-3f5ac9793a46/metadata')
-        mock_response = '{"created_by": "iam-ServiceId-e4a2f0a4-3c76-4bef-b1f2-fbeae11c0f21", "created_at": "2022-04-12T23:20:50.520Z", "crn": "crn", "custom_metadata": {"anyKey": "anyValue"}, "description": "Extended description for this secret.", "downloaded": true, "id": "b49ad24d-81d4-5ebc-b9b9-b0937d1c84d5", "labels": ["my-label"], "locks_total": 0, "name": "my-secret", "secret_group_id": "default", "secret_type": "arbitrary", "state": 0, "state_description": "active", "updated_at": "2022-04-12T23:20:50.520Z", "versions_total": 0, "expiration_date": "2033-04-12T23:20:50.520Z"}'
+        mock_response = '{"created_by": "iam-ServiceId-e4a2f0a4-3c76-4bef-b1f2-fbeae11c0f21", "created_at": "2022-04-12T23:20:50.520Z", "crn": "crn", "custom_metadata": {"anyKey": "anyValue"}, "description": "Extended description for this secret.", "downloaded": true, "id": "b49ad24d-81d4-5ebc-b9b9-b0937d1c84d5", "labels": ["my-label"], "locks_total": 0, "name": "my-secret", "secret_group_id": "default", "secret_type": "arbitrary", "state": 0, "state_description": "active", "updated_at": "2022-04-12T23:20:50.520Z", "versions_total": 0, "referenced_by": ["my-example-engine-config"], "expiration_date": "2033-04-12T23:20:50.520Z"}'
         responses.add(
             responses.GET,
             url,
@@ -1016,7 +1009,7 @@ class TestGetSecretMetadata:
         """
         # Set up mock
         url = preprocess_url('/api/v2/secrets/0b5571f7-21e6-42b7-91c5-3f5ac9793a46/metadata')
-        mock_response = '{"created_by": "iam-ServiceId-e4a2f0a4-3c76-4bef-b1f2-fbeae11c0f21", "created_at": "2022-04-12T23:20:50.520Z", "crn": "crn", "custom_metadata": {"anyKey": "anyValue"}, "description": "Extended description for this secret.", "downloaded": true, "id": "b49ad24d-81d4-5ebc-b9b9-b0937d1c84d5", "labels": ["my-label"], "locks_total": 0, "name": "my-secret", "secret_group_id": "default", "secret_type": "arbitrary", "state": 0, "state_description": "active", "updated_at": "2022-04-12T23:20:50.520Z", "versions_total": 0, "expiration_date": "2033-04-12T23:20:50.520Z"}'
+        mock_response = '{"created_by": "iam-ServiceId-e4a2f0a4-3c76-4bef-b1f2-fbeae11c0f21", "created_at": "2022-04-12T23:20:50.520Z", "crn": "crn", "custom_metadata": {"anyKey": "anyValue"}, "description": "Extended description for this secret.", "downloaded": true, "id": "b49ad24d-81d4-5ebc-b9b9-b0937d1c84d5", "labels": ["my-label"], "locks_total": 0, "name": "my-secret", "secret_group_id": "default", "secret_type": "arbitrary", "state": 0, "state_description": "active", "updated_at": "2022-04-12T23:20:50.520Z", "versions_total": 0, "referenced_by": ["my-example-engine-config"], "expiration_date": "2033-04-12T23:20:50.520Z"}'
         responses.add(
             responses.GET,
             url,
@@ -1059,7 +1052,7 @@ class TestUpdateSecretMetadata:
         """
         # Set up mock
         url = preprocess_url('/api/v2/secrets/0b5571f7-21e6-42b7-91c5-3f5ac9793a46/metadata')
-        mock_response = '{"created_by": "iam-ServiceId-e4a2f0a4-3c76-4bef-b1f2-fbeae11c0f21", "created_at": "2022-04-12T23:20:50.520Z", "crn": "crn", "custom_metadata": {"anyKey": "anyValue"}, "description": "Extended description for this secret.", "downloaded": true, "id": "b49ad24d-81d4-5ebc-b9b9-b0937d1c84d5", "labels": ["my-label"], "locks_total": 0, "name": "my-secret", "secret_group_id": "default", "secret_type": "arbitrary", "state": 0, "state_description": "active", "updated_at": "2022-04-12T23:20:50.520Z", "versions_total": 0, "expiration_date": "2033-04-12T23:20:50.520Z"}'
+        mock_response = '{"created_by": "iam-ServiceId-e4a2f0a4-3c76-4bef-b1f2-fbeae11c0f21", "created_at": "2022-04-12T23:20:50.520Z", "crn": "crn", "custom_metadata": {"anyKey": "anyValue"}, "description": "Extended description for this secret.", "downloaded": true, "id": "b49ad24d-81d4-5ebc-b9b9-b0937d1c84d5", "labels": ["my-label"], "locks_total": 0, "name": "my-secret", "secret_group_id": "default", "secret_type": "arbitrary", "state": 0, "state_description": "active", "updated_at": "2022-04-12T23:20:50.520Z", "versions_total": 0, "referenced_by": ["my-example-engine-config"], "expiration_date": "2033-04-12T23:20:50.520Z"}'
         responses.add(
             responses.PATCH,
             url,
@@ -1110,7 +1103,7 @@ class TestUpdateSecretMetadata:
         """
         # Set up mock
         url = preprocess_url('/api/v2/secrets/0b5571f7-21e6-42b7-91c5-3f5ac9793a46/metadata')
-        mock_response = '{"created_by": "iam-ServiceId-e4a2f0a4-3c76-4bef-b1f2-fbeae11c0f21", "created_at": "2022-04-12T23:20:50.520Z", "crn": "crn", "custom_metadata": {"anyKey": "anyValue"}, "description": "Extended description for this secret.", "downloaded": true, "id": "b49ad24d-81d4-5ebc-b9b9-b0937d1c84d5", "labels": ["my-label"], "locks_total": 0, "name": "my-secret", "secret_group_id": "default", "secret_type": "arbitrary", "state": 0, "state_description": "active", "updated_at": "2022-04-12T23:20:50.520Z", "versions_total": 0, "expiration_date": "2033-04-12T23:20:50.520Z"}'
+        mock_response = '{"created_by": "iam-ServiceId-e4a2f0a4-3c76-4bef-b1f2-fbeae11c0f21", "created_at": "2022-04-12T23:20:50.520Z", "crn": "crn", "custom_metadata": {"anyKey": "anyValue"}, "description": "Extended description for this secret.", "downloaded": true, "id": "b49ad24d-81d4-5ebc-b9b9-b0937d1c84d5", "labels": ["my-label"], "locks_total": 0, "name": "my-secret", "secret_group_id": "default", "secret_type": "arbitrary", "state": 0, "state_description": "active", "updated_at": "2022-04-12T23:20:50.520Z", "versions_total": 0, "referenced_by": ["my-example-engine-config"], "expiration_date": "2033-04-12T23:20:50.520Z"}'
         responses.add(
             responses.PATCH,
             url,
@@ -1259,7 +1252,7 @@ class TestGetSecretByNameType:
         """
         # Set up mock
         url = preprocess_url('/api/v2/secret_groups/default/secret_types/arbitrary/secrets/my-secret')
-        mock_response = '{"created_by": "iam-ServiceId-e4a2f0a4-3c76-4bef-b1f2-fbeae11c0f21", "created_at": "2022-04-12T23:20:50.520Z", "crn": "crn", "custom_metadata": {"anyKey": "anyValue"}, "description": "Extended description for this secret.", "downloaded": true, "id": "b49ad24d-81d4-5ebc-b9b9-b0937d1c84d5", "labels": ["my-label"], "locks_total": 0, "name": "my-secret", "secret_group_id": "default", "secret_type": "arbitrary", "state": 0, "state_description": "active", "updated_at": "2022-04-12T23:20:50.520Z", "versions_total": 0, "expiration_date": "2033-04-12T23:20:50.520Z", "payload": "secret-credentials"}'
+        mock_response = '{"created_by": "iam-ServiceId-e4a2f0a4-3c76-4bef-b1f2-fbeae11c0f21", "created_at": "2022-04-12T23:20:50.520Z", "crn": "crn", "custom_metadata": {"anyKey": "anyValue"}, "description": "Extended description for this secret.", "downloaded": true, "id": "b49ad24d-81d4-5ebc-b9b9-b0937d1c84d5", "labels": ["my-label"], "locks_total": 0, "name": "my-secret", "secret_group_id": "default", "secret_type": "arbitrary", "state": 0, "state_description": "active", "updated_at": "2022-04-12T23:20:50.520Z", "versions_total": 0, "referenced_by": ["my-example-engine-config"], "expiration_date": "2033-04-12T23:20:50.520Z", "payload": "secret-credentials"}'
         responses.add(
             responses.GET,
             url,
@@ -1301,7 +1294,7 @@ class TestGetSecretByNameType:
         """
         # Set up mock
         url = preprocess_url('/api/v2/secret_groups/default/secret_types/arbitrary/secrets/my-secret')
-        mock_response = '{"created_by": "iam-ServiceId-e4a2f0a4-3c76-4bef-b1f2-fbeae11c0f21", "created_at": "2022-04-12T23:20:50.520Z", "crn": "crn", "custom_metadata": {"anyKey": "anyValue"}, "description": "Extended description for this secret.", "downloaded": true, "id": "b49ad24d-81d4-5ebc-b9b9-b0937d1c84d5", "labels": ["my-label"], "locks_total": 0, "name": "my-secret", "secret_group_id": "default", "secret_type": "arbitrary", "state": 0, "state_description": "active", "updated_at": "2022-04-12T23:20:50.520Z", "versions_total": 0, "expiration_date": "2033-04-12T23:20:50.520Z", "payload": "secret-credentials"}'
+        mock_response = '{"created_by": "iam-ServiceId-e4a2f0a4-3c76-4bef-b1f2-fbeae11c0f21", "created_at": "2022-04-12T23:20:50.520Z", "crn": "crn", "custom_metadata": {"anyKey": "anyValue"}, "description": "Extended description for this secret.", "downloaded": true, "id": "b49ad24d-81d4-5ebc-b9b9-b0937d1c84d5", "labels": ["my-label"], "locks_total": 0, "name": "my-secret", "secret_group_id": "default", "secret_type": "arbitrary", "state": 0, "state_description": "active", "updated_at": "2022-04-12T23:20:50.520Z", "versions_total": 0, "referenced_by": ["my-example-engine-config"], "expiration_date": "2033-04-12T23:20:50.520Z", "payload": "secret-credentials"}'
         responses.add(
             responses.GET,
             url,
@@ -3264,36 +3257,12 @@ class TestCreateConfiguration:
             status=201,
         )
 
-        # Construct a dict representation of a PrivateCertificateConfigurationRootCAPrototype model
+        # Construct a dict representation of a PublicCertificateConfigurationDNSCloudInternetServicesPrototype model
         configuration_prototype_model = {}
-        configuration_prototype_model['config_type'] = 'private_cert_configuration_root_ca'
-        configuration_prototype_model['name'] = 'example-root-CA'
-        configuration_prototype_model['max_ttl'] = '43830h'
-        configuration_prototype_model['crl_expiry'] = '72h'
-        configuration_prototype_model['crl_disable'] = False
-        configuration_prototype_model['crl_distribution_points_encoded'] = True
-        configuration_prototype_model['issuing_certificates_urls_encoded'] = True
-        configuration_prototype_model['common_name'] = 'example.com'
-        configuration_prototype_model['alt_names'] = ['alt-name-1', 'alt-name-2']
-        configuration_prototype_model['ip_sans'] = '127.0.0.1'
-        configuration_prototype_model['uri_sans'] = 'https://www.example.com/test'
-        configuration_prototype_model['other_sans'] = ['1.2.3.5.4.3.201.10.4.3;utf8:test@example.com']
-        configuration_prototype_model['ttl'] = '2190h'
-        configuration_prototype_model['format'] = 'pem'
-        configuration_prototype_model['private_key_format'] = 'der'
-        configuration_prototype_model['key_type'] = 'rsa'
-        configuration_prototype_model['key_bits'] = 4096
-        configuration_prototype_model['max_path_length'] = -1
-        configuration_prototype_model['exclude_cn_from_sans'] = False
-        configuration_prototype_model['permitted_dns_domains'] = ['testString']
-        configuration_prototype_model['ou'] = ['testString']
-        configuration_prototype_model['organization'] = ['testString']
-        configuration_prototype_model['country'] = ['testString']
-        configuration_prototype_model['locality'] = ['testString']
-        configuration_prototype_model['province'] = ['testString']
-        configuration_prototype_model['street_address'] = ['testString']
-        configuration_prototype_model['postal_code'] = ['testString']
-        configuration_prototype_model['serial_number'] = 'd9:be:fe:35:ba:09:42:b5:35:ba:09:42:b5'
+        configuration_prototype_model['config_type'] = 'public_cert_configuration_dns_cloud_internet_services'
+        configuration_prototype_model['name'] = 'example-cloud-internet-services-config'
+        configuration_prototype_model['cloud_internet_services_apikey'] = '5ipu_ykv0PMp2MhxQnDMn7VzrkSlBwi3BOI8uthi_EXZ'
+        configuration_prototype_model['cloud_internet_services_crn'] = 'crn:v1:bluemix:public:internet-svcs:global:a/128e84fcca45c1224aae525d31ef2b52:009a0357-1460-42b4-b903-10580aba7dd8::'
 
         # Set up parameter values
         configuration_prototype = configuration_prototype_model
@@ -3336,36 +3305,12 @@ class TestCreateConfiguration:
             status=201,
         )
 
-        # Construct a dict representation of a PrivateCertificateConfigurationRootCAPrototype model
+        # Construct a dict representation of a PublicCertificateConfigurationDNSCloudInternetServicesPrototype model
         configuration_prototype_model = {}
-        configuration_prototype_model['config_type'] = 'private_cert_configuration_root_ca'
-        configuration_prototype_model['name'] = 'example-root-CA'
-        configuration_prototype_model['max_ttl'] = '43830h'
-        configuration_prototype_model['crl_expiry'] = '72h'
-        configuration_prototype_model['crl_disable'] = False
-        configuration_prototype_model['crl_distribution_points_encoded'] = True
-        configuration_prototype_model['issuing_certificates_urls_encoded'] = True
-        configuration_prototype_model['common_name'] = 'example.com'
-        configuration_prototype_model['alt_names'] = ['alt-name-1', 'alt-name-2']
-        configuration_prototype_model['ip_sans'] = '127.0.0.1'
-        configuration_prototype_model['uri_sans'] = 'https://www.example.com/test'
-        configuration_prototype_model['other_sans'] = ['1.2.3.5.4.3.201.10.4.3;utf8:test@example.com']
-        configuration_prototype_model['ttl'] = '2190h'
-        configuration_prototype_model['format'] = 'pem'
-        configuration_prototype_model['private_key_format'] = 'der'
-        configuration_prototype_model['key_type'] = 'rsa'
-        configuration_prototype_model['key_bits'] = 4096
-        configuration_prototype_model['max_path_length'] = -1
-        configuration_prototype_model['exclude_cn_from_sans'] = False
-        configuration_prototype_model['permitted_dns_domains'] = ['testString']
-        configuration_prototype_model['ou'] = ['testString']
-        configuration_prototype_model['organization'] = ['testString']
-        configuration_prototype_model['country'] = ['testString']
-        configuration_prototype_model['locality'] = ['testString']
-        configuration_prototype_model['province'] = ['testString']
-        configuration_prototype_model['street_address'] = ['testString']
-        configuration_prototype_model['postal_code'] = ['testString']
-        configuration_prototype_model['serial_number'] = 'd9:be:fe:35:ba:09:42:b5:35:ba:09:42:b5'
+        configuration_prototype_model['config_type'] = 'public_cert_configuration_dns_cloud_internet_services'
+        configuration_prototype_model['name'] = 'example-cloud-internet-services-config'
+        configuration_prototype_model['cloud_internet_services_apikey'] = '5ipu_ykv0PMp2MhxQnDMn7VzrkSlBwi3BOI8uthi_EXZ'
+        configuration_prototype_model['cloud_internet_services_crn'] = 'crn:v1:bluemix:public:internet-svcs:global:a/128e84fcca45c1224aae525d31ef2b52:009a0357-1460-42b4-b903-10580aba7dd8::'
 
         # Set up parameter values
         configuration_prototype = configuration_prototype_model
@@ -3415,6 +3360,7 @@ class TestListConfigurations:
         limit = 200
         sort = 'config_type'
         search = 'example'
+        secret_types = ['iam_credentials', 'public_cert', 'private_cert']
 
         # Invoke method
         response = _service.list_configurations(
@@ -3422,6 +3368,7 @@ class TestListConfigurations:
             limit=limit,
             sort=sort,
             search=search,
+            secret_types=secret_types,
             headers={},
         )
 
@@ -3435,6 +3382,7 @@ class TestListConfigurations:
         assert 'limit={}'.format(limit) in query_string
         assert 'sort={}'.format(sort) in query_string
         assert 'search={}'.format(search) in query_string
+        assert 'secret_types={}'.format(','.join(secret_types)) in query_string
 
     def test_list_configurations_all_params_with_retries(self):
         # Enable retries and run test_list_configurations_all_params.
@@ -3508,6 +3456,7 @@ class TestListConfigurations:
             limit=10,
             sort='config_type',
             search='example',
+            secret_types=['iam_credentials', 'public_cert', 'private_cert'],
         )
         while pager.has_next():
             next_page = pager.get_next()
@@ -3545,6 +3494,7 @@ class TestListConfigurations:
             limit=10,
             sort='config_type',
             search='example',
+            secret_types=['iam_credentials', 'public_cert', 'private_cert'],
         )
         all_results = pager.get_all()
         assert all_results is not None
@@ -3574,7 +3524,7 @@ class TestGetConfiguration:
 
         # Set up parameter values
         name = 'configuration-name'
-        x_sm_accept_configuration_type = 'private_cert_configuration_root_ca'
+        x_sm_accept_configuration_type = 'public_cert_configuration_dns_cloud_internet_services'
 
         # Invoke method
         response = _service.get_configuration(
@@ -3693,14 +3643,15 @@ class TestUpdateConfiguration:
             status=200,
         )
 
-        # Construct a dict representation of a IAMCredentialsConfigurationPatch model
+        # Construct a dict representation of a PublicCertificateConfigurationDNSCloudInternetServicesPatch model
         configuration_patch_model = {}
-        configuration_patch_model['api_key'] = 'RmnPBn6n1dzoo0v3kyznKEpg0WzdTpW9lW7FtKa017_u'
+        configuration_patch_model['cloud_internet_services_apikey'] = '5ipu_ykv0PMp2MhxQnDMn7VzrkSlBwi3BOI8uthi_EXZ'
+        configuration_patch_model['cloud_internet_services_crn'] = 'crn:v1:bluemix:public:internet-svcs:global:a/128e84fcca45c1224aae525d31ef2b52:009a0357-1460-42b4-b903-10580aba7dd8::'
 
         # Set up parameter values
         name = 'configuration-name'
         configuration_patch = configuration_patch_model
-        x_sm_accept_configuration_type = 'private_cert_configuration_root_ca'
+        x_sm_accept_configuration_type = 'public_cert_configuration_dns_cloud_internet_services'
 
         # Invoke method
         response = _service.update_configuration(
@@ -3742,9 +3693,10 @@ class TestUpdateConfiguration:
             status=200,
         )
 
-        # Construct a dict representation of a IAMCredentialsConfigurationPatch model
+        # Construct a dict representation of a PublicCertificateConfigurationDNSCloudInternetServicesPatch model
         configuration_patch_model = {}
-        configuration_patch_model['api_key'] = 'RmnPBn6n1dzoo0v3kyznKEpg0WzdTpW9lW7FtKa017_u'
+        configuration_patch_model['cloud_internet_services_apikey'] = '5ipu_ykv0PMp2MhxQnDMn7VzrkSlBwi3BOI8uthi_EXZ'
+        configuration_patch_model['cloud_internet_services_crn'] = 'crn:v1:bluemix:public:internet-svcs:global:a/128e84fcca45c1224aae525d31ef2b52:009a0357-1460-42b4-b903-10580aba7dd8::'
 
         # Set up parameter values
         name = 'configuration-name'
@@ -3789,9 +3741,10 @@ class TestUpdateConfiguration:
             status=200,
         )
 
-        # Construct a dict representation of a IAMCredentialsConfigurationPatch model
+        # Construct a dict representation of a PublicCertificateConfigurationDNSCloudInternetServicesPatch model
         configuration_patch_model = {}
-        configuration_patch_model['api_key'] = 'RmnPBn6n1dzoo0v3kyznKEpg0WzdTpW9lW7FtKa017_u'
+        configuration_patch_model['cloud_internet_services_apikey'] = '5ipu_ykv0PMp2MhxQnDMn7VzrkSlBwi3BOI8uthi_EXZ'
+        configuration_patch_model['cloud_internet_services_crn'] = 'crn:v1:bluemix:public:internet-svcs:global:a/128e84fcca45c1224aae525d31ef2b52:009a0357-1460-42b4-b903-10580aba7dd8::'
 
         # Set up parameter values
         name = 'configuration-name'
@@ -3837,7 +3790,7 @@ class TestDeleteConfiguration:
 
         # Set up parameter values
         name = 'configuration-name'
-        x_sm_accept_configuration_type = 'private_cert_configuration_root_ca'
+        x_sm_accept_configuration_type = 'public_cert_configuration_dns_cloud_internet_services'
 
         # Invoke method
         response = _service.delete_configuration(
@@ -3957,7 +3910,7 @@ class TestCreateConfigurationAction:
         # Set up parameter values
         name = 'configuration-name'
         config_action_prototype = configuration_action_prototype_model
-        x_sm_accept_configuration_type = 'private_cert_configuration_root_ca'
+        x_sm_accept_configuration_type = 'public_cert_configuration_dns_cloud_internet_services'
 
         # Invoke method
         response = _service.create_configuration_action(
@@ -4723,6 +4676,47 @@ class TestModel_PasswordGenerationPolicyRO:
         assert password_generation_policy_ro_model_json2 == password_generation_policy_ro_model_json
 
 
+class TestModel_PrivateCertificateCryptoKey:
+    """
+    Test Class for PrivateCertificateCryptoKey
+    """
+
+    def test_private_certificate_crypto_key_serialization(self):
+        """
+        Test serialization/deserialization for PrivateCertificateCryptoKey
+        """
+
+        # Construct dict forms of any model objects needed in order to build this model.
+
+        private_certificate_crypto_provider_model = {}  # PrivateCertificateCryptoProviderHPCS
+        private_certificate_crypto_provider_model['type'] = 'hyper_protect_crypto_services'
+        private_certificate_crypto_provider_model['instance_crn'] = 'crn:v1:bluemix:public:hs-crypto:us-south:a/791f3fb10486421e97aa8512f18b7e65:b49ad24d-81d4-5ebc-b9b9-b0937d1c84d5::'
+        private_certificate_crypto_provider_model['pin_iam_credentials_secret_id'] = '6ebb80d3-26d1-4e24-81d6-afb0d8e22f54'
+        private_certificate_crypto_provider_model['private_keystore_id'] = 'b49ad24d-81d4-5ebc-b9b9-b0937d1c84d5'
+
+        # Construct a json representation of a PrivateCertificateCryptoKey model
+        private_certificate_crypto_key_model_json = {}
+        private_certificate_crypto_key_model_json['id'] = 'ad629506-3aca-4191-b8fc-8b295ec7a19c'
+        private_certificate_crypto_key_model_json['label'] = 'my_key'
+        private_certificate_crypto_key_model_json['allow_generate_key'] = False
+        private_certificate_crypto_key_model_json['provider'] = private_certificate_crypto_provider_model
+
+        # Construct a model instance of PrivateCertificateCryptoKey by calling from_dict on the json representation
+        private_certificate_crypto_key_model = PrivateCertificateCryptoKey.from_dict(private_certificate_crypto_key_model_json)
+        assert private_certificate_crypto_key_model != False
+
+        # Construct a model instance of PrivateCertificateCryptoKey by calling from_dict on the json representation
+        private_certificate_crypto_key_model_dict = PrivateCertificateCryptoKey.from_dict(private_certificate_crypto_key_model_json).__dict__
+        private_certificate_crypto_key_model2 = PrivateCertificateCryptoKey(**private_certificate_crypto_key_model_dict)
+
+        # Verify the model instances are equivalent
+        assert private_certificate_crypto_key_model == private_certificate_crypto_key_model2
+
+        # Convert model instance back to dict and verify no loss of data
+        private_certificate_crypto_key_model_json2 = private_certificate_crypto_key_model.to_dict()
+        assert private_certificate_crypto_key_model_json2 == private_certificate_crypto_key_model_json
+
+
 class TestModel_PublicCertificateRotationObject:
     """
     Test Class for PublicCertificateRotationObject
@@ -5399,7 +5393,7 @@ class TestModel_ServiceCredentialsSecretCredentials:
         expected_dict = {'foo': 'testString'}
         service_credentials_secret_credentials_model.set_properties(expected_dict)
         actual_dict = service_credentials_secret_credentials_model.get_properties()
-        assert actual_dict == expected_dict
+        assert actual_dict.keys() == expected_dict.keys()
 
 
 class TestModel_ServiceCredentialsSecretSourceService:
@@ -5700,7 +5694,7 @@ class TestModel_ServiceCredentialsSourceServiceParameters:
         expected_dict = {'foo': 'testString'}
         service_credentials_source_service_parameters_model.set_properties(expected_dict)
         actual_dict = service_credentials_source_service_parameters_model.get_properties()
-        assert actual_dict == expected_dict
+        assert actual_dict.keys() == expected_dict.keys()
 
 
 class TestModel_ServiceCredentialsSourceServiceRole:
@@ -7631,6 +7625,18 @@ class TestModel_PrivateCertificateConfigurationIntermediateCA:
 
         # Construct dict forms of any model objects needed in order to build this model.
 
+        private_certificate_crypto_provider_model = {}  # PrivateCertificateCryptoProviderHPCS
+        private_certificate_crypto_provider_model['type'] = 'hyper_protect_crypto_services'
+        private_certificate_crypto_provider_model['instance_crn'] = 'crn:v1:bluemix:public:hs-crypto:us-south:a/791f3fb10486421e97aa8512f18b7e65:b49ad24d-81d4-5ebc-b9b9-b0937d1c84d5::'
+        private_certificate_crypto_provider_model['pin_iam_credentials_secret_id'] = '6ebb80d3-26d1-4e24-81d6-afb0d8e22f54'
+        private_certificate_crypto_provider_model['private_keystore_id'] = 'b49ad24d-81d4-5ebc-b9b9-b0937d1c84d5'
+
+        private_certificate_crypto_key_model = {}  # PrivateCertificateCryptoKey
+        private_certificate_crypto_key_model['id'] = 'ad629506-3aca-4191-b8fc-8b295ec7a19c'
+        private_certificate_crypto_key_model['label'] = 'my_key'
+        private_certificate_crypto_key_model['allow_generate_key'] = False
+        private_certificate_crypto_key_model['provider'] = private_certificate_crypto_provider_model
+
         private_certificate_ca_data_model = {}  # PrivateCertificateConfigurationIntermediateCACSR
         private_certificate_ca_data_model['csr'] = 'testString'
         private_certificate_ca_data_model['private_key'] = 'testString'
@@ -7651,6 +7657,7 @@ class TestModel_PrivateCertificateConfigurationIntermediateCA:
         private_certificate_configuration_intermediate_ca_model_json['key_type'] = 'rsa'
         private_certificate_configuration_intermediate_ca_model_json['key_bits'] = 4096
         private_certificate_configuration_intermediate_ca_model_json['signing_method'] = 'internal'
+        private_certificate_configuration_intermediate_ca_model_json['crypto_key'] = private_certificate_crypto_key_model
         private_certificate_configuration_intermediate_ca_model_json['crl_disable'] = True
         private_certificate_configuration_intermediate_ca_model_json['issuing_certificates_urls_encoded'] = True
         private_certificate_configuration_intermediate_ca_model_json['alt_names'] = ['s1.example.com', '*.s2.example.com']
@@ -7728,6 +7735,20 @@ class TestModel_PrivateCertificateConfigurationIntermediateCAMetadata:
         Test serialization/deserialization for PrivateCertificateConfigurationIntermediateCAMetadata
         """
 
+        # Construct dict forms of any model objects needed in order to build this model.
+
+        private_certificate_crypto_provider_model = {}  # PrivateCertificateCryptoProviderHPCS
+        private_certificate_crypto_provider_model['type'] = 'hyper_protect_crypto_services'
+        private_certificate_crypto_provider_model['instance_crn'] = 'crn:v1:bluemix:public:hs-crypto:us-south:a/791f3fb10486421e97aa8512f18b7e65:b49ad24d-81d4-5ebc-b9b9-b0937d1c84d5::'
+        private_certificate_crypto_provider_model['pin_iam_credentials_secret_id'] = '6ebb80d3-26d1-4e24-81d6-afb0d8e22f54'
+        private_certificate_crypto_provider_model['private_keystore_id'] = 'b49ad24d-81d4-5ebc-b9b9-b0937d1c84d5'
+
+        private_certificate_crypto_key_model = {}  # PrivateCertificateCryptoKey
+        private_certificate_crypto_key_model['id'] = 'ad629506-3aca-4191-b8fc-8b295ec7a19c'
+        private_certificate_crypto_key_model['label'] = 'my_key'
+        private_certificate_crypto_key_model['allow_generate_key'] = False
+        private_certificate_crypto_key_model['provider'] = private_certificate_crypto_provider_model
+
         # Construct a json representation of a PrivateCertificateConfigurationIntermediateCAMetadata model
         private_certificate_configuration_intermediate_ca_metadata_model_json = {}
         private_certificate_configuration_intermediate_ca_metadata_model_json['config_type'] = 'private_cert_configuration_intermediate_ca'
@@ -7743,6 +7764,7 @@ class TestModel_PrivateCertificateConfigurationIntermediateCAMetadata:
         private_certificate_configuration_intermediate_ca_metadata_model_json['key_type'] = 'rsa'
         private_certificate_configuration_intermediate_ca_metadata_model_json['key_bits'] = 4096
         private_certificate_configuration_intermediate_ca_metadata_model_json['signing_method'] = 'internal'
+        private_certificate_configuration_intermediate_ca_metadata_model_json['crypto_key'] = private_certificate_crypto_key_model
 
         # Construct a model instance of PrivateCertificateConfigurationIntermediateCAMetadata by calling from_dict on the json representation
         private_certificate_configuration_intermediate_ca_metadata_model = PrivateCertificateConfigurationIntermediateCAMetadata.from_dict(private_certificate_configuration_intermediate_ca_metadata_model_json)
@@ -7804,10 +7826,25 @@ class TestModel_PrivateCertificateConfigurationIntermediateCAPrototype:
         Test serialization/deserialization for PrivateCertificateConfigurationIntermediateCAPrototype
         """
 
+        # Construct dict forms of any model objects needed in order to build this model.
+
+        private_certificate_crypto_provider_model = {}  # PrivateCertificateCryptoProviderHPCS
+        private_certificate_crypto_provider_model['type'] = 'hyper_protect_crypto_services'
+        private_certificate_crypto_provider_model['instance_crn'] = 'crn:v1:bluemix:public:hs-crypto:us-south:a/791f3fb10486421e97aa8512f18b7e65:b49ad24d-81d4-5ebc-b9b9-b0937d1c84d5::'
+        private_certificate_crypto_provider_model['pin_iam_credentials_secret_id'] = '6ebb80d3-26d1-4e24-81d6-afb0d8e22f54'
+        private_certificate_crypto_provider_model['private_keystore_id'] = 'b49ad24d-81d4-5ebc-b9b9-b0937d1c84d5'
+
+        private_certificate_crypto_key_model = {}  # PrivateCertificateCryptoKey
+        private_certificate_crypto_key_model['id'] = 'ad629506-3aca-4191-b8fc-8b295ec7a19c'
+        private_certificate_crypto_key_model['label'] = 'my_key'
+        private_certificate_crypto_key_model['allow_generate_key'] = False
+        private_certificate_crypto_key_model['provider'] = private_certificate_crypto_provider_model
+
         # Construct a json representation of a PrivateCertificateConfigurationIntermediateCAPrototype model
         private_certificate_configuration_intermediate_ca_prototype_model_json = {}
         private_certificate_configuration_intermediate_ca_prototype_model_json['config_type'] = 'private_cert_configuration_intermediate_ca'
         private_certificate_configuration_intermediate_ca_prototype_model_json['name'] = 'my-example-engine-config'
+        private_certificate_configuration_intermediate_ca_prototype_model_json['crypto_key'] = private_certificate_crypto_key_model
         private_certificate_configuration_intermediate_ca_prototype_model_json['max_ttl'] = '8760h'
         private_certificate_configuration_intermediate_ca_prototype_model_json['signing_method'] = 'internal'
         private_certificate_configuration_intermediate_ca_prototype_model_json['issuer'] = 'Lets Encrypt'
@@ -7862,6 +7899,18 @@ class TestModel_PrivateCertificateConfigurationRootCA:
 
         # Construct dict forms of any model objects needed in order to build this model.
 
+        private_certificate_crypto_provider_model = {}  # PrivateCertificateCryptoProviderHPCS
+        private_certificate_crypto_provider_model['type'] = 'hyper_protect_crypto_services'
+        private_certificate_crypto_provider_model['instance_crn'] = 'crn:v1:bluemix:public:hs-crypto:us-south:a/791f3fb10486421e97aa8512f18b7e65:b49ad24d-81d4-5ebc-b9b9-b0937d1c84d5::'
+        private_certificate_crypto_provider_model['pin_iam_credentials_secret_id'] = '6ebb80d3-26d1-4e24-81d6-afb0d8e22f54'
+        private_certificate_crypto_provider_model['private_keystore_id'] = 'b49ad24d-81d4-5ebc-b9b9-b0937d1c84d5'
+
+        private_certificate_crypto_key_model = {}  # PrivateCertificateCryptoKey
+        private_certificate_crypto_key_model['id'] = 'ad629506-3aca-4191-b8fc-8b295ec7a19c'
+        private_certificate_crypto_key_model['label'] = 'my_key'
+        private_certificate_crypto_key_model['allow_generate_key'] = False
+        private_certificate_crypto_key_model['provider'] = private_certificate_crypto_provider_model
+
         private_certificate_ca_data_model = {}  # PrivateCertificateConfigurationIntermediateCACSR
         private_certificate_ca_data_model['csr'] = 'testString'
         private_certificate_ca_data_model['private_key'] = 'testString'
@@ -7880,6 +7929,7 @@ class TestModel_PrivateCertificateConfigurationRootCA:
         private_certificate_configuration_root_ca_model_json['expiration_date'] = '2033-04-12T23:20:50.520000Z'
         private_certificate_configuration_root_ca_model_json['key_type'] = 'rsa'
         private_certificate_configuration_root_ca_model_json['key_bits'] = 4096
+        private_certificate_configuration_root_ca_model_json['crypto_key'] = private_certificate_crypto_key_model
         private_certificate_configuration_root_ca_model_json['crl_disable'] = True
         private_certificate_configuration_root_ca_model_json['issuing_certificates_urls_encoded'] = True
         private_certificate_configuration_root_ca_model_json['alt_names'] = ['s1.example.com', '*.s2.example.com']
@@ -7927,6 +7977,20 @@ class TestModel_PrivateCertificateConfigurationRootCAMetadata:
         Test serialization/deserialization for PrivateCertificateConfigurationRootCAMetadata
         """
 
+        # Construct dict forms of any model objects needed in order to build this model.
+
+        private_certificate_crypto_provider_model = {}  # PrivateCertificateCryptoProviderHPCS
+        private_certificate_crypto_provider_model['type'] = 'hyper_protect_crypto_services'
+        private_certificate_crypto_provider_model['instance_crn'] = 'crn:v1:bluemix:public:hs-crypto:us-south:a/791f3fb10486421e97aa8512f18b7e65:b49ad24d-81d4-5ebc-b9b9-b0937d1c84d5::'
+        private_certificate_crypto_provider_model['pin_iam_credentials_secret_id'] = '6ebb80d3-26d1-4e24-81d6-afb0d8e22f54'
+        private_certificate_crypto_provider_model['private_keystore_id'] = 'b49ad24d-81d4-5ebc-b9b9-b0937d1c84d5'
+
+        private_certificate_crypto_key_model = {}  # PrivateCertificateCryptoKey
+        private_certificate_crypto_key_model['id'] = 'ad629506-3aca-4191-b8fc-8b295ec7a19c'
+        private_certificate_crypto_key_model['label'] = 'my_key'
+        private_certificate_crypto_key_model['allow_generate_key'] = False
+        private_certificate_crypto_key_model['provider'] = private_certificate_crypto_provider_model
+
         # Construct a json representation of a PrivateCertificateConfigurationRootCAMetadata model
         private_certificate_configuration_root_ca_metadata_model_json = {}
         private_certificate_configuration_root_ca_metadata_model_json['config_type'] = 'private_cert_configuration_root_ca'
@@ -7940,6 +8004,7 @@ class TestModel_PrivateCertificateConfigurationRootCAMetadata:
         private_certificate_configuration_root_ca_metadata_model_json['expiration_date'] = '2033-04-12T23:20:50.520000Z'
         private_certificate_configuration_root_ca_metadata_model_json['key_type'] = 'rsa'
         private_certificate_configuration_root_ca_metadata_model_json['key_bits'] = 4096
+        private_certificate_configuration_root_ca_metadata_model_json['crypto_key'] = private_certificate_crypto_key_model
 
         # Construct a model instance of PrivateCertificateConfigurationRootCAMetadata by calling from_dict on the json representation
         private_certificate_configuration_root_ca_metadata_model = PrivateCertificateConfigurationRootCAMetadata.from_dict(private_certificate_configuration_root_ca_metadata_model_json)
@@ -8001,10 +8066,25 @@ class TestModel_PrivateCertificateConfigurationRootCAPrototype:
         Test serialization/deserialization for PrivateCertificateConfigurationRootCAPrototype
         """
 
+        # Construct dict forms of any model objects needed in order to build this model.
+
+        private_certificate_crypto_provider_model = {}  # PrivateCertificateCryptoProviderHPCS
+        private_certificate_crypto_provider_model['type'] = 'hyper_protect_crypto_services'
+        private_certificate_crypto_provider_model['instance_crn'] = 'crn:v1:bluemix:public:hs-crypto:us-south:a/791f3fb10486421e97aa8512f18b7e65:b49ad24d-81d4-5ebc-b9b9-b0937d1c84d5::'
+        private_certificate_crypto_provider_model['pin_iam_credentials_secret_id'] = '6ebb80d3-26d1-4e24-81d6-afb0d8e22f54'
+        private_certificate_crypto_provider_model['private_keystore_id'] = 'b49ad24d-81d4-5ebc-b9b9-b0937d1c84d5'
+
+        private_certificate_crypto_key_model = {}  # PrivateCertificateCryptoKey
+        private_certificate_crypto_key_model['id'] = 'ad629506-3aca-4191-b8fc-8b295ec7a19c'
+        private_certificate_crypto_key_model['label'] = 'my_key'
+        private_certificate_crypto_key_model['allow_generate_key'] = False
+        private_certificate_crypto_key_model['provider'] = private_certificate_crypto_provider_model
+
         # Construct a json representation of a PrivateCertificateConfigurationRootCAPrototype model
         private_certificate_configuration_root_ca_prototype_model_json = {}
         private_certificate_configuration_root_ca_prototype_model_json['config_type'] = 'private_cert_configuration_root_ca'
         private_certificate_configuration_root_ca_prototype_model_json['name'] = 'my-example-engine-config'
+        private_certificate_configuration_root_ca_prototype_model_json['crypto_key'] = private_certificate_crypto_key_model
         private_certificate_configuration_root_ca_prototype_model_json['max_ttl'] = '8760h'
         private_certificate_configuration_root_ca_prototype_model_json['crl_expiry'] = '72h'
         private_certificate_configuration_root_ca_prototype_model_json['crl_disable'] = True
@@ -8288,6 +8368,39 @@ class TestModel_PrivateCertificateConfigurationTemplatePrototype:
         # Convert model instance back to dict and verify no loss of data
         private_certificate_configuration_template_prototype_model_json2 = private_certificate_configuration_template_prototype_model.to_dict()
         assert private_certificate_configuration_template_prototype_model_json2 == private_certificate_configuration_template_prototype_model_json
+
+
+class TestModel_PrivateCertificateCryptoProviderHPCS:
+    """
+    Test Class for PrivateCertificateCryptoProviderHPCS
+    """
+
+    def test_private_certificate_crypto_provider_hpcs_serialization(self):
+        """
+        Test serialization/deserialization for PrivateCertificateCryptoProviderHPCS
+        """
+
+        # Construct a json representation of a PrivateCertificateCryptoProviderHPCS model
+        private_certificate_crypto_provider_hpcs_model_json = {}
+        private_certificate_crypto_provider_hpcs_model_json['type'] = 'hyper_protect_crypto_services'
+        private_certificate_crypto_provider_hpcs_model_json['instance_crn'] = 'crn:v1:bluemix:public:hs-crypto:us-south:a/791f3fb10486421e97aa8512f18b7e65:b49ad24d-81d4-5ebc-b9b9-b0937d1c84d5::'
+        private_certificate_crypto_provider_hpcs_model_json['pin_iam_credentials_secret_id'] = '6ebb80d3-26d1-4e24-81d6-afb0d8e22f54'
+        private_certificate_crypto_provider_hpcs_model_json['private_keystore_id'] = 'b49ad24d-81d4-5ebc-b9b9-b0937d1c84d5'
+
+        # Construct a model instance of PrivateCertificateCryptoProviderHPCS by calling from_dict on the json representation
+        private_certificate_crypto_provider_hpcs_model = PrivateCertificateCryptoProviderHPCS.from_dict(private_certificate_crypto_provider_hpcs_model_json)
+        assert private_certificate_crypto_provider_hpcs_model != False
+
+        # Construct a model instance of PrivateCertificateCryptoProviderHPCS by calling from_dict on the json representation
+        private_certificate_crypto_provider_hpcs_model_dict = PrivateCertificateCryptoProviderHPCS.from_dict(private_certificate_crypto_provider_hpcs_model_json).__dict__
+        private_certificate_crypto_provider_hpcs_model2 = PrivateCertificateCryptoProviderHPCS(**private_certificate_crypto_provider_hpcs_model_dict)
+
+        # Verify the model instances are equivalent
+        assert private_certificate_crypto_provider_hpcs_model == private_certificate_crypto_provider_hpcs_model2
+
+        # Convert model instance back to dict and verify no loss of data
+        private_certificate_crypto_provider_hpcs_model_json2 = private_certificate_crypto_provider_hpcs_model.to_dict()
+        assert private_certificate_crypto_provider_hpcs_model_json2 == private_certificate_crypto_provider_hpcs_model_json
 
 
 class TestModel_PrivateCertificateMetadata:

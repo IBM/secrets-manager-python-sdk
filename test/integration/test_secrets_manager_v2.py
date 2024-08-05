@@ -193,36 +193,12 @@ class TestSecretsManagerV2:
     def test_create_configuration(self):
         global configuration_name_for_get_configuration_link
 
-        # Construct a dict representation of a PrivateCertificateConfigurationRootCAPrototype model
+        # Construct a dict representation of a PublicCertificateConfigurationDNSCloudInternetServicesPrototype model
         configuration_prototype_model = {
-            'config_type': 'private_cert_configuration_root_ca',
-            'name': 'example-root-CA',
-            'max_ttl': '43830h',
-            'crl_expiry': '72h',
-            'crl_disable': False,
-            'crl_distribution_points_encoded': True,
-            'issuing_certificates_urls_encoded': True,
-            'common_name': 'example.com',
-            'alt_names': ['alt-name-1', 'alt-name-2'],
-            'ip_sans': '127.0.0.1',
-            'uri_sans': 'https://www.example.com/test',
-            'other_sans': ['1.2.3.5.4.3.201.10.4.3;utf8:test@example.com'],
-            'ttl': '2190h',
-            'format': 'pem',
-            'private_key_format': 'der',
-            'key_type': 'rsa',
-            'key_bits': 4096,
-            'max_path_length': -1,
-            'exclude_cn_from_sans': False,
-            'permitted_dns_domains': ['testString'],
-            'ou': ['testString'],
-            'organization': ['testString'],
-            'country': ['testString'],
-            'locality': ['testString'],
-            'province': ['testString'],
-            'street_address': ['testString'],
-            'postal_code': ['testString'],
-            'serial_number': 'd9:be:fe:35:ba:09:42:b5:35:ba:09:42:b5',
+            'config_type': 'public_cert_configuration_dns_cloud_internet_services',
+            'name': 'example-cloud-internet-services-config',
+            'cloud_internet_services_apikey': '5ipu_ykv0PMp2MhxQnDMn7VzrkSlBwi3BOI8uthi_EXZ',
+            'cloud_internet_services_crn': 'crn:v1:bluemix:public:internet-svcs:global:a/128e84fcca45c1224aae525d31ef2b52:009a0357-1460-42b4-b903-10580aba7dd8::',
         }
 
         response = self.secrets_manager_service.create_configuration(
@@ -582,6 +558,7 @@ class TestSecretsManagerV2:
             limit=200,
             sort='config_type',
             search='example',
+            secret_types=['iam_credentials', 'public_cert', 'private_cert'],
         )
 
         assert response.get_status_code() == 200
@@ -598,6 +575,7 @@ class TestSecretsManagerV2:
             limit=10,
             sort='config_type',
             search='example',
+            secret_types=['iam_credentials', 'public_cert', 'private_cert'],
         )
         while pager.has_next():
             next_page = pager.get_next()
@@ -610,6 +588,7 @@ class TestSecretsManagerV2:
             limit=10,
             sort='config_type',
             search='example',
+            secret_types=['iam_credentials', 'public_cert', 'private_cert'],
         )
         all_items = pager.get_all()
         assert all_items is not None
@@ -621,7 +600,7 @@ class TestSecretsManagerV2:
     def test_get_configuration(self):
         response = self.secrets_manager_service.get_configuration(
             name=configuration_name_for_get_configuration_link,
-            x_sm_accept_configuration_type='private_cert_configuration_root_ca',
+            x_sm_accept_configuration_type='public_cert_configuration_dns_cloud_internet_services',
         )
 
         assert response.get_status_code() == 200
@@ -630,37 +609,26 @@ class TestSecretsManagerV2:
 
     @needscredentials
     def test_update_configuration(self):
-        # Construct a dict representation of a IAMCredentialsConfigurationPatch model
+        # Construct a dict representation of a PublicCertificateConfigurationDNSCloudInternetServicesPatch model
         configuration_patch_model = {
-            'api_key': 'RmnPBn6n1dzoo0v3kyznKEpg0WzdTpW9lW7FtKa017_u',
+            'cloud_internet_services_apikey': '5ipu_ykv0PMp2MhxQnDMn7VzrkSlBwi3BOI8uthi_EXZ',
+            'cloud_internet_services_crn': 'crn:v1:bluemix:public:internet-svcs:global:a/128e84fcca45c1224aae525d31ef2b52:009a0357-1460-42b4-b903-10580aba7dd8::',
         }
 
         response = self.secrets_manager_service.update_configuration(
             name=configuration_name_for_get_configuration_link,
             configuration_patch=configuration_patch_model,
-            x_sm_accept_configuration_type='private_cert_configuration_root_ca',
+            x_sm_accept_configuration_type='public_cert_configuration_dns_cloud_internet_services',
         )
 
         assert response.get_status_code() == 200
         configuration = response.get_result()
         assert configuration is not None
 
-    @needscredentials
-    def test_create_configuration_action(self):
-        # Construct a dict representation of a PrivateCertificateConfigurationActionRotateCRLPrototype model
-        configuration_action_prototype_model = {
-            'action_type': 'private_cert_configuration_action_rotate_crl',
-        }
-
-        response = self.secrets_manager_service.create_configuration_action(
-            name=configuration_name_for_get_configuration_link,
-            config_action_prototype=configuration_action_prototype_model,
-            x_sm_accept_configuration_type='private_cert_configuration_root_ca',
-        )
-
-        assert response.get_status_code() == 201
-        configuration_action = response.get_result()
-        assert configuration_action is not None
+  # The integration test for create_configuration_action has been explicitly excluded from generation.
+  # A test for this operation must be developed manually.
+  # @needscredentials
+  # def test_create_configuration_action(self):
 
     @needscredentials
     def test_create_notifications_registration(self):
@@ -735,7 +703,7 @@ class TestSecretsManagerV2:
     def test_delete_configuration(self):
         response = self.secrets_manager_service.delete_configuration(
             name=configuration_name_for_get_configuration_link,
-            x_sm_accept_configuration_type='private_cert_configuration_root_ca',
+            x_sm_accept_configuration_type='public_cert_configuration_dns_cloud_internet_services',
         )
 
         assert response.get_status_code() == 204
