@@ -1,5 +1,4 @@
 # IBM Cloud Secrets Manager Python SDK
-
 A Python client library to interact with the [IBM Cloud® Secrets Manager APIs](https://cloud.ibm.com/apidocs/secrets-manager).
 
 <details>
