@@ -14,7 +14,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-# IBM OpenAPI SDK Code Generator Version: 3.95.0-d0e386be-20240906-183310
+# IBM OpenAPI SDK Code Generator Version: 3.95.2-120e65bc-20240924-152329
 
 """
 With IBM Cloud® Secrets Manager, you can create, lease, and centrally manage secrets that
@@ -2069,6 +2069,8 @@ class SecretsManagerV2(BaseService):
         signed intermediate certificate authority certificate.
         - `private_cert_configuration_action_rotate_crl`: Rotate the certificate
         revocation list (CRL) of an intermediate certificate authority.
+        - `private_cert_configuration_action_rotate_intermediate`: Rotate an internally
+        signed intermediate certificate authority certificate.
 
         :param str name: The name that uniquely identifies a configuration.
         :param ConfigurationActionPrototype config_action_prototype:
@@ -2855,7 +2857,7 @@ class ConfigurationAction:
 
         """
         msg = "Cannot instantiate base class. Instead, instantiate one of the defined subclasses: {0}".format(
-            ", ".join(['PrivateCertificateConfigurationActionRevoke', 'PrivateCertificateConfigurationActionSignCSR', 'PrivateCertificateConfigurationActionSignIntermediate', 'PrivateCertificateConfigurationActionSetSigned', 'PrivateCertificateConfigurationActionRotateCRL'])
+            ", ".join(['PrivateCertificateConfigurationActionRevoke', 'PrivateCertificateConfigurationActionRotate', 'PrivateCertificateConfigurationActionSignCSR', 'PrivateCertificateConfigurationActionSignIntermediate', 'PrivateCertificateConfigurationActionSetSigned', 'PrivateCertificateConfigurationActionRotateCRL'])
         )
         raise Exception(msg)
 
@@ -2866,7 +2868,7 @@ class ConfigurationAction:
         if disc_class != cls:
             return disc_class.from_dict(_dict)
         msg = "Cannot convert dictionary into an instance of base class 'ConfigurationAction'. The discriminator value should map to a valid subclass: {1}".format(
-            ", ".join(['PrivateCertificateConfigurationActionRevoke', 'PrivateCertificateConfigurationActionSignCSR', 'PrivateCertificateConfigurationActionSignIntermediate', 'PrivateCertificateConfigurationActionSetSigned', 'PrivateCertificateConfigurationActionRotateCRL'])
+            ", ".join(['PrivateCertificateConfigurationActionRevoke', 'PrivateCertificateConfigurationActionRotate', 'PrivateCertificateConfigurationActionSignCSR', 'PrivateCertificateConfigurationActionSignIntermediate', 'PrivateCertificateConfigurationActionSetSigned', 'PrivateCertificateConfigurationActionRotateCRL'])
         )
         raise Exception(msg)
 
@@ -2879,6 +2881,7 @@ class ConfigurationAction:
     def _get_class_by_discriminator(cls, _dict: Dict) -> object:
         mapping = {}
         mapping['private_cert_configuration_action_revoke_ca_certificate'] = 'PrivateCertificateConfigurationActionRevoke'
+        mapping['private_cert_configuration_action_rotate_intermediate'] = 'PrivateCertificateConfigurationActionRotate'
         mapping['private_cert_configuration_action_sign_csr'] = 'PrivateCertificateConfigurationActionSignCSR'
         mapping['private_cert_configuration_action_sign_intermediate'] = 'PrivateCertificateConfigurationActionSignIntermediate'
         mapping['private_cert_configuration_action_set_signed'] = 'PrivateCertificateConfigurationActionSetSigned'
@@ -2910,7 +2913,7 @@ class ConfigurationActionPrototype:
 
         """
         msg = "Cannot instantiate base class. Instead, instantiate one of the defined subclasses: {0}".format(
-            ", ".join(['PrivateCertificateConfigurationActionRotateCRLPrototype', 'PrivateCertificateConfigurationActionRevokePrototype', 'PrivateCertificateConfigurationActionSignCSRPrototype', 'PrivateCertificateConfigurationActionSignIntermediatePrototype', 'PrivateCertificateConfigurationActionSetSignedPrototype'])
+            ", ".join(['PrivateCertificateConfigurationActionRotateCRLPrototype', 'PrivateCertificateConfigurationActionRevokePrototype', 'PrivateCertificateConfigurationActionRotatePrototype', 'PrivateCertificateConfigurationActionSignCSRPrototype', 'PrivateCertificateConfigurationActionSignIntermediatePrototype', 'PrivateCertificateConfigurationActionSetSignedPrototype'])
         )
         raise Exception(msg)
 
@@ -2921,7 +2924,7 @@ class ConfigurationActionPrototype:
         if disc_class != cls:
             return disc_class.from_dict(_dict)
         msg = "Cannot convert dictionary into an instance of base class 'ConfigurationActionPrototype'. The discriminator value should map to a valid subclass: {1}".format(
-            ", ".join(['PrivateCertificateConfigurationActionRotateCRLPrototype', 'PrivateCertificateConfigurationActionRevokePrototype', 'PrivateCertificateConfigurationActionSignCSRPrototype', 'PrivateCertificateConfigurationActionSignIntermediatePrototype', 'PrivateCertificateConfigurationActionSetSignedPrototype'])
+            ", ".join(['PrivateCertificateConfigurationActionRotateCRLPrototype', 'PrivateCertificateConfigurationActionRevokePrototype', 'PrivateCertificateConfigurationActionRotatePrototype', 'PrivateCertificateConfigurationActionSignCSRPrototype', 'PrivateCertificateConfigurationActionSignIntermediatePrototype', 'PrivateCertificateConfigurationActionSetSignedPrototype'])
         )
         raise Exception(msg)
 
@@ -2935,6 +2938,7 @@ class ConfigurationActionPrototype:
         mapping = {}
         mapping['private_cert_configuration_action_rotate_crl'] = 'PrivateCertificateConfigurationActionRotateCRLPrototype'
         mapping['private_cert_configuration_action_revoke_ca_certificate'] = 'PrivateCertificateConfigurationActionRevokePrototype'
+        mapping['private_cert_configuration_action_rotate_intermediate'] = 'PrivateCertificateConfigurationActionRotatePrototype'
         mapping['private_cert_configuration_action_sign_csr'] = 'PrivateCertificateConfigurationActionSignCSRPrototype'
         mapping['private_cert_configuration_action_sign_intermediate'] = 'PrivateCertificateConfigurationActionSignIntermediatePrototype'
         mapping['private_cert_configuration_action_set_signed'] = 'PrivateCertificateConfigurationActionSetSignedPrototype'
@@ -3817,6 +3821,323 @@ class PrivateCertificateCAData:
             ", ".join(['PrivateCertificateConfigurationIntermediateCACSR', 'PrivateCertificateConfigurationCACertificate'])
         )
         raise Exception(msg)
+
+
+class PrivateCertificateConfigurationRotateAction:
+    """
+    The response body of the action to rotate an intermediate certificate authority for
+    the private certificate configuration.
+
+    :param str common_name: (optional) The Common Name (CN) represents the server
+          name that is protected by the SSL certificate.
+    :param List[str] alt_names: (optional) With the Subject Alternative Name field,
+          you can specify additional hostnames to be protected by a single SSL
+          certificate.
+    :param str ip_sans: (optional) The IP Subject Alternative Names to define for
+          the CA certificate, in a comma-delimited list.
+    :param str uri_sans: (optional) The URI Subject Alternative Names to define for
+          the CA certificate, in a comma-delimited list.
+    :param List[str] other_sans: (optional) The custom Object Identifier (OID) or
+          UTF8-string Subject Alternative Names to define for the CA certificate.
+          The alternative names must match the values that are specified in the
+          `allowed_other_sans` field in the associated certificate template. The format is
+          the same as OpenSSL: `<oid>:<type>:<value>` where the current valid type is
+          `UTF8`.
+    :param int ttl: (optional) he requested TTL, after which the certificate
+          expires.
+    :param str format: (optional) The format of the returned data.
+    :param int max_path_length: (optional) The maximum path length to encode in the
+          generated certificate. `-1` means no limit.
+          If the signing certificate has a maximum path length set, the path length is set
+          to one less than that of the signing certificate. A limit of `0` means a literal
+          path length of zero.
+    :param bool exclude_cn_from_sans: (optional) This parameter controls whether the
+          common name is excluded from Subject Alternative Names (SANs).
+          If the common name is set to `true`, it is not included in DNS, or email SANs if
+          they apply. This field can be useful if the common name is a human-readable
+          identifier, instead of a hostname or an email address.
+    :param List[str] permitted_dns_domains: (optional) The allowed DNS domains or
+          subdomains for the certificates that are to be signed and issued by this CA
+          certificate.
+    :param bool use_csr_values: (optional) This field indicates whether to use
+          values from a certificate signing request (CSR) to complete a
+          `private_cert_configuration_action_sign_csr` action. If it is set to `true`,
+          then:
+          1) Subject information, including names and alternate names, are preserved from
+          the CSR rather than by using the values that are provided in the other
+          parameters to this operation.
+          2) Any key usage, for example, non-repudiation, that is requested in the CSR are
+          added to the basic set of key usages used for CA certificates that are signed by
+          the intermediate authority.
+          3) Extensions that are requested in the CSR are copied into the issued private
+          certificate.
+    :param List[str] ou: (optional) The Organizational Unit (OU) values to define in
+          the subject field of the resulting certificate.
+    :param List[str] organization: (optional) The Organization (O) values to define
+          in the subject field of the resulting certificate.
+    :param List[str] country: (optional) The Country (C) values to define in the
+          subject field of the resulting certificate.
+    :param List[str] locality: (optional) The Locality (L) values to define in the
+          subject field of the resulting certificate.
+    :param List[str] province: (optional) The Province (ST) values to define in the
+          subject field of the resulting certificate.
+    :param List[str] street_address: (optional) The street address values to define
+          in the subject field of the resulting certificate.
+    :param List[str] postal_code: (optional) The postal code values to define in the
+          subject field of the resulting certificate.
+    :param str serial_number: (optional) The requested value for the
+          [`serialNumber`](https://datatracker.ietf.org/doc/html/rfc4519#section-2.31)
+          attribute that is in the certificate's distinguished name (DN).
+          **Note:** This field is not related to the `serial_number` field that is
+          returned in the API response. The `serial_number` field represents the
+          certificate's randomly assigned serial number.
+    :param str csr: (optional) The certificate signing request.
+    :param PrivateCertificateConfigurationCACertificate data: (optional) The data
+          that is associated with the root certificate authority.
+    """
+
+    def __init__(
+        self,
+        *,
+        common_name: Optional[str] = None,
+        alt_names: Optional[List[str]] = None,
+        ip_sans: Optional[str] = None,
+        uri_sans: Optional[str] = None,
+        other_sans: Optional[List[str]] = None,
+        ttl: Optional[int] = None,
+        format: Optional[str] = None,
+        max_path_length: Optional[int] = None,
+        exclude_cn_from_sans: Optional[bool] = None,
+        permitted_dns_domains: Optional[List[str]] = None,
+        use_csr_values: Optional[bool] = None,
+        ou: Optional[List[str]] = None,
+        organization: Optional[List[str]] = None,
+        country: Optional[List[str]] = None,
+        locality: Optional[List[str]] = None,
+        province: Optional[List[str]] = None,
+        street_address: Optional[List[str]] = None,
+        postal_code: Optional[List[str]] = None,
+        serial_number: Optional[str] = None,
+        csr: Optional[str] = None,
+        data: Optional['PrivateCertificateConfigurationCACertificate'] = None,
+    ) -> None:
+        """
+        Initialize a PrivateCertificateConfigurationRotateAction object.
+
+        :param str common_name: (optional) The Common Name (CN) represents the
+               server name that is protected by the SSL certificate.
+        :param List[str] alt_names: (optional) With the Subject Alternative Name
+               field, you can specify additional hostnames to be protected by a single SSL
+               certificate.
+        :param str ip_sans: (optional) The IP Subject Alternative Names to define
+               for the CA certificate, in a comma-delimited list.
+        :param str uri_sans: (optional) The URI Subject Alternative Names to define
+               for the CA certificate, in a comma-delimited list.
+        :param List[str] other_sans: (optional) The custom Object Identifier (OID)
+               or UTF8-string Subject Alternative Names to define for the CA certificate.
+               The alternative names must match the values that are specified in the
+               `allowed_other_sans` field in the associated certificate template. The
+               format is the same as OpenSSL: `<oid>:<type>:<value>` where the current
+               valid type is `UTF8`.
+        :param str format: (optional) The format of the returned data.
+        :param int max_path_length: (optional) The maximum path length to encode in
+               the generated certificate. `-1` means no limit.
+               If the signing certificate has a maximum path length set, the path length
+               is set to one less than that of the signing certificate. A limit of `0`
+               means a literal path length of zero.
+        :param bool exclude_cn_from_sans: (optional) This parameter controls
+               whether the common name is excluded from Subject Alternative Names (SANs).
+               If the common name is set to `true`, it is not included in DNS, or email
+               SANs if they apply. This field can be useful if the common name is a
+               human-readable identifier, instead of a hostname or an email address.
+        :param List[str] permitted_dns_domains: (optional) The allowed DNS domains
+               or subdomains for the certificates that are to be signed and issued by this
+               CA certificate.
+        :param bool use_csr_values: (optional) This field indicates whether to use
+               values from a certificate signing request (CSR) to complete a
+               `private_cert_configuration_action_sign_csr` action. If it is set to
+               `true`, then:
+               1) Subject information, including names and alternate names, are preserved
+               from the CSR rather than by using the values that are provided in the other
+               parameters to this operation.
+               2) Any key usage, for example, non-repudiation, that is requested in the
+               CSR are added to the basic set of key usages used for CA certificates that
+               are signed by the intermediate authority.
+               3) Extensions that are requested in the CSR are copied into the issued
+               private certificate.
+        :param List[str] ou: (optional) The Organizational Unit (OU) values to
+               define in the subject field of the resulting certificate.
+        :param List[str] organization: (optional) The Organization (O) values to
+               define in the subject field of the resulting certificate.
+        :param List[str] country: (optional) The Country (C) values to define in
+               the subject field of the resulting certificate.
+        :param List[str] locality: (optional) The Locality (L) values to define in
+               the subject field of the resulting certificate.
+        :param List[str] province: (optional) The Province (ST) values to define in
+               the subject field of the resulting certificate.
+        :param List[str] street_address: (optional) The street address values to
+               define in the subject field of the resulting certificate.
+        :param List[str] postal_code: (optional) The postal code values to define
+               in the subject field of the resulting certificate.
+        :param str serial_number: (optional) The requested value for the
+               [`serialNumber`](https://datatracker.ietf.org/doc/html/rfc4519#section-2.31)
+               attribute that is in the certificate's distinguished name (DN).
+               **Note:** This field is not related to the `serial_number` field that is
+               returned in the API response. The `serial_number` field represents the
+               certificate's randomly assigned serial number.
+        :param str csr: (optional) The certificate signing request.
+        """
+        self.common_name = common_name
+        self.alt_names = alt_names
+        self.ip_sans = ip_sans
+        self.uri_sans = uri_sans
+        self.other_sans = other_sans
+        self.ttl = ttl
+        self.format = format
+        self.max_path_length = max_path_length
+        self.exclude_cn_from_sans = exclude_cn_from_sans
+        self.permitted_dns_domains = permitted_dns_domains
+        self.use_csr_values = use_csr_values
+        self.ou = ou
+        self.organization = organization
+        self.country = country
+        self.locality = locality
+        self.province = province
+        self.street_address = street_address
+        self.postal_code = postal_code
+        self.serial_number = serial_number
+        self.csr = csr
+        self.data = data
+
+    @classmethod
+    def from_dict(cls, _dict: Dict) -> 'PrivateCertificateConfigurationRotateAction':
+        """Initialize a PrivateCertificateConfigurationRotateAction object from a json dictionary."""
+        args = {}
+        if (common_name := _dict.get('common_name')) is not None:
+            args['common_name'] = common_name
+        if (alt_names := _dict.get('alt_names')) is not None:
+            args['alt_names'] = alt_names
+        if (ip_sans := _dict.get('ip_sans')) is not None:
+            args['ip_sans'] = ip_sans
+        if (uri_sans := _dict.get('uri_sans')) is not None:
+            args['uri_sans'] = uri_sans
+        if (other_sans := _dict.get('other_sans')) is not None:
+            args['other_sans'] = other_sans
+        if (ttl := _dict.get('ttl')) is not None:
+            args['ttl'] = ttl
+        if (format := _dict.get('format')) is not None:
+            args['format'] = format
+        if (max_path_length := _dict.get('max_path_length')) is not None:
+            args['max_path_length'] = max_path_length
+        if (exclude_cn_from_sans := _dict.get('exclude_cn_from_sans')) is not None:
+            args['exclude_cn_from_sans'] = exclude_cn_from_sans
+        if (permitted_dns_domains := _dict.get('permitted_dns_domains')) is not None:
+            args['permitted_dns_domains'] = permitted_dns_domains
+        if (use_csr_values := _dict.get('use_csr_values')) is not None:
+            args['use_csr_values'] = use_csr_values
+        if (ou := _dict.get('ou')) is not None:
+            args['ou'] = ou
+        if (organization := _dict.get('organization')) is not None:
+            args['organization'] = organization
+        if (country := _dict.get('country')) is not None:
+            args['country'] = country
+        if (locality := _dict.get('locality')) is not None:
+            args['locality'] = locality
+        if (province := _dict.get('province')) is not None:
+            args['province'] = province
+        if (street_address := _dict.get('street_address')) is not None:
+            args['street_address'] = street_address
+        if (postal_code := _dict.get('postal_code')) is not None:
+            args['postal_code'] = postal_code
+        if (serial_number := _dict.get('serial_number')) is not None:
+            args['serial_number'] = serial_number
+        if (csr := _dict.get('csr')) is not None:
+            args['csr'] = csr
+        if (data := _dict.get('data')) is not None:
+            args['data'] = PrivateCertificateConfigurationCACertificate.from_dict(data)
+        return cls(**args)
+
+    @classmethod
+    def _from_dict(cls, _dict):
+        """Initialize a PrivateCertificateConfigurationRotateAction object from a json dictionary."""
+        return cls.from_dict(_dict)
+
+    def to_dict(self) -> Dict:
+        """Return a json dictionary representing this model."""
+        _dict = {}
+        if hasattr(self, 'common_name') and self.common_name is not None:
+            _dict['common_name'] = self.common_name
+        if hasattr(self, 'alt_names') and self.alt_names is not None:
+            _dict['alt_names'] = self.alt_names
+        if hasattr(self, 'ip_sans') and self.ip_sans is not None:
+            _dict['ip_sans'] = self.ip_sans
+        if hasattr(self, 'uri_sans') and self.uri_sans is not None:
+            _dict['uri_sans'] = self.uri_sans
+        if hasattr(self, 'other_sans') and self.other_sans is not None:
+            _dict['other_sans'] = self.other_sans
+        if hasattr(self, 'ttl') and getattr(self, 'ttl') is not None:
+            _dict['ttl'] = getattr(self, 'ttl')
+        if hasattr(self, 'format') and self.format is not None:
+            _dict['format'] = self.format
+        if hasattr(self, 'max_path_length') and self.max_path_length is not None:
+            _dict['max_path_length'] = self.max_path_length
+        if hasattr(self, 'exclude_cn_from_sans') and self.exclude_cn_from_sans is not None:
+            _dict['exclude_cn_from_sans'] = self.exclude_cn_from_sans
+        if hasattr(self, 'permitted_dns_domains') and self.permitted_dns_domains is not None:
+            _dict['permitted_dns_domains'] = self.permitted_dns_domains
+        if hasattr(self, 'use_csr_values') and self.use_csr_values is not None:
+            _dict['use_csr_values'] = self.use_csr_values
+        if hasattr(self, 'ou') and self.ou is not None:
+            _dict['ou'] = self.ou
+        if hasattr(self, 'organization') and self.organization is not None:
+            _dict['organization'] = self.organization
+        if hasattr(self, 'country') and self.country is not None:
+            _dict['country'] = self.country
+        if hasattr(self, 'locality') and self.locality is not None:
+            _dict['locality'] = self.locality
+        if hasattr(self, 'province') and self.province is not None:
+            _dict['province'] = self.province
+        if hasattr(self, 'street_address') and self.street_address is not None:
+            _dict['street_address'] = self.street_address
+        if hasattr(self, 'postal_code') and self.postal_code is not None:
+            _dict['postal_code'] = self.postal_code
+        if hasattr(self, 'serial_number') and self.serial_number is not None:
+            _dict['serial_number'] = self.serial_number
+        if hasattr(self, 'csr') and self.csr is not None:
+            _dict['csr'] = self.csr
+        if hasattr(self, 'data') and getattr(self, 'data') is not None:
+            if isinstance(getattr(self, 'data'), dict):
+                _dict['data'] = getattr(self, 'data')
+            else:
+                _dict['data'] = getattr(self, 'data').to_dict()
+        return _dict
+
+    def _to_dict(self):
+        """Return a json dictionary representing this model."""
+        return self.to_dict()
+
+    def __str__(self) -> str:
+        """Return a `str` version of this PrivateCertificateConfigurationRotateAction object."""
+        return json.dumps(self.to_dict(), indent=2)
+
+    def __eq__(self, other: 'PrivateCertificateConfigurationRotateAction') -> bool:
+        """Return `true` when self and other are equal, false otherwise."""
+        if not isinstance(other, self.__class__):
+            return False
+        return self.__dict__ == other.__dict__
+
+    def __ne__(self, other: 'PrivateCertificateConfigurationRotateAction') -> bool:
+        """Return `true` when self and other are not equal, false otherwise."""
+        return not self == other
+
+    class FormatEnum(str, Enum):
+        """
+        The format of the returned data.
+        """
+
+        PEM = 'pem'
+        PEM_BUNDLE = 'pem_bundle'
+
 
 
 class PrivateCertificateCryptoKey:
@@ -14695,6 +15016,7 @@ class PrivateCertificateConfigurationActionRevoke(ConfigurationAction):
         PRIVATE_CERT_CONFIGURATION_ACTION_SIGN_CSR = 'private_cert_configuration_action_sign_csr'
         PRIVATE_CERT_CONFIGURATION_ACTION_SET_SIGNED = 'private_cert_configuration_action_set_signed'
         PRIVATE_CERT_CONFIGURATION_ACTION_REVOKE_CA_CERTIFICATE = 'private_cert_configuration_action_revoke_ca_certificate'
+        PRIVATE_CERT_CONFIGURATION_ACTION_ROTATE_INTERMEDIATE = 'private_cert_configuration_action_rotate_intermediate'
 
 
 
@@ -14768,6 +15090,110 @@ class PrivateCertificateConfigurationActionRevokePrototype(ConfigurationActionPr
         PRIVATE_CERT_CONFIGURATION_ACTION_SIGN_CSR = 'private_cert_configuration_action_sign_csr'
         PRIVATE_CERT_CONFIGURATION_ACTION_SET_SIGNED = 'private_cert_configuration_action_set_signed'
         PRIVATE_CERT_CONFIGURATION_ACTION_REVOKE_CA_CERTIFICATE = 'private_cert_configuration_action_revoke_ca_certificate'
+        PRIVATE_CERT_CONFIGURATION_ACTION_ROTATE_INTERMEDIATE = 'private_cert_configuration_action_rotate_intermediate'
+
+
+
+class PrivateCertificateConfigurationActionRotate(ConfigurationAction):
+    """
+    The response body to specify the properties of the action to rotate the private
+    certificate.
+
+    :param str action_type: The type of configuration action.
+    :param str name: The name of the intermediate certificate authority
+          configuration.
+    :param PrivateCertificateConfigurationRotateAction config: The response body of
+          the action to rotate an intermediate certificate authority for the private
+          certificate configuration.
+    """
+
+    def __init__(
+        self,
+        action_type: str,
+        name: str,
+        config: 'PrivateCertificateConfigurationRotateAction',
+    ) -> None:
+        """
+        Initialize a PrivateCertificateConfigurationActionRotate object.
+
+        :param str action_type: The type of configuration action.
+        :param str name: The name of the intermediate certificate authority
+               configuration.
+        :param PrivateCertificateConfigurationRotateAction config: The response
+               body of the action to rotate an intermediate certificate authority for the
+               private certificate configuration.
+        """
+        # pylint: disable=super-init-not-called
+        self.action_type = action_type
+        self.name = name
+        self.config = config
+
+    @classmethod
+    def from_dict(cls, _dict: Dict) -> 'PrivateCertificateConfigurationActionRotate':
+        """Initialize a PrivateCertificateConfigurationActionRotate object from a json dictionary."""
+        args = {}
+        if (action_type := _dict.get('action_type')) is not None:
+            args['action_type'] = action_type
+        else:
+            raise ValueError('Required property \'action_type\' not present in PrivateCertificateConfigurationActionRotate JSON')
+        if (name := _dict.get('name')) is not None:
+            args['name'] = name
+        else:
+            raise ValueError('Required property \'name\' not present in PrivateCertificateConfigurationActionRotate JSON')
+        if (config := _dict.get('config')) is not None:
+            args['config'] = PrivateCertificateConfigurationRotateAction.from_dict(config)
+        else:
+            raise ValueError('Required property \'config\' not present in PrivateCertificateConfigurationActionRotate JSON')
+        return cls(**args)
+
+    @classmethod
+    def _from_dict(cls, _dict):
+        """Initialize a PrivateCertificateConfigurationActionRotate object from a json dictionary."""
+        return cls.from_dict(_dict)
+
+    def to_dict(self) -> Dict:
+        """Return a json dictionary representing this model."""
+        _dict = {}
+        if hasattr(self, 'action_type') and self.action_type is not None:
+            _dict['action_type'] = self.action_type
+        if hasattr(self, 'name') and self.name is not None:
+            _dict['name'] = self.name
+        if hasattr(self, 'config') and self.config is not None:
+            if isinstance(self.config, dict):
+                _dict['config'] = self.config
+            else:
+                _dict['config'] = self.config.to_dict()
+        return _dict
+
+    def _to_dict(self):
+        """Return a json dictionary representing this model."""
+        return self.to_dict()
+
+    def __str__(self) -> str:
+        """Return a `str` version of this PrivateCertificateConfigurationActionRotate object."""
+        return json.dumps(self.to_dict(), indent=2)
+
+    def __eq__(self, other: 'PrivateCertificateConfigurationActionRotate') -> bool:
+        """Return `true` when self and other are equal, false otherwise."""
+        if not isinstance(other, self.__class__):
+            return False
+        return self.__dict__ == other.__dict__
+
+    def __ne__(self, other: 'PrivateCertificateConfigurationActionRotate') -> bool:
+        """Return `true` when self and other are not equal, false otherwise."""
+        return not self == other
+
+    class ActionTypeEnum(str, Enum):
+        """
+        The type of configuration action.
+        """
+
+        PRIVATE_CERT_CONFIGURATION_ACTION_ROTATE_CRL = 'private_cert_configuration_action_rotate_crl'
+        PRIVATE_CERT_CONFIGURATION_ACTION_SIGN_INTERMEDIATE = 'private_cert_configuration_action_sign_intermediate'
+        PRIVATE_CERT_CONFIGURATION_ACTION_SIGN_CSR = 'private_cert_configuration_action_sign_csr'
+        PRIVATE_CERT_CONFIGURATION_ACTION_SET_SIGNED = 'private_cert_configuration_action_set_signed'
+        PRIVATE_CERT_CONFIGURATION_ACTION_REVOKE_CA_CERTIFICATE = 'private_cert_configuration_action_revoke_ca_certificate'
+        PRIVATE_CERT_CONFIGURATION_ACTION_ROTATE_INTERMEDIATE = 'private_cert_configuration_action_rotate_intermediate'
 
 
 
@@ -14853,6 +15279,7 @@ class PrivateCertificateConfigurationActionRotateCRL(ConfigurationAction):
         PRIVATE_CERT_CONFIGURATION_ACTION_SIGN_CSR = 'private_cert_configuration_action_sign_csr'
         PRIVATE_CERT_CONFIGURATION_ACTION_SET_SIGNED = 'private_cert_configuration_action_set_signed'
         PRIVATE_CERT_CONFIGURATION_ACTION_REVOKE_CA_CERTIFICATE = 'private_cert_configuration_action_revoke_ca_certificate'
+        PRIVATE_CERT_CONFIGURATION_ACTION_ROTATE_INTERMEDIATE = 'private_cert_configuration_action_rotate_intermediate'
 
 
 
@@ -14926,6 +15353,81 @@ class PrivateCertificateConfigurationActionRotateCRLPrototype(ConfigurationActio
         PRIVATE_CERT_CONFIGURATION_ACTION_SIGN_CSR = 'private_cert_configuration_action_sign_csr'
         PRIVATE_CERT_CONFIGURATION_ACTION_SET_SIGNED = 'private_cert_configuration_action_set_signed'
         PRIVATE_CERT_CONFIGURATION_ACTION_REVOKE_CA_CERTIFICATE = 'private_cert_configuration_action_revoke_ca_certificate'
+        PRIVATE_CERT_CONFIGURATION_ACTION_ROTATE_INTERMEDIATE = 'private_cert_configuration_action_rotate_intermediate'
+
+
+
+class PrivateCertificateConfigurationActionRotatePrototype(ConfigurationActionPrototype):
+    """
+    The request body to specify the properties of the action to rotate the private
+    certificate configuration.
+
+    :param str action_type: The type of configuration action.
+    """
+
+    def __init__(
+        self,
+        action_type: str,
+    ) -> None:
+        """
+        Initialize a PrivateCertificateConfigurationActionRotatePrototype object.
+
+        :param str action_type: The type of configuration action.
+        """
+        # pylint: disable=super-init-not-called
+        self.action_type = action_type
+
+    @classmethod
+    def from_dict(cls, _dict: Dict) -> 'PrivateCertificateConfigurationActionRotatePrototype':
+        """Initialize a PrivateCertificateConfigurationActionRotatePrototype object from a json dictionary."""
+        args = {}
+        if (action_type := _dict.get('action_type')) is not None:
+            args['action_type'] = action_type
+        else:
+            raise ValueError('Required property \'action_type\' not present in PrivateCertificateConfigurationActionRotatePrototype JSON')
+        return cls(**args)
+
+    @classmethod
+    def _from_dict(cls, _dict):
+        """Initialize a PrivateCertificateConfigurationActionRotatePrototype object from a json dictionary."""
+        return cls.from_dict(_dict)
+
+    def to_dict(self) -> Dict:
+        """Return a json dictionary representing this model."""
+        _dict = {}
+        if hasattr(self, 'action_type') and self.action_type is not None:
+            _dict['action_type'] = self.action_type
+        return _dict
+
+    def _to_dict(self):
+        """Return a json dictionary representing this model."""
+        return self.to_dict()
+
+    def __str__(self) -> str:
+        """Return a `str` version of this PrivateCertificateConfigurationActionRotatePrototype object."""
+        return json.dumps(self.to_dict(), indent=2)
+
+    def __eq__(self, other: 'PrivateCertificateConfigurationActionRotatePrototype') -> bool:
+        """Return `true` when self and other are equal, false otherwise."""
+        if not isinstance(other, self.__class__):
+            return False
+        return self.__dict__ == other.__dict__
+
+    def __ne__(self, other: 'PrivateCertificateConfigurationActionRotatePrototype') -> bool:
+        """Return `true` when self and other are not equal, false otherwise."""
+        return not self == other
+
+    class ActionTypeEnum(str, Enum):
+        """
+        The type of configuration action.
+        """
+
+        PRIVATE_CERT_CONFIGURATION_ACTION_ROTATE_CRL = 'private_cert_configuration_action_rotate_crl'
+        PRIVATE_CERT_CONFIGURATION_ACTION_SIGN_INTERMEDIATE = 'private_cert_configuration_action_sign_intermediate'
+        PRIVATE_CERT_CONFIGURATION_ACTION_SIGN_CSR = 'private_cert_configuration_action_sign_csr'
+        PRIVATE_CERT_CONFIGURATION_ACTION_SET_SIGNED = 'private_cert_configuration_action_set_signed'
+        PRIVATE_CERT_CONFIGURATION_ACTION_REVOKE_CA_CERTIFICATE = 'private_cert_configuration_action_revoke_ca_certificate'
+        PRIVATE_CERT_CONFIGURATION_ACTION_ROTATE_INTERMEDIATE = 'private_cert_configuration_action_rotate_intermediate'
 
 
 
@@ -15011,6 +15513,7 @@ class PrivateCertificateConfigurationActionSetSigned(ConfigurationAction):
         PRIVATE_CERT_CONFIGURATION_ACTION_SIGN_CSR = 'private_cert_configuration_action_sign_csr'
         PRIVATE_CERT_CONFIGURATION_ACTION_SET_SIGNED = 'private_cert_configuration_action_set_signed'
         PRIVATE_CERT_CONFIGURATION_ACTION_REVOKE_CA_CERTIFICATE = 'private_cert_configuration_action_revoke_ca_certificate'
+        PRIVATE_CERT_CONFIGURATION_ACTION_ROTATE_INTERMEDIATE = 'private_cert_configuration_action_rotate_intermediate'
 
 
 
@@ -15096,6 +15599,7 @@ class PrivateCertificateConfigurationActionSetSignedPrototype(ConfigurationActio
         PRIVATE_CERT_CONFIGURATION_ACTION_SIGN_CSR = 'private_cert_configuration_action_sign_csr'
         PRIVATE_CERT_CONFIGURATION_ACTION_SET_SIGNED = 'private_cert_configuration_action_set_signed'
         PRIVATE_CERT_CONFIGURATION_ACTION_REVOKE_CA_CERTIFICATE = 'private_cert_configuration_action_revoke_ca_certificate'
+        PRIVATE_CERT_CONFIGURATION_ACTION_ROTATE_INTERMEDIATE = 'private_cert_configuration_action_rotate_intermediate'
 
 
 
@@ -15446,6 +15950,7 @@ class PrivateCertificateConfigurationActionSignCSR(ConfigurationAction):
         PRIVATE_CERT_CONFIGURATION_ACTION_SIGN_CSR = 'private_cert_configuration_action_sign_csr'
         PRIVATE_CERT_CONFIGURATION_ACTION_SET_SIGNED = 'private_cert_configuration_action_set_signed'
         PRIVATE_CERT_CONFIGURATION_ACTION_REVOKE_CA_CERTIFICATE = 'private_cert_configuration_action_revoke_ca_certificate'
+        PRIVATE_CERT_CONFIGURATION_ACTION_ROTATE_INTERMEDIATE = 'private_cert_configuration_action_rotate_intermediate'
 
 
 
@@ -15785,6 +16290,7 @@ class PrivateCertificateConfigurationActionSignCSRPrototype(ConfigurationActionP
         PRIVATE_CERT_CONFIGURATION_ACTION_SIGN_CSR = 'private_cert_configuration_action_sign_csr'
         PRIVATE_CERT_CONFIGURATION_ACTION_SET_SIGNED = 'private_cert_configuration_action_set_signed'
         PRIVATE_CERT_CONFIGURATION_ACTION_REVOKE_CA_CERTIFICATE = 'private_cert_configuration_action_revoke_ca_certificate'
+        PRIVATE_CERT_CONFIGURATION_ACTION_ROTATE_INTERMEDIATE = 'private_cert_configuration_action_rotate_intermediate'
 
 
 
@@ -16126,6 +16632,7 @@ class PrivateCertificateConfigurationActionSignIntermediate(ConfigurationAction)
         PRIVATE_CERT_CONFIGURATION_ACTION_SIGN_CSR = 'private_cert_configuration_action_sign_csr'
         PRIVATE_CERT_CONFIGURATION_ACTION_SET_SIGNED = 'private_cert_configuration_action_set_signed'
         PRIVATE_CERT_CONFIGURATION_ACTION_REVOKE_CA_CERTIFICATE = 'private_cert_configuration_action_revoke_ca_certificate'
+        PRIVATE_CERT_CONFIGURATION_ACTION_ROTATE_INTERMEDIATE = 'private_cert_configuration_action_rotate_intermediate'
 
 
 
@@ -16467,6 +16974,7 @@ class PrivateCertificateConfigurationActionSignIntermediatePrototype(Configurati
         PRIVATE_CERT_CONFIGURATION_ACTION_SIGN_CSR = 'private_cert_configuration_action_sign_csr'
         PRIVATE_CERT_CONFIGURATION_ACTION_SET_SIGNED = 'private_cert_configuration_action_set_signed'
         PRIVATE_CERT_CONFIGURATION_ACTION_REVOKE_CA_CERTIFICATE = 'private_cert_configuration_action_revoke_ca_certificate'
+        PRIVATE_CERT_CONFIGURATION_ACTION_ROTATE_INTERMEDIATE = 'private_cert_configuration_action_rotate_intermediate'
 
 
 
