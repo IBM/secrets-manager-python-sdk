@@ -31,7 +31,6 @@ The IBM Cloud Secrets Manager Python SDK allows developers to programmatically i
 - Python 3.9 or above.
 
 ## Installation
-
 To install, use `pip` or `easy_install`:
 
 ```bash
