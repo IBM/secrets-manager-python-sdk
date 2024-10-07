@@ -4677,6 +4677,54 @@ class TestModel_PasswordGenerationPolicyRO:
         assert password_generation_policy_ro_model_json2 == password_generation_policy_ro_model_json
 
 
+class TestModel_PrivateCertificateConfigurationRotateAction:
+    """
+    Test Class for PrivateCertificateConfigurationRotateAction
+    """
+
+    def test_private_certificate_configuration_rotate_action_serialization(self):
+        """
+        Test serialization/deserialization for PrivateCertificateConfigurationRotateAction
+        """
+
+        # Construct a json representation of a PrivateCertificateConfigurationRotateAction model
+        private_certificate_configuration_rotate_action_model_json = {}
+        private_certificate_configuration_rotate_action_model_json['common_name'] = 'localhost'
+        private_certificate_configuration_rotate_action_model_json['alt_names'] = ['s1.example.com', '*.s2.example.com']
+        private_certificate_configuration_rotate_action_model_json['ip_sans'] = '1.1.1.1, 2.2.2.2'
+        private_certificate_configuration_rotate_action_model_json['uri_sans'] = 'testString'
+        private_certificate_configuration_rotate_action_model_json['other_sans'] = ['2.5.4.5;UTF8:*.example.com']
+        private_certificate_configuration_rotate_action_model_json['format'] = 'pem'
+        private_certificate_configuration_rotate_action_model_json['max_path_length'] = 38
+        private_certificate_configuration_rotate_action_model_json['exclude_cn_from_sans'] = True
+        private_certificate_configuration_rotate_action_model_json['permitted_dns_domains'] = ['testString']
+        private_certificate_configuration_rotate_action_model_json['use_csr_values'] = True
+        private_certificate_configuration_rotate_action_model_json['ou'] = ['testString']
+        private_certificate_configuration_rotate_action_model_json['organization'] = ['testString']
+        private_certificate_configuration_rotate_action_model_json['country'] = ['testString']
+        private_certificate_configuration_rotate_action_model_json['locality'] = ['testString']
+        private_certificate_configuration_rotate_action_model_json['province'] = ['testString']
+        private_certificate_configuration_rotate_action_model_json['street_address'] = ['testString']
+        private_certificate_configuration_rotate_action_model_json['postal_code'] = ['testString']
+        private_certificate_configuration_rotate_action_model_json['serial_number'] = 'd9:be:fe:35:ba:09:42:b5:35:ba:09:42:b5'
+        private_certificate_configuration_rotate_action_model_json['csr'] = 'testString'
+
+        # Construct a model instance of PrivateCertificateConfigurationRotateAction by calling from_dict on the json representation
+        private_certificate_configuration_rotate_action_model = PrivateCertificateConfigurationRotateAction.from_dict(private_certificate_configuration_rotate_action_model_json)
+        assert private_certificate_configuration_rotate_action_model != False
+
+        # Construct a model instance of PrivateCertificateConfigurationRotateAction by calling from_dict on the json representation
+        private_certificate_configuration_rotate_action_model_dict = PrivateCertificateConfigurationRotateAction.from_dict(private_certificate_configuration_rotate_action_model_json).__dict__
+        private_certificate_configuration_rotate_action_model2 = PrivateCertificateConfigurationRotateAction(**private_certificate_configuration_rotate_action_model_dict)
+
+        # Verify the model instances are equivalent
+        assert private_certificate_configuration_rotate_action_model == private_certificate_configuration_rotate_action_model2
+
+        # Convert model instance back to dict and verify no loss of data
+        private_certificate_configuration_rotate_action_model_json2 = private_certificate_configuration_rotate_action_model.to_dict()
+        assert private_certificate_configuration_rotate_action_model_json2 == private_certificate_configuration_rotate_action_model_json
+
+
 class TestModel_PrivateCertificateCryptoKey:
     """
     Test Class for PrivateCertificateCryptoKey
@@ -7272,6 +7320,61 @@ class TestModel_PrivateCertificateConfigurationActionRevokePrototype:
         assert private_certificate_configuration_action_revoke_prototype_model_json2 == private_certificate_configuration_action_revoke_prototype_model_json
 
 
+class TestModel_PrivateCertificateConfigurationActionRotate:
+    """
+    Test Class for PrivateCertificateConfigurationActionRotate
+    """
+
+    def test_private_certificate_configuration_action_rotate_serialization(self):
+        """
+        Test serialization/deserialization for PrivateCertificateConfigurationActionRotate
+        """
+
+        # Construct dict forms of any model objects needed in order to build this model.
+
+        private_certificate_configuration_rotate_action_model = {}  # PrivateCertificateConfigurationRotateAction
+        private_certificate_configuration_rotate_action_model['common_name'] = 'localhost'
+        private_certificate_configuration_rotate_action_model['alt_names'] = ['s1.example.com', '*.s2.example.com']
+        private_certificate_configuration_rotate_action_model['ip_sans'] = '1.1.1.1, 2.2.2.2'
+        private_certificate_configuration_rotate_action_model['uri_sans'] = 'testString'
+        private_certificate_configuration_rotate_action_model['other_sans'] = ['2.5.4.5;UTF8:*.example.com']
+        private_certificate_configuration_rotate_action_model['format'] = 'pem'
+        private_certificate_configuration_rotate_action_model['max_path_length'] = 38
+        private_certificate_configuration_rotate_action_model['exclude_cn_from_sans'] = True
+        private_certificate_configuration_rotate_action_model['permitted_dns_domains'] = ['testString']
+        private_certificate_configuration_rotate_action_model['use_csr_values'] = True
+        private_certificate_configuration_rotate_action_model['ou'] = ['testString']
+        private_certificate_configuration_rotate_action_model['organization'] = ['testString']
+        private_certificate_configuration_rotate_action_model['country'] = ['testString']
+        private_certificate_configuration_rotate_action_model['locality'] = ['testString']
+        private_certificate_configuration_rotate_action_model['province'] = ['testString']
+        private_certificate_configuration_rotate_action_model['street_address'] = ['testString']
+        private_certificate_configuration_rotate_action_model['postal_code'] = ['testString']
+        private_certificate_configuration_rotate_action_model['serial_number'] = 'd9:be:fe:35:ba:09:42:b5:35:ba:09:42:b5'
+        private_certificate_configuration_rotate_action_model['csr'] = 'testString'
+
+        # Construct a json representation of a PrivateCertificateConfigurationActionRotate model
+        private_certificate_configuration_action_rotate_model_json = {}
+        private_certificate_configuration_action_rotate_model_json['action_type'] = 'private_cert_configuration_action_rotate_intermediate'
+        private_certificate_configuration_action_rotate_model_json['name'] = 'example-intermediate-CA'
+        private_certificate_configuration_action_rotate_model_json['config'] = private_certificate_configuration_rotate_action_model
+
+        # Construct a model instance of PrivateCertificateConfigurationActionRotate by calling from_dict on the json representation
+        private_certificate_configuration_action_rotate_model = PrivateCertificateConfigurationActionRotate.from_dict(private_certificate_configuration_action_rotate_model_json)
+        assert private_certificate_configuration_action_rotate_model != False
+
+        # Construct a model instance of PrivateCertificateConfigurationActionRotate by calling from_dict on the json representation
+        private_certificate_configuration_action_rotate_model_dict = PrivateCertificateConfigurationActionRotate.from_dict(private_certificate_configuration_action_rotate_model_json).__dict__
+        private_certificate_configuration_action_rotate_model2 = PrivateCertificateConfigurationActionRotate(**private_certificate_configuration_action_rotate_model_dict)
+
+        # Verify the model instances are equivalent
+        assert private_certificate_configuration_action_rotate_model == private_certificate_configuration_action_rotate_model2
+
+        # Convert model instance back to dict and verify no loss of data
+        private_certificate_configuration_action_rotate_model_json2 = private_certificate_configuration_action_rotate_model.to_dict()
+        assert private_certificate_configuration_action_rotate_model_json2 == private_certificate_configuration_action_rotate_model_json
+
+
 class TestModel_PrivateCertificateConfigurationActionRotateCRL:
     """
     Test Class for PrivateCertificateConfigurationActionRotateCRL
@@ -7331,6 +7434,36 @@ class TestModel_PrivateCertificateConfigurationActionRotateCRLPrototype:
         # Convert model instance back to dict and verify no loss of data
         private_certificate_configuration_action_rotate_crl_prototype_model_json2 = private_certificate_configuration_action_rotate_crl_prototype_model.to_dict()
         assert private_certificate_configuration_action_rotate_crl_prototype_model_json2 == private_certificate_configuration_action_rotate_crl_prototype_model_json
+
+
+class TestModel_PrivateCertificateConfigurationActionRotatePrototype:
+    """
+    Test Class for PrivateCertificateConfigurationActionRotatePrototype
+    """
+
+    def test_private_certificate_configuration_action_rotate_prototype_serialization(self):
+        """
+        Test serialization/deserialization for PrivateCertificateConfigurationActionRotatePrototype
+        """
+
+        # Construct a json representation of a PrivateCertificateConfigurationActionRotatePrototype model
+        private_certificate_configuration_action_rotate_prototype_model_json = {}
+        private_certificate_configuration_action_rotate_prototype_model_json['action_type'] = 'private_cert_configuration_action_rotate_intermediate'
+
+        # Construct a model instance of PrivateCertificateConfigurationActionRotatePrototype by calling from_dict on the json representation
+        private_certificate_configuration_action_rotate_prototype_model = PrivateCertificateConfigurationActionRotatePrototype.from_dict(private_certificate_configuration_action_rotate_prototype_model_json)
+        assert private_certificate_configuration_action_rotate_prototype_model != False
+
+        # Construct a model instance of PrivateCertificateConfigurationActionRotatePrototype by calling from_dict on the json representation
+        private_certificate_configuration_action_rotate_prototype_model_dict = PrivateCertificateConfigurationActionRotatePrototype.from_dict(private_certificate_configuration_action_rotate_prototype_model_json).__dict__
+        private_certificate_configuration_action_rotate_prototype_model2 = PrivateCertificateConfigurationActionRotatePrototype(**private_certificate_configuration_action_rotate_prototype_model_dict)
+
+        # Verify the model instances are equivalent
+        assert private_certificate_configuration_action_rotate_prototype_model == private_certificate_configuration_action_rotate_prototype_model2
+
+        # Convert model instance back to dict and verify no loss of data
+        private_certificate_configuration_action_rotate_prototype_model_json2 = private_certificate_configuration_action_rotate_prototype_model.to_dict()
+        assert private_certificate_configuration_action_rotate_prototype_model_json2 == private_certificate_configuration_action_rotate_prototype_model_json
 
 
 class TestModel_PrivateCertificateConfigurationActionSetSigned:
