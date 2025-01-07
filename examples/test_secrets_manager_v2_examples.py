@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# (C) Copyright IBM Corp. 2024.
+# (C) Copyright IBM Corp. 2025.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -218,11 +218,16 @@ class TestSecretsManagerV2Examples:
 
             secret_version_id_for_get_secret_version_link = secret_version_metadata_collection['versions'][0]['id']
             secret_id_for_create_secret_version_link = secret_version_metadata_collection['versions'][0]['secret_id']
-            secret_version_id_for_get_secret_version_metadata_link = secret_version_metadata_collection['versions'][0]['id']
-            secret_version_id_for_update_secret_version_metadata_link = secret_version_metadata_collection['versions'][0]['id']
-            secret_id_for_create_secret_version_locks_link = secret_version_metadata_collection['versions'][0]['secret_id']
-            secret_version_id_for_create_secret_version_locks_link = secret_version_metadata_collection['versions'][0]['id']
-            secret_version_id_for_delete_secret_version_locks_link = secret_version_metadata_collection['versions'][0]['id']
+            secret_version_id_for_get_secret_version_metadata_link = secret_version_metadata_collection['versions'][0][
+                'id']
+            secret_version_id_for_update_secret_version_metadata_link = \
+            secret_version_metadata_collection['versions'][0]['id']
+            secret_id_for_create_secret_version_locks_link = secret_version_metadata_collection['versions'][0][
+                'secret_id']
+            secret_version_id_for_create_secret_version_locks_link = secret_version_metadata_collection['versions'][0][
+                'id']
+            secret_version_id_for_delete_secret_version_locks_link = secret_version_metadata_collection['versions'][0][
+                'id']
         except ApiException as e:
             pytest.fail(str(e))
 
@@ -1040,7 +1045,6 @@ class TestSecretsManagerV2Examples:
 
         except ApiException as e:
             pytest.fail(str(e))
-
 
 # endregion
 ##############################################################################
