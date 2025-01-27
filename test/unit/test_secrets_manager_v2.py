@@ -1918,7 +1918,7 @@ class TestCreateSecretVersionAction:
         # Set up mock
         url = preprocess_url(
             '/api/v2/secrets/0b5571f7-21e6-42b7-91c5-3f5ac9793a46/versions/eb4cf24d-9cae-424b-945e-159788a5f535/actions')
-        mock_response = '{"action_type": "private_cert_action_revoke_certificate", "revocation_time_seconds": 23}'
+        mock_response = '{"action_type": "private_cert_action_revoke_certificate", "revocation_time_seconds": 1577836800}'
         responses.add(
             responses.POST,
             url,
@@ -1968,7 +1968,7 @@ class TestCreateSecretVersionAction:
         # Set up mock
         url = preprocess_url(
             '/api/v2/secrets/0b5571f7-21e6-42b7-91c5-3f5ac9793a46/versions/eb4cf24d-9cae-424b-945e-159788a5f535/actions')
-        mock_response = '{"action_type": "private_cert_action_revoke_certificate", "revocation_time_seconds": 23}'
+        mock_response = '{"action_type": "private_cert_action_revoke_certificate", "revocation_time_seconds": 1577836800}'
         responses.add(
             responses.POST,
             url,
@@ -3919,7 +3919,7 @@ class TestCreateConfigurationAction:
         """
         # Set up mock
         url = preprocess_url('/api/v2/configurations/configuration-name/actions')
-        mock_response = '{"action_type": "private_cert_configuration_action_revoke_ca_certificate", "revocation_time_seconds": 23}'
+        mock_response = '{"action_type": "private_cert_configuration_action_revoke_ca_certificate", "revocation_time_seconds": 1577836800}'
         responses.add(
             responses.POST,
             url,
@@ -3968,7 +3968,7 @@ class TestCreateConfigurationAction:
         """
         # Set up mock
         url = preprocess_url('/api/v2/configurations/configuration-name/actions')
-        mock_response = '{"action_type": "private_cert_configuration_action_revoke_ca_certificate", "revocation_time_seconds": 23}'
+        mock_response = '{"action_type": "private_cert_configuration_action_revoke_ca_certificate", "revocation_time_seconds": 1577836800}'
         responses.add(
             responses.POST,
             url,
@@ -4015,7 +4015,7 @@ class TestCreateConfigurationAction:
         """
         # Set up mock
         url = preprocess_url('/api/v2/configurations/configuration-name/actions')
-        mock_response = '{"action_type": "private_cert_configuration_action_revoke_ca_certificate", "revocation_time_seconds": 23}'
+        mock_response = '{"action_type": "private_cert_configuration_action_revoke_ca_certificate", "revocation_time_seconds": 1577836800}'
         responses.add(
             responses.POST,
             url,
@@ -4497,8 +4497,6 @@ class TestModel_ImportedCertificateManagedCsr:
         imported_certificate_managed_csr_model_json['policy_identifiers'] = 'testString'
         imported_certificate_managed_csr_model_json['ext_key_usage_oids'] = 'testString'
         imported_certificate_managed_csr_model_json['rotate_keys'] = True
-        imported_certificate_managed_csr_model_json['csr'] = 'testString'
-        imported_certificate_managed_csr_model_json['private_key'] = 'testString'
 
         # Construct a model instance of ImportedCertificateManagedCsr by calling from_dict on the json representation
         imported_certificate_managed_csr_model = ImportedCertificateManagedCsr.from_dict(
@@ -4859,7 +4857,7 @@ class TestModel_PrivateCertificateConfigurationRotateAction:
         private_certificate_configuration_rotate_action_model_json['uri_sans'] = 'testString'
         private_certificate_configuration_rotate_action_model_json['other_sans'] = ['2.5.4.5;UTF8:*.example.com']
         private_certificate_configuration_rotate_action_model_json['format'] = 'pem'
-        private_certificate_configuration_rotate_action_model_json['max_path_length'] = 38
+        private_certificate_configuration_rotate_action_model_json['max_path_length'] = -1
         private_certificate_configuration_rotate_action_model_json['exclude_cn_from_sans'] = True
         private_certificate_configuration_rotate_action_model_json['permitted_dns_domains'] = ['testString']
         private_certificate_configuration_rotate_action_model_json['use_csr_values'] = True
@@ -7056,8 +7054,6 @@ class TestModel_ImportedCertificateMetadataPatch:
         imported_certificate_managed_csr_model['policy_identifiers'] = 'testString'
         imported_certificate_managed_csr_model['ext_key_usage_oids'] = 'testString'
         imported_certificate_managed_csr_model['rotate_keys'] = True
-        imported_certificate_managed_csr_model['csr'] = 'testString'
-        imported_certificate_managed_csr_model['private_key'] = 'testString'
 
         # Construct a json representation of a ImportedCertificateMetadataPatch model
         imported_certificate_metadata_patch_model_json = {}
@@ -7125,8 +7121,6 @@ class TestModel_ImportedCertificatePrototype:
         imported_certificate_managed_csr_model['policy_identifiers'] = 'testString'
         imported_certificate_managed_csr_model['ext_key_usage_oids'] = 'testString'
         imported_certificate_managed_csr_model['rotate_keys'] = True
-        imported_certificate_managed_csr_model['csr'] = 'testString'
-        imported_certificate_managed_csr_model['private_key'] = 'testString'
 
         # Construct a json representation of a ImportedCertificatePrototype model
         imported_certificate_prototype_model_json = {}
@@ -7788,7 +7782,7 @@ class TestModel_PrivateCertificateConfigurationActionRotate:
         private_certificate_configuration_rotate_action_model['uri_sans'] = 'testString'
         private_certificate_configuration_rotate_action_model['other_sans'] = ['2.5.4.5;UTF8:*.example.com']
         private_certificate_configuration_rotate_action_model['format'] = 'pem'
-        private_certificate_configuration_rotate_action_model['max_path_length'] = 38
+        private_certificate_configuration_rotate_action_model['max_path_length'] = -1
         private_certificate_configuration_rotate_action_model['exclude_cn_from_sans'] = True
         private_certificate_configuration_rotate_action_model['permitted_dns_domains'] = ['testString']
         private_certificate_configuration_rotate_action_model['use_csr_values'] = True
@@ -8023,7 +8017,7 @@ class TestModel_PrivateCertificateConfigurationActionSignCSR:
         private_certificate_configuration_action_sign_csr_model_json['other_sans'] = ['2.5.4.5;UTF8:*.example.com']
         private_certificate_configuration_action_sign_csr_model_json['ttl'] = '12h'
         private_certificate_configuration_action_sign_csr_model_json['format'] = 'pem'
-        private_certificate_configuration_action_sign_csr_model_json['max_path_length'] = 38
+        private_certificate_configuration_action_sign_csr_model_json['max_path_length'] = -1
         private_certificate_configuration_action_sign_csr_model_json['exclude_cn_from_sans'] = True
         private_certificate_configuration_action_sign_csr_model_json['permitted_dns_domains'] = ['testString']
         private_certificate_configuration_action_sign_csr_model_json['use_csr_values'] = True
@@ -8080,7 +8074,7 @@ class TestModel_PrivateCertificateConfigurationActionSignCSRPrototype:
             '2.5.4.5;UTF8:*.example.com']
         private_certificate_configuration_action_sign_csr_prototype_model_json['ttl'] = '12h'
         private_certificate_configuration_action_sign_csr_prototype_model_json['format'] = 'pem'
-        private_certificate_configuration_action_sign_csr_prototype_model_json['max_path_length'] = 38
+        private_certificate_configuration_action_sign_csr_prototype_model_json['max_path_length'] = -1
         private_certificate_configuration_action_sign_csr_prototype_model_json['exclude_cn_from_sans'] = True
         private_certificate_configuration_action_sign_csr_prototype_model_json['permitted_dns_domains'] = ['testString']
         private_certificate_configuration_action_sign_csr_prototype_model_json['use_csr_values'] = True
@@ -8137,7 +8131,7 @@ class TestModel_PrivateCertificateConfigurationActionSignIntermediate:
             '2.5.4.5;UTF8:*.example.com']
         private_certificate_configuration_action_sign_intermediate_model_json['ttl'] = '12h'
         private_certificate_configuration_action_sign_intermediate_model_json['format'] = 'pem'
-        private_certificate_configuration_action_sign_intermediate_model_json['max_path_length'] = 38
+        private_certificate_configuration_action_sign_intermediate_model_json['max_path_length'] = -1
         private_certificate_configuration_action_sign_intermediate_model_json['exclude_cn_from_sans'] = True
         private_certificate_configuration_action_sign_intermediate_model_json['permitted_dns_domains'] = ['testString']
         private_certificate_configuration_action_sign_intermediate_model_json['use_csr_values'] = True
@@ -8195,7 +8189,7 @@ class TestModel_PrivateCertificateConfigurationActionSignIntermediatePrototype:
             '2.5.4.5;UTF8:*.example.com']
         private_certificate_configuration_action_sign_intermediate_prototype_model_json['ttl'] = '12h'
         private_certificate_configuration_action_sign_intermediate_prototype_model_json['format'] = 'pem'
-        private_certificate_configuration_action_sign_intermediate_prototype_model_json['max_path_length'] = 38
+        private_certificate_configuration_action_sign_intermediate_prototype_model_json['max_path_length'] = -1
         private_certificate_configuration_action_sign_intermediate_prototype_model_json['exclude_cn_from_sans'] = True
         private_certificate_configuration_action_sign_intermediate_prototype_model_json['permitted_dns_domains'] = [
             'testString']
@@ -8633,7 +8627,7 @@ class TestModel_PrivateCertificateConfigurationRootCA:
         private_certificate_configuration_root_ca_model_json['other_sans'] = ['2.5.4.5;UTF8:*.example.com']
         private_certificate_configuration_root_ca_model_json['format'] = 'pem'
         private_certificate_configuration_root_ca_model_json['private_key_format'] = 'der'
-        private_certificate_configuration_root_ca_model_json['max_path_length'] = 38
+        private_certificate_configuration_root_ca_model_json['max_path_length'] = -1
         private_certificate_configuration_root_ca_model_json['exclude_cn_from_sans'] = True
         private_certificate_configuration_root_ca_model_json['permitted_dns_domains'] = ['testString']
         private_certificate_configuration_root_ca_model_json['ou'] = ['testString']
@@ -8815,7 +8809,7 @@ class TestModel_PrivateCertificateConfigurationRootCAPrototype:
         private_certificate_configuration_root_ca_prototype_model_json['private_key_format'] = 'der'
         private_certificate_configuration_root_ca_prototype_model_json['key_type'] = 'rsa'
         private_certificate_configuration_root_ca_prototype_model_json['key_bits'] = 4096
-        private_certificate_configuration_root_ca_prototype_model_json['max_path_length'] = 38
+        private_certificate_configuration_root_ca_prototype_model_json['max_path_length'] = -1
         private_certificate_configuration_root_ca_prototype_model_json['exclude_cn_from_sans'] = True
         private_certificate_configuration_root_ca_prototype_model_json['permitted_dns_domains'] = ['testString']
         private_certificate_configuration_root_ca_prototype_model_json['ou'] = ['testString']

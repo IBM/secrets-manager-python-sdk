@@ -3384,10 +3384,6 @@ class ImportedCertificateManagedCsr:
           usage Object Identifiers (OIDs).
     :param bool rotate_keys: (optional) This field indicates whether the private key
           will be rotated.
-    :param str csr: (optional) The certificate signing request.
-    :param str private_key: (optional) The PEM-encoded private key that is
-          associated with the certificate. The data must be formatted on a single line
-          with embedded newline characters.
     """
 
     def __init__(
@@ -3419,8 +3415,6 @@ class ImportedCertificateManagedCsr:
             policy_identifiers: Optional[str] = None,
             ext_key_usage_oids: Optional[str] = None,
             rotate_keys: Optional[bool] = None,
-            csr: Optional[str] = None,
-            private_key: Optional[str] = None,
     ) -> None:
         """
         Initialize a ImportedCertificateManagedCsr object.
@@ -3496,10 +3490,6 @@ class ImportedCertificateManagedCsr:
                extended key usage Object Identifiers (OIDs).
         :param bool rotate_keys: (optional) This field indicates whether the
                private key will be rotated.
-        :param str csr: (optional) The certificate signing request.
-        :param str private_key: (optional) The PEM-encoded private key that is
-               associated with the certificate. The data must be formatted on a single
-               line with embedded newline characters.
         """
         self.ou = ou
         self.organization = organization
@@ -3527,8 +3517,6 @@ class ImportedCertificateManagedCsr:
         self.policy_identifiers = policy_identifiers
         self.ext_key_usage_oids = ext_key_usage_oids
         self.rotate_keys = rotate_keys
-        self.csr = csr
-        self.private_key = private_key
 
     @classmethod
     def from_dict(cls, _dict: Dict) -> 'ImportedCertificateManagedCsr':
@@ -3586,10 +3574,6 @@ class ImportedCertificateManagedCsr:
             args['ext_key_usage_oids'] = ext_key_usage_oids
         if (rotate_keys := _dict.get('rotate_keys')) is not None:
             args['rotate_keys'] = rotate_keys
-        if (csr := _dict.get('csr')) is not None:
-            args['csr'] = csr
-        if (private_key := _dict.get('private_key')) is not None:
-            args['private_key'] = private_key
         return cls(**args)
 
     @classmethod
@@ -3652,10 +3636,6 @@ class ImportedCertificateManagedCsr:
             _dict['ext_key_usage_oids'] = self.ext_key_usage_oids
         if hasattr(self, 'rotate_keys') and self.rotate_keys is not None:
             _dict['rotate_keys'] = self.rotate_keys
-        if hasattr(self, 'csr') and self.csr is not None:
-            _dict['csr'] = self.csr
-        if hasattr(self, 'private_key') and self.private_key is not None:
-            _dict['private_key'] = self.private_key
         return _dict
 
     def _to_dict(self):
@@ -5943,9 +5923,9 @@ class SecretLocks:
 
     :param str secret_id: A UUID identifier.
     :param str secret_group_id: A UUID identifier, or `default` secret group.
-    :param str secret_type: (optional) The secret type. Supported types are
-          arbitrary, imported_cert, public_cert, private_cert, iam_credentials,
-          service_credentials, kv, and username_password.
+    :param str secret_type: The secret type. Supported types are arbitrary,
+          imported_cert, public_cert, private_cert, iam_credentials, service_credentials,
+          kv, and username_password.
     :param str secret_name: (optional) The human-readable name of your secret.
     :param List[SecretVersionLocks] versions: A collection of locks that are
           attached to a secret.
@@ -5955,9 +5935,9 @@ class SecretLocks:
             self,
             secret_id: str,
             secret_group_id: str,
+            secret_type: str,
             versions: List['SecretVersionLocks'],
             *,
-            secret_type: Optional[str] = None,
             secret_name: Optional[str] = None,
     ) -> None:
         """
@@ -5965,11 +5945,11 @@ class SecretLocks:
 
         :param str secret_id: A UUID identifier.
         :param str secret_group_id: A UUID identifier, or `default` secret group.
+        :param str secret_type: The secret type. Supported types are arbitrary,
+               imported_cert, public_cert, private_cert, iam_credentials,
+               service_credentials, kv, and username_password.
         :param List[SecretVersionLocks] versions: A collection of locks that are
                attached to a secret.
-        :param str secret_type: (optional) The secret type. Supported types are
-               arbitrary, imported_cert, public_cert, private_cert, iam_credentials,
-               service_credentials, kv, and username_password.
         """
         self.secret_id = secret_id
         self.secret_group_id = secret_group_id
@@ -5991,6 +5971,8 @@ class SecretLocks:
             raise ValueError('Required property \'secret_group_id\' not present in SecretLocks JSON')
         if (secret_type := _dict.get('secret_type')) is not None:
             args['secret_type'] = secret_type
+        else:
+            raise ValueError('Required property \'secret_type\' not present in SecretLocks JSON')
         if (secret_name := _dict.get('secret_name')) is not None:
             args['secret_name'] = secret_name
         if (versions := _dict.get('versions')) is not None:
