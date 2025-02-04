@@ -221,7 +221,7 @@ class TestSecretsManagerV2Examples:
             secret_version_id_for_get_secret_version_metadata_link = secret_version_metadata_collection['versions'][0][
                 'id']
             secret_version_id_for_update_secret_version_metadata_link = \
-            secret_version_metadata_collection['versions'][0]['id']
+                secret_version_metadata_collection['versions'][0]['id']
             secret_id_for_create_secret_version_locks_link = secret_version_metadata_collection['versions'][0][
                 'secret_id']
             secret_version_id_for_create_secret_version_locks_link = secret_version_metadata_collection['versions'][0][

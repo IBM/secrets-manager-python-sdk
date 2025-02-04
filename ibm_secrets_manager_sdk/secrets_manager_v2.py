@@ -14,7 +14,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-# IBM OpenAPI SDK Code Generator Version: 3.98.0-8be2046a-20241205-162752
+# IBM OpenAPI SDK Code Generator Version: 3.99.1-daeb6e46-20250131-173156
 
 """
 With IBM Cloud® Secrets Manager, you can create, lease, and centrally manage secrets that
@@ -3342,8 +3342,8 @@ class ImportedCertificateManagedCsr:
     :param str other_sans: (optional) The custom Object Identifier (OID) or
           UTF8-string Subject Alternative Names to define for the certificate, in a
           comma-delimited list.
-          The alternative names must The format is the same as OpenSSL:
-          `<oid>:<type>:<value>` where the current valid type is `UTF8`.
+          The format is the same as OpenSSL: `<oid>:<type>:<value>` where the current
+          valid type is `UTF8`.
     :param bool exclude_cn_from_sans: (optional) This parameter controls whether the
           common name is excluded from Subject Alternative Names (SANs).
           If the common name is set to `true`, it is not included in DNS, or email SANs if
@@ -3365,7 +3365,7 @@ class ImportedCertificateManagedCsr:
           private key.
           Allowable values for RSA keys are: `2048`, `3072`, `4096` and `8192`. Allowable
           values for EC keys are: `224`, `256`, `384`, and `521`. The default for RSA keys
-          is `2048`. The default for EC keys is `256`. Ignored for ed25519 key.
+          is `2048`. The default for EC keys is `256`. Ignored for ed25519 keys.
     :param str key_usage: (optional) The allowed key usage constraint to define for
           certificate, in a comma-delimited list.
           You can find valid values in the [Go x509 package
@@ -3447,8 +3447,8 @@ class ImportedCertificateManagedCsr:
         :param str other_sans: (optional) The custom Object Identifier (OID) or
                UTF8-string Subject Alternative Names to define for the certificate, in a
                comma-delimited list.
-               The alternative names must The format is the same as OpenSSL:
-               `<oid>:<type>:<value>` where the current valid type is `UTF8`.
+               The format is the same as OpenSSL: `<oid>:<type>:<value>` where the current
+               valid type is `UTF8`.
         :param bool exclude_cn_from_sans: (optional) This parameter controls
                whether the common name is excluded from Subject Alternative Names (SANs).
                If the common name is set to `true`, it is not included in DNS, or email
@@ -3471,7 +3471,7 @@ class ImportedCertificateManagedCsr:
                Allowable values for RSA keys are: `2048`, `3072`, `4096` and `8192`.
                Allowable values for EC keys are: `224`, `256`, `384`, and `521`. The
                default for RSA keys is `2048`. The default for EC keys is `256`. Ignored
-               for ed25519 key.
+               for ed25519 keys.
         :param str key_usage: (optional) The allowed key usage constraint to define
                for certificate, in a comma-delimited list.
                You can find valid values in the [Go x509 package
@@ -3697,8 +3697,8 @@ class ImportedCertificateManagedCsrResponse:
     :param str other_sans: (optional) The custom Object Identifier (OID) or
           UTF8-string Subject Alternative Names to define for the certificate, in a
           comma-delimited list.
-          The alternative names must The format is the same as OpenSSL:
-          `<oid>:<type>:<value>` where the current valid type is `UTF8`.
+          The format is the same as OpenSSL: `<oid>:<type>:<value>` where the current
+          valid type is `UTF8`.
     :param bool exclude_cn_from_sans: This parameter controls whether the common
           name is excluded from Subject Alternative Names (SANs).
           If the common name is set to `true`, it is not included in DNS, or email SANs if
@@ -3719,7 +3719,7 @@ class ImportedCertificateManagedCsrResponse:
     :param int key_bits: The number of bits to use to generate the private key.
           Allowable values for RSA keys are: `2048`, `3072`, `4096` and `8192`. Allowable
           values for EC keys are: `224`, `256`, `384`, and `521`. The default for RSA keys
-          is `2048`. The default for EC keys is `256`. Ignored for ed25519 key.
+          is `2048`. The default for EC keys is `256`. Ignored for ed25519 keys.
     :param str key_usage: (optional) The allowed key usage constraint to define for
           certificate, in a comma-delimited list.
           You can find valid values in the [Go x509 package
@@ -3813,7 +3813,7 @@ class ImportedCertificateManagedCsrResponse:
                Allowable values for RSA keys are: `2048`, `3072`, `4096` and `8192`.
                Allowable values for EC keys are: `224`, `256`, `384`, and `521`. The
                default for RSA keys is `2048`. The default for EC keys is `256`. Ignored
-               for ed25519 key.
+               for ed25519 keys.
         :param str csr: The certificate signing request.
         :param str private_key: The PEM-encoded private key that is associated with
                the certificate. The data must be formatted on a single line with embedded
@@ -3830,8 +3830,8 @@ class ImportedCertificateManagedCsrResponse:
         :param str other_sans: (optional) The custom Object Identifier (OID) or
                UTF8-string Subject Alternative Names to define for the certificate, in a
                comma-delimited list.
-               The alternative names must The format is the same as OpenSSL:
-               `<oid>:<type>:<value>` where the current valid type is `UTF8`.
+               The format is the same as OpenSSL: `<oid>:<type>:<value>` where the current
+               valid type is `UTF8`.
         :param str user_ids: (optional) Specifies the list of requested User ID
                (OID 0.9.2342.19200300.100.1.1) Subject values to be placed on the signed
                certificate.
