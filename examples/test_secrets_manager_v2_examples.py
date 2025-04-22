@@ -218,16 +218,11 @@ class TestSecretsManagerV2Examples:
 
             secret_version_id_for_get_secret_version_link = secret_version_metadata_collection['versions'][0]['id']
             secret_id_for_create_secret_version_link = secret_version_metadata_collection['versions'][0]['secret_id']
-            secret_version_id_for_get_secret_version_metadata_link = secret_version_metadata_collection['versions'][0][
-                'id']
-            secret_version_id_for_update_secret_version_metadata_link = \
-                secret_version_metadata_collection['versions'][0]['id']
-            secret_id_for_create_secret_version_locks_link = secret_version_metadata_collection['versions'][0][
-                'secret_id']
-            secret_version_id_for_create_secret_version_locks_link = secret_version_metadata_collection['versions'][0][
-                'id']
-            secret_version_id_for_delete_secret_version_locks_link = secret_version_metadata_collection['versions'][0][
-                'id']
+            secret_version_id_for_get_secret_version_metadata_link = secret_version_metadata_collection['versions'][0]['id']
+            secret_version_id_for_update_secret_version_metadata_link = secret_version_metadata_collection['versions'][0]['id']
+            secret_id_for_create_secret_version_locks_link = secret_version_metadata_collection['versions'][0]['secret_id']
+            secret_version_id_for_create_secret_version_locks_link = secret_version_metadata_collection['versions'][0]['id']
+            secret_version_id_for_delete_secret_version_locks_link = secret_version_metadata_collection['versions'][0]['id']
         except ApiException as e:
             pytest.fail(str(e))
 
@@ -624,6 +619,85 @@ class TestSecretsManagerV2Examples:
             pytest.fail(str(e))
 
     @needscredentials
+    def test_list_secret_tasks_example(self):
+        """
+        list_secret_tasks request example
+        """
+        try:
+            print('\nlist_secret_tasks() result:')
+
+            # begin-list_secret_tasks
+
+            response = secrets_manager_service.list_secret_tasks(
+                secret_id=secret_id_for_get_secret_link,
+            )
+            secret_task_collection = response.get_result()
+
+            print(json.dumps(secret_task_collection, indent=2))
+
+            # end-list_secret_tasks
+
+        except ApiException as e:
+            pytest.fail(str(e))
+
+    @needscredentials
+    def test_get_secret_task_example(self):
+        """
+        get_secret_task request example
+        """
+        try:
+            print('\nget_secret_task() result:')
+
+            # begin-get_secret_task
+
+            response = secrets_manager_service.get_secret_task(
+                secret_id=secret_id_for_get_secret_link,
+                id=secret_id_for_get_secret_link,
+            )
+            secret_task = response.get_result()
+
+            print(json.dumps(secret_task, indent=2))
+
+            # end-get_secret_task
+
+        except ApiException as e:
+            pytest.fail(str(e))
+
+    @needscredentials
+    def test_replace_secret_task_example(self):
+        """
+        replace_secret_task request example
+        """
+        try:
+            print('\nreplace_secret_task() result:')
+
+            # begin-replace_secret_task
+
+            custom_credentials_new_credentials_model = {
+                'id': 'b49ad24d-81d4-5ebc-b9b9-b0937d1c84d5',
+                'payload': {'token': 'xF9v7OztItL5DOnFgHfS9NCT1sLTUew8KYZcZfxI'},
+            }
+
+            secret_task_prototype_model = {
+                'status': 'credentials_created',
+                'credentials': custom_credentials_new_credentials_model,
+            }
+
+            response = secrets_manager_service.replace_secret_task(
+                secret_id=secret_id_for_get_secret_link,
+                id=secret_id_for_get_secret_link,
+                task_put=secret_task_prototype_model,
+            )
+            secret_task = response.get_result()
+
+            print(json.dumps(secret_task, indent=2))
+
+            # end-replace_secret_task
+
+        except ApiException as e:
+            pytest.fail(str(e))
+
+    @needscredentials
     def test_list_secrets_locks_example(self):
         """
         list_secrets_locks request example
@@ -756,7 +830,7 @@ class TestSecretsManagerV2Examples:
                 limit=10,
                 sort='config_type',
                 search='example',
-                secret_types=['iam_credentials', 'public_cert', 'private_cert'],
+                secret_types=['iam_credentials', 'public_cert', 'private_cert', 'custom_credentials'],
             )
             while pager.has_next():
                 next_page = pager.get_next()
@@ -1012,6 +1086,25 @@ class TestSecretsManagerV2Examples:
             pytest.fail(str(e))
 
     @needscredentials
+    def test_delete_secret_task_example(self):
+        """
+        delete_secret_task request example
+        """
+        try:
+            # begin-delete_secret_task
+
+            response = secrets_manager_service.delete_secret_task(
+                secret_id=secret_id_for_get_secret_link,
+                id=secret_id_for_get_secret_link,
+            )
+
+            # end-delete_secret_task
+            print('\ndelete_secret_task() response status code: ', response.get_status_code())
+
+        except ApiException as e:
+            pytest.fail(str(e))
+
+    @needscredentials
     def test_delete_configuration_example(self):
         """
         delete_configuration request example
@@ -1045,6 +1138,7 @@ class TestSecretsManagerV2Examples:
 
         except ApiException as e:
             pytest.fail(str(e))
+
 
 # endregion
 ##############################################################################
