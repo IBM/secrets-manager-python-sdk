@@ -157,8 +157,7 @@ class TestSecretsManagerV2:
         secret_version_id_for_get_secret_version_link = secret_version_metadata_collection['versions'][0]['id']
         secret_id_for_create_secret_version_link = secret_version_metadata_collection['versions'][0]['secret_id']
         secret_version_id_for_get_secret_version_metadata_link = secret_version_metadata_collection['versions'][0]['id']
-        secret_version_id_for_update_secret_version_metadata_link = secret_version_metadata_collection['versions'][0][
-            'id']
+        secret_version_id_for_update_secret_version_metadata_link = secret_version_metadata_collection['versions'][0]['id']
         secret_id_for_create_secret_version_locks_link = secret_version_metadata_collection['versions'][0]['secret_id']
         secret_version_id_for_create_secret_version_locks_link = secret_version_metadata_collection['versions'][0]['id']
         secret_version_id_for_delete_secret_version_locks_link = secret_version_metadata_collection['versions'][0]['id']
@@ -318,10 +317,10 @@ class TestSecretsManagerV2:
         secret_metadata = response.get_result()
         assert secret_metadata is not None
 
-    # The integration test for create_secret_action has been explicitly excluded from generation.
-    # A test for this operation must be developed manually.
-    # @needscredentials
-    # def test_create_secret_action(self):
+  # The integration test for create_secret_action has been explicitly excluded from generation.
+  # A test for this operation must be developed manually.
+  # @needscredentials
+  # def test_create_secret_action(self):
 
     @needscredentials
     def test_get_secret_by_name_type(self):
@@ -392,10 +391,25 @@ class TestSecretsManagerV2:
         secret_version_metadata = response.get_result()
         assert secret_version_metadata is not None
 
-    # The integration test for create_secret_version_action has been explicitly excluded from generation.
-    # A test for this operation must be developed manually.
-    # @needscredentials
-    # def test_create_secret_version_action(self):
+  # The integration test for create_secret_version_action has been explicitly excluded from generation.
+  # A test for this operation must be developed manually.
+  # @needscredentials
+  # def test_create_secret_version_action(self):
+
+  # The integration test for list_secret_tasks has been explicitly excluded from generation.
+  # A test for this operation must be developed manually.
+  # @needscredentials
+  # def test_list_secret_tasks(self):
+
+  # The integration test for get_secret_task has been explicitly excluded from generation.
+  # A test for this operation must be developed manually.
+  # @needscredentials
+  # def test_get_secret_task(self):
+
+  # The integration test for replace_secret_task has been explicitly excluded from generation.
+  # A test for this operation must be developed manually.
+  # @needscredentials
+  # def test_replace_secret_task(self):
 
     @needscredentials
     def test_list_secrets_locks(self):
@@ -550,8 +564,7 @@ class TestSecretsManagerV2:
         assert all_items is not None
 
         assert len(all_results) == len(all_items)
-        print(
-            f'\nlist_secret_version_locks() returned a total of {len(all_results)} items(s) using SecretVersionLocksPager.')
+        print(f'\nlist_secret_version_locks() returned a total of {len(all_results)} items(s) using SecretVersionLocksPager.')
 
     @needscredentials
     def test_list_configurations(self):
@@ -560,7 +573,7 @@ class TestSecretsManagerV2:
             limit=200,
             sort='config_type',
             search='example',
-            secret_types=['iam_credentials', 'public_cert', 'private_cert'],
+            secret_types=['iam_credentials', 'public_cert', 'private_cert', 'custom_credentials'],
         )
 
         assert response.get_status_code() == 200
@@ -577,7 +590,7 @@ class TestSecretsManagerV2:
             limit=10,
             sort='config_type',
             search='example',
-            secret_types=['iam_credentials', 'public_cert', 'private_cert'],
+            secret_types=['iam_credentials', 'public_cert', 'private_cert', 'custom_credentials'],
         )
         while pager.has_next():
             next_page = pager.get_next()
@@ -590,7 +603,7 @@ class TestSecretsManagerV2:
             limit=10,
             sort='config_type',
             search='example',
-            secret_types=['iam_credentials', 'public_cert', 'private_cert'],
+            secret_types=['iam_credentials', 'public_cert', 'private_cert', 'custom_credentials'],
         )
         all_items = pager.get_all()
         assert all_items is not None
@@ -627,10 +640,10 @@ class TestSecretsManagerV2:
         configuration = response.get_result()
         assert configuration is not None
 
-    # The integration test for create_configuration_action has been explicitly excluded from generation.
-    # A test for this operation must be developed manually.
-    # @needscredentials
-    # def test_create_configuration_action(self):
+  # The integration test for create_configuration_action has been explicitly excluded from generation.
+  # A test for this operation must be developed manually.
+  # @needscredentials
+  # def test_create_configuration_action(self):
 
     @needscredentials
     def test_create_notifications_registration(self):
@@ -652,10 +665,10 @@ class TestSecretsManagerV2:
         notifications_registration = response.get_result()
         assert notifications_registration is not None
 
-    # The integration test for get_notifications_registration_test has been explicitly excluded from generation.
-    # A test for this operation must be developed manually.
-    # @needscredentials
-    # def test_get_notifications_registration_test(self):
+  # The integration test for get_notifications_registration_test has been explicitly excluded from generation.
+  # A test for this operation must be developed manually.
+  # @needscredentials
+  # def test_get_notifications_registration_test(self):
 
     @needscredentials
     def test_delete_secret_group(self):
@@ -665,10 +678,10 @@ class TestSecretsManagerV2:
 
         assert response.get_status_code() == 204
 
-    # The integration test for delete_secret_version_data has been explicitly excluded from generation.
-    # A test for this operation must be developed manually.
-    # @needscredentials
-    # def test_delete_secret_version_data(self):
+  # The integration test for delete_secret_version_data has been explicitly excluded from generation.
+  # A test for this operation must be developed manually.
+  # @needscredentials
+  # def test_delete_secret_version_data(self):
 
     @needscredentials
     def test_delete_secret_locks_bulk(self):
@@ -697,9 +710,15 @@ class TestSecretsManagerV2:
     def test_delete_secret(self):
         response = self.secrets_manager_service.delete_secret(
             id=secret_id_for_get_secret_link,
+            force_delete=False,
         )
 
         assert response.get_status_code() == 204
+
+  # The integration test for delete_secret_task has been explicitly excluded from generation.
+  # A test for this operation must be developed manually.
+  # @needscredentials
+  # def test_delete_secret_task(self):
 
     @needscredentials
     def test_delete_configuration(self):
