@@ -14,7 +14,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-# IBM OpenAPI SDK Code Generator Version: 3.107.0-b68ebf7a-20250811-145645
+# IBM OpenAPI SDK Code Generator Version: 3.104.0-b4a47c49-20250418-184351
 
 """
 With IBM Cloud® Secrets Manager, you can create, lease, and centrally manage secrets that
@@ -80,7 +80,7 @@ class SecretsManagerV2(BaseService):
 
         :param str instance_id: (optional) The Secrets Manager Instance ID assigned by the service provider
             (default 'provide-here-your-smgr-instanceuuid')
-        :param str region: (optional) The region where you provisioned your Secrets Manager Instance. Available values: us-south, us-east, au-syd, jp-osa, jp-tok, eu-de, eu-gb, eu-es, ca-tor, ca-mon, br-sao
+        :param str region: (optional) The region where you provisioned your Secrets Manager Instance. Available values: us-south, us-east, au-syd, jp-osa, jp-tok, eu-de, eu-gb, eu-es, ca-tor, br-sao
             (default 'us-south')
         :return: The formatted URL with all variable placeholders replaced by values.
         :rtype: str
@@ -442,8 +442,8 @@ class SecretsManagerV2(BaseService):
                `..?limit=25`.
         :param str sort: (optional) Sort a collection of secrets by the specified
                field in ascending order. To sort in descending order use the `-` character
-               **Available values:** id | created_at | updated_at | retrieved_at |
-               expiration_date | secret_type | name
+               **Available values:** id | created_at | updated_at | expiration_date |
+               secret_type | name
                **Usage:** To sort a list of secrets by their creation date, use
                `../secrets?sort=created_at`.
         :param str search: (optional) Obtain a collection of secrets that contain
@@ -9183,9 +9183,6 @@ class ArbitrarySecret(Secret):
           that created the secret.
     :param datetime created_at: The date when the resource was created. The date
           format follows `RFC 3339`.
-    :param datetime retrieved_at: (optional) The date when the data of the secret
-          was last retrieved. The date format follows RFC 3339. Epoch date if there is no
-          record of secret data retrieval.
     :param str crn: A CRN that uniquely identifies an IBM Cloud resource.
     :param dict custom_metadata: (optional) The secret metadata that a user can
           customize.
@@ -9236,7 +9233,6 @@ class ArbitrarySecret(Secret):
         updated_at: datetime,
         versions_total: int,
         *,
-        retrieved_at: Optional[datetime] = None,
         custom_metadata: Optional[dict] = None,
         description: Optional[str] = None,
         downloaded: Optional[bool] = None,
@@ -9265,9 +9261,6 @@ class ArbitrarySecret(Secret):
         :param datetime updated_at: The date when a resource was modified. The date
                format follows `RFC 3339`.
         :param int versions_total: The number of versions of your secret.
-        :param datetime retrieved_at: (optional) The date when the data of the
-               secret was last retrieved. The date format follows RFC 3339. Epoch date if
-               there is no record of secret data retrieval.
         :param dict custom_metadata: (optional) The secret metadata that a user can
                customize.
         :param str description: (optional) An extended description of your secret.
@@ -9284,7 +9277,6 @@ class ArbitrarySecret(Secret):
         # pylint: disable=super-init-not-called
         self.created_by = created_by
         self.created_at = created_at
-        self.retrieved_at = retrieved_at
         self.crn = crn
         self.custom_metadata = custom_metadata
         self.description = description
@@ -9315,8 +9307,6 @@ class ArbitrarySecret(Secret):
             args['created_at'] = string_to_datetime(created_at)
         else:
             raise ValueError('Required property \'created_at\' not present in ArbitrarySecret JSON')
-        if (retrieved_at := _dict.get('retrieved_at')) is not None:
-            args['retrieved_at'] = string_to_datetime(retrieved_at)
         if (crn := _dict.get('crn')) is not None:
             args['crn'] = crn
         else:
@@ -9377,8 +9367,6 @@ class ArbitrarySecret(Secret):
             _dict['created_by'] = self.created_by
         if hasattr(self, 'created_at') and self.created_at is not None:
             _dict['created_at'] = datetime_to_string(self.created_at)
-        if hasattr(self, 'retrieved_at') and self.retrieved_at is not None:
-            _dict['retrieved_at'] = datetime_to_string(self.retrieved_at)
         if hasattr(self, 'crn') and self.crn is not None:
             _dict['crn'] = self.crn
         if hasattr(self, 'custom_metadata') and self.custom_metadata is not None:
@@ -9471,9 +9459,6 @@ class ArbitrarySecretMetadata(SecretMetadata):
           that created the secret.
     :param datetime created_at: The date when the resource was created. The date
           format follows `RFC 3339`.
-    :param datetime retrieved_at: (optional) The date when the data of the secret
-          was last retrieved. The date format follows RFC 3339. Epoch date if there is no
-          record of secret data retrieval.
     :param str crn: A CRN that uniquely identifies an IBM Cloud resource.
     :param dict custom_metadata: (optional) The secret metadata that a user can
           customize.
@@ -9522,7 +9507,6 @@ class ArbitrarySecretMetadata(SecretMetadata):
         updated_at: datetime,
         versions_total: int,
         *,
-        retrieved_at: Optional[datetime] = None,
         custom_metadata: Optional[dict] = None,
         description: Optional[str] = None,
         downloaded: Optional[bool] = None,
@@ -9550,9 +9534,6 @@ class ArbitrarySecretMetadata(SecretMetadata):
         :param datetime updated_at: The date when a resource was modified. The date
                format follows `RFC 3339`.
         :param int versions_total: The number of versions of your secret.
-        :param datetime retrieved_at: (optional) The date when the data of the
-               secret was last retrieved. The date format follows RFC 3339. Epoch date if
-               there is no record of secret data retrieval.
         :param dict custom_metadata: (optional) The secret metadata that a user can
                customize.
         :param str description: (optional) An extended description of your secret.
@@ -9567,7 +9548,6 @@ class ArbitrarySecretMetadata(SecretMetadata):
         # pylint: disable=super-init-not-called
         self.created_by = created_by
         self.created_at = created_at
-        self.retrieved_at = retrieved_at
         self.crn = crn
         self.custom_metadata = custom_metadata
         self.description = description
@@ -9597,8 +9577,6 @@ class ArbitrarySecretMetadata(SecretMetadata):
             args['created_at'] = string_to_datetime(created_at)
         else:
             raise ValueError('Required property \'created_at\' not present in ArbitrarySecretMetadata JSON')
-        if (retrieved_at := _dict.get('retrieved_at')) is not None:
-            args['retrieved_at'] = string_to_datetime(retrieved_at)
         if (crn := _dict.get('crn')) is not None:
             args['crn'] = crn
         else:
@@ -9657,8 +9635,6 @@ class ArbitrarySecretMetadata(SecretMetadata):
             _dict['created_by'] = self.created_by
         if hasattr(self, 'created_at') and self.created_at is not None:
             _dict['created_at'] = datetime_to_string(self.created_at)
-        if hasattr(self, 'retrieved_at') and self.retrieved_at is not None:
-            _dict['retrieved_at'] = datetime_to_string(self.retrieved_at)
         if hasattr(self, 'crn') and self.crn is not None:
             _dict['crn'] = self.crn
         if hasattr(self, 'custom_metadata') and self.custom_metadata is not None:
@@ -10558,12 +10534,6 @@ class ArbitrarySecretVersionPrototype(SecretVersionPrototype):
 class CommonRotationPolicy(RotationPolicy):
     """
     This field indicates whether Secrets Manager rotates your secrets automatically.
-    Rotation interval cannot exceed the assiged TTL value.
-    Custom Credentials: Minimum 6 hours, Maximum 3 months.
-    Service Credentials: Minimum 1 day, Maximum 3 months.
-    IAM Credentials: Minimum 1 day, Maximum 3 months.
-    Private certificate: Minimum 1 day, Maximum 24 months.
-    User credentials: Minimum 1 day, Maximum 24 months.
 
     :param bool auto_rotate: This field indicates whether Secrets Manager rotates
           your secret automatically.
@@ -10652,7 +10622,6 @@ class CommonRotationPolicy(RotationPolicy):
 
         DAY = 'day'
         MONTH = 'month'
-        HOUR = 'hour'
 
 
 
@@ -11361,9 +11330,6 @@ class CustomCredentialsSecret(Secret):
           that created the secret.
     :param datetime created_at: The date when the resource was created. The date
           format follows `RFC 3339`.
-    :param datetime retrieved_at: (optional) The date when the data of the secret
-          was last retrieved. The date format follows RFC 3339. Epoch date if there is no
-          record of secret data retrieval.
     :param str crn: A CRN that uniquely identifies an IBM Cloud resource.
     :param dict custom_metadata: (optional) The secret metadata that a user can
           customize.
@@ -11425,8 +11391,6 @@ class CustomCredentialsSecret(Secret):
     :param str processing_task_id: (optional) A Secret Manager task identifier.
     :param int queued_task_count: (optional) Number of queued tasks for this secret.
     :param str last_failed_task_id: (optional) A Secret Manager task identifier.
-    :param bool last_rotation_failed: (optional) Indicates if the last rotation
-          (automatic or manual) for the secret failed.
     :param str configuration: The name of the custom credentials configuration.
     :param dict parameters: (optional) The fields that can be passed to and from the
           custom credentials engine. Allowed types are 'string', 'integer' and 'boolean'.
@@ -11447,7 +11411,6 @@ class CustomCredentialsSecret(Secret):
         configuration: str,
         credentials_content: dict,
         *,
-        retrieved_at: Optional[datetime] = None,
         custom_metadata: Optional[dict] = None,
         description: Optional[str] = None,
         downloaded: Optional[bool] = None,
@@ -11465,7 +11428,6 @@ class CustomCredentialsSecret(Secret):
         processing_task_id: Optional[str] = None,
         queued_task_count: Optional[int] = None,
         last_failed_task_id: Optional[str] = None,
-        last_rotation_failed: Optional[bool] = None,
         parameters: Optional[dict] = None,
     ) -> None:
         """
@@ -11488,9 +11450,6 @@ class CustomCredentialsSecret(Secret):
         :param dict credentials_content: The fields that can be passed to and from
                the custom credentials engine. Allowed types are 'string', 'integer' and
                'boolean'.
-        :param datetime retrieved_at: (optional) The date when the data of the
-               secret was last retrieved. The date format follows RFC 3339. Epoch date if
-               there is no record of secret data retrieval.
         :param dict custom_metadata: (optional) The secret metadata that a user can
                customize.
         :param str description: (optional) An extended description of your secret.
@@ -11528,7 +11487,6 @@ class CustomCredentialsSecret(Secret):
         # pylint: disable=super-init-not-called
         self.created_by = created_by
         self.created_at = created_at
-        self.retrieved_at = retrieved_at
         self.crn = crn
         self.custom_metadata = custom_metadata
         self.description = description
@@ -11552,7 +11510,6 @@ class CustomCredentialsSecret(Secret):
         self.processing_task_id = processing_task_id
         self.queued_task_count = queued_task_count
         self.last_failed_task_id = last_failed_task_id
-        self.last_rotation_failed = last_rotation_failed
         self.configuration = configuration
         self.parameters = parameters
         self.credentials_content = credentials_content
@@ -11569,8 +11526,6 @@ class CustomCredentialsSecret(Secret):
             args['created_at'] = string_to_datetime(created_at)
         else:
             raise ValueError('Required property \'created_at\' not present in CustomCredentialsSecret JSON')
-        if (retrieved_at := _dict.get('retrieved_at')) is not None:
-            args['retrieved_at'] = string_to_datetime(retrieved_at)
         if (crn := _dict.get('crn')) is not None:
             args['crn'] = crn
         else:
@@ -11629,8 +11584,6 @@ class CustomCredentialsSecret(Secret):
             args['queued_task_count'] = queued_task_count
         if (last_failed_task_id := _dict.get('last_failed_task_id')) is not None:
             args['last_failed_task_id'] = last_failed_task_id
-        if (last_rotation_failed := _dict.get('last_rotation_failed')) is not None:
-            args['last_rotation_failed'] = last_rotation_failed
         if (configuration := _dict.get('configuration')) is not None:
             args['configuration'] = configuration
         else:
@@ -11655,8 +11608,6 @@ class CustomCredentialsSecret(Secret):
             _dict['created_by'] = self.created_by
         if hasattr(self, 'created_at') and self.created_at is not None:
             _dict['created_at'] = datetime_to_string(self.created_at)
-        if hasattr(self, 'retrieved_at') and self.retrieved_at is not None:
-            _dict['retrieved_at'] = datetime_to_string(self.retrieved_at)
         if hasattr(self, 'crn') and self.crn is not None:
             _dict['crn'] = self.crn
         if hasattr(self, 'custom_metadata') and self.custom_metadata is not None:
@@ -11706,8 +11657,6 @@ class CustomCredentialsSecret(Secret):
             _dict['queued_task_count'] = getattr(self, 'queued_task_count')
         if hasattr(self, 'last_failed_task_id') and self.last_failed_task_id is not None:
             _dict['last_failed_task_id'] = self.last_failed_task_id
-        if hasattr(self, 'last_rotation_failed') and getattr(self, 'last_rotation_failed') is not None:
-            _dict['last_rotation_failed'] = getattr(self, 'last_rotation_failed')
         if hasattr(self, 'configuration') and self.configuration is not None:
             _dict['configuration'] = self.configuration
         if hasattr(self, 'parameters') and self.parameters is not None:
@@ -11772,9 +11721,6 @@ class CustomCredentialsSecretMetadata(SecretMetadata):
           that created the secret.
     :param datetime created_at: The date when the resource was created. The date
           format follows `RFC 3339`.
-    :param datetime retrieved_at: (optional) The date when the data of the secret
-          was last retrieved. The date format follows RFC 3339. Epoch date if there is no
-          record of secret data retrieval.
     :param str crn: A CRN that uniquely identifies an IBM Cloud resource.
     :param dict custom_metadata: (optional) The secret metadata that a user can
           customize.
@@ -11836,8 +11782,6 @@ class CustomCredentialsSecretMetadata(SecretMetadata):
     :param str processing_task_id: (optional) A Secret Manager task identifier.
     :param int queued_task_count: (optional) Number of queued tasks for this secret.
     :param str last_failed_task_id: (optional) A Secret Manager task identifier.
-    :param bool last_rotation_failed: (optional) Indicates if the last rotation
-          (automatic or manual) for the secret failed.
     :param str configuration: The name of the custom credentials configuration.
     :param dict parameters: (optional) The fields that can be passed to and from the
           custom credentials engine. Allowed types are 'string', 'integer' and 'boolean'.
@@ -11855,7 +11799,6 @@ class CustomCredentialsSecretMetadata(SecretMetadata):
         versions_total: int,
         configuration: str,
         *,
-        retrieved_at: Optional[datetime] = None,
         custom_metadata: Optional[dict] = None,
         description: Optional[str] = None,
         downloaded: Optional[bool] = None,
@@ -11873,7 +11816,6 @@ class CustomCredentialsSecretMetadata(SecretMetadata):
         processing_task_id: Optional[str] = None,
         queued_task_count: Optional[int] = None,
         last_failed_task_id: Optional[str] = None,
-        last_rotation_failed: Optional[bool] = None,
         parameters: Optional[dict] = None,
     ) -> None:
         """
@@ -11893,9 +11835,6 @@ class CustomCredentialsSecretMetadata(SecretMetadata):
                format follows `RFC 3339`.
         :param int versions_total: The number of versions of your secret.
         :param str configuration: The name of the custom credentials configuration.
-        :param datetime retrieved_at: (optional) The date when the data of the
-               secret was last retrieved. The date format follows RFC 3339. Epoch date if
-               there is no record of secret data retrieval.
         :param dict custom_metadata: (optional) The secret metadata that a user can
                customize.
         :param str description: (optional) An extended description of your secret.
@@ -11933,7 +11872,6 @@ class CustomCredentialsSecretMetadata(SecretMetadata):
         # pylint: disable=super-init-not-called
         self.created_by = created_by
         self.created_at = created_at
-        self.retrieved_at = retrieved_at
         self.crn = crn
         self.custom_metadata = custom_metadata
         self.description = description
@@ -11957,7 +11895,6 @@ class CustomCredentialsSecretMetadata(SecretMetadata):
         self.processing_task_id = processing_task_id
         self.queued_task_count = queued_task_count
         self.last_failed_task_id = last_failed_task_id
-        self.last_rotation_failed = last_rotation_failed
         self.configuration = configuration
         self.parameters = parameters
 
@@ -11973,8 +11910,6 @@ class CustomCredentialsSecretMetadata(SecretMetadata):
             args['created_at'] = string_to_datetime(created_at)
         else:
             raise ValueError('Required property \'created_at\' not present in CustomCredentialsSecretMetadata JSON')
-        if (retrieved_at := _dict.get('retrieved_at')) is not None:
-            args['retrieved_at'] = string_to_datetime(retrieved_at)
         if (crn := _dict.get('crn')) is not None:
             args['crn'] = crn
         else:
@@ -12033,8 +11968,6 @@ class CustomCredentialsSecretMetadata(SecretMetadata):
             args['queued_task_count'] = queued_task_count
         if (last_failed_task_id := _dict.get('last_failed_task_id')) is not None:
             args['last_failed_task_id'] = last_failed_task_id
-        if (last_rotation_failed := _dict.get('last_rotation_failed')) is not None:
-            args['last_rotation_failed'] = last_rotation_failed
         if (configuration := _dict.get('configuration')) is not None:
             args['configuration'] = configuration
         else:
@@ -12055,8 +11988,6 @@ class CustomCredentialsSecretMetadata(SecretMetadata):
             _dict['created_by'] = self.created_by
         if hasattr(self, 'created_at') and self.created_at is not None:
             _dict['created_at'] = datetime_to_string(self.created_at)
-        if hasattr(self, 'retrieved_at') and self.retrieved_at is not None:
-            _dict['retrieved_at'] = datetime_to_string(self.retrieved_at)
         if hasattr(self, 'crn') and self.crn is not None:
             _dict['crn'] = self.crn
         if hasattr(self, 'custom_metadata') and self.custom_metadata is not None:
@@ -12106,8 +12037,6 @@ class CustomCredentialsSecretMetadata(SecretMetadata):
             _dict['queued_task_count'] = getattr(self, 'queued_task_count')
         if hasattr(self, 'last_failed_task_id') and self.last_failed_task_id is not None:
             _dict['last_failed_task_id'] = self.last_failed_task_id
-        if hasattr(self, 'last_rotation_failed') and getattr(self, 'last_rotation_failed') is not None:
-            _dict['last_rotation_failed'] = getattr(self, 'last_rotation_failed')
         if hasattr(self, 'configuration') and self.configuration is not None:
             _dict['configuration'] = self.configuration
         if hasattr(self, 'parameters') and self.parameters is not None:
@@ -13669,9 +13598,6 @@ class IAMCredentialsSecret(Secret):
           that created the secret.
     :param datetime created_at: The date when the resource was created. The date
           format follows `RFC 3339`.
-    :param datetime retrieved_at: (optional) The date when the data of the secret
-          was last retrieved. The date format follows RFC 3339. Epoch date if there is no
-          record of secret data retrieval.
     :param str crn: A CRN that uniquely identifies an IBM Cloud resource.
     :param dict custom_metadata: (optional) The secret metadata that a user can
           customize.
@@ -13775,7 +13701,6 @@ class IAMCredentialsSecret(Secret):
         ttl: str,
         reuse_api_key: bool,
         *,
-        retrieved_at: Optional[datetime] = None,
         custom_metadata: Optional[dict] = None,
         description: Optional[str] = None,
         downloaded: Optional[bool] = None,
@@ -13828,9 +13753,6 @@ class IAMCredentialsSecret(Secret):
                If it is set to `true`, the service reuses the current credentials. If it
                is set to `false`, a new service ID and API key are generated each time
                that the secret is read or accessed.
-        :param datetime retrieved_at: (optional) The date when the data of the
-               secret was last retrieved. The date format follows RFC 3339. Epoch date if
-               there is no record of secret data retrieval.
         :param dict custom_metadata: (optional) The secret metadata that a user can
                customize.
         :param str description: (optional) An extended description of your secret.
@@ -13865,7 +13787,6 @@ class IAMCredentialsSecret(Secret):
         # pylint: disable=super-init-not-called
         self.created_by = created_by
         self.created_at = created_at
-        self.retrieved_at = retrieved_at
         self.crn = crn
         self.custom_metadata = custom_metadata
         self.description = description
@@ -13905,8 +13826,6 @@ class IAMCredentialsSecret(Secret):
             args['created_at'] = string_to_datetime(created_at)
         else:
             raise ValueError('Required property \'created_at\' not present in IAMCredentialsSecret JSON')
-        if (retrieved_at := _dict.get('retrieved_at')) is not None:
-            args['retrieved_at'] = string_to_datetime(retrieved_at)
         if (crn := _dict.get('crn')) is not None:
             args['crn'] = crn
         else:
@@ -13989,8 +13908,6 @@ class IAMCredentialsSecret(Secret):
             _dict['created_by'] = self.created_by
         if hasattr(self, 'created_at') and self.created_at is not None:
             _dict['created_at'] = datetime_to_string(self.created_at)
-        if hasattr(self, 'retrieved_at') and self.retrieved_at is not None:
-            _dict['retrieved_at'] = datetime_to_string(self.retrieved_at)
         if hasattr(self, 'crn') and self.crn is not None:
             _dict['crn'] = self.crn
         if hasattr(self, 'custom_metadata') and self.custom_metadata is not None:
@@ -14104,9 +14021,6 @@ class IAMCredentialsSecretMetadata(SecretMetadata):
           that created the secret.
     :param datetime created_at: The date when the resource was created. The date
           format follows `RFC 3339`.
-    :param datetime retrieved_at: (optional) The date when the data of the secret
-          was last retrieved. The date format follows RFC 3339. Epoch date if there is no
-          record of secret data retrieval.
     :param str crn: A CRN that uniquely identifies an IBM Cloud resource.
     :param dict custom_metadata: (optional) The secret metadata that a user can
           customize.
@@ -14205,7 +14119,6 @@ class IAMCredentialsSecretMetadata(SecretMetadata):
         ttl: str,
         reuse_api_key: bool,
         *,
-        retrieved_at: Optional[datetime] = None,
         custom_metadata: Optional[dict] = None,
         description: Optional[str] = None,
         downloaded: Optional[bool] = None,
@@ -14257,9 +14170,6 @@ class IAMCredentialsSecretMetadata(SecretMetadata):
                If it is set to `true`, the service reuses the current credentials. If it
                is set to `false`, a new service ID and API key are generated each time
                that the secret is read or accessed.
-        :param datetime retrieved_at: (optional) The date when the data of the
-               secret was last retrieved. The date format follows RFC 3339. Epoch date if
-               there is no record of secret data retrieval.
         :param dict custom_metadata: (optional) The secret metadata that a user can
                customize.
         :param str description: (optional) An extended description of your secret.
@@ -14294,7 +14204,6 @@ class IAMCredentialsSecretMetadata(SecretMetadata):
         # pylint: disable=super-init-not-called
         self.created_by = created_by
         self.created_at = created_at
-        self.retrieved_at = retrieved_at
         self.crn = crn
         self.custom_metadata = custom_metadata
         self.description = description
@@ -14333,8 +14242,6 @@ class IAMCredentialsSecretMetadata(SecretMetadata):
             args['created_at'] = string_to_datetime(created_at)
         else:
             raise ValueError('Required property \'created_at\' not present in IAMCredentialsSecretMetadata JSON')
-        if (retrieved_at := _dict.get('retrieved_at')) is not None:
-            args['retrieved_at'] = string_to_datetime(retrieved_at)
         if (crn := _dict.get('crn')) is not None:
             args['crn'] = crn
         else:
@@ -14415,8 +14322,6 @@ class IAMCredentialsSecretMetadata(SecretMetadata):
             _dict['created_by'] = self.created_by
         if hasattr(self, 'created_at') and self.created_at is not None:
             _dict['created_at'] = datetime_to_string(self.created_at)
-        if hasattr(self, 'retrieved_at') and self.retrieved_at is not None:
-            _dict['retrieved_at'] = datetime_to_string(self.retrieved_at)
         if hasattr(self, 'crn') and self.crn is not None:
             _dict['crn'] = self.crn
         if hasattr(self, 'custom_metadata') and self.custom_metadata is not None:
@@ -15606,9 +15511,6 @@ class ImportedCertificate(Secret):
           that created the secret.
     :param datetime created_at: The date when the resource was created. The date
           format follows `RFC 3339`.
-    :param datetime retrieved_at: (optional) The date when the data of the secret
-          was last retrieved. The date format follows RFC 3339. Epoch date if there is no
-          record of secret data retrieval.
     :param str crn: A CRN that uniquely identifies an IBM Cloud resource.
     :param dict custom_metadata: (optional) The secret metadata that a user can
           customize.
@@ -15689,7 +15591,6 @@ class ImportedCertificate(Secret):
         updated_at: datetime,
         versions_total: int,
         *,
-        retrieved_at: Optional[datetime] = None,
         custom_metadata: Optional[dict] = None,
         description: Optional[str] = None,
         downloaded: Optional[bool] = None,
@@ -15731,9 +15632,6 @@ class ImportedCertificate(Secret):
         :param datetime updated_at: The date when a resource was modified. The date
                format follows `RFC 3339`.
         :param int versions_total: The number of versions of your secret.
-        :param datetime retrieved_at: (optional) The date when the data of the
-               secret was last retrieved. The date format follows RFC 3339. Epoch date if
-               there is no record of secret data retrieval.
         :param dict custom_metadata: (optional) The secret metadata that a user can
                customize.
         :param str description: (optional) An extended description of your secret.
@@ -15777,7 +15675,6 @@ class ImportedCertificate(Secret):
         # pylint: disable=super-init-not-called
         self.created_by = created_by
         self.created_at = created_at
-        self.retrieved_at = retrieved_at
         self.crn = crn
         self.custom_metadata = custom_metadata
         self.description = description
@@ -15821,8 +15718,6 @@ class ImportedCertificate(Secret):
             args['created_at'] = string_to_datetime(created_at)
         else:
             raise ValueError('Required property \'created_at\' not present in ImportedCertificate JSON')
-        if (retrieved_at := _dict.get('retrieved_at')) is not None:
-            args['retrieved_at'] = string_to_datetime(retrieved_at)
         if (crn := _dict.get('crn')) is not None:
             args['crn'] = crn
         else:
@@ -15909,8 +15804,6 @@ class ImportedCertificate(Secret):
             _dict['created_by'] = self.created_by
         if hasattr(self, 'created_at') and self.created_at is not None:
             _dict['created_at'] = datetime_to_string(self.created_at)
-        if hasattr(self, 'retrieved_at') and self.retrieved_at is not None:
-            _dict['retrieved_at'] = datetime_to_string(self.retrieved_at)
         if hasattr(self, 'crn') and self.crn is not None:
             _dict['crn'] = self.crn
         if hasattr(self, 'custom_metadata') and self.custom_metadata is not None:
@@ -16035,9 +15928,6 @@ class ImportedCertificateMetadata(SecretMetadata):
           that created the secret.
     :param datetime created_at: The date when the resource was created. The date
           format follows `RFC 3339`.
-    :param datetime retrieved_at: (optional) The date when the data of the secret
-          was last retrieved. The date format follows RFC 3339. Epoch date if there is no
-          record of secret data retrieval.
     :param str crn: A CRN that uniquely identifies an IBM Cloud resource.
     :param dict custom_metadata: (optional) The secret metadata that a user can
           customize.
@@ -16109,7 +15999,6 @@ class ImportedCertificateMetadata(SecretMetadata):
         updated_at: datetime,
         versions_total: int,
         *,
-        retrieved_at: Optional[datetime] = None,
         custom_metadata: Optional[dict] = None,
         description: Optional[str] = None,
         downloaded: Optional[bool] = None,
@@ -16147,9 +16036,6 @@ class ImportedCertificateMetadata(SecretMetadata):
         :param datetime updated_at: The date when a resource was modified. The date
                format follows `RFC 3339`.
         :param int versions_total: The number of versions of your secret.
-        :param datetime retrieved_at: (optional) The date when the data of the
-               secret was last retrieved. The date format follows RFC 3339. Epoch date if
-               there is no record of secret data retrieval.
         :param dict custom_metadata: (optional) The secret metadata that a user can
                customize.
         :param str description: (optional) An extended description of your secret.
@@ -16184,7 +16070,6 @@ class ImportedCertificateMetadata(SecretMetadata):
         # pylint: disable=super-init-not-called
         self.created_by = created_by
         self.created_at = created_at
-        self.retrieved_at = retrieved_at
         self.crn = crn
         self.custom_metadata = custom_metadata
         self.description = description
@@ -16224,8 +16109,6 @@ class ImportedCertificateMetadata(SecretMetadata):
             args['created_at'] = string_to_datetime(created_at)
         else:
             raise ValueError('Required property \'created_at\' not present in ImportedCertificateMetadata JSON')
-        if (retrieved_at := _dict.get('retrieved_at')) is not None:
-            args['retrieved_at'] = string_to_datetime(retrieved_at)
         if (crn := _dict.get('crn')) is not None:
             args['crn'] = crn
         else:
@@ -16304,8 +16187,6 @@ class ImportedCertificateMetadata(SecretMetadata):
             _dict['created_by'] = self.created_by
         if hasattr(self, 'created_at') and self.created_at is not None:
             _dict['created_at'] = datetime_to_string(self.created_at)
-        if hasattr(self, 'retrieved_at') and self.retrieved_at is not None:
-            _dict['retrieved_at'] = datetime_to_string(self.retrieved_at)
         if hasattr(self, 'crn') and self.crn is not None:
             _dict['crn'] = self.crn
         if hasattr(self, 'custom_metadata') and self.custom_metadata is not None:
@@ -17372,9 +17253,6 @@ class KVSecret(Secret):
           that created the secret.
     :param datetime created_at: The date when the resource was created. The date
           format follows `RFC 3339`.
-    :param datetime retrieved_at: (optional) The date when the data of the secret
-          was last retrieved. The date format follows RFC 3339. Epoch date if there is no
-          record of secret data retrieval.
     :param str crn: A CRN that uniquely identifies an IBM Cloud resource.
     :param dict custom_metadata: (optional) The secret metadata that a user can
           customize.
@@ -17421,7 +17299,6 @@ class KVSecret(Secret):
         versions_total: int,
         data: dict,
         *,
-        retrieved_at: Optional[datetime] = None,
         custom_metadata: Optional[dict] = None,
         description: Optional[str] = None,
         downloaded: Optional[bool] = None,
@@ -17449,9 +17326,6 @@ class KVSecret(Secret):
                format follows `RFC 3339`.
         :param int versions_total: The number of versions of your secret.
         :param dict data: The payload data of a key-value secret.
-        :param datetime retrieved_at: (optional) The date when the data of the
-               secret was last retrieved. The date format follows RFC 3339. Epoch date if
-               there is no record of secret data retrieval.
         :param dict custom_metadata: (optional) The secret metadata that a user can
                customize.
         :param str description: (optional) An extended description of your secret.
@@ -17466,7 +17340,6 @@ class KVSecret(Secret):
         # pylint: disable=super-init-not-called
         self.created_by = created_by
         self.created_at = created_at
-        self.retrieved_at = retrieved_at
         self.crn = crn
         self.custom_metadata = custom_metadata
         self.description = description
@@ -17496,8 +17369,6 @@ class KVSecret(Secret):
             args['created_at'] = string_to_datetime(created_at)
         else:
             raise ValueError('Required property \'created_at\' not present in KVSecret JSON')
-        if (retrieved_at := _dict.get('retrieved_at')) is not None:
-            args['retrieved_at'] = string_to_datetime(retrieved_at)
         if (crn := _dict.get('crn')) is not None:
             args['crn'] = crn
         else:
@@ -17558,8 +17429,6 @@ class KVSecret(Secret):
             _dict['created_by'] = self.created_by
         if hasattr(self, 'created_at') and self.created_at is not None:
             _dict['created_at'] = datetime_to_string(self.created_at)
-        if hasattr(self, 'retrieved_at') and self.retrieved_at is not None:
-            _dict['retrieved_at'] = datetime_to_string(self.retrieved_at)
         if hasattr(self, 'crn') and self.crn is not None:
             _dict['crn'] = self.crn
         if hasattr(self, 'custom_metadata') and self.custom_metadata is not None:
@@ -17650,9 +17519,6 @@ class KVSecretMetadata(SecretMetadata):
           that created the secret.
     :param datetime created_at: The date when the resource was created. The date
           format follows `RFC 3339`.
-    :param datetime retrieved_at: (optional) The date when the data of the secret
-          was last retrieved. The date format follows RFC 3339. Epoch date if there is no
-          record of secret data retrieval.
     :param str crn: A CRN that uniquely identifies an IBM Cloud resource.
     :param dict custom_metadata: (optional) The secret metadata that a user can
           customize.
@@ -17697,7 +17563,6 @@ class KVSecretMetadata(SecretMetadata):
         updated_at: datetime,
         versions_total: int,
         *,
-        retrieved_at: Optional[datetime] = None,
         custom_metadata: Optional[dict] = None,
         description: Optional[str] = None,
         downloaded: Optional[bool] = None,
@@ -17724,9 +17589,6 @@ class KVSecretMetadata(SecretMetadata):
         :param datetime updated_at: The date when a resource was modified. The date
                format follows `RFC 3339`.
         :param int versions_total: The number of versions of your secret.
-        :param datetime retrieved_at: (optional) The date when the data of the
-               secret was last retrieved. The date format follows RFC 3339. Epoch date if
-               there is no record of secret data retrieval.
         :param dict custom_metadata: (optional) The secret metadata that a user can
                customize.
         :param str description: (optional) An extended description of your secret.
@@ -17741,7 +17603,6 @@ class KVSecretMetadata(SecretMetadata):
         # pylint: disable=super-init-not-called
         self.created_by = created_by
         self.created_at = created_at
-        self.retrieved_at = retrieved_at
         self.crn = crn
         self.custom_metadata = custom_metadata
         self.description = description
@@ -17770,8 +17631,6 @@ class KVSecretMetadata(SecretMetadata):
             args['created_at'] = string_to_datetime(created_at)
         else:
             raise ValueError('Required property \'created_at\' not present in KVSecretMetadata JSON')
-        if (retrieved_at := _dict.get('retrieved_at')) is not None:
-            args['retrieved_at'] = string_to_datetime(retrieved_at)
         if (crn := _dict.get('crn')) is not None:
             args['crn'] = crn
         else:
@@ -17828,8 +17687,6 @@ class KVSecretMetadata(SecretMetadata):
             _dict['created_by'] = self.created_by
         if hasattr(self, 'created_at') and self.created_at is not None:
             _dict['created_at'] = datetime_to_string(self.created_at)
-        if hasattr(self, 'retrieved_at') and self.retrieved_at is not None:
-            _dict['retrieved_at'] = datetime_to_string(self.retrieved_at)
         if hasattr(self, 'crn') and self.crn is not None:
             _dict['crn'] = self.crn
         if hasattr(self, 'custom_metadata') and self.custom_metadata is not None:
@@ -18706,9 +18563,6 @@ class PrivateCertificate(Secret):
           that created the secret.
     :param datetime created_at: The date when the resource was created. The date
           format follows `RFC 3339`.
-    :param datetime retrieved_at: (optional) The date when the data of the secret
-          was last retrieved. The date format follows RFC 3339. Epoch date if there is no
-          record of secret data retrieval.
     :param str crn: A CRN that uniquely identifies an IBM Cloud resource.
     :param dict custom_metadata: (optional) The secret metadata that a user can
           customize.
@@ -18806,7 +18660,6 @@ class PrivateCertificate(Secret):
         certificate: str,
         private_key: str,
         *,
-        retrieved_at: Optional[datetime] = None,
         custom_metadata: Optional[dict] = None,
         description: Optional[str] = None,
         downloaded: Optional[bool] = None,
@@ -18860,9 +18713,6 @@ class PrivateCertificate(Secret):
         :param str private_key: The PEM-encoded private key that is associated with
                the certificate. The data must be formatted on a single line with embedded
                newline characters.
-        :param datetime retrieved_at: (optional) The date when the data of the
-               secret was last retrieved. The date format follows RFC 3339. Epoch date if
-               there is no record of secret data retrieval.
         :param dict custom_metadata: (optional) The secret metadata that a user can
                customize.
         :param str description: (optional) An extended description of your secret.
@@ -18884,7 +18734,6 @@ class PrivateCertificate(Secret):
         # pylint: disable=super-init-not-called
         self.created_by = created_by
         self.created_at = created_at
-        self.retrieved_at = retrieved_at
         self.crn = crn
         self.custom_metadata = custom_metadata
         self.description = description
@@ -18931,8 +18780,6 @@ class PrivateCertificate(Secret):
             args['created_at'] = string_to_datetime(created_at)
         else:
             raise ValueError('Required property \'created_at\' not present in PrivateCertificate JSON')
-        if (retrieved_at := _dict.get('retrieved_at')) is not None:
-            args['retrieved_at'] = string_to_datetime(retrieved_at)
         if (crn := _dict.get('crn')) is not None:
             args['crn'] = crn
         else:
@@ -19041,8 +18888,6 @@ class PrivateCertificate(Secret):
             _dict['created_by'] = self.created_by
         if hasattr(self, 'created_at') and self.created_at is not None:
             _dict['created_at'] = datetime_to_string(self.created_at)
-        if hasattr(self, 'retrieved_at') and self.retrieved_at is not None:
-            _dict['retrieved_at'] = datetime_to_string(self.retrieved_at)
         if hasattr(self, 'crn') and self.crn is not None:
             _dict['crn'] = self.crn
         if hasattr(self, 'custom_metadata') and self.custom_metadata is not None:
@@ -26571,9 +26416,6 @@ class PrivateCertificateMetadata(SecretMetadata):
           that created the secret.
     :param datetime created_at: The date when the resource was created. The date
           format follows `RFC 3339`.
-    :param datetime retrieved_at: (optional) The date when the data of the secret
-          was last retrieved. The date format follows RFC 3339. Epoch date if there is no
-          record of secret data retrieval.
     :param str crn: A CRN that uniquely identifies an IBM Cloud resource.
     :param dict custom_metadata: (optional) The secret metadata that a user can
           customize.
@@ -26660,7 +26502,6 @@ class PrivateCertificateMetadata(SecretMetadata):
         serial_number: str,
         validity: 'CertificateValidity',
         *,
-        retrieved_at: Optional[datetime] = None,
         custom_metadata: Optional[dict] = None,
         description: Optional[str] = None,
         downloaded: Optional[bool] = None,
@@ -26707,9 +26548,6 @@ class PrivateCertificateMetadata(SecretMetadata):
                certificate by the issuing certificate authority.
         :param CertificateValidity validity: The date and time that the certificate
                validity period begins and ends.
-        :param datetime retrieved_at: (optional) The date when the data of the
-               secret was last retrieved. The date format follows RFC 3339. Epoch date if
-               there is no record of secret data retrieval.
         :param dict custom_metadata: (optional) The secret metadata that a user can
                customize.
         :param str description: (optional) An extended description of your secret.
@@ -26731,7 +26569,6 @@ class PrivateCertificateMetadata(SecretMetadata):
         # pylint: disable=super-init-not-called
         self.created_by = created_by
         self.created_at = created_at
-        self.retrieved_at = retrieved_at
         self.crn = crn
         self.custom_metadata = custom_metadata
         self.description = description
@@ -26774,8 +26611,6 @@ class PrivateCertificateMetadata(SecretMetadata):
             args['created_at'] = string_to_datetime(created_at)
         else:
             raise ValueError('Required property \'created_at\' not present in PrivateCertificateMetadata JSON')
-        if (retrieved_at := _dict.get('retrieved_at')) is not None:
-            args['retrieved_at'] = string_to_datetime(retrieved_at)
         if (crn := _dict.get('crn')) is not None:
             args['crn'] = crn
         else:
@@ -26872,8 +26707,6 @@ class PrivateCertificateMetadata(SecretMetadata):
             _dict['created_by'] = self.created_by
         if hasattr(self, 'created_at') and self.created_at is not None:
             _dict['created_at'] = datetime_to_string(self.created_at)
-        if hasattr(self, 'retrieved_at') and self.retrieved_at is not None:
-            _dict['retrieved_at'] = datetime_to_string(self.retrieved_at)
         if hasattr(self, 'crn') and self.crn is not None:
             _dict['crn'] = self.crn
         if hasattr(self, 'custom_metadata') and self.custom_metadata is not None:
@@ -28187,9 +28020,6 @@ class PublicCertificate(Secret):
           that created the secret.
     :param datetime created_at: The date when the resource was created. The date
           format follows `RFC 3339`.
-    :param datetime retrieved_at: (optional) The date when the data of the secret
-          was last retrieved. The date format follows RFC 3339. Epoch date if there is no
-          record of secret data retrieval.
     :param str crn: A CRN that uniquely identifies an IBM Cloud resource.
     :param dict custom_metadata: (optional) The secret metadata that a user can
           customize.
@@ -28278,7 +28108,6 @@ class PublicCertificate(Secret):
         key_algorithm: str,
         rotation: 'RotationPolicy',
         *,
-        retrieved_at: Optional[datetime] = None,
         custom_metadata: Optional[dict] = None,
         description: Optional[str] = None,
         downloaded: Optional[bool] = None,
@@ -28331,9 +28160,6 @@ class PublicCertificate(Secret):
                Manager rotates your secrets automatically. Supported secret types:
                username_password, private_cert, public_cert, iam_credentials,
                custom_credentials.
-        :param datetime retrieved_at: (optional) The date when the data of the
-               secret was last retrieved. The date format follows RFC 3339. Epoch date if
-               there is no record of secret data retrieval.
         :param dict custom_metadata: (optional) The secret metadata that a user can
                customize.
         :param str description: (optional) An extended description of your secret.
@@ -28370,7 +28196,6 @@ class PublicCertificate(Secret):
         # pylint: disable=super-init-not-called
         self.created_by = created_by
         self.created_at = created_at
-        self.retrieved_at = retrieved_at
         self.crn = crn
         self.custom_metadata = custom_metadata
         self.description = description
@@ -28415,8 +28240,6 @@ class PublicCertificate(Secret):
             args['created_at'] = string_to_datetime(created_at)
         else:
             raise ValueError('Required property \'created_at\' not present in PublicCertificate JSON')
-        if (retrieved_at := _dict.get('retrieved_at')) is not None:
-            args['retrieved_at'] = string_to_datetime(retrieved_at)
         if (crn := _dict.get('crn')) is not None:
             args['crn'] = crn
         else:
@@ -28509,8 +28332,6 @@ class PublicCertificate(Secret):
             _dict['created_by'] = self.created_by
         if hasattr(self, 'created_at') and self.created_at is not None:
             _dict['created_at'] = datetime_to_string(self.created_at)
-        if hasattr(self, 'retrieved_at') and self.retrieved_at is not None:
-            _dict['retrieved_at'] = datetime_to_string(self.retrieved_at)
         if hasattr(self, 'crn') and self.crn is not None:
             _dict['crn'] = self.crn
         if hasattr(self, 'custom_metadata') and self.custom_metadata is not None:
@@ -30696,9 +30517,6 @@ class PublicCertificateMetadata(SecretMetadata):
           that created the secret.
     :param datetime created_at: The date when the resource was created. The date
           format follows `RFC 3339`.
-    :param datetime retrieved_at: (optional) The date when the data of the secret
-          was last retrieved. The date format follows RFC 3339. Epoch date if there is no
-          record of secret data retrieval.
     :param str crn: A CRN that uniquely identifies an IBM Cloud resource.
     :param dict custom_metadata: (optional) The secret metadata that a user can
           customize.
@@ -30779,7 +30597,6 @@ class PublicCertificateMetadata(SecretMetadata):
         key_algorithm: str,
         rotation: 'RotationPolicy',
         *,
-        retrieved_at: Optional[datetime] = None,
         custom_metadata: Optional[dict] = None,
         description: Optional[str] = None,
         downloaded: Optional[bool] = None,
@@ -30829,9 +30646,6 @@ class PublicCertificateMetadata(SecretMetadata):
                Manager rotates your secrets automatically. Supported secret types:
                username_password, private_cert, public_cert, iam_credentials,
                custom_credentials.
-        :param datetime retrieved_at: (optional) The date when the data of the
-               secret was last retrieved. The date format follows RFC 3339. Epoch date if
-               there is no record of secret data retrieval.
         :param dict custom_metadata: (optional) The secret metadata that a user can
                customize.
         :param str description: (optional) An extended description of your secret.
@@ -30860,7 +30674,6 @@ class PublicCertificateMetadata(SecretMetadata):
         # pylint: disable=super-init-not-called
         self.created_by = created_by
         self.created_at = created_at
-        self.retrieved_at = retrieved_at
         self.crn = crn
         self.custom_metadata = custom_metadata
         self.description = description
@@ -30902,8 +30715,6 @@ class PublicCertificateMetadata(SecretMetadata):
             args['created_at'] = string_to_datetime(created_at)
         else:
             raise ValueError('Required property \'created_at\' not present in PublicCertificateMetadata JSON')
-        if (retrieved_at := _dict.get('retrieved_at')) is not None:
-            args['retrieved_at'] = string_to_datetime(retrieved_at)
         if (crn := _dict.get('crn')) is not None:
             args['crn'] = crn
         else:
@@ -30990,8 +30801,6 @@ class PublicCertificateMetadata(SecretMetadata):
             _dict['created_by'] = self.created_by
         if hasattr(self, 'created_at') and self.created_at is not None:
             _dict['created_at'] = datetime_to_string(self.created_at)
-        if hasattr(self, 'retrieved_at') and self.retrieved_at is not None:
-            _dict['retrieved_at'] = datetime_to_string(self.retrieved_at)
         if hasattr(self, 'crn') and self.crn is not None:
             _dict['crn'] = self.crn
         if hasattr(self, 'custom_metadata') and self.custom_metadata is not None:
@@ -32398,9 +32207,6 @@ class ServiceCredentialsSecret(Secret):
           that created the secret.
     :param datetime created_at: The date when the resource was created. The date
           format follows `RFC 3339`.
-    :param datetime retrieved_at: (optional) The date when the data of the secret
-          was last retrieved. The date format follows RFC 3339. Epoch date if there is no
-          record of secret data retrieval.
     :param str crn: A CRN that uniquely identifies an IBM Cloud resource.
     :param dict custom_metadata: (optional) The secret metadata that a user can
           customize.
@@ -32476,7 +32282,6 @@ class ServiceCredentialsSecret(Secret):
         source_service: 'ServiceCredentialsSecretSourceServiceRO',
         credentials: 'ServiceCredentialsSecretCredentials',
         *,
-        retrieved_at: Optional[datetime] = None,
         custom_metadata: Optional[dict] = None,
         description: Optional[str] = None,
         downloaded: Optional[bool] = None,
@@ -32512,9 +32317,6 @@ class ServiceCredentialsSecret(Secret):
                instance.
         :param ServiceCredentialsSecretCredentials credentials: The properties of
                the service credentials secret payload.
-        :param datetime retrieved_at: (optional) The date when the data of the
-               secret was last retrieved. The date format follows RFC 3339. Epoch date if
-               there is no record of secret data retrieval.
         :param dict custom_metadata: (optional) The secret metadata that a user can
                customize.
         :param str description: (optional) An extended description of your secret.
@@ -32546,7 +32348,6 @@ class ServiceCredentialsSecret(Secret):
         # pylint: disable=super-init-not-called
         self.created_by = created_by
         self.created_at = created_at
-        self.retrieved_at = retrieved_at
         self.crn = crn
         self.custom_metadata = custom_metadata
         self.description = description
@@ -32581,8 +32382,6 @@ class ServiceCredentialsSecret(Secret):
             args['created_at'] = string_to_datetime(created_at)
         else:
             raise ValueError('Required property \'created_at\' not present in ServiceCredentialsSecret JSON')
-        if (retrieved_at := _dict.get('retrieved_at')) is not None:
-            args['retrieved_at'] = string_to_datetime(retrieved_at)
         if (crn := _dict.get('crn')) is not None:
             args['crn'] = crn
         else:
@@ -32655,8 +32454,6 @@ class ServiceCredentialsSecret(Secret):
             _dict['created_by'] = self.created_by
         if hasattr(self, 'created_at') and self.created_at is not None:
             _dict['created_at'] = datetime_to_string(self.created_at)
-        if hasattr(self, 'retrieved_at') and self.retrieved_at is not None:
-            _dict['retrieved_at'] = datetime_to_string(self.retrieved_at)
         if hasattr(self, 'crn') and self.crn is not None:
             _dict['crn'] = self.crn
         if hasattr(self, 'custom_metadata') and self.custom_metadata is not None:
@@ -32766,9 +32563,6 @@ class ServiceCredentialsSecretMetadata(SecretMetadata):
           that created the secret.
     :param datetime created_at: The date when the resource was created. The date
           format follows `RFC 3339`.
-    :param datetime retrieved_at: (optional) The date when the data of the secret
-          was last retrieved. The date format follows RFC 3339. Epoch date if there is no
-          record of secret data retrieval.
     :param str crn: A CRN that uniquely identifies an IBM Cloud resource.
     :param dict custom_metadata: (optional) The secret metadata that a user can
           customize.
@@ -32841,7 +32635,6 @@ class ServiceCredentialsSecretMetadata(SecretMetadata):
         versions_total: int,
         source_service: 'ServiceCredentialsSecretSourceServiceRO',
         *,
-        retrieved_at: Optional[datetime] = None,
         custom_metadata: Optional[dict] = None,
         description: Optional[str] = None,
         downloaded: Optional[bool] = None,
@@ -32875,9 +32668,6 @@ class ServiceCredentialsSecretMetadata(SecretMetadata):
         :param ServiceCredentialsSecretSourceServiceRO source_service: The
                properties of the resource key that was created for this source service
                instance.
-        :param datetime retrieved_at: (optional) The date when the data of the
-               secret was last retrieved. The date format follows RFC 3339. Epoch date if
-               there is no record of secret data retrieval.
         :param dict custom_metadata: (optional) The secret metadata that a user can
                customize.
         :param str description: (optional) An extended description of your secret.
@@ -32909,7 +32699,6 @@ class ServiceCredentialsSecretMetadata(SecretMetadata):
         # pylint: disable=super-init-not-called
         self.created_by = created_by
         self.created_at = created_at
-        self.retrieved_at = retrieved_at
         self.crn = crn
         self.custom_metadata = custom_metadata
         self.description = description
@@ -32943,8 +32732,6 @@ class ServiceCredentialsSecretMetadata(SecretMetadata):
             args['created_at'] = string_to_datetime(created_at)
         else:
             raise ValueError('Required property \'created_at\' not present in ServiceCredentialsSecretMetadata JSON')
-        if (retrieved_at := _dict.get('retrieved_at')) is not None:
-            args['retrieved_at'] = string_to_datetime(retrieved_at)
         if (crn := _dict.get('crn')) is not None:
             args['crn'] = crn
         else:
@@ -33013,8 +32800,6 @@ class ServiceCredentialsSecretMetadata(SecretMetadata):
             _dict['created_by'] = self.created_by
         if hasattr(self, 'created_at') and self.created_at is not None:
             _dict['created_at'] = datetime_to_string(self.created_at)
-        if hasattr(self, 'retrieved_at') and self.retrieved_at is not None:
-            _dict['retrieved_at'] = datetime_to_string(self.retrieved_at)
         if hasattr(self, 'crn') and self.crn is not None:
             _dict['crn'] = self.crn
         if hasattr(self, 'custom_metadata') and self.custom_metadata is not None:
@@ -34031,9 +33816,6 @@ class UsernamePasswordSecret(Secret):
           that created the secret.
     :param datetime created_at: The date when the resource was created. The date
           format follows `RFC 3339`.
-    :param datetime retrieved_at: (optional) The date when the data of the secret
-          was last retrieved. The date format follows RFC 3339. Epoch date if there is no
-          record of secret data retrieval.
     :param str crn: A CRN that uniquely identifies an IBM Cloud resource.
     :param dict custom_metadata: (optional) The secret metadata that a user can
           customize.
@@ -34099,7 +33881,6 @@ class UsernamePasswordSecret(Secret):
         username: str,
         password: str,
         *,
-        retrieved_at: Optional[datetime] = None,
         custom_metadata: Optional[dict] = None,
         description: Optional[str] = None,
         downloaded: Optional[bool] = None,
@@ -34137,9 +33918,6 @@ class UsernamePasswordSecret(Secret):
                `username_password` secret.
         :param str password: The password that is assigned to an
                `username_password` secret.
-        :param datetime retrieved_at: (optional) The date when the data of the
-               secret was last retrieved. The date format follows RFC 3339. Epoch date if
-               there is no record of secret data retrieval.
         :param dict custom_metadata: (optional) The secret metadata that a user can
                customize.
         :param str description: (optional) An extended description of your secret.
@@ -34156,7 +33934,6 @@ class UsernamePasswordSecret(Secret):
         # pylint: disable=super-init-not-called
         self.created_by = created_by
         self.created_at = created_at
-        self.retrieved_at = retrieved_at
         self.crn = crn
         self.custom_metadata = custom_metadata
         self.description = description
@@ -34191,8 +33968,6 @@ class UsernamePasswordSecret(Secret):
             args['created_at'] = string_to_datetime(created_at)
         else:
             raise ValueError('Required property \'created_at\' not present in UsernamePasswordSecret JSON')
-        if (retrieved_at := _dict.get('retrieved_at')) is not None:
-            args['retrieved_at'] = string_to_datetime(retrieved_at)
         if (crn := _dict.get('crn')) is not None:
             args['crn'] = crn
         else:
@@ -34267,8 +34042,6 @@ class UsernamePasswordSecret(Secret):
             _dict['created_by'] = self.created_by
         if hasattr(self, 'created_at') and self.created_at is not None:
             _dict['created_at'] = datetime_to_string(self.created_at)
-        if hasattr(self, 'retrieved_at') and self.retrieved_at is not None:
-            _dict['retrieved_at'] = datetime_to_string(self.retrieved_at)
         if hasattr(self, 'crn') and self.crn is not None:
             _dict['crn'] = self.crn
         if hasattr(self, 'custom_metadata') and self.custom_metadata is not None:
@@ -34375,9 +34148,6 @@ class UsernamePasswordSecretMetadata(SecretMetadata):
           that created the secret.
     :param datetime created_at: The date when the resource was created. The date
           format follows `RFC 3339`.
-    :param datetime retrieved_at: (optional) The date when the data of the secret
-          was last retrieved. The date format follows RFC 3339. Epoch date if there is no
-          record of secret data retrieval.
     :param str crn: A CRN that uniquely identifies an IBM Cloud resource.
     :param dict custom_metadata: (optional) The secret metadata that a user can
           customize.
@@ -34437,7 +34207,6 @@ class UsernamePasswordSecretMetadata(SecretMetadata):
         versions_total: int,
         rotation: 'RotationPolicy',
         *,
-        retrieved_at: Optional[datetime] = None,
         custom_metadata: Optional[dict] = None,
         description: Optional[str] = None,
         downloaded: Optional[bool] = None,
@@ -34471,9 +34240,6 @@ class UsernamePasswordSecretMetadata(SecretMetadata):
                Manager rotates your secrets automatically. Supported secret types:
                username_password, private_cert, public_cert, iam_credentials,
                custom_credentials.
-        :param datetime retrieved_at: (optional) The date when the data of the
-               secret was last retrieved. The date format follows RFC 3339. Epoch date if
-               there is no record of secret data retrieval.
         :param dict custom_metadata: (optional) The secret metadata that a user can
                customize.
         :param str description: (optional) An extended description of your secret.
@@ -34490,7 +34256,6 @@ class UsernamePasswordSecretMetadata(SecretMetadata):
         # pylint: disable=super-init-not-called
         self.created_by = created_by
         self.created_at = created_at
-        self.retrieved_at = retrieved_at
         self.crn = crn
         self.custom_metadata = custom_metadata
         self.description = description
@@ -34523,8 +34288,6 @@ class UsernamePasswordSecretMetadata(SecretMetadata):
             args['created_at'] = string_to_datetime(created_at)
         else:
             raise ValueError('Required property \'created_at\' not present in UsernamePasswordSecretMetadata JSON')
-        if (retrieved_at := _dict.get('retrieved_at')) is not None:
-            args['retrieved_at'] = string_to_datetime(retrieved_at)
         if (crn := _dict.get('crn')) is not None:
             args['crn'] = crn
         else:
@@ -34591,8 +34354,6 @@ class UsernamePasswordSecretMetadata(SecretMetadata):
             _dict['created_by'] = self.created_by
         if hasattr(self, 'created_at') and self.created_at is not None:
             _dict['created_at'] = datetime_to_string(self.created_at)
-        if hasattr(self, 'retrieved_at') and self.retrieved_at is not None:
-            _dict['retrieved_at'] = datetime_to_string(self.retrieved_at)
         if hasattr(self, 'crn') and self.crn is not None:
             _dict['crn'] = self.crn
         if hasattr(self, 'custom_metadata') and self.custom_metadata is not None:
@@ -35624,8 +35385,8 @@ class SecretsPager:
                `..?limit=25`.
         :param str sort: (optional) Sort a collection of secrets by the specified
                field in ascending order. To sort in descending order use the `-` character
-               **Available values:** id | created_at | updated_at | retrieved_at |
-               expiration_date | secret_type | name
+               **Available values:** id | created_at | updated_at | expiration_date |
+               secret_type | name
                **Usage:** To sort a list of secrets by their creation date, use
                `../secrets?sort=created_at`.
         :param str search: (optional) Obtain a collection of secrets that contain

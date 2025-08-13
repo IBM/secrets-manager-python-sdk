@@ -530,7 +530,7 @@ class TestCreateSecret:
         """
         # Set up mock
         url = preprocess_url('/api/v2/secrets')
-        mock_response = '{"created_by": "iam-ServiceId-e4a2f0a4-3c76-4bef-b1f2-fbeae11c0f21", "created_at": "2022-04-12T23:20:50.520Z", "retrieved_at": "2025-04-12T23:20:50.520Z", "crn": "crn", "custom_metadata": {"anyKey": "anyValue"}, "description": "Extended description for this secret.", "downloaded": true, "id": "b49ad24d-81d4-5ebc-b9b9-b0937d1c84d5", "labels": ["my-label"], "locks_total": 0, "name": "my-secret", "secret_group_id": "default", "secret_type": "arbitrary", "state": 0, "state_description": "active", "updated_at": "2022-04-12T23:20:50.520Z", "versions_total": 0, "referenced_by": ["my-example-engine-config"], "expiration_date": "2033-04-12T23:20:50.520Z", "payload": "secret-credentials"}'
+        mock_response = '{"created_by": "iam-ServiceId-e4a2f0a4-3c76-4bef-b1f2-fbeae11c0f21", "created_at": "2022-04-12T23:20:50.520Z", "crn": "crn", "custom_metadata": {"anyKey": "anyValue"}, "description": "Extended description for this secret.", "downloaded": true, "id": "b49ad24d-81d4-5ebc-b9b9-b0937d1c84d5", "labels": ["my-label"], "locks_total": 0, "name": "my-secret", "secret_group_id": "default", "secret_type": "arbitrary", "state": 0, "state_description": "active", "updated_at": "2022-04-12T23:20:50.520Z", "versions_total": 0, "referenced_by": ["my-example-engine-config"], "expiration_date": "2033-04-12T23:20:50.520Z", "payload": "secret-credentials"}'
         responses.add(
             responses.POST,
             url,
@@ -583,7 +583,7 @@ class TestCreateSecret:
         """
         # Set up mock
         url = preprocess_url('/api/v2/secrets')
-        mock_response = '{"created_by": "iam-ServiceId-e4a2f0a4-3c76-4bef-b1f2-fbeae11c0f21", "created_at": "2022-04-12T23:20:50.520Z", "retrieved_at": "2025-04-12T23:20:50.520Z", "crn": "crn", "custom_metadata": {"anyKey": "anyValue"}, "description": "Extended description for this secret.", "downloaded": true, "id": "b49ad24d-81d4-5ebc-b9b9-b0937d1c84d5", "labels": ["my-label"], "locks_total": 0, "name": "my-secret", "secret_group_id": "default", "secret_type": "arbitrary", "state": 0, "state_description": "active", "updated_at": "2022-04-12T23:20:50.520Z", "versions_total": 0, "referenced_by": ["my-example-engine-config"], "expiration_date": "2033-04-12T23:20:50.520Z", "payload": "secret-credentials"}'
+        mock_response = '{"created_by": "iam-ServiceId-e4a2f0a4-3c76-4bef-b1f2-fbeae11c0f21", "created_at": "2022-04-12T23:20:50.520Z", "crn": "crn", "custom_metadata": {"anyKey": "anyValue"}, "description": "Extended description for this secret.", "downloaded": true, "id": "b49ad24d-81d4-5ebc-b9b9-b0937d1c84d5", "labels": ["my-label"], "locks_total": 0, "name": "my-secret", "secret_group_id": "default", "secret_type": "arbitrary", "state": 0, "state_description": "active", "updated_at": "2022-04-12T23:20:50.520Z", "versions_total": 0, "referenced_by": ["my-example-engine-config"], "expiration_date": "2033-04-12T23:20:50.520Z", "payload": "secret-credentials"}'
         responses.add(
             responses.POST,
             url,
@@ -638,7 +638,7 @@ class TestListSecrets:
         """
         # Set up mock
         url = preprocess_url('/api/v2/secrets')
-        mock_response = '{"total_count": 0, "limit": 25, "offset": 25, "first": {"href": "href"}, "next": {"href": "href"}, "previous": {"href": "href"}, "last": {"href": "href"}, "secrets": [{"created_by": "iam-ServiceId-e4a2f0a4-3c76-4bef-b1f2-fbeae11c0f21", "created_at": "2022-04-12T23:20:50.520Z", "retrieved_at": "2025-04-12T23:20:50.520Z", "crn": "crn", "custom_metadata": {"anyKey": "anyValue"}, "description": "Extended description for this secret.", "downloaded": true, "id": "b49ad24d-81d4-5ebc-b9b9-b0937d1c84d5", "labels": ["my-label"], "locks_total": 0, "name": "my-secret", "secret_group_id": "default", "secret_type": "arbitrary", "state": 0, "state_description": "active", "updated_at": "2022-04-12T23:20:50.520Z", "versions_total": 0, "referenced_by": ["my-example-engine-config"], "expiration_date": "2033-04-12T23:20:50.520Z"}]}'
+        mock_response = '{"total_count": 0, "limit": 25, "offset": 25, "first": {"href": "href"}, "next": {"href": "href"}, "previous": {"href": "href"}, "last": {"href": "href"}, "secrets": [{"created_by": "iam-ServiceId-e4a2f0a4-3c76-4bef-b1f2-fbeae11c0f21", "created_at": "2022-04-12T23:20:50.520Z", "crn": "crn", "custom_metadata": {"anyKey": "anyValue"}, "description": "Extended description for this secret.", "downloaded": true, "id": "b49ad24d-81d4-5ebc-b9b9-b0937d1c84d5", "labels": ["my-label"], "locks_total": 0, "name": "my-secret", "secret_group_id": "default", "secret_type": "arbitrary", "state": 0, "state_description": "active", "updated_at": "2022-04-12T23:20:50.520Z", "versions_total": 0, "referenced_by": ["my-example-engine-config"], "expiration_date": "2033-04-12T23:20:50.520Z"}]}'
         responses.add(
             responses.GET,
             url,
@@ -698,7 +698,7 @@ class TestListSecrets:
         """
         # Set up mock
         url = preprocess_url('/api/v2/secrets')
-        mock_response = '{"total_count": 0, "limit": 25, "offset": 25, "first": {"href": "href"}, "next": {"href": "href"}, "previous": {"href": "href"}, "last": {"href": "href"}, "secrets": [{"created_by": "iam-ServiceId-e4a2f0a4-3c76-4bef-b1f2-fbeae11c0f21", "created_at": "2022-04-12T23:20:50.520Z", "retrieved_at": "2025-04-12T23:20:50.520Z", "crn": "crn", "custom_metadata": {"anyKey": "anyValue"}, "description": "Extended description for this secret.", "downloaded": true, "id": "b49ad24d-81d4-5ebc-b9b9-b0937d1c84d5", "labels": ["my-label"], "locks_total": 0, "name": "my-secret", "secret_group_id": "default", "secret_type": "arbitrary", "state": 0, "state_description": "active", "updated_at": "2022-04-12T23:20:50.520Z", "versions_total": 0, "referenced_by": ["my-example-engine-config"], "expiration_date": "2033-04-12T23:20:50.520Z"}]}'
+        mock_response = '{"total_count": 0, "limit": 25, "offset": 25, "first": {"href": "href"}, "next": {"href": "href"}, "previous": {"href": "href"}, "last": {"href": "href"}, "secrets": [{"created_by": "iam-ServiceId-e4a2f0a4-3c76-4bef-b1f2-fbeae11c0f21", "created_at": "2022-04-12T23:20:50.520Z", "crn": "crn", "custom_metadata": {"anyKey": "anyValue"}, "description": "Extended description for this secret.", "downloaded": true, "id": "b49ad24d-81d4-5ebc-b9b9-b0937d1c84d5", "labels": ["my-label"], "locks_total": 0, "name": "my-secret", "secret_group_id": "default", "secret_type": "arbitrary", "state": 0, "state_description": "active", "updated_at": "2022-04-12T23:20:50.520Z", "versions_total": 0, "referenced_by": ["my-example-engine-config"], "expiration_date": "2033-04-12T23:20:50.520Z"}]}'
         responses.add(
             responses.GET,
             url,
@@ -730,8 +730,8 @@ class TestListSecrets:
         """
         # Set up a two-page mock response
         url = preprocess_url('/api/v2/secrets')
-        mock_response1 = '{"next":{"href":"https://myhost.com/somePath?offset=1"},"total_count":2,"limit":1,"secrets":[{"created_by":"iam-ServiceId-e4a2f0a4-3c76-4bef-b1f2-fbeae11c0f21","created_at":"2022-04-12T23:20:50.520Z","retrieved_at":"2025-04-12T23:20:50.520Z","crn":"crn","custom_metadata":{"anyKey":"anyValue"},"description":"Extended description for this secret.","downloaded":true,"id":"b49ad24d-81d4-5ebc-b9b9-b0937d1c84d5","labels":["my-label"],"locks_total":0,"name":"my-secret","secret_group_id":"default","secret_type":"arbitrary","state":0,"state_description":"active","updated_at":"2022-04-12T23:20:50.520Z","versions_total":0,"referenced_by":["my-example-engine-config"],"expiration_date":"2033-04-12T23:20:50.520Z"}]}'
-        mock_response2 = '{"total_count":2,"limit":1,"secrets":[{"created_by":"iam-ServiceId-e4a2f0a4-3c76-4bef-b1f2-fbeae11c0f21","created_at":"2022-04-12T23:20:50.520Z","retrieved_at":"2025-04-12T23:20:50.520Z","crn":"crn","custom_metadata":{"anyKey":"anyValue"},"description":"Extended description for this secret.","downloaded":true,"id":"b49ad24d-81d4-5ebc-b9b9-b0937d1c84d5","labels":["my-label"],"locks_total":0,"name":"my-secret","secret_group_id":"default","secret_type":"arbitrary","state":0,"state_description":"active","updated_at":"2022-04-12T23:20:50.520Z","versions_total":0,"referenced_by":["my-example-engine-config"],"expiration_date":"2033-04-12T23:20:50.520Z"}]}'
+        mock_response1 = '{"next":{"href":"https://myhost.com/somePath?offset=1"},"total_count":2,"limit":1,"secrets":[{"created_by":"iam-ServiceId-e4a2f0a4-3c76-4bef-b1f2-fbeae11c0f21","created_at":"2022-04-12T23:20:50.520Z","crn":"crn","custom_metadata":{"anyKey":"anyValue"},"description":"Extended description for this secret.","downloaded":true,"id":"b49ad24d-81d4-5ebc-b9b9-b0937d1c84d5","labels":["my-label"],"locks_total":0,"name":"my-secret","secret_group_id":"default","secret_type":"arbitrary","state":0,"state_description":"active","updated_at":"2022-04-12T23:20:50.520Z","versions_total":0,"referenced_by":["my-example-engine-config"],"expiration_date":"2033-04-12T23:20:50.520Z"}]}'
+        mock_response2 = '{"total_count":2,"limit":1,"secrets":[{"created_by":"iam-ServiceId-e4a2f0a4-3c76-4bef-b1f2-fbeae11c0f21","created_at":"2022-04-12T23:20:50.520Z","crn":"crn","custom_metadata":{"anyKey":"anyValue"},"description":"Extended description for this secret.","downloaded":true,"id":"b49ad24d-81d4-5ebc-b9b9-b0937d1c84d5","labels":["my-label"],"locks_total":0,"name":"my-secret","secret_group_id":"default","secret_type":"arbitrary","state":0,"state_description":"active","updated_at":"2022-04-12T23:20:50.520Z","versions_total":0,"referenced_by":["my-example-engine-config"],"expiration_date":"2033-04-12T23:20:50.520Z"}]}'
         responses.add(
             responses.GET,
             url,
@@ -771,8 +771,8 @@ class TestListSecrets:
         """
         # Set up a two-page mock response
         url = preprocess_url('/api/v2/secrets')
-        mock_response1 = '{"next":{"href":"https://myhost.com/somePath?offset=1"},"total_count":2,"limit":1,"secrets":[{"created_by":"iam-ServiceId-e4a2f0a4-3c76-4bef-b1f2-fbeae11c0f21","created_at":"2022-04-12T23:20:50.520Z","retrieved_at":"2025-04-12T23:20:50.520Z","crn":"crn","custom_metadata":{"anyKey":"anyValue"},"description":"Extended description for this secret.","downloaded":true,"id":"b49ad24d-81d4-5ebc-b9b9-b0937d1c84d5","labels":["my-label"],"locks_total":0,"name":"my-secret","secret_group_id":"default","secret_type":"arbitrary","state":0,"state_description":"active","updated_at":"2022-04-12T23:20:50.520Z","versions_total":0,"referenced_by":["my-example-engine-config"],"expiration_date":"2033-04-12T23:20:50.520Z"}]}'
-        mock_response2 = '{"total_count":2,"limit":1,"secrets":[{"created_by":"iam-ServiceId-e4a2f0a4-3c76-4bef-b1f2-fbeae11c0f21","created_at":"2022-04-12T23:20:50.520Z","retrieved_at":"2025-04-12T23:20:50.520Z","crn":"crn","custom_metadata":{"anyKey":"anyValue"},"description":"Extended description for this secret.","downloaded":true,"id":"b49ad24d-81d4-5ebc-b9b9-b0937d1c84d5","labels":["my-label"],"locks_total":0,"name":"my-secret","secret_group_id":"default","secret_type":"arbitrary","state":0,"state_description":"active","updated_at":"2022-04-12T23:20:50.520Z","versions_total":0,"referenced_by":["my-example-engine-config"],"expiration_date":"2033-04-12T23:20:50.520Z"}]}'
+        mock_response1 = '{"next":{"href":"https://myhost.com/somePath?offset=1"},"total_count":2,"limit":1,"secrets":[{"created_by":"iam-ServiceId-e4a2f0a4-3c76-4bef-b1f2-fbeae11c0f21","created_at":"2022-04-12T23:20:50.520Z","crn":"crn","custom_metadata":{"anyKey":"anyValue"},"description":"Extended description for this secret.","downloaded":true,"id":"b49ad24d-81d4-5ebc-b9b9-b0937d1c84d5","labels":["my-label"],"locks_total":0,"name":"my-secret","secret_group_id":"default","secret_type":"arbitrary","state":0,"state_description":"active","updated_at":"2022-04-12T23:20:50.520Z","versions_total":0,"referenced_by":["my-example-engine-config"],"expiration_date":"2033-04-12T23:20:50.520Z"}]}'
+        mock_response2 = '{"total_count":2,"limit":1,"secrets":[{"created_by":"iam-ServiceId-e4a2f0a4-3c76-4bef-b1f2-fbeae11c0f21","created_at":"2022-04-12T23:20:50.520Z","crn":"crn","custom_metadata":{"anyKey":"anyValue"},"description":"Extended description for this secret.","downloaded":true,"id":"b49ad24d-81d4-5ebc-b9b9-b0937d1c84d5","labels":["my-label"],"locks_total":0,"name":"my-secret","secret_group_id":"default","secret_type":"arbitrary","state":0,"state_description":"active","updated_at":"2022-04-12T23:20:50.520Z","versions_total":0,"referenced_by":["my-example-engine-config"],"expiration_date":"2033-04-12T23:20:50.520Z"}]}'
         responses.add(
             responses.GET,
             url,
@@ -815,7 +815,7 @@ class TestGetSecret:
         """
         # Set up mock
         url = preprocess_url('/api/v2/secrets/0b5571f7-21e6-42b7-91c5-3f5ac9793a46')
-        mock_response = '{"created_by": "iam-ServiceId-e4a2f0a4-3c76-4bef-b1f2-fbeae11c0f21", "created_at": "2022-04-12T23:20:50.520Z", "retrieved_at": "2025-04-12T23:20:50.520Z", "crn": "crn", "custom_metadata": {"anyKey": "anyValue"}, "description": "Extended description for this secret.", "downloaded": true, "id": "b49ad24d-81d4-5ebc-b9b9-b0937d1c84d5", "labels": ["my-label"], "locks_total": 0, "name": "my-secret", "secret_group_id": "default", "secret_type": "arbitrary", "state": 0, "state_description": "active", "updated_at": "2022-04-12T23:20:50.520Z", "versions_total": 0, "referenced_by": ["my-example-engine-config"], "expiration_date": "2033-04-12T23:20:50.520Z", "payload": "secret-credentials"}'
+        mock_response = '{"created_by": "iam-ServiceId-e4a2f0a4-3c76-4bef-b1f2-fbeae11c0f21", "created_at": "2022-04-12T23:20:50.520Z", "crn": "crn", "custom_metadata": {"anyKey": "anyValue"}, "description": "Extended description for this secret.", "downloaded": true, "id": "b49ad24d-81d4-5ebc-b9b9-b0937d1c84d5", "labels": ["my-label"], "locks_total": 0, "name": "my-secret", "secret_group_id": "default", "secret_type": "arbitrary", "state": 0, "state_description": "active", "updated_at": "2022-04-12T23:20:50.520Z", "versions_total": 0, "referenced_by": ["my-example-engine-config"], "expiration_date": "2033-04-12T23:20:50.520Z", "payload": "secret-credentials"}'
         responses.add(
             responses.GET,
             url,
@@ -853,7 +853,7 @@ class TestGetSecret:
         """
         # Set up mock
         url = preprocess_url('/api/v2/secrets/0b5571f7-21e6-42b7-91c5-3f5ac9793a46')
-        mock_response = '{"created_by": "iam-ServiceId-e4a2f0a4-3c76-4bef-b1f2-fbeae11c0f21", "created_at": "2022-04-12T23:20:50.520Z", "retrieved_at": "2025-04-12T23:20:50.520Z", "crn": "crn", "custom_metadata": {"anyKey": "anyValue"}, "description": "Extended description for this secret.", "downloaded": true, "id": "b49ad24d-81d4-5ebc-b9b9-b0937d1c84d5", "labels": ["my-label"], "locks_total": 0, "name": "my-secret", "secret_group_id": "default", "secret_type": "arbitrary", "state": 0, "state_description": "active", "updated_at": "2022-04-12T23:20:50.520Z", "versions_total": 0, "referenced_by": ["my-example-engine-config"], "expiration_date": "2033-04-12T23:20:50.520Z", "payload": "secret-credentials"}'
+        mock_response = '{"created_by": "iam-ServiceId-e4a2f0a4-3c76-4bef-b1f2-fbeae11c0f21", "created_at": "2022-04-12T23:20:50.520Z", "crn": "crn", "custom_metadata": {"anyKey": "anyValue"}, "description": "Extended description for this secret.", "downloaded": true, "id": "b49ad24d-81d4-5ebc-b9b9-b0937d1c84d5", "labels": ["my-label"], "locks_total": 0, "name": "my-secret", "secret_group_id": "default", "secret_type": "arbitrary", "state": 0, "state_description": "active", "updated_at": "2022-04-12T23:20:50.520Z", "versions_total": 0, "referenced_by": ["my-example-engine-config"], "expiration_date": "2033-04-12T23:20:50.520Z", "payload": "secret-credentials"}'
         responses.add(
             responses.GET,
             url,
@@ -1012,7 +1012,7 @@ class TestGetSecretMetadata:
         """
         # Set up mock
         url = preprocess_url('/api/v2/secrets/0b5571f7-21e6-42b7-91c5-3f5ac9793a46/metadata')
-        mock_response = '{"created_by": "iam-ServiceId-e4a2f0a4-3c76-4bef-b1f2-fbeae11c0f21", "created_at": "2022-04-12T23:20:50.520Z", "retrieved_at": "2025-04-12T23:20:50.520Z", "crn": "crn", "custom_metadata": {"anyKey": "anyValue"}, "description": "Extended description for this secret.", "downloaded": true, "id": "b49ad24d-81d4-5ebc-b9b9-b0937d1c84d5", "labels": ["my-label"], "locks_total": 0, "name": "my-secret", "secret_group_id": "default", "secret_type": "arbitrary", "state": 0, "state_description": "active", "updated_at": "2022-04-12T23:20:50.520Z", "versions_total": 0, "referenced_by": ["my-example-engine-config"], "expiration_date": "2033-04-12T23:20:50.520Z"}'
+        mock_response = '{"created_by": "iam-ServiceId-e4a2f0a4-3c76-4bef-b1f2-fbeae11c0f21", "created_at": "2022-04-12T23:20:50.520Z", "crn": "crn", "custom_metadata": {"anyKey": "anyValue"}, "description": "Extended description for this secret.", "downloaded": true, "id": "b49ad24d-81d4-5ebc-b9b9-b0937d1c84d5", "labels": ["my-label"], "locks_total": 0, "name": "my-secret", "secret_group_id": "default", "secret_type": "arbitrary", "state": 0, "state_description": "active", "updated_at": "2022-04-12T23:20:50.520Z", "versions_total": 0, "referenced_by": ["my-example-engine-config"], "expiration_date": "2033-04-12T23:20:50.520Z"}'
         responses.add(
             responses.GET,
             url,
@@ -1050,7 +1050,7 @@ class TestGetSecretMetadata:
         """
         # Set up mock
         url = preprocess_url('/api/v2/secrets/0b5571f7-21e6-42b7-91c5-3f5ac9793a46/metadata')
-        mock_response = '{"created_by": "iam-ServiceId-e4a2f0a4-3c76-4bef-b1f2-fbeae11c0f21", "created_at": "2022-04-12T23:20:50.520Z", "retrieved_at": "2025-04-12T23:20:50.520Z", "crn": "crn", "custom_metadata": {"anyKey": "anyValue"}, "description": "Extended description for this secret.", "downloaded": true, "id": "b49ad24d-81d4-5ebc-b9b9-b0937d1c84d5", "labels": ["my-label"], "locks_total": 0, "name": "my-secret", "secret_group_id": "default", "secret_type": "arbitrary", "state": 0, "state_description": "active", "updated_at": "2022-04-12T23:20:50.520Z", "versions_total": 0, "referenced_by": ["my-example-engine-config"], "expiration_date": "2033-04-12T23:20:50.520Z"}'
+        mock_response = '{"created_by": "iam-ServiceId-e4a2f0a4-3c76-4bef-b1f2-fbeae11c0f21", "created_at": "2022-04-12T23:20:50.520Z", "crn": "crn", "custom_metadata": {"anyKey": "anyValue"}, "description": "Extended description for this secret.", "downloaded": true, "id": "b49ad24d-81d4-5ebc-b9b9-b0937d1c84d5", "labels": ["my-label"], "locks_total": 0, "name": "my-secret", "secret_group_id": "default", "secret_type": "arbitrary", "state": 0, "state_description": "active", "updated_at": "2022-04-12T23:20:50.520Z", "versions_total": 0, "referenced_by": ["my-example-engine-config"], "expiration_date": "2033-04-12T23:20:50.520Z"}'
         responses.add(
             responses.GET,
             url,
@@ -1093,7 +1093,7 @@ class TestUpdateSecretMetadata:
         """
         # Set up mock
         url = preprocess_url('/api/v2/secrets/0b5571f7-21e6-42b7-91c5-3f5ac9793a46/metadata')
-        mock_response = '{"created_by": "iam-ServiceId-e4a2f0a4-3c76-4bef-b1f2-fbeae11c0f21", "created_at": "2022-04-12T23:20:50.520Z", "retrieved_at": "2025-04-12T23:20:50.520Z", "crn": "crn", "custom_metadata": {"anyKey": "anyValue"}, "description": "Extended description for this secret.", "downloaded": true, "id": "b49ad24d-81d4-5ebc-b9b9-b0937d1c84d5", "labels": ["my-label"], "locks_total": 0, "name": "my-secret", "secret_group_id": "default", "secret_type": "arbitrary", "state": 0, "state_description": "active", "updated_at": "2022-04-12T23:20:50.520Z", "versions_total": 0, "referenced_by": ["my-example-engine-config"], "expiration_date": "2033-04-12T23:20:50.520Z"}'
+        mock_response = '{"created_by": "iam-ServiceId-e4a2f0a4-3c76-4bef-b1f2-fbeae11c0f21", "created_at": "2022-04-12T23:20:50.520Z", "crn": "crn", "custom_metadata": {"anyKey": "anyValue"}, "description": "Extended description for this secret.", "downloaded": true, "id": "b49ad24d-81d4-5ebc-b9b9-b0937d1c84d5", "labels": ["my-label"], "locks_total": 0, "name": "my-secret", "secret_group_id": "default", "secret_type": "arbitrary", "state": 0, "state_description": "active", "updated_at": "2022-04-12T23:20:50.520Z", "versions_total": 0, "referenced_by": ["my-example-engine-config"], "expiration_date": "2033-04-12T23:20:50.520Z"}'
         responses.add(
             responses.PATCH,
             url,
@@ -1144,7 +1144,7 @@ class TestUpdateSecretMetadata:
         """
         # Set up mock
         url = preprocess_url('/api/v2/secrets/0b5571f7-21e6-42b7-91c5-3f5ac9793a46/metadata')
-        mock_response = '{"created_by": "iam-ServiceId-e4a2f0a4-3c76-4bef-b1f2-fbeae11c0f21", "created_at": "2022-04-12T23:20:50.520Z", "retrieved_at": "2025-04-12T23:20:50.520Z", "crn": "crn", "custom_metadata": {"anyKey": "anyValue"}, "description": "Extended description for this secret.", "downloaded": true, "id": "b49ad24d-81d4-5ebc-b9b9-b0937d1c84d5", "labels": ["my-label"], "locks_total": 0, "name": "my-secret", "secret_group_id": "default", "secret_type": "arbitrary", "state": 0, "state_description": "active", "updated_at": "2022-04-12T23:20:50.520Z", "versions_total": 0, "referenced_by": ["my-example-engine-config"], "expiration_date": "2033-04-12T23:20:50.520Z"}'
+        mock_response = '{"created_by": "iam-ServiceId-e4a2f0a4-3c76-4bef-b1f2-fbeae11c0f21", "created_at": "2022-04-12T23:20:50.520Z", "crn": "crn", "custom_metadata": {"anyKey": "anyValue"}, "description": "Extended description for this secret.", "downloaded": true, "id": "b49ad24d-81d4-5ebc-b9b9-b0937d1c84d5", "labels": ["my-label"], "locks_total": 0, "name": "my-secret", "secret_group_id": "default", "secret_type": "arbitrary", "state": 0, "state_description": "active", "updated_at": "2022-04-12T23:20:50.520Z", "versions_total": 0, "referenced_by": ["my-example-engine-config"], "expiration_date": "2033-04-12T23:20:50.520Z"}'
         responses.add(
             responses.PATCH,
             url,
@@ -1293,7 +1293,7 @@ class TestGetSecretByNameType:
         """
         # Set up mock
         url = preprocess_url('/api/v2/secret_groups/default/secret_types/arbitrary/secrets/my-secret')
-        mock_response = '{"created_by": "iam-ServiceId-e4a2f0a4-3c76-4bef-b1f2-fbeae11c0f21", "created_at": "2022-04-12T23:20:50.520Z", "retrieved_at": "2025-04-12T23:20:50.520Z", "crn": "crn", "custom_metadata": {"anyKey": "anyValue"}, "description": "Extended description for this secret.", "downloaded": true, "id": "b49ad24d-81d4-5ebc-b9b9-b0937d1c84d5", "labels": ["my-label"], "locks_total": 0, "name": "my-secret", "secret_group_id": "default", "secret_type": "arbitrary", "state": 0, "state_description": "active", "updated_at": "2022-04-12T23:20:50.520Z", "versions_total": 0, "referenced_by": ["my-example-engine-config"], "expiration_date": "2033-04-12T23:20:50.520Z", "payload": "secret-credentials"}'
+        mock_response = '{"created_by": "iam-ServiceId-e4a2f0a4-3c76-4bef-b1f2-fbeae11c0f21", "created_at": "2022-04-12T23:20:50.520Z", "crn": "crn", "custom_metadata": {"anyKey": "anyValue"}, "description": "Extended description for this secret.", "downloaded": true, "id": "b49ad24d-81d4-5ebc-b9b9-b0937d1c84d5", "labels": ["my-label"], "locks_total": 0, "name": "my-secret", "secret_group_id": "default", "secret_type": "arbitrary", "state": 0, "state_description": "active", "updated_at": "2022-04-12T23:20:50.520Z", "versions_total": 0, "referenced_by": ["my-example-engine-config"], "expiration_date": "2033-04-12T23:20:50.520Z", "payload": "secret-credentials"}'
         responses.add(
             responses.GET,
             url,
@@ -1335,7 +1335,7 @@ class TestGetSecretByNameType:
         """
         # Set up mock
         url = preprocess_url('/api/v2/secret_groups/default/secret_types/arbitrary/secrets/my-secret')
-        mock_response = '{"created_by": "iam-ServiceId-e4a2f0a4-3c76-4bef-b1f2-fbeae11c0f21", "created_at": "2022-04-12T23:20:50.520Z", "retrieved_at": "2025-04-12T23:20:50.520Z", "crn": "crn", "custom_metadata": {"anyKey": "anyValue"}, "description": "Extended description for this secret.", "downloaded": true, "id": "b49ad24d-81d4-5ebc-b9b9-b0937d1c84d5", "labels": ["my-label"], "locks_total": 0, "name": "my-secret", "secret_group_id": "default", "secret_type": "arbitrary", "state": 0, "state_description": "active", "updated_at": "2022-04-12T23:20:50.520Z", "versions_total": 0, "referenced_by": ["my-example-engine-config"], "expiration_date": "2033-04-12T23:20:50.520Z", "payload": "secret-credentials"}'
+        mock_response = '{"created_by": "iam-ServiceId-e4a2f0a4-3c76-4bef-b1f2-fbeae11c0f21", "created_at": "2022-04-12T23:20:50.520Z", "crn": "crn", "custom_metadata": {"anyKey": "anyValue"}, "description": "Extended description for this secret.", "downloaded": true, "id": "b49ad24d-81d4-5ebc-b9b9-b0937d1c84d5", "labels": ["my-label"], "locks_total": 0, "name": "my-secret", "secret_group_id": "default", "secret_type": "arbitrary", "state": 0, "state_description": "active", "updated_at": "2022-04-12T23:20:50.520Z", "versions_total": 0, "referenced_by": ["my-example-engine-config"], "expiration_date": "2033-04-12T23:20:50.520Z", "payload": "secret-credentials"}'
         responses.add(
             responses.GET,
             url,
@@ -5820,7 +5820,6 @@ class TestModel_SecretMetadataPaginatedCollection:
         secret_metadata_model = {}  # ArbitrarySecretMetadata
         secret_metadata_model['created_by'] = 'iam-ServiceId-e4a2f0a4-3c76-4bef-b1f2-fbeae11c0f21'
         secret_metadata_model['created_at'] = '2022-04-12T23:20:50.520000Z'
-        secret_metadata_model['retrieved_at'] = '2025-04-12T23:20:50.520000Z'
         secret_metadata_model['crn'] = 'testString'
         secret_metadata_model['custom_metadata'] = {'key': 'value'}
         secret_metadata_model['description'] = 'Extended description for this secret.'
@@ -6632,7 +6631,6 @@ class TestModel_ArbitrarySecret:
         arbitrary_secret_model_json = {}
         arbitrary_secret_model_json['created_by'] = 'iam-ServiceId-e4a2f0a4-3c76-4bef-b1f2-fbeae11c0f21'
         arbitrary_secret_model_json['created_at'] = '2022-04-12T23:20:50.520000Z'
-        arbitrary_secret_model_json['retrieved_at'] = '2025-04-12T23:20:50.520000Z'
         arbitrary_secret_model_json['crn'] = 'testString'
         arbitrary_secret_model_json['custom_metadata'] = {'key': 'value'}
         arbitrary_secret_model_json['description'] = 'Extended description for this secret.'
@@ -6674,7 +6672,6 @@ class TestModel_ArbitrarySecretMetadata:
         arbitrary_secret_metadata_model_json = {}
         arbitrary_secret_metadata_model_json['created_by'] = 'iam-ServiceId-e4a2f0a4-3c76-4bef-b1f2-fbeae11c0f21'
         arbitrary_secret_metadata_model_json['created_at'] = '2022-04-12T23:20:50.520000Z'
-        arbitrary_secret_metadata_model_json['retrieved_at'] = '2025-04-12T23:20:50.520000Z'
         arbitrary_secret_metadata_model_json['crn'] = 'testString'
         arbitrary_secret_metadata_model_json['custom_metadata'] = {'key': 'value'}
         arbitrary_secret_metadata_model_json['description'] = 'Extended description for this secret.'
@@ -7128,7 +7125,6 @@ class TestModel_CustomCredentialsSecret:
         custom_credentials_secret_model_json = {}
         custom_credentials_secret_model_json['created_by'] = 'iam-ServiceId-e4a2f0a4-3c76-4bef-b1f2-fbeae11c0f21'
         custom_credentials_secret_model_json['created_at'] = '2022-04-12T23:20:50.520000Z'
-        custom_credentials_secret_model_json['retrieved_at'] = '2025-04-12T23:20:50.520000Z'
         custom_credentials_secret_model_json['crn'] = 'testString'
         custom_credentials_secret_model_json['custom_metadata'] = {'key': 'value'}
         custom_credentials_secret_model_json['description'] = 'Extended description for this secret.'
@@ -7183,7 +7179,6 @@ class TestModel_CustomCredentialsSecretMetadata:
         custom_credentials_secret_metadata_model_json = {}
         custom_credentials_secret_metadata_model_json['created_by'] = 'iam-ServiceId-e4a2f0a4-3c76-4bef-b1f2-fbeae11c0f21'
         custom_credentials_secret_metadata_model_json['created_at'] = '2022-04-12T23:20:50.520000Z'
-        custom_credentials_secret_metadata_model_json['retrieved_at'] = '2025-04-12T23:20:50.520000Z'
         custom_credentials_secret_metadata_model_json['crn'] = 'testString'
         custom_credentials_secret_metadata_model_json['custom_metadata'] = {'key': 'value'}
         custom_credentials_secret_metadata_model_json['description'] = 'Extended description for this secret.'
@@ -7575,7 +7570,6 @@ class TestModel_IAMCredentialsSecret:
         iam_credentials_secret_model_json = {}
         iam_credentials_secret_model_json['created_by'] = 'iam-ServiceId-e4a2f0a4-3c76-4bef-b1f2-fbeae11c0f21'
         iam_credentials_secret_model_json['created_at'] = '2022-04-12T23:20:50.520000Z'
-        iam_credentials_secret_model_json['retrieved_at'] = '2025-04-12T23:20:50.520000Z'
         iam_credentials_secret_model_json['crn'] = 'testString'
         iam_credentials_secret_model_json['custom_metadata'] = {'key': 'value'}
         iam_credentials_secret_model_json['description'] = 'Extended description for this secret.'
@@ -7629,7 +7623,6 @@ class TestModel_IAMCredentialsSecretMetadata:
         iam_credentials_secret_metadata_model_json = {}
         iam_credentials_secret_metadata_model_json['created_by'] = 'iam-ServiceId-e4a2f0a4-3c76-4bef-b1f2-fbeae11c0f21'
         iam_credentials_secret_metadata_model_json['created_at'] = '2022-04-12T23:20:50.520000Z'
-        iam_credentials_secret_metadata_model_json['retrieved_at'] = '2025-04-12T23:20:50.520000Z'
         iam_credentials_secret_metadata_model_json['crn'] = 'testString'
         iam_credentials_secret_metadata_model_json['custom_metadata'] = {'key': 'value'}
         iam_credentials_secret_metadata_model_json['description'] = 'Extended description for this secret.'
@@ -7946,7 +7939,6 @@ class TestModel_ImportedCertificate:
         imported_certificate_model_json = {}
         imported_certificate_model_json['created_by'] = 'iam-ServiceId-e4a2f0a4-3c76-4bef-b1f2-fbeae11c0f21'
         imported_certificate_model_json['created_at'] = '2022-04-12T23:20:50.520000Z'
-        imported_certificate_model_json['retrieved_at'] = '2025-04-12T23:20:50.520000Z'
         imported_certificate_model_json['crn'] = 'testString'
         imported_certificate_model_json['custom_metadata'] = {'key': 'value'}
         imported_certificate_model_json['description'] = 'Extended description for this secret.'
@@ -8036,7 +8028,6 @@ class TestModel_ImportedCertificateMetadata:
         imported_certificate_metadata_model_json = {}
         imported_certificate_metadata_model_json['created_by'] = 'iam-ServiceId-e4a2f0a4-3c76-4bef-b1f2-fbeae11c0f21'
         imported_certificate_metadata_model_json['created_at'] = '2022-04-12T23:20:50.520000Z'
-        imported_certificate_metadata_model_json['retrieved_at'] = '2025-04-12T23:20:50.520000Z'
         imported_certificate_metadata_model_json['crn'] = 'testString'
         imported_certificate_metadata_model_json['custom_metadata'] = {'key': 'value'}
         imported_certificate_metadata_model_json['description'] = 'Extended description for this secret.'
@@ -8352,7 +8343,6 @@ class TestModel_KVSecret:
         kv_secret_model_json = {}
         kv_secret_model_json['created_by'] = 'iam-ServiceId-e4a2f0a4-3c76-4bef-b1f2-fbeae11c0f21'
         kv_secret_model_json['created_at'] = '2022-04-12T23:20:50.520000Z'
-        kv_secret_model_json['retrieved_at'] = '2025-04-12T23:20:50.520000Z'
         kv_secret_model_json['crn'] = 'testString'
         kv_secret_model_json['custom_metadata'] = {'key': 'value'}
         kv_secret_model_json['description'] = 'Extended description for this secret.'
@@ -8394,7 +8384,6 @@ class TestModel_KVSecretMetadata:
         kv_secret_metadata_model_json = {}
         kv_secret_metadata_model_json['created_by'] = 'iam-ServiceId-e4a2f0a4-3c76-4bef-b1f2-fbeae11c0f21'
         kv_secret_metadata_model_json['created_at'] = '2022-04-12T23:20:50.520000Z'
-        kv_secret_metadata_model_json['retrieved_at'] = '2025-04-12T23:20:50.520000Z'
         kv_secret_metadata_model_json['crn'] = 'testString'
         kv_secret_metadata_model_json['custom_metadata'] = {'key': 'value'}
         kv_secret_metadata_model_json['description'] = 'Extended description for this secret.'
@@ -8627,7 +8616,6 @@ class TestModel_PrivateCertificate:
         private_certificate_model_json = {}
         private_certificate_model_json['created_by'] = 'iam-ServiceId-e4a2f0a4-3c76-4bef-b1f2-fbeae11c0f21'
         private_certificate_model_json['created_at'] = '2022-04-12T23:20:50.520000Z'
-        private_certificate_model_json['retrieved_at'] = '2025-04-12T23:20:50.520000Z'
         private_certificate_model_json['crn'] = 'testString'
         private_certificate_model_json['custom_metadata'] = {'key': 'value'}
         private_certificate_model_json['description'] = 'Extended description for this secret.'
@@ -10033,7 +10021,6 @@ class TestModel_PrivateCertificateMetadata:
         private_certificate_metadata_model_json = {}
         private_certificate_metadata_model_json['created_by'] = 'iam-ServiceId-e4a2f0a4-3c76-4bef-b1f2-fbeae11c0f21'
         private_certificate_metadata_model_json['created_at'] = '2022-04-12T23:20:50.520000Z'
-        private_certificate_metadata_model_json['retrieved_at'] = '2025-04-12T23:20:50.520000Z'
         private_certificate_metadata_model_json['crn'] = 'testString'
         private_certificate_metadata_model_json['custom_metadata'] = {'key': 'value'}
         private_certificate_metadata_model_json['description'] = 'Extended description for this secret.'
@@ -10377,7 +10364,6 @@ class TestModel_PublicCertificate:
         public_certificate_model_json = {}
         public_certificate_model_json['created_by'] = 'iam-ServiceId-e4a2f0a4-3c76-4bef-b1f2-fbeae11c0f21'
         public_certificate_model_json['created_at'] = '2022-04-12T23:20:50.520000Z'
-        public_certificate_model_json['retrieved_at'] = '2025-04-12T23:20:50.520000Z'
         public_certificate_model_json['crn'] = 'testString'
         public_certificate_model_json['custom_metadata'] = {'key': 'value'}
         public_certificate_model_json['description'] = 'Extended description for this secret.'
@@ -10913,7 +10899,6 @@ class TestModel_PublicCertificateMetadata:
         public_certificate_metadata_model_json = {}
         public_certificate_metadata_model_json['created_by'] = 'iam-ServiceId-e4a2f0a4-3c76-4bef-b1f2-fbeae11c0f21'
         public_certificate_metadata_model_json['created_at'] = '2022-04-12T23:20:50.520000Z'
-        public_certificate_metadata_model_json['retrieved_at'] = '2025-04-12T23:20:50.520000Z'
         public_certificate_metadata_model_json['crn'] = 'testString'
         public_certificate_metadata_model_json['custom_metadata'] = {'key': 'value'}
         public_certificate_metadata_model_json['description'] = 'Extended description for this secret.'
@@ -11362,7 +11347,6 @@ class TestModel_ServiceCredentialsSecret:
         service_credentials_secret_model_json = {}
         service_credentials_secret_model_json['created_by'] = 'iam-ServiceId-e4a2f0a4-3c76-4bef-b1f2-fbeae11c0f21'
         service_credentials_secret_model_json['created_at'] = '2022-04-12T23:20:50.520000Z'
-        service_credentials_secret_model_json['retrieved_at'] = '2025-04-12T23:20:50.520000Z'
         service_credentials_secret_model_json['crn'] = 'testString'
         service_credentials_secret_model_json['custom_metadata'] = {'key': 'value'}
         service_credentials_secret_model_json['description'] = 'Extended description for this secret.'
@@ -11444,7 +11428,6 @@ class TestModel_ServiceCredentialsSecretMetadata:
         service_credentials_secret_metadata_model_json = {}
         service_credentials_secret_metadata_model_json['created_by'] = 'iam-ServiceId-e4a2f0a4-3c76-4bef-b1f2-fbeae11c0f21'
         service_credentials_secret_metadata_model_json['created_at'] = '2022-04-12T23:20:50.520000Z'
-        service_credentials_secret_metadata_model_json['retrieved_at'] = '2025-04-12T23:20:50.520000Z'
         service_credentials_secret_metadata_model_json['crn'] = 'testString'
         service_credentials_secret_metadata_model_json['custom_metadata'] = {'key': 'value'}
         service_credentials_secret_metadata_model_json['description'] = 'Extended description for this secret.'
@@ -11727,7 +11710,6 @@ class TestModel_UsernamePasswordSecret:
         username_password_secret_model_json = {}
         username_password_secret_model_json['created_by'] = 'iam-ServiceId-e4a2f0a4-3c76-4bef-b1f2-fbeae11c0f21'
         username_password_secret_model_json['created_at'] = '2022-04-12T23:20:50.520000Z'
-        username_password_secret_model_json['retrieved_at'] = '2025-04-12T23:20:50.520000Z'
         username_password_secret_model_json['crn'] = 'testString'
         username_password_secret_model_json['custom_metadata'] = {'key': 'value'}
         username_password_secret_model_json['description'] = 'Extended description for this secret.'
@@ -11785,7 +11767,6 @@ class TestModel_UsernamePasswordSecretMetadata:
         username_password_secret_metadata_model_json = {}
         username_password_secret_metadata_model_json['created_by'] = 'iam-ServiceId-e4a2f0a4-3c76-4bef-b1f2-fbeae11c0f21'
         username_password_secret_metadata_model_json['created_at'] = '2022-04-12T23:20:50.520000Z'
-        username_password_secret_metadata_model_json['retrieved_at'] = '2025-04-12T23:20:50.520000Z'
         username_password_secret_metadata_model_json['crn'] = 'testString'
         username_password_secret_metadata_model_json['custom_metadata'] = {'key': 'value'}
         username_password_secret_metadata_model_json['description'] = 'Extended description for this secret.'
