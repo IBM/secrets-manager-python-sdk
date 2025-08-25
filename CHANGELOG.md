@@ -1,3 +1,10 @@
+## [2.1.13](https://github.com/IBM/secrets-manager-python-sdk/compare/v2.1.12...v2.1.13) (2025-08-25)
+
+
+### Reverts
+
+* Revert "Revert "Add retrieved_at field ([#94](https://github.com/IBM/secrets-manager-python-sdk/issues/94))" ([#95](https://github.com/IBM/secrets-manager-python-sdk/issues/95))" ([d0c9ee0](https://github.com/IBM/secrets-manager-python-sdk/commit/d0c9ee0d1f225235597acd10002cbea7b2417757))
+
 ## [2.1.12](https://github.com/IBM/secrets-manager-python-sdk/compare/v2.1.11...v2.1.12) (2025-08-13)
 
 
