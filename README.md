@@ -67,7 +67,7 @@ To learn more about IAM authenticators and how to use them in your Python applic
 ### Basic usage
 
 - Use the `set_service_url` method to set the endpoint URL that is specific to your Secrets Manager service instance. To
-  find your endpoint URL, you can copy it from the **Endpoints** page in the Secrets Manager UI.
+  find your endpoint URL; you can copy it from the **Endpoints** page in the Secrets Manager UI.
 
 #### Examples
 
