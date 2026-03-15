@@ -130,3 +130,5 @@ dmypy.json
 *.idea
 .openapi-generator-ignore
 .openapi-generator
+
+node_modules
