@@ -7,8 +7,12 @@ on:
 jobs:
   publish:
     runs-on: ubuntu-latest
+    permissions: 
+      contents: read
     steps:
       - uses: actions/checkout@v6
+        with:
+          token: ${{ secrets.ADMIN_TOKEN }}
       - name: Set up Python 3.9
         uses: actions/setup-python@v6
         with:
