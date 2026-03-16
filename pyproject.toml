@@ -2,7 +2,7 @@
 name = "ibm-secrets-manager-sdk"
 version = "2.1.17"
 authors = [
-    { name="IBM", email="devxsdk@us.ibm.com" }
+    { name="IBM", email="secrets.automation" }
 ]
 description = "IBM Cloud Secrets Manager Python SDK"
 readme = "README.md"
