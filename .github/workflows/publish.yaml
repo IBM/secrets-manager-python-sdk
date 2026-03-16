@@ -23,7 +23,7 @@ jobs:
           python -m pip install "setuptools<82" build wheel --user
       - name: Build a binary wheel and a source tarball
         run: |
-          python -m build --no-build-isolation --sdist --wheel --outdir dist/ .
+          python -m build --no-isolation --sdist --wheel --outdir dist/ .
       - name: Publish distribution to PyPI
         uses: pypa/gh-action-pypi-publish@release/v1
         with:
