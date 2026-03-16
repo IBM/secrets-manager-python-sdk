@@ -1,4 +1,0 @@
-requests>=2.32.4,<3.0.0
-urllib3>=2.6.3,<3.0.0
-python_dateutil>=2.5.3,<3.0.0
-ibm_cloud_sdk_core>=3.24.4,<4.0.0
