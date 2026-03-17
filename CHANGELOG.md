@@ -1,3 +1,10 @@
+## [2.1.19](https://github.com/IBM/secrets-manager-python-sdk/compare/v2.1.18...v2.1.19) (2026-03-17)
+
+
+### Bug Fixes
+
+* **deps:** update dependency pylint to v4 ([69728f2](https://github.com/IBM/secrets-manager-python-sdk/commit/69728f2864de36f4b97875535af2bfd699c539e1))
+
 ## [2.1.18](https://github.com/IBM/secrets-manager-python-sdk/compare/v2.1.17...v2.1.18) (2026-03-17)
 
 
