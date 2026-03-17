@@ -1,3 +1,10 @@
+## [2.1.18](https://github.com/IBM/secrets-manager-python-sdk/compare/v2.1.17...v2.1.18) (2026-03-17)
+
+
+### Bug Fixes
+
+* **deps:** update dependency pytest to v9 ([79ef0b7](https://github.com/IBM/secrets-manager-python-sdk/commit/79ef0b7677e2743fcc3c14bb366fb9660880f790))
+
 ## [2.1.17](https://github.com/IBM/secrets-manager-python-sdk/compare/v2.1.16...v2.1.17) (2026-03-16)
 
 ## [2.1.16](https://github.com/IBM/secrets-manager-python-sdk/compare/v2.1.15...v2.1.16) (2026-03-16)
