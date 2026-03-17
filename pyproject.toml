@@ -39,7 +39,7 @@ Changelog = "https://github.com/IBM/secrets-manager-python-sdk/blob/main/CHANGEL
 [project.optional-dependencies]
 dev = [
     "coverage>=7.3.2,<8.0.0",
-    "pylint>=3.0.0,<4.0.0",
+    "pylint>=4.0.5,<4.1.0",
     "pytest>=9.0.2,<9.1.0",
     "pytest-cov>=7.0.0,<7.1.0",
     "pytest-rerunfailures>=3.1",
