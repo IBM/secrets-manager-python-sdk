@@ -34,7 +34,6 @@ dependencies = [
 Repository = "https://github.com/IBM/secrets-manager-python-sdk"
 Documentation = "https://cloud.ibm.com/apidocs/secrets-manager"
 Issues = "https://github.com/IBM/secrets-manager-python-sdk/issues"
-Changelog = "https://github.com/IBM/secrets-manager-python-sdk/blob/main/CHANGELOG.md"
 
 [project.optional-dependencies]
 dev = [
@@ -57,3 +56,18 @@ packages = ["ibm_secrets_manager_sdk"]
 [tool.black]
 line-length = 120
 skip-string-normalization = true
+
+[tool.bumpversion]
+current_version = "2.1.19"
+commit = true
+message = "Update version {current_version} -> {new_version}"
+
+[[tool.bumpversion.files]]
+filename = "ibm_secrets_manager_sdk/version.py"
+search = "__version__ = '{current_version}'"
+replace = "__version__ = '{new_version}'"
+
+[[tool.bumpversion.files]]
+filename = "pyproject.toml"
+search = "version = \"{current_version}\""
+replace = "version = \"{new_version}\""
