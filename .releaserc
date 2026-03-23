@@ -11,19 +11,27 @@
             {"type": "patch","release": "patch"}
     ]}],
     "@semantic-release/release-notes-generator",
-    "@semantic-release/changelog",
     [
       "@semantic-release/exec",
       {
-        "prepareCmd": "bump2version --allow-dirty --current-version ${lastRelease.version} --new-version ${nextRelease.version} patch"
+        "verifyReleaseCmd": "echo \"Verifying release ${nextRelease.version}\"",
+        "prepareCmd": "bump-my-version bump ${nextRelease.type} --allow-dirty --new-version ${nextRelease.version}"
       }
     ],
     [
       "@semantic-release/git",
       {
-        "message": "chore(release): ${nextRelease.version} [skip ci] release notes\n\n${nextRelease.notes}"
+        "message": "chore(release): ${nextRelease.version} [skip ci]\n\n${nextRelease.notes}",
+        "assets": ["pyproject.toml", "ibm_secrets_manager_sdk/version.py"]
       }
     ],
-    "@semantic-release/github"
+    [
+      "@semantic-release/github",
+      {
+        "successComment": false,
+        "failComment": false,
+        "releasedLabels": false
+      }
+    ]
   ]
 }
