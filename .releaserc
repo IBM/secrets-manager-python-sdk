@@ -25,13 +25,6 @@
         "assets": ["pyproject.toml", "ibm_secrets_manager_sdk/version.py"]
       }
     ],
-    [
-      "@semantic-release/github",
-      {
-        "successComment": false,
-        "failComment": false,
-        "releasedLabels": false
-      }
-    ]
+    "@semantic-release/github"
   ]
 }
