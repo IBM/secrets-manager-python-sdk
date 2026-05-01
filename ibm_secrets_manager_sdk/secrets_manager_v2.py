@@ -1,6 +1,6 @@
 # coding: utf-8
 
-# (C) Copyright IBM Corp. 2025.
+# (C) Copyright IBM Corp. 2026.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -14,7 +14,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-# IBM OpenAPI SDK Code Generator Version: 3.107.0-b68ebf7a-20250811-145645
+# IBM OpenAPI SDK Code Generator Version: 3.114.0-a902401e-20260427-192904
 
 """
 With IBM Cloud® Secrets Manager, you can create, lease, and centrally manage secrets that
@@ -80,7 +80,7 @@ class SecretsManagerV2(BaseService):
 
         :param str instance_id: (optional) The Secrets Manager Instance ID assigned by the service provider
             (default 'provide-here-your-smgr-instanceuuid')
-        :param str region: (optional) The region where you provisioned your Secrets Manager Instance. Available values: us-south, us-east, au-syd, jp-osa, jp-tok, eu-de, eu-gb, eu-es, ca-tor, ca-mon, br-sao
+        :param str region: (optional) The region where you provisioned your Secrets Manager Instance. Available values: us-south, us-east, au-syd, jp-osa, jp-tok, eu-de, eu-gb, eu-es, ca-tor, ca-mon, br-sao, in-che
             (default 'us-south')
         :return: The formatted URL with all variable placeholders replaced by values.
         :rtype: str
@@ -3811,7 +3811,7 @@ class CustomCredentialsNewCredentials:
     :param str id: An identifier of credentials in the credentials provider that is
           used by the custom credentials secret type.
     :param dict payload: The fields that can be passed to and from the custom
-          credentials engine. Allowed types are 'string', 'integer' and 'boolean'.
+          credentials engine. Allowed types are string, integer, and boolean.
     """
 
     def __init__(
@@ -3825,7 +3825,7 @@ class CustomCredentialsNewCredentials:
         :param str id: An identifier of credentials in the credentials provider
                that is used by the custom credentials secret type.
         :param dict payload: The fields that can be passed to and from the custom
-               credentials engine. Allowed types are 'string', 'integer' and 'boolean'.
+               credentials engine. Allowed types are string, integer, and boolean.
         """
         self.id = id
         self.payload = payload
@@ -11429,9 +11429,9 @@ class CustomCredentialsSecret(Secret):
           (automatic or manual) for the secret failed.
     :param str configuration: The name of the custom credentials configuration.
     :param dict parameters: (optional) The fields that can be passed to and from the
-          custom credentials engine. Allowed types are 'string', 'integer' and 'boolean'.
+          custom credentials engine. Allowed types are string, integer, and boolean.
     :param dict credentials_content: The fields that can be passed to and from the
-          custom credentials engine. Allowed types are 'string', 'integer' and 'boolean'.
+          custom credentials engine. Allowed types are string, integer, and boolean.
     """
 
     def __init__(
@@ -11486,8 +11486,8 @@ class CustomCredentialsSecret(Secret):
         :param int versions_total: The number of versions of your secret.
         :param str configuration: The name of the custom credentials configuration.
         :param dict credentials_content: The fields that can be passed to and from
-               the custom credentials engine. Allowed types are 'string', 'integer' and
-               'boolean'.
+               the custom credentials engine. Allowed types are string, integer, and
+               boolean.
         :param datetime retrieved_at: (optional) The date when the data of the
                secret was last retrieved. The date format follows RFC 3339. Epoch date if
                there is no record of secret data retrieval.
@@ -11522,8 +11522,8 @@ class CustomCredentialsSecret(Secret):
         :param str last_failed_task_id: (optional) A Secret Manager task
                identifier.
         :param dict parameters: (optional) The fields that can be passed to and
-               from the custom credentials engine. Allowed types are 'string', 'integer'
-               and 'boolean'.
+               from the custom credentials engine. Allowed types are string, integer, and
+               boolean.
         """
         # pylint: disable=super-init-not-called
         self.created_by = created_by
@@ -11840,7 +11840,7 @@ class CustomCredentialsSecretMetadata(SecretMetadata):
           (automatic or manual) for the secret failed.
     :param str configuration: The name of the custom credentials configuration.
     :param dict parameters: (optional) The fields that can be passed to and from the
-          custom credentials engine. Allowed types are 'string', 'integer' and 'boolean'.
+          custom credentials engine. Allowed types are string, integer, and boolean.
     """
 
     def __init__(
@@ -11927,8 +11927,8 @@ class CustomCredentialsSecretMetadata(SecretMetadata):
         :param str last_failed_task_id: (optional) A Secret Manager task
                identifier.
         :param dict parameters: (optional) The fields that can be passed to and
-               from the custom credentials engine. Allowed types are 'string', 'integer'
-               and 'boolean'.
+               from the custom credentials engine. Allowed types are string, integer, and
+               boolean.
         """
         # pylint: disable=super-init-not-called
         self.created_by = created_by
@@ -12196,7 +12196,7 @@ class CustomCredentialsSecretMetadataPatch(SecretMetadataPatch):
           rotation. For the custom_credentials secret type, the TTL field is optional. The
           minimum duration is 1 day. The maximum is 90 days.
     :param dict parameters: (optional) The parameters that are passed to custom
-          credentials engine. Allowed types are 'string', 'integer' and 'boolean'.
+          credentials engine. Allowed types are string, integer, and boolean.
     """
 
     def __init__(
@@ -12244,7 +12244,7 @@ class CustomCredentialsSecretMetadataPatch(SecretMetadataPatch):
                secret type, the TTL field is optional. The minimum duration is 1 day. The
                maximum is 90 days.
         :param dict parameters: (optional) The parameters that are passed to custom
-               credentials engine. Allowed types are 'string', 'integer' and 'boolean'.
+               credentials engine. Allowed types are string, integer, and boolean.
         """
         # pylint: disable=super-init-not-called
         self.custom_metadata = custom_metadata
@@ -12363,7 +12363,7 @@ class CustomCredentialsSecretPrototype(SecretPrototype):
           a user can customize.
     :param str configuration: The name of the custom credentials configuration.
     :param dict parameters: (optional) The parameters that are passed to custom
-          credentials engine. Allowed types are 'string', 'integer' and 'boolean'.
+          credentials engine. Allowed types are string, integer, and boolean.
     """
 
     def __init__(
@@ -12423,7 +12423,7 @@ class CustomCredentialsSecretPrototype(SecretPrototype):
         :param dict version_custom_metadata: (optional) The secret version metadata
                that a user can customize.
         :param dict parameters: (optional) The parameters that are passed to custom
-               credentials engine. Allowed types are 'string', 'integer' and 'boolean'.
+               credentials engine. Allowed types are string, integer, and boolean.
         """
         # pylint: disable=super-init-not-called
         self.custom_metadata = custom_metadata
@@ -12577,7 +12577,7 @@ class CustomCredentialsSecretVersion(SecretVersion):
     :param str credentials_id: (optional) Credentials created by the custom
           credentials system.
     :param dict credentials_content: The fields that can be passed to and from the
-          custom credentials engine. Allowed types are 'string', 'integer' and 'boolean'.
+          custom credentials engine. Allowed types are string, integer, and boolean.
     """
 
     def __init__(
@@ -12615,8 +12615,8 @@ class CustomCredentialsSecretVersion(SecretVersion):
                available in this secret version.
         :param str secret_id: A UUID identifier.
         :param dict credentials_content: The fields that can be passed to and from
-               the custom credentials engine. Allowed types are 'string', 'integer' and
-               'boolean'.
+               the custom credentials engine. Allowed types are string, integer, and
+               boolean.
         :param bool auto_rotated: (optional) Indicates whether the version of the
                secret was created by automatic rotation.
         :param str alias: (optional) A human-readable alias that describes the

@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# (C) Copyright IBM Corp. 2025.
+# (C) Copyright IBM Corp. 2026.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -111,6 +111,57 @@ class TestSecretsManagerV2:
 
         secret_id_for_get_secret_link = secret['id']
         secret_id_for_get_secret_version_link = secret['id']
+
+    @needscredentials
+    def test_list_secrets(self):
+        response = self.secrets_manager_service.list_secrets(
+            offset=0,
+            limit=200,
+            sort='created_at',
+            search='example',
+            groups=['default', 'cac40995-c37a-4dcb-9506-472869077634'],
+            secret_types=['arbitrary', 'kv'],
+            match_all_labels=['dev', 'us-south'],
+        )
+
+        assert response.get_status_code() == 200
+        secret_metadata_paginated_collection = response.get_result()
+        assert secret_metadata_paginated_collection is not None
+
+    @needscredentials
+    def test_list_secrets_with_pager(self):
+        all_results = []
+
+        # Test get_next().
+        pager = SecretsPager(
+            client=self.secrets_manager_service,
+            limit=10,
+            sort='created_at',
+            search='example',
+            groups=['default', 'cac40995-c37a-4dcb-9506-472869077634'],
+            secret_types=['arbitrary', 'kv'],
+            match_all_labels=['dev', 'us-south'],
+        )
+        while pager.has_next():
+            next_page = pager.get_next()
+            assert next_page is not None
+            all_results.extend(next_page)
+
+        # Test get_all().
+        pager = SecretsPager(
+            client=self.secrets_manager_service,
+            limit=10,
+            sort='created_at',
+            search='example',
+            groups=['default', 'cac40995-c37a-4dcb-9506-472869077634'],
+            secret_types=['arbitrary', 'kv'],
+            match_all_labels=['dev', 'us-south'],
+        )
+        all_items = pager.get_all()
+        assert all_items is not None
+
+        assert len(all_results) == len(all_items)
+        print(f'\nlist_secrets() returned a total of {len(all_results)} items(s) using SecretsPager.')
 
     @needscredentials
     def test_update_secret_metadata(self):
@@ -245,57 +296,6 @@ class TestSecretsManagerV2:
         assert response.get_status_code() == 200
         secret_group = response.get_result()
         assert secret_group is not None
-
-    @needscredentials
-    def test_list_secrets(self):
-        response = self.secrets_manager_service.list_secrets(
-            offset=0,
-            limit=200,
-            sort='created_at',
-            search='example',
-            groups=['default', 'cac40995-c37a-4dcb-9506-472869077634'],
-            secret_types=['arbitrary', 'kv'],
-            match_all_labels=['dev', 'us-south'],
-        )
-
-        assert response.get_status_code() == 200
-        secret_metadata_paginated_collection = response.get_result()
-        assert secret_metadata_paginated_collection is not None
-
-    @needscredentials
-    def test_list_secrets_with_pager(self):
-        all_results = []
-
-        # Test get_next().
-        pager = SecretsPager(
-            client=self.secrets_manager_service,
-            limit=10,
-            sort='created_at',
-            search='example',
-            groups=['default', 'cac40995-c37a-4dcb-9506-472869077634'],
-            secret_types=['arbitrary', 'kv'],
-            match_all_labels=['dev', 'us-south'],
-        )
-        while pager.has_next():
-            next_page = pager.get_next()
-            assert next_page is not None
-            all_results.extend(next_page)
-
-        # Test get_all().
-        pager = SecretsPager(
-            client=self.secrets_manager_service,
-            limit=10,
-            sort='created_at',
-            search='example',
-            groups=['default', 'cac40995-c37a-4dcb-9506-472869077634'],
-            secret_types=['arbitrary', 'kv'],
-            match_all_labels=['dev', 'us-south'],
-        )
-        all_items = pager.get_all()
-        assert all_items is not None
-
-        assert len(all_results) == len(all_items)
-        print(f'\nlist_secrets() returned a total of {len(all_results)} items(s) using SecretsPager.')
 
     @needscredentials
     def test_get_secret(self):
@@ -678,11 +678,6 @@ class TestSecretsManagerV2:
 
         assert response.get_status_code() == 204
 
-  # The integration test for delete_secret_version_data has been explicitly excluded from generation.
-  # A test for this operation must be developed manually.
-  # @needscredentials
-  # def test_delete_secret_version_data(self):
-
     @needscredentials
     def test_delete_secret_locks_bulk(self):
         response = self.secrets_manager_service.delete_secret_locks_bulk(
@@ -714,6 +709,11 @@ class TestSecretsManagerV2:
         )
 
         assert response.get_status_code() == 204
+
+  # The integration test for delete_secret_version_data has been explicitly excluded from generation.
+  # A test for this operation must be developed manually.
+  # @needscredentials
+  # def test_delete_secret_version_data(self):
 
   # The integration test for delete_secret_task has been explicitly excluded from generation.
   # A test for this operation must be developed manually.

@@ -91,7 +91,6 @@ def config_private_cert_engine(secrets_manager_service):
         if "already exists" not in err.message:
             raise AssertionError("Failed to create template_configuration")
 
-
 def create_private_certificate(secrets_manager_service, secret_name):
     secret_prototype_model = {
         'secret_type': 'private_cert',
@@ -191,6 +190,7 @@ class TestSecretsManagerV2Manual():
             )
             assert cls.secrets_manager_service is not None
 
+
             cls.config = read_external_sources(
                 SecretsManagerV2.DEFAULT_SERVICE_NAME)
             assert cls.config is not None
@@ -202,8 +202,7 @@ class TestSecretsManagerV2Manual():
             cls.privateCertSecretId2 = create_private_certificate(cls.secrets_manager_service, "private-cert-secret2")
 
             # IAM Credentials tests setup
-            cls.iamSecretId = config_iam_credentials_engine(cls.secrets_manager_service, cls.config['APIKEY'],
-                                                            cls.config['ACCESS_GROUP'])
+            cls.iamSecretId = config_iam_credentials_engine(cls.secrets_manager_service, cls.config['APIKEY'], cls.config['ACCESS_GROUP'])
 
         print('Setup complete.')
 
