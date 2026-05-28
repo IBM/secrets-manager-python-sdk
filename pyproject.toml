@@ -34,6 +34,7 @@ dependencies = [
 Repository = "https://github.com/IBM/secrets-manager-python-sdk"
 Documentation = "https://cloud.ibm.com/apidocs/secrets-manager"
 Issues = "https://github.com/IBM/secrets-manager-python-sdk/issues"
+Changelog = "https://github.com/IBM/secrets-manager-python-sdk/releases"
 
 [project.optional-dependencies]
 dev = [
